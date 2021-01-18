@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deployment-101
+  labels:
+    app: backend-mineco
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: backend-mineco
+  template:
+    metadata:
+      labels:
+        app: backend-mineco
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:alpine
+        command: ["sh", "-c", "echo VERSION 1.0 desde $HOSTNAME > /usr/share/nginx/html/index.html && nginx -g 'daemon off;'"]
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: comercio
+  labels:
+    app: backend-mineco
+spec:
+  type: ClusterIP
+  selector:
+    app: backend-mineco
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 80
+---
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: rules-mineco-101
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+  - http:
+      paths:
+      - backend:
+          serviceName: comercio
+          servicePort: 8080
