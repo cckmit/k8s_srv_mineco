@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: laravel
-        image: docker-comercio:alpine
+        image: docker-comercio:latest
         imagePullPolicy: IfNotPresent
 ---
 apiVersion: v1
