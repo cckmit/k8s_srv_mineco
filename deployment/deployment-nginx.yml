@@ -15,9 +15,9 @@ spec:
         app: laravel
     spec:
       containers:
-      - name: laravel
-        image: docker-comercio:alpine
-        imagePullPolicy: IfNotPresent
+      - name: nginx
+        image: nginx:alpine
+        command: ["sh", "-c", "echo VERSION 1.0 desde $HOSTNAME > /usr/share/nginx/html/index.html && nginx -g 'daemon off;'"]
 ---
 apiVersion: v1
 kind: Service
