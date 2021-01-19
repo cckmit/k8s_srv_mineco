@@ -18,18 +18,58 @@ spec:
       - name: laravel
         image: docker-comercio:latest
         imagePullPolicy: IfNotPresent
+        ports:
+          - containerPort: 9000
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ingress-depl-nginx
+  labels:
+    app: nginx
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - name: nginx-comercio
+        image: nginx-comercio:latest
+        imagePullPolicy: IfNotPresent
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: laravel
+  name: nginx
   labels:
-    app: laravel
+    app: nginx
 spec:
   type: ClusterIP
   selector:
-    app: laravel
+    app: nginx
   ports:
     - protocol: TCP
       port: 8080
       targetPort: 80
+
+
+# ---
+# apiVersion: v1
+# kind: Service
+# metadata:
+#   name: laravel
+#   labels:
+#     app: laravel
+# spec:
+#   type: ClusterIP
+#   selector:
+#     app: laravel
+#   ports:
+#     - protocol: TCP
+#       port: 8080
+#       targetPort: 9000
