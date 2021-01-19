@@ -3,16 +3,16 @@ kind: Deployment
 metadata:
   name: ingress-depl-laravel
   labels:
-    app: backend
+    app: laravel
 spec:
   replicas: 3
   selector:
     matchLabels:
-      app: backend
+      app: laravel
   template:
     metadata:
       labels:
-        app: backend
+        app: laravel
     spec:
       containers:
       - name: nginx
@@ -24,11 +24,11 @@ kind: Service
 metadata:
   name: app-v1
   labels:
-    app: backend
+    app: laravel
 spec:
   type: ClusterIP
   selector:
-    app: backend
+    app: laravel
   ports:
     - protocol: TCP
       port: 8080
