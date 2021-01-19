@@ -38,6 +38,43 @@ metadata:
     app.kubernetes.io/part-of: mineco_app
 
 ---
+## configMap para servicio de laravel
+
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: nginx-config
+  namespace: mineco-namespaces
+  labels:
+      app.kubernetes.io/name: mineco_app
+      app.kubernetes.io/part-of: mineco_app
+      tier: backend
+data:
+  config: |
+    server {
+      index index.php index.html
+      error_log /var/log/nginx/error.log;
+      access_log /var/log/nginx/access.log;
+
+      root /code/comercio/public;
+
+      location / {
+        try_files $uri $uri/ /index.php?$query_string;
+      }
+
+      location ~ .php$ {
+        try_files $uri =404;
+        fastcgi_split_path_info ^(.+.php)(/.+)$;
+        fastcgi_pass php:9000;
+        fastcgi_index index.php;
+        include fastcgi_params;
+        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+        fastcgi_param PATH_INFO $fastcgi_path_info;
+      } 
+    }
+
+
+---
 apiVersion: v1
 kind: ServiceAccount
 metadata:
