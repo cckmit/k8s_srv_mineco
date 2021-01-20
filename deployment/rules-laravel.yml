@@ -10,5 +10,5 @@ spec:
       paths:
       - path: /app1
         backend:
-          serviceName: laravel
+          serviceName: nginx
           servicePort: 8080
