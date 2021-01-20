@@ -13,7 +13,8 @@ RUN apt-get update && \
     libbz2-dev \
     cron \
     && pecl channel-update pecl.php.net \
-    && pecl install apcu
+    && pecl install apcu \
+    && pecl install mcrypt-1.0.3
 
 # PHP Extensions
 RUN docker-php-ext-install mcrypt zip bz2 mbstring pdo pdo_pgsql pdo_mysql pcntl \
