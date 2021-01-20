@@ -22,7 +22,8 @@ spec:
           path: /code
       containers:
       - name: php
-        image: hirenkavad/laravel-k8:1.5.1
+        image: comercio/laravel
+        imagePullPolicy: IfNotPresent
         volumeMounts:
         - name: dir
           mountPath: /code
