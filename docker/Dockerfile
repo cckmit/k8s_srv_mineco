@@ -8,5 +8,10 @@ EXPOSE 80
 COPY --from=build /app /app 
 COPY vhost.conf /etc/apache2/sites-available/000-default.conf 
 RUN chown -R www-data:www-data /app \
-    && chmod -R 777 storage bootstrap/cache public \
     && a2enmod rewrite
+
+WORKDIR /app
+
+RUN chmod -R 777 /app/storage
+RUN chmod -R 777 /app/bootstrap/cache
+RUN chmod -R 777 /app/public
