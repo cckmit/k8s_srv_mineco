@@ -8,7 +8,8 @@ RUN apt-get update && \
     libfreetype6-dev \
     libjpeg62-turbo-dev \
     libmcrypt-dev \
-    libpng12-dev \
+    libpng-dev \
+    libpng16-16 \
     libbz2-dev \
     cron \
     && pecl channel-update pecl.php.net \
