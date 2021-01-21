@@ -30,8 +30,10 @@ RUN apt-get update && apt-get install -y --no-cache \
 RUN chown -R www-data:www-data /app \
     && a2enmod rewrite
 
+
 WORKDIR /app
 
+RUN composer install
 RUN chmod -R 777 /app/storage
 RUN chmod -R 777 /app/bootstrap/cache
 RUN chmod -R 777 /app/public
