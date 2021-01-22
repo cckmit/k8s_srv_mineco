@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: laravel-vehiculos
-        image: docker-precios:latest
+        image: docker-vehiculos:latest
         imagePullPolicy: IfNotPresent
         ports:
           - containerPort: 80
