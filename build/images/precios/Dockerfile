@@ -44,7 +44,8 @@ RUN apt-get install -y apt-transport-https gnupg \
     && pecl install pdo_sqlsrv sqlsrv \
     && docker-php-ext-enable pdo_sqlsrv sqlsrv \
     && php -m | grep -q 'pdo_sqlsrv' \
-    && php -m | grep -q 'sqlsrv' 
+    && php -m | grep -q 'sqlsrv' \
+    sed -i 's,^\(MinProtocol[ ]*=\).*,\1'TLSv1.2',g' /etc/ssl/openssl.cnf 
 
 # RUN chown -R www-data:www-data /app \
 RUN chown -R www-data:www-data /var/www/html \
