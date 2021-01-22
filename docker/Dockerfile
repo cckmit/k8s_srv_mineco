@@ -26,7 +26,8 @@ RUN chown -R www-data:www-data /app \
     && a2enmod rewrite 
 
 
-WORKDIR /app
+# WORKDIR /app
+WORKDIR /var/www
 
 
 # RUN chmod -R 777 /app/storage
