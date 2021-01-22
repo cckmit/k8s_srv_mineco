@@ -22,7 +22,7 @@ spec:
           - name: APP_KEY
             value: base64:cUPmwHx4LXa4Z25HhzFiWCf7TlQmSqnt98pnuiHmzgY=
         volumeMounts:
-            - mountPath: "/var/www"
+            - mountPath: "/var/www/html"
               name: vol-documento
       volumes:
         - name: vol-documento
