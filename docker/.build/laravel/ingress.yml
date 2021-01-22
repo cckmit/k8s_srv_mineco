@@ -10,5 +10,5 @@ spec:
         paths:
           - path: /
             backend:
-              serviceName: laravel-kubernetes-demo
+              serviceName: laravel-documentos
               servicePort: 80

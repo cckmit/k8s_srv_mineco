@@ -1,22 +1,61 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: mineco-docu-pv
+  labels:
+    mysql: ready
+spec:
+  storageClassName: manual
+  capacity:
+    storage: 10Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: "/home/dtidesarrollo/comercio"
+
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: documentos-mineco
+spec:
+  storageClassName: manual
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 10Gi
+  selector:
+    matchLabels:
+      mysql: ready
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: laravel-kubernetes-demo
+  name: laravel-documentos
 spec:
+  replicas: 3
   selector:
     matchLabels:
-      run: laravel-kubernetes-demo
+      run: laravel-documentos
   template:
     metadata:
       labels:
-        run: laravel-kubernetes-demo
+        run: laravel-documentos
     spec:
       containers:
-        - name: demo
-          image: docker-laravel:latest
-          imagePullPolicy: IfNotPresent
-          ports:
-            - containerPort: 80
-          env:
-            - name: APP_KEY
-              value: base64:cUPmwHx4LXa4Z25HhzFiWCf7TlQmSqnt98pnuiHmzgY=
+      - name: laravel-documentos
+        image: docker-laravel:latest
+        imagePullPolicy: IfNotPresent
+        ports:
+          - containerPort: 80
+        env:
+          - name: APP_KEY
+            value: base64:cUPmwHx4LXa4Z25HhzFiWCf7TlQmSqnt98pnuiHmzgY=
+        volumeMounts:
+            - mountPath: "/app"
+              name: vol-documento
+        volumes:
+          - name: vol-documento
+            persistentVolumeClaim:
+              claimName: documentos-mineco
