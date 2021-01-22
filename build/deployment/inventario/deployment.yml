@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: laravel-inventario
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      run: laravel-inventario
+  template:
+    metadata:
+      labels:
+        run: laravel-inventario
+    spec:
+      containers:
+      - name: laravel-inventario
+        image: docker-laravel:latest
+        imagePullPolicy: IfNotPresent
+        ports:
+          - containerPort: 80
+        env:
+          - name: APP_KEY
+            value: base64:cUPmwHx4LXa4Z25HhzFiWCf7TlQmSqnt98pnuiHmzgY=
+        volumeMounts:
+            - mountPath: "/var/www/html"
+              name: vol-inventario
+      volumes:
+        - name: vol-inventario
+          persistentVolumeClaim:
+            claimName: inventario-mineco

@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: laravel-precios
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      run: laravel-precios
+  template:
+    metadata:
+      labels:
+        run: laravel-precios
+    spec:
+      containers:
+      - name: laravel-precios
+        image: docker-laravel:latest
+        imagePullPolicy: IfNotPresent
+        ports:
+          - containerPort: 80
+        env:
+          - name: APP_KEY
+            value: base64:cUPmwHx4LXa4Z25HhzFiWCf7TlQmSqnt98pnuiHmzgY=
+        volumeMounts:
+            - mountPath: "/var/www/html"
+              name: vol-precios
+      volumes:
+        - name: vol-precios
+          persistentVolumeClaim:
+            claimName: precios-mineco
