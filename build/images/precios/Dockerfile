@@ -33,43 +33,18 @@ RUN docker-php-ext-install mysqli pdo pdo_mysql
 
 ## install driver sql server
 
-ARG INSTALL_MSSQL=true
-RUN set -eux; \
-    if [ $\{INSTALL_MSSQL\} = true ]; then \
-        if [ $(php -r "echo PHP_MAJOR_VERSION;") = "5" ]; then \
-        apt-get -y install freetds-dev libsybdb5 \
-        && ln -s /usr/lib/x86_64-linux-gnu/libsybdb.so /usr/lib/libsybdb.so \
-        && docker-php-ext-install mssql pdo_dblib \
-        && php -m | grep -q 'mssql' \
-        && php -m | grep -q 'pdo_dblib' \
-        ;else \
-        ###########################################################################
-        # Ref from https://github.com/Microsoft/msphpsql/wiki/Dockerfile-for-adding-pdo_sqlsrv-and-sqlsrv-to-official-php-image
-        ###########################################################################
-        # Add Microsoft repo for Microsoft ODBC Driver 13 for Linux
-        apt-get install -y apt-transport-https gnupg \
-        && curl https://packages.microsoft.com/keys/microsoft.asc | apt-key add - \
-        && curl https://packages.microsoft.com/config/debian/9/prod.list > /etc/apt/sources.list.d/mssql-release.list \
-        && apt-get update -yqq \
-        # Install Dependencies
-        && ACCEPT_EULA=Y apt-get install -y unixodbc unixodbc-dev libgss3 odbcinst msodbcsql17 locales \
-        && echo "en_US.UTF-8 UTF-8" > /etc/locale.gen \
-        # link local aliases
-        && ln -sfn /etc/locale.alias /usr/share/locale/locale.alias \
-        && locale-gen \
-        # Install pdo_sqlsrv and sqlsrv from PECL. Replace pdo_sqlsrv-4.1.8preview with preferred version.
-        && if [ $(php -r "echo PHP_MINOR_VERSION;") = "0" ]; then \
-            pecl install pdo_sqlsrv-5.3.0 sqlsrv-5.3.0 \
-        ;else \
-            pecl install pdo_sqlsrv sqlsrv \
-        ;fi \
-        && docker-php-ext-enable pdo_sqlsrv sqlsrv \
-        && php -m | grep -q 'pdo_sqlsrv' \
-        && php -m | grep -q 'sqlsrv' \
-        ;fi \
-    ;fi
-
-
+RUN apt-get install -y apt-transport-https gnupg \
+    && curl https://packages.microsoft.com/keys/microsoft.asc | apt-key add - \
+    && curl https://packages.microsoft.com/config/debian/9/prod.list > /etc/apt/sources.list.d/mssql-release.list \
+    && apt-get update -yqq \
+    && ACCEPT_EULA=Y apt-get install -y unixodbc unixodbc-dev libgss3 odbcinst msodbcsql17 locales \
+    && echo "en_US.UTF-8 UTF-8" > /etc/locale.gen \
+    && ln -sfn /etc/locale.alias /usr/share/locale/locale.alias \
+    && locale-gen \
+    && pecl install pdo_sqlsrv sqlsrv \
+    && docker-php-ext-enable pdo_sqlsrv sqlsrv \
+    && php -m | grep -q 'pdo_sqlsrv' \
+    && php -m | grep -q 'sqlsrv' 
 
 # RUN chown -R www-data:www-data /app \
 RUN chown -R www-data:www-data /var/www/html \
