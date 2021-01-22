@@ -20,7 +20,6 @@ RUN apt-get update && apt-get install -y \
         zip \ 
         unzip \
         libzip-dev \
-        php-pclzip \
     && pecl install mcrypt-1.0.1  \
     && docker-php-ext-install -j$(nproc) iconv  \
     && docker-php-ext-install zip  \
@@ -29,12 +28,12 @@ RUN apt-get update && apt-get install -y \
     && docker-php-ext-enable mcrypt
 
 # RUN chown -R www-data:www-data /app \
-RUN chown -R www-data:www-data /var/www \
+RUN chown -R www-data:www-data /var/www/html \
     && a2enmod rewrite 
 
 
 # WORKDIR /app
-WORKDIR /var/www
+WORKDIR /var/www/html
 
 
 # RUN chmod -R 777 /app/storage
