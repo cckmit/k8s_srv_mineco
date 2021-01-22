@@ -16,7 +16,6 @@ spec:
       - name: laravel-documentos
         image: docker-laravel:latest
         imagePullPolicy: IfNotPresent
-        # command: ["sh", "-c", "composer install && npm install && chmod -R 777 /var/www/html/storage && chmod -R 777 /var/www/html/bootstrap/cache && chmod -R 777 /var/www/html/public;"]
         ports:
           - containerPort: 80
         env:
