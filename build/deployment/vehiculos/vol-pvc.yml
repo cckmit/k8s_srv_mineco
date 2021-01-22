@@ -1,0 +1,30 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: vehiculos-mineco
+  labels:
+    vehiculos: ready
+spec:
+  storageClassName: manual
+  capacity:
+    storage: 10Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: "/deployment/application/vehiculos"
+
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: vehiculos-mineco
+spec:
+  storageClassName: manual
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 10Gi
+  selector:
+    matchLabels:
+      vehiculos: ready
