@@ -3,7 +3,7 @@ kind: PersistentVolume
 metadata:
   name: documentos-mineco
   labels:
-    mysql: ready
+    comercio: ready
 spec:
   storageClassName: manual
   capacity:
@@ -27,4 +27,4 @@ spec:
       storage: 10Gi
   selector:
     matchLabels:
-      mysql: ready
+      comercio: ready

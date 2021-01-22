@@ -3,7 +3,7 @@ kind: PersistentVolume
 metadata:
   name: inventario-mineco
   labels:
-    mysql: ready
+    inventario: ready
 spec:
   storageClassName: manual
   capacity:
@@ -27,4 +27,4 @@ spec:
       storage: 10Gi
   selector:
     matchLabels:
-      mysql: ready
+      inventario: ready

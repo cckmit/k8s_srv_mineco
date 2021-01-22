@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: laravel-precios
-        image: docker-laravel:latest
+        image: docker-precios:latest
         imagePullPolicy: IfNotPresent
         ports:
           - containerPort: 80
