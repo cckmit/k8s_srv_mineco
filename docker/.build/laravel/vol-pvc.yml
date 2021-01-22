@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: mineco-docu-pv
+  name: documentos-mineco
   labels:
     mysql: ready
 spec:
