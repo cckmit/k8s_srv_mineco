@@ -1,14 +1,14 @@
-FROM composer:1.6.5 as build 
-WORKDIR /app 
-COPY . /app 
-RUN apk update
+# FROM composer:1.6.5 as build 
+# WORKDIR /app 
+# COPY . /app 
+# RUN apk update
 
-RUN apk add libpng libpng-dev libjpeg-turbo-dev libwebp-dev zlib-dev libxpm-dev gd && docker-php-ext-install gd
-RUN composer install
+# RUN apk add libpng libpng-dev libjpeg-turbo-dev libwebp-dev zlib-dev libxpm-dev gd && docker-php-ext-install gd
+# RUN composer install
 
 FROM php:7.2-apache 
 EXPOSE 80 
-COPY --from=build /app /app 
+# COPY --from=build /app /app 
 COPY vhost.conf /etc/apache2/sites-available/000-default.conf 
 
 RUN apt-get update && apt-get install -y \
@@ -29,9 +29,9 @@ RUN chown -R www-data:www-data /app \
 WORKDIR /app
 
 
-RUN chmod -R 777 /app/storage
-RUN chmod -R 777 /app/bootstrap/cache
-RUN chmod -R 777 /app/public
+# RUN chmod -R 777 /app/storage
+# RUN chmod -R 777 /app/bootstrap/cache
+# RUN chmod -R 777 /app/public
 
 # install node and npm
 ENV NODE_VERSION=12.6.0
@@ -51,6 +51,6 @@ RUN php -r "unlink('composer-setup.php');"
 RUN mv composer.phar /usr/local/bin/composer
 
 #################################################
-RUN npm install
-RUN npm run dev
-RUN cp .env.example .env
+# RUN npm install
+# RUN npm run dev
+# RUN cp .env.example .env
