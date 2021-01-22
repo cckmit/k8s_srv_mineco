@@ -33,7 +33,7 @@ RUN docker-php-ext-install mysqli pdo pdo_mysql
 
 ## install driver sql server
 
-ARG INSTALL_MSSQL=false
+ARG INSTALL_MSSQL=true
 RUN set -eux; \
     if [ $\{INSTALL_MSSQL\} = true ]; then \
         if [ $(php -r "echo PHP_MAJOR_VERSION;") = "5" ]; then \
