@@ -22,7 +22,8 @@ RUN apt-get update && apt-get install -y \
     && docker-php-ext-install -j$(nproc) gd \
     && docker-php-ext-enable mcrypt
 
-RUN chown -R www-data:www-data /app \
+# RUN chown -R www-data:www-data /app \
+RUN chown -R www-data:www-data /var/www \
     && a2enmod rewrite 
 
 
