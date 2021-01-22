@@ -24,7 +24,7 @@ spec:
         volumeMounts:
             - mountPath: "/app"
               name: vol-documento
-        volumes:
-          - name: vol-documento
-            persistentVolumeClaim:
-              claimName: documentos-mineco
+      volumes:
+        - name: vol-documento
+          persistentVolumeClaim:
+            claimName: documentos-mineco
