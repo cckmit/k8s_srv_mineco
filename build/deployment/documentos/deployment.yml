@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: laravel-documentos
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      run: laravel-documentos
+  template:
+    metadata:
+      labels:
+        run: laravel-documentos
+    spec:
+      containers:
+      - name: laravel-documentos
+        image: docker-laravel:latest
+        imagePullPolicy: IfNotPresent
+        ports:
+          - containerPort: 80
+        env:
+          - name: APP_KEY
+            value: base64:cUPmwHx4LXa4Z25HhzFiWCf7TlQmSqnt98pnuiHmzgY=
+        volumeMounts:
+            - mountPath: "/var/www/html"
+              name: vol-documento
+      volumes:
+        - name: vol-documento
+          persistentVolumeClaim:
+            claimName: documentos-mineco
