@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: laravel-recursos
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      run: laravel-recursos
+  template:
+    metadata:
+      labels:
+        run: laravel-recursos
+    spec:
+      containers:
+      - name: laravel-recursos
+        image: docker-php73:latest
+        imagePullPolicy: IfNotPresent
+        ports:
+          - containerPort: 80
+        volumeMounts:
+            - mountPath: "/var/www/html/public"
+              name: vol-recursos
+      volumes:
+        - name: vol-recursos
+          persistentVolumeClaim:
+            claimName: recursos-mineco
