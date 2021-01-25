@@ -6,7 +6,7 @@
 # RUN apk add libpng libpng-dev libjpeg-turbo-dev libwebp-dev zlib-dev libxpm-dev gd && docker-php-ext-install gd
 # RUN composer install
 
-FROM php:7.3-apache 
+FROM php:7.3.26-apache 
 EXPOSE 80 
 # COPY --from=build /app /app 
 COPY vhost.conf /etc/apache2/sites-available/000-default.conf 
