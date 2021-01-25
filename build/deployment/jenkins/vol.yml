@@ -24,6 +24,7 @@ apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: jenkins-mineco
+  namespace: jenkins
 spec:
   storageClassName: manual
   accessModes:
