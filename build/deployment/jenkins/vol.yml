@@ -19,7 +19,7 @@ kind: PersistentVolumeClaim
 metadata:
   name: jenkins
 spec:
-  storageClassName: manual
+  storageClassName: jenkins-pv
   accessModes:
     - ReadWriteOnce
   resources:
