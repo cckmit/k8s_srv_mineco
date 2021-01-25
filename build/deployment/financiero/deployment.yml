@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: laravel-financiero
-        image: docker-laravel:latest
+        image: docker-php73:latest
         imagePullPolicy: IfNotPresent
         ports:
           - containerPort: 80
