@@ -18,6 +18,9 @@ spec:
         imagePullPolicy: IfNotPresent
         ports:
           - containerPort: 80
+            protocol: TCP
+          - containerPort: 443
+            protocol: TCP
         env:
           - name: APP_KEY
             value: base64:cUPmwHx4LXa4Z25HhzFiWCf7TlQmSqnt98pnuiHmzgY=
