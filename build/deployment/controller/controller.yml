@@ -1,10 +1,10 @@
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: ingress-nginx
+  name: mineco-cluster
   labels:
-    app.kubernetes.io/name: ingress-nginx
-    app.kubernetes.io/part-of: ingress-nginx
+    app.kubernetes.io/name: mineco-cluster
+    app.kubernetes.io/part-of: mineco-cluster
 
 ---
 
@@ -12,40 +12,40 @@ kind: ConfigMap
 apiVersion: v1
 metadata:
   name: nginx-configuration
-  namespace: ingress-nginx
+  namespace: mineco-cluster
   labels:
-    app.kubernetes.io/name: ingress-nginx
-    app.kubernetes.io/part-of: ingress-nginx
+    app.kubernetes.io/name: mineco-cluster
+    app.kubernetes.io/part-of: mineco-cluster
 
 ---
 kind: ConfigMap
 apiVersion: v1
 metadata:
   name: tcp-services
-  namespace: ingress-nginx
+  namespace: mineco-cluster
   labels:
-    app.kubernetes.io/name: ingress-nginx
-    app.kubernetes.io/part-of: ingress-nginx
+    app.kubernetes.io/name: mineco-cluster
+    app.kubernetes.io/part-of: mineco-cluster
 
 ---
 kind: ConfigMap
 apiVersion: v1
 metadata:
   name: udp-services
-  namespace: ingress-nginx
+  namespace: mineco-cluster
   labels:
-    app.kubernetes.io/name: ingress-nginx
-    app.kubernetes.io/part-of: ingress-nginx
+    app.kubernetes.io/name: mineco-cluster
+    app.kubernetes.io/part-of: mineco-cluster
 
 ---
 apiVersion: v1
 kind: ServiceAccount
 metadata:
   name: nginx-ingress-serviceaccount
-  namespace: ingress-nginx
+  namespace: mineco-cluster
   labels:
-    app.kubernetes.io/name: ingress-nginx
-    app.kubernetes.io/part-of: ingress-nginx
+    app.kubernetes.io/name: mineco-cluster
+    app.kubernetes.io/part-of: mineco-cluster
 
 ---
 apiVersion: rbac.authorization.k8s.io/v1beta1
@@ -53,8 +53,8 @@ kind: ClusterRole
 metadata:
   name: nginx-ingress-clusterrole
   labels:
-    app.kubernetes.io/name: ingress-nginx
-    app.kubernetes.io/part-of: ingress-nginx
+    app.kubernetes.io/name: mineco-cluster
+    app.kubernetes.io/part-of: mineco-cluster
 rules:
   - apiGroups:
       - ""
@@ -110,10 +110,10 @@ apiVersion: rbac.authorization.k8s.io/v1beta1
 kind: Role
 metadata:
   name: nginx-ingress-role
-  namespace: ingress-nginx
+  namespace: mineco-cluster
   labels:
-    app.kubernetes.io/name: ingress-nginx
-    app.kubernetes.io/part-of: ingress-nginx
+    app.kubernetes.io/name: mineco-cluster
+    app.kubernetes.io/part-of: mineco-cluster
 rules:
   - apiGroups:
       - ""
@@ -155,10 +155,10 @@ apiVersion: rbac.authorization.k8s.io/v1beta1
 kind: RoleBinding
 metadata:
   name: nginx-ingress-role-nisa-binding
-  namespace: ingress-nginx
+  namespace: mineco-cluster
   labels:
-    app.kubernetes.io/name: ingress-nginx
-    app.kubernetes.io/part-of: ingress-nginx
+    app.kubernetes.io/name: mineco-cluster
+    app.kubernetes.io/part-of: mineco-cluster
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: Role
@@ -166,7 +166,7 @@ roleRef:
 subjects:
   - kind: ServiceAccount
     name: nginx-ingress-serviceaccount
-    namespace: ingress-nginx
+    namespace: mineco-cluster
 
 ---
 apiVersion: rbac.authorization.k8s.io/v1beta1
@@ -174,8 +174,8 @@ kind: ClusterRoleBinding
 metadata:
   name: nginx-ingress-clusterrole-nisa-binding
   labels:
-    app.kubernetes.io/name: ingress-nginx
-    app.kubernetes.io/part-of: ingress-nginx
+    app.kubernetes.io/name: mineco-cluster
+    app.kubernetes.io/part-of: mineco-cluster
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
@@ -183,7 +183,7 @@ roleRef:
 subjects:
   - kind: ServiceAccount
     name: nginx-ingress-serviceaccount
-    namespace: ingress-nginx
+    namespace: mineco-cluster
 
 ---
 
@@ -191,21 +191,21 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: nginx-ingress-controller
-  namespace: ingress-nginx
+  namespace: mineco-cluster
   labels:
-    app.kubernetes.io/name: ingress-nginx
-    app.kubernetes.io/part-of: ingress-nginx
+    app.kubernetes.io/name: mineco-cluster
+    app.kubernetes.io/part-of: mineco-cluster
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app.kubernetes.io/name: ingress-nginx
-      app.kubernetes.io/part-of: ingress-nginx
+      app.kubernetes.io/name: mineco-cluster
+      app.kubernetes.io/part-of: mineco-cluster
   template:
     metadata:
       labels:
-        app.kubernetes.io/name: ingress-nginx
-        app.kubernetes.io/part-of: ingress-nginx
+        app.kubernetes.io/name: mineco-cluster
+        app.kubernetes.io/part-of: mineco-cluster
       annotations:
         prometheus.io/port: "10254"
         prometheus.io/scrape: "true"
@@ -223,7 +223,7 @@ spec:
             - --configmap=$(POD_NAMESPACE)/nginx-configuration
             - --tcp-services-configmap=$(POD_NAMESPACE)/tcp-services
             - --udp-services-configmap=$(POD_NAMESPACE)/udp-services
-            - --publish-service=$(POD_NAMESPACE)/ingress-nginx
+            - --publish-service=$(POD_NAMESPACE)/mineco-cluster
             - --annotations-prefix=nginx.ingress.kubernetes.io
           securityContext:
             allowPrivilegeEscalation: true
@@ -280,11 +280,11 @@ spec:
 apiVersion: v1
 kind: LimitRange
 metadata:
-  name: ingress-nginx
-  namespace: ingress-nginx
+  name: mineco-cluster
+  namespace: mineco-cluster
   labels:
-    app.kubernetes.io/name: ingress-nginx
-    app.kubernetes.io/part-of: ingress-nginx
+    app.kubernetes.io/name: mineco-cluster
+    app.kubernetes.io/part-of: mineco-cluster
 spec:
   limits:
   - min:
