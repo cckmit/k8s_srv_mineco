@@ -12,7 +12,8 @@ EXPOSE 80
 COPY vhost.conf /etc/apache2/sites-available/000-default.conf 
 COPY /ssl /etc/ssl/certs/
 
-RUN a2enmod ssl 
+RUN a2enmod ssl
+RUN service apache2 restart 
 
 RUN apt-get update && apt-get install -y \
         libfreetype6-dev \
