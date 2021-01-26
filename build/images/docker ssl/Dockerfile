@@ -13,7 +13,7 @@ COPY vhost.conf /etc/apache2/sites-available/000-default.conf
 COPY /ssl /etc/ssl/certs/
 
 RUN a2enmod ssl
-RUN service apache2 restart 
+
 
 RUN apt-get update && apt-get install -y \
         libfreetype6-dev \
@@ -43,7 +43,7 @@ RUN chown -R www-data:www-data /var/www/html \
 # WORKDIR /app
 WORKDIR /var/www/html
 
-
+RUN service apache2 restart 
 # RUN chmod -R 777 /app/storage
 # RUN chmod -R 777 /app/bootstrap/cache
 # RUN chmod -R 777 /app/public
