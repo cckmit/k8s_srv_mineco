@@ -43,7 +43,8 @@ RUN chown -R www-data:www-data /var/www/html \
 # WORKDIR /app
 WORKDIR /var/www/html
 
-RUN service apache2 restart 
+RUN a2enmod headers \
+   && service apache2 restart 
 # RUN chmod -R 777 /app/storage
 # RUN chmod -R 777 /app/bootstrap/cache
 # RUN chmod -R 777 /app/public
