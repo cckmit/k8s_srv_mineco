@@ -35,7 +35,7 @@ RUN docker-php-ext-install mysqli pdo pdo_mysql
 RUN chown -R www-data:www-data /var/www/html \
     && a2enmod rewrite 
 
-RUN a2enmod ssl && service apache2 restart\
+RUN a2enmod ssl && service apache2 restart 
 #     /usr/local/apache/bin/apachectl restart
 # WORKDIR /app
 WORKDIR /var/www/html
