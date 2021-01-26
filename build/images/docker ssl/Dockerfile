@@ -6,10 +6,15 @@
 # RUN apk add libpng libpng-dev libjpeg-turbo-dev libwebp-dev zlib-dev libxpm-dev gd && docker-php-ext-install gd
 # RUN composer install
 
+
 FROM php:7.2-apache 
-EXPOSE 80 
+EXPOSE 80
+EXPOSE 443 
+
+# ENV APP_HOST='localhost'
 # COPY --from=build /app /app 
 COPY vhost.conf /etc/apache2/sites-available/000-default.conf 
+# RUN sed -i 's/ServerName APP_HOST/ServerName '$APP_HOST'/g' /etc/apache2/sites-available/000-default.conf 
 COPY /ssl /etc/ssl/certs/
 
 RUN a2enmod ssl
