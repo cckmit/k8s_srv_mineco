@@ -1,92 +1,41 @@
-apiVersion: v1
-kind: PersistentVolume
-metadata:
-  name: mineco-pv
-  labels:
-    mysql: ready
-spec:
-  storageClassName: manual
-  capacity:
-    storage: 10Gi
-  accessModes:
-    - ReadWriteOnce
-  hostPath:
-    path: "/mysql"
-
----
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: mineco-pvc
-spec:
-  storageClassName: manual
-  accessModes:
-    - ReadWriteOnce
-  resources:
-    requests:
-      storage: 10Gi
-  selector:
-    matchLabels:
-      mysql: ready
----
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: mysql
-  labels:
-    app: mysql
+  name: nginx-ingress
+  namespace: mineco-ingress
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: mysql
+      app: nginx-ingress
   template:
     metadata:
       labels:
-        app: mysql
+        app: nginx-ingress
     spec:
+      serviceAccountName: nginx-ingress
       containers:
-      - name: mysql
-        image: mysql:5.7
+      - image: nginx/nginx-ingress:edge
+        imagePullPolicy: Always
+        name: nginx-ingress
+        ports:
+        - name: http
+          containerPort: 80
+        - name: https
+          containerPort: 443
         env:
-          - name: MYSQL_ROOT_PASSWORD
-            value: "root"
-        volumeMounts:
-          - mountPath: "/var/lib/mysql"
-            name: vol-mysql
-      volumes:
-        - name: vol-mysql
-          persistentVolumeClaim:
-            claimName: mineco-pvc
-
-        
-# ---
-# apiVersion: v1
-# kind: Service
-# metadata:
-#   name: mysql
-#   labels:
-#     app: mysql
-# spec:
-#   type: ClusterIP
-#   selector:
-#     app: mysql
-#   ports:
-#     - protocol: TCP
-#       port: 3306
-#       targetPort: 3306
-# ---
-# apiVersion: networking.k8s.io/v1
-# kind: Ingress
-# metadata:
-#   name: rules-mineco-101
-#   annotations:
-#     nginx.ingress.kubernetes.io/rewrite-target: /
-# spec:
-#   rules:
-#   - http:
-#       paths:
-#       - path: /documentos
-#         backend:
-#           serviceName: comercio
-#           servicePort: 8080
+        - name: POD_NAMESPACE
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.namespace
+        - name: POD_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.name
+        args:
+          - -nginx-configmaps=$(POD_NAMESPACE)/nginx-config
+          - -default-server-tls-secret=$(POD_NAMESPACE)/default-server-secret
+         #- -v=3 # Enables extensive logging. Useful for troubleshooting.
+         #- -report-ingress-status
+         #- -external-service=nginx-ingress
+         #- -enable-leader-election
