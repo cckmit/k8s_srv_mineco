@@ -2,12 +2,15 @@ apiVersion: v1
 kind: Service
 metadata:
   name: service-document
-  namespace: mineco-cluster
+  namespace: ingress-nginx
   labels:
-    app.kubernetes.io/name: mineco-cluster
-    app.kubernetes.io/part-of: mineco-cluster
+    app.kubernetes.io/name: ingress-nginx
+    app.kubernetes.io/part-of: ingress-nginx
 spec:
-  type: NodePort
+  type: LoadBalancer
+  externalIPs:
+  - 128.5.102.173
+  # type: NodePort
   ports:
     - name: http
       port: 80
