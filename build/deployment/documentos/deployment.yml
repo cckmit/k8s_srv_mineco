@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: laravel-documentos
-  namespace: mineco-cluster
+  namespace: ingress-nginx
 spec:
   replicas: 3
   selector:
