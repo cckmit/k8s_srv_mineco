@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: mineco-cluster
+  name: service-document
   namespace: mineco-cluster
   labels:
     app.kubernetes.io/name: mineco-cluster
@@ -13,12 +13,13 @@ spec:
       port: 80
       targetPort: 80
       protocol: TCP
+      nodePort: 31000
     - name: https
       port: 443
       targetPort: 443
       protocol: TCP
+      nodePort: 31001
   selector:
-    app.kubernetes.io/name: mineco-cluster
-    app.kubernetes.io/part-of: mineco-cluster
+    run: laravel-documentos
 
 ---

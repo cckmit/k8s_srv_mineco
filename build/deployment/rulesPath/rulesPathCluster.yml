@@ -1,0 +1,22 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: ingress-test
+  namespace: mineco-cluster
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+  - host: documentos.mineco.gob.gt
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: laravel-documentos
+          servicePort: 443
+  # - host: app2.mydomain.com
+  #   http:
+  #     paths:
+  #     - backend:
+  #         serviceName: api-server-svc
+  #         servicePort: 9090
