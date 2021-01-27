@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: service-document
+  name: ingress-nginx
   namespace: ingress-nginx
   labels:
     app.kubernetes.io/name: ingress-nginx
@@ -20,6 +20,7 @@ spec:
       protocol: TCP
       nodePort: 31001
   selector:
-    run: laravel-documentos
+    app.kubernetes.io/name: ingress-nginx
+    app.kubernetes.io/part-of: ingress-nginx
 
 ---
