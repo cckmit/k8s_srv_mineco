@@ -2,7 +2,7 @@ apiVersion: v1
 kind: PersistentVolume
 metadata:
   name: recursos-mineco
-  namespace: ingress-nginx
+  # namespace: ingress-nginx
   labels:
     recursos: ready
 spec:
@@ -19,7 +19,7 @@ apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: recursos-mineco
-  namespace: ingress-nginx
+  # namespace: ingress-nginx
 spec:
   storageClassName: manual
   accessModes:

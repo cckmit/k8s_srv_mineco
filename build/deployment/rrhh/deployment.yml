@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: laravel-recursos
-  namespace: ingress-nginx
+  # namespace: ingress-nginx
 spec:
   replicas: 1
   selector:
