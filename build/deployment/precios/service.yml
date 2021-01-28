@@ -2,11 +2,22 @@ apiVersion: v1
 kind: Service
 metadata:
   name: laravel-precios
+  namespace: precios
+  labels:
+    app.kubernetes.io/name: precios
+    app.kubernetes.io/part-of: precios
 spec:
-  type: NodePort
+  type: LoadBalancer
+  externalIPs:
+  - 128.5.9.72
   selector:
     run: laravel-precios
   ports:
-    - port: 80
+    - name: http
+      port: 80
       targetPort: 80
-      nodePort: 31002
+      protocol: TCP
+    - name: https
+      port: 443
+      targetPort: 443
+      protocol: TCP
