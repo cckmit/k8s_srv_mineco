@@ -8,6 +8,7 @@
 
 FROM php:7.2-apache 
 EXPOSE 80 
+EXPOSE 443
 # COPY --from=build /app /app 
 COPY vhost.conf /etc/apache2/sites-available/000-default.conf 
 
@@ -20,6 +21,7 @@ RUN apt-get update && apt-get install -y \
         zip \ 
         unzip \
         libzip-dev \
+        nano \
     && pecl install mcrypt-1.0.1  \
     && docker-php-ext-install -j$(nproc) iconv   \
     && docker-php-ext-install zip  \

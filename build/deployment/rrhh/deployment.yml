@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: laravel-recursos
-        image: docker-php73:latest
+        image: recursos:latest
         imagePullPolicy: IfNotPresent
         ports:
           - containerPort: 443
