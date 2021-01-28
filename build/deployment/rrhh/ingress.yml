@@ -5,6 +5,7 @@ metadata:
   namespace: recursos
   annotations:
     ingress.kubernetes.io/rewrite-target: /
+    kubernetes.io/ingress.allow-http: "false"
 spec:
   rules:
     - http:
