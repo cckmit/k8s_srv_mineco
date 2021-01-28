@@ -11,7 +11,7 @@ metadata:
 kind: ConfigMap
 apiVersion: v1
 metadata:
-  name: nginx-configuration
+  name: nginx-configuration-precios
   namespace: precios
   labels:
     app.kubernetes.io/name: precios
@@ -21,7 +21,7 @@ metadata:
 kind: ConfigMap
 apiVersion: v1
 metadata:
-  name: tcp-services
+  name: tcp-services-precios
   namespace: precios
   labels:
     app.kubernetes.io/name: precios
@@ -31,7 +31,7 @@ metadata:
 kind: ConfigMap
 apiVersion: v1
 metadata:
-  name: udp-services
+  name: udp-services-precios
   namespace: precios
   labels:
     app.kubernetes.io/name: precios
@@ -41,7 +41,7 @@ metadata:
 apiVersion: v1
 kind: ServiceAccount
 metadata:
-  name: nginx-ingress-serviceaccount
+  name: nginx-ingress-serviceaccount-precios
   namespace: precios
   labels:
     app.kubernetes.io/name: precios
@@ -51,7 +51,7 @@ metadata:
 apiVersion: rbac.authorization.k8s.io/v1beta1
 kind: ClusterRole
 metadata:
-  name: nginx-ingress-clusterrole
+  name: nginx-ingress-clusterrole-precios
   labels:
     app.kubernetes.io/name: precios
     app.kubernetes.io/part-of: precios
@@ -109,7 +109,7 @@ rules:
 apiVersion: rbac.authorization.k8s.io/v1beta1
 kind: Role
 metadata:
-  name: nginx-ingress-role
+  name: nginx-ingress-role-precios
   namespace: precios
   labels:
     app.kubernetes.io/name: precios
@@ -154,7 +154,7 @@ rules:
 apiVersion: rbac.authorization.k8s.io/v1beta1
 kind: RoleBinding
 metadata:
-  name: nginx-ingress-role-nisa-binding
+  name: nginx-ingress-role-nisa-binding-precios
   namespace: precios
   labels:
     app.kubernetes.io/name: precios
@@ -162,27 +162,27 @@ metadata:
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: Role
-  name: nginx-ingress-role
+  name: nginx-ingress-role-precios
 subjects:
   - kind: ServiceAccount
-    name: nginx-ingress-serviceaccount
+    name: nginx-ingress-serviceaccount-precios
     namespace: precios
 
 ---
 apiVersion: rbac.authorization.k8s.io/v1beta1
 kind: ClusterRoleBinding
 metadata:
-  name: nginx-ingress-clusterrole-nisa-binding
+  name: nginx-ingress-clusterrole-nisa-binding-precios
   labels:
     app.kubernetes.io/name: precios
     app.kubernetes.io/part-of: precios
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
-  name: nginx-ingress-clusterrole
+  name: nginx-ingress-clusterrole-precios
 subjects:
   - kind: ServiceAccount
-    name: nginx-ingress-serviceaccount
+    name: nginx-ingress-serviceaccount-precios
     namespace: precios
 
 ---
@@ -190,7 +190,7 @@ subjects:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: nginx-ingress-controller
+  name: nginx-ingress-controller-precios
   namespace: precios
   labels:
     app.kubernetes.io/name: precios
@@ -212,17 +212,17 @@ spec:
     spec:
       # wait up to five minutes for the drain of connections
       terminationGracePeriodSeconds: 300
-      serviceAccountName: nginx-ingress-serviceaccount
+      serviceAccountName: nginx-ingress-serviceaccount-precios
       nodeSelector:
         kubernetes.io/os: linux
       containers:
-        - name: nginx-ingress-controller
+        - name: nginx-ingress-controller-precios
           image: quay.io/kubernetes-ingress-controller/nginx-ingress-controller:0.30.0
           args:
-            - /nginx-ingress-controller
-            - --configmap=$(POD_NAMESPACE)/nginx-configuration
-            - --tcp-services-configmap=$(POD_NAMESPACE)/tcp-services
-            - --udp-services-configmap=$(POD_NAMESPACE)/udp-services
+            - /nginx-ingress-controller-precios
+            - --configmap=$(POD_NAMESPACE)/nginx-configuration-precios
+            - --tcp-services-configmap=$(POD_NAMESPACE)/tcp-services-precios
+            - --udp-services-configmap=$(POD_NAMESPACE)/udp-services-precios
             - --publish-service=$(POD_NAMESPACE)/precios
             - --annotations-prefix=nginx.ingress.kubernetes.io
           securityContext:
