@@ -29,6 +29,7 @@ RUN apt-get update && apt-get install -y \
         zip \ 
         unzip \
         libzip-dev \
+        nano \
     && pecl install mcrypt-1.0.1  \
     && docker-php-ext-install -j$(nproc) iconv   \
     && docker-php-ext-install zip  \

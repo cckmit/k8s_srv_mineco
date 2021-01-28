@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: laravel-recursos
-  # namespace: ingress-nginx
+  namespace: recursos
 spec:
   replicas: 1
   selector:
@@ -18,7 +18,7 @@ spec:
         image: docker-php73:latest
         imagePullPolicy: IfNotPresent
         ports:
-          - containerPort: 80
+          - containerPort: 443
         volumeMounts:
             - mountPath: "/var/www/html"
               name: vol-recursos
