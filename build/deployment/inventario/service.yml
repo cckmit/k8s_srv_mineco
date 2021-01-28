@@ -8,7 +8,8 @@ metadata:
     app.kubernetes.io/part-of: inventario
 spec:
   type: LoadBalancer
-  externalIPs: 128.5.9.71
+  externalIPs: 
+  - 128.5.9.71
   selector:
     run: laravel-inventario
   ports:
