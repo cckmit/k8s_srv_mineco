@@ -5,6 +5,7 @@ metadata:
   # namespace: documentos
   labels:
     comercio: ready
+    run: nginx
 spec:
   storageClassName: manual
   capacity:
@@ -30,3 +31,4 @@ spec:
   selector:
     matchLabels:
       comercio: ready
+      run: nginx

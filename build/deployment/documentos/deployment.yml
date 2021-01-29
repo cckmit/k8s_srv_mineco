@@ -3,6 +3,8 @@ kind: Deployment
 metadata:
   name: laravel-documentos
   # namespace: documentos
+  labels:
+    run: nginx
 spec:
   replicas: 3
   selector:
