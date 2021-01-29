@@ -55,7 +55,7 @@ RUN chown -R www-data:www-data /var/www/html \
 
 
 # WORKDIR /app
-WORKDIR /var/www/html/SistemaLogueo
+WORKDIR /var/www/html
 
 
 # RUN chmod -R 777 /app/storage
