@@ -41,7 +41,8 @@ RUN apt-get install -y apt-transport-https gnupg \
     && echo "en_US.UTF-8 UTF-8" > /etc/locale.gen \
     && ln -sfn /etc/locale.alias /usr/share/locale/locale.alias \
     && locale-gen \
-    && pecl install pdo_sqlsrv sqlsrv \
+    # && pecl install pdo_sqlsrv sqlsrv \
+    && pecl install pdo_sqlsrv-5.3.0 sqlsrv-5.3.0 \
     && docker-php-ext-enable pdo_sqlsrv sqlsrv \
     && php -m | grep -q 'pdo_sqlsrv' \
     && php -m | grep -q 'sqlsrv' \
@@ -54,7 +55,7 @@ RUN chown -R www-data:www-data /var/www/html \
 
 
 # WORKDIR /app
-WORKDIR /var/www/html
+WORKDIR /var/www/html/SistemaLogueo
 
 
 # RUN chmod -R 777 /app/storage
