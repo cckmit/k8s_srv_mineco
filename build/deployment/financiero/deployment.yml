@@ -23,7 +23,7 @@ spec:
           - containerPort: 443
             protocol: TCP
         volumeMounts:
-            - mountPath: "/var/www/html/public"
+            - mountPath: "/var/www/html"
               name: vol-financiero
       volumes:
         - name: vol-financiero
