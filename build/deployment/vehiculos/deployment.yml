@@ -23,7 +23,7 @@ spec:
           - containerPort: 443
             protocol: TCP
         volumeMounts:
-            - mountPath: "/var/www/html"
+            - mountPath: "/var/www/html/SistemaLogueo"
               name: vol-vehiculos
       volumes:
         - name: vol-vehiculos
