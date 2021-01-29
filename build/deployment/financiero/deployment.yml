@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: laravel-financiero
+  namespace: mineco
 spec:
   replicas: 1
   selector:
@@ -14,10 +15,13 @@ spec:
     spec:
       containers:
       - name: laravel-financiero
-        image: docker-php73:latest
+        image: financiero:latest
         imagePullPolicy: IfNotPresent
         ports:
           - containerPort: 80
+            protocol: TCP
+          - containerPort: 443
+            protocol: TCP
         volumeMounts:
             - mountPath: "/var/www/html/public"
               name: vol-financiero

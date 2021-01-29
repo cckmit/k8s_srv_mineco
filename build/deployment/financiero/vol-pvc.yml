@@ -2,6 +2,7 @@ apiVersion: v1
 kind: PersistentVolume
 metadata:
   name: financiero-mineco
+  namespace: mineco
   labels:
     financiero: ready
 spec:
@@ -18,6 +19,7 @@ apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: financiero-mineco
+  namespace: mineco
 spec:
   storageClassName: manual
   accessModes:
