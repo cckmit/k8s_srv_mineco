@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: laravel-vehiculos
+  namespace: mineco
 spec:
   replicas: 3
   selector:
@@ -18,9 +19,9 @@ spec:
         imagePullPolicy: IfNotPresent
         ports:
           - containerPort: 80
-        env:
-          - name: APP_KEY
-            value: base64:cUPmwHx4LXa4Z25HhzFiWCf7TlQmSqnt98pnuiHmzgY=
+            protocol: TCP
+          - containerPort: 443
+            protocol: TCP
         volumeMounts:
             - mountPath: "/var/www/html"
               name: vol-vehiculos
