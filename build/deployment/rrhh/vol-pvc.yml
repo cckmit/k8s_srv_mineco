@@ -2,7 +2,7 @@ apiVersion: v1
 kind: PersistentVolume
 metadata:
   name: recursos-mineco
-  # namespace: recursos
+  namespace: mineco
   labels:
     recursos: ready
 spec:
@@ -19,7 +19,7 @@ apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: recursos-mineco
-  # namespace: recursos
+  namespace: mineco
 spec:
   storageClassName: manual
   accessModes:
