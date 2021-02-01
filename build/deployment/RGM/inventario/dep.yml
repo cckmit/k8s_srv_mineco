@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rgm-inventario
+  namespace: mineco
+  labels:
+    run: nginx
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      run: rgm-inventario
+  template:
+    metadata:
+      labels:
+        run: rgm-inventario
+    spec:
+      containers:
+      - name: rgm-inventario
+        image: shinyay/docker-glassfish5:latest 
+        imagePullPolicy: IfNotPresent
+        ports:
+          - containerPort: 8080
+            protocol: TCP
+          - containerPort: 4848
+            protocol: TCP
+        volumeMounts:
+            - mountPath: "/var/www/html"
+              name: vol-rgm-inv
+      volumes:
+        - name: vol-rgm-inv
+          persistentVolumeClaim:
+            claimName: rgm-inv-mineco

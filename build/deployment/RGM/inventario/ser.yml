@@ -1,0 +1,29 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: service-rgm-glassfish
+  namespace: mineco
+  labels:
+    app.kubernetes.io/name: rgm
+    app.kubernetes.io/part-of: rgm
+  annotations:
+    metallb.universe.tf/address-pool: production-public-ips
+spec:
+  type: LoadBalancer
+  externalIPs:
+  - 128.5.9.76
+  ports:
+    - name: http
+      port: 8081
+      targetPort: 8080
+      protocol: TCP
+    - name: http
+      port: 4848
+      targetPort: 4848
+      protocol: TCP
+    # - name: https
+    #   port: 8181
+    #   targetPort: 8181
+    #   protocol: TCP
+  selector:
+    run: rgm-inventario
