@@ -1,26 +1,64 @@
-FROM        java:8-jdk
+# Glassfish4 + Oracle JDK 1.8.0
+#
+# VERSION     0.5
+# BUILD       20150828
 
-ENV         JAVA_HOME         /usr/lib/jvm/java-8-openjdk-amd64
-ENV         GLASSFISH_HOME    /usr/local/glassfish5
-ENV         PATH              $PATH:$JAVA_HOME/bin:$GLASSFISH_HOME/bin
+FROM       ubuntu:latest
 
-RUN RUN echo "deb [check-valid-until=no] http://cdn-fastly.deb.debian.org/debian jessie main" > /etc/apt/sources.list.d/jessie.list
-RUN echo "deb [check-valid-until=no] http://archive.debian.org/debian jessie-backports main" > /etc/apt/sources.list.d/jessie-backports.list
-RUN sed -i '/deb http:\/\/deb.debian.org\/debian jessie-updates main/d' /etc/apt/sources.list
-RUN apt-get -o Acquire::Check-Valid-Until=false update
 
-RUN         apt-get update && \
-            apt-get install -y curl unzip zip inotify-tools && \
-            rm -rf /var/lib/apt/lists/*
+# タイムゾーン
 
-# RUN         curl -L -o /tmp/glassfish-4.1.zip http://download.java.net/glassfish/4.1/release/glassfish-4.1.zip && \
-RUN         curl -L -o /tmp/glassfish-5.0.zip http://download.java.net/glassfish/5.0/release/glassfish-5.0.zip && \
-            unzip /tmp/glassfish-5.0.zip -d /usr/local && \
-            rm -f /tmp/glassfish-5.0.zip
+RUN dpkg-reconfigure -f noninteractive tzdata
 
-EXPOSE      8080 4848 8181
+# ロケールの設定
+RUN locale-gen en_US.UTF-8
 
-WORKDIR     /usr/local/glassfish5
+# Install required Linux packages
+RUN apt-get update
+RUN apt-get -y install wget
+RUN apt-get -y install unzip
 
-# verbose causes the process to remain in the foreground so that docker can track it
-CMD         asadmin start-domain --verbose
+#Install Java 1.8
+RUN \
+  echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | debconf-set-selections && \ 
+  apt-get update && \
+  apt-get install software-properties-common -y && \ 
+  add-apt-repository -y ppa:webupd8team/java -y && \
+  apt-get update && \
+  apt-get install oracle-java8-installer -y && \
+  apt-get install oracle-java8-set-default && \
+  rm -rf /var/lib/apt/lists/* && \
+  rm -rf /var/cache/oracle-jdk8-installer
+
+# Install GlassFish 4
+RUN wget -q --no-cookies --no-check-certificate "http://download.java.net/glassfish/5.0/release/glassfish-5.0.zip "
+RUN mv /glassfish-5.0.zip /usr/local; cd /usr/local; unzip glassfish-5.0.zip ; rm -f glassfish-5.0.zip ; cd /
+
+# Setup environment variables
+ENV JAVA_HOME /usr/lib/jvm/java-8-oracle
+ENV GF_HOME /usr/local/glassfish5
+ENV PATH $PATH:$JAVA_HOME/bin:$GF_HOME/bin
+
+# Allow Derby to start as daemon (used by some Java EE app, such as Pet Store)
+RUN echo "grant { permission java.net.SocketPermission \"localhost:1527\", \"listen\"; };" >> $JAVA_HOME/jre/lib/security/java.policy
+
+# Secure GF installation with a password and authorize network access
+ADD password_1.txt /tmp/password_1.txt
+ADD password_2.txt /tmp/password_2.txt
+RUN asadmin --user admin --passwordfile /tmp/password_1.txt change-admin-password --domain_name domain1 ; asadmin start-domain domain1 ; asadmin --user admin --passwordfile /tmp/password_2.txt enable-secure-admin ; asadmin stop-domain domain1
+RUN rm /tmp/password_?.txt
+
+# Add our GF startup script
+ADD start-gf.sh /usr/local/bin/start-gf.sh
+RUN chmod 755 /usr/local/bin/start-gf.sh
+
+# PORT FORWARD THE ADMIN PORT, HTTP LISTENER-1 PORT, HTTPS LISTENER PORT, PURE JMX CLIENTS PORT, MESSAGE QUEUE PORT, IIOP PORT, IIOP/SSL PORT, IIOP/SSL PORT WITH MUTUAL AUTHENTICATION
+#EXPOSE 4848 8080 8181 8686 7676 3700 3820 3920
+# ElasticBeanstalk only expose first port
+EXPOSE 8080 4848
+
+# deploy an application to the container
+# example below - it uses the auto-deploy service of Glassfish
+ADD https://github.com/yoshioterada/JavaEE7-App-On-Docker/blob/master/JavaEE7-App-On-Docker/target/JavaEE7-App-On-Docker-1.0-SNAPSHOT.war?raw=true /usr/local/glassfish4/glassfish/domains/domain1/autodeploy/JavaEE7-App-On-Docker.war
+
+ENTRYPOINT ["/usr/local/bin/start-gf.sh"]
