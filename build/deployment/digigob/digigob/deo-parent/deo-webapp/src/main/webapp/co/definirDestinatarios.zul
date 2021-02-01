@@ -1,0 +1,77 @@
+<?page title="new page title" contentType="text/html;charset=UTF-8"?>
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./definirDestinatariosWindow" ?>
+<zk>
+	<window title="${c:l('gedo.defDestinatarios.wintitle.defDestinatarios')}" border="normal"
+		id="definirDestinatariosWindow" width="470px" height="360px"
+		apply="com.egoveris.deo.web.satra.produccion.DefinirDestinatariosComposer">
+
+		<window id="seleccionarUsuarioWindow" visible="false"></window>
+		<window id="seleccionarExternoWindow" visible="false"></window>
+
+		<borderlayout width="100%" height="100%">
+			<center border="none">
+				<div align="center" height="80%">
+					<vbox>
+						<separator height="10px" />
+						<hbox align="end">
+							<label
+								value="${c:l('ccoo.definirDestinatario.destinatario')}" />
+							<separator width="10px" />
+							<combobox id="usuarioDestinatario"
+								width="300px" buttonVisible="false" autodrop="true" value=""
+								forward="onChange=onSelectItem" />
+							<toolbarbutton id="destinatarioButton"
+								image="/imagenes/mas.png" />
+						</hbox>
+						<hbox align="end">
+							<label
+								value="${c:l('ccoo.definirDestinatario.copia')}" />
+							<separator width="42px" />
+							<combobox id="usuarioCopia" width="300px"
+								buttonVisible="false" autodrop="true" value=""
+								forward="onChange=onSelectItem" />
+							<toolbarbutton id="copiaButton"
+								image="/imagenes/mas.png" />
+						</hbox>
+						<hbox align="end">
+							<label
+								value="${c:l('ccoo.definirDestinatario.copiaOculta')}" />
+							<separator width="5px" />
+							<combobox id="usuarioCopiaOculta"
+								width="300px" buttonVisible="false" autodrop="true" value=""
+								forward="onChange=onSelectItem" />
+							<toolbarbutton id="copiaOcultaButton"
+								image="/imagenes/mas.png" />
+						</hbox>
+						<separator height="5px"></separator>
+						<label
+							value="${c:l('ccoo.sectorMesa.notaExterna.title')}">
+						</label>
+						<button id="usuariosExternos"
+							label="${c:l('ccoo.sectorMesa.notaExterna')}" width="150px"
+							forward="onClick=onNotaExterna" style="color: #0000CC;">
+						</button>
+						<separator height="5px"></separator>
+						<label
+							value="${c:l('ccoo.definirDestinatario.mensaje')}" width="10px" />
+						<textbox id="mensajeADestinatario"
+							maxlength="255" rows="3" height="60px" width="400px" />
+					</vbox>
+				</div>
+			</center>
+
+			<south>
+				<div align="center">
+					<hbox>
+						<button id="aceptar" label="${c:l('gedo.token.cert.aceptar')}"
+							width="70px" />
+						<separator width="25px" />
+						<button id="cancelar" label="${c:l('gedo.token.cert.cancelar')}"
+							width="70px" />
+					</hbox>
+				</div>
+			</south>
+		</borderlayout>
+	</window>
+</zk>

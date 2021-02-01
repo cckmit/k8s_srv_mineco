@@ -1,0 +1,23 @@
+<?page title="new page title" contentType="text/html;charset=UTF-8"?>
+<zk>
+<window id = "validacionObligatoriedadWindow" title="new page title" border="normal" width="500px"  position="center"
+		mode="modal"
+		apply = "com.egoveris.deo.web.satra.tipos.ValidacionObligatoriedadComposer">
+	<div id = "textDiv" align = "center"/>
+	<grid id = "buttonsGrid">
+		<rows>
+			<row id = "aceptarCancelar" align = "center">
+				<toolbar align = "center">
+					<toolbarbutton id = "continuar" 
+						 image = "/imagenes/continuar.png"/>
+					<toolbarbutton id = "cancelar"
+						 image = "/imagenes/cancelarButton.png"/>
+				</toolbar>
+			</row>
+			<row id = "rowOk" align = "center">
+				<button id = "buttonOk" label = "${c:l('gedo.descargaDocumento.label.ok')}"/>
+			</row>
+		</rows>
+	</grid>
+</window>
+</zk>

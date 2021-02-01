@@ -1,0 +1,247 @@
+<?page title="${c:l('abmFC.title.admFormControlados')}" contentType="text/html;charset=UTF-8"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./abmFC" ?>
+<zk>
+	<window id="abmFC" title="${c:l('abmFC.title')}"
+		position="center" closable="true" sizable="false" border="normal"
+		width="1250px" mode="modal"
+		apply="com.egoveris.ffdd.web.adm.ABMFCComposer">
+
+		<window id="hiddenView" visible="false" />
+		<window id="constraintView" visible="false"/>
+		<window id="agregarTextoMultilinea" visible="false"/>
+		<window id="restriccionWindow" visible="false"/>
+		<separator />
+		<div width="100%" align="center">
+			<hbox width="100%">
+				<vbox width="500px">
+					<label id="labelTipoComponente" value="${c:l('abmCajaDatos.rowABMFC.cajas')}" />
+					<combobox id="comboboxTipoComponentes" width="100%" forward="onSelect=onSelectCombo"
+						readonly="true" disabled="${arg.modo == 'modoConsultaFC'}"
+						model="@{abmFC$ABMFCComposer.listaTipoComponente}" autodrop="false"
+						visible="true">
+					</combobox>
+
+					<textbox id="buscarComponente" width="100%"/>
+					<button id="botonVerCajas" forward="onClick=onVerCajas" label="${c:l('abmCajaDatos.botonCajas')}"/>
+					<listbox id="listboxComponentes" height="390px"
+						model="@{abmFC$ABMFCComposer.listaComponente}" style="padding:2px;overflow:auto"
+						selectedItem="@{abmFC$ABMFCComposer.selectedComponente}">
+						<listitem self="@{each=componente}" value="@{componente}"
+							draggable="${arg.modo != 'modoConsultaFC'}" droppable="${arg.modo != 'modoConsultaFC'}"
+							label="@{componente.nombre}" />
+					</listbox>
+					
+					<listbox id="listboxCajas" height="300px" visible="false"
+						model="@{abmFC$ABMFCComposer.listaCajas}" style="padding:2px;overflow:auto"
+						selectedItem="@{abmFC$ABMFCComposer.selectedCaja}" forward="onSelect=onCajaSelected">
+						<listitem self="@{each=caja}" value="@{caja}"
+							draggable="${arg.modo != 'modoConsultaFC'}" droppable="${arg.modo != 'modoConsultaFC'}"
+							label="@{caja.nombre}" />
+					</listbox>
+					
+					<grid width="100%" style="" id="gridComponentes">
+						<columns>
+							<column visible="true" width="20%" />
+							<column visible="true" width="80%" />
+						</columns>
+						<rows>
+							<row>
+								<label value="${c:l('abmFC.comp.nomb')}" style="font-weight:bold" />
+								<hlayout width="100%">
+									<label value="@{abmFC$ABMFCComposer.selectedComponente.nombre}" />
+								</hlayout>
+							</row>
+							<row>
+								<label value="${c:l('abmFC.comp.tipo')}" style="font-weight:bold" />
+								<hlayout width="100%">
+									<label
+										value="@{abmFC$ABMFCComposer.selectedComponente.tipoComponente}" />
+								</hlayout>
+							</row>
+							<row>
+								<label value="${c:l('abmCombobox.row.descrip')}" style="font-weight:bold" />
+								<hlayout width="100%">
+									<textbox rows="5"
+										value="@{abmFC$ABMFCComposer.selectedComponente.descripcion}"
+										readonly="true" width="370px" />
+								</hlayout>
+							</row>
+						</rows>
+					</grid>
+					<grid width="100%"
+						style="" id="gridCajas"
+						visible="false">
+						<columns>
+							<column visible="true" width="20%" />
+							<column visible="true" width="80%" />
+						</columns>
+						<rows>
+							<row>
+								<label value="${c:l('abmFC.comp.nomb')}"
+									style="font-weight:bold" />
+								<hlayout width="100%">
+									<label
+										value="@{abmFC$ABMFCComposer.selectedCaja.nombre}" />
+								</hlayout>
+							</row>
+							<row>
+								<label
+									value="${c:l('abmCajaDatos.rowABMFC.cajas')}"
+									style="font-weight:bold" />
+									<listbox id="listboxComponentesCaja" width="99%" height="65px"
+										model="@{abmFC$ABMFCComposer.listaGrupoComponente}">
+									
+									</listbox>
+							</row>
+							<row>
+								<label
+									value="${c:l('abmCombobox.row.descrip')}" style="font-weight:bold" />
+								<hlayout width="100%">
+									<textbox rows="3"
+										value="@{abmFC$ABMFCComposer.selectedCaja.descripcion}"
+										readonly="true" width="370px" />
+								</hlayout>
+							</row>
+						</rows>
+					</grid>
+				</vbox>
+				<vbox>
+				<separator spacing="15px"></separator>
+				<grid>
+				<columns>
+					<column visible="true" width="20%" />
+					<column visible="true" width="80%" />
+				</columns>
+				<rows>
+					<row>
+					<label value="${c:l('abmFC.nomForm')}"/>
+						<hlayout width="100%">
+							<textbox id="nombreFormulario" tabindex="1" width="480px"
+								readonly="${arg.modo != 'modoAltaFC'}" />
+						</hlayout>
+					</row>
+					<row>
+					<label value="${c:l('abmCombobox.row.descrip')}"/>
+						<hlayout width="100%">
+							<textbox id="descripcionFormulario" tabindex="2" width="480px"
+								rows="3" readonly="${arg.modo == 'modoConsultaFC'}" />
+						</hlayout>
+					</row>
+				</rows>
+			</grid>
+				
+					<label value="${c:l('abmFC.instComp')}" />
+					<listbox id="listboxComponentesInstancia" width="720px" mold="paging" pageSize="1000"
+						model="@{abmFC$ABMFCComposer.listaFormularioComponente}" forward="onDrop=onDropItem"
+						height="338px" style="padding:2px;" droppable="true" oddRowSclass="non-odd"
+						selectedItem="@{abmFC$ABMFCComposer.selectedFormComponent}">
+						
+						<listhead>
+							<listheader label="${c:l('abmFC.instComp.orden')}" width="8%"/>
+							<listheader label="${c:l('abmFC.instComp.comp')}" width="30%"/>
+							<listheader label="${c:l('abmFC.instComp.nomb')}" width="26%"/>
+							<listheader label="${c:l('abmFC.instComp.eti')}" width="26%"/>
+							<listheader label="${c:l('abmFC.instComp.obl')}" width="12%"/>
+							<listheader label="${c:l('abmFC.instComp.index')}" width="8%"/>
+							<listheader label="${c:l('abmFC.instComp.oculto')}" width="10%"/>
+						</listhead>	
+
+  						<listitem self="@{each=componenteForm}" value="@{componenteForm}"
+							draggable="${arg.modo != 'modoConsultaFC'}" droppable="${arg.modo != 'modoConsultaFC'}"
+							forward="onDrop=onDropItem">
+								<listcell label="@{componenteForm.orden}" />
+							<listcell label="@{componenteForm.componente.nombre}" />
+							<listcell>
+								<textbox value="@{componenteForm.nombre}" width="98%" maxlength="30"
+									readonly="${arg.modo == 'modoConsultaFC'}"></textbox>
+							</listcell>
+							<listcell>
+								<textbox id="etiqueta"
+									visible="@{componenteForm.componenteComun}"
+									value="@{componenteForm.etiqueta}" width="98%"
+									readonly="${arg.modo == 'modoConsultaFC'}">
+								</textbox>
+								<hbox
+									visible="@{componenteForm.multilinea}"
+									forward="onClick=onAgregarTextoMultilinea">
+									<image src="/imagenes/edit-find.png" />
+									<label id="textoMultilineaButton"
+										value="${c:l('abmFC.instComp.textBoxMultilinea')}" />									
+								</hbox>
+							</listcell>
+							<listcell>
+								<checkbox checked="@{componenteForm.obligatorio}" id="checkObligatorio"
+									value="@{componenteForm.obligatorio}" disabled="${arg.modo == 'modoConsultaFC'}"></checkbox>
+							</listcell>
+							<listcell>
+								<checkbox id="checkIndexado"
+								checked="@{componenteForm.relevanciaBusqueda, converter='com.egoveris.ffdd.web.adm.IndexTypeConverter'}"
+								value="@{componenteForm.relevanciaBusqueda, converter='com.egoveris.ffdd.web.adm.IndexTypeConverter'}" disabled="${arg.modo == 'modoConsultaFC'}"></checkbox>
+							</listcell>
+							<listcell>
+								<checkbox checked="@{componenteForm.oculto}" id="checkOcultar" 
+								value="@{componenteForm.oculto}"  disabled="${arg.modo == 'modoConsultaFC'}"></checkbox>
+							</listcell>
+						</listitem>
+
+										
+					</listbox>
+					<div width="720px">
+						<separator />
+						<separator />
+						<button id="papelera" label="${c:l('abmCombobox.label.arrastBorrar')}"
+							disabled="${arg.modo == 'modoConsultaFC'}" droppable="${arg.modo != 'modoConsultaFC'}"
+							width="100%" image="/imagenes/papelera.png" forward="onDrop=onDropItem" />
+						<grid width="100%"
+							style="">
+							<columns>
+								<column visible="true" width="25%" />
+								<column visible="true" width="25%" />
+								<column visible="true" width="25%" />
+								<column visible="true" width="25%" />							
+							</columns>
+							<rows>
+								<row>
+									<button id="eliminar"
+										label="${c:l('abmFC.eliminar')}"
+										disabled="${arg.modo == 'modoAltaFC'}"
+										forward="onClick=onEliminar" width="100%"
+										image="/imagenes/Eliminar_mini.png" />
+									<button id="constraint"
+										label="${c:l('abmFC.restricciones')}" 
+										disabled="${arg.modo == 'modoConsultaFC'}"
+										forward="onClick=onConstraint" width="100%"
+										image="/imagenes/constraint.png" />
+									<button id="restriccion"
+										label="${c:l('abmFC.componentes.ocultos')}" 
+										disabled="${arg.modo == 'modoConsultaFC'}"
+										forward="onClick=onRestriccion" width="100%"
+										image="/imagenes/restriccion-invisible.png" />
+									<button id="previsualizar"
+										label="${c:l('abmCombobox.prev')}" disabled="false"
+										forward="onClick=onPrevisualizar" width="100%"
+										image="/imagenes/preview.png" />	
+								</row>
+							</rows>
+						</grid>
+						<grid width="100%" style="">
+							<columns>
+								<column visible="true" width="50%" />
+								<column visible="true" width="50%" />
+							</columns>
+							<rows>
+								<row>
+									<button id="guardar" label="${c:l('abmCombobox.guardar')}"
+										disabled="${arg.modo == 'modoConsultaFC'}" forward="onClick=onGuardar"
+										width="100%" image="/imagenes/Guardar_mini.png" />
+									<button id="cancelar" label="${c:l('fc.export.cancelar')}" forward="onClick=onCancelar"
+										width="100%" image="/imagenes/Cancelar_mini.png" />
+								</row>
+							</rows>
+						</grid>
+					</div>
+				</vbox>
+			</hbox>
+		</div>
+	</window>
+</zk>

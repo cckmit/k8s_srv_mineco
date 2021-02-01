@@ -1,0 +1,129 @@
+<zk>
+	<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+	<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./agregarUsuariosFirmaConjuntaWindow" ?>
+	<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+	<window width="480px" id="agregarUsuariosFirmaConjuntaWindow"
+		border="normal" closable="true"
+		title="${c:l('gedo.firmaConjunta.titulo')}"
+		apply="com.egoveris.deo.web.satra.produccion.AgregarUsuariosFirmaConjuntaComposer"
+		position="center" contentStyle="background:white;align:left;">
+
+		<window id="agregarRevisorFirmaConjunta" visible="false" />
+		
+		<separator height="5px"></separator>
+
+		<!-- Carga de usuarios necesarios para firma conjunta -->
+		<grid>
+			<rows>
+				<row spans="20%,70%,20%" align="left">
+					<label
+						value="${c:l('gedo.firmaConjunta.usuarioFirmaConjunta')}" />
+					<combobox width="99%"
+							id="usuarioFirmaConjuntaCombo" buttonVisible="false"
+							autodrop="true" />
+					<button id="agregarUsuarioFirmaConjunta" width="100%"
+							label="${c:l('gedo.firmaConjunta.botonAgregar')}"
+							forward="onClick=agregarUsuariosFirmaConjuntaWindow$composer.onAgregarUsuario" />
+				</row>
+			</rows>
+		</grid>
+		<separator height="10px"></separator>
+		<grid>
+			<rows>
+				<row>
+					<label id = "textoFirmaConjunta"
+						value="${c:l('gedo.firmaConjunta.usuariosAgregadosFirmaConjunta')}" />
+				</row>
+				<row>
+					<vbox width="99%">
+						<paging id="firmantesPaginator" pageSize="5" width="99%"/>
+						<listbox 
+								id="usuariosAgregadosListBox"
+								selectedItem="@{agregarUsuariosFirmaConjuntaWindow$composer.usuarioSelected}"
+								model="@{agregarUsuariosFirmaConjuntaWindow$composer.usuariosParaAgregarEnFirmaConjunta}"
+								
+								paginal="${firmantesPaginator}"
+								mold="paging" 
+								itemRenderer="com.egoveris.deo.web.satra.renderers.UsuariosAgregadosItemRenderer">
+								
+							<listhead>
+									<listheader
+										id = "usuario"
+										label="${c:l('gedo.firmaConjunta.resultadoUsuario')}"
+										width="50%" align="center">
+									</listheader>
+									<listheader
+										id = "usuarioRevisor"
+										label="${c:l('gedo.firmaConjunta.resultadoRevisor')}"
+										width="30%" align="center">
+									</listheader>
+									<listheader
+										id = "accion"
+										label="${c:l('gedo.inbox.accionARealizar')}"
+										width="20%" align="center">
+									</listheader>
+							</listhead>
+							<listitem
+								self="@{each='usuarioSelected'}">
+								<listcell
+									label="@{usuarioSelected.nombreCompleto}"
+									tooltiptext="@{usuarioSelected.apellidoYNombre}">
+								</listcell>
+								<listcell  
+									label="${usuarioSelected.userRevisor}"
+									tooltiptext="@{usuarioSelected.userRevisor}">
+								</listcell>
+								<listcell>
+									<hbox align="center"> 
+										<image
+											src="/imagenes/arrow_large_up.png"
+											tooltiptext="${c:l('gedo.firmaConjunta.helpSubir')}"
+											forward="onClick=agregarUsuariosFirmaConjuntaWindow$composer.onSubir" />
+										<separator width="2px"/>
+										<image
+											src="/imagenes/arrow_large_down.png"
+											tooltiptext="${c:l('gedo.firmaConjunta.helpBajar')}"
+											forward="onClick=agregarUsuariosFirmaConjuntaWindow$composer.onBajar" />
+										<separator width="2px"/>
+										<image
+											src="/imagenes/decline.png"
+											tooltiptext="${c:l('gedo.firmaConjunta.helpDelete')}"
+											forward="onClick=agregarUsuariosFirmaConjuntaWindow$composer.onEliminarUsuario" />
+									</hbox>
+								</listcell>
+							</listitem>
+						</listbox>
+					</vbox>	
+				</row>
+				
+			</rows>
+		</grid>
+		<separator height="5px"/>
+		<hbox>
+			<separator width="2px"/>
+			<label id="mensajeUsuarioGenerador" />
+		</hbox>
+		<separator height="5px"/>
+		<grid>
+			<rows>
+				<row spans="100%" align="center">
+					<hbox align="center">
+						<button id="finAgregarUsuarioFirmaConjunta"
+							label="${c:l('gedo.firmaConjunta.botonGuardar')}"
+							forward="onClick=agregarUsuariosFirmaConjuntaWindow$composer.onFinalizarAgregacion" />
+						<button id="cancelarAgregarUsuarioFirmaConjunta"
+							label="${c:l('gedo.firmaConjunta.botonCancelar')}"
+							forward="onClick=agregarUsuariosFirmaConjuntaWindow$composer.onCancelarAgregacion" />
+					</hbox>	
+				</row>
+			</rows>
+		</grid>
+		<popup id="helpUsuarioFirmaConjunta" width="150px">
+			<label multiline="true"
+				value="${c:l('gedo.firmaConjunta.helpUsuarioFirmaConjunta')}" />
+			<image src="/imagenes/help/motivoDocumento.png" />
+		</popup>
+	</window>
+	
+</zk>
+

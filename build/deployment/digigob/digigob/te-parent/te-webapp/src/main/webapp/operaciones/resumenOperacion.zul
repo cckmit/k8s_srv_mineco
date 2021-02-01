@@ -1,0 +1,228 @@
+<?page title="${c:l('digigob.Title')}" contentType="text/html;charset=UTF-8"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./resumenOperacionWindow" ?>
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+
+<zk>
+	<style>
+		.resumenCaption > .z-caption-content {
+			width: 100%;
+		}
+		
+		.resumenButton {
+			margin-top: 5px !important;
+			float: right;
+		}
+		
+		.z-button:after {
+			content: none !important;
+		}
+	</style>
+	<window id="resumenOperacionWindow"
+		apply="org.zkoss.bind.BindComposer"
+		viewModel="@id('vm') @init('com.egoveris.te.base.vm.ResumenOperacionVM')" 
+		border="none">
+		
+		<div sclass="page-header">
+			<label value="${c:l('ee.misOperaciones.label.operacion')} ${vm.operacion.numOficial}" />
+		</div>
+		
+		<hlayout spacing="24px">
+			<!-- Izquierda -->
+			<hlayout hflex="6">
+				<panel border="none" sclass="transparent">
+					<caption width="100%" sclass="resumenCaption" iconSclass="z-icon-file" label="${c:l('ee.resumenOperacion.resumen')}">
+						<a href="/operaciones/misOperaciones.zul">
+							<button sclass="btn-info resumenButton" iconSclass="z-icon-chevron-left" label="${c:l('ee.general.volver')}" />
+						</a>
+						<button sclass="btn-info resumenButton" iconSclass="z-icon-plus" label="${c:l('ee.subsanacion.label.datos')}" onClick="@command('onDetalleOperacion')" />
+					</caption>
+					<panelchildren>
+						<grid>
+							<rows>
+								<row>
+									<cell width="30%">
+										<label value="${c:l('ee.detalleTrata.label.codigo')}" />
+									</cell>
+									<cell>
+										<label value="@load(vm.operacion.numOficial)" />
+									</cell>
+								</row>
+								<row>
+									<cell>
+										<label value="${c:l('ee.resumenOperacion.label.fechaInicio')}" />
+									</cell>
+									<cell>
+										<label value="@load(vm.operacion.fechaInicio) @converter('formatedDate', format='dd/MM/yyyy')" />
+									</cell>
+								</row>
+								<row>
+									<cell>
+										<label value="${c:l('ee.resumenOperacion.label.fechaFin')}" />
+									</cell>
+									<cell>
+										<label value="@load(vm.operacion.fechaFin) @converter('formatedDate', format='dd/MM/yyyy')"/>
+									</cell>
+								</row>
+								<row>
+									<cell>
+										<label value="${c:l('ee.resumenOperacion.label.estOperacion')}" />
+									</cell>
+									<cell>
+										<label value="@load(vm.operacion.estadoOperacion)" />
+									</cell>
+								</row>
+								<row>
+									<cell>
+										<label value="${c:l('ee.resumenOperacion.label.bloqueo')}" />
+									</cell>
+									<cell>
+										<label value="@load(vm.operacion.estadoBloq)" />
+									</cell>
+								</row>
+								<row>
+									<cell>
+										<label value="${c:l('ee.resumenOperacion.label.tipoOperacion')}" />
+									</cell>
+									<cell>
+										<label value="@load(vm.operacion.tipoOperacionOb.nombre)" />
+									</cell>
+								</row>
+								<row>
+									<cell>
+										<label value="${c:l('ee.resumenOperacion.label.workflow')}" />
+									</cell>
+									<cell>
+										<label value="@load(vm.operacion.jbpmExecutionId)" />
+									</cell>
+								</row>
+							</rows>
+						</grid>
+					</panelchildren>
+				</panel>
+			</hlayout>
+			
+			<!-- Derecha -->
+			<hlayout hflex="4">
+				<vlayout>
+					<!-- Estados -->
+					<panel border="none" sclass="transparent">
+						<caption iconSclass="z-icon-cogs"
+							label="${c:l('ee.resumenOperacion.caption.estOperacion')}" />
+						<panelchildren>
+							<grid>
+								<rows>
+									<row>
+										<cell width="30%">
+											<label value="${c:l('ee.resumenOperacion.label.seleccione')}" />
+										</cell>
+										<cell>
+											<vbox>
+												<combobox id="cbxEstados"
+													width="200px" model="@load(vm.transiciones)" value="@bind(vm.estadoSelected)" readonly="true">
+													<template name="model" var="item">
+														<comboitem label="${item}" value="${item}" />
+													</template>
+												</combobox>
+											</vbox>
+										</cell>
+									</row>
+									<row>
+										<cell />
+										<cell> 
+											<button class="btn-info"
+												label="${c:l('ee.resumenOperacion.label.cambiarEstado')}" onClick="@command('onCambiarEstado')" />
+										</cell>
+									</row>
+								</rows>
+							</grid>	
+						</panelchildren>
+					</panel>
+					
+					<separator />
+					
+					<!-- Subprocesos -->
+					<panel  border="none" sclass="transparent">
+						<caption iconSclass="z-icon-play"
+							label="${c:l('ee.resumenOperacion.caption.iniSub')}" />
+							<panelchildren>
+							<grid>
+								<rows>
+									<row>
+										<cell width="30%">
+											<label value="${c:l('ee.resumenOperacion.label.seleccione')}" />
+										</cell>
+										<cell>
+											<vbox>
+												<combobox id="cbxSubProcess"
+													width="200px" model="@load(vm.subProcess)"
+													selectedIndex="@bind(vm.indexSubProcessSel)" value="@bind(vm.comboSubProcessVal)" readonly="true">
+													<template name="model" var="item">
+														<comboitem
+															label="${item.tramite.codigoTrata}" />
+													</template>
+												</combobox>
+											</vbox>
+										</cell>
+									</row>
+									<row>
+										<cell />
+										<cell>
+											<button class="btn-info"
+												label="${c:l('ee.resumenOperacion.button.ini')}" onClick="@command('onIniciarSubprocess')" />
+										</cell>
+									</row>
+								</rows>
+							</grid>
+						</panelchildren>
+					</panel>
+				</vlayout>
+			</hlayout>
+		</hlayout>
+		
+		<separator height="15px" />
+		
+		<hlayout spacing="24px">
+			<!-- Subprocesos en curso -->
+			<panel border="none" hflex="10" sclass="transparent">
+				<caption label="${c:l('ee.resumenOperacion.caption.subCurso')}" />
+				
+				<panelchildren>
+					<listbox mold="paging" pageSize="5" model="@load(vm.subProcessOp)" emptyMessage="-">
+						<listhead>
+							<listheader label="${c:l('ee.inbox.listheader.nombretarea.value')}" />
+							<listheader label="${c:l('ee.inbox.listheader.fechaUltimaModificacion.value')}" />
+							<listheader label="${c:l('ee.resumenOperacion.label.codExp')}" />
+							<listheader label="${c:l('ee.resumenOperacion.listheader.codTipoTramite')}" />
+							<listheader label="${c:l('ee.inbox.alarmasDescripcion')}" />
+							<listheader label="${c:l('ee.resumenOperacion.listheader.bloqueo')}" />
+							<listheader label="${c:l('ee.consultaDocumentos.resultadosMotivo')}" />
+							<listheader label="${c:l('ee.inbox.listheader.usuarioanterior.value')}" />
+							<listheader label="${c:l('ee.resumenOperacion.listheader.accRealizar')}" />
+						</listhead>
+						<template name="model" var="item">
+				            <listitem>
+				                <listcell label="${item.expediente.estado}" />
+				                <listcell
+				                	label="@load(item.expediente.fechaCreacion) @converter('formatedDate', format='dd/MM/yyyy')"
+				                	if="${item.expediente.fechaModificacion eq null}" />
+				                <listcell
+				                	label="@load(item.expediente.fechaModificacion) @converter('formatedDate', format='dd/MM/yyyy')"
+				                	if="${item.expediente.fechaModificacion ne null}" />
+				                <listcell label="${item.expediente.codigoCaratula}" />
+				                <listcell label="${item.subproceso.tramite.codigoTrata}" />
+				                <listcell label="${item.expediente.trata.descripcion}" />
+				                <listcell label="${item.subproceso.lockType}" />
+				                <!-- @load(vm.getMotivoExpediente(item.expediente.idWorkflow)) -->
+				                <listcell label="" />
+				                <listcell label="${item.expediente.usuarioCreador}" />
+								<listcell>
+									<button class="btn-info" iconSclass="z-icon-play" label="${c:l('ee.inbox.ejecutar')}" onClick="@command('onEjecutarSubproceso', subproceso=item)" />
+								</listcell>
+				            </listitem>
+				        </template>
+					</listbox>
+				</panelchildren>
+			</panel>
+		</hlayout>
+	</window>
+</zk>

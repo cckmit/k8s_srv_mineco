@@ -1,0 +1,40 @@
+<?page title="${c:l('gedo.archivosDeTrabajo.window.titulo')}" contentType="text/html;charset=UTF-8"?>
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./archivoTrabajoWindow" ?>
+<zk>
+	<window title="${c:l('gedo.archivosDeTrabajo.window.titulo')}"
+		border="normal"
+		apply="com.egoveris.deo.web.satra.produccion.ArchivosDeTrabajoComposer"
+		id="archivoTrabajoWindow" width="740px" height="450px" 
+		>
+		
+			
+		<vbox id="vboxartrabajo">	
+				<div height="90%">
+					<listbox id="archivosTrabajoLb" 
+						style="overflow:auto;" height="100%"
+						model="@{archivoTrabajoWindow$composer.listaArhivosDeTrabajo}"
+						selectedItem="@{archivoTrabajoWindow$composer.selectedArchivoDeTrabajo}"
+						itemRenderer="com.egoveris.deo.web.satra.renderers.ArchivosDeTrabajoItemRenderer"
+						>
+						<listhead
+							style="background: #C4ECFF;" width="100%">
+							<listheader label="${c:l('gedo.archivosDeTrabajo.label.orden')}" align="center"
+								width="10%" />
+							<listheader label="${c:l('gedo.archivosEmbebidos.grid.archivo')}" align="center"
+								width="50%" />
+							<listheader label="${c:l('gedo.archivosEmbebidos.grid.accion')}" align="center"
+								width="40%" />
+						</listhead>
+					</listbox>
+				</div>
+				
+				<div style="background-color: #c6ecff" align="center" height="10%">			
+					<fileupload id="uploadArchivoDeTrabajo"
+						label="${c:l('gedo.archivosEmbebidos.labal.addDocumento')}"/>
+					<button id="volver" label="${c:l('gedo.general.volver')}" visible="false"></button>	
+				</div>
+			</vbox>
+	</window>
+</zk>

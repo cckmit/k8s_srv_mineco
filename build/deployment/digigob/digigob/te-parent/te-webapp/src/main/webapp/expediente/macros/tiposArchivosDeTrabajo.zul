@@ -1,0 +1,70 @@
+<?page title="Datos Propios de la Trata" contentType="text/html;charset=UTF-8"?>
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./tiposArchivosDeTrabajoWindow" ?>
+<zk>
+	<window title="${c:l('ee.tipoArchivoTrabajo.title.tipoArchivo')}"
+		id="tiposArchivosDeTrabajoWindow" width="400px" 
+		apply="com.egoveris.te.base.composer.TiposArchivosDeTrabajoComposer"
+				border="normal" closable="true"  sizable="false"
+		maximizable="false" maximized="false" height="150px"
+		position="center" contentStyle="align:left;">
+		<groupbox height="50px" closable="false">
+			<caption label="${c:l('ee.tipoArchivoTrabajo.caption.seleccionarArchTrabajo')}" />
+			
+			<hbox>
+				<!-- .............................recuadro.............................. -->
+				<groupbox height="30px" closable="false"
+					style="border:0; magin-top:5px">
+					<hbox align="center">
+			
+				
+						<combobox id="tipoArchivoDeTrabajo"
+							disabled="false" readonly="true" width="200px"
+							model="@{tiposArchivosDeTrabajoWindow$TiposArchivosDeTrabajoComposer.listaTiposDeArchivo}"
+							selectedItem="@{tiposArchivosDeTrabajoWindow$TiposArchivosDeTrabajoComposer.selectedTipoArchivo}"
+							itemRenderer="com.egoveris.te.base.rendered.TipoArchivoComboBoxItemRenderer"
+							forward="onSelect=tiposArchivosDeTrabajoWindow$TiposArchivosDeTrabajoComposer.onSelectTipoTipoArchivo">
+						</combobox>
+					</hbox>
+					
+					<separator spacing="20px" />
+					
+				</groupbox>
+			</hbox>
+		
+
+		</groupbox>
+		
+		<separator height="10px"></separator>
+		
+		<grid align="center" style="border:0px">
+			<rows>
+				<row align="center"
+					style="border: none; 
+					overflow: hidden; 
+					zoom: 1; 
+					 
+					border-top: none; 
+					border-left: none; 
+					border-right: none; 
+					border-bottom: none; ">
+
+					<hbox align="center">
+
+						<button autodisable="self" id="guardar" label="${c:l('ee.expediente.tramitacion.lbl.guardar')}"
+							forward="onClick=onGuardarTipoArchivo">
+						</button>
+					
+						<button autodisable="self" id="cancelar" label="${c:l('ee.expediente.tramitacion.lbl.cancelar')}" forward="onClick=onCancelar">
+						</button> 
+
+
+					</hbox>
+
+				</row>
+
+			</rows>
+		</grid>
+		
+	</window>
+</zk>

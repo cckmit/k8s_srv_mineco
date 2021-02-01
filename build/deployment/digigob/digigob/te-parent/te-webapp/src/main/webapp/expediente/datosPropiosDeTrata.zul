@@ -1,0 +1,98 @@
+<?page title="Datos Propios de la Trata" contentType="text/html;charset=UTF-8"?>
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./datosPropiosTrataWindow" ?>
+<zk>
+	<window title="${c:l('ee.datosPropiosTrata.title.datosPropios')}" border="normal"
+		id="datosPropiosTrataWindow" width="480px"
+		apply="com.egoveris.te.base.composer.DatosPropiosTrataComposer">
+
+		<paging id="datosPaginator" pageSize="5" />
+		<grid id="grillaDatos" mold="paging" paginal="${datosPaginator}"
+			model="@{datosPropiosTrataWindow$DatosPropiosTrataComposer.datos}"
+			rowRenderer="com.egoveris.te.base.rendered.DatosTrataRenderer">
+			<columns>
+				<column label="${c:l('te.webapp.expediente.macros.documentofiltro.lbl.nombre')}" />
+				<column label="${c:l('ee.datosPropios.column.obligatoriedad')}" />
+				<column label="${c:l('ee.documentViewer.listhead.accion')}" />
+
+				<!--<column label="Acción" />-->
+			</columns>
+		</grid>
+		<grid id="grillaOpciones">
+			<rows id="filasOpciones">
+			
+				<row align="center">
+					<hbox align="center">
+						<separator orient="vertical" width="16px" />
+						<label value="${c:l('ee.datosPropios.label.tipoCampo')}" />
+						<separator orient="vertical" width="16px" />
+						
+						<combobox id="tipo_campo" readonly="true"
+							width="200px"
+							model="@{datosPropiosTrataWindow$DatosPropiosTrataComposer.tiposDatosPropios}"
+							selectedItem="@{datosPropiosTrataWindow$DatosPropiosTrataComposer.selected}"
+							itemRenderer="com.egoveris.te.base.rendered.DatosPropiosTrataComboBoxItemRenderer">
+						</combobox>
+
+						<separator orient="vertical" width="16px" />
+					</hbox>
+				</row>
+
+				<row align="center" id="rowNuevoNombre">
+					<hbox align="center">
+						<separator orient="vertical" width="16px" />
+						<label value="${c:l('ee.datosPropios.label.agregar')}" />
+						<separator orient="vertical" width="16px" />
+						<textbox id="nuevo_nombre" />
+						<separator orient="vertical" width="16px" />
+						<button autodisable="self" id="agregar"
+							tooltiptext="${c:l('ee.datosPropios.tooltip.agregarCodigo')}"
+							image="/imagenes/control_add_blue.png" />
+					</hbox>
+				</row>
+
+				<row align="center" id="rowTipoCombo">
+					<hbox align="center">
+						<separator orient="vertical" width="16px" />
+						<label value="${c:l('ee.datosPropios.label.agregar')}" />
+						<separator orient="vertical" width="16px" />
+						
+						<combobox id="tipo_combo" readonly="true"
+							width="125px"
+							model="@{datosPropiosTrataWindow$DatosPropiosTrataComposer.gruposCombos}"
+							selectedItem="@{datosPropiosTrataWindow$DatosPropiosTrataComposer.selectedCombo}"
+							itemRenderer="com.egoveris.te.base.rendered.TiposCombosComboBoxItemRenderer">
+						</combobox>
+						
+						<separator orient="vertical" width="16px" />
+						<button autodisable="self" id="agregarCombo"
+							tooltiptext="${c:l('ee.datosPropios.tooltip.agregarCodigo')}"
+							image="/imagenes/control_add_blue.png" />
+					</hbox>
+				</row>
+				
+				<row align="center">
+					<hbox align="center">
+						<toolbar mold="panel" orient="horizontal"
+							width="100%" align="center">
+							<!--
+							<toolbarbutton autodisable="self" id="guardar"
+								image="/imagenes/Guardar.png" disabled="false">
+							</toolbarbutton>
+							<toolbarbutton autodisable="self" id="cancelar"
+								image="/imagenes/Cancelar.png" disabled="false">
+							</toolbarbutton>
+							-->
+							<button autodisable="self" id="guardar"
+								label="${c:l('ee.expediente.tramitacion.lbl.guardar')}" disabled="false">
+							</button>
+							<button autodisable="self" id="cancelar"
+								label="${c:l('ee.expediente.tramitacion.lbl.cancelar')}" disabled="false">
+							</button>
+						</toolbar>
+					</hbox>
+				</row>
+			</rows>
+		</grid>
+	</window>
+</zk>

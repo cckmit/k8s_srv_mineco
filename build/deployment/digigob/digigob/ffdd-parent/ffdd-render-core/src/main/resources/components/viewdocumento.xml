@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<complexComponent type="TRADE" name="documento"
+	description="Documento" zul="documento.zul"
+	composer="com.egoveris.ffdd.render.zk.comp.cc.DocumentoComposer"
+	mappingDTO="com.egoveris.ccomplejos.base.model.DocumentoDTO">
+
+	<field name="idDocumento" class="com.egoveris.ffdd.render.zk.comp.ext.IntboxExt"
+		height="20px" width="90%" tooltip="Id Documento" disabled="true"/>
+	<field name="codigoDocumento" class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt"
+		height="20px" width="90%" tooltip="Codigo Documento" disabled="true"/>
+	<field name="nombreDocumento" class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt"
+		height="20px" width="90%" tooltip="Nombre Documento" disabled="true"/>
+	<field name="tipoDocumento" factory="comboBoxFactory"
+		height="20px" width="90%" tooltip="Tipo Documento" disabled="true"/>
+	<field name="paisDocumento" factory="comboBoxFactory"
+		height="20px" width="90%" tooltip="Pais Documento" disabled="true"/>
+	<field name="fechaDocumento" class="com.egoveris.ffdd.render.zk.comp.ext.DateboxExt"
+		height="20px" width="90%" tooltip="Fecha Documento" disabled="true"/>
+	<field name="participante"
+		class="com.egoveris.ffdd.render.zk.comp.ext.SeparatorComplex" xmlFile="viewparticipantesecundario.xml"
+		tooltip="Emisor Documento" />
+</complexComponent>

@@ -1,0 +1,114 @@
+<?page title="Sistema GEDO - MONITOR QUARTZ" contentType="text/html;charset=UTF-8"?>
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" ?>
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c" ?>
+<zk>
+	<window id="monitorQuartzWindow" title="Monitor Solicitudes GEDO"
+		border="none" height="950px" 
+		apply="com.egoveris.deo.web.satra.monitor.quartz.MonitorQuartzComposer">
+
+	    <style>
+	        .buttonMonitorQuartz {
+	            color: blue;
+	            font-style: oblique;
+	            font-size: 25;
+	        }
+	        
+            .buttonMonitorQuartzDanger {
+	            color: red;
+	            font-size: 30;
+	        }
+	    </style>
+
+		<separator bar="false"/>
+		<separator bar="false"/>	
+		<separator bar="true"/>
+		<label value="${c:l('gedo.monitorQuartz.label.jobsEspera')}"></label>
+        <separator bar="true"/>
+
+		<box visible="true" id="previsualizacion" width="100%"
+			align="center">
+			<toolbar mold="panel" orient="horizontal" width="100%" align="center">
+				<toolbarbutton id="lanzarAhora" label="${c:l('gedo.monitorQuartz.label.lanzarAhora')}" sclass="buttonMonitorQuartz" mold="default"
+					tooltiptext="Lanza las solicitudes seleccionadas en este momento y anula el trigger original." />
+				<toolbarbutton id="reprogramar" label="${c:l('gedo.monitorQuartz.label.reprogramar')}" sclass="buttonMonitorQuartz" mold="default"
+					tooltiptext="Permite reprogramar un nuevo trigger para que la ejecucion se haga en el tiempo requerido." />
+				<toolbarbutton id="eliminarSolicitud" label="${c:l('gedo.monitorQuartz.label.eliminarSolicitud')}" sclass="buttonMonitorQuartz" mold="default"
+					tooltiptext="Elimina las solicitudes seleccionadas tanto a nivel de Job como de Trigger." />
+<!-- 				<toolbarbutton id="crearSolicitud" label="Crear Solicitud" sclass="buttonMonitorQuartz" mold="default" -->
+<!-- 					tooltiptext="Genera una nueva solicitud Quartz." /> -->
+				<toolbarbutton id="lanzarLimpiezaTemporal" label="${c:l('gedo.monitorQuartz.label.limpiezaTemporales')}" sclass="buttonMonitorQuartzDanger" mold="default"
+					tooltiptext="Lanza manualmente el proceso de Limpieza de Temporales con los parametros configurados en la BBDD" />
+			</toolbar>
+		</box>
+
+		<listbox fixedLayout="true" id="quartzList" checkmark="true"
+			mold="paging" multiple="true"
+			
+			model="@{monitorQuartzWindow$composer.quartz}"
+			selectedItem="@{monitorQuartzWindow$composer.quartzSeleccionados,converter='com.egoveris.deo.web.satra.monitor.quartz.SelectedItemsConverter'}"
+			itemRenderer="com.egoveris.deo.web.satra.monitor.quartz.QuartzItemRenderer">
+			<listhead sizable="false" style="background: #C4ECFF;">
+				<listheader id="job" label="${c:l('gedo.monitorQuartz.label.job')}" width="25%"
+					 />
+				<listheader id="trigger" label="${c:l('gedo.monitorQuartz.label.trigger')}" width="25%"
+					 />
+				<listheader id="estado" label="${c:l('gedo.monitorQuartz.label.estado')}" width="10%"
+					 />
+				<listheader id="proximaEjecucion" width="15%"
+					label="${c:l('gedo.monitorQuartz.label.proximaEjecucion')}" />
+				<listheader id="grupo" width="5%"
+					label="${c:l('gedo.monitorQuartz.label.grupo')}" />
+				<listheader id="proximoReintento" width="10%"
+					label="${c:l('gedo.monitorQuartz.label.proxReintento')}" />
+<!-- 				<listheader id="inicioEjecucion" -->
+<!-- 					label="Inicio Ejecucion"  /> -->
+<!-- 				<listheader id="ultimaEjecucion"  -->
+<!-- 					label="Ultima Ejecucion"  /> -->
+<!-- 				<listheader id="finEjecucion"  -->
+<!-- 					label="Fin de Ejecucion"  /> -->
+				<listheader id="cronExpression" width="10%"
+					label="${c:l('gedo.monitorQuartz.label.cronExpresion')}" />
+			</listhead>
+			<listfoot >
+				<listfooter/>
+				<listfooter/>
+				<listfooter/>
+				<listfooter/>
+				<listfooter/>
+				<listfooter label="${c:l('gedo.monitorQuartz.label.totalSolicitudes')}"  span="1"
+					style="color:#C4ECFF;align:right"/>
+				<listfooter label="@{monitorQuartzWindow$composer.totalSolicitudes}" span="1" 
+					style="color:#C4ECFF;align=right"/>
+			</listfoot>
+		</listbox>
+		
+		<separator bar="false"/>
+		<separator bar="false"/>		
+		<separator bar="true"/>
+		<label value="${c:l('gedo.monitorQuartz.label.gedoProceso')}"></label>
+        <separator bar="true"/>
+		
+		<listbox fixedLayout = "true" id = "procesoLogsList" 
+		mold = "paging" 
+		model="@{monitorQuartzWindow$composer.listaProcesoLog}"
+		itemRenderer="com.egoveris.deo.web.satra.monitor.quartz.ProcesoLogItemRenderer">
+			<listhead sizable="false" style="background: #C4ECFF;">
+				<listheader id="id" label="${c:l('gedo.monitorQuartz.label.id')}" width="10%"
+					 />
+				<listheader id="proceso" label="${c:l('gedo.monitorQuartz.label.proceso')}" width="10%"
+					 />
+				<listheader id="workflowId" label="${c:l('gedo.monitorQuartz.label.workflow')}" width="10%"
+					 />
+				<listheader id="sistemaOrigen" label="${c:l('gedo.monitorQuartz.label.sistemaOrigen')}" width="10%"
+					 />
+				<listheader id="state" label="${c:l('gedo.monitorQuartz.label.estado')}" width="10%"
+					 />
+				<listheader id="descripcion" label="${c:l('gedo.monitorQuartz.label.descripcion')}" width="40%"
+					 />
+				<listheader id="fechaCreacion" label="${c:l('gedo.monitorQuartz.label.fechaCreacion')}" width="10%"
+					 />
+			</listhead>
+		</listbox>
+	</window>
+</zk>

@@ -1,0 +1,22 @@
+<?page title="new page title" contentType="text/html;charset=UTF-8"?>
+<zk>
+<window border="normal" width="350px" title="${c:l('ccoo.consultaCo.buscarReferencia')}"
+		closable="true" id="consultaPorReferenciaWindow"
+		apply="com.egoveris.deo.web.satra.consulta.ConsultaPorReferenciaCoComposer">
+		
+		<groupbox>
+			<separator height="20px"></separator>
+			<div align="center">
+				<hbox>
+					<label value="${c:l('ccoo.ingresar.referencia.busqueda')}"></label>
+					<separator width="5px"></separator>
+					<textbox id="referenciaCo"></textbox>
+					<separator width="5px"></separator>
+				</hbox>
+				<separator spacing="10px"></separator>
+				<button id="buscarComunicacion" label="${c:l('ccoo.consulta.botonBuscar')}"></button>
+			</div>
+		</groupbox>
+
+</window>
+</zk>

@@ -1,0 +1,27 @@
+<?page title="" contentType="text/html;charset=UTF-8"?>
+<zk>
+	<window title="${c:l('gedo.documento.template.titulo.ventana')}"
+		border="normal" width="830px" height="500px"
+		apply="com.egoveris.deo.web.satra.produccion.HistorialTemplateComposer"
+		position="center" closable="true"
+		>
+		<separator spacing="5px"/>
+		
+		<hbox>
+			<separator width="5px"/>
+			<label value="${c:l('gedo.historial.documento.ver.formAsociado.title')}" />
+			<label id="formAsociado" />
+		</hbox>
+		<hbox>
+			<toolbar mold="panel" orient="horizontal">				
+				<label value="${c:l('gedo.historial.documento.ver.formDescripcion.title')}" />
+				<label id="descripcion" />
+			</toolbar>
+		</hbox>
+		<separator spacing="5px" />
+		<div align="center">
+			<ckeditor customConfigurationsPath="/js/ckconfig.js"
+				toolbar="emptyToolbar" id="ckeditor" width="790px" height="325px" />
+		</div>
+	</window>
+</zk>

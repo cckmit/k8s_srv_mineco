@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<complexComponent type="TRADE" name="vistadocumentoingresooig"
+	zul="vistaDocumentoIngresoOIG.zul" description="Vista Documento Ingreso OIG Information"
+	mappingDTO="com.egoveris.ccomplejos.base.model.VistaDocumentoIngresoOigDTO">
+
+	<field name="oigDocumento" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" disabled="true" />
+	<field name="nombreDocumento" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" disabled="true" />
+	<field name="bodegaDestino" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" disabled="true" />
+	<field name="numeroDocumento" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" disabled="true" />
+	<field name="fechaDocumento" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.DateboxExt" disabled="true" />
+
+</complexComponent>

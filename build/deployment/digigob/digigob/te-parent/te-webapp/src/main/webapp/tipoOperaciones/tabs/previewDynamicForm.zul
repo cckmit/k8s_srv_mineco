@@ -1,0 +1,12 @@
+<?page title="" contentType="text/html;charset=UTF-8"?>
+
+<zk>
+	<window id="previewDynamicFormWindow"
+		border="none" closable="true" position="center" width="900px">
+		
+		<div id="fcDiv" align="center" style="overflow: auto;" visible="false">
+			<hbox id="fcHbox" align="center" width="90%" style="overflow: auto;" />
+		</div>
+		
+	</window>
+</zk>

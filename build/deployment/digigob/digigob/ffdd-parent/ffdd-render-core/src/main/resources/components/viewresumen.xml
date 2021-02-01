@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<complexComponent type="TRADE" name="View Resumen"
+	description="Header Information" zul="viewResumen.zul"
+	composer="com.everis.tramelec.dynform.comp.ext.ViewResumenComposer"
+	mappingDTO="com.egoveris.ccomplejos.base.model.ViewResumenDTO">
+
+	<field name="codOperacion" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" disabled="true" />
+	<field name="processingStatus" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" disabled="true" />
+	<field name="tipoTramite" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" disabled="true" />
+	<field name="fechaCreacion" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.DateboxExt" disabled="true" />
+	<field name="creadoPor" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" disabled="true" />
+	<field name="fechaActualizacion" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.DateboxExt" disabled="true" />
+	<field name="actualizadoPor" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" disabled="true" />
+	<field name="itemTotal" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.IntboxExt" disabled="true" />
+	<field name="bultoTotal" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.IntboxExt" disabled="true" />
+	<field name="pesoBrutoItem" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.DecimalboxExt" disabled="true" />
+	<field name="pesoNetoEmbarque" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.DecimalboxExt" disabled="true" />
+	<field name="volumenTotal" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.DecimalboxExt" disabled="true" />
+
+
+
+</complexComponent>

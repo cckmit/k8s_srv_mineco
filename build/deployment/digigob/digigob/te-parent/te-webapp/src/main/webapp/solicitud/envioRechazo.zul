@@ -1,0 +1,46 @@
+<?page title="Enviar a" contentType="text/html;charset=UTF-8"?>
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./envioRechazoWindow" ?>
+<zk>
+	<window title="${c:l('ee.rechazo.titulo')}" border="normal" width="500px"
+		 id="envioRechazoWindow"
+		apply="com.egoveris.te.base.composer.EnvioRechazoComposer">
+		<groupbox>
+			<grid >
+				<rows width="498px">
+					<row>
+						<label value="${c:l('ee.tramitacion.rechazo.motivo')}" />
+						<textbox id="motivoRechazoSolicitud" maxlength="255"
+							 cols="40" rows="5">
+						</textbox>
+					</row>
+				</rows>
+			</grid>
+			<separator/>
+			<separator></separator>
+			<grid align="center"
+				style="border:0px;">
+				<rows>
+					<row >
+						<hbox>
+							 
+							<button id="enviar" label="${c:l('ee.subsanacion.button.enviar')}" iconSclass="z-icon-play" height="42px"  left="10px" 
+							forward="onClick=onEnviar" /> 
+							
+							<button id="cancelar" class="btn-secondary" iconSclass="z-icon-times-circle" label="${c:l('ee.nuevasolicitud.button.cancelar.value')}" height="42px" left="10px"
+							forward="onClick=onCancelar" />  
+						
+						</hbox>
+					</row>
+				</rows>
+			</grid>
+		</groupbox>
+
+		<!--TOOLTIPS DE AYUDA-->
+
+		<popup id="helpUsuario" width="150px">
+			<label multiline="true"
+				value="${c:l('ee.enviopase.ayudausuario')}" />
+		</popup>
+	</window>
+</zk>

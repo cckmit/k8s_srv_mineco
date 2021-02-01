@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<complexComponent type="TRADE" name="listadocumentoingreso"
+	description="Lista Documento Ingreso" zul="listaDocumentoIngreso.zul"
+	mappingDTO="com.egoveris.ccomplejos.base.model.ListaDocumentoIngresoDTO">
+
+	<field name="idSolicitud" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" disabled="true" />
+	<field name="nombreSSPP" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" disabled="true" />
+	<field name="nombreDocumento" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" disabled="true" />
+	<field name="nombreInstalacionDestino" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" disabled="true" />
+
+
+</complexComponent>

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.egoveris</groupId>
+		<artifactId>te</artifactId>
+		<version>2.0.3-SNAPSHOT</version>
+	</parent>
+	<artifactId>te-base-common</artifactId>
+	<name>te base common project</name>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.freemarker</groupId>
+			<artifactId>freemarker</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<!-- JACKRABBIT-WEBDAV -->
+		<dependency>
+			<groupId>org.apache.jackrabbit</groupId>
+			<artifactId>jackrabbit-webdav</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<!-- AbstractQuery -->
+			<groupId>org.jbpm.jbpm4</groupId>
+			<artifactId>jbpm-api</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<!-- (for UserDetails class) -->
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-core</artifactId>
+			<scope>provided</scope>
+		</dependency>
+
+		<!-- == BEGIN EGOVERIS == -->
+		<dependency>
+			<groupId>com.egoveris</groupId>
+			<artifactId>deo-ws-common</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.egoveris</groupId>
+			<artifactId>numerador-ws-common</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.egoveris</groupId>
+			<artifactId>shared-document-persistence-base-common</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.egoveris</groupId>
+			<artifactId>shared-organismo-base-common</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.egoveris</groupId>
+			<artifactId>shared-security-base-common</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.egoveris</groupId>
+			<artifactId>te-model-common</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.egoveris</groupId>
+			<artifactId>vuc-front-ws-common</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<!-- == END EGOVERIS == -->
+
+		<!-- == Begin TSF+ framework == -->
+		<dependency>
+			<groupId>org.terasoluna.plus.framework</groupId>
+			<artifactId>terasoluna-plus-common</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<!-- == End TSF+ framework == -->
+	</dependencies>
+</project>

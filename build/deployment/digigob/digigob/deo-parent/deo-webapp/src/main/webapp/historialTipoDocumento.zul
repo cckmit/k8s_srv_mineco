@@ -1,0 +1,44 @@
+<?page title="" contentType="text/html;charset=UTF-8"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./historialDocumentoWindow" ?>
+<zk>
+<window id="historialDocumentoWindow" width="100%" position="center" closable="true" border="normal"
+		apply="com.egoveris.deo.web.satra.produccion.HistorialTipoDocumentoComposer"
+		title="">
+		
+	<listbox id="tiposDocumentoLb" width="100%" 
+				selectedItem="@{historialDocumentoWindow$composer.selectedTipoDocumento}"
+				
+				mold="paging" pageSize="5" model="@{historialDocumentoWindow$composer.tiposDocumentos}"
+				itemRenderer="com.egoveris.deo.web.satra.renderers.HistorialTipoDocumentoItemRender">
+			<listhead sizable="false"
+					style="background: #C4ECFF;">
+
+					<listheader label="${c:l('gedo.historial.documento.version')}"
+						 align="center" width="4%"/>	
+					<listheader label="${c:l('gedo.historial.documento.usuarioCreador')}"
+						 align="center" width="10%"/>	
+					<listheader label="${c:l('gedo.historial.documento.fechaCreacion')}"
+						 align="center" width="13%"/>	
+					<listheader label="${c:l('gedo.historial.documento.descripcion')}"
+						 align="center" width="20%"/>
+					<listheader align="center" width="5%">
+						<label multiline="true"
+							value="${c:l('gedo.historial.documento.produccion')}"
+							 />
+					</listheader>
+					<listheader label="${c:l('gedo.historial.documento.generacion')}"
+						 align="center" width="7%"/>
+					<listheader label="${c:l('gedo.historial.documento.especiales')}"
+						 align="center" width="18%"/>
+					<listheader label="${c:l('gedo.historial.documento.actuacion')}"
+						 align="center" width="5%"/>
+					<listheader label="${c:l('gedo.historial.documento.familia')}"
+						 align="center" width="15%"/>
+					<listheader label="${c:l('gedo.historial.documento.importado')}"
+						 align="center" width="6%"/>
+					<listheader label="${c:l('gedo.historial.documento.acciones')}"
+						 align="center" width="9%"/>					
+			</listhead>
+	</listbox>
+</window>
+</zk>

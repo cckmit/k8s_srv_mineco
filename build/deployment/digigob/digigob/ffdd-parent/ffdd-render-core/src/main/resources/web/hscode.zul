@@ -1,0 +1,81 @@
+<zk>
+	<vlayout
+		apply="com.egoveris.ffdd.render.zk.comp.cc.HSCodeComposer">
+
+		<grid>
+			<columns>
+				<column></column>
+				<column></column>
+				<column></column>
+				<column></column>
+			</columns>
+			<rows>
+				<row>
+					<hbox>Subheading:</hbox>
+					<cell id="${arg.formComp.nombre}_subheading2Div" />
+					<hbox>Description:</hbox>
+					<cell id="${arg.formComp.nombre}_descriptionDiv" />
+				</row>
+				<row>
+					<hbox>Description Other:</hbox>
+					<cell id="${arg.formComp.nombre}_descriptionOtherDiv" />
+					<hbox>Created By:</hbox>
+					<cell id="${arg.formComp.nombre}_createdByDiv" />
+				</row>
+				<row>
+					<hbox>Modified By:</hbox>
+					<cell id="${arg.formComp.nombre}_modifiedByDiv" />
+					<hbox>Modified Date:</hbox>
+					<cell
+						id="${arg.formComp.nombre}_modifiedDateDiv" />
+				</row>
+				<row>
+					<hbox>Controlled Indicator:</hbox>
+					<cell id="${arg.formComp.nombre}_controlledIndicatorDiv" />
+					<hbox>HS code ID:</hbox>
+					<cell
+						id="${arg.formComp.nombre}_hsCodeIdDiv" />
+				</row>
+				<row>
+					<hbox>HS code:</hbox>
+					<cell id="${arg.formComp.nombre}_hsCodeDiv" />
+					<hbox>Dutiable:</hbox>
+					<cell
+						id="${arg.formComp.nombre}_dutiableDiv" />
+				</row>
+				<row>
+					<hbox>UOM code:</hbox>
+					<cell id="${arg.formComp.nombre}_uomCodeDiv" />
+					<hbox>Subheading ID:</hbox>
+					<cell id="${arg.formComp.nombre}_subheadingIdDiv" />
+				</row>
+				<row>
+					<hbox>Year:</hbox>
+					<cell id="${arg.formComp.nombre}_yearDiv" />
+					<hbox>Effective Date:</hbox>
+					<cell id="${arg.formComp.nombre}_effectiveDateDiv" />
+				</row>
+				<row>
+					<hbox>Chapter</hbox>
+					<cell colspan="2" id="${arg.formComp.nombre}_chapterDtoDiv" />
+				</row>
+				<row>
+					<hbox>Heading</hbox>
+					<cell colspan="2" id="${arg.formComp.nombre}_headingDtoDiv" />
+				</row>
+				<row>
+					<hbox>SubHeading</hbox>
+					<cell colspan="2" id="${arg.formComp.nombre}_subHeadingDtoDiv" />
+				</row>
+				<row>
+					<hbox>Created Dated :</hbox>
+					<cell id="${arg.formComp.nombre}_createdDateDiv" />
+					<hbox>Status:</hbox>
+					<cell id="${arg.formComp.nombre}_statusDiv" />
+				</row>
+				
+			</rows>
+		</grid>
+
+	</vlayout>
+</zk>

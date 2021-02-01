@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<complexComponent type="TRADE" name="instalacion"
+	description="Instalacion Information" zul="instalacion.zul"
+	composer="com.everis.tramelec.dynform.comp.ext.InstalacionComposer"
+	mappingDTO="com.egoveris.ccomplejos.base.model.InstalacionDTO">
+
+	<field name="oigPropietaria" width="90%" height="20px"
+		factory="comboBoxFactory" />
+	<field name="nombreInstalacion" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" disabled="true"/>
+	<field name="direccionInstalacion"
+		class="com.egoveris.ffdd.render.zk.comp.ext.SeparatorComplex" xmlFile="viewaddress.xml"/>
+	<field name="numeroResolucionAut" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" disabled="true"/>
+	<field name="fechaEmisionResolucion" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.DateboxExt" disabled="true"/>
+	<field name="entidadEmisora" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" disabled="true"/>
+	<field name="directorTecnico"
+		class="com.egoveris.ffdd.render.zk.comp.ext.SeparatorComplex" xmlFile="viewparticipantes.xml" />
+	<field name="tipoInstalacionDestino" width="90%" height="20px"
+		factory="comboBoxFactory" disabled="true"/>
+	<field name="codigoInstalacionDestino" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" disabled="true"/>
+	<field name="telefonoInstalacionDestino" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" disabled="true"/>
+	<field name="contactoInstalacionDestino" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" disabled="true"/>
+	<field name="razonSocial" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" disabled="true"/>
+
+</complexComponent>

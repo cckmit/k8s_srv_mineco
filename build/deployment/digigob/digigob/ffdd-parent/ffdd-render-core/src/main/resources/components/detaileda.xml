@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<complexComponent type="TRADE" name="Detail EDA" zul="detailEDA.zul" description="Detail for EDA"
+	composer="com.everis.tramelec.dynform.comp.ext.DetaildEDAComposer"
+	 mappingDTO="com.egoveris.ccomplejos.base.model.DetailEDADto">
+</complexComponent>

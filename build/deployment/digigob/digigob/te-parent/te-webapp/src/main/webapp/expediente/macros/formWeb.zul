@@ -1,0 +1,35 @@
+<?page title="Formulario Web" contentType="text/html;charset=UTF-8"?>
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./formWeb" ?>
+<zk>
+	<window id="formWeb" width="70%"
+		style="align=center; " border="normal" closable="true" sizable="false"
+		maximizable="false" maximized="false" position="center" contentStyle="background:#F0F8FF;align:left;"
+		apply="com.egoveris.te.base.composer.FormWebComposer"
+		mode="modal" height="auto">
+			 
+		<!-- <window id="taskView" visible="false" /> -->
+		 	
+		<groupbox >	
+		<grid align="center" style="border:0px;">
+				<rows>
+					<row >
+							<div id="div" height="500px" width="100%" style='white-space: pre-wrap; overflow:auto; position:relative;'>
+							</div>
+					</row>
+					<row >
+						<hbox>
+							<!-- image="/imagenes/GuardarSinRecuadro.png"  -->
+							<button autodisable="self" id="guardar" label="${c:l('ee.expediente.tramitacion.lbl.guardar')}"
+								forward="onClick=datosProp$FormularioControladoComposer.onGuardarExp"/>
+							<button autodisable="self" id="cancelar" label="${c:l('ee.expediente.tramitacion.lbl.cancelar')}"
+								forward="onClick=datosProp$FormularioControladoComposer.onCancelar"/>
+							<!-- image="/imagenes/CancelarExpediente.png" -->			
+						</hbox>
+					</row>
+				</rows>
+			</grid>
+		</groupbox>
+	</window>
+</zk>

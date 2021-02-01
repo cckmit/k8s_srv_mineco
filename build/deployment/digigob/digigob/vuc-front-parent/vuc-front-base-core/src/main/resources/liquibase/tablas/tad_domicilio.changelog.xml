@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
+    http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+	<changeSet author="Carlos Bellotti" id="TAD_DOMICILIO_CAMBIO_PK">
+		<addPrimaryKey 
+				tableName="TAD_DOMICILIO" 
+				columnNames="ID"
+				constraintName="PK_TAD_DOMICILIO"/>
+		<addAutoIncrement 
+				tableName="TAD_DOMICILIO" 
+				columnName="ID"
+				columnDataType="INT"
+				incrementBy="1"/>
+	</changeSet>  
+
+</databaseChangeLog>

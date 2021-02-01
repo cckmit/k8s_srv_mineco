@@ -1,0 +1,83 @@
+<zk>
+	<?page title="new page title" contentType="text/html;charset=UTF-8"?>
+	<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+	<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+	<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./nuevoPerfilConversionWindow" ?>
+	<window width="510px" id="nuevoPerfilConversionWindow"
+		border="normal" closable="true"
+		title="${c:l('gedo.nuevoPerfilConversion.windows.title')}"
+		apply="com.egoveris.deo.web.satra.produccion.NuevoPerfilConversionComposer"
+		position="center">
+		<custom-attributes org.zkoss.zul.listbox.rod="true" />
+		<custom-attributes org.zkoss.zul.listbox.initRodSize="200" />
+		<grid>
+			<rows>
+				<row style="" spans="100%"
+					align="center">
+					<listbox fixedLayout="true"
+						id="perfilesConversionListBox"
+						selectedItem="@{nuevoPerfilConversionWindow$composer.selectedPerfilConversion}"
+						model="@{nuevoPerfilConversionWindow$composer.perfilesConversion}"
+						 width="98%"
+						rows="10">
+						<listhead>
+							<listheader
+								label="${c:l('gedo.nuevoPerfilConversionCabecera.nombre')}"
+								width="40%" align="left">
+							</listheader>
+							<listheader
+								label="${c:l('gedo.nuevoPerfilConversionCabecera.tipo')}"
+								width="40%" align="center">
+							</listheader>
+							<listheader
+								label="${c:l('gedo.nuevoPerfilConversionCabecera.habilitado')}"
+								width="20%" align="center">
+							</listheader>
+						</listhead>
+					</listbox>
+				</row>
+			</rows>
+		</grid>
+		<grid width="100%">
+			<rows>
+				<row spans = "100%" align="center">
+					<hbox>
+						<label value="${c:l('gedo.nuevoPerfilConversion.label.livecycleExistente')}" style="font-weight:bold;text-align:left"/>
+					</hbox>
+				</row>
+				<row spans="40%, 40%, 20%" align="center">
+					<hbox>
+						<label value="${c:l('gedo.nuevoPerfilConversion.textbox.nombre')}"/>
+						<textbox id="nuevoPerfilTextbox"  maxlength="15" />
+					</hbox>
+					<radiogroup>
+						<vbox>
+							<radio id="radioAdobe" label="${c:l('gedo.nuevoPerfilConversion.radio.AdobePdfSetting')}" checked="true"/>
+							<radio label="${c:l('gedo.nuevoPerfilConversion.radio.FileTypeSetting')}"/>
+						</vbox>
+					</radiogroup>
+					<button id="agregarPerfilConversion"
+						label="${c:l('gedo.nuevoPerfilConversion.botonAgregar')}" />
+<!-- 						forward="onClick=nuevoPerfilConversionWindow$composer.onAgregarPerfilConversion" /> -->
+				</row>
+			</rows>
+		</grid>
+		<separator></separator>
+		<grid align="center" style="border:0px">
+			<rows>
+				<row>
+					<toolbar mold="panel" orient="horizontal"
+						width="100%" align="center">
+						<toolbarbutton id="guardar"
+							image="/imagenes/Guardar.png" disabled="false"
+							forward="onClick=onGuardarCambios">
+						</toolbarbutton>
+						<toolbarbutton id="cancelar"
+							image="/imagenes/Cancelar.png" disabled="false">
+						</toolbarbutton>
+					</toolbar>
+				</row>
+			</rows>
+		</grid>
+	</window>
+</zk>

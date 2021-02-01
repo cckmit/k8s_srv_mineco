@@ -1,0 +1,46 @@
+<zk>
+	<vlayout
+		apply="com.egoveris.ffdd.render.zk.comp.cc.RegimenSuspComposer">
+		<vbox>
+			<hbox>
+				<cell id="${arg.formComp.nombre}_numeroSecuenciaDiv" />
+				<cell id="${arg.formComp.nombre}_numeroDAPEXDiv" />
+			</hbox>
+			<hbox>
+				<cell id="${arg.formComp.nombre}_fechaDAPEXDiv" />
+				<cell id="${arg.formComp.nombre}_aduanaTramitacionDiv" />
+			</hbox>
+			<hbox>
+				<cell id="${arg.formComp.nombre}_numeroItemDiv" />
+				<cell id="${arg.formComp.nombre}_numeroInsumoDiv" />
+			</hbox>
+			<hbox>
+				<cell id="${arg.formComp.nombre}_nombreInsumoDiv" />
+				<cell id="${arg.formComp.nombre}_codigoUnidadMedidaDiv" />
+			</hbox>
+			<hbox>
+				<cell id="${arg.formComp.nombre}_nombreMercanciaDiv" />
+				<cell id="${arg.formComp.nombre}_cantidadDiv" />
+			</hbox>
+			<hbox>
+				<cell id="${arg.formComp.nombre}_unidadMedidaCantidadDiv" />
+				<cell id="${arg.formComp.nombre}_factorConsumoDiv" />
+			</hbox>
+			<hbox>
+				<cell id="${arg.formComp.nombre}_insumosUtilizadosDiv" />
+				<cell id="${arg.formComp.nombre}_numeroHojaDiv" />
+			</hbox>
+			<hbox>
+				<cell id="${arg.formComp.nombre}_totalInsumoHojaDiv" />
+				<cell id="${arg.formComp.nombre}_totalInsumosHojasAnterioresDiv" />
+			</hbox>
+			<hbox>
+				<cell id="${arg.formComp.nombre}_totalFinalInsumosDiv" />
+				<cell id="${arg.formComp.nombre}_fechaControlVBDiv" />
+			</hbox>
+			<hbox>
+				<cell id="${arg.formComp.nombre}_fechaFirmaDespachadorDiv" />
+			</hbox>
+		</vbox>
+	</vlayout>
+</zk>

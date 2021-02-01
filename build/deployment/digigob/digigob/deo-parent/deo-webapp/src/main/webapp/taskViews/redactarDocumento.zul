@@ -1,0 +1,372 @@
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+<?page title="${c:l('gedo.redactarDocumento.winTitle.estructuraDocumento')}" contentType="text/html;charset=UTF-8"?>
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./redactarDocumentoWindow" ?>
+<zk>
+	<window width="100%" mode="embedded" closable="true"
+		id="redactarDocumentoWindow" border="normal"
+		use="com.egoveris.deo.web.satra.AskBeforeCloseWindow" position="right"
+		apply="com.egoveris.deo.web.satra.produccion.RedactarDocumentoComposer"
+		sizable="false">
+
+		<style dynamic="true">
+			<!-- Make Plain Grid -->
+			.GridLayoutNoBorder tr.z-row td.z-row-inner, tr.z-row
+			.z-cell,div.z-grid { border: none; overflow: hidden; zoom:
+			1; border-top: none; border-left: none; border-right: none;
+			border-bottom: none; }
+		</style>
+
+		<window id="agregarUsuariosFirmaConjuntaView" visible="false" />
+		<window id="enviarARevisarWindow" visible="false" />
+		<window id="enviarAFirmarWindow" visible="false" />
+		<window id="incorporarSadeWindow" visible="false" />
+		<window id="definirDestinatarioWindow" visible="false" />
+		<window id="detalleComunicacionWindow" visible="false" />
+
+		<hbox height="100%" align="start">
+			<hbox>
+				<vbox align="start" width="70px" height="100%">
+					<separator height="15px" />
+					<box id="composicionDocumento" visible="true"
+						width="20%" align="left">
+						<hbox id="iconos_derechos">
+							<separator width="12px" />
+							<image
+								src="@{redactarDocumentoWindow$RedactarDocumentoComposer.iconoMensaje}"
+								popup="comentarioSolicitante"
+								tooltip="${c:l('gedo.verificarDocumento.tooltip.verComentario')}"
+								style="cursor:hand;cursor:pointer" />
+							<separator width="3px" />
+							<image src="/imagenes/view-signatories.png"
+								width="16px" height="16px" popup="listaFirmantes"
+								id="iconoFirmaConjunta"
+								tooltiptext="${c:l('gedo.general.verUsuariosFirmaConjunta')}"
+								style="cursor:hand;cursor:pointer" />
+							<image src="/imagenes/view-reviewers.png"
+								width="16px" height="16px" popup="listaRevisores"
+								id="iconoRevisoresFirmaConjunta"
+								tooltiptext="${c:l('gedo.general.verRevisoresFirmaConjunta')}"
+								style="cursor:hand;cursor:pointer" />
+							<separator width="3px" />
+							<image
+								src="/imagenes/iconoUsuariosReservados.png"
+								id="iconoUsuariosReservados" style="cursor:hand;cursor:pointer"
+								width="16px" height="16px" popup="comentarioUsuariosReservados"
+								visible="false" />
+							<separator width="3px" />
+						</hbox>
+
+						<separator spacing="1px"></separator>
+						<grid width="150px" id="revisionGrid"
+							sclass="GridLayoutNoBorder">
+							<columns>
+								<column align="center" width="100%"></column>
+							</columns>
+							<rows>
+								<row align="center">
+									<vbox>
+										<toolbar orient="vertical"
+											align="start" mold="panel">
+
+											<button height="42px"
+												width="120px" class="btn-secondary"
+												style="white-space:normal;margin-bottom:3px " iconSclass="z-icon-clock-o"
+												id="historialDocumento"
+												label="${c:l('gedo.conCoRecRender.label.historial')}" />
+
+											<toolbarbutton height="42px"
+												id="definirDestinatariosButton"
+												image="/imagenes/definirDestinatarios.png" visible="false" />
+
+											<button height="42px"
+												width="120px" class="btn-secondary"
+												style="white-space:normal;margin-bottom:3px"
+												iconSclass="z-icon-share-square-o" id="revisionButton"
+												label="${c:l('gedo.enviarARevisar.wintitle.envarRevisar')}" />
+
+
+											<toolbarbutton height="42px"
+												id="usuariosReservadosButton"
+												image="/imagenes/UsuariosReservados.png" />
+
+											<button height="42px"
+												width="120px" class="btn-secondary"
+												style="white-space:normal;margin-bottom:3px" iconSclass="z-icon-files-o"
+												id="firmarButton"
+												label="${c:l('gedo.producirDocumento.enviarFirmar')}" />
+ 
+											<button height="42px"
+												width="120px" class="btn-secondary"
+												iconSclass="z-icon-user  " style="white-space:normal;margin-bottom:3px"
+												id="selfFirmarButton"
+												label="${c:l('gedo.archivosDeTrabajo.enviar.firmaryomismo')}" />
+
+											<button height="42px"
+												width="120px" class="btn-secondary"
+												iconSclass="z-icon-user  " style="white-space:normal;margin-bottom:3px"
+												id="usuariosFirmaConjuntatoolbar"
+												label="${c:l('gedo.enviarARevisar.wintitle.modificarFirmantes')}"
+												forward="onClick=redactarDocumentoWindow$RedactarDocumentoComposer.onAgregarUsuariosFirmaConjunta" />
+
+											<toolbarbutton height="42px"
+												id="selfImportarDocumentoButton"
+												image="/imagenes/ImportarDocumento.png" />
+
+
+											<button height="42px"
+												width="120px" class="btn-secondary"
+												iconSclass="z-icon-user  " style="white-space:normal;margin-bottom:3px"
+												id="selfFirmaConjuntaButton"
+												label="${c:l('gedo.enviarARevisar.wintitle.enviarFirmar')}" />
+
+											<toolbarbutton height="42px"
+												id="detalleCOButton" visible="false"
+												image="/imagenes/COAsociada.png" />
+
+										</toolbar>
+									</vbox>
+								</row>
+							</rows>
+						</grid>
+					</box>
+					<checkbox id="solicitudAvisoFirma" visible="false"
+						label="${c:l('gedo.general.envioAvisoFirma')}" />
+					<checkbox id="solicitudEnvioCorreo"
+						label="${c:l('gedo.general.solicitudEnvioCorreo')}" />
+					<popup id="listaFirmantes" width="300px">
+						<textbox id="usuariosAgregadosTxt"
+							value="${c:l('gedo.general.noUsuariosFirmantes')}" width="99%"
+							readonly="true" multiline="true" />
+					</popup>
+					<popup id="listaRevisores" width="300px">
+						<textbox id="revisoresAgregados"
+							value="${c:l('gedo.general.noUsuariosRevisores')}" width="99%"
+							readonly="true" multiline="true" />
+					</popup>
+					<popup id="comentarioSolicitante">
+						<textbox maxlength="250"
+							value="@{redactarDocumentoWindow$RedactarDocumentoComposer.mensajeRevisor}"
+							multiline="true" height="80px" width="300px" readonly="true"
+							style="background:white" />
+					</popup>
+					<popup id="comentarioArchivosDeTrabajo">
+						<textbox maxlength="250"
+							value="@{redactarDocumentoWindow$RedactarDocumentoComposer.mensajeArchivosDeTrabajo}"
+							multiline="true" height="80px" width="300px" readonly="true"
+							style="background:white" />
+					</popup>
+					<popup id="comentarioArchivosEmbebidos">
+						<textbox maxlength="100"
+							value="@{redactarDocumentoWindow$RedactarDocumentoComposer.mensajeArchivosEmbebidos}"
+							multiline="true" height="80px" width="300px" readonly="true"
+							style="background:white" />
+					</popup>
+					<popup id="comentarioUsuariosReservados">
+						<textbox id="usuariosReservados" height="80px"
+							width="300px" readonly="true" multiline="true"
+							style="background:white" />
+					</popup>
+				</vbox>
+				<space height="590px" bar="true" />
+			</hbox>
+
+
+
+			<vbox align="center" width="790px" height="400px">
+				<div align="center" visible="false"
+					id="motivoRechazoDiv" height="10px">
+					<hbox align="start">
+						<separator id="separator" width="13px" />
+						<label
+							value="${c:l('gedo.rechazarDocumento.label.motivoRechazo')}"
+							style="font-weight: bold; color: red" />
+						<label id="motivoRechazoLabel"
+							style="cursor:hand; cursor:pointer; font-weight: bold; color: red" />
+					</hbox>
+				</div>
+				<div align="center">
+					<grid sclass="GridLayoutNoBorder" width="650px">
+						<columns>
+							<column align="left" width="100%" />
+						</columns>
+						<rows>
+							<row>
+								<cell id="cellMotivo">
+									<grid sclass="GridLayoutNoBorder">
+										<columns>
+											<column align="left"
+												width="13%" />
+											<column align="left"
+												width="59%" />
+											<column align="left"
+												width="30%" />
+										</columns>
+										<rows>
+											<row>
+												<cell>
+													<label
+														value="${c:l('gedo.producirDocumento.mensajeMotivo')}" />
+												</cell>
+												<cell>
+													<textbox
+														id="motivoTb" width="350px" maxlength="250" />
+												</cell>
+												<cell>
+													<toolbar
+														orient="horizontal" mold="panel" align="start">
+														<button
+															height="42px" width="120px" class="btn-secondary"
+															style="white-space:normal"
+															tooltiptext="${c:l('gedo.producirDocumento.tooltiptext.vistaprev')}"
+															iconSclass="z-icon-eye" id="previsualizar"
+															label="${c:l('gedo.producirDocumento.previsualizar')}" />
+													</toolbar>
+												</cell>
+											</row>
+										</rows>
+									</grid>
+								</cell>
+							</row>
+						</rows>
+					</grid>
+				</div>
+
+				<tabbox width="750px" height="480px"
+					id="conjuntoTabs">
+					<tabs>
+						<tab label="${c:l('gedo.redactarDocumento.produccion')}"
+							image="/imagenes/Produccion.png" id="produccionTab" />
+						<tab label="${c:l('gedo.archivosDeTrabajo.archivos')}"
+							image="/imagenes/Archivo_Trabajo.png" id="archivoTrabajo" />
+						<tab label="${c:l('gedo.historial.embebidos.titulo.ventana')}"
+							image="/imagenes/Archivo_Embebido.png" disabled="true"
+							id="embebidoTab" />
+						<tab label="${c:l('gedo.iniciarDocumento.label.datosPropios')}"
+							image="/imagenes/Datos_Propios.png" disabled="true"
+							id="datosPropiosTab" />
+					</tabs>
+					<tabpanels>
+						<tabpanel>
+							<hbox id="documentoSadeWindowHbox"
+								align="start">
+								<window id="documentoSadeWindow"
+									border="none" closable="false" />
+							</hbox>
+							<separator height="0px"
+								id="separadorImportado" />
+							<hbox id="documentoWindowHbox"
+								align="left">
+								<window id="documentoWindow"
+									border="none" closable="false" />
+							</hbox>
+							<separator height="0px" id="separadorSade" />
+							<hbox align="center">
+								<space width="10px" />
+								<grid width="100%"
+									id="descripcionSadeWindow" visible="false">
+									<columns>
+										<column width="27%"></column>
+										<column width="80%"></column>
+									</columns>
+									<rows sclass="narrow"
+										visible="false">
+
+										<row align="left"
+											style=" border-style:hidden;">
+											<cell>
+												<toolbar
+													orient="horizontal" align="start" mold="panel">
+													<toolbarbutton
+														height="42px" id="incorporacionSade"
+														tooltiptext="${('gedo.redactarDocumento.tooltip.incorporarSade')}" />
+												</toolbar>
+											</cell>
+											<cell>
+												<groupbox width="87%"
+													height="40px">
+													<hbox
+														widths="80%,20%">
+														<vbox>
+															<grid
+																height="100%" id="gridSADE">
+																<columns>
+																	<column
+																		label="" width="100%" />
+																</columns>
+																<rows>
+																	<row>
+																		<cell>
+																			<vbox>
+																				<label
+																					id="datosSadeLabel" value="" />
+																				<label
+																					id="trataSadeLabel"
+																					value="${c:l('gedo.redactarDocumento.label.noSeleccionActuacion')}" />
+																			</vbox>
+																		</cell>
+																	</row>
+																</rows>
+															</grid>
+														</vbox>
+														<toolbar
+															mold="panel" orient="horizontal" width="100%"
+															align="start">
+															<toolbarbutton
+																height="42px" id="eliminarSade"
+																tooltiptext="${c:l('gedo.adjuntarDocumentoComposer.tooltext.eliminarDocumento')}"
+																visible="true" />
+														</toolbar>
+													</hbox>
+												</groupbox>
+											</cell>
+										</row>
+									</rows>
+								</grid>
+							</hbox>
+							<space id="templateSpace" height="10px" />
+							<div id="documentoTemplateWindowDiv"
+								align="left" visible="false" width="99%" height="240px"
+								style="overflow:auto;">
+								<hbox id="documentoTemplateWindowHbox"
+									align="center" width="100%" />
+							</div>
+						</tabpanel>
+						<tabpanel height="300px">
+							<hbox id="documentoArchivoTrabajoHbox">
+								<window id="documentoArchivoTrabajo"
+									border="none" closable="false">
+								</window>
+							</hbox>
+						</tabpanel>
+						<tabpanel>
+							<hbox id="documentoArchivoEmbebidoHbox">
+								<window id="documentoArchivoEmbebido"
+									border="none" closable="false">
+								</window>
+							</hbox>
+						</tabpanel>
+						<tabpanel>
+							<hbox id="documentoDatosPropiosHbox">
+								<window id="documentoDatosPropios"
+									border="none" closable="false">
+								</window>
+							</hbox>
+						</tabpanel>
+					</tabpanels>
+				</tabbox>
+				<!-- Make Plain Grid -->
+				<toolbar orient="horizontal" mold="panel" align="end"
+					width="101%">
+
+					<button height="42px" width="130px"
+						class="btn-secondary" iconSclass="z-icon-ban  "
+						style="white-space:normal"
+						forward="onClick=redactarDocumentoWindow.onCloseWindow"
+						label="${c:l('gedo.perfilConversion.botonVolver')}" />
+
+				</toolbar>
+			</vbox>
+		</hbox>
+	</window>
+</zk>

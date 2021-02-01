@@ -1,0 +1,8 @@
+{
+    "realm": "everis",
+    "resource": "vuc-front",
+    "auth-server-url": "https://docker1-host.egoveris.com:8443/auth",
+    "ssl-required" : "external",
+	"public-client" : true,
+	"use-resource-role-mappings": true
+}

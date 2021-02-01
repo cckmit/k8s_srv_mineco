@@ -1,0 +1,76 @@
+<?page title="ComponentType" contentType="text/html;charset=UTF-8"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./componentType" ?>
+<zk>
+	<window title="${c:l('componentType.title')}" border="normal"
+		width="500px" height="255px" id="componentType" closable="true"
+		apply="com.egoveris.ffdd.web.adm.ComponentTypeComposer">
+		
+		<hbox>
+			<vbox>
+				<button label="${c:l('componentType.botonGuardar')}"
+					width="125px" forward="onClick=onGuardar" />
+				<button label="${c:l('componentType.botonVerExistentes')}"
+					width="125px" forward="onClick=onShowTypes" />
+				<button label="${c:l('componentType.botonLimpiar')}"
+					width="125px" forward="onClick=onClearFields" />
+				<space height="10px"></space>
+				<vbox id="vboxTypes" align="center"
+					visible="false">
+					<bandbox id="types" mold="rounded" readonly="true" width="130px">
+						<bandpopup>
+							<listbox id="listboxTypes"
+								height="250px" width="400px" mold="paging" autopaging="true"
+								forward="onSelect=onSelectType" multiple="false"
+								checkmark="true"
+								selectedItem="@{componentType$ComponentTypeComposer.selectedType}">
+								<listhead>
+									<listheader
+										label="${c:l('componentType.types')}" />
+								</listhead>
+								<listitem self="@{each=type}"
+									value="@{type}" draggable="true">
+									<listcell
+										label="@{type.nombre}" />
+								</listitem>
+							</listbox>
+						</bandpopup>
+					</bandbox>
+					<button label="${c:l('componentType.botonModificar')}"
+						width="125px" forward="onClick=onModificar" />
+					<button label="${c:l('componentType.botonClonar')}"
+						width="125px" forward="onClick=onClonar" />
+					<button id="btnEliminar" disabled="true" 
+						label="${c:l('componentType.botonEliminar') }" 
+						width="125px" forward="onClick=onEliminar" />
+				</vbox>
+			</vbox>
+			<vbox droppable="true" forward="onDrop=onDropType">
+				<grid>
+					<columns>
+						<column width="40%"/>
+						<column />
+					</columns>
+					<rows>
+						<row>
+							<label value="${c:l('componentType.factories')}"></label>
+							<combobox id="factories"
+								placeholder="${c:l('componentType.factories.placeholder')}" />
+						</row>
+						<row>
+							<label value="${c:l('componentType.name')}"></label>
+							<textbox id="typeName" constraint="no empty" maxlength="255"
+								placeholder="${c:l('componentType.typeName.placeholder')}" />
+						</row>
+						<row>
+							<label value="${c:l('componentType.description')}"></label>
+							<textbox id="typeDescription" multiline="true" maxlength="255"
+								placeholder="${c:l('componentType.typeDescription.placeholder')}" />
+						</row>
+					</rows>
+				</grid>
+			</vbox>
+		</hbox>
+		
+		
+	</window>
+</zk>

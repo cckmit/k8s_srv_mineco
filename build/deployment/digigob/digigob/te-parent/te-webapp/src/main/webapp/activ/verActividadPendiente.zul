@@ -1,0 +1,55 @@
+<?page title="Visualizacion Actividades" contentType="text/html;charset=UTF-8"?>
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./peticionExternaWindow" ?>
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+<zk>
+	<window id="peticionExternaWindow"
+		border="normal" width="33%" 
+		apply="com.egoveris.te.base.composer.VerPeticionExternaComposer"
+		closable="true" position="center" mode="modal">
+		<div  width="100%">
+		
+		<vbox  width="100%" >
+			<separator />
+			<hbox align="center">
+				<label value="${c:l('ee.act.label.exp')}" style="padding-left:10px; "/>
+				<separator />					
+				<label id="expLabel"  />
+				<separator spacing="15px" />
+				<toolbarbutton autodisable="self" id="ver_exp" image="/imagenes/ver_expediente.png" 
+					tooltiptext="${c:l('ee.act.label.visualizar.tooltip')}"
+					forward="onClick=peticionExternaWindow$composer.onVerExpediente" 
+					label ="${c:l('ee.act.label.visualizar')}" style="color:#FFFFFF"/>
+<!-- 				<toolbarbutton autodisable="self" id="cancelar_act" image="/imagenes/decline.png"  -->
+<!-- 					tooltiptext="${c:l('ee.act.label.cancelar.tooltip')}" -->
+<!-- 					forward="onClick=peticionExternaWindow$composer.onCancelarActividad"  -->
+<!-- 					label ="${c:l('ee.act.label.cancelar')}" style="color:#FFFFFF"/> -->
+			</hbox>
+			<separator />
+		</vbox>
+		
+		<vbox width="100%" >
+			<separator />
+			<hbox align="center">
+				<label id="mailDestinoLabel" value="${c:l('ee.verActividadPendiente.mailDestinatario')}" style="padding-left:10px; "/>
+				<separator />
+				<label id="mailDestinoValorLabel" style="padding-left:10px; " />
+			</hbox>
+			<separator />
+		</vbox>
+		<separator />	
+		<label value="${c:l('ee.act.label.descripcion')}" style="font:bold;padding-left: 10px;" />
+		<separator height="10px" />
+		<textbox id="motivoTextBox" rows="6" cols="80" disabled="true" />
+		<separator />
+		<div align="center">
+			<hbox id="hboxExterior" />
+		</div>
+		<separator />
+		<div align="center">
+			<button autodisable="self" id="cerrar" label="${c:l('ee.subsanacion.button.cerrar')}" image="/imagenes/eliminar.png" width="100px" height="30px"/>
+		</div>
+		<separator />
+		</div>
+	</window>
+</zk>

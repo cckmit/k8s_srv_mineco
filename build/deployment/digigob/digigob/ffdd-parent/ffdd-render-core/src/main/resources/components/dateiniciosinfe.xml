@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<complexComponent type="TRADE" name="dateInicioSinFe"
+	description="Dif Dates Information" zul="dateInicioSinFe.zul"
+	composer="com.egoveris.ffdd.render.zk.comp.cc.DateInicioSinFeComposer"
+	mappingDTO="com.egoveris.ccomplejos.base.model.DateInicioSinFeDTO">
+
+	<field id="fecha" name="fecha" class="com.egoveris.ffdd.render.zk.comp.ext.DateboxExt"
+		height="20px" width="90%" label="Fecha" tooltip="Fecha"  />
+</complexComponent>

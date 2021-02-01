@@ -1,0 +1,43 @@
+<?page title="${c:l('digigob.Title')}" contentType="text/html;charset=UTF-8"?>
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+<?init class="org.zkoss.zk.ui.util.Composition" arg0="~./db_template.zul"?>
+<zk>
+	<window id="resultTypeWindow" border="none"
+		apply="org.zkoss.bind.BindComposer"
+		viewModel="@id('vm') @init('com.egoveris.te.base.vm.ResultTypeVM')"
+		form="@id('fx') @load(vm) @save(vm, before='savePropertyForm') @validator('com.egoveris.te.base.validator.PropertyValidator')" 
+		validationMessages="@id('vmsgs')" self="@{define(egovBody)}">
+		
+		<div sclass="page-header">
+			<label value="${c:l('ee.tipoResultados.header.title')}" />
+		</div>
+		
+		<button sclass="btn-info" iconSclass="z-icon-plus"
+			label="${c:l('ee.tipoResultados.button.new')}" onClick="@command('newPropertyForm')" />
+		<separator height="10px" />
+				
+		<listbox width="60%" mold="paging" pageSize="10" model="@load(vm.propertiesList)">
+			<listhead>
+				<listheader label="${c:l('ee.tipoResultados.grid.header.resultType')}" width="60%" />
+				<listheader label="${c:l('ee.tipoResultados.grid.header.actions')}" width="40%" />
+			</listhead>
+			<template name="model" var="item">
+				<listitem>
+					<listcell label="${item.valor}" />
+					<listcell>
+						<button sclass="btn-info"
+							iconSclass="z-icon-pencil" label="${c:l('ee.tipoResultados.button.edit')}"
+							onClick="@command('editPropertyForm', property=item)" />
+							
+						<button sclass="btn-info"
+							iconSclass="z-icon-trash-o" label="${c:l('ee.tipoResultados.button.delete')}"
+							onClick="@command('deleteProperty', property=item)" />
+					</listcell>
+				</listitem>
+			</template>
+		</listbox>
+		
+		<separator />
+		
+	</window>
+</zk>

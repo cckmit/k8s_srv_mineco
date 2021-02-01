@@ -1,0 +1,76 @@
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./sectorMesaWindow" arg2="sectorMesaBinder"?>
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c" ?>
+<zk>
+	<window id="sectorMesaWindow" title="" border="none"
+		
+		apply="com.egoveris.deo.web.satra.SectorMesaCoComposer">
+		<window id="seleccionReparticionWindow" visible="false"></window>
+		<separator width="10px"></separator>
+		<hlayout>
+			<image src="/imagenes/egovIconOrange.png" width="40px"
+				height="30px" style="padding-left: 10px;" />
+			<label value="${c:l('ccoo.sectorMesa.title')}"
+				style="font: bold;" id="accesoNoAutorizado" />
+		</hlayout>
+		<separator bar="true"  />
+		<separator />
+		<div align="center">
+			<label id="accesoNoAautorizadoMsj" visible="false"
+				value="${c:l('ccoo.sectorMesa.accesoNoAutorizado.msj')}">
+			</label>
+		</div>
+		<div id="listaComunicaciones">
+			<hbox align="start">
+				<separator width="60px"></separator>
+				<toolbarbutton 
+					image="/imagenes/Eliminar.png"
+					label="${c:l('ccoo.bandeja.boton.eliminarSeleccionados')}"
+					tooltiptext="${c:l('ccoo.bandeja.boton.eliminarSeleccionTooltiptext')}"
+					width="150px" forward="onClick=onEliminarSeleccionados">
+				</toolbarbutton>
+				<toolbarbutton image="/imagenes/EliminarTodo.png"
+					label="${c:l('ccoo.bandeja.boton.eliminarTodo')}"
+					tooltiptext="${c:l('ccoo.sectorMesa.eliminarTodo.tooltipText')}"
+					width="150px" forward="onClick=onEliminarTodos">
+				</toolbarbutton>
+			</hbox>
+
+			<div align="center">
+				<listbox fixedLayout="true" id="comunicacionesPapel"
+					
+					checkmark="true" multiple="true" width="90%"
+					model="@{sectorMesaWindow$composer.comunications}"
+					itemRenderer="com.egoveris.deo.web.satra.renderers.SectorMesaItemRenderer"
+					selectedItem="@{sectorMesaWindow$composer.selectedComunication}">
+
+					<listhead sizable="false"
+						style="background: #C4ECFF;">
+						<listheader  width="6%"
+							align="center" id="seleccionHeader" />
+						<listheader label="${c:l('ccoo.bandeja.nroCo')}"
+							id="nroCoHeader"  width="18%"
+							align="center" />
+						<listheader
+							label="${c:l('ccoo.bandeja.nombreUsuario')}" align="center"
+							 width="18%" id="usuarioHeader" />
+						<listheader
+							label="${c:l('ccoo.sectorMesa.mesaOriginal')}" align="center"
+							 width="18%" id="mesaHeader" />
+						<listheader
+							label="${c:l('ccoo.sectorMesa.reparticion')}" align="center"
+							 width="18%" id="repartcionHeader" />
+						<listheader label="${c:l('ccoo.bandeja.fecha')}"
+							align="center"  width="15%" />
+						<listheader
+							label="${c:l('ccoo.bandeja.accion')}" id="accionesHeader"
+							align="center"  width="15%" />
+					</listhead>
+				</listbox>
+				<paging id="coMesaPaginator" pageSize="30"
+					detailed="true" width="90%" />
+			</div>
+		</div>
+	</window>
+
+</zk>

@@ -1,0 +1,21 @@
+<zk>
+	<vlayout apply="com.egoveris.ffdd.render.zk.comp.cc.VistaOperacionRespuestaDinComposer">
+		<grid>
+			<columns>
+				<column></column>
+			</columns>
+			<rows>
+				<row>
+					<vbox>
+						<hbox>
+						<cell id="${arg.formComp.nombre}_codigoOperacionDiv" />
+						<cell id="${arg.formComp.nombre}_creadoPorDiv" />
+						<cell id="${arg.formComp.nombre}_fechaCreacionDiv" />
+						<cell id="${arg.formComp.nombre}_fechaEstadoDiv" /> 
+						</hbox>
+					</vbox>
+				</row>
+			</rows>
+		</grid>
+	</vlayout>
+</zk>

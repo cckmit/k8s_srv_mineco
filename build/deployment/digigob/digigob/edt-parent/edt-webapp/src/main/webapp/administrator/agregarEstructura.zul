@@ -1,0 +1,107 @@
+<?page title="${c:l('agregarEstructura.title')}" contentType="text/html;charset=UTF-8"?>
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./win_AdmEstructura" ?>
+<zk>
+	<window id="win_AdmEstructura" border="normal"
+		title="${c:l('eu.adminSade.altaEstructura')}"
+		apply="com.egoveris.edt.web.admin.pl.ABMEstructuraComposer"
+		width="550px" position="center" mode="modal" closable="true">
+
+		<vbox id="vbox_headerAlta" visible="false"
+			style="background:#C4ECFF" width="100%" height="50px" align="center"
+			pack="center">
+			<label style="font-weight:bold"
+				value="${c:l('eu.adminSade.altaEstructura')}" />
+		</vbox>
+		<vbox id="vbox_headerVer" visible="false"
+			style="background:#C4ECFF" width="100%" height="50px" align="center"
+			pack="center">
+			<label style="font-weight:bold"
+				value="${c:l('eu.adminSade.visualizarEstructura')}" />
+		</vbox>
+		<vbox id="vbox_headerModificar" visible="false"
+			style="background:#C4ECFF" width="100%" height="50px" align="center"
+			pack="center">
+			<label style="font-weight:bold"
+				value="${c:l('eu.adminSade.modificarEstructura')}" />
+		</vbox>
+		<vbox align="center" width="100%">
+			<grid id="gr_altaReparticion" width="500px"
+				style="padding:0px; border:none; border-spacing:0px;">
+				<columns>
+					<column width="30%" align="right" />
+					<column width="70%" align="left" />
+				</columns>
+				<rows>
+					<row style="border:none;">
+						<label id="label_codigo"
+							value="${c:l('eu.adminSade.reparticion.codigo')}" />
+						<textbox id="txbx_codigo" width="270px"
+							constraint="no empty, /[0-9a-zA-Z_#]+/: ${c:l('eu.abmReparticionGDE.textbox.constraint.noEspaciosEspeciales')}"
+							maxlength="49" />
+					</row>
+					<row style="border:none;">
+						<label id="label_nombre"
+							value="${c:l('eu.adminSade.estructura.nombre')}" />
+						<textbox id="txbx_descripcion" width="270px"
+							maxlength="120" />
+					</row>
+
+					<row style="border:none;">
+						<label id="label_videnciaDesde"
+							value="${c:l('eu.adminSade.reparticion.vigenciaDesde')}" />
+						<vlayout>
+							<datebox id="dbx_vigenciaDesde" cols="12"
+								format="dd/MM/yyyy" />
+						</vlayout>
+					</row>
+					<row style="border:none;">
+						<label id="label_vigenciaHasta"
+							value="${c:l('eu.adminSade.reparticion.vigenciaHasta')}" />
+						<vlayout>
+							<datebox id="dbx_vigenciaHasta" cols="12"
+								format="dd/MM/yyyy" />
+						</vlayout>
+					</row>
+
+					<!-- Version 3.5.0 -->
+
+				</rows>
+			</grid>
+			<separator spacing="20px" />
+
+			<!-- boton de visualizar -->
+			<hbox id="hbox_visu" align="center" visible="false">
+				<button id="btn_salir" iconSclass="z-icon-times"
+					label="${c:l('edt.standar.cerrar')}" zclass="z-button"
+					style="padding:7px 10px;" />
+			</hbox>
+
+			<!-- botones de modificar -->
+			<hbox id="hbox_modi" align="center" visible="false">
+				<button id="btn_modificar"
+					iconSclass="z-icon-floppy-o" label="${c:l('edt.standar.guardar')}"
+					zclass="z-button" style="padding:7px 10px;"
+					tooltiptext="${c:l('eu.adminSade.modificar')}" />
+				<button id="btn_salir_modi"   iconSclass="z-icon-floppy-o"
+					label="${c:l('edt.standar.cancelar')}" zclass="z-button"
+					style="padding:7px 10px;"/>
+			</hbox>
+
+			<!-- botones de agregar -->
+			<hbox id="hbox_botones" align="center">
+				<button id="btn_guardar" iconSclass="z-icon-floppy-o"
+					label="${c:l('edt.standar.guardar')}" zclass="z-button"
+					style="padding:7px 10px;"
+					tooltiptext="${c:l('eu.adminSade.guardar')}" />
+				<button id="btn_cancelar" iconSclass="z-icon-times"
+					label="${c:l('edt.standar.cancelar')}" zclass="z-button"
+					style="padding:7px 10px;"
+					tooltiptext="${c:l('eu.adminSade.cancelar')}" />
+			</hbox>
+
+			<separator spacing="20px" />
+		</vbox>
+	</window>
+</zk>

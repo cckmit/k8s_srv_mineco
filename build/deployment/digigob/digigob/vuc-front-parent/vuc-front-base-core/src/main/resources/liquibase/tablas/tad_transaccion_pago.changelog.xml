@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
+    http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+	<changeSet author="Carlos Marin" id="TAD_ADD_TRANSACCION_PAGO">
+		<addColumn tableName="TAD_EXPEDIENTE_BASE">
+			<column name="TRANSACCION_PAGO" type="VARCHAR(50)"></column>
+		</addColumn>
+		
+		<addColumn tableName="TAD_EXPEDIENTE_BASE">
+			<column name="FECHA_PAGO" type="DATETIME"></column>
+		</addColumn>  
+	</changeSet>  
+
+</databaseChangeLog>

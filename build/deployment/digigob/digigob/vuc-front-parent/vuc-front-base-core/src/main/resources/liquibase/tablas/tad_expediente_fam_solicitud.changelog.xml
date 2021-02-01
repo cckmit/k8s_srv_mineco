@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
+    http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+	<changeSet author="Carlos Bellotti" id="TAD_EXPEDIENTE_FAM_SOLICITUD">  
+ 		<addColumn tableName="TAD_EXPEDIENTE_FAM_SOLICITUD">
+ 			<column name="NUMERO_EXPEDIENTE" type="VARCHAR(300)"/>
+ 		</addColumn>
+	</changeSet>
+	
+	<changeSet id="TAD_EXPEDIENTE_FAM_SOLICITUD_STEP" author="Carlos Bellotti">
+		<addColumn tableName="TAD_EXPEDIENTE_FAM_SOLICITUD">
+			<column name="STEP" type="INT"/>
+		</addColumn>
+	</changeSet>
+
+</databaseChangeLog>

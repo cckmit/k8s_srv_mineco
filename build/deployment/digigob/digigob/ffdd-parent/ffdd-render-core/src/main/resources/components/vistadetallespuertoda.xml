@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<complexComponent type="TRADE" name="Vista Detalles Puerto DA"
+	description="Vista Detalles Puerto DA" zul="vistaDetallesPuertoDA.zul"
+	mappingDTO="com.egoveris.ccomplejos.base.model.VistaDetallesPuertoDADTO">
+
+	<field name="region" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" disabled="true" />
+	<field name="codigoPais" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" disabled="true" />
+	<field name="fecha" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.DateboxExt" disabled="true" />
+	<field name="secuencial" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.IntboxExt" disabled="true" />
+
+</complexComponent>

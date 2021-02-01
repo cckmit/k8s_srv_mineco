@@ -1,0 +1,44 @@
+<?page title="${c:l('nuevoFeriado.title')}" contentType="text/html;charset=UTF-8"?>
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c" ?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./win_NuevoFeriado" ?>
+<zk>
+	<window id="win_NuevoFeriado"
+		title="${c:l('eu.configuracionFeriados.crearFeriado.title')}"
+		border="normal" width="500px"
+		apply="com.egoveris.edt.web.pl.NuevoFeriadosComposer">
+		
+		<vbox align="center" width="100%">
+			<grid>
+				<columns>
+					<column />
+					<column />
+				</columns>
+				<rows>
+					<row spans="40% , 60%">
+						<label
+							value="${c:l('eu.configuracionFeriados.hidden.motivo')}" />
+						<textbox id="motivoTextbox" maxlength="255" />
+					</row>
+					<row spans="40% , 60%">
+						<label
+							value="${c:l('eu.configuracionFeriados.listbox.fecha')}" />
+						<datebox id="fechaDatebox" format="dd/MM/yyyy" />
+					</row>
+				</rows>
+			</grid>
+			
+			<separator spacing="20px" />
+
+			<hbox id="hbox_botones" align="center">
+				<button id="guardar" iconSclass="z-icon-floppy-o"
+					label="${c:l('edt.standar.guardar')}" zclass="z-button"
+					style="padding:7px 10px;"
+					tooltiptext="${c:l('eu.adminSade.guardar')}" />
+				<button id="cancelar" iconSclass="z-icon-times"
+					label="${c:l('edt.standar.cancelar')}" zclass="z-button"
+					style="padding:7px 10px;"
+					tooltiptext="${c:l('eu.adminSade.cancelar')}" />
+			</hbox>
+		</vbox>
+	</window>
+</zk>

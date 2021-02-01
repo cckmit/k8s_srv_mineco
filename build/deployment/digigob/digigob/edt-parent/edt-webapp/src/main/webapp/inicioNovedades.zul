@@ -1,0 +1,52 @@
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./iniciarNovedadesWindow" ?>
+<zk>
+	<window id="iniciarNovedadesWindow" width="80%"	apply="com.egoveris.edt.web.pl.IniciarNovedadesComposer"
+		border="normal" closable="true" sizable="true" position="center"
+		contentStyle="align:center;">
+		<hbox style="" align="center"
+			width="100%">
+			<label value="${c:l('eu.inicioNovedades.label.novedades')}"
+				style=" font: bold;" />
+		</hbox>
+
+		<separator bar="true" style="" />
+		<separator />
+
+		<vlayout style="" height="auto" >
+			<div align="center">
+				
+				<separator></separator>
+				<grid id="orderItemsGrid" model="@{iniciarNovedadesWindow$composer.listNovedades}" >
+					<rows>
+						<row self="@{each='linea'}">
+		                            <vbox width="100%" align="stretch">
+		                                <label style="font-weight:bold" value="${c:l('eu.inicioNovedades.vbox.categoria')}" />
+										<label width="100%" value="@{linea.categoria.categoriaNombre}" />
+										<separator></separator>
+			                            <label style="font-weight:bold" value="${c:l('eu.inicioNovedades.vbox.modulos')} " />
+										<label width="100%" multiline="false" value="@{linea.aplicacionesText}" />
+										<separator></separator>
+				                        <label style="font-weight:bold" value="${c:l('eu.inicioNovedades.vbox.descripcion')}  " />
+				                        <separator></separator>
+				                        <label width="100%" multiline="false" value="@{linea.novedad}" />
+										<separator></separator>
+		                            </vbox>
+						</row>
+					</rows>
+				</grid>
+				<separator></separator>
+				<button style="allign:center" id="btnAceptar">${c:l('eu.inicioNovedades.vbox.aceptar') }</button>
+
+			</div>
+		</vlayout>
+	<style>
+
+	.word-wrap {
+	word-wrap: break-word;
+	}
+	
+	</style>
+	</window>
+</zk>

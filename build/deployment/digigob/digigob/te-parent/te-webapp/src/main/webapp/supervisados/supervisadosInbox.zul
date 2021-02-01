@@ -1,0 +1,130 @@
+<?page title="INBOX" contentType="text/html;charset=UTF-8"?>
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./supervisadosWindow"?>
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c" ?>
+<zk>
+
+	<zscript><![CDATA[
+		import java.util.Comparator;
+	    import com.egoveris.te.base.util.comparator.InboxComparator;
+    	Comparator tareaAsc = new InboxComparator(true, 1);
+    	Comparator tareaDsc = new InboxComparator(false, 1);
+    	Comparator fechaAsc = new InboxComparator(true, 2);
+    	Comparator fechaDsc = new InboxComparator(false, 2);
+    	Comparator codigoExpedienteAsc = new InboxComparator(true, 3);
+    	Comparator codigoExpedienteDsc = new InboxComparator(false, 3);
+    	Comparator codigoTrataAsc = new InboxComparator(true, 4);
+    	Comparator codigoTrataDsc = new InboxComparator(false, 4);
+    	Comparator descripcionTrataAsc = new InboxComparator(true, 5);
+    	Comparator descripcionTrataDsc = new InboxComparator(false, 5);
+    	Comparator usuarioAnteriorAsc = new InboxComparator(true, 6);
+    	Comparator usuarioAnteriorDsc = new InboxComparator(false, 6);
+    	Comparator motivoAsc = new InboxComparator(true, 7);
+    	Comparator motivoDsc = new InboxComparator(false, 7);
+    	Comparator accionAsc = new InboxComparator(true, 8);
+    	Comparator accionDsc = new InboxComparator(false, 8);
+	]]></zscript>
+
+	<window id="supervisadosWindow" title="${c:l('ee.abmTipoDocumento.inboxTitulo')}"
+		border="normal" 
+		apply="com.egoveris.te.base.composer.SupervisadosInboxComposer"
+		use="com.egoveris.te.base.util.AskBeforeCloseWindow" closable="true"
+		width="80%">
+		<toolbar style="background: #EFEFEE" >
+			<toolbarbutton autodisable="self" label="${c:l('ee.inboxSupervisados.avocarme')}"
+				id="advocacionButton" image="/imagenes/avocarexpedientes.png" />
+			<toolbarbutton autodisable="self" label="${c:l('ee.inboxSupervisados.reasignar')}"
+				id="reasignacionButton" image="/imagenes/asignar_documento.png" />
+			<toolbarbutton autodisable="self" label="${c:l('ee.expediente.enviarGT')}"
+				id="enviarAGuardaTemporalButton" image="/imagenes/enviaraguardatemporal.png" />
+		</toolbar>
+		<paging id="taskPaginator" pageSize="15" />
+		<listbox id="tasksList"
+			
+			model="@{supervisadosWindow$SupervisadosInboxComposer.tasks}" multiple="true"
+			maxlength="20"			
+			selectedItem="@{supervisadosWindow$SupervisadosInboxComposer.selectedTask}" >
+			<listhead sizable="false" >
+				<listheader align="center" width="40px"
+					image="/imagenes/mail.png"/>
+				<listheader id="nombreTarea"
+					label="${c:l('ee.inbox.listheader.nombretarea.value')}"					
+					 width="110px" sort="auto" />
+					<!-- 					sortAscending="${tareaAsc}" sortDescending="${tareaDsc}" -->
+
+				<listheader id="fechaModificacion" align="center"
+					width="130px"
+					label="${c:l('ee.inbox.listheader.fechaUltimaModificacion.value')}"
+					 sort="auto"  />
+
+				<listheader id="codigoExpediente"
+					width="210px"
+					label="${c:l('ee.inbox.listheader.codigoexpediente.value')}"
+					 />
+
+				<listheader id="codigoTrata"
+					align="center"
+					label="${c:l('ee.inbox.listheader.codigotrata.value')}"
+					 width="85px" />
+
+			<listheader id="descripcionTrata"
+					label="${c:l('ee.inbox.listheader.descripciontrata.value')}"
+					 />
+
+				<listheader id="motivo"
+					label="${c:l('ee.inbox.listheader.motivo.value')}"
+					 width="100px" />
+
+				<listheader id="usuarioAnterior"
+					width="140px"
+					label="${c:l('ee.inbox.listheader.usuarioanterior.value')}"
+					  />
+
+				<listheader id="visualizar" label="${c:l('ee.caratulas.listheader.documento.accion.value')}" 
+				 />
+			</listhead>
+			<listfoot
+				>
+				<listfooter />
+				<listfooter />
+				<listfooter />
+				<listfooter />
+				<listfooter />
+				<listfooter />
+				<listfooter id="ee.inbox.listfooter.totaltareapendiente"
+					label="${c:l('ee.inbox.listfooter.totaltareapendiente.value')}"
+					span="2"  />
+														
+				<listfooter
+					label="@{supervisadosWindow$SupervisadosInboxComposer.taskPaginator.totalSize}"
+					span="1"  />
+			</listfoot>
+		</listbox>
+		
+		
+		<button autodisable="self" id="btnrefresh" label="${c:l('ee.transactions.refrescar')}" visible="false" />
+		
+		<!-- 
+		<toolbarbutton autodisable="self" id="cerrar" image="/imagenes/Cerrar.png"
+			left="40%" height="auto" />
+		-->
+		<button autodisable="self" id="cerrar" label="${c:l('ee.subsanacion.button.cerrar')}"
+			left="40%" height="auto" />
+		
+		<popup id="subordinadosListPopUp" width="auto" >
+			<groupbox id="idgroupbox" mold="3d">
+				<caption
+					label="${c:l('ee.inboxGrupal.caption.usurioAsignaranTareas')}" style="font-size: 1.2em" />
+				<hbox>
+					<combobox id="usuarioDestino" autodrop="true"
+						buttonVisible="false" width="300px">
+					</combobox>
+					<separator></separator>
+					<separator></separator>
+					<button autodisable="self" id="asignarTareas"
+						label="${c:l('ee.general.asignar')}" />
+				</hbox>
+			</groupbox>
+		</popup>
+	</window>
+</zk>

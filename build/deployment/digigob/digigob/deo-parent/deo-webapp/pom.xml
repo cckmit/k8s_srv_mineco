@@ -1,0 +1,122 @@
+<?xml version="1.0"?>
+<project
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.egoveris</groupId>
+		<artifactId>deo</artifactId>
+		<version>2.0.3-SNAPSHOT</version>
+	</parent>
+	<artifactId>deo-webapp</artifactId>
+	<packaging>war</packaging>
+	<name>deo web application (WAR) aggregator project</name>
+	<dependencies>
+
+		<!-- == Begin TSF+ framework == -->
+		<dependency>
+			<groupId>org.terasoluna.plus.framework</groupId>
+			<artifactId>terasoluna-plus-webapp-conf</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.terasoluna.plus.security</groupId>
+			<artifactId>terasoluna-plus-app-security-conf</artifactId>
+		</dependency>
+		<!-- == End TSF+ framework == -->
+
+		<!-- == Begin Egoveris == -->
+		<dependency>
+			<groupId>com.egoveris</groupId>
+			<artifactId>deo-base-common</artifactId>
+			<exclusions>
+			  <exclusion>
+				<groupId>commons-logging</groupId>
+				<artifactId>commons-logging</artifactId>
+			  </exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>com.egoveris</groupId>
+			<artifactId>deo-base-core</artifactId>
+			<scope>runtime</scope>
+			<exclusions>
+			  <exclusion>
+				<groupId>commons-logging</groupId>
+				<artifactId>commons-logging</artifactId>
+			  </exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>com.egoveris</groupId>
+			<artifactId>deo-base-web</artifactId>
+			<exclusions>
+				<exclusion>
+					<groupId>com.egoveris</groupId>
+					<artifactId>ccomplejos-base-core</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>com.egoveris</groupId>
+			<artifactId>deo-ws-common</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.egoveris</groupId>
+			<artifactId>deo-ws-web</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.egoveris</groupId>
+			<artifactId>deo-model-common</artifactId>
+			<exclusions>
+				<exclusion>
+					<groupId>com.egoveris</groupId>
+					<artifactId>shared-security-base-common</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>com.egoveris</groupId>
+			<artifactId>deo-env</artifactId>
+		</dependency>
+		<!-- == End Egoveris == -->
+
+		<!-- == JBPM == -->
+		<dependency>
+			<groupId>org.jbpm.jbpm4</groupId>
+			<artifactId>jbpm-jpdl</artifactId>
+			<scope>compile</scope>
+		</dependency>
+		
+		<dependency>
+			<groupId>javax</groupId>
+			<artifactId>javaee-api</artifactId>
+			<scope>provided</scope>
+		</dependency>
+	</dependencies>
+	<profiles>
+		<profile>
+			<id>tomcat</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<dependencies>
+				<dependency>
+					<groupId>javax.servlet</groupId>
+					<artifactId>jstl</artifactId>
+				</dependency>
+			</dependencies>
+		</profile>
+	</profiles>
+	<build>
+		<finalName>deo-web</finalName>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-deploy-plugin</artifactId>
+				<configuration>
+					<skip>true</skip>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+</project>

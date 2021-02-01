@@ -1,0 +1,175 @@
+<?page title="new page title" contentType="text/html;charset=UTF-8"?>
+<zk>
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./detalleHistorialExpedienteTrackWindow" ?>
+<window title="${c:l('ee.consultaMovExpediente.title.historialExp')}" border="normal" id="detalleHistorialExpedienteTrackWindow"
+		sclass="background-default" width="100%" position="center,top" closable="true"
+		apply="com.egoveris.te.base.composer.ConsultaMovimientoExpedienteTrackComposer">
+	
+	<div sclass="background-default">
+		<label value="${c:l('ee.track.detalle.label.identificacion.actuacion')}" style="font-weight: bold; font-size:10pt;"/>
+		<separator bar="true" spacing="20px"/>
+	</div>
+	<hbox sclass="background-default" width="100%">
+		<label value="${c:l('ee.track.detalle.label.letra')}"/>
+		<space/>
+		<textbox id="ex" readonly="true" width="50px"/>
+		<space/>
+		<label value="${c:l('ee.track.detalle.label.anio')}"/>
+		<space/>
+		<longbox id="anio" readonly="true" width="70px"/>
+		<space/>
+		<label value="${c:l('ee.track.detalle.label.numero')}"/>
+		<space/>
+		<longbox id="numero" readonly="true" width="150px"/>
+		<space/>
+		<label value="${c:l('ee.track.detalle.label.reparticion')}"/>
+		<textbox id="codigoReparticion" readonly="true" width="60px"/>
+		<space/>
+		<label value="${c:l('ee.track.detalle.label.reparticion.usuario')}"/>
+		<space/>
+		<textbox id="codigoRepUsuario" readonly="true" width="60px"/>
+	    <space/>
+	    <label value="${c:l('ee.track.detalle.label.sec')}"/>
+	    <textbox id="sec" readonly="true" width="100px"/>	
+	</hbox>
+	<separator sclass="background-default" bar="true" spacing="15px"/>
+	<hbox sclass="background-default">
+		<vbox>
+			<label value="${c:l('ee.track.historial.label.datos.actualizacion')}" style="font-weight: bold; font-size:10pt;"/>
+			<separator bar="true" spacing="5px"/>
+			<grid width="40%" oddRowSclass="none" zclass="none">
+				<columns>
+					<column/>
+					<column/>
+				</columns>
+				<rows>
+					<row zclass="none">
+						<label value="${c:l('ee.track.historial.label.iniciador')}" style="font-weight: bold;" hflex="1"/>
+						<textbox id="iniciador" readonly="true" hflex="2"/>
+					</row>
+					<row zclass="none">
+						<label value="${c:l('ee.track.historial.label.cod.trata')}" style="font-weight: bold;" hflex="1"/>
+						<textbox id="codTrata" readonly="true" hflex="2"/>	
+					</row>
+					<row zclass="none">
+						<label value="${c:l('ee.track.historial.label.trata')}" style="font-weight: bold;" hflex="2"/>
+						<textbox id="trata" readonly="true" hflex="1"/>
+					</row>
+				</rows>
+			</grid>
+			<paging id="consultaPaginator" detailed="true" pageSize="8" />
+			<listbox id="listHistorial"
+				  model="@{detalleHistorialExpedienteTrackWindow$composer.paseDetalle}"
+				  paginal ="${consultaPaginator }" mold="paging" 
+				  selectedItem="@{detalleHistorialExpedienteTrackWindow$composer.selectedPaseDetalle}">
+				<listhead>
+					<listheader label="${c:l('ee.track.historial.column.label.estado')}" hflex="1"/>
+					<listheader label="${c:l('ee.track.historial.column.label.origen')}" hflex="2"/>
+					<listheader label="${c:l('ee.track.historial.column.label.destino')}" hflex="2"/>
+					<listheader label="${c:l('ee.track.historial.column.label.fecha')}" hflex="2"/>
+					<listheader label="${c:l('ee.track.historial.column.label.fojas')}" hflex="1" />
+					<listheader label="${c:l('ee.track.historial.column.label.actuacion.principal')}" hflex="3"/>
+					<listheader label="${c:l('ee.track.historial.column.label.operacion')}" hflex="3"/>
+				</listhead>
+				<listitem self="@{each=paseDetalle}">
+						<listcell label="@{paseDetalle.estado}"/>
+						<listcell label="@{paseDetalle.origen}"/>
+						<listcell label="@{paseDetalle.destino}"/>
+						<listcell label="@{paseDetalle.fechaCreacion}"/>
+						<listcell label="@{paseDetalle.fojas}"/>
+						<listcell label="@{detalleHistorialExpedienteTrackWindow$composer.model.getCodigoCaratula}"/>
+						<listcell>
+							<hbox>
+								<image src="/imagenes/egovInspect.gif"/>
+								<label value="${c:l('ee.historialpases.label.detalle.value')}" style="color: blue; text-decoration:underline;" forward="onClick=detalleHistorialExpedienteTrackWindow$composer.onVerDetallePase"/>
+								<space spacing="5px" bar="true"/>
+								<image src="/imagenes/egovInspect.gif"/>
+								<label value="${c:l('ee.consultaExpedienteRenderer.tooltip.historial')}" style="color: blue; text-decoration:underline;" forward="onClick=detalleHistorialExpedienteTrackWindow$composer.onVerHistorialPase"/>
+							</hbox>
+						</listcell>
+				</listitem>
+			</listbox>
+			<div align="center" sclass="background-default">
+				<button autodisable="self" id="generarPDF" label="${c:l('ee.consultaMovExpediente.button.generarPDF')}"/>
+			</div>
+		</vbox>
+		<space spacing="30px"/>
+		<grid sizedByContent="true" oddRowSclass="none" zclass="none">
+			<columns>
+				<column/>
+				<column/>
+				<column/>
+				<column/>
+			</columns>
+			<rows>
+				<row zclass="none">
+					<label value="${c:l('ee.track.historial.row.label.ag.nc')}"  style="font-weight: bold;"/>
+					<textbox id="agnc" readonly="true" hflex="1"/>
+				</row>
+				<row zclass="none"><separator spacing="5px"/></row>
+				<row zclass="none">
+					<label value="${c:l('ee.track.historial.row.label.remito')}" style="font-weight: bold;"/>
+					<textbox id="remito" readonly="true" hflex="1"/>
+				</row>
+				<row zclass="none"><separator spacing="5px"/></row>
+				<row zclass="none">
+					<label value="${c:l('ee.track.historial.row.label.trata')}" style="font-weight: bold;" />
+					<textbox id="trataDetalle" readonly="true" hflex="5" rows="3"/>
+				</row>
+				<row zclass="none"><separator spacing="5px"/></row>
+				<row zclass="none">
+					<label value="${c:l('ee.track.historial.row.label.extra.ejecutiva')}" style="font-weight: bold;"/>
+					<textbox id="extraEjecutiva" readonly="true" hflex="1"/>
+				</row>
+				<row zclass="none"><separator spacing="5px"/></row>
+				<row zclass="none">
+					<label value="${c:l('ee.track.historial.row.label.cuerpos.anexos')}" style="font-weight: bold;"/>
+					<textbox id="cuerposAnexos" readonly="true" hflex="1"/>
+				</row>
+				<row zclass="none"><separator spacing="5px"/></row>
+				<row zclass="none">
+					<label value="${c:l('ee.track.historial.row.label.observaciones.pase')}" style="font-weight: bold;"/>
+					<textbox id="observacionesDePase" readonly="true" hflex="3" rows="3"/>
+				</row>
+				<row zclass="none"><separator spacing="5px"/></row>
+				<row zclass="none">
+					<label value="${c:l('ee.track.historial.row.label.op.anio.numero')}" style="font-weight: bold;" hflex="1"/>
+					<longbox id="opAnio" readonly="true" hflex="1"/>
+					<longbox id="opNumero" readonly="true" hflex="1"/>
+				</row>
+				<row zclass="none"><separator spacing="5px"/></row>
+				<row zclass="none">
+					<label value="${c:l('ee.track.historial.row.label.comp.tipo.anio')}" style="font-weight: bold;" hflex="1"/>
+					<textbox id="compTipo" readonly="true" hflex="1"/>
+					<longbox id="compAnio" readonly="true" hflex="1"/>
+				</row>
+				<row zclass="none"><separator spacing="5px"/></row>
+				<row zclass="none">
+					<label value="${c:l('ee.track.historial.row.label.comp.numero.importe')}" style="font-weight: bold;" hflex="1"/>
+					<longbox id="compNro" readonly="true" hflex="1"/>
+					<longbox id="compImporte" readonly="true" hflex="1"/>
+				</row>
+				<row zclass="none"><separator spacing="5px"/></row>
+				<row zclass="none">
+					<label value="${c:l('ee.track.historial.row.label.anio.leg.est')}" style="font-weight: bold;" hflex="1"/>
+					<longbox id="ALEAnio" readonly="true" hflex="1"/>
+					<textbox id="ALELeg" readonly="true" hflex="1"/>
+					<longbox id="ALEEst" readonly="true" hflex="1"/>
+				</row>
+			</rows>
+		</grid>
+	</hbox>
+	<div align="center" sclass="background-default" >
+		<separator spacing="20px"/>
+    	<button autodisable="self" label="${c:l('ee.track.detalle.button.label.volver')}" id="volver"/>
+	</div>
+	<separator sclass="background-default" spacing="20px"/>
+	<style>
+		 .background-default{
+        			
+        }
+	</style>
+</window>
+</zk>

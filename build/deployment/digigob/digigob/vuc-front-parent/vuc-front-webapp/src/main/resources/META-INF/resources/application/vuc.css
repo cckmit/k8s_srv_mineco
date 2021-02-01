@@ -1,0 +1,273 @@
+.navbar{
+	background-image: url(../../images/banner_2.png);
+    border-bottom: 2px solid #158DBE;
+}
+
+
+.disable-scroll .ui-dialog-content {
+  overflow: hidden !important;
+}
+
+/* ERROR DIALOG */
+.errorDialog.ui-panelgrid>*>tr, .errorDialog.ui-panelgrid .ui-panelgrid-cell
+	{
+	border: none;
+}
+
+.buttonSpace {
+	margin: 0px 10px;
+}
+
+
+/* make sidebar nav vertical */
+@media ( min-width : 768px) {
+	.sidebar-nav .navbar .navbar-collapse {
+		padding: 0;
+		max-height: none;
+	}
+	.sidebar-nav .navbar ul {
+		float: none;
+	}
+	.sidebar-nav .navbar ul:not {
+		display: block;
+	}
+	.sidebar-nav .navbar li {
+		float: none;
+		display: block;
+	}
+	.sidebar-nav .navbar li a {
+		padding-top: 12px;
+		padding-bottom: 12px;
+	}
+}
+
+.ui-selectonemenu .ui-selectonemenu-trigger {
+	width: 25px !important;
+}
+
+
+
+/* estilos nuevos - lvalenzu  */
+
+
+/* base */
+*, * * {font-size: 12px; font-weight: normal !important;}
+body {font-family: "Helvetica Neue", Helvetica, Arial;}
+
+/* genericas */
+* {outline: none;}
+.aCenter {text-align: center;}
+.aRight {text-align: right;}
+
+
+/*-- componentes --*/
+
+/*menu principal*/
+.navbar-default {background-color: transparent  !important; border-color: transparent !important; margin: 0;}
+.navbar-default .navbar-nav > li > a {color: #777; border-bottom: 1px solid #e5e5e5; font-size: 1.1em;}
+.navbar-default .navbar-nav > li:hover > a {background-color: #d6d6c1 !important;}
+.navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus {color: #b5bb23; background-color: transparent  !important; font-weight: bold; border-bottom: 1px solid #b5bb23;}
+.navbar-default .navbar-toggle {margin-right: 0; margin-top: 15px; border-color: transparent !important;}
+.navbar-default .navbar-collapse, .navbar-default .navbar-form {border-color: transparent !important;}
+
+/* botones */	
+html .ui-button {border: none; background: #158dbe !important; color: #fff !important; text-shadow: none; margin: 2em 0 1em 0; padding: 0.6em 1.5em; border-radius: 3px; font-size: 1.1em;}
+html .ui-button:hover {background-color: #158db4 !important;}
+html .ui-button + .ui-button {margin-left: 15px;}	
+
+/* botones */	
+html .ui-button {border: none; background: #158dbe; color: #fff; text-shadow: none; margin: 2em 0 1em 0; padding: 0.6em 1.5em; border-radius: 3px; font-size: 1.1em;}
+html .ui-button:hover {background-color: #158db4;}
+html .ui-button + .ui-button {margin-left: 15px;}	
+
+
+.ui-button-icon-only { border: none !important; background: none transparent !important; box-shadow: none !important;}
+
+/* titulos */
+html h2, html .h2 {font-size: 20px; border-bottom: 2px solid #cdd248; padding-bottom: 0.3em; margin-top: 10px;}
+html h3, html .h3 {font-size: 16px; background: #cdcdc5; padding: 0.5em; color: #fff; margin: 0; border: none;}
+html h4, html .h4 {font-size: 14px; font-weight: bold; margin-top: 0;}
+
+/* tablas */
+.ui-datatable thead th {background: #cdcdc5 none; border-radius: 0; box-shadow: none; text-shadow: none; color: #fff; border: none; padding: 0.8em 0 !important;}
+
+/* select */
+.ui-selectonemenu {min-width: 100%; outline: none;}
+
+/*-- FIN componentes --*/
+
+/* layout */
+.logoPrincipal {width: 55px; !important }
+.headerPrincipal {float: left; width: 100%; box-shadow: 0 1px 10px #333; background-color: #333} 
+
+/* login */
+.login {background: transparent; margin-top: 15em;}
+.logoAplication {text-align: center;}
+.logoAplication img {width: 70%; max-width: 180px;}
+.loginForm {padding: 2em; margin: 0em; border-radius: 10px; background: transparent url('#{request.contextPath}/resources/images/bgLoginInputs.png') repeat center center; max-width: 400px;}
+.titLogin {font-size: 1.5em; font-weight: bold;}
+html .inputsLogin > * {margin: 0.5em 0; height: 40px; display: inline-block; line-height: 40px; font-size: 1.5em; font-weight: bold;}
+.inputsLogin label {font-weight: normal; padding-left: 0; margin-bottom: 0;}
+.inputsLogin input {border-radius: 0; margin-top: 0.5em; }
+.loginForm .ui-messages{display: inline-block; width: 100%;}
+
+
+/* responsive */
+@media (max-width : 767px) {
+	.responsiveMenu {margin-top: -67px;}
+}
+
+@media (max-width : 991px) {
+	.login {margin-top: 2em;}
+	.inputsLogin input {margin: 0;}
+	.loginForm {margin-top: 3em; max-width: 400px; margin-left: auto; margin-right: auto;}
+}
+/*INI Nueva pantalla */
+
+	/*
+	purpura = #8a51c5
+	verde = #86b936
+	amarillo = #d8a803
+	azul = #0d5fda
+	*/
+
+/*	*, * * {color: #636363;}
+	input, select, textarea	{border: none; border-bottom: 1px solid #ccc; width: 100%; line-height: 2.5em; padding: 0 1em;}
+*/
+	
+	.logoPrincipal {width: 40px;}
+
+	.headerMenu {float: right; margin: 0.5em 0; padding: 0;}
+	.headerMenu li {display: inline-block; list-style: none;}
+	.headerMenu li * {text-decoration: none !important;}
+	.headerMenu li:hover {background-color: #f1f1f1; border-radius: 5px;}
+	.headerMenu.salir  li:hover {background-color: #fff; border-radius: 0px;}
+	.headerMenu li a {padding: 0.5em 1em; display: inline-block; color: #5b5b5b;}
+	.headerMenu li a:hover, .headerMenu li a:active {text-decoration: none; outline: none;}
+	.headerMenu li a span:first-child {padding: 0.1em 0 0.1em 0.4em; font-weight: bold !important;}
+	.headerMenu.status {top: 5px; position: relative;}
+
+	.headerMenu li.borrador span:first-child {border-left: 9px solid #8a51c5;}
+	.headerMenu li.progreso span:first-child {border-left: 9px solid #86b936;}
+	.headerMenu li.tareas span:first-child {border-left: 9px solid #d8a803;}
+	.headerMenu li.notificaciones span:first-child {border-left: 9px solid #0d5fda;}
+	.headerMenu li.borrador span + span{border-bottom: 2px solid #8a51c5;}
+	.headerMenu li.progreso span + span {border-bottom: 2px solid #86b936;}
+	.headerMenu li.tareas span + span {border-bottom: 2px solid #d8a803;}
+	.headerMenu li.notificaciones span + span {border-bottom: 2px solid #0d5fda;}
+	.headerMenu li.notificaciones {margin-right: 0.5em;}
+
+	.headerMenu li.salir {border-left: 1px solid #7d7d7d;}
+	.headerMenu li.salir a {font-size: 1.2em !important;}
+	
+	.titulo {font-size: 1.6em; color: #636363; margin: 0.5em 0 0 0; display: block; font-weight: bold !important;}
+			
+	.boxTramites {margin-bottom: 1em; margin-top: 1em;}
+	.boxTramiteStatus {background-color: #f1f1f1; box-shadow: 1px 3px 7px #dcdcdc; float:left; width: 100%; min-height: 155px;}
+	.boxTramiteStatus.mod {border-left: 4px solid #8a51c5;}
+	.boxTramiteStatus.prog {border-left: 4px solid #86b936;}
+	
+	.boxTramiteStatus > div {margin: 0; padding: 0;} 
+	.boxTramiteStatus h2 {font-size: 1.2em; border-bottom: 1px solid #6c6c6c !important; font-weight: bold !important;}
+	.boxTramiteStatus .atributo {font-size: 0.8em; font-weight: bold !important; width: 100%;}
+	.boxTramiteStatus .valor {font-size: 1em;}
+	
+	.boxTramiteStatus .botones {float: right; text-align: right; padding: 0; width: 100%; position: absolute; bottom: 0; right: 15px;}
+	.boxTramiteStatus .botones ul {padding: 0;}
+	.boxTramiteStatus .botones li {display: inline-block;}
+	.boxTramiteStatus .botones li a {padding: 0.5em 0.5em 0.5em 2em; font-weight: bold !important; font-size: 0.9em; color: #666; margin-left: 1em;}
+	
+	.boxTramiteStatus.mod .codigo,
+	.boxTramiteStatus.mod .botones .ver, 
+	.boxTramiteStatus.prog .botones .completar,
+	.boxTramiteStatus.prog .botones .eliminar {display: none;}
+	
+	
+	.boxInfo > div {padding: 0 0.5em; margin: 0.3em 0;}
+	.boxInfo > div > div {display: inline-block;}
+	.boxInfo.noPadding {padding: 0;}
+	.boxInfo * {color: #fff;}
+	.boxInfo span + span {width: 100%; display: block; font-size: 1.3em; line-height: 1em;}
+	.boxInfo .infoLeft * {font-size: 3em; padding-right: 10px;}
+	.boxInfo .infoBorrador {background-color: #8a51c5; border: 3px solid #8333bb;}
+	.boxInfo .infoProgreso {background-color: #86b936; border: 3px solid #698b34;}
+	.boxInfo .infoTarea {background-color: #deb938; border: 3px solid #d8a803;}
+	.boxInfo .infoNotificacion {background-color: #4077ca; border: 3px solid #0d5fda;}
+	
+	.btnPrincipal {border: none; background: #158dbe; color: #fff; text-shadow: none; margin: 2em 0 1em 0; padding: 0.6em 1.5em; border-radius: 3px; font-size: 1.1em;}
+	.btnPrincipal:hover {background-color: #158db4;}
+	
+	.filtros {padding-bottom: 1em;}
+	.filtros:hover {background-color: #f9f9f9; padding-bottom: 1em;}
+	.filtros .titFiltros {font-weight: bold !important; margin-top: 1em !important; display: inline-block;}
+	.filtrosHeader {display: none;}
+	
+	.sidebarRight {background-color: #f1f1f1; margin-top: 3px;}
+	
+	.boxTarea {margin-bottom: 1em; margin-top: 1em;}
+	.boxTareaStatus {background-color: #fff; box-shadow: 1px 3px 7px #dcdcdc; float:left; width: 100%; border-left: 4px solid #d8a803; padding-bottom: 1em;}
+	
+	.boxTareaStatus > div {margin: 0; padding: 0;} 
+	.boxTareaStatus h2 {font-size: 1.2em; border-bottom: 1px solid #6c6c6c !important; font-weight: bold !important;}
+	.boxTareaStatus .atributo {font-size: 0.8em; font-weight: bold !important; width: 100%;}
+	.boxTareaStatus .valor {font-size: 1em;}
+	.boxTareaStatus .comentario .valor {font-style: italic;}
+	.boxTarea .documentos * {border: none !important;}
+	.boxTarea .documentos thead,
+	.boxTarea .documentos .ui-paginator {display: none;}
+	.boxTarea .documentos [role="gridcell"] {padding: 0.5em 0;}
+	.boxTarea .documentos .ui-widget-content {border-bottom: 1px solid #ccc !important;}
+	.boxTarea .documentos .ui-datatable {border-top: 1px solid #ccc !important;}
+	.boxTarea .documentos [role="gridcell"] label {padding: 0; margin: 0;}
+	.boxTarea .documentos .upload {width: 80px;}
+	
+/* Responsive */
+@media (max-width : 767px) {
+	.headerMenu li.borrador span + span,
+	.headerMenu li.progreso span + span,
+	.headerMenu li.tareas span + span,
+	.headerMenu li.notificaciones span + span,
+	.sidebarRight {display: none;}
+	.headerMenu li a {padding: 0.5em;}
+	.headerMenu li.salir {border: none;}
+}
+
+@media (max-width : 370px) {
+	.headerPrincipal {text-align: center;}
+	.headerMenu {float: none; margin: -10px 0 0 0;}
+	.headerMenu.status {top: 0;}
+ 	.btnPrincipal {width: 100%;}
+ 	.boxInfo,
+ 	.filtros {display: none;}
+ 	.filtrosHeader {display: block; background-color: #f9f9f9; padding: 0.5em 0; text-align: center;}
+}
+
+@media (min-width : 992px) {
+	.boxInfo.pLeft {padding-left: 0;}
+	.boxInfo + .boxInfo {padding-right: 0;}
+	
+}
+
+@media (max-width : 991px) {
+	.boxInfo,
+	.sidebarRight {display:none;}
+} 
+/*FIN Nueva pantalla */
+iframe {
+    overflow: scroll;
+    height: 300%;
+    border: 1px solid black;
+}
+
+.pago {
+width: 20px;
+    height: 20px;
+    background-color: #44cf5a;
+    color: white;
+    /* font-weight: bold; */
+    text-align: center;
+    line-height: 20px;
+    border-radius: 50%;
+/*    display: inline-block; */
+}
+

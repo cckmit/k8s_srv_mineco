@@ -1,0 +1,74 @@
+<?page title="Servicios" id="servicesESB" contentType="text/html;charset=UTF-8"?>
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./formsFFCC" ?>
+
+<zk xmlns:x="xhtml" xmlns:zk="zk" xmlns:w="http://www.zkoss.org/2005/zk/client">
+	<window id="formsFFCC" apply="org.zkoss.bind.BindComposer"
+		viewModel="@id('vm') @init('com.egoveris.workflow.designer.module.controller.mv.FormsFFCCVM')"
+		border="normal" mode="modal" title="Forms " 
+		width="800px">
+		<radiogroup id="g1" onCheck="@command('onCkecGroup')"  />
+		<grid width="100%">
+			<columns>
+				<column width="30%"></column>
+				<column width="70%"></column>
+			</columns>
+			<rows>
+				<row>
+					<label value="${c:l('task.label.opciones')}"/>
+					<groupbox>
+						   <radio id="ra1" label="${c:l('task.label.validarEstructura')}"  radiogroup="g1"/>
+						   <space/>
+						   <radio id="ra2" label="${c:l('task.label.validarCampo')}"   radiogroup="g1"/>
+						   <space/>
+						   <radio id="ra3" label="${c:l('task.label.obtenerValor')}"   radiogroup="g1"/>
+					</groupbox>
+				</row>
+				<row>
+					<label value="${c:l('task.label.formularios')}"/>
+					<combobox id="lstForms" rows="1" model="@load(vm.typesDocFFCC)" width="230px"
+					 onChange="@command('onLoadFields', entry=item)" selectedItem="@bind(vm.typeDocSelected)" >
+						<template name="model" var="item">
+							<comboitem label="@bind(item.acronimo)"/>
+						</template>
+					</combobox>
+				</row>
+				<row  id="rowFields" visible="false">
+					<label value="${c:l('task.label.campos')}"/>
+					<combobox id="lstFields" rows="1" model="@load(vm.fields)"
+					 width="230px">
+						<template name="model" var="item">
+							<comboitem label="@bind(item.nombre)" />
+						</template>
+					</combobox>
+				</row>
+				<row  id="rowCondition" visible="false">
+					<label value="${c:l('task.label.condicion')}"/>
+					<combobox id="lstCondition" rows="1" model="@load(vm.conditions)"
+					 width="230px">
+						<template name="model" var="item">
+							<comboitem label="@bind(item)" />
+						</template>
+					</combobox>
+				</row>
+				<row  id="rowFieldCompare" visible="false">
+					<label value="${c:l('task.label.valor')}"/>
+					<textbox id="tbxCompare"/>
+				</row>
+				<row  id="rowFieldType" visible="false">
+					<label value="${c:l('task.label.tipo')}"/>
+					<combobox id="lstFieldType" rows="1" model="@load(vm.types)"
+					 width="230px">
+						<template name="model" var="item">
+							<comboitem label="@bind(item)" />
+						</template>
+					</combobox>
+				</row>
+			</rows>
+		</grid>
+		<div width="100%" align="center">
+			<button id="btnAceptar" label="${c:l('dbweb.index.cambiarIdioma.button.aceptar')}" class="btn-info"/>
+			<button id="btnCancelar" label="${c:l('task.label.guardar')}" class="btn-info"/>
+		</div>
+	</window>
+</zk>

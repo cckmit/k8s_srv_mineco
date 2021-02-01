@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
+    http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+	<changeSet author="Gustavo Aguilera" id="INSERTA_NUEVOS_FORMATO_ARCHIVO">  
+	    <comment>insert queries</comment>
+	    <sql dbms="h2, mysql" 
+	                splitStatements="true"
+	                stripComments="true">         
+			insert into gedo_formato_tamano_archivo (ID,FORMATO,TAMANO,DESCRIPCION,obligatoriedad) VALUES (1,'png',10,'imagen png',0);
+			insert into gedo_formato_tamano_archivo (ID,FORMATO,TAMANO,DESCRIPCION,obligatoriedad) VALUES (2,'jpg',1,'imagen jpg',0);
+			insert into gedo_formato_tamano_archivo (ID,FORMATO,TAMANO,DESCRIPCION,obligatoriedad) VALUES (3,'iso',3000,'archivos con extension iso',0);
+			insert into gedo_formato_tamano_archivo (ID,FORMATO,TAMANO,DESCRIPCION,obligatoriedad) VALUES (4,'zip',1000,'archivos con extension zip',0);
+			insert into gedo_formato_tamano_archivo (ID,FORMATO,TAMANO,DESCRIPCION,obligatoriedad) VALUES (5,'dwf',1000,'dwf old',0);
+			insert into gedo_formato_tamano_archivo (ID,FORMATO,TAMANO,DESCRIPCION,obligatoriedad) VALUES (6,'pdf',1000,'Portable Document Format',0);
+			insert into gedo_formato_tamano_archivo (ID,FORMATO,TAMANO,DESCRIPCION,obligatoriedad) VALUES (7,'txt',5,'texto plano',0);
+			insert into gedo_formato_tamano_archivo (ID,FORMATO,TAMANO,DESCRIPCION,obligatoriedad) VALUES (8,'doc',5,'documento word',0);
+			insert into gedo_formato_tamano_archivo (ID,FORMATO,TAMANO,DESCRIPCION,obligatoriedad) VALUES (18,'xlsm',5,'Libro de Excel habilitado para macros',0);
+			insert into gedo_formato_tamano_archivo (ID,FORMATO,TAMANO,DESCRIPCION,obligatoriedad) VALUES (10,'gif',5,'imagen gif',0);
+			insert into gedo_formato_tamano_archivo (ID,FORMATO,TAMANO,DESCRIPCION,obligatoriedad) VALUES (11,'html',5,'texto html',0);
+			insert into gedo_formato_tamano_archivo (ID,FORMATO,TAMANO,DESCRIPCION,obligatoriedad) VALUES (12,'msg',5,'mensaje outlook',0);
+			insert into gedo_formato_tamano_archivo (ID,FORMATO,TAMANO,DESCRIPCION,obligatoriedad) VALUES (13,'xls',5,'documento excel',0);
+			insert into gedo_formato_tamano_archivo (ID,FORMATO,TAMANO,DESCRIPCION,obligatoriedad) VALUES (15,'bmp',5,'imagen bmp',0);
+			insert into gedo_formato_tamano_archivo (ID,FORMATO,TAMANO,DESCRIPCION,obligatoriedad) VALUES (16,'mht',5,'mensaje' ,0);
+			insert into gedo_formato_tamano_archivo (ID,FORMATO,TAMANO,DESCRIPCION,obligatoriedad) VALUES (17,'ppt',5,'documento power point',0);
+			insert into gedo_formato_tamano_archivo (ID,FORMATO,TAMANO,DESCRIPCION,obligatoriedad) VALUES (19,'dat',10,'ficheros de datos',0);
+			insert into gedo_formato_tamano_archivo (ID,FORMATO,TAMANO,DESCRIPCION,obligatoriedad) VALUES (20,'sir',5,'Archivos de base de datos',0);
+			insert into gedo_formato_tamano_archivo (ID,FORMATO,TAMANO,DESCRIPCION,obligatoriedad) VALUES (24,'mp3',50,'Archivo de Audio Mp3',0);
+			insert into gedo_formato_tamano_archivo (ID,FORMATO,TAMANO,DESCRIPCION,obligatoriedad) VALUES (25,'mp4',50,'Archivo de video MPGE4',0);
+	    </sql>    
+	</changeSet>  
+
+	<changeSet author="Hector Vergara" id="INSERTA_NUEVOS_GEDO_EXTENSION_MIMETYPE">  
+	    <comment>insert queries</comment>
+	    <sql dbms="h2, mysql" 
+	                splitStatements="true"
+	                stripComments="true">         
+			insert into gedo_extension_mimetype (ID_FORMATO_TAMANO_ARCHIVO, MIMETYPE) values ( (select ID from gedo_formato_tamano_archivo where FORMATO = 'jpg'), 'image/jpeg' );
+			insert into gedo_extension_mimetype (ID_FORMATO_TAMANO_ARCHIVO, MIMETYPE) values ( (select ID from gedo_formato_tamano_archivo where FORMATO = 'jpg'), 'image/x-citrix-jpeg' );
+			insert into gedo_extension_mimetype (ID_FORMATO_TAMANO_ARCHIVO, MIMETYPE) values ( (select ID from gedo_formato_tamano_archivo where FORMATO = 'png'), 'image/png' );
+			insert into gedo_extension_mimetype (ID_FORMATO_TAMANO_ARCHIVO, MIMETYPE) values ( (select ID from gedo_formato_tamano_archivo where FORMATO = 'png'), 'image/x-citrix-png' );
+			insert into gedo_extension_mimetype (ID_FORMATO_TAMANO_ARCHIVO, MIMETYPE) values ( (select ID from gedo_formato_tamano_archivo where FORMATO = 'png'), 'image/x-png' );
+			insert into gedo_extension_mimetype (ID_FORMATO_TAMANO_ARCHIVO, MIMETYPE) values ( (select ID from gedo_formato_tamano_archivo where FORMATO = 'png'), 'image/x-png' );
+			insert into gedo_extension_mimetype (ID_FORMATO_TAMANO_ARCHIVO, MIMETYPE) values ( (select ID from gedo_formato_tamano_archivo where FORMATO = 'zip'), 'application/zip' );
+			insert into gedo_extension_mimetype (ID_FORMATO_TAMANO_ARCHIVO, MIMETYPE) values ( (select ID from gedo_formato_tamano_archivo where FORMATO = 'dwf'), 'model/vnd.dwf' );
+			insert into gedo_extension_mimetype (ID_FORMATO_TAMANO_ARCHIVO, MIMETYPE) values ( (select ID from gedo_formato_tamano_archivo where FORMATO = 'pdf'), 'application/pdf' );
+			insert into gedo_extension_mimetype (ID_FORMATO_TAMANO_ARCHIVO, MIMETYPE) values ( (select ID from gedo_formato_tamano_archivo where FORMATO = 'txt'), 'text/plain' );
+			insert into gedo_extension_mimetype (ID_FORMATO_TAMANO_ARCHIVO, MIMETYPE) values ( (select ID from gedo_formato_tamano_archivo where FORMATO = 'doc'), 'application/msword' );
+			insert into gedo_extension_mimetype (ID_FORMATO_TAMANO_ARCHIVO, MIMETYPE) values ( (select ID from gedo_formato_tamano_archivo where FORMATO = 'gif'), 'image/gif' );
+			insert into gedo_extension_mimetype (ID_FORMATO_TAMANO_ARCHIVO, MIMETYPE) values ( (select ID from gedo_formato_tamano_archivo where FORMATO = 'html'), 'text/html' );
+			insert into gedo_extension_mimetype (ID_FORMATO_TAMANO_ARCHIVO, MIMETYPE) values ( (select ID from gedo_formato_tamano_archivo where FORMATO = 'xls'), 'application/vnd.ms-excel' );
+			insert into gedo_extension_mimetype (ID_FORMATO_TAMANO_ARCHIVO, MIMETYPE) values ( (select ID from gedo_formato_tamano_archivo where FORMATO = 'bmp'), 'image/bmp' );
+			insert into gedo_extension_mimetype (ID_FORMATO_TAMANO_ARCHIVO, MIMETYPE) values ( (select ID from gedo_formato_tamano_archivo where FORMATO = 'ppt'), 'application/vnd.ms-powerpoint' );
+			insert into gedo_extension_mimetype (ID_FORMATO_TAMANO_ARCHIVO, MIMETYPE) values ( (select ID from gedo_formato_tamano_archivo where FORMATO = 'xlsm'), 'application/vnd.ms-excel.sheet.macroenabled.12' );
+			insert into gedo_extension_mimetype (ID_FORMATO_TAMANO_ARCHIVO, MIMETYPE) values ( (select ID from gedo_formato_tamano_archivo where FORMATO = 'mp4'), 'video/mp4' );
+			insert into gedo_extension_mimetype (ID_FORMATO_TAMANO_ARCHIVO, MIMETYPE) values ( (select ID from gedo_formato_tamano_archivo where FORMATO = 'mp4'), 'application/mp4' );
+	    </sql>    
+	</changeSet> 
+	
+	
+	<changeSet author="Hector Vergara" id="ALTER_TABLE_GEDO_ARCHIVO_EMBEBIDO_CHANGE_ID">  
+	    <comment>alter table</comment>
+	    <sql dbms="h2, mysql" 
+	                splitStatements="true"
+	                stripComments="true">         
+			 ALTER TABLE gedo_archivo_embebido CHANGE ID ID INT(11) UNSIGNED NOT NULL AUTO_INCREMENT;
+	    </sql>    
+	</changeSet>
+	
+</databaseChangeLog>

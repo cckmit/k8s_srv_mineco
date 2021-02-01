@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<complexComponent type="TRADE" name="VistaOperacion"
+	description="Vista Operacion Respuesta" zul="vistaoperacionrespuestadin.zul" 
+	mappingDTO="com.egoveris.ccomplejos.base.model.VistaOperacionRespuestaDinDTO">
+	 
+	<field name="codigoOperacion" width="90%" height="20px" class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" disabled="true"/>
+	<field name="creadoPor" width="90%" height="20px" class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt"  disabled="true"/>
+	<field name="fechaCreacion" width="90%" height="20px" class="com.egoveris.ffdd.render.zk.comp.ext.DateboxExt"  disabled="true"/>
+	<field name="fechaEstado" width="90%" height="20px" class="com.egoveris.ffdd.render.zk.comp.ext.DateboxExt"  disabled="true"/>
+	
+</complexComponent>

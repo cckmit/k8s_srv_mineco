@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<complexComponent type="TRADE" name="vistaparticipantesda"
+	description="Vista DUS DA" zul="vistaDUSDA.zul"
+	mappingDTO="com.egoveris.ccomplejos.base.model.VistaDUSDADTO">
+
+
+		<field name="tipoEnvio" width="90%" height="20px" class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" disabled="true" />
+		<field name="comTrasnportadora" width="90%" height="20px" class="com.egoveris.ffdd.render.zk.comp.ext.SeparatorComplex"  disabled="true" xmlFile="vistacomtransportadoradus.xml"/>
+		<field name="totalItem" width="90%" height="20px" class="com.egoveris.ffdd.render.zk.comp.ext.DoubleboxExt"  disabled="true"/>
+		<field name="totalBultos" width="90%" height="20px" class="com.egoveris.ffdd.render.zk.comp.ext.DoubleboxExt"  disabled="true"/>
+		<field name="codigoDespacho" width="90%" height="20px" class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt"  disabled="true"/>
+		<field name="indicaMercanciaNacionalizada" width="90%" height="20px" class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt"  disabled="true"/>
+		<field name="indicaMercanciaConsolidadaEnZonaPrimaria" width="90%" height="20px" class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt"  disabled="true"/>
+		<field name="viaTransporte" width="90%" height="20px" class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt"  disabled="true"/>
+		<field name="tipoOperacionAduanera" width="90%" height="20px" class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt"  disabled="true"/>
+		<field name="codigoFlete" width="90%" height="20px" class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt"  disabled="true"/>
+		<field name="indicaDocumentoParcialDus" width="90%" height="20px" class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt"  disabled="true"/>
+		<field name="estadoDus" width="90%" height="20px" class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt"  disabled="true"/>
+		<field name="numeroInternoDeDespacho" width="90%" height="20px" class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt"  disabled="true"/>
+		<field name="regionOrigen" width="90%" height="20px" class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt"  disabled="true"/>
+
+ 
+
+</complexComponent>

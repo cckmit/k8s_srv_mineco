@@ -1,0 +1,161 @@
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+<?page title="${c:('gedo.verificarDocumento.windows.title')}" contentType="text/html;charset=UTF-8"?>
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./verificarDocumentoWindow" ?>
+
+<zk>
+	<window width="800px" id="verificarDocumentoWindow" 
+		mode="embedded" border="normal" closable="true" 
+		title="${c:l('gedo.verificarDocumento.windows.title')}"
+		position="center"
+		apply="com.egoveris.deo.web.satra.produccion.VerificarDocumentoComposer"
+		use="com.egoveris.deo.web.satra.AskBeforeCloseWindow"
+		sizable="false">
+		
+		<style dynamic="true">
+			<!-- Make Plain Grid -->
+			.GridLayoutNoBorder tr.z-row td.z-row-inner, tr.z-row
+			.z-cell,div.z-grid { border: none; overflow: hidden; zoom:
+			1;  border-top: none; border-left: none;
+			border-right: none; border-bottom: none; }
+		</style>
+
+		<window id="archivosDeTrabajoWindow" visible="false" />
+
+		<box visible="true" width="100%" align="center">
+			<separator spacing="1px"></separator>
+			<div align="left">
+				<grid sclass="GridLayoutNoBorder" width="100%">
+					<rows>
+						<row align="right" style="padding-right:16px;">
+							<cell>
+								<hbox>
+									<image
+										src="@{verificarDocumentoWindow$VerificarDocumentoComposer.iconoArchivosDeTrabajoMensaje}"
+										popup="comentarioArchivosDeTrabajo"
+										style="cursor:hand;cursor:pointer" />
+									<separator width="3px" />
+									<image
+										src="@{verificarDocumentoWindow$VerificarDocumentoComposer.iconoMensaje}"
+										popup="comentarioSolicitante"
+										tooltip="${c:l('gedo.verificarDocumento.tooltip.verComentario')}"
+										style="cursor:hand;cursor:pointer" />
+									<separator width="3px" />
+									<image
+										src="/imagenes/view-signatories.png" width="16px"
+										height="16px" popup="listaFirmantes" id="iconoFirmaConjunta"
+										tooltiptext="${c:l('gedo.general.verUsuariosFirmaConjunta')}"
+										style="cursor:hand;cursor:pointer" visible="true" />
+									<image
+										src="/imagenes/view-reviewers.png" width="16px"
+										height="16px" popup="listaRevisores" id="iconoRevisoresFirmaConjunta" 
+										tooltiptext="${c:l('gedo.general.verRevisoresFirmaConjunta')}"
+										style="cursor:hand;cursor:pointer" visible="true"/>
+									<separator width="3px" />
+								</hbox>
+							</cell>
+						</row>
+					</rows>
+				</grid>
+			</div>
+
+			<cell align="right" valign="middle">
+				<toolbar orient="horizontal" align="center"
+					mold="panel">
+					<button id="historialDocumento" height="42px" class="btn-secondary" iconSclass="z-icon-clock-o"  label = "${c:l('gedo.general.historial')}" />
+					<button id="datosPropios" height="42px" class="btn-secondary" iconSclass="z-icon-file-o" label = "${c:l('gedo.archivosDeTrabajo.datospropios')}" />
+					<button id="archivosDeTrabajo" height="42px" class="btn-secondary" iconSclass="z-icon-file-o"  tooltiptext="${c:l('gedo.producirDocumento.tooltiptext.archivosTrabajo')}"
+						label = "${c:l('gedo.archivosDeTrabajo.archivos')}" />
+					<button id="exportPDF" height="42px" class="btn-secondary" iconSclass="z-icon-eye" label = "${c:l('gedo.previsualizar.titulo')}"/>
+				</toolbar>
+			</cell>
+			<label id="leyendaPrevisualizacion" 
+				 style="font-weight: bold;"/>
+			<grid height="260px" width="740px" style="border: 1px solid #86A4BE;">
+				<rows>
+					<row>
+						<iframe id="imagePreviewer" width="700px" height="800px" />
+					</row>
+				</rows>
+			</grid>
+
+			<div align="center">
+				<separator spacing="1px"></separator>
+				<grid width="760px" id="revisionGrid"
+					sclass="GridLayoutNoBorder">
+					<columns>
+						<column align="left" width="80%"></column>
+						<column align="left" width="20%"></column>
+					</columns>
+					<rows>
+						<row>
+							<vbox>
+								<hbox align="center">
+									<label value="${c:l('gedo.revisarDocumento.usuarioRevisor')}" />
+									<separator width="52px" />
+									<combobox id="usuarioRevisor" width="456px" buttonVisible="false" autodrop="true" />
+								</hbox>
+								<separator height="10px"></separator>
+								<hbox align="center">
+									<label value="${c:l('gedo.revisarDocumento.mensajeRevision')}" style="valign:middle" />
+									<separator width="20px" />
+									<textbox style="resize:none;" id="mensajeARevisor" maxlength="250" multiline="true" height="30px" width="456px" />
+								</hbox>
+							    <!-- <separator height="10px"></separator> --> 
+								<hbox align="center" visible="false">
+									<checkbox id="solicitudAvisoFirma"
+										label="${c:l('gedo.general.envioAvisoFirma')}"  width="800px"/>
+								</hbox> 	
+								<separator height="10px"></separator>
+								<hbox align="center">
+									<checkbox id="solicitudEnvioCorreo"
+										label="${c:l('gedo.general.solicitudEnvioCorreo')}"
+										width="800px" />
+								</hbox>
+								<separator height="10px"></separator>
+							</vbox>
+							<vbox>
+								<hbox align="center">
+									<button id="revisionButton" height="41px" left="0px" width="140px" class="btn-secondary" iconSclass="z-icon-share-square-o" label = "${c:l('gedo.enviarARevisar.wintitle.envarRevisar')}" />
+								</hbox>
+								<separator height="10px"></separator>
+								<hbox align="center">
+									<button id="selfFirmaConjuntaButton" height="41px" left="0px" width="140px" class="btn-secondary" iconSclass="z-icon-files-o" label = "${c:l('gedo.enviarARevisar.wintitle.enviarFirmar')}" />
+								</hbox>
+								<separator height="10px"></separator>
+								<hbox align="center">
+									<button id="volver" height="41px" left="0px" width="140px" class="btn-secondary" iconSclass="z-icon-ban  " label = "${c:l('gedo.firmaConjunta.botonCancelar')}" />
+								</hbox>
+								<separator height="10px"></separator>
+							</vbox>	
+						</row>
+					</rows>
+				</grid>
+			</div>
+		</box>
+		
+		<popup id="listaFirmantes" width="300px">
+			<textbox id="usuariosAgregadosTxt"
+				value="${c:l('gedo.general.noUsuariosFirmantes')}" width="99%"
+				readonly="true" multiline="true" />
+		</popup>
+		<popup id="listaRevisores" width="300px">
+			<textbox id="revisoresAgregados"
+				value="${c:l('gedo.general.noUsuariosRevisores')}" width="99%"
+				readonly="true" multiline="true" />
+		</popup>
+		<popup id="comentarioSolicitante">
+			<textbox maxlength="250"
+				value="@{verificarDocumentoWindow$VerificarDocumentoComposer.mensajeRevisor}"
+				multiline="true" height="80px" width="300px" readonly="true"
+				style="background:white" />
+		</popup>
+		<popup id="comentarioArchivosDeTrabajo">
+			<textbox maxlength="250"
+				value="@{verificarDocumentoWindow$VerificarDocumentoComposer.mensajeArchivosDeTrabajo}"
+				multiline="true" height="80px" width="300px" readonly="true"
+				style="background:white" />
+		</popup>
+
+	</window>
+</zk>

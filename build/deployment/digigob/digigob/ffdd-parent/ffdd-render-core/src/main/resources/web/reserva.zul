@@ -1,0 +1,27 @@
+<zk>
+	<vlayout
+		apply="com.egoveris.ffdd.render.zk.comp.cc.ReservaComposer">
+
+		<vbox>
+			<hbox>
+				<cell id="${arg.formComp.nombre}_idReservaDiv" />
+				<cell
+					id="${arg.formComp.nombre}_numeroReservaEmbarqueDiv" />
+			</hbox>
+			<hbox>
+				<cell id="${arg.formComp.nombre}_numeroRefEnvioDiv" />
+				<cell id="${arg.formComp.nombre}_nombrePrincipalDiv" />
+			</hbox>
+			<hbox>
+				<cell id="${arg.formComp.nombre}_buqueRegFronteraDiv" />
+				<cell id="${arg.formComp.nombre}_numeroRotacionDiv" />
+			</hbox>
+			<hbox>
+				<cell id="${arg.formComp.nombre}_ucrDiv" />
+				<cell
+					id="${arg.formComp.nombre}_buqueRegMomentoLlegadaDiv" />
+			</hbox>
+		</vbox>
+	</vlayout>
+</zk>
+

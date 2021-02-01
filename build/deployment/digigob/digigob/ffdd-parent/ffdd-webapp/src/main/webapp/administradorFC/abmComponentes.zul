@@ -1,0 +1,169 @@
+<?page title="${c:l('digigob.Title')}" contentType="text/html;charset=UTF-8"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./abmComponenteWindow" ?>
+<zk>
+	<window title="${c:l('abmComponente.boton')}" border="normal" width="850px"
+		id="abmComponenteWindow"
+		apply="com.egoveris.ffdd.web.adm.ABMComponenteComposer">
+		<!-- height="340px"  -->
+
+		<window id="previsualizarWindow" visible="false"></window>
+		<hbox>
+			<vbox align="center">
+				<space height="10px"></space>
+				<button label="${c:l('abmCajaDatos.btnNuevaCaja')}"
+					width="125px" forward="onClick=onNuevo" />
+				<button label="${c:l('abmCombobox.multivalores.existe')}"
+					forward="onClick=onExistentes" width="125px" />
+				<button id="btnModificar"
+					label="${c:l('abmCombobox.modificar')}" width="125px"
+					visible="${arg.modo != 'modoAltaFC'}"
+					forward="onClick=onModificar" />
+				<button id="btnEliminar"
+					label="${c:l('fc.form.item.eliminar')}" width="125px"
+					visible="${arg.modo != 'modoAltaFC'}" forward="onClick=onEliminar" />
+				<button id="btnGuardar"
+					label="${c:l('abmCombobox.guardar')}"
+					forward="onClick=onGuardar" width="125px"
+					visible="${arg.modo != 'modoAltaFC'}" />
+
+				<button label="${c:l('abmComponente.btnCancelar')}"
+					id="cancelar" width="125px" forward="onClick=onCancelar" />
+
+			</vbox>
+
+			<separator bar="true" orient="vertical" height="120%" />
+
+			<div width="390px">
+				<vbox>
+					<separator spacing="15px"></separator>
+					<grid width="390px">
+						<columns>
+							<column visible="true" width="20%" />
+							<column visible="true" width="80%" />
+						</columns>
+						<rows>
+							<row>
+								<label value="${c:l('abmComponente.nombreComponente')}"></label>
+								<hlayout>
+									<textbox id="nombreComponente"
+										width="290px" maxlength="255" focus="true" />
+								</hlayout>
+							</row>
+							<row>
+								<label value="${c:l('abmCombobox.row.descrip')}"></label>
+								<hlayout>
+									<textbox id="descripcionComponente"
+										width="287px" rows="3" maxlength="255" draggable="false"
+										droppable="true" forward="onDrop=onDropItem" />
+								</hlayout>
+							</row>
+						</rows>
+					</grid>
+				</vbox>
+				<separator spacing="15px"></separator>
+				
+				
+				<vbox>
+					<grid width="390px">
+						<columns>
+							<column visible="true" width="20%" />
+							<column visible="true" width="80%" />
+						</columns>
+						<rows>
+							<row>
+								<label value="${c:l('abmComponente.tipoComponente')}"></label>
+								<hlayout>
+									<radiogroup id="tipoComponente"
+										orient="horizontal">
+										<radio id="textbox"
+											checked="true" label="${c:l('abmComponente.TextBox')}" />
+										<radio id="longbox"
+											checked="false" label="${c:l('abmComponente.LongBox')}" />
+									</radiogroup>
+								</hlayout>
+							</row>
+						
+						</rows>
+					</grid>
+				</vbox>
+		
+
+				<separator spacing="15px"></separator>
+				
+				
+				<vbox>
+					<grid width="390px">
+						<columns>
+							<column visible="true" width="20%" />
+							<column visible="true" width="80%" />
+						</columns>
+						<rows>
+							<row>
+<!-- 								${c:l('abmComponente.expresion')} -->
+								<label id="idEtiquetaMsj" value="${c:l('abmComponente.expresion')}"></label>
+								<hlayout>
+								<textbox id="expresionRegular" width="290px" maxlength="255"
+												focus="true" />
+								</hlayout>
+							</row>
+							<row>
+								<label value="${c:l('abmComponente.Mascara')}"></label>
+								<hlayout>
+								<textbox id="mascara"
+												width="290px" maxlength="255" focus="true" />
+								</hlayout>
+							</row>
+						</rows>
+					</grid>
+				</vbox>
+				
+				<separator spacing="15px"></separator>
+				<grid width="390px">
+					<columns>
+						<column visible="true" width="20%" />
+						<column visible="true" width="80%" />
+					</columns>
+					<rows>
+						<row>
+							<label value="${c:l('abmCombobox.row.mensaje')}"></label>
+							<hlayout>
+								<textbox id="mensaje" width="290px"
+									maxlength="255" focus="true" visible="true" />
+							</hlayout>
+						</row>
+					</rows>
+				</grid>
+
+			</div>
+
+			<div>
+				<separator spacing="20px"></separator>
+				<textbox id="busquedaComponenteExistente" width="292px"
+					disabled="true">
+				</textbox>
+				<separator spacing="5px"></separator>
+				<listbox id="listboxComponentesExistenSugerencias"
+					droppable="false" forward="onDrop=onDropItem"
+					style="padding:2px;overflow:auto" mold="paging" pageSize="28"
+					height="236px"
+					model="@{abmComponenteWindow$ABMComponentesComposer.listaComponenteDTO}">
+					<listhead>
+						<listheader label=""
+							id="tituloExistenSugerencias" />
+					</listhead>
+					<listitem draggable="true" droppable="false"
+						self="@{each=componente}" value="@{componente}"
+						id="componenteExistente" label="@{componente.nombre}"
+						forward="onDrop=onDropItem"
+						style="white-space: nowrap;width:95%;text-overflow: ellipsis;">
+						<listcell tooltiptext="@{componente.nombre}">
+						</listcell>
+					</listitem>
+				</listbox>
+			</div>
+
+
+
+		</hbox>
+	</window>
+</zk>

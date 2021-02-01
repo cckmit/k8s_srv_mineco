@@ -1,0 +1,75 @@
+
+.headerTitulo {
+	background-color: green;
+	border: #026290;
+	font-family: arial,sans-serif;0e867d1b036a235ead40314bdbe91e915cb4a486
+	color: #FFFFFF;
+}
+
+.headerTituloBuzonGrupal{
+	background:green;
+	font: bold;
+	color: #FFFFFF;
+	width:100%
+}
+
+.txtTitulo {
+	color: #FFFFFF;
+	font-size: 17px;
+	font-weight: 500;
+}
+
+.texto {
+	font-weight: 500;
+	font-size: 11px;
+	color: #FFFFFF;
+}
+
+.space {
+	padding-right: 0.5cm;
+	padding-top: 0.2cm;
+}
+
+.txtNameServer {
+	color:#FFFFFF; 
+	font-size:10px; 
+	font-weight:500;
+}
+
+.tituloTareasUsuario{
+	padding-left: 10px; 
+	font: bold;
+	color:	#FFFFFF;
+}
+
+.columnaGrilla{
+	
+	color:#FFFFFF;
+	
+}
+
+.cabeceraGrilla{
+	color: #FFFFFF;
+	background:#2E8B57;
+	font-family: arial,sans-serif;
+	border-color:red;
+}
+
+.tabPanel {
+	font-family: arial,sans-serif;
+	color: #FFFFFF;
+}
+
+.tabPanel:hover {
+	background-color:#2E8B57";
+	font-family: arial,sans-serif;
+	color: #000000;
+	background: #9ACD32"v
+}
+
+.tabPanel:onclick {
+	background-color:#2E8B57";
+	font-family: arial,sans-serif;
+	color: #000000;
+	background: #9ACD32"
+}

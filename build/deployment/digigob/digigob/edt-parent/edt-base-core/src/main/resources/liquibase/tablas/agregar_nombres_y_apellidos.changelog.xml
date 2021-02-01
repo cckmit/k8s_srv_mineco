@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
+    http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+	<changeSet author="Carlos Marin" id="ADDs_NOMBRES_APELLIDOS">  
+	    <comment>Agregar nombres y apellidos</comment>
+	    <sql dbms="h2, mysql" 
+	                splitStatements="true"
+	                stripComments="true">    
+
+			alter table edt_datos_usuario add primer_nombre varchar(255) NULL;
+			alter table edt_datos_usuario add segundo_nombre varchar(255) NULL;
+			alter table edt_datos_usuario add tercer_nombre varchar(255) NULL;
+			alter table edt_datos_usuario add primer_apellido varchar(255) NULL;
+			alter table edt_datos_usuario add segundo_apellido varchar(255) NULL;
+			alter table edt_datos_usuario add tercer_apellido varchar(255) NULL;
+
+	    </sql>    
+	</changeSet>
+
+
+</databaseChangeLog>

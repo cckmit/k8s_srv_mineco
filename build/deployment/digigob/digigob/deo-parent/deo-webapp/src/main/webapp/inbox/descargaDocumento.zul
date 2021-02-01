@@ -1,0 +1,56 @@
+<?page title="${c:l('gedo.general.procesoExitoso')}" contentType="text/html;charset=UTF-8"?>
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+<zk>
+<window id="descargaWindow" border="normal" title="${c:l('gedo.general.procesoExitoso')}"
+	apply="com.egoveris.deo.web.satra.DescargaDocumentoComposer"
+	closable="true" position="center" contentStyle="background: #EFEFEE" mode="embedded"
+	sizable="false" width="360px" height="200px">
+		  <style dynamic="true"> 
+			<!-- Make Plain Grid --> 
+			.GridLayoutNoBorder tr.z-row td.z-row-inner, tr.z-row .z-cell,div.z-grid 
+			{ 
+			border: none; 
+			overflow: hidden; 
+			zoom: 1; 
+			 
+			border-top: none; 
+			border-left: none; 
+			border-right: none; 
+			border-bottom: none; 
+			} 
+		</style> 
+ 	<box visible="true" width="100%" align="center" >
+	 	<vbox pack="center"  height="40px">
+	 		<label id="informacionVentanaPadre" />
+	 	</vbox>
+	 	<separator></separator>
+	 	<grid sclass="GridLayoutNoBorder">
+		<columns>
+			<column />
+		</columns>
+		<rows >
+			<row id="buttonsRow" align="center" spans="50%,50%">	
+			
+						<button height="42px"  class="btn-secondary" iconSclass="z-icon-download" 
+							style="white-space:normal;margin-bottom:3px" id="descargar"
+								label="${c:l('gedo.descargaArchivo.botonDescargar')}"  />
+							
+							<button height="42px"  class="btn-secondary" iconSclass="z-icon-arrow-left" 
+							style="white-space:normal;margin-bottom:3px" id="cerrar"
+								label="${c:l('gedo.archivosDeTrabajo.boton.tootip.volver')}" />					
+												 
+			</row>
+			<row id = "buttonRow" align = "center">
+			<button height="42px"  class="btn-secondary" iconSclass="z-icon-download" 
+				style="white-space:normal;margin-bottom:3px" id="descargarConEmbebidos"
+					label="${c:l('gedo.descargaArchivo.botonDescargar')}"  />
+			</row>
+			<row id="buttonOk" align="center" visible="false">
+			     <button id="ok"  label="${c:l('gedo.descargaDocumento.label.ok')}" width="50px"></button>
+			</row>	
+		</rows>
+	</grid>
+	</box>	
+</window>
+</zk>

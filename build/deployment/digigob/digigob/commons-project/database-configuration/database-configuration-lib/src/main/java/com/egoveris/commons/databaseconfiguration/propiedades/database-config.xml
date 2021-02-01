@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+	<beans xmlns="http://www.springframework.org/schema/beans">
+         
+	<bean name="PropertyPlaceholderConfigurerDB" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+	  		<property name="properties">
+				<bean factory-bean="dBProperty" factory-method="getProperties" />
+	      	</property>
+			<!-- Si se define más de un PropertyPlaceholderConfigurer, se requiere modificar 
+			     el valor de la siguiente propiedad en la definición de los 
+			     PropertyPlaceholderConfigurer’s:  -->
+	        <property name="ignoreUnresolvablePlaceholders" value="true"/>
+	</bean>
+
+	<bean name="dBProperty" class="ar.gob.gcaba.configuration.impl.DBAppPropertyImpl" init-method="showAllProperties"> 
+		<!-- Referencia al beean que carga el dataSource en donde se encuentra la tabla que almacena 
+			 las propiedades. -->
+		<constructor-arg  type="javax.sql.DataSource" ref="egoveris"/>
+		<!-- Nombre de la tabla en donde están almacenadas las propiedades. -->
+        <constructor-arg  type="java.lang.String" value="PROPERTY_CONFIGURATION"/>
+        <!-- Definición de los diferentes tipos de propiedades que se quieren 
+             cargar como Property PlaceHolder, acorde a la configuración-->
+		<constructor-arg  type="java.lang.String" value="LOyS,SISTEMA"/>
+	</bean>
+</beans>	
+	

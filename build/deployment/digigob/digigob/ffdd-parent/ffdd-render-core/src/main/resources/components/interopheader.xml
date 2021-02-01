@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<complexComponent type="TRADE" name="Interop Header"
+	description="Interop Header Information" zul="interopHeader.zul"
+	composer="com.everis.tramelec.dynform.comp.ext.InteropHeaderComposer"
+	mappingDTO="com.egoveris.ccomplejos.base.model.InteropHeaderDTO">
+
+	<field name="idTransaccion" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" />
+	<field name="idMensaje" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" />
+	<field name="destinatario" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" />
+	
+</complexComponent>

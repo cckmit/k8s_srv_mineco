@@ -1,0 +1,11 @@
+<?page title="new page title" contentType="text/html;charset=UTF-8"?>
+<zk>
+	<vlayout
+		apply="com.egoveris.ffdd.render.zk.comp.cc.DateInicioComposer">
+		<vbox>
+			<hbox>
+				<cell id="${arg.formComp.nombre}_fechaDiv" />
+			</hbox>
+		</vbox>
+	</vlayout>
+</zk>

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/WEB-INF/faces/layout/mainLayout.xhtml">
+	<ui:define name="body">
+
+		<h:form id="myDocuments">
+			<div class="ui-g">
+				<div class="ui-g-12">
+					<h2>#{msg.sectionDocumentos}</h2>
+				</div>
+				<div class="ui-g-12">
+					<h4>#{msg.sectionFiltrarTipoDocumento}</h4>
+					<p:selectOneMenu id="cmbTiposDocumento"
+						value="#{myDocumentsMb.selectedTipoDocumento}">
+						<p:ajax event="change" update="tblDocuments" />
+						<f:selectItem itemValue="#{null}" itemLabel="#{msg.myDocumentsSinFiltro}" />
+						<f:selectItems value="#{myDocumentsMb.cmbTiposDocumento}" />
+					</p:selectOneMenu>
+				</div>
+			</div>
+			<div class="ui-g">
+				<div class="ui-g-12">
+					<p:dataTable id="tblDocuments" var="document"
+						value="#{myDocumentsMb.documentosList}"
+						emptyMessage="#{msg.sectionSinDocumentosRegistrados}"
+						style="text-align: center;" rows="10" paginator="true"
+						paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+						currentPageReportTemplate="{currentPage} #{msg.sectionDe} {totalPages} #{msg.sectionPaginas}"
+						rowsPerPageTemplate="5,10,15" paginatorPosition="bottom">
+						<p:column headerText="#{msg.sectionCodigoDocumento}">
+							<p:outputLabel value="#{document.codigoSade}" />
+						</p:column>
+						<p:column headerText="#{msg.sectionFechaDeCreacion}">
+							<p:outputLabel value="#{document.formattedFechaCreacion}" />
+						</p:column>
+						<p:column headerText="#{msg.sectionDescargar}" width="70">
+							<p:commandButton icon="fa fa-download" ajax="false">
+								<p:fileDownload
+									value="#{myDocumentsMb.cmdDownloadDocument(document)}" />
+							</p:commandButton>
+						</p:column>
+					</p:dataTable>
+				</div>
+			</div>
+		</h:form>
+
+	</ui:define>
+</ui:composition>
+</html>

@@ -1,0 +1,24 @@
+<zk>
+	<nav label="${item.label}"
+		iconSclass="${item.iconSclass}"
+		sclass="grey"
+		children="@load(item.children) @template('childrenTemplate')"
+		badgeText="${item.badgeText}"
+		if="${item.children.size() > 0}">
+		
+		<attribute name="id" if="${item.id ne null}">${item.id}</attribute>
+	</nav>
+	
+	<navitem label="${item.label}"
+		iconSclass="${item.iconSclass ne null ? item.iconSclass : 'z-icon-angle-double-right'}"
+		selected="${item.selected == true ? 'true' : 'false'}"
+		context="${item.targetZul}" 
+		onClick="@command('doClickMenuElement', menuElement=item)"
+		if="${item.children.size() == 0}">
+		
+		<attribute name="id" if="${item.id ne null}">${item.id}</attribute>
+	</navitem>
+	
+	<template name="childrenTemplate" var="item"
+		src="~./db_layout/menuLateral/menuElement.zul" />
+</zk>

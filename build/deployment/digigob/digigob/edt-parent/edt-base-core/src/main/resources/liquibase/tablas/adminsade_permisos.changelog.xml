@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
+    http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+	<changeSet author="Gustavo Aguilera" id="INSERTA_NUEVOS_PERMISOS">  
+	    <comment>insert queries</comment>
+	    <sql dbms="h2, mysql" 
+	                splitStatements="true"
+	                stripComments="true">         
+	        insert into adminsade_permisos values (47, 'ou=edt.adminUsuarioPerfil', null, 'Acceso a Crear/Modificar Usuarios, roles y perfiles', 'EDT');    
+			insert into adminsade_permisos values (48, 'ou=edt.administracionOrganizacion', null, 'Acceso a Crear/Modificar Organismos Sectores y estructura', 'EDT');
+			insert into adminsade_permisos values (49, 'ou=edt.administracionMantenedores', null, 'Acceso a Crear/Modificar Actuacion y tipo resultado', 'EDT');
+			insert into adminsade_permisos values (50, 'ou=edt.administracionFeriados', null, 'Acceso a Funcionalidad de Feriados', 'EDT');
+			insert into adminsade_permisos values (51, 'ou=edt.administracionNovedades', null, 'Acceso a Funcionalidad de Novedades', 'EDT');
+	    </sql>    
+	</changeSet>
+	<changeSet author="Carlos Hegnauer" id="MODIFICA_CAMPOS_OBLIGATORIOS">  
+	    <comment>alter queries</comment>
+	    <sql dbms="h2, mysql" 
+	                splitStatements="true"
+	                stripComments="true">    
+	        ALTER TABLE edt_sade_actuacion  CHANGE COLUMN JERARQUIA JERARQUIA INT(11) NULL; 
+			ALTER TABLE edt_sade_actuacion  CHANGE COLUMN VERSION VERSION DECIMAL(10,0) NULL;
+			ALTER TABLE edt_sade_actuacion  CHANGE COLUMN DESHABILITADO_PAPEL DESHABILITADO_PAPEL VARCHAR(1) NULL;
+			ALTER TABLE edt_sade_actuacion_audi  CHANGE COLUMN JERARQUIA JERARQUIA INT(11) NULL; 
+			ALTER TABLE edt_sade_actuacion_audi  CHANGE COLUMN VERSION VERSION DECIMAL(10,0) NULL; 
+	    </sql>    
+	</changeSet>
+
+
+</databaseChangeLog>

@@ -1,0 +1,26 @@
+<?page title="" contentType="text/html;charset=UTF-8"?>
+<zk>
+	<window title="${c:l('ccoo.busqueda.porFecha')}" border="normal" width="500px" 
+		closable="true" id="consultaPorFechaWindow"
+		apply="com.egoveris.deo.web.satra.consulta.ConsultaPorFechaCoComposer">
+		<groupbox>
+			<separator height="20px"></separator>
+			<hbox>
+				<label
+					value="${c:l('ccoo.consulta.fechDesde')}" />
+				<separator width="18px"></separator>
+				<datebox id="fechaDesde" />
+				<separator width="30px"></separator>
+				<label
+					value="${c:l('ccoo.consulta.fechHasta')}" />
+				<datebox id="fechaHasta" />
+			</hbox>
+			<separator height="20px"></separator>
+			<div align="center">
+			<button
+					label="${c:l('ccoo.consulta.botonBuscar')}"
+					id="buscar" />
+			</div>
+		</groupbox>
+	</window>
+</zk>

@@ -1,0 +1,88 @@
+<?page title="${c:l('tabReparticionesHabilitadas.title')}" contentType="text/html;charset=UTF-8"?>
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./win_reparticionesHabilitadas" ?>
+<zk>
+	<window id="win_reparticionesHabilitadas"
+		apply="com.egoveris.edt.web.admin.pl.GestionReparticionesHabilitadasComposer">
+		<vbox id="vbx_header_repHabilitadas" style="background:#C4ECFF"
+			width="100%" height="50px" align="center" pack="center">
+			<label style="font-weight:bold"
+				value="${c:l('eu.adminSade.reparticiones.habilitadas')}" />
+		</vbox>
+		<vbox id="vbx_containerHabilitadas" align="center"
+			width="100%">
+			<grid id="gr_reparticionesHabilitadas" 
+				style="padding:0px; border:none; border-spacing:0px;">
+				<columns>
+					<column width="45%" align="left" />
+					<column width="25%" align="left" />
+					<column width="15%" align="left" />
+					<column align="left" />
+				</columns>
+				<rows>
+
+					<row style="padding:0px; border:none; border-spacing:0px;">
+						<vbox>
+							<include id="inc_reparticionSectorSelector" />
+						</vbox>
+						<button id="btn_habilitarReparticion"
+								iconSclass="z-icon-cog"
+								label="${c:l('eu.gestionReparticiones.boton.agregarReparticones')}" />
+					</row>
+				</rows>
+			</grid>
+			<separator height="20px" />
+			<hbox align="left">
+				<label id="lbl_reparticionAsignada"
+					value="${c:l('eu.adminSade.reparticiones.administradas.label.reparticionAsignadaDelUsuario')}" />
+			</hbox>
+			<separator height="20px" />
+			<groupbox>
+				<caption>${c:l('eu.tabRepHab.caption.orgHabilitados')}</caption>
+				<separator height="10px" />
+				<vbox id="vbox_repHabilitadas" width="98%">
+					<paging id="Paginator" pageSize="15"
+						detailed="true" />
+					<listbox id="lbx_reparticionesHabilitadas"
+						fixedLayout="true"
+						style=""
+						model="@{win_reparticionesHabilitadas$composer.reparticionesHabilitadas}"
+						mold="paging" pageSize="10" width="100%"
+						itemRenderer="com.egoveris.edt.web.admin.pl.renderers.ListadoReparticionesHabilitadasItemRenderer"
+						selectedItem="@{win_reparticionesHabilitadas$composer.reparticionHabilitadaSeleccionada}">
+
+						<listhead sizable="false"
+							style="background: #C4ECFF;">
+							<listheader align="center" label="${c:l('eu.adminSade.reparticiones.habilitadas.tabla.label.codigo')}"
+								width="110px" style="" />
+							<listheader align="center"
+								label="${c:l('eu.adminSade.reparticiones.habilitadas.tabla.label.descripcion')}" style="" />
+							<listheader align="center"
+								label="${c:l('eu.adminSade.reparticiones.habilitadas.tabla.label.sector')}" style="" />
+							<listheader align="center"
+								label="${c:l('eu.adminSade.reparticiones.habilitadas.tabla.label.cargo')}" style="" />
+							<listheader align="center"
+								label="${c:l('eu.escritorioUnico.misSistemas.accion')}"
+								style="" width="15%" />
+						</listhead>
+						<listfoot>
+							<listfooter />
+							<listfooter />
+							<listfooter />
+						</listfoot>
+					</listbox>
+				</vbox>
+			</groupbox>
+			<separator height="20px" />
+			<hbox align="center">
+				<toolbarbutton id="btn_guardar"
+					iconSclass="z-icon-floppy-o"
+					label="${c:l('eu.adminSade.guardar')}"
+					zclass="z-button" style="padding:7px 10px;"
+					tooltiptext="${c:l('eu.adminSade.guardar')}" />		
+			</hbox>
+			<separator height="20px" />
+		</vbox>
+	</window>
+</zk>

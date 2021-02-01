@@ -1,0 +1,46 @@
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./histActWindow" ?>
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+<?page title="Trata" contentType="text/html;charset=UTF-8"?>
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+<zk>
+	<window id="histActWindow" title="" border="none"
+		apply="com.egoveris.te.base.composer.HistoricoActivComposer">
+
+		<toolbarbutton autodisable="self" image="/imagenes/decline.png"
+			label="${c:l('ee.act.button.cancelarTodas.value')}"
+			tooltiptext="${c:l('ee.act.button.cancelarTodas.value')}"
+			id="botonFiltrar"
+			forward="onClick=histActWindow$HistoricoActivComposer.onCancelarActividades" />
+		
+		<separator height="10px" />
+		
+		<paging id="pagingActi" pageSize="10" />
+		
+		<listbox id="actividadesListbox" mold="paging"
+			paginal="${pagingActi}">
+			<listhead>
+				<listheader label="${c:l('ee.act.label.exp.value')}"
+					width="25%" />
+				<listheader
+					label="${c:l('ee.act.label.actividad.value')}" width="25%" />
+				<listheader label="${c:l('ee.act.label.fecha.value')}"
+					width="10%" />
+				<listheader
+					label="${c:l('ee.act.label.fechaBaja.value')}" width="10%" />
+				<listheader
+					label="${c:l('ee.act.label.usuarioBaja.value')}" width="10%" />
+				<listheader label="${c:l('ee.act.label.estado.value')}"
+					width="10%" />
+				<listheader
+					label="${c:l('ee.act.label.estado.trata.value')}" width="10%" />
+				<listheader
+					label="${c:l('ee.act.label.acciones.value')}" width="10%" />
+			</listhead>
+		</listbox>
+
+		<label id="listaVacia"
+			value="${c:l('ee.act.msg.exp.sinActividades')}" />
+			
+		<separator height="5px" />
+	</window>
+</zk>

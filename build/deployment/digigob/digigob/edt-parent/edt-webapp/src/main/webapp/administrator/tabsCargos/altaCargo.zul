@@ -1,0 +1,77 @@
+<?page title="${c:l('altaCargo.title')}" contentType="text/html;charset=UTF-8"?>
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./win_altaCargo" ?>
+<zk>
+	<window id="win_altaCargo" border="normal"
+		title="@{win_altaCargo$composer.title}"
+		apply="com.egoveris.edt.web.admin.pl.AltaCargoComposer" width="550px"
+		position="center" mode="modal" closable="true">
+
+		<vbox style="background:#C4ECFF" width="100%" height="50px"
+			align="center" pack="center">
+			<label style="font-weight:bold" 
+				value="@{win_altaCargo$composer.title}" />
+		</vbox>
+		<vbox align="center" width="100%">
+			<grid id="gr_altaUsuario" width="500px"
+				style="padding:0px; border:none; border-spacing:0px;">
+				<rows>
+					<row style="border:none;" spans="30%,70%">
+						<cell align="right">
+							<label
+								value="${c:l('eu.adminSade.cargo.nombre')}" />
+						</cell>
+						<cell align="left">
+							<textbox id="txbx_nombre" maxlength="255"
+								width="99%" />
+						</cell>
+					</row>
+
+					<row style="border:none;" spans="30%,70%">
+						<cell align="right">
+							<label
+								value="${c:l('eu.audRolesPermisos.listhead.vigente') }" />
+						</cell>
+						<cell align="left">
+							<checkbox id="chkbx_vigente"
+								value="@{win_altaCargo$composer.cargo.vigente}" />
+						</cell>
+					</row>
+
+					<row style="border:none;" spans="30%,70%">
+						<cell align="right">
+							<label
+								value="${c:l('eu.admCargos.hbox.label.restringido')}" />
+						</cell>
+						<cell align="left">
+							<checkbox id="chkbx_restringido"
+								value="@{win_altaCargo$composer.cargo.esTipoBaja}" />
+						</cell>
+					</row>
+
+					<row style="border:none;" spans="100%" visible="false">
+						<vbox>
+							<include id="inc_reparticionSectorSelector" />
+						</vbox>
+					</row>
+				</rows>
+			</grid>
+			<separator height="20px" />
+
+			<hbox align="center">
+				<toolbarbutton id="btn_altaCargo"
+					iconSclass="z-icon-floppy-o"
+					label="${c:l('edt.webapp.altarol.btn.guardar')}" zclass="z-button"
+					style="padding:7px 10px;"
+					tooltiptext="${c:l('eu.adminSade.guardar')}" />
+				<toolbarbutton id="btn_cancelar"
+					iconSclass="z-icon-times"
+					label="${c:l('edt.webapp.altarol.btn.cancelar')}" zclass="z-button"
+					style="padding:7px 10px;"
+					tooltiptext="${c:l('eu.adminSade.cancelar')}" />
+			</hbox>
+			<separator height="20px" />
+		</vbox>
+	</window>
+</zk>

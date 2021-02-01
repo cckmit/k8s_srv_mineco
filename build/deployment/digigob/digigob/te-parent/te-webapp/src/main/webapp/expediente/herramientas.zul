@@ -1,0 +1,37 @@
+<?page title="${c:l('digigob.Title')}" contentType="text/html;charset=UTF-8"?>
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+<?init class="org.zkoss.zk.ui.util.Composition" arg0="~./db_template.zul"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./herramientasWindow"?>
+
+<zk xmlns:x="xhtml" xmlns:zk="zk">
+	<window border="normal" id="herramientasWindow" 
+		xmlns:w="http://www.zkoss.org/2005/zk/client"
+		apply="com.egoveris.te.base.composer.HerramientaComposer" 
+		visible="true"
+		height="450px" self="@{define(egovBody)}">
+		
+		<div id="tools" align="left">
+			<hbox>
+				<zk forEach="${executables}">
+					<box height="80px" width="80px" align="center">
+					    <attribute w:name="bind_">
+						   function(){
+						      this.$bind_.apply(this,arguments);
+						      jq(this.$n()).mouseover(function(){
+						         jq(this).css("background","#A3D1FF");
+						      }).mouseout(function(){
+						         jq(this).css("background","");
+						      });
+						    }
+					    </attribute>
+						<vbox align="center">
+							<image id="${each.name}" src="${each.icon}" height="60px" width="60px" tooltiptext="${each.tooltip}" 
+								forward="onClick=herramientasWindow$composer.onEjecutar(${each.name})"></image>
+							<label value="${each.name}"/>
+						</vbox>
+					</box>
+				</zk>
+			</hbox>
+		</div>
+	</window>
+</zk>

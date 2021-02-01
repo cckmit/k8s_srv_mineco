@@ -1,0 +1,7 @@
+<zk>
+	<window>
+		<zscript>
+		    Executions.sendRedirect("/");
+		</zscript>
+	</window>
+</zk>

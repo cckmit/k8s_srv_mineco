@@ -1,0 +1,86 @@
+<?page title="${c:l('digigob.Title')}" contentType="text/html;charset=UTF-8"?>
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+<?init class="org.zkoss.zk.ui.util.Composition" arg0="~./db_template.zul"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./administradorFC" ?>
+
+<zk>
+	<window id="administradorFC" border="normal" width="100%"
+		closable="false" sizable="false" style="padding:2px;"
+		position="center" apply="com.egoveris.ffdd.web.adm.AdministradorFCComposer" self="@{define(egovBody)}">
+
+		<window id="hiddenView" visible="false" />
+		<window id="newComboWindow" visible="false" />
+		<window id="exportarWindow" visible="false"/>
+		<window id="hiddenViewCajas" visible="false"/>
+		<window id="ccomplejoWindow" visible="false"/>
+								
+		<div>
+			<hbox>
+				<button id="buttonAltaFC" label="${c:l('fc.botonNuevo')}"
+					forward="onClick=onAFC"/>
+				<button id="buttonAltaCombo" label="${c:l('abmCombobox.buttonMsgManage')}" 
+				    forward="onClick=onAC"/>
+				<button id="buttonExportar" label="${c:l('fc.export.title')}"
+				    forward="onClick=onExportar"/>			 
+				<fileupload id="uploadFormulario" label="${c:l('fc.import.title')}"/>
+				<button id="buttonAbmCajas" label="${c:l('abmCajaDatos.windowTitulo')}"
+					forward="onClick=onABMC"/>
+				<button id="buttonAbmComponente" label="${c:l('abmComponente.boton')}"
+					forward="onClick=onABMCOMP"/>
+				<button id="buttonComplexComponent" label="${c:l('ccomplejos.boton')}"
+					forward="onClick=onComplexComponent"/>		
+			</hbox>
+		</div>
+		<separator />
+
+		<toolbar style="background: #EFEFEE;">
+			<textbox id="buscarFormulario" 
+			forward="onOK=administradorFC$composer.onBuscarFormulario"/>
+
+			<toolbarbutton style=""
+				image="/imagenes/edit-find.png" label="${c:l('fc.busqueda')}"
+				forward="onClick=administradorFC$composer.onBuscarFormulario" />
+				
+			<toolbarbutton style=""
+				image="/imagenes/delete-process.png" label="${c:l('fc.limpiarBusqueda')}"
+				forward="onClick=administradorFC$composer.onLimpiarBusqueda" />
+		</toolbar>
+
+		<listbox id="listboxFC" style="padding:2px;overflow:auto"
+			model="@{administradorFC$AdministradorFCComposer.listaFormularios}"
+			selectedItem="@{administradorFC$AdministradorFCComposer.selectedFormulario}"
+			mold="paging" pageSize="15">
+			<listhead>
+				<listheader label="${c:l('fc.form.nomb')}" width="37%" />
+				<listheader label="${c:l('fc.form.descr')}" width="37%" />
+				<listheader label="${c:l('fc.form.fechaCreacion')}" width="18%" sort="auto(fechaCreacion)"/>
+				<listheader label="${c:l('fc.form.fechaModificacion')}" width="18%" sort="auto(fechaModificacion)"/>
+				<listheader id="clonarListHead" label="" width="10%" visible="true"/>
+				<listheader label="" width="10%" />
+				<listheader label="" width="10%" />
+			</listhead>
+			<listitem self="@{each=formulario}" value="@{formulario}">
+				<listcell label="@{formulario.nombre}" />
+				<listcell label="@{formulario.descripcion}" />
+				<listcell label="@{formulario.fechaCreacion}"/>
+				<listcell label="@{formulario.fechaModificacion}"/>
+				<listcell image="/imagenes/clonador.png" label="${c:l('fc.form.item.clonar')}"
+				          forward="onClick=onCFC" />
+				<listcell image="/imagenes/page_text.png" label="${c:l('fc.form.item.datos')}"
+					     forward="onClick=onMFC" />
+				<listcell image="/imagenes/decline.png" label="${c:l('fc.form.item.eliminar')}"
+					forward="onClick=onEliminarFC" />
+			</listitem>
+			<listfoot>				
+				<listfooter/>
+				<listfooter/>
+				<listfooter/>
+					<listfooter	id="labelFormulariosLf" label="${c:l('fc.totalFormularios')}" span="2" style="font-size: 6px ; color:#C4ECFF" />
+					<listfooter id="cantidadFormulariosLf" label="@{listboxFC.getItemCount}" style="font-size: 6px ; color:#C4ECFF" />
+			</listfoot>
+		</listbox>
+		
+		<!-- <paging id="administradorPaginator" pageSize="15" /> -->
+		
+	</window>
+</zk>

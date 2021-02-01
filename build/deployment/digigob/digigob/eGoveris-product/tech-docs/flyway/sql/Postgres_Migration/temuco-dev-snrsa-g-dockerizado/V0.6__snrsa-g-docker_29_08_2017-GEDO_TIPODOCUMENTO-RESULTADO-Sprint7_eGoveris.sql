@@ -1,0 +1,1 @@
+ALTER TABLE deo_snrsa_g.gedo_tipodocumento ADD RESULTADO CHAR(1) NOT NULL DEFAULT 0;

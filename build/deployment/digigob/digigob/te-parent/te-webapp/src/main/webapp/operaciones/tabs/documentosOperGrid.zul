@@ -1,0 +1,90 @@
+<zk>
+	<panel apply="org.zkoss.bind.BindComposer"
+		viewModel="@id('docsGridVm') @init('com.egoveris.te.base.vm.DocumentosOperGridVM')"
+		sclass="transparent" width="100%" visible="@load(docsGridVm.hayDocumentos)">
+
+		<caption
+			label="${c:l('ee.operacion.documentosOperacion.label.documentosObligatorios')}"
+			iconSclass="z-icon-file" if="${docsGridVm.obligatorios}" />
+		<caption
+			label="${c:l('ee.operacion.documentosOperacion.label.documentosOpcionales')}"
+			iconSclass="z-icon-file-o" if="${!docsGridVm.obligatorios}" />
+
+		<panelchildren>
+			<listbox mold="paging" pageSize="5" width="90%"
+				model="@load(docsGridVm.documentos)">
+				<listhead>
+					<listheader
+						label="${c:l('ee.operacion.documentosOperacion.column.tipoDocumento')}" />
+					<listheader
+						label="${c:l('ee.operacion.documentosOperacion.column.nombreArchivo')}" />
+					<listheader
+						label="${c:l('ee.operacion.documentosOperacion.column.acciones')}" />
+				</listhead>
+				<template name="model" var="item">
+					<listitem>
+						<!-- Nombre tipo documento -->
+						<listcell
+							label="${item.tipoDocumentoGedo.nombre}" />
+
+						<!-- Nombre de archivo (si esta ingresado) -->
+						<listcell if="${item.numeroDocumento ne null}"
+							label="${item.nombreArchivo}" />
+
+						<!-- Numero de documento (si NO esta ingresado)  -->
+						<listcell
+							if="${item.numeroDocumento eq null}">
+							<hbox if="${docsGridVm.obligatorios}">
+								<html>
+									
+									<![CDATA[ <i
+									class="z-icon-exclamation-circle"
+									style="color: orange;" /> ]]>
+									
+								</html>
+								<label
+									value="${c:l('ee.operacion.documentosOperacion.label.debeAdjuntar')}" />
+							</hbox>
+							<label if="${!docsGridVm.obligatorios}"
+								value="${c:l('ee.operacion.documentosOperacion.label.sinAdjuntoAun')}" />
+						</listcell>
+
+						<!-- Acciones -->
+						<listcell>
+							<!--  Subir (si NO esta ingresado) -->
+							<hbox
+								if="${item.numeroDocumento eq null}">
+								<toolbarbutton autodisable="self"
+									image="/imagenes/attach.png"
+									label="${c:l('ee.operacion.documentosOperacion.accion.adjuntar')}"
+									upload="true, maxsize=51200"
+									onUpload="@command('onUploadDocumento', uploadEvent=event, documentoOperacion=item)"
+									visible="${!docsGridVm.soloLectura}" />
+							</hbox>
+
+							<!-- Si esta ingresado -->
+							<hbox
+								if="${item.numeroDocumento ne null}">
+								<toolbarbutton autodisable="self"
+									image="/imagenes/download_documento.png"
+									label="${c:l('ee.operacion.documentosOperacion.accion.descargar')}"
+									onClick="@command('onDescargarDocumento', documentoOperacion=item)" />
+								<toolbarbutton autodisable="self"
+									image="/imagenes/pencil.png"
+									label="${c:l('ee.operacion.documentosOperacion.accion.modificar')}"
+									upload="true, maxsize=51200"
+									onUpload="@command('onUploadDocumento', uploadEvent=event, documentoOperacion=item)"
+									visible="${!docsGridVm.soloLectura}" />
+								<toolbarbutton autodisable="self"
+									image="/imagenes/delete-process.png"
+									label="${c:l('ee.operacion.documentosOperacion.accion.eliminar')}"
+									onClick="@command('onEliminarDocumento', documentoOperacion=item)"
+									visible="${!docsGridVm.soloLectura}" />
+							</hbox>
+						</listcell>
+					</listitem>
+				</template>
+			</listbox>
+		</panelchildren>
+	</panel>
+</zk>

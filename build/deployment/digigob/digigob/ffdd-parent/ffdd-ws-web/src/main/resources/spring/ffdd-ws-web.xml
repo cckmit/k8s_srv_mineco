@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+	<!-- Scan for Spring beans declared via annotations. -->
+	<context:component-scan base-package="com.egoveris.ffdd.ws.service" />
+
+	<bean name="externalTransaccionServiceServlet"
+		class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+		<property name="service" ref="externalTransaccionServiceImpl" />
+		<property name="serviceInterface">
+			<value>com.egoveris.ffdd.ws.service.ExternalTransaccionService
+			</value>
+		</property>
+	</bean>
+	
+	<bean name="externalFormularioServiceServlet"
+				class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+		<property name="service" ref="externalFormularioServiceImpl" />
+		<property name="serviceInterface">
+			<value>com.egoveris.ffdd.ws.service.ExternalFormularioService
+			</value>
+		</property>
+	</bean>
+
+	<bean name="externalCComplejoServiceServlet"
+				class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+		<property name="service" ref="externalCComplejosServiceImpl" />
+		<property name="serviceInterface">
+			<value>com.egoveris.ffdd.ws.service.ExternalCComplejosService
+			</value>
+		</property>
+	</bean>
+	<bean name="externalComponentServiceServlet"
+				class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+		<property name="service" ref="externalComponentServiceImpl" />
+		<property name="serviceInterface">
+			<value>com.egoveris.ffdd.ws.service.ExternalComponentService
+			</value>
+		</property>
+	</bean>
+	
+	<bean name="externalItemServiceServlet"
+				class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+		<property name="service" ref="externalItemServiceImpl" />
+		<property name="serviceInterface">
+			<value>com.egoveris.ffdd.ws.service.ExternalItemService
+			</value>
+		</property>
+	</bean>
+	
+	
+	<!-- Commented for now.  -->
+		<!-- <bean name="validar-transaccion-service" -->
+	<!-- class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter"> -->
+	<!-- <property name="service" ref="validarTransaccionService" /> -->
+	<!-- <property name="serviceInterface"> -->
+	<!-- <value>com.egoveris.ffdd.ws.service.IFormularioExternalService -->
+	<!-- </value> -->
+	<!-- </property> -->
+	<!-- </bean> -->
+</beans>

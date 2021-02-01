@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
+    http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+ 
+	<changeSet author="Gustavo Aguilera" id="INSERTA_VALOR_IDIOMA">  
+	    <comment>insert queries</comment>
+	    <sql dbms="h2, mysql" 
+	                splitStatements="true"
+	                stripComments="true">         
+			insert into property_configuration (clave, valor, CONFIGURACION ) values ('app.system.lang', 'es_ES', 'SISTEMA');
+	    </sql>    
+	</changeSet>
+
+	<changeSet author="Mauro Parodi" id="TE_RESOURCE_BASE_URL">
+		<insert tableName="PROPERTY_CONFIGURATION">
+			<column name="CLAVE" value="resource.base.url"/>
+			<column name="VALOR" value="https://docker-host.egoveris.com"/>
+			<column name="CONFIGURACION" value="SISTEMA"/>
+		</insert>
+	</changeSet> 
+	
+	<changeSet author="Mauro Parodi" id="TE_MAIL_URL">
+		<insert tableName="PROPERTY_CONFIGURATION">
+			<column name="CLAVE" value="app.fromEmail"/>
+			<column name="VALOR" value="egoverisUser@gmail.com"/>
+			<column name="CONFIGURACION" value="SISTEMA"/>
+		</insert>
+	</changeSet> 
+	
+	<changeSet author="Mauro Parodi" id="TE_MAIL_PASS">
+		<insert tableName="PROPERTY_CONFIGURATION">
+			<column name="CLAVE" value="app.mail.password"/>
+			<column name="VALOR" value="Marzo2020"/>
+			<column name="CONFIGURACION" value="SISTEMA"/>
+		</insert>
+	</changeSet> 
+	
+	<changeSet author="Mauro Parodi" id="TE_MAIL_AUTH">
+		<insert tableName="PROPERTY_CONFIGURATION">
+			<column name="CLAVE" value="mail.smtp.auth"/>
+			<column name="VALOR" value="true"/>
+			<column name="CONFIGURACION" value="SISTEMA"/>
+		</insert>
+	</changeSet> 
+
+	<changeSet author="Mauro Parodi" id="TE_MAIL_PORT">
+		<insert tableName="PROPERTY_CONFIGURATION">
+			<column name="CLAVE" value="mail.smtp.port"/>
+			<column name="VALOR" value="587"/>
+			<column name="CONFIGURACION" value="SISTEMA"/>
+		</insert>
+	</changeSet> 
+
+	<changeSet author="Mauro Parodi" id="TE_MAIL_HOST">
+		<insert tableName="PROPERTY_CONFIGURATION">
+			<column name="CLAVE" value="mail.smtp.host"/>
+			<column name="VALOR" value="smtp.gmail.com"/>
+			<column name="CONFIGURACION" value="SISTEMA"/>
+		</insert>
+	</changeSet> 
+	
+	<changeSet author="Mauro Parodi" id="TE_MAIL_TRUST">
+		<insert tableName="PROPERTY_CONFIGURATION">
+			<column name="CLAVE" value="mail.smtp.ssl.trust"/>
+			<column name="VALOR" value="smtp.gmail.com"/>
+			<column name="CONFIGURACION" value="SISTEMA"/>
+		</insert>
+	</changeSet> 
+	
+	<changeSet author="Mauro Parodi" id="TE_MAIL_TLS">
+		<insert tableName="PROPERTY_CONFIGURATION">
+			<column name="CLAVE" value="mail.smtp.starttls.enable"/>
+			<column name="VALOR" value="true"/>
+			<column name="CONFIGURACION" value="SISTEMA"/>
+		</insert>
+	</changeSet> 
+
+</databaseChangeLog>

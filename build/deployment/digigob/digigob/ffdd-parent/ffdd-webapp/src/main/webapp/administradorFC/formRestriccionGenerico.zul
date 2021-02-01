@@ -1,0 +1,62 @@
+<?page title="${c:l('digigob.Title')}" contentType="text/html;charset=UTF-8"?>
+<zk>
+<window title="" border="none" width="870px" position="center" closable="true"
+	apply="com.egoveris.ffdd.web.adm.FormRestriccionGenericoComposer">
+			<space height="5px"/>
+			<groupbox>
+			<hbox>			
+				<label value="${c:l('abmConstraint.mensaje.restricciones')}" width="210px"
+					tooltiptext="${c:l('abmConstraint.mensaje.restricciones.tooltipText')}" />
+				<space spacing="20px"></space>
+				<bandbox id="componentesRestringidos" mold="rounded" autodrop="true" readonly="true">
+					<bandpopup>
+						<listbox id="listaComponentesRestringidos" height="250px" width="450px"
+							mold="paging" autopaging="true"
+							multiple="true" checkmark="true">
+							<listhead>
+								<listheader
+									label="${c:l('abmConstraint.listheader.componente')}" />
+							</listhead>
+						</listbox>
+					</bandpopup>
+				</bandbox>
+				<separator width="378px"></separator>			
+				<button image="/imagenes/Eliminar.png" id="eliminarConstraint"
+					forward="onClick=onEliminarConstraint"
+					tooltiptext="${c:l('abmConstraint.botonEliminar.tooltipText')}" >
+				</button>												
+			</hbox>
+			<div>
+				<button forward="onClick=onConstraintADD" src="/imagenes/masConstraint.png" />
+			</div>
+			<separator width="5px"></separator>
+			<hbox>
+			<grid id="grillaConstraint" >
+				<columns >
+					<column width="8%" tooltiptext="${c:l('abmConstraint.condicion.tooltipText')}">
+						<label value="${c:l('frmConstraintGeneric.columnaGrillaCondicion')}"/>
+					</column>
+					<column width="18%" tooltiptext="${c:l('abmConstraint.componenteAValidar.tooltipText')}">
+						<label value="${c:l('frmConstraintGeneric.columnaGrillaComponente')}"/>
+					</column>
+					<column width="16%" tooltiptext="${c:l('abmConstraint.condicionACumplir.tooltipText')}">
+						<label value="${c:l('frmConstraintGeneric.columnaGrillaCondCumplir')}"/>
+					</column>
+					<column width="21%" tooltiptext="${c:l('abmConstraint.metodoComparacion.tooltipText')}">
+						<label value="${c:l('frmConstraintGeneric.columnaGrillaMetComp')}"/>
+					</column>
+					<column width="11%" tooltiptext="${c:l('abmConstraint.compararCon.tooltipText')}">
+						<label value="${c:l('frmConstraintGeneric.columnaGrillaComCon')}"/>
+					</column>
+					<column width="12%" tooltiptext="${c:l('abmConstraint.ocultar.tooltipText')}">
+						<label value="${c:l('frmConstraintGeneric.columnaGrillaOculMost')}"/>
+					</column>
+					<column width="8%" tooltiptext="${c:l('abmConstraint.eliminar.tooltipText')}">
+						<label value="${c:l('fc.form.item.eliminar')}"/>
+					</column>
+				</columns>
+			</grid>
+			</hbox>						
+		</groupbox>
+</window>
+</zk>

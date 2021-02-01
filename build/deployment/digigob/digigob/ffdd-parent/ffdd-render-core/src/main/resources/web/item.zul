@@ -1,0 +1,165 @@
+<?page title="new page title" contentType="text/html;charset=UTF-8"?>
+<zk>
+	<vlayout apply="com.egoveris.ffdd.render.zk.comp.cc.ItemComposer">
+		<grid>
+			<columns>
+				<column></column>
+			</columns>
+			<rows>
+				<row>
+					<vbox>
+						<hbox>
+							<hbox>
+								<tabbox>
+									<tabs>
+										<tab label="${c:l('item.producto')}" />
+										<tab label="${c:l('item.transaccion')}" />
+										<tab label="${c:l('item.documentacion')}" />
+										<tab
+											label="${c:l('item.tributaria')}" />
+										<tab label="${c:l('item.origen')}" />
+										<tab label="${c:l('item.bitacora')}" />
+									</tabs>
+									<tabpanels>
+										<tabpanel>
+											<vbox>
+												<hbox>
+													<hbox>
+														<cell
+															id="${arg.formComp.nombre}_itemIdDiv" />
+													</hbox>
+													<hbox>
+														<cell
+															colspan="4" id="${arg.formComp.nombre}_productoDiv" />
+													</hbox>
+												</hbox>
+											</vbox>
+										</tabpanel>
+										<tabpanel>
+											<vbox>
+												<hbox>
+													<cell
+														id="${arg.formComp.nombre}_valorMinimoDiv" />
+													<cell
+														id="${arg.formComp.nombre}_acuerdoComercialDiv" />
+													<cell
+														id="${arg.formComp.nombre}_montoUnitarioFOBDiv" />
+												</hbox>
+												<hbox>
+													<cell
+														id="${arg.formComp.nombre}_montoFOBDiv" />
+													<cell
+														id="${arg.formComp.nombre}_pesoBrutoItemDiv" />
+													<cell
+														id="${arg.formComp.nombre}_unidadPesoBrutoItemDiv" />
+												</hbox>
+												<hbox>
+													<cell
+														id="${arg.formComp.nombre}_pesoNetoEmbarqueDiv" />
+													<cell
+														id="${arg.formComp.nombre}_unidadPesoNetoEmbarqueDiv" />
+													<cell
+														id="${arg.formComp.nombre}_volumenTotalDiv" />
+												</hbox>
+												<hbox>
+													<cell
+														id="${arg.formComp.nombre}_unidadVolumenDiv" />
+													<cell
+														id="${arg.formComp.nombre}_cantidadMercanciasDiv" />
+													<cell
+														id="${arg.formComp.nombre}_unidadCantidadMercanciaDiv" />
+												</hbox>
+											</vbox>
+										</tabpanel>
+										<tabpanel>
+											<vbox>
+												<hbox>
+													<cell
+														id="${arg.formComp.nombre}_listObservacionDTOsDiv" />
+												</hbox>
+												<hbox>
+													<cell
+														id="${arg.formComp.nombre}_listDocumentoApoyoDiv" />
+												</hbox>
+											</vbox>
+										</tabpanel>
+										<tabpanel>
+											<vbox>
+												<hbox>
+													<cell
+														id="${arg.formComp.nombre}_montoAjusteItemDiv" />
+													<cell
+														id="${arg.formComp.nombre}_signoAjusteDiv" />
+													<cell
+														id="${arg.formComp.nombre}_sujetoCupoDiv" />
+												</hbox>
+												<hbox>
+													<cell
+														id="${arg.formComp.nombre}_codigoTratadoArancelDiv" />
+													<cell
+														id="${arg.formComp.nombre}_numeroCorrelativoArancelDiv" />
+													<cell
+														id="${arg.formComp.nombre}_valorCIFDiv" />
+												</hbox>
+												<hbox>
+													<cell
+														id="${arg.formComp.nombre}_porcentajeAdvaloremDiv" />
+													<cell
+														id="${arg.formComp.nombre}_codigoCuentaAdvaloremDiv" />
+													<cell
+														id="${arg.formComp.nombre}_montoCuentaAdvaloremDiv" />
+												</hbox>
+											</vbox>
+										</tabpanel>
+										<tabpanel>
+											<vbox>
+												<hbox>
+													<cell
+														id="${arg.formComp.nombre}_paisProduccionDiv" />
+												</hbox>
+												<hbox>
+													<cell
+														id="${arg.formComp.nombre}_cuarentenaPostFronteraDiv" />
+													<cell
+														id="${arg.formComp.nombre}_numeroResolucionDiv" />
+													<cell
+														id="${arg.formComp.nombre}_mercadoDestinoDiv" />
+												</hbox>
+												<hbox>
+													<cell
+														id="${arg.formComp.nombre}_listaLoteDiv" />
+
+												</hbox>
+												<hbox>
+													<cell
+														id="${arg.formComp.nombre}_productorDiv" />
+												</hbox>
+											</vbox>
+										</tabpanel>
+										<tabpanel>
+											<vbox>
+												<hbox>
+													<cell
+														id="${arg.formComp.nombre}_listaInstalacionDiv" />
+												</hbox>
+												<hbox>
+													<cell
+														id="${arg.formComp.nombre}_listaTransportistaDiv" />
+												</hbox>
+												<hbox>
+													<cell
+														id="${arg.formComp.nombre}_listaDocumentoComercialDiv" />
+												</hbox>
+
+											</vbox>
+										</tabpanel>
+									</tabpanels>
+								</tabbox>
+							</hbox>
+						</hbox>
+					</vbox>
+				</row>
+			</rows>
+		</grid>
+	</vlayout>
+</zk>

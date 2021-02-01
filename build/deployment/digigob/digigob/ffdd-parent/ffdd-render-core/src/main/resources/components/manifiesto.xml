@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<complexComponent type="TRADE" name="manifiesto"
+	description="Manifiesto" zul="manifiesto.zul"
+	composer="com.everis.tramelec.dynform.comp.ext.ManifiestoComposer"
+	mappingDTO="com.egoveris.ccomplejos.base.model.ManifiestoDTO">
+	
+	<field name="fechaManifiesto" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.DateboxExt" />
+	<field name="numeroManifiesto" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" />
+	
+</complexComponent>

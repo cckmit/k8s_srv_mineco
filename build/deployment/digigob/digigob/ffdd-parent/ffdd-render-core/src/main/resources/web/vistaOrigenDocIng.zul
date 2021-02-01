@@ -1,0 +1,48 @@
+<?page title="new page title" contentType="text/html;charset=UTF-8"?>
+<zk>
+	<vlayout width="100%"
+		apply="com.egoveris.ffdd.render.zk.comp.cc.VistaOrigenDocIngComposer">
+		<vbox>
+			<hbox>
+				<cell id="${arg.formComp.nombre}_viaDeTransporteDiv" />
+				<cell
+					id="${arg.formComp.nombre}_codigoPuertoDeEmbarqueDiv" />
+
+			</hbox>
+			<hbox>
+				<cell
+					id="${arg.formComp.nombre}_codigoPaisProcedenciaDiv" />
+				<cell
+					id="${arg.formComp.nombre}_codigoPuertoDesembarqueDiv" />
+
+			</hbox>
+			<hbox>
+				<cell id="${arg.formComp.nombre}_fechaEmbarqueDiv" />
+				<cell id="${arg.formComp.nombre}_fechaDesembarqueDiv" />
+
+			</hbox>
+			<hbox>
+				<cell id="${arg.formComp.nombre}_manifiestoDiv" />
+				<cell id="${arg.formComp.nombre}_nombreNaveDiv" />
+
+			</hbox>
+			<hbox>
+				<cell id="${arg.formComp.nombre}_codigoPaisOrigenDiv" />
+				<cell
+					id="${arg.formComp.nombre}_nombreCompaniaTransporteDiv" />
+
+			</hbox>
+			<hbox>
+				<cell
+					id="${arg.formComp.nombre}_numeroDocumentoTransporteDiv" />
+				<cell
+					id="${arg.formComp.nombre}_fechaDocumentoTransporteDiv" />
+
+			</hbox>
+			<hbox>
+				<cell id="${arg.formComp.nombre}_transbordoDiv" />
+				<cell id="${arg.formComp.nombre}_emisorDiv" /> 
+			</hbox>
+		</vbox>
+	</vlayout>
+</zk>

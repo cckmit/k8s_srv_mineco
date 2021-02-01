@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<complexComponent type="MACCS" name="Common EDA" description="Common EDA Information"
+	 zul="commonEDA.zul" composer="com.everis.tramelec.dynform.comp.ext.CommonEDAComposer"
+	 mappingDTO="com.egoveris.ccomplejos.base.model.CommonEDADto">
+	<field name="ecn" width="90%" height="20px" class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt"
+		tooltip="(1)In case of the initial registration, it cannot be inputted
+					(2)Input it when the item is revised" />
+	<field name="ecb" width="60px" height="20px" factory="comboBoxFactory"
+		comboName="ECBCombo" />
+	<field name="ntc"  tooltip="(1)Input a kind of transaction.
+		(2)It shall be the code which can be used for export declaration." />
+	<field name="ic2" width="60px" height="20px" factory="comboBoxFactory"
+	comboName="IC2" tooltip="(1)Input the Category of cargo code." />
+	<field name="mtc"  factory="comboBoxFactory"
+	comboName="MTC" tooltip="(1)Input the mode of transport" />
+	<field name="skb" width="60px" height="20px" factory="comboBoxFactory"
+	comboName="SKB" />
+	<field name="emc"  width="100px" />
+	<field name="ema" multiline="true" width="95%" height="80px" />
+	<field name="emn" multiline="true" width="95%" height="80px" />
+
+		
+	<field name="cgn"  width="100px" />
+	<field name="cgp" multiline="true" width="95%" height="80px" />
+	
+	<field name="sym" width="90%" height="60px" class="com.egoveris.ffdd.render.zk.comp.ext.DateboxExt" format="yyyyMMdd" />
+	
+</complexComponent>

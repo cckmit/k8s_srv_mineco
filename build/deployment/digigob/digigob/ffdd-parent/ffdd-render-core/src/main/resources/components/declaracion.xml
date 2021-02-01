@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<complexComponent type="TRADE" name="declaracion"
+	description="declaracion Information" zul="declaracion.zul"
+	composer="com.egoveris.ffdd.render.zk.comp.ext.DeclaracionComposer"
+	mappingDTO="com.egoveris.ccomplejos.base.model.DeclaracionDTO">
+
+	<field name="declarationId" class="com.egoveris.ffdd.render.zk.comp.ext.LongboxExt"
+		height="20px" width="90%" />
+	<field name="declaracionEnum" factory="comboBoxFactory"
+		height="20px" width="90%" comboName="declaracionEnum" />
+	<field name="submittedBy" class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt"
+		height="20px" width="90%" />
+
+	<field name="submittedDate" class="com.egoveris.ffdd.render.zk.comp.ext.DateboxExt"
+		height="20px" width="90%" />
+	<field name="respDate" class="com.egoveris.ffdd.render.zk.comp.ext.DateboxExt"
+		height="20px" width="90%" />
+	<field name="responseStatus" class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt"
+		height="20px" width="90%" />
+
+
+	<field name="responseCode" class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt"
+		height="20px" width="90%" />
+	<field name="listObservaciones"
+		class="com.egoveris.ffdd.render.zk.comp.ext.SeparatorComplex"
+		repetidor="true" xmlFile="observacion.xml" />
+	<field name="uRL" class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt"
+		height="20px" width="90%" />
+
+	<field name="fechaVencimiento" class="com.egoveris.ffdd.render.zk.comp.ext.DateboxExt"
+		height="20px" width="90%" />
+	<field name="tipoFormulario" class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt"
+		height="20px" width="90%" />
+	<field name="codigoDeclaracion" class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt"
+		height="20px" width="90%" />
+		
+	<field name="numeroIdentificacion" class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt"
+		height="20px" width="90%" />
+	<field name="indicaDocumentoParcial" class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt"
+		height="20px" width="90%" />
+		
+</complexComponent>

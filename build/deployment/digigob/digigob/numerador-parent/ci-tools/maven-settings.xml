@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd">
+
+	<servers> 
+		<server>
+			<id>local-snapshots</id>
+			<username>gaguiler</username>
+			<password>Noviembre2018</password>
+		</server>
+		<server>
+			<id>local-releases</id>
+			<username>gaguiler</username>
+			<password>Noviembre2018</password>
+		</server>
+		<!--
+		<server>
+			<id>Public Repositories</id>
+			<username>apereziz</username>
+			<password>EinllelNoviembre2016</password>
+		</server>
+		-->
+		<server>
+			<id>ZK</id>
+			<username>gaguiler</username>
+			<password>Noviembre2018</password>
+		</server>
+		<server>
+			<id>TomcatServer</id>
+			<username>deployer</username>
+			<password>deployer</password>
+		</server>
+		<server>
+			<id>gitlab-temuco</id>
+			<username>gaguiler</username>
+			<password>Noviembre2018</password>
+		</server>   
+		<server>
+			<id>Public Repositories</id>
+			<username>jeverisDeveloper</username>
+			<password>jeverisDeveloper</password>
+		</server>
+		<server>
+			<id>ARCHEVERIS Release</id>
+			<username>genarcheverisext</username>
+			<password>Genarcheveris18/08/2016!</password>
+		</server>
+	</servers>
+
+	<profiles>
+		<profile>
+			<id>dev</id>
+			<!-- Es importante respetar el orden de los repositorios ya que busca en el orden en que aparecen en este archivo -->
+			<repositories>
+				<repository>
+					<id>local-snapshots</id>
+					<url>https://steps.everis.com/nexus/content/repositories/EGOVERISTE.Snapshot/</url>
+					<snapshots>
+						<enabled>true</enabled>
+					</snapshots>
+					<releases>
+						<enabled>false</enabled>
+					</releases>
+				</repository>
+				<repository>
+					<id>local-releases</id>
+					<url>https://steps.everis.com/nexus/content/repositories/EGOVERISTE.Release/</url>
+					<snapshots>
+						<enabled>false</enabled>
+					</snapshots>
+					<releases>
+						<enabled>true</enabled>
+					</releases>
+				</repository>
+				<repository>
+					<id>Public Repositories</id>
+					<url>https://steps.everis.com/nexus/content/groups/public/</url>
+					<snapshots>
+						<enabled>true</enabled>
+					</snapshots>
+					<releases>
+						<enabled>true</enabled>
+					</releases>
+				</repository>
+				<repository>
+					<id>ZK</id>
+					<url>http://mavensync.zkoss.org/maven2/</url>
+				</repository>
+			</repositories>
+		</profile>
+
+		<profile>
+			<id>nexus-archeveris-release</id>
+			<repositories>
+				<repository>
+					<id>ARCHEVERIS Release</id>
+					<url>https://steps.everis.com/nexus/content/repositories/ARCHEVERIS.Release/</url>
+					<releases>
+						<enabled>true</enabled>
+					</releases>
+				</repository>
+			</repositories>
+		</profile>
+
+	</profiles>
+
+	<activeProfiles>
+		<activeProfile>dev</activeProfile>
+		<activeProfile>nexus-archeveris-release</activeProfile>
+	</activeProfiles>
+
+</settings>

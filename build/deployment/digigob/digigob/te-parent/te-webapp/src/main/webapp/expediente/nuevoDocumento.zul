@@ -1,0 +1,76 @@
+<?page title="Nuevo Documento" contentType="text/html;charset=UTF-8"?>
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./nuevoDocumentoWindow" ?>
+<zk>
+	<window id="nuevoDocumentoWindow" title="${c:l('ee.nuevoDoc.title.nuevoDoc')}" border="normal"
+		>
+		<hbox  width="100%">
+			<vbox>
+				<separator></separator>
+				<label value="${c:l('ee.nuevoDoc.label.incorpDoc')}"
+					style="padding-left: 10px; font: bold;" />
+				<separator></separator>
+			</vbox>
+		</hbox>
+		<hbox  align="center">
+			<image src="/imagenes/egovIconOrange.png" width="40px"
+				height="30px" style="padding-left: 10px;" />
+			<label value="${c:l('ee.digitalizarDocumento.titulo.digitalizarDocumento')}" style="font: bold;" />
+		</hbox>
+
+		<grid >
+			<columns sizable="true" >
+				<column label="" width="5%" align="center" />
+				<column label="" width="10%" style="color:#EFEFEE;" />
+				<column label="" width="85%"  />
+			</columns>
+			<rows>
+				<row>
+					<image src="/imagenes/page_white_text.png"
+						align="center" />
+					<label value="${c:l('ee.nuevasolicitud.label.tipodocumento.value')}" />
+					<hbox>
+						<space></space>
+						<hbox>
+							<combobox id="listaTipoDocumento"
+								readonly="true" width="200px"
+								model="@{digitalizarDocumentoWindow$IncorporarComposer.tiposDocumento}"
+								selectedItem="@{digitalizarDocumentoWindow$IncorporarComposer.selectedTipoDocumento}">
+							</combobox>
+							<image src="/imagenes/help.png"
+								width="16px" height="16px" tooltip="helpTipoDocumento" />
+						</hbox>
+					</hbox>
+				</row>
+				<row>
+					<image src="/imagenes/page_add.png" />
+					<label value="${c:l('ee.nuevoDoc.label.adjDoc')}" />
+					<vbox>
+						<hbox>
+							<fileupload id="uploadDigitalizar"
+								label="${c:l('ee.nuevoDoc.label.adj')}" upload="true" />
+							<image id="img" />
+							<image src="/imagenes/help.png"
+								width="16px" height="16px" tooltip="helpAñadir" />
+							<space></space>
+							<label id="nombreArchivoLabel"
+								value="${c:l('ee.nuevoDoc.label.NoAÃ±adidoArch')}" />
+						</hbox>
+					</vbox>
+				</row>
+			</rows>
+		</grid>
+
+		<separator width="560px"></separator>
+		<grid align="center"
+			style="border:0px; ">
+			<rows>
+				<row >
+					<button autodisable="self" id="digitalizar" label="${c:l('ee.digitalizarDocumento.botonDigitalizar')}"
+						disabled="true">
+					</button>
+				</row>
+			</rows>
+		</grid>
+	</window>
+</zk>

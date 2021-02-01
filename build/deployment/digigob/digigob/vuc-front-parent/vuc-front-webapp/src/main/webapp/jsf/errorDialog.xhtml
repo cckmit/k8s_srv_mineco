@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title><ui:insert name="title">#{param['title']}</ui:insert></title>
+	<h:outputStylesheet library="application" name="vuc.css" target="head" />
+	<h:outputStylesheet library="webjars"
+		name="font-awesome/4.7.0/css/font-awesome-jsf.css" />
+</h:head>
+
+<h:body>
+	<h:form>
+		<div class="ui-g">
+			<div class="ui-g-1" style="text-align: center;">
+				<p:outputLabel rendered="#{param['type'] eq 'ERROR'}"
+					styleClass="fa fa-exclamation-circle"
+					style="color:red; font-size:1cm;" />
+				<p:outputLabel rendered="#{param['type'] eq 'INFO'}"
+					styleClass="fa fa-info-circle" style="color:green; font-size:1cm;" />
+			</div>
+
+			<ui:repeat value="#{param['msgs'].split('_')}" var="msgError">
+				<div class="ui-g-11" style="padding-top: 20px; width: 90%;">
+					<p:outputLabel value="#{msgError}" />
+					<br />
+				</div>
+			</ui:repeat>
+
+		</div>
+		<div class="ui-g" style="margin-top: 25px; text-align: center;">
+			<div class="ui-g-12">
+				<p:commandButton value="#{msg.errorAceptar}"
+					actionListener="#{errorDialogMb.closeDialog()}" />
+			</div>
+		</div>
+	</h:form>
+</h:body>
+</html>

@@ -1,0 +1,25 @@
+<?page title="Datos Propios de la Trata" contentType="text/html;charset=UTF-8"?>
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./motivoPropioWindow" ?>
+<zk>
+	<window title="${c:l('ee.motivoPropio.title.motProPase')}" border="normal"
+		id="motivoPropioWindow" width="25%"
+		apply="com.egoveris.te.base.composer.MotivoPropioComposer">
+
+
+		<vlayout>
+			<label id="tituloMotivo"></label>
+			<separator></separator>
+			<textbox id="motivo" maxlength="255" width="95%"
+				rows="5" focus="true">
+			</textbox>
+			<separator></separator>
+			<hlayout>
+				<button autodisable="self" label="${c:l('ee.expediente.tramitacion.lbl.guardar')}" id="guardar"></button>
+				<button autodisable="self" label="${c:l('ee.expediente.tramitacion.lbl.cancelar')}" id="cancelar"></button>
+			</hlayout>
+		</vlayout>
+
+
+	</window>
+</zk>

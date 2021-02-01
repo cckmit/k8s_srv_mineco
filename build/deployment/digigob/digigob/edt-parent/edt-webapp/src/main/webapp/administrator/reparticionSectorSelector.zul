@@ -1,0 +1,193 @@
+<?component name="reparticionSectorSelector" extends="window" apply="com.egoveris.edt.web.admin.pl.ReparticionSectorSelectorComposer"?>
+
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./win_reparticionSectorSelector" ?>
+<zk>
+	<window id="win_reparticionSectorSelector" border="none"
+		apply="com.egoveris.edt.web.admin.pl.ReparticionSectorSelectorComposer">
+
+		<grid style="padding:0px; border:none; border-spacing:0px;">
+			<columns>
+					<column width="30%" align="right" />
+					<column width="70%" align="left" />
+				</columns>
+			<rows>
+				<row style="border:none;">
+					<cell valign="middle" align="right">
+						<label id="labelReparticion"
+							value="${c:l('eu.consulta.sindicatura.row.label.reparticion')}"
+							width="560px" />
+					</cell>
+					<cell valign="middle" colspan="2">
+						<bandbox 
+							id="bandBoxReparticion">
+							<bandpopup id="reparticionesComboSADE"
+								width="620px">
+								<groupbox mold="3d">
+									<caption>
+										<hbox>
+											<label
+												value="${c:l('eu.consulta.sindicatura.hbox.label.busquedaDeReparticion')}"
+												width="560px" />
+											<image
+												src="/imagenes/help.png" width="16px" height="16px"
+												tooltip="helpBusquedaReparticion" align="right" />
+										</hbox>
+									</caption>
+									<separator height="2px"></separator>
+									<vbox height="100px"
+										width="600px">
+										<hbox>
+												${c:l('eu.consulta.sindicatura.buscar')}
+												<textbox id="txtBusquedaReparticioBusquedaSADE" />
+										</hbox>
+										<paging
+											id="paginatorIncorporarSADE" pageSize="10" />
+										<listbox
+											id="reparticionesSADEListbox" mold="paging"
+											paginal="${paginatorIncorporarSADE}"
+											model="@{win_reparticionSectorSelector$composer.listaReparticionSeleccionada}"
+											selectedItem="@{win_reparticionSectorSelector$composer.reparticionSeleccionada}"
+											itemRenderer="com.egoveris.edt.web.pl.renderers.ReparticionItemRenderer">
+											<listhead>
+												<listheader
+													label="${c:l('eu.consulta.sindicatura.listhead.listheader.label.codigo')}"
+													width="25%" />
+												<listheader
+													label="${c:l('eu.consulta.sindicatura.listhead.listheader.label.nombre')}"
+													width="75%" />
+											</listhead>
+											<listfoot
+												style="">
+												<listfooter id="Total"
+													label="${c:l('eu.altaCargo.label.totalReparticiones') }" span="1" style="color:#C4ECFF" />
+												<listfooter
+													id="conteoDocumentos"
+													label="@{win_reparticionSectorSelector$composer.listaReparticionSeleccionada.size}"
+													span="2" style="color:#C4ECFF" />
+											</listfoot>
+										</listbox>
+									</vbox>
+								</groupbox>
+							</bandpopup>
+						</bandbox>
+					</cell>
+				</row>
+				<row style="border:none;" id ="filaSector">
+					<cell valign="middle">
+						<label
+							value="${c:l('eu.altaUsuario.row.label.sector')}" width="560px" />
+					</cell>
+					<cell valign="middle" colspan="2" >
+						<bandbox id="bandBoxSector">
+							<bandpopup id="sectoresComboSADE" 
+								width="620px">
+								<groupbox mold="3d">
+									<caption>
+										<hbox>
+											<label
+												value="${c:l('eu.altaUsuario.hbox.label.busquedaDeSector')}"
+												width="560px" />
+											<image
+												src="/imagenes/help.png" width="16px" height="16px"
+												tooltip="helpBusquedaSector" align="right" />
+										</hbox>
+									</caption>
+									<separator height="2px"></separator>
+									<vbox height="100px"
+										width="600px">
+										<paging
+											id="paginatorSectorAltaUsuario" pageSize="10" />
+										<listbox
+											id="sectoresSADEListbox" mold="paging"
+											paginal="${paginatorSectorAltaUsuario}"
+											model="@{win_reparticionSectorSelector$composer.listaSectoresSeleccionados}"
+											selectedItem="@{win_reparticionSectorSelector$composer.sectorSeleccionado}"
+											itemRenderer="com.egoveris.edt.web.pl.renderers.SectorItemRenderer">
+											<listhead>
+												<listheader
+													label="${c:l('eu.consulta.sindicatura.listhead.listheader.label.codigo')}"
+													width="25%" />
+												<listheader
+													label="${c:l('eu.consulta.sindicatura.listhead.listheader.label.nombre')}"
+													width="75%" />
+											</listhead>
+											<listfoot
+												style="">
+												<listfooter
+													id="TotalSectores" label="${c:l('eu.tabMigrarSector.label.totalSectores')}" span="1"
+													style="color:#C4ECFF" />
+												<listfooter
+													id="conteoDocumentosDeSectores"
+													label="@{win_reparticionSectorSelector$composer.listaSectoresSeleccionados.size}"
+													span="2" style="color:#C4ECFF" />
+											</listfoot>
+										</listbox>
+									</vbox>
+								</groupbox>
+							</bandpopup>
+						</bandbox>
+					</cell>
+				</row>
+				
+				<row style="border:none;" id ="filaCargo">
+					<cell valign="middle">
+						<label
+							value="${c:l('eu.altaUsuario.row.label.cargo')}" width="560px" />
+					</cell>
+					<cell valign="middle" colspan="2" >
+						<bandbox id="bandBoxCargo">
+							<bandpopup id="cargosCombo" 
+								width="620px">
+								<groupbox mold="3d">
+									<caption>
+										<hbox>
+											<label
+												value="${c:l('eu.altaUsuario.hbox.label.busquedaDeCargo')}"
+												width="560px" />
+											<image
+												src="/imagenes/help.png" width="16px" height="16px"
+												tooltip="helpBusquedaCargo" align="right" />
+										</hbox>
+									</caption>
+									<separator height="2px"></separator>
+									<vbox height="100px"
+										width="600px">
+										<paging
+											id="paginatorCargoAltaUsuario" pageSize="10" />
+										<listbox
+											id="cargosListbox" mold="paging"
+											paginal="${paginatorCargoAltaUsuario}"
+											model="@{win_reparticionSectorSelector$composer.listaCargosSeleccionados}"
+											selectedItem="@{win_reparticionSectorSelector$composer.cargoSeleccionado}"
+											itemRenderer="com.egoveris.edt.web.pl.renderers.CargoItemRenderer">
+											<listhead>
+												<listheader
+													label="${c:l('eu.consulta.sindicatura.listhead.listheader.label.codigo')}"
+													width="25%" />
+												<listheader
+													label="${c:l('eu.consulta.sindicatura.listhead.listheader.label.nombre')}"
+													width="75%" />
+											</listhead>
+											<listfoot
+												style="">
+												<listfooter
+													id="TotalCargos" label="${c:l('eu.reparticionSectorSelector.listfooter.totalCargos') }" span="1"
+													style="color:#C4ECFF" />
+												<listfooter
+													id="conteoDocumentosDeCargos"
+													label="@{win_reparticionSectorSelector$composer.listaCargosSeleccionados.size}"
+													span="2" style="color:#C4ECFF" />
+											</listfoot>
+										</listbox>
+									</vbox>
+								</groupbox>
+							</bandpopup>
+						</bandbox>
+					</cell>
+				</row>
+			</rows>
+		</grid>
+	</window>
+</zk>

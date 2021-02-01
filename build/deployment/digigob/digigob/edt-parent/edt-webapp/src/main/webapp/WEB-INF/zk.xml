@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<zk>
+	<log>
+		<log-base>org.zkoss</log-base>
+	</log>
+
+	<!--
+		Indica que el progress indicator vaya al medio en lugar de en la
+		esquina superior izquierda
+	-->
+	<library-property>
+		<name>org.zkoss.zul.progressbox.position </name>
+		<value>center</value>
+	</library-property>
+
+  <library-property>
+    <name>org.zkoss.web.preferred.locale</name>
+    <value>es</value>
+  </library-property>
+  
+	<library-property>
+		<name>org.zkoss.zul.Button.mold</name>
+		<value>trendy</value>
+	</library-property>
+
+	<!-- Ante un timeout redirige a la página de login -->
+	<device-config>
+		<device-type>ajax</device-type>
+		<timeout-uri>/logout</timeout-uri>
+	</device-config>
+
+	<library-property>
+		<name>org.zkoss.web.preferred.locale</name>
+		<value>es</value>
+	</library-property>
+
+	<!-- INICIO - Requerido para SPRING SECURITY -->
+	<listener>
+		<description>ThreadLocal Synchronization Listener</description>
+		<listener-class>org.zkoss.zkplus.util.ThreadLocalListener
+		</listener-class>
+	</listener>
+
+	<preference>
+		<name>ThreadLocal</name>
+		<value>
+			org.springframework.security.context.ThreadLocalSecurityContextHolderStrategy=contextHolder
+		</value>
+	</preference>	
+	<!-- FIN - Requerido para SPRING SECURITY -->
+</zk>

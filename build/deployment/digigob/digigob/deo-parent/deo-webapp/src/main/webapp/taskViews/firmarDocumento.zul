@@ -1,0 +1,222 @@
+<?page title="${c:l('gedo.firmaDocumento.winTitle.digDocumento')}" contentType="text/html;charset=UTF-8"?>
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./firmaDocumento" ?>
+<zk>
+
+	<window title="${c:l('gedo.firmarDocumento.windows.title')}"   border="normal"
+		id="firmaDocumento" xmlns:w="client"
+		apply="com.egoveris.deo.web.satra.firma.FirmaDocumentoV2Composer"
+		use="com.egoveris.deo.web.satra.FirmaDocumentosWindow" mode="embedded"
+		closable="false" position="center" contentStyle="background:#EFEFEE"
+		sizable="false" width="1100px" height="650px">
+		
+		<style>
+		.grid-pdf > div{
+			overflow: hidden !important;
+		}
+		</style>
+		<window id="archivosDeTrabajoWindow" visible="false" />
+		
+		<script type="text/javascript" src="/js/firmaConToken.js" />
+		<script type="text/javascript" src="/js/autoscript.js"/>
+		<script type="text/javascript" src="/js/constantes.js"/>
+		<script type="text/javascript" src="/js/autoFirma.js"/>
+		<box visible="true" id="previsualizacion" width="100%" align ="center">
+			
+			<toolbar mold="panel" orient="horizontal" width="100%" align ="center">
+					
+				<button height="42px" class="btn-secondary" iconSclass="z-icon-clock-o" id="historialDocumento" label = "${c:l('gedo.general.historial')}" />
+					
+ 				<button height="42px" class="btn-secondary" iconSclass="z-icon-file-o" id="archivosDeTrabajo" label = "${c:l('gedo.archivosDeTrabajo.window.titulo')}" />
+ 				
+ 				<button height="42px" class="btn-secondary" iconSclass="z-icon-download" id="exportPDF" label = "${c:l('ccoo.sectorMesa.descargarDocumento')}" />
+					
+		  		<button height="42px" class="btn-secondary" autodisable="self,firmarConCertificado,selfRevision,closeWindow,revisarButton,nextPage,previousPage,exportPDF"
+		  				iconSclass="z-icon-clipboard" id="firmarConCertificado" label = "${c:l('gedo.general.firmarConCertificado')}" />
+
+		  		<button height="42px" class="btn-secondary" 
+		  			autodisable="self,firmarConAutoFirma,selfRevision,closeWindow,revisarButton,nextPage,previousPage,exportPDF"
+		  			iconSclass="z-icon-clipboard" id="firmarConAutoFirma" visible="false" disabled="true"
+		  			label = "${c:l('gedo.general.firmarConAutoFirma')}" />
+
+					
+			  <toolbarbutton height="42px" id="importarDocumentoButton"
+						image="/imagenes/ImportarDocumento.png" visible="false" />
+ 
+				<button height="42px" class="btn-secondary" autodisable="self,firmarConCertificado,selfRevision,closeWindow,revisarButton,nextPage,previousPage,exportPDF"
+		  				iconSclass="z-icon-exclamation-triangle" id="rechazarFirmaButton" label = "${c:l('gedo.general.rechazoDocumento')}" />
+				
+				  
+						
+			  <separator width="2px"/>
+				<image src="@{firmaDocumento$FirmaDocumentoComposer.iconoArchivosDeTrabajoMensaje}" 
+				    popup="comentarioArchivosDeTrabajo" style="cursor:hand;cursor:pointer;padding-right:5px;" />
+				<image id= "iconoArchivosEmbebidos" visible= "false" 
+					src = "@{firmaDocumento$FirmaDocumentoComposer.iconoArchivosEmbebidosMensaje}"
+					popup = "comentarioArchivosEmbebidos" style = "cursor:hand;cursor:pointer;padding-right:5px"/>
+				<image src="/imagenes/view-signatories.png"
+					width="16px" height="16px" popup="listaFirmantes"
+					id="verFirmantes"
+					tooltiptext="${c:l('gedo.general.verUsuariosFirmaConjunta')}"
+					style="cursor:hand;cursor:pointer" visible="false" />
+				<image src="/imagenes/view-reviewers.png"
+					width="16px" height="16px" popup="listaRevisores"
+					id="verRevisores"
+					tooltiptext="${c:l('gedo.general.verRevisoresFirmaConjunta')}"
+					style="cursor:hand;cursor:pointer" visible="false" />
+				<image src="/imagenes/iconoUsuariosReservados.png"
+					id = "iconoUsuariosReservados"
+					style = "cursor:hand;cursor:pointer"
+					width="16px" height="16px" popup="comentarioUsuariosReservados"
+					visible="false"/>
+			</toolbar>
+			<hbox width="740px" align="center" pack="start">
+				<label id="leyendaPrevisualizacion" 
+				 style="font-weight: bold;"/>
+			</hbox>
+			<grid sclass="grid-pdf" height="260px" width="740px">
+				<rows>
+					<row>
+						<iframe id="imagePreviewer" width="700px"
+							height="800px" />
+					</row>
+				</rows>
+			</grid>
+		</box>
+		<separator height="10px"/>
+		<div align="center">
+			<grid width="740px" id="revisionGrid">
+			<columns>
+				<column width="80%" >
+				</column>
+				<column width="20%">
+				</column>
+				
+			</columns>
+				<rows>
+					<row  align="left" style="border: none"> 
+						<vbox> 
+						    <hbox align="left" width="600px">
+						        <label value="${c:l('gedo.revisarDocumento.usuarioRevisor')}"/><separator width="60px"/>
+								<combobox width="431px" id="usuarioRevisor"
+								buttonVisible="false" autodrop="true" />	
+							</hbox>
+							<separator height="5px"/>
+							<hbox align="left" width="600px">
+								<label value="${c:l('gedo.revisarDocumento.mensajeRevision')}" width="100%"/><separator width="28px"/>
+								<textbox style="resize:none;" id="mensajeARevisor" maxlength="250" 
+									multiline="true" height="30px" width="425px" rows="2"/>
+							</hbox>
+						</vbox>
+						<vbox>
+		  					<button height="41px" left="0px" width="140px" class="btn-secondary" iconSclass="z-icon-plane" id="revisarButton" label = "${c:l('gedo.enviarARevisar.wintitle.envarRevisar')}" />
+							
+							<button height="41px" left="0px" width="140px" class="btn-secondary" iconSclass="z-icon-file" id="selfRevision" 
+									autodisable="self,firmarConCertificado,selfRevision,closeWindow,revisarButton,nextPage,previousPage,exportPDF" 
+										label = "${c:l('gedo.general.modificarDoc')}" />
+						 </vbox>				
+					</row>
+				</rows>
+			</grid>
+			
+			<separator height="10px"/>
+			
+			<grid  width="740px" align="left">
+				<columns>
+					<column width="80%"></column>
+					<column width="20%"></column>
+				</columns>
+				<rows>
+					<row align="left">
+						<vbox>
+							<checkbox id="solicitudAvisoFirma" visible="false"
+								checked="false" label="${c:l('gedo.general.envioAvisoFirma')}" />
+							<checkbox id="solicitudEnvioCorreo"
+								label="${c:l('gedo.general.solicitudEnvioCorreo')}"
+								width="800px" />
+						</vbox>
+						<vbox>
+					 <button height="42px"  class="btn-secondary"
+					 	iconSclass="z-icon-ban"
+					 	autodisable="self,firmarConCertificado,selfRevision, closeWindow,revisarButton,nextPage,previousPage,exportPDF"
+					 	id="closeWindow" label="${c:l('gedo.token.cert.cancelar')}" />
+				
+				 </vbox>
+					</row>
+				</rows>
+			</grid>
+		</div>
+		<popup id="listaFirmantes" width="300px">
+			<textbox id="usuariosAgregadosTxt"	
+				value="${c:l('gedo.general.noUsuariosFirmantes')}"
+				width = "99%" readonly="true" multiline="true"/>
+		</popup>
+		<popup id="listaRevisores" width="300px">
+			<textbox id="usuariosRevisoresAgregados"
+				value="${c:l('gedo.general.noUsuariosRevisores')}" width="99%"
+				readonly="true" multiline="true" />
+		</popup>		
+		<popup id = "comentarioUsuariosReservados">
+			<textbox id="usuariosReservados"
+				height="80px" width="300px"
+				readonly="true" multiline="true" style="background:white"/>
+		</popup>
+		<popup id="comentarioArchivosDeTrabajo">
+			<textbox maxlength="250"
+				value="@{firmaDocumento$FirmaDocumentoComposer.mensajeArchivosDeTrabajo}"
+				multiline="true" height="80px" width="300px" readonly="true"
+				style="background:white" />
+		</popup>
+		<popup id="comentarioArchivosEmbebidos">
+			<textbox maxlength="100"
+				value="@{firmaDocumento$FirmaDocumentoComposer.mensajeArchivosEmbebidos}"
+				multiline="true" height="80px" width="300px" readonly="true"
+				style="background:white" />
+				
+		</popup>
+		<window id="selectCert" visible="false" position="center" width="400px" height="130px" style="border-width: 1px; border-style: solid;">
+			<style>
+					.contenedor {
+					text-align: center;
+					margin: auto;
+					width: "100%";
+					height: "100%";
+					}
+				
+					.subtitulo {
+					height: 30px;
+					padding-top: 20px;
+					}
+				
+					.divCombo {
+					padding-top: 5px;
+					padding-bottom: 5px;
+					}
+				
+					.boton {
+					border-radius: 5px;
+					padding: 2px;
+					}
+			</style>
+		
+			<div sclass="contenedor">
+				<div id="subtiConCert" sclass="subtitulo">
+					<label value="${c:l('gedo.token.cert.titulo')}" />
+				</div>
+				<div id="subtiSinCert" sclass="subtitulo" visible="false">
+					<label value="${c:l('gedo.token.cert.sinCert')}" />
+				</div>
+		
+				<div id="divCombo" sclass="divCombo">
+					<combobox id="comboSelectCert" width="350px" readonly="true" />
+				</div>
+				<div id="divBtnFirmaConFirma" sclass="divBtnFirma">
+					<button id="firmarConToken" label="${c:l('gedo.token.cert.aceptar')}" sclass="boton" />
+					<button id="cancelarFirma" label="${c:l('gedo.token.cert.cancelar')}" sclass="boton" />
+				</div>
+			</div>
+			
+		</window>
+	</window>
+</zk>

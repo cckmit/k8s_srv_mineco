@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
+    http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+<changeSet author="Carlos Marin" id="INSERTA_NUEVO_COMPONENTE_USUARIO_LOGIN">  
+	    <comment>insert queries</comment>
+	     
+	    <sql dbms="h2, mysql" 
+	                splitStatements="true"
+	                stripComments="true">         
+			INSERT INTO df_component 
+			(NAME, DESCRIPTION, ID_COMPONENT_TYPE, CREATION_DATE, CREATOR_USER, MODIFICATION_DATE, MODIFYING_USER, MASCARA, MENSAJE, 
+			ABM_COMPONENT, TIPO_VISIBLE, NOMBREXML)
+			VALUES('UsuarioLoginDTO', 'UsuarioLoginDTO', 18, NULL, 'SISTEMA', NULL, NULL, NULL, NULL, NULL, NULL, 'info_usuario_login.xml');
+	    </sql>    
+	</changeSet>  
+</databaseChangeLog>

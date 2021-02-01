@@ -1,0 +1,172 @@
+<?page title="${c:l('avisos.title')}" contentType="text/html;charset=UTF-8"?>
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./win_avisos"?>
+
+<zk>
+
+<window id="win_avisos" 
+			width="100%" 
+			style="align=center; " border="normal"
+			apply="com.egoveris.edt.web.pl.AvisosComposer">
+
+
+ 			<hbox>
+ 				<grid
+ 					style="border: 0px;border-spacing:0px;">
+ 					<columns height="100%"
+ 						style="border: 0px;border-spacing:0px;">
+ 						<column height="100%" valign="top" width="300px"
+ 							style="border: 0px;border-spacing:0px;">
+ 							<div vflex="100%" width="100%" align="left"
+ 								style="border:0px;border-spacing:0px;">
+ 								<grid id="panelModulos" align="left"
+ 									style=""
+ 									width="250px">
+ 									<auxhead>
+ 										<auxheader
+ 											label="${c:l('eu.avisosalertas.misAlertas.modulos')}"
+ 											tooltip="helpModulos" image="/imagenes/help.png">
+ 										</auxheader>
+ 									</auxhead>
+ 									<columns
+ 										style="align=center; ">
+ 										<column id="avisosPanelModulos"
+ 											valign="top"
+ 											style="">
+
+ 											<div align="center">
+ 												<listbox
+ 													fixedLayout="true" width="98%" id="misAvisosListaModulo"
+ 													style=""
+ 													maxlength="20"
+ 													model="@{win_avisos$composer.listaAplicaciones}"
+ 													itemRenderer="com.egoveris.edt.web.pl.renderers.AvisosRenderer"
+ 													selectedItem="@{win_avisos$composer.moduloSeleccionado}">
+ 													<listhead
+ 														sizable="false" style="background: #C4ECFF;">
+ 														<listheader
+ 															label="${c:l('eu.avisosalertas.misAlertas.modulo')}"
+ 															style="" width="55%" />
+ 														<listheader
+ 															label="${c:l('eu.avisosalertas.misAlertas.sinLeer')}"
+ 															style="" width="45%" />
+ 													</listhead>
+ 												</listbox>
+ 											</div>
+ 										</column>
+ 									</columns>
+ 								</grid>
+ 							</div>
+ 						</column>
+ 						<column height="100%" valign="top" width="100%"
+ 							style="border: 0px;border-spacing:0px;">
+ 							<vbox>
+ 							<div align="left"
+ 								style="">
+ 								<vbox align="left"
+ 									style="" height="100%">
+ 									<vbox>
+ 										<hbox>
+ 											<label
+ 												value="${c:l('eu.consulta.sindicatura.hbox.label.fechaDesde')}: " />
+ 											<datebox
+ 												id="dateboxFiltroDesde" readonly="true" />
+ 											<label
+ 												value="${c:l('eu.consulta.sindicatura.hbox.label.fechaDesde')}: " />
+ 											<datebox
+ 												id="dateboxFiltroHasta" readonly="true" />
+ 										</hbox>
+ 										<vbox>
+ 											<hbox>
+ 												<label
+ 													value="${c:l('eu.avisosalertas.misAlertas.filtro.texto')}: " />
+ 												<textbox
+ 													id="txbx_filtro" />
+ 												<button id="btn_filtro"
+ 													label="${c:l('eu.avisosalertas.misAlertas.filtrar')}"
+ 													image="/imagenes/filter.png"
+ 													hoverImage="/imagenes/filter.png" disabled="true" />
+ 												<button
+ 													id="btn_quitarfiltro"
+ 													label="${c:l('eu.avisosalertas.misAlertas.quitarfiltros')}"
+ 													disabled="true" image="/imagenes/filter-remove.png"
+ 													hoverImage="/imagenes/filter-remove.png" />
+ 											</hbox>
+ 											<button id="btn_eliminar"
+ 												disabled="true"
+ 												label="${c:l('eu.avisosalertas.misAlertas.eliminar')}"
+ 												forward="onClick=onEliminarSeleccionados" height="30px"
+ 												image="/imagenes/delete_24px.png" />
+ 										</vbox>
+ 									</vbox>
+ 								</vbox>
+ 							</div>
+
+ 							<div align="right"
+ 								style="">
+ 								<grid id="panelAvisos"
+ 									style="">
+ 									<auxhead>
+ 										<auxheader
+ 											id="panelAvisosCabezeraId"
+ 											label="${c:l('eu.panelAdmin.tabAvisos')}"
+ 											tooltip="helpAvisos" image="/imagenes/help.png">
+ 										</auxheader>
+ 									</auxhead>
+ 									<columns
+ 										style="align=center; ">
+ 										<column id="avisosPanel" 
+ 											valign="top" align="center"
+ 											style="">
+ 											<label
+ 												id="labelAvisoTablaAvisos" style="font-weight:bold"
+ 												value="${c:l('eu.avisosalertas.misAlertas.notificacion.nadaSeleccionado')}" />
+ 											<listbox fixedLayout="true"
+ 												id="listboxAvisos"
+ 												style=""
+ 												checkmark="true" multiple="true" 
+ 												maxlength="20" mold="paging" pageSize="10"
+ 												model="@{win_avisos$composer.listaAlertaAvisosxModulo}"
+ 												itemRenderer="com.egoveris.edt.web.pl.renderers.AvisosPorModuloRenderer"
+ 												selectedItem="@{win_avisos$composer.alertaAvisoSeleccionada}">
+ 												<listhead
+ 													sizable="false" style="background: #C4ECFF;">
+ 													<listheader
+ 														width="30px" style="">
+ 													</listheader>
+ 													<listheader 
+ 														label="${c:l('eu.adminSade.seleccionReparticion.descripcionReparticion')}"
+ 														style="" />
+ 													<listheader width="120px"
+ 														label="${c:l('eu.avisosalertas.misAlertas.fecha')}"
+ 														style="" />
+ 													<listheader width="100px"
+ 														label="${c:l('eu.avisosalertas.misAlertas.accion')}"
+ 														style="" />
+ 												</listhead>
+ 											</listbox>
+ 										</column>
+ 									</columns>
+ 								</grid>
+ 							</div>
+ 							</vbox>
+ 						</column>
+ 					</columns>
+ 				</grid>
+
+ 			</hbox>
+
+ 			<popup id="helpModulos" width="200px">
+ 				<label multiline="true"
+ 					value="${c:l('eu.avisosalertas.misAlertas.modulo.help')}" />
+ 			</popup>
+
+ 			<popup id="helpAvisos" width="200px">
+ 				<label multiline="true"
+ 					value="${c:l('eu.avisosalertas.misAlertas.help')}" />
+ 			</popup>
+
+
+</window>
+</zk>

@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<project
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.egoveris</groupId>
+		<artifactId>deo</artifactId>
+		<version>2.0.3-SNAPSHOT</version>
+	</parent>
+	<artifactId>deo-env</artifactId>
+	<name>deo shared environment project</name>
+	<dependencies>
+		<!-- == Begin TSF+ framework == -->
+		<dependency>
+			<groupId>org.terasoluna.plus.persistence</groupId>
+			<artifactId>terasoluna-plus-core-persistence-jpa-hibernate-conf</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+		<!-- == End TSF+ framework == -->
+	</dependencies>
+</project>

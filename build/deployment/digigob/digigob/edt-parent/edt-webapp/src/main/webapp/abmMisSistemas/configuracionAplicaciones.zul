@@ -1,0 +1,40 @@
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./configuracionAplicacionesDesktop"?>
+<?page title="${c:l('configuracionAplicaciones.title')}" contentType="text/html;charset=UTF-8"?>
+<zk>
+	<window id="configuracionAplicacionesDesktop" width="100%"
+		style="align=center; "
+		apply="com.egoveris.edt.web.pl.ConfiguracionAplicacionesComposer">
+
+		<vlayout>
+			<div align="center">
+					<listbox fixedLayout="true"
+						id="abmAplicacionesId" width="950px"
+						selectedItem="@{configuracionAplicacionesDesktop$composer.aplicacion}"
+						style=""
+						maxlength="20"
+						model="@{configuracionAplicacionesDesktop$composer.listaAplicaciones}"
+						itemRenderer="com.egoveris.edt.web.pl.renderers.ConfiguracionAplicacionesRenderer">
+						<listhead sizable="false"
+							style="background: #C4ECFF;">
+							<listheader label="${c:l('eu.configuracionAplicaiones.aplicacion')}"
+								style="" align="center" />
+							<listheader label="${c:l('eu.configuracionAplicaiones.misTareas')}"
+								style="" align="center" />
+							<listheader label="${c:l('eu.configuracionAplicaiones.misSistemas')}"
+								style="" align="center" />
+							<listheader label="${c:l('eu.configuracionAplicaiones.misSupervisados')}"
+								style="" align="center" />
+								<listheader label="${c:l('eu.escritorioUnico.tituloBuzonGrupal')}"
+								style="" align="center" />
+						</listhead>
+					</listbox>
+			</div>
+      <div align="center">
+			<button id="Guardar" label="${c:l('eu.escritorioUnico.tareasMisSupervisados.btnGuardar')}"
+				forward="onClick=onGuardar ">
+			</button>
+			</div>
+		</vlayout>
+	</window>
+
+</zk>

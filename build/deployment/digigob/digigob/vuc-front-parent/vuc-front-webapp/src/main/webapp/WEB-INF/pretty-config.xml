@@ -1,0 +1,79 @@
+<pretty-config xmlns="http://ocpsoft.org/schema/rewrite-config-prettyfaces"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://ocpsoft.org/schema/rewrite-config-prettyfaces
+                      http://ocpsoft.org/xml/ns/prettyfaces/rewrite-config-prettyfaces.xsd">
+
+	<rewrite match="\s" substitute="" />
+
+	<url-mapping id="index">
+		<pattern value="/index" />
+		<view-id value="/index.jsf" />
+		<action>#{indexMb.init}</action>
+	</url-mapping>
+	<url-mapping id="login">
+		<pattern value="/login" />
+		<view-id value="/login.jsf" />
+	</url-mapping>
+	<url-mapping id="myApplications">
+		<pattern value="/myApplications" />
+		<view-id value="/jsf/sections/myApplications.jsf" />
+		<action>#{myApplicationsMb.init}</action>
+	</url-mapping>
+	<url-mapping id="myDocuments">
+		<pattern value="/myDocuments" />
+		<view-id value="/jsf/sections/myDocuments.jsf" />
+		<action>#{myDocumentsMb.init}</action>
+	</url-mapping>
+	<url-mapping id="myNotifications">
+		<pattern value="/myNotifications" />
+		<view-id value="/jsf/sections/myNotifications.jsf" />
+		<action>#{myNotificationsMb.init}</action>
+	</url-mapping>
+	<url-mapping id="myTareas">
+		<pattern value="/myTareas" />
+		<view-id value="/jsf/sections/myTareas.jsf" />
+		<action>#{myTareasMb.init}</action>
+	</url-mapping>
+	<!-- BEGIN NEW APPLICATION -->
+	<url-mapping id="newApplication">
+		<pattern value="/newApplication" />
+		<view-id value="/jsf/sections/newApplication.jsf" />
+	</url-mapping>
+	<url-mapping id="step1">
+		<pattern value="/application/step1/#{id:step1Mb.idTramite}" />
+		<view-id value="/jsf/steps/step1.jsf" />
+		<action>#{step1Mb.init}</action>
+	</url-mapping>
+	<url-mapping id="step1WithExpediente">
+		<pattern
+			value="/application/step1/expediente/#{idExpediente:step1Mb.idExpediente}" />
+		<view-id value="/jsf/steps/step1.jsf" />
+		<action>#{step1Mb.init}</action>
+	</url-mapping>
+	<url-mapping id="step2">
+		<pattern value="/application/step2/#{id:step2Mb.idExpediente}" />
+		<view-id value="/jsf/steps/step2.jsf" />
+		<action>#{step2Mb.init}</action>
+	</url-mapping>
+	<url-mapping id="step3">
+		<pattern value="/application/step3/#{id:step3Mb.idExpediente}" />
+		<view-id value="/jsf/steps/step3.jsf" />
+		<action>#{step3Mb.init}</action>
+	</url-mapping>
+		<url-mapping id="tomaVista">
+		<pattern value="/application/tomaVista/#{id:tomaVistaMb.idExpediente}" />
+		<view-id value="/jsf/sections/tomaVista.jsf" />
+		<action>#{tomaVistaMb.init}</action>
+	</url-mapping>
+	<url-mapping id="pendiente">
+		<pattern value="/pendiente" />
+		<view-id value="/pendiente.jsf" />
+		<action>#{pendienteMb.init}</action>
+	</url-mapping>
+	<url-mapping id="formularioYTerminos">
+		<pattern value="/formularioYTerminos" />
+		<view-id value="/jsf/sections/formularioYTerminos.jsf" />
+		<action>#{formularioYTerminosMb.init}</action>
+	</url-mapping>
+	<!-- END NEW APPLICATION -->
+</pretty-config>

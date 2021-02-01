@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- Declare here the Spring beans shared by all the business modules of 
+		the application; namely, the beans that define the environment of the application 
+		(e.g.: the main data source of the application) -->
+	<bean id="pluginManager" class="com.egoveris.plugins.manager.PluginManager"
+		init-method="startDeployers">
+		<property name="workingDirectory" value="${ee.plugin}" />
+		<property name="deployers">
+			<list>
+				<bean id="fileDeployer" class="com.egoveris.plugins.manager.deployers.FileDeployer">
+					<property name="timeout" value="45" />
+					<property name="urlToMonitoring" value="${ee.plugin}/deploy" />
+				</bean>
+				<bean id="webDavDeployer"
+					class="com.egoveris.plugins.manager.deployers.WebDavDeployer">
+					<!-- deployer -->
+					<property name="timeout" value="30" />
+					<property name="directoryDestiny" value="${ee.plugin}/deploy" />
+					<property name="urlToMonitoring" value="${ee.plugin_webdav}" />
+					<!-- webdav -->
+					<property name="hostConfiguration" ref="hostConfiguration" />
+					<property name="httpConnectionManagerParams" ref="httpConnectionManagerParams" />
+					<property name="hostname" ref="hostname" />
+					<property name="port" ref="port" />
+					<property name="documentRoot" ref="documentRoot" />
+					<property name="defaultUsername" ref="defaultUsername" />
+					<property name="defaultPassword" ref="defaultPassword" />
+					<property name="defaultConnectionTimeout" ref="connectionTimeout" />
+				</bean>
+			</list>
+		</property>
+		<property name="context">
+			<map>
+				<entry key="tramitacionHelper" value-ref="tramitacionHelper">
+				</entry>
+				<entry key="workflowService" value-ref="workflowService">
+				</entry>
+			</map>
+		</property>
+	</bean>
+
+	<bean id="tramitacionHelper" class="com.egoveris.te.base.util.TramitacionHelper"
+		scope="prototype" />
+</beans>

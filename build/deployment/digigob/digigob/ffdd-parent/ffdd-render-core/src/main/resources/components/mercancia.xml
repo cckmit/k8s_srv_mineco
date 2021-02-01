@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<complexComponent type="TRADE" name="Mercancia"
+	description="Mercancia Information" zul="mercancia.zul"
+	composer="com.everis.tramelec.dynform.comp.ext.MercanciaComposer"
+	mappingDTO="com.egoveris.ccomplejos.base.model.MercanciaDTO">
+
+
+	<field name="idMercancia" width="90%" height="20px" class="com.egoveris.ffdd.render.zk.comp.ext.LongboxExt" disabled="true"/>
+	<field name="mercanciaNacionalizada" width="90%" height="20px" class="com.egoveris.ffdd.render.zk.comp.ext.LongboxExt"  disabled="true"/>
+	<field name="regionOrigen" width="90%" height="20px" class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt"  disabled="true"/>
+	<field name="propiosMedios" width="90%" height="20px" class="com.egoveris.ffdd.render.zk.comp.ext.LongboxExt"  disabled="true"/>
+	<field name="mercanciaZonaPrimaria" width="90%" height="20px" class="com.egoveris.ffdd.render.zk.comp.ext.LongboxExt"  disabled="true"/>
+	<field name="adquiridasCIF" width="90%" height="20px" class="com.egoveris.ffdd.render.zk.comp.ext.LongboxExt"  disabled="true"/>
+	<field name="origenCIF" width="90%" height="20px" class="com.egoveris.ffdd.render.zk.comp.ext.LongboxExt"  disabled="true"/>
+	<field name="paisOrigen" width="90%" height="20px" class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt"  disabled="true"/>
+	<field name="paisAdquisicion" width="90%" height="20px" class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt"  disabled="true"/>
+	
+ 
+		
+</complexComponent>

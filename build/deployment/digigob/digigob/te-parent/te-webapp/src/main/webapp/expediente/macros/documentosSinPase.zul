@@ -1,0 +1,63 @@
+<?page title="" contentType="text/html;charset=UTF-8"?>
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./documentosSinPaseWindow" ?>
+<zk>
+	<window border="none" id="documentosSinPaseWindow"
+		style=" overflow:auto"
+		apply="com.egoveris.te.base.composer.DocumentosSinPaseComposer">
+		<hbox>
+			<paging id="pagingDocumentoSinPase" pageSize="5" autohide="true"/>
+			<label id="labelPaginaSinPase"
+				value="${c:l('ee.tramitacion.paginado.masDeUnaPagina.value')}"
+				visible="false" style="color:red; font-style: italic;">
+			</label>
+			<checkbox id="mostrarPase" checked="false"
+				label="${c:l('ee.docSinPases.label.mostrarUltimoPase')}" />
+		</hbox>
+		<separator></separator>
+		<listbox id="listboxDocumentosSinPase" mold="paging"
+			maxlength="20"
+			model="@{documentosSinPaseWindow$DocumentosSinPaseComposer.documentosFiltradosSinPase}"
+			selectedItem="@{documentosSinPaseWindow$DocumentosSinPaseComposer.selectedDocumento}"
+			itemRenderer="com.egoveris.te.base.rendered.DocumentosItemRenderer"
+			paginal="${pagingDocumentoSinPase}">
+			<listhead>
+				<listheader label="${c:l('ee.documentViewer.listhead.orden')}" align="center" hflex="min" />
+				<listheader label="${c:l('ee.documentViewer.listhead.tipoDocumento')}" align="center"
+					hflex="min" />
+				<listheader label="${c:l('ee.documentViewer.listhead.numDocumento')}" align="center"
+					hflex="max" />
+				<listheader label="${c:l('ee.documentViewer.listhead.referencia')}" align="center" />
+				<listheader label="${c:l('ee.expediente.subsanaciondocumentos.lbl.fechadeasociacion')}" align="center"
+					hflex="min" />
+				<listheader label="${c:l('ee.documentViewer.listhead.fechaCreacion')}" align="center"
+					width="123px" />
+
+				<listheader label="${c:l('ee.inbox.alarmasAcciones')}" align="center" width="80px" />
+
+			</listhead>
+			<listfoot
+				>
+				<listfooter />
+				<listfooter />
+				<listfooter />
+				<listfooter />
+				<listfooter />
+				<listfooter id="totalDocumentosSinPase"
+					label="${c:l('ee.tramitacion.listfooter.documentos.value')}"
+					span="1"  />
+				<listfooter
+					id="footerSize"
+					label="@{documentosSinPaseWindow$DocumentosSinPaseComposer.documentosFiltradosSinPase.size}"
+					span="1"  align="left" />
+			</listfoot>
+		</listbox>
+		<vbox width="100%" align="end">
+			<button autodisable="self" id="descargarTodos" 
+				image="/imagenes/Descargar.png"
+				label="${c:l('ee.docSinPases.label.descargarTodosSinPase')}"
+				forward="onClick=documentosSinPaseWindow$DocumentosSinPaseComposer.onDescargarTodos" />
+		</vbox>
+	</window>
+</zk>

@@ -1,0 +1,34 @@
+<zk>
+	<vlayout
+		apply="com.egoveris.ffdd.render.zk.comp.cc.ViewResumenImpoComposer">
+
+		<grid>
+			<columns>
+				<column></column>
+				<column></column>
+				<column></column>
+				<column></column>
+			</columns>
+			<rows>
+				<row>
+					<cell id="${arg.formComp.nombre}_processingStatusDiv" />
+					<cell id="${arg.formComp.nombre}_creadoPorDiv" />
+				</row>
+				<row>
+					<cell id="${arg.formComp.nombre}_tipoTramiteDiv" />
+					<cell id="${arg.formComp.nombre}_codOperacionDiv" />
+				</row>
+				<row>
+					<cell
+						id="${arg.formComp.nombre}_totalItemsDiv" />
+					<cell id="${arg.formComp.nombre}_totalBultosDiv" />
+				</row>
+				<row>
+					<cell id="${arg.formComp.nombre}_fechaActualizacionDiv" />
+					<cell id="${arg.formComp.nombre}_profechaCreacionDiv" />
+				</row>
+			</rows>
+		</grid>
+
+	</vlayout>
+</zk>

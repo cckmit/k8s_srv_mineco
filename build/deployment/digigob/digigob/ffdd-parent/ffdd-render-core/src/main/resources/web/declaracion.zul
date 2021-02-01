@@ -1,0 +1,31 @@
+<?page title="new page title" contentType="text/html;charset=UTF-8"?>
+<zk>
+	<vlayout  apply="com.egoveris.ffdd.render.zk.comp.cc.DeclaracionComposer">
+		<vbox>
+				<hbox>
+					 <cell id="${arg.formComp.nombre}_declarationIdDiv"/>
+					 <cell id="${arg.formComp.nombre}_declaracionEnumDiv"/>
+					 <cell id="${arg.formComp.nombre}_submittedByDiv"/>
+				</hbox>
+				<hbox>
+					 <cell id="${arg.formComp.nombre}_submittedDateDiv"/>
+					 <cell id="${arg.formComp.nombre}_respDateDiv"/>
+					 <cell id="${arg.formComp.nombre}_responseStatusDiv"/>
+				</hbox>
+				<hbox>
+					 <cell id="${arg.formComp.nombre}_fechaVencimientoDiv"/>
+					 <cell id="${arg.formComp.nombre}_tipoFormularioDiv"/>
+					 <cell id="${arg.formComp.nombre}_codigoDeclaracionDiv"/>
+				</hbox>
+				<hbox>
+					 <cell id="${arg.formComp.nombre}_responseCodeDiv"/>
+					 <cell id="${arg.formComp.nombre}_uRLDiv"/>
+				</hbox>
+				<hbox>
+					 <cell id="${arg.formComp.nombre}_numeroIdentificacionDiv"/>
+					 <cell id="${arg.formComp.nombre}_indicaDocumentoParcialDiv"/>
+				</hbox>
+				<cell id="${arg.formComp.nombre}_listObservacionesDiv" />
+			</vbox>
+ </vlayout>
+</zk>

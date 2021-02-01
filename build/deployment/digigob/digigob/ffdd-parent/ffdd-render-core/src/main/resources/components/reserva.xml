@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<complexComponent type="TRADE" name="Reserva"
+	description="Reserva" zul="reserva.zul"
+	composer="com.everis.tramelec.dynform.comp.ext.ReservaComposer"
+	mappingDTO="com.egoveris.ccomplejos.base.model.ReservaDTO">
+
+	<field name="idReserva" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.LongboxExt"/>
+		
+	<field name="numeroReservaEmbarque" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt"/>
+		
+	<field name="numeroRefEnvio" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt"  />
+		
+	<field name="nombrePrincipal" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt"/>
+		
+	<field name="numeroRotacion" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" />
+		
+	<field name="ucr" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" />
+		
+	<field name="buqueRegMomentoLlegada" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" />
+		
+	<field name="buqueRegFrontera" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" />
+
+</complexComponent>

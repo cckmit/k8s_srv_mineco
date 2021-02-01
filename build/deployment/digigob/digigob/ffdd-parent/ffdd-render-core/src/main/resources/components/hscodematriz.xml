@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<complexComponent type="TRADE" name="hscodematriz"
+	description="HsCodeMatriz Information" zul="hsCodeMatriz.zul"
+	composer="com.everis.tramelec.dynform.comp.ext.HsCodeMatrizComposer"
+	mappingDTO="com.egoveris.ccomplejos.base.model.HsCodeMatrizDTO">
+
+	<field name="idHSCodeMatriz" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.LongboxExt" />
+		
+	<field name="idMatrizVB" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.LongboxExt" />
+		
+	<field name="idHSCode" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.LongboxExt" />
+	
+</complexComponent>

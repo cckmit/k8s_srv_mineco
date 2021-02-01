@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<complexComponent type="TRADE" name="Product Operation"
+	description="Product Operation Information" zul="productOperation.zul"
+	composer="com.everis.tramelec.dynform.comp.ext.ProductOperationComposer"
+	mappingDTO="com.egoveris.ccomplejos.base.model.ProductOperationDTO">
+
+	<field name="productoOperacionId" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.LongboxExt" disabled="true"/>
+		
+	<field name="productVersion" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" disabled="true"/>
+	<field name="commonName" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" disabled="true"/>
+	<field name="arancelarioProd" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" disabled="true"/>
+	<field name="codigoCochilco" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" disabled="true"/>
+	<field name="caracteristicaEspecial" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" disabled="true"/>
+		
+		
+	<field name="productId" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.LongboxExt" disabled="true"/>
+		
+	<field name="descripcionProd" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" disabled="true"/>
+	<field name="descripcionAdic" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" disabled="true"/>
+	<field name="cuotaContractual" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" disabled="true"/>
+	<field name="usoPrevisto" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" disabled="true"/>
+		
+	<field name="listProductAttributes"
+		class="com.egoveris.ffdd.render.zk.comp.ext.SeparatorComplex" 
+		repetidor="true" xmlFile="viewproductattributesoperation.xml" />
+		
+	<field name="listComponenteCochilco"
+		class="com.egoveris.ffdd.render.zk.comp.ext.SeparatorComplex" 
+		repetidor="true" xmlFile="viewproductcomponent.xml" />
+		
+	<field name="ssppEnum" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" disabled="true"/>
+	<field name="paisOrigen" width="90%" height="20px"
+		factory="comboBoxFactory" disabled="true"/>
+	<field name="prodCodeSSPP" width="90%" height="20px"
+		factory="comboBoxFactory" disabled="true"/>
+	<field name="arancelarioCod" width="90%" height="20px"
+		factory="comboBoxFactory" disabled="true"/>
+	<field name="productCode" width="90%" height="20px"
+		factory="comboBoxFactory" disabled="true"/>
+
+
+</complexComponent>

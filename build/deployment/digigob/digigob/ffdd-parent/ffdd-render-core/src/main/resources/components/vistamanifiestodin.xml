@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<complexComponent 
+		type="TRADE" name="vistamanifiestodin" description="Vista Manifiesto"
+		zul="vistaManifiestoDin.zul" 
+		mappingDTO="com.egoveris.ccomplejos.base.model.VistaManifiestoDinDTO">
+		
+		
+		<field name="secuencialManifiesto" width="90%" height="20px" class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" disabled="true"/>
+		<field name="numeroManifiesto" width="90%" height="20px" class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" disabled="true"/>
+		<field name="fechaManifiesto" width="90%" height="20px" class="com.egoveris.ffdd.render.zk.comp.ext.DateboxExt" disabled="true"/> 
+	
+</complexComponent>

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>com.egoveris</groupId>
+		<artifactId>egoveris-master-config</artifactId>
+		<version>2.0.3-SNAPSHOT</version>
+	</parent>
+
+	<artifactId>commons-project</artifactId>
+	<packaging>pom</packaging>
+
+	<distributionManagement>
+		<repository>
+                        <id>local-releases</id>
+			<name>Repositorio interno everis Argentina - RELEASES</name>
+                        <url>https://steps.everis.com/nexus/repository/EGOVERISTE.Release/</url>
+		</repository>
+		<snapshotRepository>
+                        <id>local-snapshots</id>
+			<name>Repositorio interno eGoveris - SNAPSHOTS</name>
+                        <url>https://steps.everis.com/nexus/repository/EGOVERISTE.Snapshot/</url>
+		</snapshotRepository>
+	</distributionManagement>
+
+
+	<scm>
+		<connection>${egoveris.scm.git.repository.group}commons-project.git</connection>
+		<developerConnection>${egoveris.scm.git.repository.group}commons-project.git</developerConnection>
+		<tag>${project.version}</tag>
+	</scm>
+
+	<profiles>
+
+		<profile>
+			<id>local</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<modules>
+				<module>shared-util</module>
+				<module>shared-security</module>
+				<module>database-configuration</module>
+				<module>shared-organismo</module>
+				<module>shared-document-persistence</module>
+				<module>shared-itext</module>
+				<module>dashboard-web</module>
+				<module>ccomplejos</module>
+				<module>plugin-manager</module>
+				<module>plugin-tools</module>
+				<module>trade-rest-common</module>
+				<module>wd-rest-script-api</module>
+			</modules>
+		</profile>
+
+	</profiles>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-dependency-plugin</artifactId>
+			</plugin>
+		</plugins>
+	</build>
+</project>

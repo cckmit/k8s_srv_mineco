@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<complexComponent type="TRADE" name="Item"
+	description="Item Information" zul="item.zul"
+	composer="com.everis.tramelec.dynform.comp.ext.ItemComposer"
+	mappingDTO="com.egoveris.ccomplejos.base.model.ItemDTO">
+
+	<field name="itemId" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.LongboxExt" />
+	<field name="producto" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.SeparatorComplex" xmlFile="productoperation.xml" />
+	<field name="valorMinimo" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.LongboxExt" />
+	<field name="acuerdoComercial" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" />
+	<field name="montoUnitarioFOB" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.LongboxExt" />
+	<field name="montoFOB" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.LongboxExt" />
+	<field name="pesoBrutoItem" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.LongboxExt" />
+	<field name="unidadPesoBrutoItem" width="90%" height="20px"
+		factory="comboBoxFactory" />
+	<field name="pesoNetoEmbarque" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.LongboxExt" />
+	<field name="unidadPesoNetoEmbarque" width="90%" height="20px"
+		factory="comboBoxFactory" />
+	<field name="volumenTotal" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.LongboxExt" />
+	<field name="unidadVolumen" width="90%" height="20px"
+		factory="comboBoxFactory" />
+	<field name="cantidadMercancias" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.LongboxExt" />
+	<field name="unidadCantidadMercancia" width="90%" height="20px"
+		factory="comboBoxFactory" />
+	<field name="listObservacionDTOs" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.SeparatorComplex" repetidor="true" xmlFile="observacion.xml" />
+	<field name="listDocumentoApoyo" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.SeparatorComplex" repetidor="true" xmlFile="documentoapoyo.xml"  />
+	<field name="montoAjusteItem" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" />
+	<field name="signoAjuste" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" />
+	<field name="sujetoCupo" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" />
+	<field name="codigoTratadoArancel" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" />
+	<field name="numeroCorrelativoArancel" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" />
+	<field name="valorCIF" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.DoubleboxExt" />
+	<field name="porcentajeAdvalorem" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.LongboxExt" />
+	<field name="codigoCuentaAdvalorem" width="90%" height="20px"
+		factory="comboBoxFactory" />
+	<field name="montoCuentaAdvalorem" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.DoubleboxExt" />
+	<field name="paisProduccion" width="90%" height="20px"
+		factory="comboBoxFactory"  />
+	<field name="productor" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.SeparatorComplex" xmlFile="participantesecundario.xml"  />
+	<field name="cuarentenaPostFrontera" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" />
+	<field name="numeroResolucion" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" />
+	<field name="listaLote" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.SeparatorComplex" repetidor="true" xmlFile="lote.xml"  />
+	<field name="mercadoDestino" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" />
+	<field name="listaInstalacion" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.SeparatorComplex" repetidor="true" xmlFile="instalacion.xml"  />
+	<field name="listaTransportista" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.SeparatorComplex" repetidor="true" xmlFile="participantes.xml"  />
+	<field name="listaDocumentoComercial" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.SeparatorComplex" repetidor="true" xmlFile="documento.xml"  />
+		
+</complexComponent>

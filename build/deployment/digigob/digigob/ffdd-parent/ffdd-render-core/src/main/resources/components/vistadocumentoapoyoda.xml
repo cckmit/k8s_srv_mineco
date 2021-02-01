@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<complexComponent type="TRADE" name="Vista Documento Apoyo DA"
+	description="Vista Documento Apoyo DA" zul="vistaDocumentoApoyoDA.zul"
+	composer="com.everis.tramelec.dynform.comp.ext.VistaDocumentoApoyoDAComposer"
+	mappingDTO="com.egoveris.ccomplejos.base.model.VistaDocumentoApoyoDADTO">
+
+	<field name="descripcion" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" disabled="true" />
+		
+	<field name="nombreDocumento" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" disabled="true" />
+		
+	<field name="nombreEmisor" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" disabled="true" />
+		
+	<field name="tipoDocumentoAdjunto" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" disabled="true" />
+		
+	<field name="secuenciaDocumento" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.IntboxExt" disabled="true" />
+				
+	<field name="numeroDocumento" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.IntboxExt" disabled="true" />
+				
+	<field name="fechaDocumento" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.DateboxExt" disabled="true" />
+						
+	<field name="adjunto" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" disabled="true" />
+		
+</complexComponent>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
+    http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+	<changeSet author="Carlos Bellotti" id="EDT_ESTILOS">
+		<createTable tableName="EDT_ESTILOS">
+			<column name="ID" type="INT" autoIncrement="true">
+				<constraints primaryKey="true"/>
+			</column>
+			<column name="CODIGO" type="CHAR(20)">
+				<constraints nullable="false"/>				
+			</column>
+			<column name="DESCRIPCION" type="VARCHAR(255)">
+				<constraints nullable="false"/>				
+			</column>
+			<column name="LOGO" type="BLOB">
+				<constraints nullable="false"/>				
+			</column>
+			<column name="COLOR_HEADER" type="CHAR(20)">
+				<constraints nullable="false"/>				
+			</column>
+			<column name="COLOR_HEADER_BORDER" type="CHAR(20)">
+				<constraints nullable="false"/>				
+			</column>
+						
+		</createTable>
+		
+		<addUniqueConstraint columnNames="CODIGO" tableName="EDT_ESTILOS" constraintName="INQ_ESTILOS_COD"/>
+						
+	</changeSet>
+	
+	<changeSet id="ESTILOS_DATA_DEFAULT" author="Carlos Bellotti">
+		<insert tableName="EDT_ESTILOS">
+			<column name="CODIGO" value="EGOV"/>
+			<column name="DESCRIPCION" value="Estilo VUC Generico"/>
+			<column name="LOGO" value="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"></column>
+			<column name="COLOR_HEADER" value="#dbe3ef"></column>
+			<column name="COLOR_HEADER_BORDER" value="#a5adb8"></column>
+		</insert>
+	</changeSet>
+
+</databaseChangeLog>

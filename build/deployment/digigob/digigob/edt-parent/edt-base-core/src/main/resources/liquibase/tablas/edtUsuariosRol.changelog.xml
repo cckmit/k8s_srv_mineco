@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
+    http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+	<changeSet author="Gustavo Aguilera" id="CREA_TABLA_EDT_USUARIO_ROL">  
+	    <comment>Create table querie</comment>
+	    <sql dbms="h2, mysql" 
+	                splitStatements="true"
+	                stripComments="true">         
+				create table edt_usuario_rol(
+				    datos_usuario_id int not null,
+				    rol_id int not null,
+				    usuario_modificador varchar(255) not null,
+				    fecha_vinculacion datetime not null,
+				    PRIMARY KEY (datos_usuario_id, rol_id)
+				);
+	    </sql>    
+	</changeSet>
+	<changeSet author="Gustavo Aguilera" id="ALTER_TABLES_USUARIO">  
+	    <comment>alter queries</comment>
+	    <sql dbms="h2, mysql" 
+	                splitStatements="true"
+	                stripComments="true">    
+					ALTER TABLE edt_usuario_rol ADD CONSTRAINT edt_usuario_rol_fk FOREIGN KEY (datos_usuario_id) REFERENCES edt_datos_usuario(ID_DATO_USUARIO);
+					ALTER TABLE edt_usuario_rol ADD CONSTRAINT edt_usuario_rol_fk_1 FOREIGN KEY (rol_id) REFERENCES edt_rol(EDTRL_ID);
+	    </sql>    
+	</changeSet>
+	<changeSet author="Gustavo Aguilera" id="ALTER_TABLES_REPA">  
+	    <comment>alter queries</comment>
+	    <sql dbms="h2, mysql" 
+	                splitStatements="true"
+	                stripComments="true">    
+			ALTER TABLE edt_sade_reparticion ADD es_padre BIT DEFAULT 0 NOT NULL;
+	    </sql>    
+	</changeSet>
+
+
+</databaseChangeLog>

@@ -1,0 +1,48 @@
+<?page title="${c:l('audUsuarioTab.title')}" contentType="text/html;charset=UTF-8"?>
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./auditoriaUsuarioTab" ?>
+<zk>
+	<window id="auditoriaUsuarioTab" width="100%" style="align=center; " apply="com.egoveris.edt.web.admin.pl.auditoria.AuditoriaTabComposer">
+		<div align="center">
+			<div align="left">
+				<tabbox tabscroll="false" width="100%" style="align:center">
+					<tabs>
+						<tab id="tabAuditarDatosPersonales" label="${c:l('eu.tab.auditoria.datosPersonales.label')}"
+							tooltiptext="${c:l('eu.tab.auditoria.datosPersonales.tool')}"
+							>
+						</tab>
+						<tab id="tabAuditarRepaAdministradas" label="${c:l('eu.tab.auditoria.repadministradas.label')}"
+							tooltiptext="${c:l('eu.tab.auditoria.repadministradas.tool')}"
+							>
+						</tab>
+						<tab id="tabAuditarRepaHabilitadas" label="${c:l('eu.tab.auditoria.repahabilitada.label')}"
+							tooltiptext="${c:l('eu.tab.auditoria.repahabilitada.tool')}"
+							>
+						</tab>
+					</tabs>
+					
+					<tabpanels>
+						<tabpanel>
+							<include id="datosPersonales" src="/administrator/tabsAuditoria/audDatosPersonales.zul"/>
+						</tabpanel>			
+						
+						<tabpanel>
+							<include id="repaAdministradas" src="/administrator/tabsAuditoria/audRepaAdm.zul"/>
+						</tabpanel>
+						
+						<tabpanel>
+							<include id="repaHabilitadas" src="/administrator/tabsAuditoria/audRepaHab.zul"/>
+						</tabpanel>
+						
+					</tabpanels>
+				</tabbox>
+			</div>
+			<separator></separator>
+			<toolbar mold="panel" orient="horizontal" width="100%" align="center">
+				<hlayout style="margin:auto" >
+					<toolbarbutton id="btnCerrar" image="/imagenes/Cerrar.png" tooltiptext="${c:l('eu.avisosalertas.misAlertas.pantallaDetalleAlertas.botonCerrar')}"/>
+				</hlayout>
+			</toolbar>
+		</div>
+	</window>
+</zk>

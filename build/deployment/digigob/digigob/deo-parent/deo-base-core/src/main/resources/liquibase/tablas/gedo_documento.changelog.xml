@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
+    http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+	<changeSet id="CAMPO_ID_PUBLICABLE_DOCUMENTO"
+		author="Carlos Bellotti">
+		<addColumn tableName="GEDO_DOCUMENTO">
+			<column name="ID_PUBLICABLE" type="CHAR(36)"></column>
+		</addColumn>
+
+		<createIndex indexName="IDX_GEDO_DOC_ID_PUBLIC"
+			tableName="GEDO_DOCUMENTO" unique="true">
+			<column name="ID_PUBLICABLE" />
+		</createIndex>
+	</changeSet>
+
+</databaseChangeLog>

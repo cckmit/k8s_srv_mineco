@@ -1,0 +1,75 @@
+.z-loading {
+	top: 50% !important;
+	left: 50% !important;
+}
+
+.CodeMirror {
+	border: 1px solid #ddd;
+	width: 620px
+}
+
+.z-window-embedded-cnt {
+	background-color: #E8E8E8;
+}
+
+.hbox table td {
+	width: 100%
+}
+
+div.transbox {
+	background-color: #FFFFFF;
+	border: 1px solid black;
+	opacity: 1;
+	filter: alpha(opacity = 60); /* For IE8 and earlier */
+	width: 100%;
+	height: 100%;
+}
+
+div.transboxPanel {
+	background-color: #DAEBF2;
+	border: 1px solid black;
+	opacity: 0.5;
+	filter: alpha(opacity = 60); /* For IE8 and earlier */
+}
+
+div.transbox p {
+	margin: 5%;
+	font-weight: bold;
+	color: #000000;
+}
+
+
+.z-button,
+.z-button:focus {
+  background-color: #6fb3e0 !important;
+  border-color: #6fb3e0;
+}
+.z-button:hover,
+.z-button.open {
+  background-color: #4f99c6 !important;
+  border-color: #6fb3e0;
+}
+.z-button.no-border:hover {
+  border-color: #4f99c6;
+}
+.z-button.no-hover:hover {
+  background-color: #6fb3e0 !important;
+}
+
+#panelAcciones a {
+	color: grey;
+}
+
+.bold {
+	font-weight: bold;
+}
+
+/** Override z-a**/
+.z-a {
+	 	font-family: FontAwesome !important;
+}
+
+.z-label {
+	 	font-family: FontAwesome !important;
+}
+

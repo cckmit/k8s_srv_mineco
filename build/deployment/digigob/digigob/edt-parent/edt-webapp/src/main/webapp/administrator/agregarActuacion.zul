@@ -1,0 +1,277 @@
+<?page title="${c:l('agregarActuacion.title')}" contentType="text/html;charset=UTF-8"?>
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./win_AdmActuacion" ?>
+<zk>
+	<window id="win_AdmActuacion" border="normal"
+		title="${c:l('eu.adminSade.altaActuacion')}"
+		apply="com.egoveris.edt.web.admin.pl.ABMActuacionComposer"
+		width="550px" position="center" mode="modal" closable="true">
+
+		<vbox id="vbox_headerAlta" visible="false"
+			style="background:#C4ECFF" width="100%" height="50px" align="center"
+			pack="center">
+			<label style="font-weight:bold"
+				value="${c:l('eu.adminSade.altaActuacion')}" />
+		</vbox>
+		<vbox id="vbox_headerVer" visible="false"
+			style="background:#C4ECFF" width="100%" height="50px" align="center"
+			pack="center">
+			<label style="font-weight:bold"
+				value="${c:l('eu.adminSade.visualizarActuacion')}" />
+		</vbox>
+		<vbox id="vbox_headerModificar" visible="false"
+			style="background:#C4ECFF" width="100%" height="50px" align="center"
+			pack="center">
+			<label style="font-weight:bold"
+				value="${c:l('eu.adminSade.modificarActuacion')}" />
+		</vbox>
+		<vbox align="center" width="100%">
+			<grid id="gr_altaActuacion" width="500px"
+				style="padding:0px; border:none; border-spacing:0px;">
+				<columns>
+					<column width="30%" align="right" />
+					<column width="70%" align="left" />
+				</columns>
+				<rows>
+					<row style="border:none;">
+						<label id="label_codigo"
+							value="${c:l('eu.adminSade.actuacion.codigo')}" />
+						<textbox id="txbx_codigo" width="270px"
+							constraint="no empty, /[0-9a-zA-Z_#]+/: ${c:l('eu.abmReparticionGDE.textbox.constraint.noEspaciosEspeciales')}"
+							maxlength="5" />
+					</row>
+					<row style="border:none;">
+						<label id="label_nombre"
+							value="${c:l('eu.adminSade.actuacion.nombre')}" />
+						<textbox id="txbx_nombre" width="270px"
+							maxlength="30" />
+					</row>
+
+					<row style="border:none;">
+						<label id="label_videnciaDesde"
+							value="${c:l('eu.adminSade.actuacion.vigenciaDesde')}" />
+						<vlayout>
+							<datebox id="dbx_vigenciaDesde" cols="12"
+								format="dd/MM/yyyy" />
+						</vlayout>
+					</row>
+					<row style="border:none;">
+						<label id="label_vigenciaHasta"
+							value="${c:l('eu.adminSade.actuacion.vigenciaHasta')}" />
+						<vlayout>
+							<datebox id="dbx_vigenciaHasta" cols="12"
+								format="dd/MM/yyyy" />
+						</vlayout>
+					</row>
+		<!-- 
+					<row style="border:none;">
+						<label id="label_deshabilitadoPapel"
+							value="${c:l('eu.adminSade.actuacion.deshabilitadoPapel')}" />
+						<vlayout>
+							<checkbox id="chkbx_deshabilitado_papel"
+								value="@{win_AdmActuacion$composer.actuacion.deshabilitadoPapel}" />
+						</vlayout>
+					</row>
+
+
+					<row style="border:none;">
+						<label id="label_esDocumento"
+							value="${c:l('eu.adminSade.actuacion.esDocumento')}" />
+						<vlayout>
+							<checkbox id="chkbx_es_documento"
+								value="@{win_AdmActuacion$composer.actuacion.esDocumento}" />
+						</vlayout>
+					</row>
+
+					<row style="border:none;">
+						<label id="label_version"
+							value="${c:l('eu.adminSade.actuacion.version')}" />
+						<vlayout>
+							<textbox id="txbx_version" width="270px"
+								constraint="${c:l('eu.agregarActuacion.textbox.constraint.noEspaciosCaracteresEspecialesNumericos')}"
+								maxlength="10"
+								placeholder="${c:l('eu.agregarActuacion.placeholder.aceptanNumeros')}" />
+						</vlayout>
+					</row>
+
+					<row style="border:none;">
+						<label id="label_jerarquia"
+							value="${c:l('eu.adminSade.actuacion.jerarquia')}" />
+						<vlayout>
+							<textbox id="txbx_jerarquia" width="270px"
+								constraint="${c:l('eu.agregarActuacion.textbox.constraint.noEspaciosCaracteresEspecialesNumericos')}"
+								maxlength="11"
+								placeholder="${c:l('eu.agregarActuacion.placeholder.aceptanNumeros')}" />
+						</vlayout>
+					</row>
+-->
+					<row style="border:none;" visible="false">
+						<label id="label_desglosado"
+							value="${c:l('eu.adminSade.actuacion.desglosado')}" />
+						<vlayout>
+							<combobox id="cmbBox_desglosado"
+								readonly="true">
+								<comboitem
+									label="${c:l('eu.comboBox.valorNO')}" />
+								<comboitem
+									label="${c:l('eu.comboBox.valorSI')}" />
+							</combobox>
+						</vlayout>
+					</row>
+
+					<row style="border:none;" visible="false">
+						<label id="label_anulado"
+							value="${c:l('eu.adminSade.actuacion.anulado')}" />
+						<vlayout>
+							<combobox id="cmbBox_anulado"
+								readonly="true">
+								<comboitem
+									label="${c:l('eu.adminSade.actuacion.opcion.n')}" />
+								<comboitem
+									label="${c:l('eu.adminSade.actuacion.opcion.s')}" />
+							</combobox>
+						</vlayout>
+					</row>
+
+					<row style="border:none;" visible="false">
+						<label id="label_agregado"
+							value="${c:l('eu.adminSade.actuacion.agregado')}" />
+						<vlayout>
+							<combobox id="cmbBox_agregado"
+								readonly="true">
+								<comboitem
+									label="${c:l('eu.adminSade.actuacion.opcion.n')}" />
+								<comboitem
+									label="${c:l('eu.adminSade.actuacion.opcion.s')}" />
+							</combobox>
+						</vlayout>
+					</row>
+
+					<row style="border:none;" visible="false">
+						<label id="label_incorporado"
+							value="${c:l('eu.adminSade.actuacion.incorparado')}" />
+						<vlayout>
+							<combobox id="cmbBox_incorporado"
+								readonly="true">
+								<comboitem
+									label="${c:l('eu.adminSade.actuacion.opcion.n')}" />
+								<comboitem
+									label="${c:l('eu.adminSade.actuacion.opcion.s')}" />
+							</combobox>
+						</vlayout>
+					</row>
+
+					<row style="border:none;" visible="false">
+						<label id="label_iniciaActuacion"
+							value="${c:l('eu.adminSade.actuacion.inicia_actuacion')}" />
+						<vlayout>
+							<combobox id="cmbBox_iniciaActuacion"
+								readonly="true">
+								<comboitem
+									label="${c:l('eu.adminSade.actuacion.opcion.n')}" />
+								<comboitem
+									label="${c:l('eu.adminSade.actuacion.opcion.s')}" />
+							</combobox>
+						</vlayout>
+					</row>
+
+					<row style="border:none;" id="row_usuarioCreacion"
+						visible="false">
+						<label id="label_usuarioCreacion"
+							value="${c:l('eu.admActuacion.listhead.label.usuarioCreador')}" />
+						<vlayout>
+							<textbox id="txbx_usuarioCreacion"
+								width="270px" maxlength="30" />
+						</vlayout>
+					</row>
+
+					<row style="border:none;" id="row_fechaCreacion"
+						visible="false">
+						<label id="label_fechaCreacion"
+							value="${c:l('eu.avisosalertas.misAlertas.fecha')}" />
+						<vlayout>
+							<datebox id="dbx_fechaCreacion" cols="12"
+								format="dd/MM/yyyy" onCreate="self.value = new Date()" />
+						</vlayout>
+					</row>
+
+					<row style="border:none;"
+						id="row_usuarioModificacion" visible="false">
+						<label id="label_usuarioModificacion"
+							value="${c:l('eu.adminSade.actuacion.usuarioModificador')}" />
+						<vlayout>
+							<textbox id="txbx_usuarioModificacion"
+								width="270px" maxlength="30" />
+						</vlayout>
+					</row>
+
+					<row style="border:none;" id="row_fechaModificacion"
+						visible="false">
+						<label id="label_fechaModificacion"
+							value="${c:l('eu.admCargos.hbox.label.fechaModificacion')}" />
+						<vlayout>
+							<datebox id="dbx_fechaModificacion"
+								cols="12" format="dd/MM/yyyy"
+								onCreate="self.value = new Date()" />
+						</vlayout>
+					</row>
+
+					<!-- Version 3.5.0 -->
+
+				</rows>
+			</grid>
+			<separator spacing="20px" />
+
+
+			<label value="${c:l('mensaje_confirmacion.borrar')}"
+				visible="false" id="mensaje_confirmacion" />
+
+			<!-- boton de visualizar -->
+			<hbox id="hbox_visu" align="center" visible="false">
+				<toolbarbutton id="btn_salir" iconSclass="z-icon-times"
+					label="${c:l('edt.standar.cerrar')}" zclass="z-button"
+					style="padding:8px 10px;" />
+			</hbox>
+			<!-- botones de modificar -->
+			<hbox id="hbox_modi" align="center" visible="false">
+				<button id="btn_modificar"
+					iconSclass="z-icon-floppy-o" label="${c:l('edt.standar.guardar')}"
+					zclass="z-button" style="padding:7px 10px;"
+					tooltiptext="${c:l('eu.adminSade.modificar')}" />
+				<button id="btn_salir_modi"
+				iconSclass="z-icon-times"
+					label="${c:l('edt.standar.cancelar')}" zclass="z-button"
+					style="padding:7px 10px;" />
+			</hbox>
+
+
+			<!-- Botones de borrado -->
+			<hbox id="hbox_borrar" align="center" visible="false"
+				style="padding-top: 25px;">
+				<button id="btn_borrar"
+					label="${c:l('eu.abmSector.comboBox.label.si')}"
+					style="width: 75px;" tooltiptext="${c:l('eu.adminSade.borrar')}" />
+				<button id="btn_salir_borrar" style="width: 75px;"
+					label="${c:l('eu.abmSector.comboBox.label.no')}" />
+			</hbox>
+
+
+
+			<!-- botones de agregar -->
+			<hbox id="hbox_botones" align="center">
+				<button id="btn_guardar" iconSclass="z-icon-floppy-o"
+					label="${c:l('edt.standar.guardar')}" zclass="z-button"
+					style="padding:7px 10px;"
+					tooltiptext="${c:l('eu.adminSade.guardar')}" />
+				<button id="btn_cancelar" iconSclass="z-icon-times"
+					label="${c:l('edt.standar.cancelar')}" zclass="z-button"
+					style="padding:7px 10px;"
+					tooltiptext="${c:l('eu.adminSade.cancelar')}" />
+
+
+			</hbox>
+			<separator spacing="20px" />
+		</vbox>
+	</window>
+</zk>

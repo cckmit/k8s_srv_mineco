@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<complexComponent 
+		type="TRADE" name="detallesPuerto" description="detalle del puerto Information"
+		zul="detallesPuerto.zul" composer="com.egoveris.ffdd.render.zk.comp.ext.DetallesPuertoComposer"
+		mappingDTO="com.egoveris.ccomplejos.base.model.DetallesPuertoDTO">
+		
+		<field name="idDetallesPuerto" class="com.egoveris.ffdd.render.zk.comp.ext.LongboxExt" height="20px" width="90%"/>	
+		<field name="pais" class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" height="20px"  width="90%" />
+		<field name="codPuerto" class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" height="20px" width="90%"/>	
+		
+		<field name="tipoPuerto" class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" height="20px" width="90%"/>	
+		<field name="nombrePuerto" class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" height="20px" width="90%"/>	
+		<field name="locacionPuerto" class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" height="20px"  width="90%"/>
+			
+			
+		<field name="fecha" class="com.egoveris.ffdd.render.zk.comp.ext.DateboxExt" height="20px" width="90%"/>	
+		<field name="region" factory="comboBoxFactory" height="20px"  width="90%"/>
+		<field name="fechaEstimada" class="com.egoveris.ffdd.render.zk.comp.ext.DateboxExt" height="20px" width="90%"/>		
+</complexComponent>

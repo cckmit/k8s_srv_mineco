@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" 
+"http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+	<bean id="externalActuacionService"
+		class="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean">
+		<property name="serviceUrl" value="${app.eu.url}/remoting/actuacion" />
+		<property name="serviceInterface">
+			<value>com.egoveris.edt.ws.service.IActuacionService</value>
+		</property>
+	</bean>
+	
+	<bean id="externalReparticionService"
+		class="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean">
+		<property name="serviceUrl" value="${app.eu.url}/remoting/reparticion" />
+		<property name="serviceInterface">
+			<value>com.egoveris.edt.ws.service.IExternalReparticionService</value>
+		</property>
+	</bean>
+	
+	<bean id="externalPeriodoLicenciaService"
+		class="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean">
+		<property name="serviceUrl" value="${app.eu.url}/remoting/periodo-licencia" />
+		<property name="serviceInterface">
+			<value>com.egoveris.edt.ws.service.IExternalPeriodoLicenciaService</value>
+		</property>
+	</bean>
+	
+	<bean id="externalFeriadoService"
+		class="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean">
+		<property name="serviceUrl" value="${app.eu.url}/remoting/feriado" />
+		<property name="serviceInterface">
+			<value>com.egoveris.edt.ws.service.IExternalFeriadoService</value>
+		</property>
+	</bean>
+	
+	<bean id="externalDatosUsuarioService"
+		class="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean">
+		<property name="serviceUrl" value="${app.eu.url}/remoting/usuario" />
+		<property name="serviceInterface">
+			<value>com.egoveris.edt.ws.service.IExternalDatosUsuarioService</value>
+		</property>
+	</bean>
+	
+</beans>

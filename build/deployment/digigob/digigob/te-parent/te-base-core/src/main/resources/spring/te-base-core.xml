@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<!-- Scan for Spring beans declared via annotations -->
+	<context:component-scan
+		base-package="com.egoveris.te.base.config, com.egoveris.te.base.internal.service,com.egoveris.te.base.service,com.egoveris.te.base.dao" />
+
+	<bean id="sistemasSolicitantesArchivo" class="java.lang.String">
+		<constructor-arg type="java.lang.String" value="${ee.sistemasArchivadores}" />
+	</bean>
+
+	<bean id="sistemasCaratuladoresExternos" class="java.lang.String">
+		<constructor-arg type="java.lang.String" value="${ee.sistemasExternos}" />
+	</bean>
+
+	<bean id="cantMesesEnvioAutomaticoGT" class="java.lang.String">
+		<constructor-arg type="java.lang.String" value="${cantMeses.envioAutomaticoGT}" />
+	</bean>
+
+	<bean id="usuarioEnvioAutomaticoGT" class="java.lang.String">
+		<constructor-arg type="java.lang.String" value="${usuario.envioAutomaticoGT}" />
+	</bean>
+
+	<bean id="fileNETNombreModulo" class="java.lang.String">
+		<constructor-arg type="java.lang.String" value="${fileNet.nombre.modulo}" />
+	</bean>
+
+	<bean id="reparticionGT" class="java.lang.String">
+		<constructor-arg type="java.lang.String" value="${ee.reparticion.GT}" />
+	</bean>
+
+	<bean id="GEDOurl" class="java.lang.String">
+		<constructor-arg type="java.lang.String" value="${ee.gedoUrl}" />
+	</bean>
+
+	<bean id="muleUrl" class="java.lang.String">
+		<constructor-arg type="java.lang.String" value="${mule.url}" />
+	</bean>
+
+	<bean id="acronimoTipoDocTomaVistaSinSuspension" class="java.lang.String">
+		<constructor-arg type="java.lang.String"
+			value="${ee.TomaVistaSinSuspension.Acronimo}" />
+	</bean>
+
+	<bean id="trataTomaVista" class="java.lang.String">
+		<constructor-arg type="java.lang.String" value="${ee.trataTomaVista}" />
+	</bean>
+
+	<bean id="tipoComunicacionOficialNota" class="java.lang.String">
+		<constructor-arg type="java.lang.String" value="${tipoCCOO.nota}" />
+	</bean>
+
+	<bean name="sistemaOrigen" class="java.lang.String">
+		<constructor-arg>
+			<value>EE</value> <!-- EE, GEDO, RLM -->
+		</constructor-arg>
+	</bean>
+
+	<bean name="constantesDB" class="com.egoveris.te.base.util.ConstantesDB">
+		<property name="nombreReparticionActuacion" ref="nombreReparticionActuacion" />
+		<property name="nombreEntorno" ref="nombreEntorno" />
+	</bean>
+
+	<bean id="nombreReparticionActuacion" class="java.lang.String">
+		<constructor-arg type="java.lang.String" value="${reparticion.actuacion}" />
+	</bean>
+
+	<bean id="nombreEntorno" class="java.lang.String">
+		<constructor-arg type="java.lang.String" value="${nombre.entorno}" />
+	</bean>
+
+	<bean id="docCaraGedoTempl" class="com.egoveris.te.base.util.DocumentoCaratulaGedoTemplate" />
+
+	<bean id="workflowService" class="com.egoveris.te.base.service.WorkFlowServiceImpl" />
+
+	<bean id="templateUtil" class="com.egoveris.te.base.util.TemplateUtilImpl" />
+
+<!-- 	<bean id="documentoGedo" class="com.egoveris.te.base.service.DocumentoGedoServiceImpl"                      />                 -->
+
+	<bean name="teCoreMapper" class="org.dozer.DozerBeanMapper">
+		<!-- <property name="mappingFiles" value="classpath:te_base_core_mapper.xml" 
+			/> --> <!-- El archivo no existe -->
+	</bean>
+
+	<!-- <import resource="classpath:spring/deo-external-service-config.xml" 
+		/> <import resource="classpath:spring/numerador-external-service-config.xml" 
+		/> -->
+
+	<!-- SOLR EE -->
+	<bean id="solrServerEE" class="org.apache.solr.client.solrj.impl.HttpSolrServer">
+		<constructor-arg value="${solr.ee.url}" />
+		<property name="connectionTimeout" value="${solr.ee.timeout}" />
+		<property name="defaultMaxConnectionsPerHost" value="${solr.ee.maxConnPerHost}" />
+		<property name="maxTotalConnections" value="${solr.ee.maxtotalConn}" />
+	</bean>
+
+	<!-- SOLR TRACK -->
+	<bean id="solrServerTrack" class="org.apache.solr.client.solrj.impl.HttpSolrServer">
+		<constructor-arg value="${solrServerTrack.url}" />
+		<property name="connectionTimeout" value="${solrServerTrack.connectionTimeout}" />
+		<property name="defaultMaxConnectionsPerHost" value="${solrServerTrack.maxConnectionsPerHost}" />
+		<property name="maxTotalConnections" value="${solrServerTrack.maxTotalConnections}" />
+	</bean>
+
+	<!-- LO NECESITA DocumentoManager -->
+	<bean id="ecosistema" class="java.lang.String">
+		<constructor-arg type="java.lang.String" value="${app.ecosistema}" />
+	</bean>
+
+</beans>

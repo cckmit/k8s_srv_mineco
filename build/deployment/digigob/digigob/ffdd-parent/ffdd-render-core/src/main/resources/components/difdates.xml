@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<complexComponent type="TRADE" name="difDates"
+	description="Dif Dates Information" zul="difDates.zul"
+	composer="com.egoveris.ffdd.render.zk.comp.cc.DifDatesComposer"
+	mappingDTO="com.egoveris.ccomplejos.base.model.DifDatesDTO">
+
+	<field id="fechaInicio" name="fechaInicio" class="com.egoveris.ffdd.render.zk.comp.ext.DateboxExt"
+		height="20px" width="90%" label="Fecha Inicio" tooltip="Fecha Inicio"  />
+	<field id="fechaFin" name="fechaFin" class="com.egoveris.ffdd.render.zk.comp.ext.DateboxExt"
+		height="20px" width="90%" label="Fecha Fin" tooltip="Fecha Fin" />
+	<field id="diferencia" name="diferencia" class="com.egoveris.ffdd.render.zk.comp.ext.LongboxExt"
+		height="20px" width="90%" label="Diferencia" tooltip="Diferencia" />
+</complexComponent>

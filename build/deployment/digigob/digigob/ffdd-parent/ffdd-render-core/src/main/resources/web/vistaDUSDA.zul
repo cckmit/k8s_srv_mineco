@@ -1,0 +1,43 @@
+<?page title="new page title" contentType="text/html;charset=UTF-8"?>
+<zk>
+	<vlayout width="100%"
+		apply="com.egoveris.ffdd.render.zk.comp.cc.VistaDUSDAComposer">
+		<vbox>
+			<hbox>
+				<cell id="${arg.formComp.nombre}_tipoEnvioDiv" />
+				<cell id="${arg.formComp.nombre}_comTrasnportadoraDiv" />
+
+			</hbox>
+			<hbox>
+				<cell id="${arg.formComp.nombre}_totalItemDiv" />
+				<cell id="${arg.formComp.nombre}_totalBultosDiv" />
+
+			</hbox>
+			<hbox>
+				<cell id="${arg.formComp.nombre}_codigoDespachoDiv" />
+				<cell id="${arg.formComp.nombre}_indicaMercanciaNacionalizadaDiv" />
+
+			</hbox>
+			<hbox>
+				<cell id="${arg.formComp.nombre}_indicaMercanciaConsolidadaEnZonaPrimariaDiv" />
+				<cell id="${arg.formComp.nombre}_viaTransporteDiv" />
+
+			</hbox>
+			<hbox>
+				<cell id="${arg.formComp.nombre}_tipoOperacionAduaneraDiv" />
+				<cell id="${arg.formComp.nombre}_codigoFleteDiv" />
+
+			</hbox>
+			<hbox>
+				<cell id="${arg.formComp.nombre}_indicaDocumentoParcialDusDiv" />
+				<cell id="${arg.formComp.nombre}_estadoDusDiv" />
+
+			</hbox>
+			<hbox>
+				<cell id="${arg.formComp.nombre}_numeroInternoDeDespachoDiv" />
+				<cell id="${arg.formComp.nombre}_regionOrigenDiv" />
+
+			</hbox>
+		</vbox>
+	</vlayout>
+</zk>

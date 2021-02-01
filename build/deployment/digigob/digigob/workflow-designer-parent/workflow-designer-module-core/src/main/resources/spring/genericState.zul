@@ -1,0 +1,15 @@
+<?page title="" contentType="text/html;charset=UTF-8"?>
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./genericStateWindow" ?>
+
+<?component name="viewDocument" class="com.egoveris.te.base.component.DocumentViewerComponent" macroURI="/common/componentes/documents/documentViewer.zul"?>
+
+<zk xmlns:x="xhtml" xmlns:zk="zk" xmlns:w="http://www.zkoss.org/2005/zk/client">
+<window border="normal" id="genericStateWindow" 
+		 visible="true">
+					
+	<div align="center" id="genericStateDiv">
+	</div>
+</window>
+</zk>

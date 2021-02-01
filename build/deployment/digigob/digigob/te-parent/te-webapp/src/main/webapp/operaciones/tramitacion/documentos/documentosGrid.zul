@@ -1,0 +1,86 @@
+<?page title="" contentType="text/html;charset=UTF-8"?>
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+
+<zk>
+	<div apply="org.zkoss.bind.BindComposer" 
+		 viewModel="@id('docsVM') @init('com.egoveris.te.base.vm.DocumentosGridVM')">
+		
+		<hbox if="${docsVM.sinPase}">
+			<checkbox label="${c:l('ee.docSinPases.label.mostrarUltimoPase')}" onClick="@command('onMostrarUltimoPase', checked=self.checked)" />
+		</hbox>
+		
+		<hbox if="${docsVM.conFiltro}">
+			<include src="/operaciones/tramitacion/documentos/filtroDocumentos.zul" />
+		</hbox>
+		
+		<listbox mold="paging" pageSize="5" model="@load(docsVM.listaDocumentosFiltrada)">
+			<listhead>
+				<listheader label="${c:l('ee.historialpases.listheader.orden.value')}" align="center" />
+				<listheader label="${c:l('ee.documentViewer.listhead.tipoDocumento')}" align="center" />
+				<listheader label="${c:l('ee.documentViewer.listhead.numDocumento')}" align="center" />
+				<listheader label="${c:l('ee.documentViewer.listhead.referencia')}" align="center" />
+				<listheader label="${c:l('ee.caratulas.listheader.documento.fechaAsociacion.value')} " align="center" />
+				<listheader label="${c:l('ee.documentViewer.listhead.fechaCreacion')} " align="center" />
+				<listheader label="${c:l('ee.documentViewer.listhead.accion')}" align="center" />
+			</listhead>
+			<template name="model" var="item">
+				<listitem>
+					<listcell label="${c:length(docsVM.listaDocumentosFiltrada) - itemStatus.index}" /><!-- Descendente (9, 8, 7...) -->
+					<listcell label="@load(docsVM.labelTipoDocumento(item))" /><!-- Logica personalizada -->
+					<listcell label="@load(docsVM.labelNumeroDocumento(item))" /><!-- Logica personalizada -->
+					<listcell label="${c:substring(item.motivo, 0, 27)}..." tooltiptext="${item.motivo}" if="${c:length(item.motivo) gt 30}" />
+					<listcell label="${item.motivo}" tooltiptext="${item.motivo}" if="${c:length(item.motivo) le 30}" />
+					<listcell label="@load(item.fechaAsociacion) @converter('formatedDate', format='dd/MM/yyyy HH:mm:ss')" />
+					<listcell label="@load(item.fechaCreacion) @converter('formatedDate', format='dd/MM/yyyy HH:mm:ss')" />
+					<listcell>
+						<hbox>
+							<toolbarbutton autodisable="self"
+								image="/imagenes/page_text.png" tooltiptext="${c:l('ee.docGrid.toolbar.visDoc')}" 
+								onClick="@command('onVisualizarDocumento', documento=item)"
+								disabled="@load(!docsVM.tienePermisoDocVistaDescarga(item))" />
+							<toolbarbutton autodisable="self"
+								image="/imagenes/download_documento.png" tooltiptext="${c:l('te.documentosGrid.descarga')}" 
+								onClick="@command('onDescargarDocumento', documento=item)"
+								disabled="@load(!docsVM.tienePermisoDocVistaDescarga(item))" />
+							<toolbarbutton autodisable="self"
+								image="/imagenes/edit-find.png" tooltiptext="${c:l('ee.docGrid.toolbar.masDatos')}" popup="masDatos_${item.numeroSade}" />
+							
+							<!-- Revisar bien que hace (DocumentosItemRenderer) -->
+							<!-- <toolbarbutton autodisable="self"
+								image="/imagenes/decline.png" tooltiptext="Desvincular documento" /> -->
+							
+							<popup id="masDatos_${item.numeroSade}">
+								<listbox width="400px">
+									<listhead>
+										<listheader label="${c:l('ee.consultaDocumentos.resultadosUsuarioGenerador')}" />
+										<listheader label="${c:l('ee.caratulas.listheader.documento.numeroEspecial.value')}" />
+										<listheader label="${c:l('ee.docGrid.listheader.usuSub')}" />
+									</listhead>
+									<listitem>
+										<listcell label="${item.nombreUsuarioGenerador}" />
+										<listcell label="${item.numeroEspecial}" />
+										<listcell label="${item.usuarioSubsanador}" />
+									</listitem>
+								</listbox>
+							</popup>
+						</hbox>
+					</listcell>
+				</listitem>
+			</template>
+			<listfoot>
+				<listfooter span="7" align="right">
+					<label value="${c:l('ee.tramitacion.listfooter.documentos.value')} " />
+					<label value="${c:length(docsVM.listaDocumentosFiltrada)}" />
+				</listfooter>
+			</listfoot>
+		</listbox>
+		<separator />
+		<vbox width="100%">
+			<button autodisable="self"
+				style="float: right;"
+				image="/imagenes/Descargar.png"
+				label="${arg.labelDescarga}"
+				onClick="@command('onDescargarTodos')" />
+		</vbox>
+	</div>
+</zk>

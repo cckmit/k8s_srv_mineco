@@ -1,0 +1,42 @@
+<?page title="" contentType="text/html;charset=UTF-8"?>
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./expedienteAsociadoWindow"?>
+<window title="" border="none" id="expedienteAsociadoWindow"
+	
+	apply="com.egoveris.te.base.composer.GenericExpedienteAsociadoComposer">
+	<zk>
+		<paging id="expedientesAsociadosPaginator" pageSize="10" />
+		<listbox id="expedienteAsociadoComponent" maxlength="20"
+			mold="paging" paginal="${expedientesAsociadosPaginator}"
+			pagingPosition="top"
+			selectedItem="@{expedienteAsociadoWindow$composer.selectedExpedienteAsociado}"
+			itemRenderer="com.egoveris.te.base.rendered.GenericListaExpedienteAsociadoItemRenderer">
+
+			<listhead>
+				<listheader label="${c:l('ee.expedienteAsociado.listheader.tDoc')}" width="50px" align="center" />
+				<listheader label="${c:l('ee.tramitacion.listheader.anio.value')}" width="50px" align="center" />
+				<listheader label="${c:l('ee.tramitacion.listheader.numero.value')}" width="100px" align="center" />
+				<listheader label="${c:l('ee.tramitacion.listheader.reparticion.value')}" width="180px"
+					align="center" />
+				<listheader label="${c:l('ee.expedienteAsociado.listheader.tramite')}"	align="center" />
+				<listheader label="${c:l('ee.expedienteAsociado.listheader.exp')}" width="50px" align="center" />
+				<listheader label="${c:l('ee.inbox.listheader.estado.value')}" width="150px" align="center" />
+			</listhead>
+			<listfoot
+					>
+					<listfooter />
+					<listfooter />
+					<listfooter />
+					<listfooter
+						id="totalExpedientesAsociados"
+						label="${c:l('ee.tramitacion.listfooter.expedientesAsociados.value')}"
+						span="2"  align="center"/>
+					<listfooter
+						label="@{expedienteAsociadoWindow$composer.listaExpedienteAsociado.size}"
+						span="1"  align="left" />
+					<listfooter />
+				</listfoot>
+		</listbox>
+	</zk>
+</window>

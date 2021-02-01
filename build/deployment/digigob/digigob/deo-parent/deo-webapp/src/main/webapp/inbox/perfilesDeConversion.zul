@@ -1,0 +1,59 @@
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+<?page title="${c:l('gedo.perfilesConversion.wintitle.detalleDocumento')}" contentType="text/html;charset=UTF-8"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./perfilConversionWindow" ?>
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+<zk>
+	<window id="perfilConversionWindow" title="${c:l('gedo.perfilesConversion.windows.title')}"
+		border="normal" width="600px" closable="true"
+		apply="com.egoveris.deo.web.satra.administracionTipos.PerfilesConversionComposer"
+		use="com.egoveris.deo.web.satra.AskBeforeCloseWindow">
+		
+		<groupbox>
+				<separator></separator>
+				<grid width="99%">
+					<columns>
+						<column width="50%"/>
+						<column width="50%"/>
+					</columns>
+					<rows >
+						<row>
+							<label value="${c:l('gedo.perfilesConversion.row.label.adobePdfSetting')}" />
+							<label value="${c:l('gedo.perfilesConversion.row.label.fileTypeSetting')}" />
+						</row>
+						<row>
+							<combobox id="adobePdfSettingCombobox" readonly="true"
+									  model="@{perfilConversionWindow$PerfilesConversionComposer.adobePfdSettings}"
+									  selectedItem="@{perfilConversionWindow$perfilesConversionComposer.selectedAdobePfdSettings}"
+									  />
+							<combobox id="fileTypeSettingCombobox" readonly="true"
+							 		  model="@{perfilConversionWindow$PerfilesConversionComposer.fileTypeSettings}"
+									  selectedItem="@{perfilConversionWindow$PerfilesConversionComposer.selectedFileTypeSettings}"
+									  />
+						</row>
+					</rows>
+				</grid>
+		</groupbox>
+		<separator></separator>
+		<separator></separator>
+		<grid align="center" style="border:0px">
+			<rows>
+				<row>
+					<toolbar mold="panel" orient="horizontal"
+						width="100%" align="center">
+						<toolbarbutton id="guardar"
+									   image="/imagenes/Guardar.png" 
+									   disabled="false"
+									   forward="onClick=onGuardar">
+						</toolbarbutton>
+						<toolbarbutton id="cancelar"
+								       image="/imagenes/Cancelar.png" 
+								       disabled="false" 
+								       forward="onClick=onCancelar">
+						</toolbarbutton>
+					</toolbar>
+				</row>
+			</rows>
+		</grid>
+	
+	</window>
+</zk>

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd 
+						http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.0.xsd">
+
+	<!-- Declare here the Spring beans shared by all the business modules of 
+		the application; namely, the beans that define the environment of the application 
+		(e.g.: the main data source of the application) -->
+
+	<!-- BEGIN IUsuarioAplicacionService -->
+	<bean name="usuarioMisTareasService"
+		class="com.egoveris.edt.base.service.impl.usuario.UsuarioAplicacionBaseServiceImpl">
+		<property name="usuariosRepository" ref="usuarioMisTareasRepository" />
+	</bean>
+
+	<bean name="usuarioMisSistemasService"
+		class="com.egoveris.edt.base.service.impl.usuario.UsuarioAplicacionBaseServiceImpl">
+		<property name="usuariosRepository" ref="usuarioMisSistemasRepository" />
+	</bean>
+
+	<bean name="usuarioMisSupervisadosService"
+		class="com.egoveris.edt.base.service.impl.usuario.UsuarioAplicacionBaseServiceImpl">
+		<property name="usuariosRepository" ref="usuarioMisSupervisadosRepository" />
+	</bean>
+
+	<bean name="usuarioBuzonGrupalService"
+		class="com.egoveris.edt.base.service.impl.usuario.UsuarioAplicacionBaseServiceImpl">
+		<property name="usuariosRepository" ref="usuarioBuzonGrupalRepository" />
+	</bean>
+	<!-- END IUsuarioAplicacionService -->
+
+	<bean id="ldapEntorno" class="java.lang.String">
+		<constructor-arg type="java.lang.String" value="${nombre.ecosistema}" />
+	</bean>
+	
+	<bean id="tyccontentBean" class="java.lang.String">
+		<constructor-arg>
+			<bean class="org.springframework.util.FileCopyUtils" factory-method="copyToByteArray">
+				<constructor-arg value="${cas.url}/terminosycondiciones.txt" type="java.io.InputStream" />
+			</bean>
+		</constructor-arg>
+		<constructor-arg value="UTF-8"/>
+	</bean>	
+
+	<!-- BEGIN TAREAS SERVICE -->
+	<bean name="tareaServiceFactory" class="com.egoveris.edt.base.service.impl.TareasServiceFactoryImpl">
+		<property name="mapTareasService" ref="mapTareasService"/>
+	</bean>	
+	
+	<util:map id="mapTareasService" map-class="java.util.HashMap" key-type="java.lang.String" value-type="com.egoveris.edt.base.service.ITareasService">
+		<entry key="DEO" value-ref="tareasGEDOService" />
+		<entry key="TE" value-ref="tareasEEService" />
+	</util:map>
+	
+	<bean name="tareasGEDOService"
+		class="com.egoveris.edt.base.service.impl.TareasServiceBaseImpl">
+		<!-- <property name="tareaRepository" ref="tareasGedoDAO" /> --><!-- Queda NULL -->
+		<property name="gruposAplicacionService" ref="gruposAplicacionNullService" />
+	</bean>
+
+	<bean name="tareasEEService"
+		class="com.egoveris.edt.base.service.impl.TareasServiceBaseImpl">
+		<!-- <property name="tareaRepository" ref="tareasEEDAO" /> --><!-- Queda NULL -->
+		<property name="gruposAplicacionService" ref="gruposAplicacionEEService" />
+	</bean>
+	
+	<!-- Beans para calcular los grupos de los usuarios en cada aplicación -->
+	<bean name="gruposAplicacionEEService" class="com.egoveris.edt.base.service.impl.grupos.GruposAplicacionServiceEEImpl" />
+	<bean name="gruposAplicacionNullService" class="com.egoveris.edt.base.service.impl.grupos.GruposAplicacionServiceNullImpl" />
+	<!-- END TAREAS SERVICE -->
+	
+	<!-- END -->
+</beans>

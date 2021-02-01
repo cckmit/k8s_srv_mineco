@@ -1,0 +1,67 @@
+<zk>
+	<vlayout
+		apply="com.egoveris.ffdd.render.zk.comp.cc.ProductAttributesComposer">
+
+		<grid>
+			<columns>
+				<column></column>
+				<column></column>
+				<column></column>
+				<column></column>
+			</columns>
+			<rows>
+				<row>
+					<hbox>Product Attribute ID:</hbox>
+					<cell id="${arg.formComp.nombre}_productAttributeIdDiv" />
+					<hbox>Product ID:</hbox>
+					<cell id="${arg.formComp.nombre}_productIdDiv" />
+				</row>
+				<row>
+					<hbox>Product Code:</hbox>
+					<cell id="${arg.formComp.nombre}_productCodeDiv" />
+					<hbox>Attribute Sequence:</hbox>
+					<cell id="${arg.formComp.nombre}_attributeSeqDiv" />
+				</row>
+				<row>
+					<hbox>Attribute Code Name:</hbox>
+					<cell id="${arg.formComp.nombre}_attributeCodeNameDiv" />
+					<hbox>Attribute Code Name (Spanish):</hbox>
+					<cell
+						id="${arg.formComp.nombre}_attributeCodeNameESPDiv" />
+				</row>
+				<row>
+					<hbox>Attribute Value:</hbox>
+					<cell id="${arg.formComp.nombre}_attributeValueDiv" />
+					<hbox>Attribute Data Type:</hbox>
+					<cell
+						id="${arg.formComp.nombre}_attributeDataTypeDiv" />
+				</row>
+				<row>
+					<hbox>Attribute Data Size:</hbox>
+					<cell id="${arg.formComp.nombre}_attributeDataSizeDiv" />
+					<hbox>Master Code Type:</hbox>
+					<cell
+						id="${arg.formComp.nombre}_masterCodeTypeDiv" />
+				</row>
+				<row>
+					<hbox>Is Fixed:</hbox>
+					<cell id="${arg.formComp.nombre}_isFixedDiv" />
+					<hbox>Is Mandatory:</hbox>
+					<cell id="${arg.formComp.nombre}_isMandatoryDiv" />
+				</row>
+				<row>
+					<hbox>Status:</hbox>
+					<cell id="${arg.formComp.nombre}_statusDiv" />
+					<hbox>Destinacion:</hbox>
+					<cell id="${arg.formComp.nombre}_destinacionEnumDiv" />
+				</row>
+				<row>
+					<hbox>Attribute Unique Code:</hbox>
+					<cell id="${arg.formComp.nombre}_attributeUniqueCodeDiv" />					
+				</row>
+				
+			</rows>
+		</grid>
+
+	</vlayout>
+</zk>

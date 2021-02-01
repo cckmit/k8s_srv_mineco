@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      #map {
+        height: 400px;
+        width: 100%;
+       }
+    </style>
+  </head>
+  <body>
+    <div id="map"></div>
+    <script>
+      function initMap() {
+        var uluru = {lat: getParameterByName('lat'), lng: getParameterByName('lon')};
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 4,
+          center: uluru
+        });
+        var marker = new google.maps.Marker({
+          position: uluru,
+          map: map
+        });
+      }
+      
+      function getParameterByName(name) {
+    	    url = window.location.href;
+    	    name = name.replace(/[\[\]]/g, "\\$&");
+    	    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+    	        results = regex.exec(url);
+    	    if (!results) return null;
+    	    if (!results[2]) return '';
+    	    return Number(decodeURIComponent(results[2].replace(/\+/g, " ")));
+    	}
+    </script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAGpA_Edwlju_K55waALTWwBLMarMb-Wgk&callback=initMap">
+    </script>
+  </body>
+</html>

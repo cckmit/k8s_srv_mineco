@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
+    http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+	<changeSet author="Carlos Bellotti" id="TAD_CON_PAGO">
+		<insert tableName="PROPERTY_CONFIGURATION">
+			<column name="CLAVE" value="identidad.externa"/>
+			<column name="VALOR" value="false"/>
+			<column name="CONFIGURACION" value="SISTEMA"/>
+		</insert>
+	</changeSet>  
+	
+	<changeSet author="Carlos Bellotti" id="TAD_RESOURCE_BASE_URL">
+		<insert tableName="PROPERTY_CONFIGURATION">
+			<column name="CLAVE" value="resource.base.url"/>
+			<column name="VALOR" value="https://docker-host.egoveris.com"/>
+			<column name="CONFIGURACION" value="SISTEMA"/>
+		</insert>
+	</changeSet> 
+</databaseChangeLog>

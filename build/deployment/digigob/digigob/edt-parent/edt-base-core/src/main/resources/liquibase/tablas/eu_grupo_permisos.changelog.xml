@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
+    http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+	<changeSet author="Gustavo Aguilera" id="INSERTA_NUEVOS_PERMISOS">  
+	    <comment>insert queries</comment>
+	    <sql dbms="h2, mysql" 
+	                splitStatements="true"
+	                stripComments="true">         
+			insert into eu_grupo_permisos values (47, 47, 'AC');
+			insert into eu_grupo_permisos values (48, 48, 'AC');
+			insert into eu_grupo_permisos values (49, 49, 'AC');
+			insert into eu_grupo_permisos values (50, 50, 'AC');
+			insert into eu_grupo_permisos values (51, 51, 'AC');
+	    </sql>    
+	</changeSet>  
+
+
+</databaseChangeLog>

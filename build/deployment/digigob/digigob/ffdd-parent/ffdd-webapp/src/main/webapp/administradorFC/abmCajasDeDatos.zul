@@ -1,0 +1,176 @@
+<?page title="" contentType="text/html;charset=UTF-8"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./windowCajas" ?>
+<zk>
+	<window id="windowCajas" title="${c:l('abmCajaDatos.windowTitulo')}"
+		border="normal" width="1260px" closable="true"
+		apply="com.egoveris.ffdd.web.adm.ABMCajaDeDatosComposer">
+		<!-- height="530px"  -->
+
+		<window id="hiddenView" visible="false" />
+		
+		<hbox>
+				<vbox align="center">
+					<space height="15px"></space>
+					<button id="nuevo" forward="onClick=onNuevo"
+						label="${c:l('abmCajaDatos.btnNuevaCaja')}" width="125px" />
+					<button id="verExistentes" forward="onClick=onVerExistentes"
+						label="${c:l('abmCombobox.multivalores.existe')}" width="125px" />
+					<button id="modificar" label="${c:l('abmCombobox.modificar')}"
+						width="125px" visible="false" forward="onClick=onModificar" />
+						<button id="eliminar" label="${c:l('fc.form.item.eliminar')}"
+						width="125px" visible="false" forward="onClick=onEliminar"/>
+					<button id="previsualizar" forward="onClick=onPrevisualizar"
+						label="${c:l('abmCombobox.prev')}" width="125px"/>
+					<button id="guardar" label="${c:l('abmCombobox.guardar')}"
+						width="125px" forward="onClick=onGuardar"/>
+					<button id="cancelar" label="${c:l('fc.export.cancelar')}"
+						width="125px" forward="onClick=onCancelar"/>
+				</vbox>
+			<separator bar="true" orient="vertical" height="100%"/>
+			<vbox width="400px">
+				<label id="labelTipoComponente"
+					value="${c:l('abmCajaDatos.rowABMFC.cajas')}" />
+<!-- 				<separator spacing="5px"></separator> -->
+				<combobox id="comboboxTipoComponentes" width="98%"
+					readonly="true" 
+					model="@{windowCajas$ABMCajaDeDatosComposer.listaTipoComponente}" autodrop="false"
+					visible="true">
+				</combobox>
+
+				<textbox id="buscarComponente" width="98%" />
+
+				<listbox id="listboxComponentes" height="275px"
+					model="@{windowCajas$ABMCajaDeDatosComposer.listaComponente}"
+					style="padding:2px;overflow:auto" width="97%"
+					selectedItem="@{windowCajas$ABMCajaDeDatosComposer.selectedComponente}">
+					<listitem self="@{each=componente}" id="itemComponente"
+						value="@{componente}" draggable="true"
+						droppable="false"
+						label="@{componente.nombre}" />
+				</listbox>
+
+				<grid width="98%" style="">
+					<columns>
+						<column visible="true" width="20%" />
+						<column visible="true" width="80%" />
+					</columns>
+					<rows>
+						<row>
+							<label value="${c:l('abmFC.comp.nomb')}"
+								style="font-weight:bold" />
+							<hlayout width="100%">
+								<label
+									value="@{windowCajas$ABMCajaDeDatosComposer.selectedComponente.nombre}" />
+							</hlayout>
+						</row>
+						<row>
+							<label value="${c:l('abmFC.comp.tipo')}"
+								style="font-weight:bold" />
+							<hlayout width="100%">
+								<label
+									value="@{windowCajas$ABMCajaDeDatosComposer.selectedComponente.tipoComponente}" />
+							</hlayout>
+						</row>
+						<row>
+							<label value="${c:l('abmCombobox.row.descrip')}"
+								style="font-weight:bold" />
+							<hlayout width="100%">
+								<textbox rows="5"
+									value="@{windowCajas$ABMCajaDeDatosComposer.selectedComponente.descripcion}"
+									readonly="true" width="370px" />
+							</hlayout>
+						</row>
+					</rows>
+				</grid>
+			</vbox>
+			<div width="390px">
+				<vbox>
+					<separator spacing="15px"></separator>
+					<grid width="390px">
+						<columns>
+							<column visible="true" width="20%" />
+							<column visible="true" width="80%" />
+						</columns>
+						<rows>
+							<row>
+								<label value="${c:l('abmCajaDatos.nombreCaja')}"></label>
+								<hlayout>
+									<textbox id="nombreCaja"
+										width="290px" maxlength="255" focus="true" />
+								</hlayout>
+							</row>
+							<row>
+								<label value="${c:l('abmCombobox.row.descrip')}"></label>
+								<hlayout>
+									<textbox id="descripcionCaja"
+										width="287px" rows="3" maxlength="255" />
+								</hlayout>
+							</row>
+						</rows>
+					</grid>
+					<label value="${c:l('abmFC.instComp')}" />
+					<listbox id="listboxComponentesInstancia"
+						width="385px" mold="paging" pageSize="1000"
+						model="@{windowCajas$ABMCajaDeDatosComposer.listaGrupoComponente}"
+						forward="onDrop=onDropItem" height="300px" style="padding:2px;"
+						droppable="true" oddRowSclass="non-odd">
+						<listhead>
+							<listheader
+								label="${c:l('abmFC.instComp.comp')}" width="40%" />
+							<listheader
+								label="${c:l('abmFC.instComp.nomb')}" width="30%" />
+							<listheader
+								label="${c:l('abmFC.instComp.eti')}" width="30%" />
+						</listhead>
+						<listitem self="@{each=componenteForm}"
+							value="@{componenteForm}" id="componenteCaja"
+							draggable="true"
+							droppable="true"
+							forward="onDrop=onDropItem">
+							<listcell
+								label="@{componenteForm.componente.nombre}" />
+							<listcell>
+								<textbox  id="nombreComponente"
+									value="@{componenteForm.nombre}" width="98%" maxlength="20">
+								</textbox>
+							</listcell>
+							<listcell>
+								<textbox id="etiquetaComponente"
+									value="@{componenteForm.etiqueta}" width="98%">
+								</textbox>
+							</listcell>
+						</listitem>
+					</listbox>
+					<div align="center">
+						<button id="papelera"
+							label="${c:l('abmCombobox.label.arrastBorrar')}"
+							disabled="${arg.modo == 'modoConsultaFC'}"
+							droppable="${arg.modo != 'modoConsultaFC'}" width="98%"
+							image="/imagenes/papelera.png" forward="onDrop=onDropItem" />
+					</div>
+				</vbox>
+			</div>
+			<separator bar="true" orient="vertical" height="100%"/>
+			<div>
+
+			<textbox id="busquedaCajaExistente" width="285px" disabled="true"></textbox>
+			<separator spacing="5px"></separator>
+			<listbox id="listboxCajasExistenSugerencias"
+				model="@{windowCajas$ABMCajaDeDatosComposer.listaGrupos}"
+				style="padding:2px;overflow:auto" mold="paging" pageSize="28"
+				height="460px">
+				<listhead>
+					<listheader label="" id="tituloExistenSugerencias" />
+				</listhead>
+				<listitem draggable="true"
+					self="@{each=grupo}" value="@{grupo}"
+					label="@{grupo.nombre}"
+					style="white-space: nowrap;width:95%;text-overflow: ellipsis;">
+					<listcell tooltiptext="@{grupo.nombre}">
+					</listcell>
+				</listitem>
+			</listbox>
+			</div>
+		</hbox>
+	</window>
+</zk>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<complexComponent type="TRADE" name="vistaproductda"
+	description="vista producto" zul="vistaProductDA.zul"
+	mappingDTO="com.egoveris.ccomplejos.base.model.VistaProductDADTO">
+
+	<field name="codigoProducto" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" disabled="true" /> 
+		
+	<field name="atributos" width="90%" height="20px" repetidor="true"
+		class="com.egoveris.ffdd.render.zk.comp.ext.SeparatorComplex" xmlFile="vistaproductattributeda.xml"
+		disabled="true" />
+
+</complexComponent>

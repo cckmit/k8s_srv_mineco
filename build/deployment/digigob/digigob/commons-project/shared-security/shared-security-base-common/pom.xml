@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>com.egoveris</groupId>
+		<artifactId>shared-security</artifactId>
+		<version>2.0.3-SNAPSHOT</version>
+	</parent>
+
+	<artifactId>shared-security-base-common</artifactId>
+	<name>shared-security base common project</name>
+
+	<dependencies>
+
+		<!-- == Begin TSF+ framework == -->
+		<dependency>
+			<groupId>org.terasoluna.plus.framework</groupId>
+			<artifactId>terasoluna-plus-common</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<!-- == End TSF+ framework == -->
+
+		<dependency>
+			<groupId>net.sf.dozer</groupId>
+			<artifactId>dozer</artifactId>
+		</dependency>
+
+		<dependency>
+			<!-- (for UserDetails class) -->
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-core</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-ldap</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.solr</groupId>
+			<artifactId>solr-solrj</artifactId>
+		</dependency>
+
+	</dependencies>
+
+</project>

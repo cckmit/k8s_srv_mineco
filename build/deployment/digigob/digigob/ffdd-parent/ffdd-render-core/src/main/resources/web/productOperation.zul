@@ -1,0 +1,71 @@
+<zk>
+	<vlayout
+		apply="com.egoveris.ffdd.render.zk.comp.cc.ProductOperationComposer">
+		<grid>
+			<columns>
+				<column></column>
+			</columns>
+			<rows>
+				<row>
+					<vbox>
+						<hbox>
+							<cell
+								id="${arg.formComp.nombre}_productoOperacionIdDiv" />
+							<cell
+								id="${arg.formComp.nombre}_productVersionDiv" />
+							<cell
+								id="${arg.formComp.nombre}_commonNameDiv" />
+						</hbox>
+						<hbox>
+
+							<cell
+								id="${arg.formComp.nombre}_arancelarioProdDiv" />
+							<cell
+								id="${arg.formComp.nombre}_codigoCochilcoDiv" />
+							<cell
+								id="${arg.formComp.nombre}_caracteristicaEspecialDiv" />
+						</hbox>
+						<hbox>
+							<cell
+								id="${arg.formComp.nombre}_productIdDiv" />
+							<cell
+								id="${arg.formComp.nombre}_descripcionProdDiv" />
+							<cell
+								id="${arg.formComp.nombre}_descripcionAdicDiv" />
+						</hbox>
+						<hbox>
+
+							<cell
+								id="${arg.formComp.nombre}_cuotaContractualDiv" />
+							<cell
+								id="${arg.formComp.nombre}_usoPrevistoDiv" />
+							<cell
+								id="${arg.formComp.nombre}_ssppEnumDiv" />
+						</hbox>
+						<hbox>
+							<cell
+								id="${arg.formComp.nombre}_paisOrigenDiv" />
+							<cell
+								id="${arg.formComp.nombre}_prodCodeSSPPDiv" />
+							<cell
+								id="${arg.formComp.nombre}_arancelarioCodDiv" />
+						</hbox>
+						<hbox>
+							<cell
+								id="${arg.formComp.nombre}_productCodeDiv" />
+						</hbox>
+
+						<hbox>
+							<cell
+								id="${arg.formComp.nombre}_listComponenteCochilcoDiv" />
+						</hbox>
+						<hbox>
+							<cell
+								id="${arg.formComp.nombre}_listProductAttributesDiv" />
+						</hbox>
+					</vbox>
+				</row>
+			</rows>
+		</grid>
+	</vlayout>
+</zk>

@@ -1,0 +1,20 @@
+<?page title="new page title" contentType="text/html;charset=UTF-8"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./previsualizarWindow" ?>
+<zk>
+	<!-- Si cambia el alto aqui, revisar en ppVisualizarGedo.zul, visualizacionDocumento.zul y previsualizar.zul -->
+	<window id="previsualizarWindow"
+		apply="com.egoveris.cdeo.web.visualizarDocumento.PrevisualizarComposer"
+		width="100%" border="none" position="center">
+		
+		<grid width="100%" height="100%" style="overflow: hidden;">
+			<rows>
+				<row align="center">
+					<label id="textoLeyenda" style="font-weight: bold;" />
+				</row>
+				<row id="rowImagePreviewer">
+					<iframe id="imagePreviewer" width="100%" height="460px"  style="overflow: hidden;" />
+				</row>
+			</rows>
+		</grid>
+	</window>
+</zk>

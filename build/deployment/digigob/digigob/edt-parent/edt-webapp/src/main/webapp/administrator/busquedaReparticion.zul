@@ -1,0 +1,81 @@
+<?page title="${c:l('digigob.Title')}" contentType="text/html;charset=UTF-8"?>
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+<?init class="org.zkoss.zk.ui.util.Composition" arg0="~./db_template.zul"?>
+<!--
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./win_busquedaReparticion" ?>
+-->
+<zk>
+	<window border="none" id="win_busquedaReparticion"
+		apply="com.egoveris.edt.web.admin.pl.GestionReparticionComposer"
+		width="100%" self="@{define(egovBody)}">
+		
+		<div sclass="page-header">
+			<label value="${c:l('eu.busquedaReparticion.label.administracionReparticiones')}" />
+		</div>
+		
+		<borderlayout width="100%" height="650px">
+			<center border="none">
+				<borderlayout width="100%" height="5%">
+					<west width="100%" border="none"
+						style="">
+						<vbox width="50%" align="center">
+							<hbox width="100%" align="center">
+								<toolbarbutton
+									id="tbbtn_altaReparticion"
+									label="${c:l('eu.adminSade.altaReparticion')}"
+									style="margin-right:20px;" image="/imagenes/newUser.png" />
+								<label
+									value="${c:l('eu.consulta.sindicatura.row.label.reparticion')}" />
+								<textbox id="txbx_reparticionBuscada"
+									width="300px" height="25px" />
+								<button id="btn_buscar"
+									label="${c:l('eu.adminSade.buscar')}" width="120px"
+									height="30px" image="/imagenes/find.png"
+									hoverImage="/imagenes/find.png" />
+							</hbox>
+						</vbox>
+					</west>
+				</borderlayout>
+			</center>
+
+			<south border="none" height="95%"
+				style="" autoscroll="true">
+				<listbox id="lstbx_reparticiones" fixedLayout="true"
+					style=""
+					model="@{win_busquedaReparticion$composer.listaResultadoReparticiones}"
+					mold="paging" pageSize="10" pagingPosition="top"
+					itemRenderer="com.egoveris.edt.web.admin.pl.renderers.ListadoReparticionItemRenderer"
+					selectedItem="@{win_busquedaReparticion$composer.selectedReparticion}">
+
+					<listhead sizable="false"
+						style="background: #C4ECFF;">
+						<listheader align="center" label="${c:l('eu.busquedaReparticion.listheader.label.codRep')}"
+							style="" />
+						<listheader align="center" label="${c:l('eu.adminSade.seleccionReparticion.descripcionReparticion')}"
+							style="" />
+						<listheader align="center" label="${c:l('eu.busquedaReparticion.listheader.label.estructura')}"
+							style="" />
+						<listheader align="center" label="${c:l('eu.admActuacion.listhead.label.vigenteDesde')}"
+							style="" />
+						<listheader align="center" label="${c:l('eu.admActuacion.listhead.label.vigenteHasta')}"
+							style="" />
+						<listheader align="center" label="${c:l('eu.configuracionNovedades.crearNovedad.estado')}"
+							style="" />
+						<listheader align="center" label="${c:l('eu.admCargos.hbox.label.acciones')}"
+							style="" />
+					</listhead>
+					<listfoot>
+						<listfooter />
+						<listfooter />
+						<listfooter label="${c:l('eu.historialCargos.listfooter.resultado')} "
+							style="color:#C4ECFF;float:right;" />
+						<listfooter
+							label="@{win_busquedaReparticion$composer.resultados}"
+							style="color:#C4ECFF;" />
+					</listfoot>
+				</listbox>
+			</south>
+		</borderlayout>
+	</window>
+</zk>

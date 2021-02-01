@@ -1,0 +1,73 @@
+<?page title="${c:l('digigob.Title')}" contentType="text/html;charset=UTF-8"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./exportarFCWindow" ?>
+<zk>
+	<window title="${c:l('fc.export.title')}" id="exportarFCWindow"
+		border="normal" width="750px"
+		apply="com.egoveris.ffdd.web.adm.AdministradorExportFCComposer">
+		<!-- height="462px"  -->
+
+		<grid>
+			<columns>
+				<column label="" />
+				<column label="" />
+			</columns>
+			<rows>
+				<row>
+					<cell>
+					    <textbox id="buscarFormulario" width="355px"></textbox>
+						<listbox id="listboxFormulariosExistentes"
+							height="352px" style="padding:2px;" mold="paging" pageSize="19"
+							model="@{exportarFCWindow$AdministradorExportFCComposer.listaFormularios}"
+							forward="onDrop=onDropItem">
+							<listhead>
+								<listheader
+									label="${c:l('fc.export.listaExistentes')}" />
+							</listhead>
+							<listitem self="@{each=formulario}"
+								value="@{formulario}" draggable="true"
+								label="@{formulario.nombre}"
+								style="white-space: nowrap;width:95%;text-overflow: ellipsis;">
+								<listcell
+									tooltiptext="@{formulario.nombre}" />
+							</listitem>
+						</listbox>
+					</cell>
+					<cell>
+						<listbox id="listboxFormulariosExportar"
+							height="335px" mold="paging" pageSize="18" droppable="true"
+							forward="onDrop=onDropItem"
+							model="@{administradorExportFC$AdministradorExportFCComposer.listaFormulariosExportar}">
+							<listhead>
+								<listheader id="listTitleExportFC"
+									label="${c:l('fc.export.listaExportar')}" />
+							</listhead>
+							<listitem draggable="true" droppable="true"
+								self="@{each=formulario}" value="@{formulario}"
+								label="@{formulario.nombre}" forward="onDrop=onDropItem"
+								style="white-space: nowrap;width:95%;text-overflow: ellipsis;">
+								<listcell
+									tooltiptext="@{formulario.nombre}" />
+							</listitem>
+						</listbox>
+						<button label="${c:l('fc.export.papelera')}"
+							forward="onDrop=onDropItem" width="360px"
+							image="/imagenes/papelera.png" droppable="true">
+						</button>
+					</cell>
+				</row>
+				<row height="40px">
+					<cell colspan="2" align="right">
+						<button label="${c:l('fc.export')}"
+							width="120px" forward="onClick=onExport">
+						</button>
+						<space width="20px"></space>
+						<button label="${c:l('fc.export.cancelar')}"
+							width="120px" forward="onClick=onCancel">
+						</button>
+						<space width="45px"></space>
+					</cell>
+				</row>
+			</rows>
+		</grid>
+	</window>
+</zk>

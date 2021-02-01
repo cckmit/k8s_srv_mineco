@@ -1,0 +1,91 @@
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+<?page title="${c:l('gedo.abmTipoDocTemplate.winTitle.producirTemplate')}" contentType="text/html;charset=UTF-8"?>
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./abmTipoDocumentoTemplateWindow" ?>
+<zk>
+
+	<window id="abmTipoDocumentoTemplateWindow" width="90%" height="650px" border="normal"
+		mode="embedded" apply="com.egoveris.deo.web.satra.produccion.ABMTipoDocumentoTemplateComposer" 
+		position="center" closable="false"
+		title="${c:l('gedo.nuevoDocumento.titulo.ckeditor.produccion.template')}">
+		
+		<style>
+	        .labelArmarTemplateStyle {
+	            color: red;
+	            font-style: oblique;
+	            font-size: 25;
+	        }
+        </style>
+		<div align="center">
+			<hbox>
+				<toolbar mold="panel" orient="horizontal">
+					<label id="descripcion" value="${c:l('gedo.historial.documento.ver.formDescripcion.title')}" />
+					<textbox id="descripcionTemplate" width="750px"
+						height="15px" maxlength="1024" />  
+					<toolbarbutton id="previsualizar" height="42px"
+					label="${c:l('gedo.revisarDocumento.previsualizar')}"
+					iconSclass="z-icon-share-square" style="padding:7px 10px;" zclass="z-button"
+					forward="onClick=onPrevisualizar" /> 
+					
+				</toolbar>
+			
+			</hbox>
+		</div>
+		<toolbar mold="panel" orient="horizontal" width="100%" align="center">
+			<vbox>
+				<label id="labelArmarTemplate" sclass="labelArmarTemplateStyle" />
+			</vbox>	
+		</toolbar>
+
+		<hbox width="100%" height="470px" >
+			<vbox width="440px" height="430px">
+				<label id="tituloCKEditor" value="${c:l('gedo.nuevoDocumento.titulo.ckeditor.produccion.template')}"
+					tooltiptext="${c:l('gedo.nuevoDocumento.tooltiptext.ckeditor.produccion.template')}"/> 
+				<combobox id="comboboxFormulariosControlados" width="95%"
+					model="@{abmTipoDocumentoTemplateWindow$ABMTipoDocumentoTemplateComposer.listaFormulariosControlados}"
+					selectedItem="@{abmTipoDocumentoTemplateWindow$ABMTipoDocumentoTemplateComposer.selectedFormularioControlado}"
+					autodrop="true" visible="true" forward="onSelect=onSeleccionarComboboxFormulariosControlados">
+					<comboitem self="@{each=formularioControlado}"
+						value="@{formularioControlado}" label="@{formularioControlado.getNombre}"
+						tooltiptext="@{formularioControlado.getDescripcion}" />
+				</combobox>
+				<div align="center" width="97%" height="330px" style="overflow:auto">
+					<listbox id="camposFormularioControladoListBox" />
+				</div>
+				<div align="center">
+				<hbox align="center">
+					<toolbar mold="panel" orient="horizontal"
+						width="100%" align="center">
+						<button id="copiarTodos" height="42px" class="btn-secondary"
+							forward="onClick=onCopiarTodos"
+							iconSclass="z-icon-paste" 
+							label="${c:l('gedo.abmTipoDocTemplate.copiarCampos')}">
+						</button> 
+					</toolbar>
+				</hbox>
+			</div>
+			</vbox>
+			<vbox width="62%">
+				<ckeditor customConfigurationsPath="/js/ckeditor.js" id="ckeditor" width="775px" height="350px"/>
+			</vbox>
+		</hbox>
+
+		<div align="center">
+					<hbox>
+					<button id="guardar" class="btn-secondary"
+						iconSclass="z-icon-save" label="${c:l('gedo.detalleDocumentos.botonGuardar')}" height="42px"
+						left="10px" forward="onClick=onGuardar" />
+					</hbox>
+				
+		</div>
+		<script type="text/javascript">
+			function copyToCk(clipText) {
+				// No podemos pasar los UUID por parametro porque no mapean de la misma forma en el composer y en el .ZUL.
+				// Ejemplo= Composer: UUID = 'xSJQ3' / ZUL: UUID = 'xSJQ_' (No sabemos porque reemplaza el '3' por un '_').
+				
+				// CKEDITOR.instances[instanceCK].insertText(clipText);
+				CKEDITOR.instances[Object.keys(CKEDITOR.instances)[0]].insertHtml(clipText);			
+			}		
+		</script>
+	</window>
+</zk>

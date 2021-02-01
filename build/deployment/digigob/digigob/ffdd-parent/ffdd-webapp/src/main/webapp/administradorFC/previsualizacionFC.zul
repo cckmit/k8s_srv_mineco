@@ -1,0 +1,30 @@
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+<?page title="Previsualizacion FC" contentType="text/html;charset=UTF-8"?>
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./previsualizacionFC" ?>
+<zk>
+<window id="previsualizacionFC" title="${c:l('prev.title')}" position="center"
+	closable="false" sizable="false" style="padding:2px" border="normal"
+	mode="overlapped" apply="com.egoveris.ffdd.web.adm.PrevisualizacionFCComposer"
+	width="800px" >
+	<style>.z-vlayout-inner, .z-grid, .z-grid-body{height:auto !important;}</style>
+			
+	<div id="fcWindowDiv" align="center" visible="false" 
+		width="800px" style="overflow:auto;">
+		<hbox id="fcWindowHbox" align="center" width="90%" />
+	</div>
+
+	<grid width="100%" style="">
+		<rows>
+			<row>
+			<button id="pruebaGuardar" label="${c:l('prev.pruebaGuardar')}" disabled="false" 
+					forward="onClick=onPruebaGuardar" width="100%" height="32px"/>
+				<button id="volver" label="${c:l('prev.volver')}" disabled="false" 
+					forward="onClick=onClose" width="100%"
+					image="/imagenes/Cancelar_mini.png"/>
+			</row>
+		</rows>
+	</grid>
+
+</window>
+</zk>

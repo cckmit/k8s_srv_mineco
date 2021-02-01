@@ -1,0 +1,51 @@
+<?page title="new page title" contentType="text/html;charset=UTF-8"?>
+<zk>
+	<vlayout
+		apply="com.egoveris.ffdd.render.zk.comp.cc.InstalacionComposer">
+		<grid>
+			<columns>
+				<column></column>
+			</columns>
+			<rows>
+				<row>
+					<vbox>
+						<hbox>
+							<cell
+								id="${arg.formComp.nombre}_oigPropietariaDiv" />
+							<cell
+								id="${arg.formComp.nombre}_nombreInstalacionDiv" />
+						</hbox>
+						<hbox>
+							<cell
+								id="${arg.formComp.nombre}_numeroResolucionAutDiv" />
+
+							<cell
+								id="${arg.formComp.nombre}_fechaEmisionResolucionDiv" />
+							<cell
+								id="${arg.formComp.nombre}_entidadEmisoraDiv" />
+						</hbox>
+						<hbox>
+							<cell
+								id="${arg.formComp.nombre}_tipoInstalacionDestinoDiv" />
+
+							<cell
+								id="${arg.formComp.nombre}_codigoInstalacionDestinoDiv" />
+						</hbox>
+						<hbox>
+							<cell
+								id="${arg.formComp.nombre}_telefonoInstalacionDestinoDiv" />
+							<cell
+								id="${arg.formComp.nombre}_contactoInstalacionDestinoDiv" />
+							<cell
+								id="${arg.formComp.nombre}_razonSocialDiv" />
+						</hbox>
+						<cell
+							id="${arg.formComp.nombre}_direccionInstalacionDiv" />
+						<cell
+							id="${arg.formComp.nombre}_directorTecnicoDiv" />
+					</vbox>
+				</row>
+			</rows>
+		</grid>
+	</vlayout>
+</zk>

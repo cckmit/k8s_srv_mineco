@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<complexComponent type="TRADE" name="Lote"
+	description="Lote Information" zul="lote.zul"
+	composer="com.everis.tramelec.dynform.comp.ext.LoteComposer"
+	mappingDTO="com.egoveris.ccomplejos.base.model.LoteDTO">
+	
+	<field name="numeroLote" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.IntboxExt" />
+	<field name="valorLote" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" />
+	
+</complexComponent>

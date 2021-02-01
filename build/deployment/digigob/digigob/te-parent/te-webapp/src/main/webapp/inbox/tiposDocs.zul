@@ -1,0 +1,57 @@
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./tiposDocumentosWindow" ?>
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+<?page title="Tipos Documentos" contentType="text/html;charset=UTF-8"?>
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+<zk>
+	<window id="tiposDocumentosWindow" title="${c:l('te.webapp.expediente.tiposdocs.title')}"
+		border="normal" width="500px" closable="true"
+		apply="com.egoveris.te.base.composer.TiposDocumentosComposer">
+		<paging id="tiposDocumentosPaginator" pageSize="10"
+			detailed="true" />
+		<listbox id="tiposDocumentos" fixedLayout="true"
+			itemRenderer="com.egoveris.te.base.rendered.TipoDocsGedoItemRenderer"
+			model="@{tiposDocumentosWindow$composer.tiposDocumentosPorTrata}"
+			mold="paging" paginal="${tiposDocumentosPaginator}">
+			<listhead sizable="false" 
+				width="100%">
+				<listheader label="${c:l('te.webapp.expediente.tiposdocs.lbl.nombretipodocumento')}"
+					width="40%" />
+				<listheader label="${c:l('te.webapp.expediente.tiposdocs.lbl.acronimo')}" align="center" width="20%" />
+				<listheader label="${c:l('te.webapp.expediente.tiposdocs.lbl.actuacion')}" align="center"
+					width="25%" />
+				<listheader label="${c:l('te.webapp.expediente.tiposdocs.lbl.habilitado')}" align="center"
+					width="15%" />
+			</listhead>
+			<listfoot>
+				<listfooter />
+				<listfooter id="Total"
+					label="${c:l('te.webapp.expediente.tiposdocs.lbl.totaltiposdochabilitados')}" span="2"
+					 />
+				<listfooter id="conteoDocumentos"
+					label="@{tiposDocumentosWindow$composer.cantidadTTDSeleccionadas}"
+					span="1"  />
+			</listfoot>
+		</listbox>
+
+		<separator></separator>
+		<grid align="center" style="border:0px">
+			<rows>
+				<row>
+					<toolbar mold="panel" orient="horizontal"
+						width="100%" align="center">
+						<button autodisable="self" id="guardar"
+							iconSclass="z-icon-floppy-o"
+							label="${c:l('te.webapp.expediente.tiposdocs.lbl.guardar')}"
+							style="padding:7px 10px;" zclass="z-button" disabled="false" />
+						<button autodisable="self" id="cancelar"
+							iconSclass="z-icon-times"
+							label="${c:l('te.webapp.expediente.tiposdocs.lbl.cancelar')}"
+							style="padding:7px 10px;" zclass="z-button" disabled="false" />
+					</toolbar>
+				</row>
+			</rows>
+		</grid>
+
+
+	</window>
+</zk>

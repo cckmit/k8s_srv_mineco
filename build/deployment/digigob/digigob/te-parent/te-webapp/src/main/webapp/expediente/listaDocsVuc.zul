@@ -1,0 +1,42 @@
+<?page title="Subsanar" contentType="text/html;charset=UTF-8"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./documentosVucWindow" ?>
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+<zk>
+	<window id="documentosVucWindow" title="${c:l('ee.tramitacion.tab.documentos.value')}" width="55%"
+		border="normal" apply="org.zkoss.bind.BindComposer"
+		viewModel="@id('vm') @init('com.egoveris.te.base.vm.ListaDocsVucVM')">
+		<label value="${c:l('ee.listaDocsVuc.subidos')}" />
+		<listbox id="documentosUsuarioVuc" mold="paging" pageSize="5"
+			model="@load(vm.vucDocList)"
+			selectedItems="@load(vm.selectedVucDocs)" multiple="true"
+			emptyMessage="-" checkmark="true" style="text-align: center;">
+			<listhead>
+				<listheader label="${c:l('ee.caratulas.listheader.archivo.nombre.value')}" />
+				<listheader label="${c:l('ee.nuevoDocumento.acronimo')}"
+					style="text-align: center;" />
+				<listheader label="${c:l('ee.nuevoDocumento.descripcion')}"
+					style="text-align: center;" />
+				<listheader label="${c:l('ee.act.label.fecha.value')}"
+					style="text-align: center;" />
+			</listhead>
+			<template name="model" var="doc">
+				<listitem>
+					<listcell label="${doc.nombreOriginal}"
+						style="text-align: left;" />
+					<listcell label="${doc.tipoDocumento.acronimoGedo}" />
+					<listcell label="${doc.tipoDocumento.descripcion}" />
+					<listcell label="${doc.formattedDate}" />
+				</listitem>
+			</template>
+		</listbox>
+		<separator />
+
+		<div align="center">
+			<button id="btnGuardar" autodisable="self" label="${c:l('ee.subsanacion.button.guardar')}"
+				image="/imagenes/saveFile.png" width="100px" height="30px" />
+			<button autodisable="self" label="${c:l('ee.header.label.salir.value')}"
+				onClick="@command('onSalir')" image="/imagenes/eliminar.png"
+				width="100px" height="30px" />
+		</div>
+	</window>
+</zk>

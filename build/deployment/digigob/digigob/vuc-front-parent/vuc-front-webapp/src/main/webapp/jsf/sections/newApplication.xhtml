@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+	<h:head>
+		<link rel="icon" type="image/png" href="#" />
+		<link rel="stylesheet" href="#" media="all" />
+		<h:outputStylesheet library="application" name="vuc.css" />
+		<h:outputStylesheet library="webjars"
+			name="font-awesome/4.7.0/css/font-awesome-jsf.css" />
+		<h:outputStylesheet library="webjars"
+			name="bootstrap/3.3.7-1/css/bootstrap-jsf.css" />
+		<h:outputScript library="webjars"
+			name="bootstrap/3.3.7-1/js/bootstrap.min.js" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+	</h:head>
+	<h:body>
+	<ui:composition template="/WEB-INF/faces/layout/mainLayout.xhtml">
+		<ui:define name="body">
+			<h:form id="newApplicationForm">
+				<div class="ui-g">
+					<div class="col-md-12">
+						<h2>#{msg.newAppTitulo}</h2>
+					</div>
+				</div>
+				<div class="ui-g">
+					<div class="col-md-12">
+						<p:accordionPanel multiple="true"
+							value="#{newApplicationMb.grupoList}" var="grupo">
+							<p:tab title="#{grupo.nombre}">
+								<p:dataList var="tipoTramite" value="#{grupo.tipoTramiteList}" styleClass="listBase"
+									emptyMessage="#{msg.sectionNoHayTramitesCargados}">
+									<p:link href="#{newApplicationMb.step1Url}#{tipoTramite.id}">
+									#{tipoTramite.nombre}
+								</p:link>
+								<div style="display: #{(tipoTramite.pago)?'inline-block':'none'}" 
+								class="pago">
+									$
+								</div>
+								
+								
+																							
+								</p:dataList>
+							</p:tab>
+						</p:accordionPanel>
+					</div>
+				</div>
+			</h:form>
+	
+		</ui:define>
+	</ui:composition>
+	</h:body>
+</html>

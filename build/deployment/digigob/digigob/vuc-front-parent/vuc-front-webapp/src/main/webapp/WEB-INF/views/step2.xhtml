@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<!--
+	The Spring Web Flow example uses the views "step1" and "step2" (see /WEB-INF/flows/dummy-flow.xml),
+	and expects them to be resolved to /WEB-INF/jsp/*.jsp by the default view resolver.
+	
+	If the JSF module is present, the default view resolver is replaced by JSF view resolver,
+	so it is necessary to define how to resolve that views (i.e.: both step1.xhtml and step2.xhtml files).
+	
+	If the Spring Web Flow module is not present, this page is not used in the example.
+ -->
+
+<ui:composition template="/WEB-INF/faces/template.xhtml">
+
+	<ui:define name="section">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h3 class="panel-title">Spring Web Flow with Facelets (JSF) example: step #2</h3>
+			</div>
+			
+			<div class="panel-body">
+				<h3>${resultValue}</h3>
+				<p:link value="Start again" outcome="/app/dummy-flow" />
+			</div>
+		</div>
+	</ui:define>
+
+</ui:composition>
+</html>

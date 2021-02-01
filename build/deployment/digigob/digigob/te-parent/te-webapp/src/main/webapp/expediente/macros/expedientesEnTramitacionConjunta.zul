@@ -1,0 +1,172 @@
+<?page title="Tramitación Conjunta" contentType="text/html;charset=UTF-8"?>
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./expedienteEnTramitacionConjuntaWindow"?>
+<zk>
+	<window title="" border="none"
+		id="expedienteEnTramitacionConjuntaWindow"
+		
+		apply="com.egoveris.te.base.composer.GenericExpedienteEnTramitacionConjuntaComposer">
+		<groupbox>
+			<grid id="busquedaExpedienteEnTCGrid" style="border:0px" width="100%">
+				<rows>
+					<row align="center"
+						>
+						<hbox align="start" spacing="0">
+							<grid align="center" width="620px"
+								id="gridConsultaExpedientes">
+								<columns>
+									<column width="120px" id="tipo"
+										label="${c:l('ee.asociarexpediente.column.tipo.value')}"
+										align="center" />
+									<column width="80px" id="anio"
+										label="${c:l('ee.asociarexpediente.column.anio.value')}"
+										align="center" />
+									<column width="100px" id="numero"
+										label="${c:l('ee.asociarexpediente.column.numero.value')}"
+										align="center" />
+									<column width="140px"
+										id="reparticion"
+										label="${c:l('ee.asociarexpediente.column.reparticion.value')}"
+										align="center" />
+									<column width="180px"
+										id="reparticionUsuario"
+										label="${c:l('ee.asociarexpediente.column.reparticionUsuario.value')}"
+										align="center" />
+								</columns>
+								<rows>
+									<row id="camposSADE"
+										>
+										<combobox id="tipoExpediente"
+											readonly="true" cols="5">
+										</combobox>
+										<intbox cols="4" maxlength="4"
+											id="anioSADE" />
+										<intbox maxlength="8"
+											id="numeroSADE" />
+										<textbox
+											id="reparticionActuacion" readonly="true"
+											cols="15">
+										</textbox>
+
+										<bandbox width="150px"
+								id="reparticionBusquedaUsuario">
+								<bandpopup
+									apply="com.egoveris.te.base.util.FindReparticionesConsulta"
+									id="reparticionesComboBusquedaSADE" width="650px">
+									<groupbox mold="3d">
+										<caption>
+											<hbox>
+												Búsqueda de Organismo
+												<image
+													src="/imagenes/help.png" width="16px" height="16px"
+													tooltip="helpBusquedaReparticion" align="right" />
+											</hbox>
+										</caption>
+										<separator></separator>
+										<vbox>
+											<hbox>
+												Buscar
+												<textbox
+													id="textoReparticionBusquedaUsuario" />
+											</hbox>
+											<paging
+												id="pagingReparticionesDocsSADE" pageSize="10" />
+											<listbox mold="paging"
+												width="500px" id="reparticionesBusquedaUsuarioListbox"
+												model="@{listaReparticionSADESeleccionada}"
+												selectedItem="@{reparticionSeleccionada}"
+												paginal="${pagingReparticionesDocsSADE}">
+												<listhead>
+													<listheader
+														label="${c:l('te.webapp.expediente.macros.documentofiltro.lbl.codigo')}" width="30%" />
+													<listheader
+														label="${c:l('te.webapp.expediente.macros.documentofiltro.lbl.nombre')}" height="70%" />
+												</listhead>
+												<listitem
+													self="@{each=reparticion}">
+													<listcell
+														label="@{reparticion.codigo}" />
+													<listcell
+														label="@{reparticion.nombre}" />
+												</listitem>
+											</listbox>
+										</vbox>
+									</groupbox>
+								</bandpopup>
+							</bandbox>
+									</row>
+
+								</rows>
+							</grid>
+							<space></space>
+							<hbox>
+								<button autodisable="self"
+									id="buscarPorNumeroSadeButton" iconSclass="z-icon-search"
+									label="${c:l('ee.expediente.tramitacionconjunta.lbl.buscarexpediente')}"
+									zclass="z-button" style="padding:7px 10px"
+									forward="onClick=expedienteEnTramitacionConjuntaWindow$composer.onBuscarExpediente" />
+
+
+								<vbox>
+									<button autodisable="self"
+										id="confirmarTramitacionConjuntaButton" disabled="true"
+										
+										 iconSclass="z-icon-check"
+										label="${c:l('ee.expediente.tramitacionconjunta.btn.confirmartramitacionconjunta')}"
+										zclass="z-button" style="padding:7px 10px"
+										forward="onClick=expedienteEnTramitacionConjuntaWindow$composer.onConfirmarTramitacionConjunta" />
+								
+									<button autodisable="self"
+										id="desvincularTodoButton" iconSclass="z-icon-chain-broken"
+										label="${c:l('ee.expediente.tramitacionconjunta.btn.desvinculartodo')}"
+										zclass="z-button" style="padding:7px 10px"
+										forward="onClick=expedienteEnTramitacionConjuntaWindow$composer.onDesvincularTodo"
+										disabled="true" />
+
+								</vbox>
+							</hbox>
+						</hbox>
+					</row>
+				</rows>
+			</grid>
+			<separator height="16px"></separator>
+			<paging id="expedientesEnTramitacionConjuntaPaginator"
+				pageSize="10" width="800px" />
+			<listbox id="expedienteEnTramitacionConjuntaComponent"
+				maxlength="20" mold="paging" width="800px"
+				paginal="${expedientesEnTramitacionConjuntaPaginator}"
+				pagingPosition="top"
+				selectedItem="@{expedienteEnTramitacionConjuntaWindow$composer.selectedExpedienteEnTramitacionConjunta}"
+				itemRenderer="com.egoveris.te.base.rendered.GenericListaExpedienteEnTramitacionConjuntaItemRenderer">
+				<listhead>
+					<listheader label="${c:l('ee.conjunta.descripcion.tramite')}" width="150px"
+						align="center" />
+					<listheader label="${c:l('ee.tramitacion.listheader.anio.value')}" width="50px" align="center" />
+					<listheader label="${c:l('ee.tramitacion.listheader.numero.value')}" width="100px"
+						align="center" />
+					<listheader label="${c:l('ee.tramitacion.listheader.reparticion.value')}" width="150px"
+						align="center" />
+					<listheader label="${c:l('ee.resumenOperacion.listheader.codTipoTramite')}" width="150px"
+						align="center" />
+					<listheader label="${c:l('ee.caratulas.listheader.documento.accion.value')}" width="200px"
+						align="center" />
+				</listhead>
+
+				<listfoot
+					>
+					<listfooter />
+					<listfooter />
+					<listfooter
+						id="totalExpedientesEnTramitacionConjunta"
+						label="${c:l('ee.tramitacion.listfooter.expedientesEnTramitacionConjunta.value')}"
+						span="3"  />
+					<listfooter
+						label="@{expedienteEnTramitacionConjuntaWindow$composer.listaExpedienteEnTramitacionConjunta.size}"
+						span="1"  align="rigth" />
+				</listfoot>
+
+			</listbox>
+		</groupbox>
+	</window>
+</zk>

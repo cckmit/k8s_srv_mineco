@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+	<!-- Scan for Spring beans declared via annotations. -->
+	<context:component-scan base-package="com.egoveris.edt.ws.service" />
+
+	<bean id="externalReparticionServlet"
+		class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+		<property name="service" ref="externalReparticionServiceImpl" />
+		<property name="serviceInterface">
+			<value>com.egoveris.edt.ws.service.IExternalReparticionService</value>
+		</property>
+	</bean>
+	
+	<bean name="externalActuacionServlet"
+		class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+		<property name="service" ref="externalActuacionServiceImpl" />
+		<property name="serviceInterface">
+			<value>com.egoveris.edt.ws.service.IActuacionService</value>
+		</property>
+	</bean>
+	
+	<bean name="externalPeriodoLicenciaService"
+		class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+		<property name="service" ref="externalPeriodoLicenciaServiceImpl" />
+		<property name="serviceInterface">
+			<value>com.egoveris.edt.ws.service.IExternalPeriodoLicenciaService</value>
+		</property>
+	</bean>
+	
+	<bean name="externalFeriadoService"
+		class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+		<property name="service" ref="externalFeriadoServiceImpl" />
+		<property name="serviceInterface">
+			<value>com.egoveris.edt.ws.service.IExternalFeriadoService</value>
+		</property>
+	</bean>
+	
+	
+	<bean name="externalDatosUsuarioService"
+		class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+		<property name="service" ref="externalDatosUsuarioServiceImpl" />
+		<property name="serviceInterface">
+			<value>com.egoveris.edt.ws.service.IExternalDatosUsuarioService</value>
+		</property>
+	</bean>
+	
+</beans>

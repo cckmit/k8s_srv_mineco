@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<complexComponent type="TRADE" name="Vista Com Transportadora DUS"
+	description="Vista Com Transportadora DUS" zul="vistaComTransportadoraDUS.zul"
+	mappingDTO="com.egoveris.ccomplejos.base.model.VistaComTransportadoraDUSDTO">
+
+	<field name="nombreCiaTransportadora" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" disabled="true"/>
+	<field name="paisCiaTransportadora" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" disabled="true"/>
+	<field name="rutCiaTransporte" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" disabled="true"/>
+	<field name="emisorDocTransporte" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" disabled="true"/>
+	<field name="rutEmisorDocTransporte" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" disabled="true"/>
+	<field name="rutAgenciaCiaTransportadora" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" disabled="true"/>
+	<field name="rutRepLegalEmisorDocTransporte" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" disabled="true"/>
+
+
+</complexComponent>

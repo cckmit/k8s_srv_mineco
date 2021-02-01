@@ -1,0 +1,14 @@
+<zk>
+	<hlayout 
+		apply="com.egoveris.ffdd.render.zk.comp.ext.FileUploadComposer">
+		   <hbox spacing="0" height="20px">
+					<cell id="${arg.formComp.nombre}_fileUploadDiv"
+						width="80px" />
+		<cell id="${arg.formComp.nombre}_fileLabelDiv" />
+		<button id="${arg.formComp.nombre}_download" label="${c:l('file.download')}"   onClick="@command('downloadFile')"></button>	
+		<button id="${arg.formComp.nombre}_clean"
+						label="${c:l('file.clean')}" >
+					</button>	
+		</hbox>
+	</hlayout>
+</zk>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<complexComponent type="TRADE" name="Product"
+	description="Product Information" zul="product.zul"
+	composer="com.everis.tramelec.dynform.comp.ext.ProductComposer"
+	mappingDTO="com.egoveris.ccomplejos.base.model.ProductDTO">
+
+	<field name="productId" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.LongboxExt" />
+	<field name="productCode" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" />
+	<field name="hsCode" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" />
+	<field name="ssppEnum" width="90%" height="20px"
+		factory="comboBoxFactory" comboName="SSPP" />
+	<field name="commonRegName" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" />
+	<field name="commonRegNameSpanish" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" />
+	<field name="prodDesc" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" />
+	<field name="prodDescSpanish" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" />
+	<field name="scientificName" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" />
+	<field name="businessName" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" />
+	<field name="businessNameSpanish" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" />
+	<field name="prodCodeSSPP" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" />
+	<field name="physicalState" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" />
+	<field name="status" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" />
+	<field name="alertMessage" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" />
+	<field name="destinacionEnum" width="90%" height="20px"
+		factory="comboBoxFactory" comboName="DestinacionAduanera" />
+	<field name="productVersion" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" />
+	<field name="productAttributesDTO" class="com.egoveris.ffdd.render.zk.comp.ext.SeparatorComplex" repetidor="true" xmlFile="productattributes.xml" />
+
+</complexComponent>

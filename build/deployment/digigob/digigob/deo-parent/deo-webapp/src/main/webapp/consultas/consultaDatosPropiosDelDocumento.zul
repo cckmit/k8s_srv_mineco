@@ -1,0 +1,32 @@
+<?page title="${c:l('gedo.datosPropios.windows.title')}" contentType="text/html;charset=UTF-8"?>
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./datosPropiosDelDocumentoWindow" ?>
+<zk>
+	<window title="${c:l('gedo.datosPropios.windows.title')}" border="normal"
+		id="datosPropiosDelDocumentoWindow" width="400px"
+		apply="com.egoveris.deo.web.satra.consulta.ConsultaDatosPropiosDocumentoComposer">
+
+		<paging id="consultaPaginator" detailed="true" pageSize="5" />
+		<listbox id="consultaDocumentosList"
+			model="@{datosPropiosDelDocumentoWindow$composer.datos}"
+			selectedItem="@{datosPropiosDelDocumentoWindow$composer.selectedDocumento}"
+			mold="paging" paginal="${consultaPaginator}">
+			<listhead>
+				<listheader label="${c:l('gedo.datosPropios.columns.colum.label.nombre')}"/>
+				<listheader label="${c:l('gedo.datosPropios.columns.colum.label.valor')}"/>
+			</listhead>
+			<listitem self="@{each=selectedDocumento}">
+				<listcell label="@{selectedDocumento.nombre}" />
+				<listcell label="@{selectedDocumento.valor}" />
+			</listitem>
+		</listbox>
+		<label id="idSinMetadatos"
+			value="${c:l('gedo.nuevoDocumento.label.datospropios.sinMetadatos')}"
+			visible="false">
+		</label>
+		<separator></separator>
+		<div align="center">
+			<button id="cerrar" label="${c:l('gedo.detalleDocumento.botonVolver')}"  />
+		</div>
+	</window>
+</zk>

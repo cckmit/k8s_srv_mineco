@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<complexComponent type="TRADE" name="VistaHojaAnexa"
+	description="Vista Hoja Anexa" zul="vistahojaanexadin.zul" 
+	mappingDTO="com.egoveris.ccomplejos.base.model.VistaHojaAnexaDinDTO">
+	
+	<field name="numeroDeSecuencia" width="90%" height="20px" class="com.egoveris.ffdd.render.zk.comp.ext.IntboxExt" disabled="true"/>
+	<field name="numeroDeInsumo" width="90%" height="20px" class="com.egoveris.ffdd.render.zk.comp.ext.IntboxExt"  disabled="true"/>
+	<field name="nombreInsumo" width="90%" height="20px" class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt"  disabled="true"/>
+	<field name="numeroDeItemAbona" width="90%" height="20px" class="com.egoveris.ffdd.render.zk.comp.ext.IntboxExt"  disabled="true"/>
+	<field name="nombreDeLaMercancia" width="90%" height="20px" class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt"  disabled="true"/>
+	<field name="cantidad" width="90%" height="20px" class="com.egoveris.ffdd.render.zk.comp.ext.IntboxExt"  disabled="true"/>
+	<field name="codigoUnidadDeMedidaAbona" width="90%" height="20px" class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt"  disabled="true"/>
+	<field name="factorDeConsumo" width="90%" height="20px" class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt"  disabled="true"/>
+	<field name="insumosUtilizados" width="90%" height="20px" class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt"  disabled="true"/>
+
+	
+</complexComponent>

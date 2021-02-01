@@ -1,0 +1,24 @@
+<zk>
+	<vlayout
+		apply="com.egoveris.ffdd.render.zk.comp.cc.VistaComTransportadoraDUSComposer">
+
+		<vbox>
+			<hbox>
+				<cell id="${arg.formComp.nombre}_nombreCiaTransportadoraDiv" />
+				<cell id="${arg.formComp.nombre}_paisCiaTransportadoraDiv" />
+			</hbox>
+			<hbox>
+				<cell id="${arg.formComp.nombre}_rutCiaTransporteDiv" />
+				<cell id="${arg.formComp.nombre}_emisorDocTransporteDiv" />
+			</hbox>
+			<hbox>
+				<cell id="${arg.formComp.nombre}_rutEmisorDocTransporteDiv" />
+				<cell id="${arg.formComp.nombre}_rutAgenciaCiaTransportadoraDiv" />
+			</hbox>
+			<hbox>
+				<cell id="${arg.formComp.nombre}_rutRepLegalEmisorDocTransporteDiv" />
+			</hbox>
+		</vbox>
+
+	</vlayout>
+</zk>

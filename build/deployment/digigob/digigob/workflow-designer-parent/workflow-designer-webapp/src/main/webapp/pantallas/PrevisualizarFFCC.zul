@@ -1,0 +1,20 @@
+<?page title="Workflow Designer" id="tramitacion" contentType="text/html;charset=UTF-8"?>
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./previsualizarFFCCWin"?>
+
+<zk xmlns:x="xhtml" xmlns:zk="zk" xmlns:w="http://www.zkoss.org/2005/zk/client">
+	<window id="previsualizarFFCCWin" title="${c:l('title.previsualizar')}"
+			xmlns:w="http://www.zkoss.org/2005/zk/client" border="normal"
+		    closable="true" visible="false" width="730px" height="430px">
+		<vlayout>
+			<div id="previsualizarFFCCDiv" width="100%" height="370px" style="overflow-y: auto;"></div>
+			<div id="pie" visible="false"  height="100%"	width="100%" align="center">
+				<hlayout>
+					<button id="caratular" label="${c:l('general.aceptar')}"/>
+					<separator width="50px"></separator>
+					<button id="cancelar" label="${c:l('general.cancelar')}"/>
+				</hlayout>
+			</div>
+		</vlayout>
+	</window>
+</zk>

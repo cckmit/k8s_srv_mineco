@@ -1,0 +1,222 @@
+<zk>
+	<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+	<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+	<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./inicioDocumentoWindow" ?>
+	<window width="950px" id="inicioDocumentoWindow" border="normal"
+		closable="true" title="${c:l('gedo.iniciarDocumento.titulo')}"
+		apply="com.egoveris.deo.web.satra.produccion.InicioDocumentoComposer"
+		position="center" contentStyle="align:left;">
+		<window id="agregarUsuariosFirmaConjuntaView" visible="false" />
+		<window id="archivosDeTrabajoWindow" visible="false" />
+		<window id="definirDestinatarioWindow" visible="false"/>
+		<!--ELECCION DEL TIPO DE DOCUMENTO-->
+
+
+
+		<groupbox height="125px" closable="false">
+			<caption label="${c:l('gedo.iniciarDocumento.documento')}" />
+			<hbox>
+				<!-- .............................recuadro.............................. -->
+				<groupbox height="100px" closable="false"
+					style="border:0; magin-top:5px">
+					<hbox align="center">
+						<!-- .............................Primer columna.........................-->
+						<label
+							value="${c:l('gedo.iniciarDocumento.tipoDeDocumento')}" />
+						<!-- .........................Segunda columna ..........................  -->
+						<bandbox id="familiaEstructuraTree" width="70%"
+							height="auto">
+							<bandpopup id="Familia" width="600px"
+								height="auto"
+								apply="com.egoveris.deo.web.satra.InicioDocumentoFamiliaTipoDocumentoBandBoxComposer">
+								<groupbox mold="3d" height="auto" closable="false"
+									width="auto">
+									<caption >
+										<hbox>
+											<label
+												value="${c:l('gedo.busquedaTipoDocumento')}" />
+										</hbox>
+									</caption>
+									<separator></separator>
+									<vbox>
+										<hbox align="bottom">
+											<label value="${c:l('ccoo.sectorMesa.botonBuscar')}" />
+											<separator width="2px" />
+											<textbox
+												id="textoTipoDocumento" />
+											<separator width="100px" />
+											<!-- COMENTADO HASTA QUE SE HABILITE LA FUNCIONALIDAD
+											<toolbar mold="panel"  style="  position: relative;  bottom: -10px;">
+												<toolbarbutton
+													popup="top" image="/imagenes/Estrella.png"
+													label="${c:l('gedo.iniciarDocumento.label.masUsados')}" />
+											</toolbar>
+											-->
+										</hbox>
+										<separator width="25px" />
+										<tree id="familiaTipoTree"
+											width="600px" height="auto">
+											<treecols>
+												<treecol width="30%"	label="${c:l('gedo.agregarReparticiones.listhead.listheader.label.nombre')}" />
+												<treecol width="20%"	label="${c:l('gedo.abmTipoDocumento.acronimo')}" />
+												<treecol width="25%"	label="${c:l('gedo.inbox.alarmas.descripcion')}" />
+  												<treecol width="25%"    label="${c:l('gedo.inbox.caracteristicas')}" />  											
+											</treecols>
+										</tree>
+									</vbox>
+								</groupbox>
+							</bandpopup>
+						</bandbox>
+
+					</hbox>
+					<separator spacing="20px" />
+
+					<!--.........................cierra recuadro......................... -->
+				</groupbox>
+				<!--.........................Tercer columna.......................... -->
+				<vlayout>
+					<groupbox height="100px" width="400px"
+						closable="false">
+						<caption>
+							<label
+								value="${c:l('gedo.iniciarDocumento.label.descripTipoDoc')}" />
+
+						</caption>
+						<div style="overflow:auto" height="75px"
+							width="400px">
+							<label multiline="true"
+								value="@{inicioDocumentoWindow$InicioDocumentoComposer.labelDetalle.getValue()}"
+								id="labelDetalle"/>
+								<separator/>
+								<image id="imagenDocumentoProduccion"/>
+								<image id="imagenDocumentoEspecial"/>
+								<image id="imagenDocumentoFirmaExterna"/>
+								<image id="imagenDocumentoReservado"/>
+								<image id="imagenDocumentoFirmaConToken"/>
+								<image id="imagenDocumentoFirmaConjunta"/>
+								<image id="imagenDocumentoNotificable"/>
+								
+						</div>
+					</groupbox>
+				</vlayout>
+				<!--...............................Terminan las columnas............................. -->
+			</hbox>
+
+		</groupbox>
+		<separator height="30px"></separator>
+
+		<!--ASIGNACION DEL USUARIO QUE CONFECCIONA EL DOCUMENTO-->
+
+		<groupbox closable="false">
+			<caption
+				label="${c:l('gedo.iniciarDocumento.label.tareaDeProduccion')}" />
+			<grid>
+				<rows>
+					<row>
+						<label
+							value="${c:l('gedo.iniciarDocumento.mensajeParaProductor')}" />
+						<textbox style="resize:none;" id="mensaje" maxlength="250"
+							value="@{inicioDocumentoWindow$InicioDocumentoComposer.mensaje}"
+							multiline="true" rows="3" width="98.5%" />
+					</row>
+					<row>
+						<label
+							value="${c:l('gedo.iniciarDocumento.usuarioProductor')}" />
+						<combobox width="98.5%" id="usuarioProductor"
+							buttonVisible="false" autodrop="true" />
+					</row>
+				</rows>
+			</grid>
+		</groupbox>
+
+		<separator height="10px"></separator>
+
+		<!--BOTONES PARA CONTINUAR-->
+
+
+		<grid align="center" style="border:0px">
+			<rows>
+				<row align="center"
+					style="border: none; 
+					overflow: hidden; 
+					zoom: 1; 
+					 
+					border-top: none; 
+					border-left: none; 
+					border-right: none; 
+					border-bottom: none; ">
+
+					<hbox align="center">
+ 
+								
+							<button height="42px" width="130px" class="btn-secondary" iconSclass="z-icon-file" style="white-space:normal"
+								id="archivosDeTrabajo" label = "${c:l('gedo.archivosDeTrabajo.archivos')}"    />
+			 
+							
+							<button height="42px" width="130px" class="btn-secondary" iconSclass="z-icon-file-text-o" style="white-space:normal"
+								id="datosPropios" label = "${c:l('gedo.archivosDeTrabajo.datospropios')}"   />
+							
+
+							<button height="42px" width="140px" class="btn-secondary" id= "usuariosFirmaConjunta" iconSclass="z-icon-file-text-o" style="white-space:normal"
+							forward="onClick=inicioDocumentoWindow$composer.onAgregarUsuariosFirmaConjunta"   label = "${c:l('gedo.perfilConversion.CargarUsuariosFirmantes')}" visible="false"  />
+
+  							<button height="42px" width="130px" class="btn-secondary" iconSclass="z-icon-user" style="white-space:normal" visible="false"
+							forward="onClick=inicioDocumentoWindow$composer.onDefinirDestinatarios" id="definirDestinatarios"  label = "${c:l('gedo.archivosDeTrabajo.enviar.destinatarios')}"   />
+  
+							<button height="42px" width="130px" class="btn-secondary" iconSclass="z-icon-share-square-o" style="white-space:normal"
+							forward="onClick=inicioDocument$compose.onIniciarDocumento"   label = "${c:l('gedo.archivosDeTrabajo.enviar.producir')}"    />
+							 
+							<button height="42px" width="130px" class="btn-secondary" iconSclass="z-icon-user  " style="white-space:normal"
+							id="selfProduccion"   label = "${c:l('gedo.archivosDeTrabajo.enviar.produciryomismo')}"   />
+ 			
+							
+							<button height="42px" width="140px" class="btn-secondary" iconSclass="z-icon-ban  " style="white-space:normal"
+							forward="onClick=inicioDocumentoWindow.onClose"   label = "${c:l('gedo.perfilConversion.botonVolver')}"   />
+							
+
+					</hbox>
+
+				</row>
+
+			</rows>
+		</grid>
+		<separator height="5px"></separator>
+		<grid align="center">
+			<rows>
+			   
+				<row align="left" visible="false">
+					<checkbox id="solicitudAvisoFirma"
+						label="${c:l('gedo.general.envioAvisoFirma')}" width="800px" />
+				</row>
+				 
+				<row align="left">
+					<checkbox id="solicitudEnvioCorreo"
+						label="${c:l('gedo.general.solicitudEnvioCorreo')}" width="800px" />
+				</row>
+			</rows>
+		</grid>
+		<separator height="5px"></separator>
+
+		<popup id="listaFirmantes" width="300px">
+			<textbox id="usuariosAgregadosTxt"
+				value="${c:l('gedo.general.noUsuariosFirmantes')}" width="99%"
+				readonly="true" multiline="true" />
+
+		</popup>
+
+		<!-- COMENTADO HASTA QUE SE HABILITE LA FUNCIONALIDAD
+		<popup id="top" width="500px">
+			<listbox id="topList"
+				model="@{inicioDocumentoWindow$composer.listaTop}"
+				selectedItem="@{inicioDocumentoWindow$composer.topSeleccionada}"
+				itemRenderer="com.egoveris.deo.web.satra.renderers.InboxTopListItemRenderer">
+				<listhead>
+					<listheader label="${c:l('gedo.nuevoPerfil.nombre')}" width="20%" />
+					<listheader label="${c:l('gedo.historial.documento.acronimo')}" width="20%" />
+					<listheader	label="${c:l('gedo.inbox.alarmas.descripcion')}" width="60%" />
+				</listhead>
+			</listbox>
+		</popup>
+		-->
+	</window>
+</zk>

@@ -1,0 +1,88 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<head>
+	<style>
+		li.borrador span:first-child {
+			border-left: 9px solid #{sessionScope.colorIndBorrador} !important;
+		}
+		li.borrador span + span {
+			border-bottom: 2px solid #{sessionScope.colorIndBorrador} !important;
+		} 
+		li.progreso span:first-child {
+			border-left: 9px solid #{sessionScope.colorIndProceso} !important;
+		}
+		li.progreso span + span {
+			border-bottom: 2px solid #{sessionScope.colorIndProceso} !important;
+		} 
+		li.tareas span:first-child {
+			border-left: 9px solid #{sessionScope.colorIndTareas} !important;
+		}
+		li.tareas span + span {
+			border-bottom: 2px solid #{sessionScope.colorIndTareas} !important;
+		} 
+		li.notificaciones span:first-child {
+			border-left: 9px solid #{sessionScope.colorIndNotificaciones} !important;
+		}
+		li.notificaciones span + span {
+			border-bottom: 2px solid #{sessionScope.colorIndNotificaciones} !important;
+		}
+		.headerPrincipal {
+			background-color: #{sessionScope.colorHeader} !important;
+		}
+		.btnPrincipal {
+			background-color: #{sessionScope.colorBoton1} !important;
+		}
+		.ui-button {
+			background-color: #{sessionScope.colorBoton2} !important;
+		}
+		.logoPrincipal {
+			height : 52px !important;
+			width : unset !important;
+		}
+		.section-btn label {
+			color : #{sessionScope.colorBoton1} !important;
+		}
+	</style>
+</head>
+<div class="row">
+	<div class="col-md-12 col-xs-12 headerPrincipal">
+		<a href="#{request.contextPath}/index">
+			<img src="data:image/jpeg;base64, #{sessionScope.logo}" class="logoPrincipal" />
+		</a>
+		<ul class="headerMenu salir">
+			<li class="salir">
+				<a href="#{request.contextPath}/logout">#{msg.headerExit}</a>
+			</li>
+		</ul>
+		<ul class="headerMenu status">
+			<li class="borrador">
+				<a href="#">
+					<span>#{sessionScope.numBorrador}</span>
+					<span>#{msg.headerDraft}</span>
+				</a>
+			</li>
+			<li class="progreso">
+				<a href="#">
+					<span>#{sessionScope.numProgreso}</span>
+					<span>#{msg.headerProgress}</span>
+				</a>
+			</li>
+			<li class="tareas">
+				<a href="#">
+					<span>#{sessionScope.numTareas}</span>
+					<span>#{msg.headerWork}</span>
+				</a>
+			</li>
+			<li class="notificaciones">
+				<a href="#">
+					<span>#{sessionScope.numNotificaciones}</span>
+					<span>#{msg.headerNotification}</span>
+				</a>
+			</li>
+		</ul>
+	</div>
+</div>
+</html>

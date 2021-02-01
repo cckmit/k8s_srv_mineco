@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<complexComponent type="TRADE" name="Vista Totales Declaracion"
+	description="Vista Totales Declaracion" zul="vistaTotalesDeclaracion.zul" 
+	mappingDTO="com.egoveris.ccomplejos.base.model.VistaTotalesDeclaracionDTO">
+
+	<field name="pesoBrutoEmbarque" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" disabled="true"/>
+
+	<field name="totalBulto" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" disabled="true"/>
+
+	<field name="pesoNetoEmbarque" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" disabled="true"/>
+
+	<field name="totalItem" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" disabled="true"/>
+
+
+</complexComponent>

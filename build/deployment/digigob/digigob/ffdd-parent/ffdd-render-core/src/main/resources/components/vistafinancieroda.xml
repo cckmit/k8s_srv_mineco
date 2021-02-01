@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<complexComponent type="TRADE" name="Vista Financiero DA"
+	description="Vista Financiero DA" zul="vistaFinancieroDA.zul"
+	composer="com.everis.tramelec.dynform.comp.ext.VistaFinancieroDAComposer"
+	mappingDTO="com.egoveris.ccomplejos.base.model.VistaFinancieroDADTO">
+
+	<field name="descuento" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" disabled="true"/>
+		
+	<field name="clausulaVentaTransaccion" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" disabled="true"/>
+		
+	<field name="comisionesAlExterior" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" disabled="true"/>
+		
+	<field name="otrosGastos" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" disabled="true"/>
+		
+	<field name="modalidadVentaTransaccion" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" disabled="true"/>
+				
+	<field name="numeroFactura" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" disabled="true"/>
+				
+	<field name="formaPagoTransaccion" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" disabled="true"/>
+						
+	<field name="tipoMonedaTransaccion" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" disabled="true"/>
+						
+	<field name="indicaFacturaComercialDefinitiva" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" disabled="true"/>
+						
+	<field name="codigoPaisAdquisicion" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" disabled="true"/>
+						
+	<field name="tasaSeguro" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" disabled="true"/>
+						
+	<field name="numeroCuotasPagoDiferido" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.IntboxExt" disabled="true"/>
+						
+	<field name="fechaEmision" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.DateboxExt" disabled="true"/>
+						
+	<field name="montoTotalFactura" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" disabled="true"/>
+						
+	<field name="montoTotalCIF" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.LongboxExt" disabled="true"/>
+						
+	<field name="valorLiquidoRetorno" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.LongboxExt" disabled="true"/>
+						
+	<field name="valorFlete" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.LongboxExt" disabled="true"/>
+		
+</complexComponent>

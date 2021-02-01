@@ -1,0 +1,38 @@
+<zk>
+	<vlayout
+		apply="com.egoveris.ffdd.render.zk.comp.cc.ViewResumenComposer">
+
+		<vbox>
+				<hbox>
+					<cell id="${arg.formComp.nombre}_codOperacionDiv" />
+					<cell id="${arg.formComp.nombre}_tipoTramiteDiv" />
+				</hbox>
+				<hbox>
+					<cell id="${arg.formComp.nombre}_creadoPorDiv" />
+					<cell id="${arg.formComp.nombre}_actualizadoPorDiv" />
+				</hbox>
+				<hbox>
+					<cell
+						id="${arg.formComp.nombre}_bultoTotalDiv" />
+					<cell id="${arg.formComp.nombre}_pesoNetoEmbarqueDiv" />
+				</hbox>
+				<hbox>
+					<cell id="${arg.formComp.nombre}_processingStatusDiv" />
+					<cell id="${arg.formComp.nombre}_fechaCreacionDiv" />
+				</hbox>
+				<hbox>
+					<cell id="${arg.formComp.nombre}_fechaActualizacionDiv" />
+					<cell
+						id="${arg.formComp.nombre}_itemTotalDiv" />
+				</hbox>
+				<hbox>
+					<cell id="${arg.formComp.nombre}_pesoBrutoItemDiv" />
+				</hbox>
+				<hbox>
+					<cell
+						id="${arg.formComp.nombre}_volumenTotalDiv" />
+				</hbox>
+		</vbox>
+
+	</vlayout>
+</zk>

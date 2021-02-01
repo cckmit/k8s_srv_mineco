@@ -1,0 +1,434 @@
+<?page title="" contentType="text/html;charset=UTF-8"?>
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./controlIncompatibilidadWindow" ?>
+
+<?component name="viewDocument" class="com.egoveris.te.base.component.DocumentViewerComponent" macroURI="/common/componentes/documents/documentViewer.zul"?>
+
+<zk>
+	<window border="normal" id="controlIncompatibilidadWindow" 
+		apply="com.egoveris.te.base.composer.GenericDocumentoComposer" visible="true">
+	
+		<div align="center">
+			<hlayout style="align:center">
+				<hbox>
+					<grid width="740px" align="center"
+						id="gridConsultaDocumentos">
+						<columns>
+							<column width="180px"
+								id="ee.asociardocumento.column.tipo1"
+								label="${c:l('ee.asociardocumento.column.buscar.value')}"
+								align="center" />
+							<column width="180px"
+								id="ee.asociardocumento.column.tipo"
+								label="${c:l('ee.asociardocumento.column.tipo.value')}"
+								align="center" />
+							<column width="100px"
+								id="ee.asociardocumento.column.anio"
+								label="${c:l('ee.asociardocumento.column.anio.value')}"
+								align="center" />
+							<column width="100px"
+								id="ee.asociardocumento.column.numero"
+								label="${c:l('ee.asociardocumento.column.numero.value')}"
+								align="center" />
+							<column width="180px"
+								id="ee.asociardocumento.column.reparticion"
+								label="${c:l('ee.asociardocumento.column.reparticion.value')}"
+								align="center" />
+						</columns>
+						<rows>
+							<row id="camposDocumento"
+								>
+								<label
+									value="${c:l('ee.asociardocumento.column.buscarPorNumeroSade.value')}">
+								</label>
+
+								<bandbox
+									id="tiposDocumentoBandbox" width="130px" height="auto"
+									tabindex="1">
+									<bandpopup
+										id="tipoDocumentoCombo" width="350px" height="auto"
+										apply="com.egoveris.te.base.composer.TipoDocumentoExpedienteBandboxComposer">
+										<groupbox mold="3d"
+											height="auto" width="auto">
+											<caption>
+												<label
+													value="${c:l('ee.controlIncompatibilidad.label.busquedaTiposDoc')}" />
+											</caption>
+											<separator />
+											<vbox>
+												<hbox
+													align="bottom">
+													<label
+														value="${c:l('te.webapp.expediente.macros.documentofiltro.lbl.buscar')}" />
+													<separator
+														width="2px" />
+													<textbox
+														id="textoTipoDocumento" />
+													<separator
+														width="100px" />
+												</hbox>
+												<tree
+													id="documentTypeTree" width="330px" height="auto">
+													<treecols>
+														<treecol
+															width="72%" label="${c:l('ee.nuevoDocumento.descripcion')}" />
+														<treecol
+															width="28%" label="${c:l('ee.nuevoDocumento.acronimo')}" />
+													</treecols>
+												</tree>
+											</vbox>
+										</groupbox>
+									</bandpopup>
+								</bandbox>
+
+
+								<intbox cols="4"
+									maxlength="4" id="anioSADEDocumento" tabindex="2" />
+								<intbox maxlength="8"
+									id="numeroSADEDocumento" tabindex="3" />
+
+
+								<bandbox
+									id="reparticionBusquedaDocumento" tabindex="4">
+									<bandpopup
+										apply="com.egoveris.te.base.composer.FindReparticionesBusquedaDocumentoBandboxComposer"
+										id="reparticionesComboBusquedaDocumento" width="650px">
+										<groupbox
+											mold="3d">
+											<caption>
+												<hbox>
+													Búsqueda
+													de
+													Organismo
+													<image
+														src="/imagenes/help.png" width="16px" height="16px"
+														tooltip="helpBusquedaReparticion" align="right" />
+												</hbox>
+											</caption>
+											<separator></separator>
+											<vbox>
+												<hbox>
+													Buscar
+													<textbox
+														id="textoReparticionBusquedaDocumento" />
+												</hbox>
+												<paging
+													id="pagingReparticionesDocumento" pageSize="10" />
+												<listbox
+													mold="paging" width="600px"
+													id="reparticionesBusquedaDocumentoListbox"
+													model="@{listaReparticionSADEDocumentoSeleccionada}"
+													selectedItem="@{reparticionSeleccionadaDocumento}"
+													paginal="${pagingReparticionesDocumento}">
+													<listhead>
+														<listheader
+															label="${c:l('te.webapp.expediente.macros.documentofiltro.lbl.codigo')}" width="30%" />
+														<listheader
+															label="${c:l('te.webapp.expediente.macros.documentofiltro.lbl.nombre')}" height="70%" />
+													</listhead>
+													<listitem
+														self="@{each=reparticion}">
+														<listcell
+															label="@{reparticion.codigo}" />
+														<listcell
+															label="@{reparticion.nombre}" />
+													</listitem>
+												</listbox>
+											</vbox>
+										</groupbox>
+									</bandpopup>
+								</bandbox>
+							</row>
+						</rows>
+					</grid>								
+				</hbox>
+				<hbox>
+					<vbox>
+					<!-- forward="onClick=tramitacionWindow$TramitacionComposer.onBuscarDocumentoValidar"  -->
+					<!-- <toolbarbutton autodisable="self"
+						id="buscarDocumentoButton"
+						image="/imagenes/VincularDocumento.png"
+						width="" left="50px" height="" tabindex="1" />
+					-->
+					<button autodisable="self"
+						id="buscarDocumentoButton"
+						label="${c:l('te.webapp.expediente.tramitacion.lbl.vinculardoc')}"
+						left="50px" height="" tabindex="1" />
+					</vbox>
+				</hbox>
+			</hlayout>
+		</div>
+
+		<separator height="16px"></separator>
+
+		<div align="center">
+			<hlayout style="align:center">
+				<grid width="620px" align="center" >
+					<columns>
+						<column align="center" width="30%"/>
+						<column align="center" />
+					</columns>
+					<rows >
+						<row align="center" >
+							<!-- Tipo Concurso -->
+							<label value="${c:l('ee.cierreProceso.label.tipificacion')}"></label>
+							<radiogroup id="tipoConcurso">
+								<hlayout>
+									<radio id="escalafonGeneral" label="${c:l('ee.cierreProceso.label.escalafonGeneral')}" value="ESCALAFON GENERAL"></radio>
+									<radio id="carreraProfesional" label="${c:l('ee.cierreProceso.label.carreraProfecional')}" value="CARRERA PROFESIONAL"></radio>
+								</hlayout>
+							</radiogroup>
+						</row>
+						<row align="center" >
+							<label value="${c:l('ee.cierreProceso.checkbox.controlDocumentacion')}"></label>
+							<grid>
+								<columns>
+									<column align="left" ></column>
+									<column align="center" width="40px"></column>
+								</columns>
+								<rows>
+									<row >
+										<label value="${c:l('ee.cierreProceso.label.ordenMerito')}"/>
+										<checkbox id="ordenMerito"/>
+									</row>
+									<row >
+										<label style="word-wrap: break-word; width: 100px; white-space: normal;" value="${c:l('ee.cierreProceso.label.actaAprobacionOrdenMerito')}"/>
+										<checkbox id="actaCATA"/>
+									</row>
+									<row >
+										<label style="word-wrap: break-word; width: 100px; white-space: normal;" value="${c:l('ee.cierreProceso.label.constanciaNotificacion')}"/>
+										<checkbox id="constanciaNotificacion"/>
+									</row>
+									<row >
+										<label style="word-wrap: break-word; width: 100px; white-space: normal;" value="${c:l('ee.cierreProceso.label.informeNota')}"/>
+										<checkbox id="propuestaDesignacion"/>
+									</row>
+									<row >
+										<label style="word-wrap: break-word; width: 100px; white-space: normal;" value="${c:l('ee.cierreProceso.label.informeAprobacion')}"/>
+										<checkbox id="informeAprobacionPartida"/>
+									</row>
+									<row >
+										<label style="word-wrap: break-word; width: 100px; white-space: normal;" value="${c:l('ee.controlIncompatibilidad.label.instructivoInicio')}"/>
+										<checkbox id="instructivoInicioTramite"/>
+									</row>
+									<row >
+										<label style="word-wrap: break-word; width: 100px; white-space: normal;" value="${c:l('ee.controlIncompatibilidad.label.archivoTrabajoModelo')}"/>
+										<checkbox id="archivoTrabajo"/>
+									</row>
+									<row >
+										<label style="word-wrap: break-word; width: 100px; white-space: normal;" value="${c:l('ee.controlIncompatibilidad.label.certificadoDeudores')}"/>
+										<checkbox id="certificadoDeudores"/>
+									</row>
+								</rows>
+							</grid>
+						</row>
+						
+						<row align="center" >
+							<!-- Organismo PETICIONANTE -->
+							<label value="${c:l('ee.cierreProceso.checkbox.orgPeticionante')}"></label>
+							<bandbox id="reparticionBusquedaSADE">
+							<bandpopup
+								apply="com.egoveris.te.base.composer.FindReparticionesBusquedaSADEBandboxComposer"
+								id="reparticionesComboBusquedaSADE" width="650px">
+								<groupbox mold="3d">
+									<caption>
+										<hbox>
+											Búsqueda de Organismo
+<!-- 											<image -->
+<!-- 												src="/imagenes/help.png" width="16px" height="16px" -->
+<!-- 												tooltip="helpBusquedaReparticion" align="right" /> -->
+										</hbox>
+									</caption>
+									<separator></separator>
+									<vbox>
+										<hbox>
+											Buscar
+											<textbox
+												id="textoReparticionBusquedaSADE" />
+												
+										</hbox>
+										<paging
+											id="pagingReparticionesDocsSADE" pageSize="10" />
+										<listbox mold="paging"
+											width="600px" id="reparticionesBusquedaSADEListbox"
+											model="@{listaReparticionSADESeleccionada}"
+											selectedItem="@{reparticionSeleccionada}"
+											paginal="${pagingReparticionesDocsSADE}">
+											<listhead>
+													<listheader
+														label="${c:l('te.webapp.expediente.macros.documentofiltro.lbl.codigo')}" width="30%" />
+													<listheader
+														label="${c:l('te.webapp.expediente.macros.documentofiltro.lbl.nombre')}" height="70%" />
+											</listhead>
+											<listitem
+												self="@{each=reparticion}">
+												<listcell
+													label="@{reparticion.codigo}" />
+												<listcell
+													label="@{reparticion.nombre}" />
+											</listitem>
+										</listbox>
+									</vbox>
+								</groupbox>
+							</bandpopup>
+						</bandbox>
+							
+						</row>
+						
+						<row align="center" >
+							<!-- SECTOR PETICIONANTE -->
+							<label value="${c:l('ee.envioAdministracion.radio.sector')}"></label>
+							<bandbox id="sectorBusquedaSADE">
+								<bandpopup
+									apply="com.egoveris.te.base.composer.FindSectorBusquedaSADEBandboxComposer"
+									id="sectorComboBusquedaSADE" width="650px">
+									<groupbox mold="3d">
+										<caption>
+											<hbox>
+												Búsqueda de Sector por Organismo
+<!-- 												<image -->
+<!-- 													src="/imagenes/help.png" width="16px" height="16px" -->
+<!-- 													tooltip="helpBusquedaSector" align="right" /> -->
+											</hbox>
+										</caption>
+										<separator></separator>
+										<vbox>
+											<hbox>
+												Buscar
+												<textbox
+													id="textoSectorBusquedaSADE" />
+											</hbox>
+											<paging
+												id="pagingSectorDocsSADE" pageSize="10" />
+											<listbox mold="paging"
+												width="600px" id="sectoresBusquedaSADEListbox"
+												model="@{listaSectorSADESeleccionado}"
+												selectedItem="@{sectorSeleccionado}"
+												paginal="${pagingSectorDocsSADE}">
+												<listhead>
+													<listheader
+														label="${c:l('te.webapp.expediente.macros.documentofiltro.lbl.codigo')}" width="30%" />
+													<listheader
+														label="${c:l('te.webapp.expediente.macros.documentofiltro.lbl.nombre')}" height="70%" />
+												</listhead>
+												<listitem
+													self="@{each=sector}">
+													<listcell
+														label="@{sector.codigo}" />
+													<listcell
+														label="@{sector.nombre}" />
+												</listitem>
+											</listbox>
+										</vbox>
+									</groupbox>
+								</bandpopup>
+							</bandbox>
+						</row>
+						
+						<row align="center" >
+							<!-- Tipo Concurso -->
+							<label  style="word-wrap: break-word; width: 100px; white-space: normal;" value="${c:l('ee.controlIncompatibilidad.label.fechaNotificacion')}"></label>
+							<vlayout>
+								<datebox id="fechaNotificacionOM" cols="12" format="dd/MM/yyyy"/>
+							</vlayout>
+						</row>
+
+<!-- 
+					</rows>
+				</grid>
+			</hlayout>
+		</div>
+ 
+		<div align="center">
+			<hlayout style="align:center">
+				<grid width="620px" align="center" >
+					<columns>
+						<column align="center" width="30%" />
+						<column align="center" />
+					</columns>
+					<rows >
+ -->
+ 					
+						<row align="center" >
+							<hbox align="center">Control de Incompatibilidades</hbox>
+							<grid width="400px" align="center">
+								<columns>
+									<column align="center" />
+									<column align="center" width="70px" />
+								</columns>
+
+								<rows>
+									<!-- Control Incompatibilidades -->
+									<row >
+										<label style="word-wrap: break-word; width: 100px; white-space: normal;" value="${c:l('ee.controlIncompatibilidad.cargo')}"/>
+										<combobox id="delCargo" value="" width="50px">
+											<comboitem label="" value="" />
+											<comboitem label="${c:l('ee.controlIncompatibilidad.combobox.no')}" value="no" />
+											<comboitem label="${c:l('ee.controlIncompatibilidad.combobox.si')}" value="si" />
+										</combobox>
+									</row>
+									<row >
+										<label style="word-wrap: break-word; width: 100px; white-space: normal;" value="${c:l('ee.controlIncompatibilidad.horaria')}"/>
+										<combobox id="delHorario" value="" width="50px">
+											<comboitem label="" value="" />
+											<comboitem label="${c:l('ee.controlIncompatibilidad.combobox.no')}" value="no" />
+											<comboitem label="${c:l('ee.controlIncompatibilidad.combobox.si')}" value="si" />
+										</combobox>
+									</row>
+									<row >
+										<label style="word-wrap: break-word; width: 100px; white-space: normal;" value="${c:l('ee.controlIncompatibilidad.tramitacion')}"/>
+										<combobox id="deTramitacionMultiple" value="" width="50px">
+											<comboitem label="" value="" />
+											<comboitem label="${c:l('ee.controlIncompatibilidad.combobox.no')}" value="no" />
+											<comboitem label="${c:l('ee.controlIncompatibilidad.combobox.si')}" value="si" />
+										</combobox>
+									</row>
+									<row >
+										<label style="word-wrap: break-word; width: 100px; white-space: normal;" value="${c:l('ee.controlIncompatibilidad.causas')}"/>
+										<combobox id="porCausaPenales" value="" width="50px">
+											<comboitem label="" value="" />
+											<comboitem label="${c:l('ee.controlIncompatibilidad.combobox.no')}" value="no" />
+											<comboitem label="${c:l('ee.controlIncompatibilidad.combobox.si')}" value="si" />
+										</combobox>
+									</row>
+								</rows>
+							</grid>
+						</row>
+						<row align="center" >
+							<hbox align="center">Concurso</hbox>
+							<grid width="400px" align="center">
+								<columns>
+									<column align="center" />
+									<column align="center" width="70px" />
+								</columns>
+
+								<rows>
+									<!-- Control Incompatibilidades -->
+									<row >
+										<label style="word-wrap: break-word; width: 100px; white-space: normal;" value="${c:l('ee.controlIncompatibilidad.hbox.concursoCerrado')}"/>
+										<combobox id="concursoCerrado" value="" width="50px">
+											<comboitem label="" value="" />
+											<comboitem label="${c:l('ee.controlIncompatibilidad.combobox.no')}" value="no" />
+											<comboitem label="${c:l('ee.controlIncompatibilidad.combobox.si')}" value="si" />
+										</combobox>
+									</row>
+								</rows>
+							</grid>
+						</row>
+
+					</rows>
+				</grid>
+			</hlayout>
+		</div>
+
+		<separator height="16px"></separator>
+
+		<viewDocument  id="docAsociado" title="${c:l('ee.cierreProceso.checkbox.docTramitadorAsoc')}" loadMethod="loadLinkedExpedient" selectionCheck="true">
+			<button autodisable="self" id="Vincular" style="left:80%"
+				image="/imagenes/Descargar.png"
+				label="${c:l('ee.act.label.aprobar')}"
+				/>
+		</viewDocument>
+	</window>
+</zk>

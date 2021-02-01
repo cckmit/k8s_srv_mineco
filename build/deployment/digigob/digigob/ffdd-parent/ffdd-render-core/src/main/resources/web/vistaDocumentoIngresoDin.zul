@@ -1,0 +1,23 @@
+<zk>
+	<vlayout apply="com.egoveris.ffdd.render.zk.comp.cc.VistaDocumentoIngresoDinComposer">
+		<grid>
+			<columns>
+				<column></column>
+			</columns>
+			<rows>
+				<row>
+					<vbox>
+						<hbox>
+							<cell
+								id="${arg.formComp.nombre}_numeroDocumentoDiv" />
+							<cell
+								id="${arg.formComp.nombre}_fechaResolucionDiv" />
+							<cell
+								id="${arg.formComp.nombre}_numeroItemDiv" />
+						</hbox>
+					</vbox>
+				</row>
+			</rows>
+		</grid>
+	</vlayout>
+</zk>

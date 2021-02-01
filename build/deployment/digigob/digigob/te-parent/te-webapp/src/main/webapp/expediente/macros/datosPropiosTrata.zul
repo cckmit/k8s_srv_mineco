@@ -1,0 +1,35 @@
+<?page title="Datos Propios de la Trata" contentType="text/html;charset=UTF-8"?>
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./datosPropiosTrataWindow" ?>
+<zk>
+	<window title="${c:l('ee.datosPropiosTrata.title.datosPropios')}" border="normal"
+		id="datosPropiosTrataWindow" width="600px"
+		apply="com.egoveris.te.base.composer.DatosPropiosTrataCaratulaComposer">
+		
+		<paging id="datosPaginator" pageSize="5" />
+		<grid id="grillaDatos" mold="paging"
+			model="@{datosPropiosTrataWindow$composer.datos}"
+			paginal="${datosPaginator}">
+			<columns>
+				<column label="${c:l('ee.nuevoDocumento.nombre')}" width="200px"/>
+				<column label="${c:l('ee.consultaGeneradosReparticion.listheader.valor')}" width="390px"/>
+			</columns>
+		</grid>
+		<label id="idSinMetadatos"
+			value="${c:l('ee.nuevoexpediente.label.datospropios.sinMetadatos')}"
+			visible="false">
+		</label>
+		
+		<div align="right">
+		<label id="idRequrido"
+			value="${c:l('ee.nuevoexpediente.label.datospropios.requerido')}"
+			style="color:red; font-style: italic;" visible="false">
+		</label>
+		</div>
+		<separator></separator>
+		<button autodisable="self" id="guardar" visible="false" label="${c:l('ee.subsanacion.button.guardar')}" />
+		<toolbar mold="panel" orient="horizontal" width="100%" align="center">
+			<button autodisable="self" id="cerrar" visible="true" label="${c:l('ee.subsanacion.button.cerrar')}"/>			
+		</toolbar>
+	</window>
+</zk>

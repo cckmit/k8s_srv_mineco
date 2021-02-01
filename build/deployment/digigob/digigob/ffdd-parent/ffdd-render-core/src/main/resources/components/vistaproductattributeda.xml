@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<complexComponent type="TRADE" name="Vista ProductAttribute DA"
+	description="Vista Product AttributeDA" zul="vistaProductAttributeDA.zul"
+	composer="com.everis.tramelec.dynform.comp.ext.VistaProductAttributeDAComposer"
+	mappingDTO="com.egoveris.ccomplejos.base.model.VistaProductAttributeDADTO">
+
+	<field name="secuenciaAtributo" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" disabled="true"/>
+
+	<field name="nombreAtributo" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" disabled="true"/>
+
+	<field name="esFijo" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" disabled="true"/>
+
+	<field name="valorAtributo" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" disabled="true"/>
+
+
+</complexComponent>

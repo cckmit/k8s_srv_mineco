@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<complexComponent 
+		type="TRADE" name="vistadeclaraciondin" description="vista declaración Information"
+		zul="vistaDeclaracionDin.zul" 
+		mappingDTO="com.egoveris.ccomplejos.base.model.VistaDeclaracionDinDTO">
+		
+		<field name="numeroIdentificacion" width="90%" height="20px" class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" disabled="true"/>
+	<field name="codigoaduana" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.textboxext" disabled="true"/>
+	<field name="campoform" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.textboxext" disabled="true"/>
+	<field name="fechadevencimiento" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.textboxext" disabled="true"/>
+	<field name="codigotipooperacion" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.textboxext" disabled="true"/>
+	<field name="tipodeingreso" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.textboxext" disabled="true"/>
+	<field name="urldin" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.textboxext" disabled="true"/>
+	<field name="tipodestinacion" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.textboxext" disabled="true"/>
+	<field name="regioningreso" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.textboxext" disabled="true"/>
+		
+</complexComponent>

@@ -1,0 +1,38 @@
+<?page title="new page title" contentType="text/html;charset=UTF-8"?>
+<zk>
+	<vlayout
+		apply="com.egoveris.ffdd.render.zk.comp.cc.HeadingComposer">
+		<grid>
+			<columns>
+				<column></column>
+				<column></column>
+				<column></column>
+				<column></column>
+			</columns>
+			<rows>
+				<row>
+					<hbox>Heading ID:</hbox>
+					<cell id="${arg.formComp.nombre}_headingIdDiv" />
+					<hbox>Chapter ID:</hbox>
+					<cell id="${arg.formComp.nombre}_chapterIdDiv" />
+				</row>
+				<row>
+					<hbox>Chapter:</hbox>
+					<cell id="${arg.formComp.nombre}_chapterDTODiv" />
+				</row>
+				<row>
+					<hbox>Heading Code:</hbox>
+					<cell id="${arg.formComp.nombre}_headingCodeDiv" />
+					<hbox>Heading Desc:</hbox>
+					<cell id="${arg.formComp.nombre}_headingDescDiv" />
+				</row>
+				<row>
+					<hbox>Heading Desc SP:</hbox>
+					<cell id="${arg.formComp.nombre}_headingdescSPDiv" />
+					<hbox>Heading Status:</hbox>
+					<cell id="${arg.formComp.nombre}_headingStatusDiv" />
+				</row>
+			</rows>
+		</grid>
+	</vlayout>
+</zk>

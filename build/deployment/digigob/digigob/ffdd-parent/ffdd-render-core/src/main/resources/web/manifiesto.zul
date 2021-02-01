@@ -1,0 +1,12 @@
+<?page title="new page title" contentType="text/html;charset=UTF-8"?>
+<zk>
+	<vlayout
+		apply="com.egoveris.ffdd.render.zk.comp.cc.ManifiestoComposer">
+		<vbox>
+			<hbox>
+				<cell id="${arg.formComp.nombre}_fechaManifiestoDiv" />
+				<cell id="${arg.formComp.nombre}_numeroManifiestoDiv" />
+			</hbox>
+		</vbox>
+	</vlayout>
+</zk>

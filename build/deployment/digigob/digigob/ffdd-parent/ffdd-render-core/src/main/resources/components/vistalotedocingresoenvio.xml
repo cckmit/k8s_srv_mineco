@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<complexComponent type="TRADE" name="Lote"
+	description="Lote Information" zul="vistaLoteDocIngresoEnvio.zul"
+	composer="com.everis.tramelec.dynform.comp.ext.VistaLoteDocIngresoEnvioComposer"
+	mappingDTO="com.egoveris.ccomplejos.base.model.VistaLoteDocIngresoEnvioDTO">
+	 
+	<field name="valorLote" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" disabled="true"/>
+	
+</complexComponent>

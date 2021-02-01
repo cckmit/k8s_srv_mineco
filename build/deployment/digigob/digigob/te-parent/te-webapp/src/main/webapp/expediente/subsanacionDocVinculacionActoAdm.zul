@@ -1,0 +1,185 @@
+<zk>
+	<?page title="" contentType="text/html;charset=UTF-8"?>
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./subsanacionDocVinculacionActoAdmWindow" ?>
+	<window id="subsanacionDocVinculacionActoAdmWindow" title="${c:l('ee.vincActoAdm.title.vincularActoAdm')}"
+		width="775px"
+		apply="com.egoveris.te.base.composer.SubsanacionDocVinculacionActoAdmComposer"
+		border="normal" closable="true" position="center" sizable="false"
+		maximizable="false" maximized="false">
+		
+		<grid>
+			<rows>
+				<row style="align:center" align="center">
+			
+				
+							<hbox>
+								<grid width="740px" align="center"
+									id="gridConsultaDocumentos">
+									<columns>
+										<column width="180px"
+											id="ee.asociardocumento.column.tipo1"
+											label="${c:l('ee.asociardocumento.column.buscar.value')}"
+											align="center" />
+										<column width="180px"
+											id="ee.asociardocumento.column.tipo"
+											label="${c:l('ee.asociardocumento.column.tipo.value')}"
+											align="center" />
+										<column width="100px"
+											id="ee.asociardocumento.column.anio"
+											label="${c:l('ee.asociardocumento.column.anio.value')}"
+											align="center" />
+										<column width="100px"
+											id="ee.asociardocumento.column.numero"
+											label="${c:l('ee.asociardocumento.column.numero.value')}"
+											align="center" />
+										<column width="180px"
+											id="ee.asociardocumento.column.reparticion"
+											label="${c:l('ee.asociardocumento.column.reparticion.value')}"
+											align="center" />
+									</columns>
+									<rows>
+										<row id="camposDocumento"
+											>
+											<label
+												value="${c:l('ee.asociardocumento.column.buscarPorNumeroSade.value')}">
+											</label>
+
+											<bandbox
+												id="tiposDocumentoActoAdministrativoBandbox" width="130px" height="auto"
+												tabindex="16">
+												<bandpopup
+													id="tipoDocumentoActoAdministrativoCombo" width="350px" height="auto"
+													apply="com.egoveris.te.base.composer.TipoDocumentoPorFamiliaExpedienteBandboxComposer">
+													<groupbox mold="3d"
+														height="auto" width="auto">
+														<caption>
+															<label
+																value="${c:l('ee.controlIncompatibilidad.label.busquedaTiposDoc')}" />
+														</caption>
+														<separator />
+														<vbox>
+															<hbox
+																align="bottom">
+																<label
+																	value="${c:l('te.webapp.expediente.macros.documentofiltro.lbl.buscar')}" />
+																<separator
+																	width="2px" />
+																<textbox
+																	id="textoTipoDocumentoActoAdministrativo" />
+																<separator
+																	width="100px" />
+															</hbox>
+															<tree
+																id="actoAdmDocumentTypeTree" width="330px" height="auto">
+																<treecols>
+																	<treecol
+																		width="72%" label="${c:l('ee.nuevoDocumento.descripcion')}" />
+																	<treecol
+																		width="28%" label="${c:l('ee.nuevoDocumento.acronimo')}" />
+																</treecols>
+															</tree>
+														</vbox>
+													</groupbox>
+												</bandpopup>
+											</bandbox>
+
+
+											<intbox cols="4"
+												maxlength="4" id="anioSADEDocumentoActAdm" tabindex="17" />
+											<intbox maxlength="8"
+												id="numeroSADEDocumentoActAdm" tabindex="18" />
+
+
+											<bandbox
+												id="reparticionBusquedaDocumento" tabindex="19">
+												<bandpopup
+													apply="com.egoveris.te.base.composer.FindReparticionesBusquedaDocumentoBandboxComposer"
+													id="reparticionesComboBusquedaDocumento" width="650px">
+													<groupbox
+														mold="3d">
+														<caption>
+															<hbox>
+																Búsqueda
+																de
+																Organismo
+																<image
+																	src="/imagenes/help.png" width="16px" height="16px"
+																	tooltip="helpBusquedaReparticion" align="right" />
+															</hbox>
+														</caption>
+														<separator></separator>
+														<vbox>
+															<hbox>
+																Buscar
+																<textbox
+																	id="textoReparticionBusquedaDocumento" />
+															</hbox>
+															<paging
+																id="pagingReparticionesDocumento" pageSize="10" />
+															<listbox
+																mold="paging" width="600px"
+																id="reparticionesBusquedaDocumentoListbox"
+																model="@{listaReparticionSADEDocumentoSeleccionada}"
+																selectedItem="@{reparticionSeleccionadaDocumento}"
+																paginal="${pagingReparticionesDocumento}">
+																<listhead>
+																	<listheader
+																		label="${c:l('te.webapp.expediente.macros.documentofiltro.lbl.codigo')}" width="30%" />
+																	<listheader
+																		label="${c:l('te.webapp.expediente.macros.documentofiltro.lbl.nombre')}" height="70%" />
+																</listhead>
+																<listitem
+																	self="@{each=reparticion}">
+																	<listcell
+																		label="@{reparticion.codigo}" />
+																	<listcell
+																		label="@{reparticion.nombre}" />
+																</listitem>
+															</listbox>
+														</vbox>
+													</groupbox>
+												</bandpopup>
+											</bandbox>
+										</row>
+									</rows>
+								</grid>													
+							</hbox>
+				</row>
+			</rows>
+		</grid>
+		
+		<grid align="center" style="border:0px">
+			<rows>
+				<row align="center"  >
+					<toolbar mold="panel" orient="horizontal"
+								width="100%" align="center">
+						<!--
+						<toolbarbutton autodisable="self"
+							id="buscarDocumentoButton"
+							tabindex="20"
+							image="/imagenes/VincularDocumento.png"
+							forward="onClick=vinculacionActoAdministrativoWindow$VinculacionActoAdministrativoComposer.onBuscarDocumento" />
+						<toolbarbutton autodisable="self" 
+							id="cancelar"
+							tabindex="21" 
+							image="/imagenes/Cancelar.png" 
+							forward="onClick=vinculacionActoAdministrativoWindow$VinculacionActoAdministrativoComposer.onCancelar" />
+						-->
+						<button autodisable="self"
+							id="buscarDocumentoButton"
+							tabindex="20"
+							label="${c:l('ee.asociardocumento.column.vincularDocumento.value')}"
+							forward="onClick=vinculacionActoAdministrativoWindow$VinculacionActoAdministrativoComposer.onBuscarDocumento" />
+						<button autodisable="self" 
+							id="cancelar"
+							tabindex="21" 
+							label="${c:l('ee.documentViewer.button.cancelar')}"
+							forward="onClick=vinculacionActoAdministrativoWindow$VinculacionActoAdministrativoComposer.onCancelar" />
+					</toolbar>
+				</row>
+			</rows>
+		</grid>
+	</window>
+</zk>

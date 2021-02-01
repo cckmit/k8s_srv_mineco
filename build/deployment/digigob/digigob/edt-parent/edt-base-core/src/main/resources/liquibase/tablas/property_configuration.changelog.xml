@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
+    http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+	<changeSet author="Gustavo Aguilera" id="INSERTA_VALORES_CORREO">  
+	    <comment>insert queries</comment>
+	    <sql dbms="h2, mysql" 
+	                splitStatements="true"
+	                stripComments="true">         
+			update property_configuration set Valor = 'egoverisUser@gmail.com' where clave = 'app.edt.fromEmail';
+			update property_configuration set Valor = 'Marzo2020' where clave = 'app.eu.mail.password';
+			update property_configuration set Valor = 'egoveris' where clave = 'url.archivo.logo';
+			insert property_configuration values ('mail.smtp.host', 'smtp.gmail.com', 'SISTEMA');
+			insert property_configuration values ('mail.smtp.port', '587', 'SISTEMA');
+			insert property_configuration values ('mail.smtp.auth', 'true', 'SISTEMA');
+			insert property_configuration values ('mail.smtp.starttls.enable', 'true', 'SISTEMA');
+			insert property_configuration values ('mail.smtp.ssl.trust', 'smtp.gmail.com', 'SISTEMA');
+	    </sql>    
+	</changeSet>  
+	<changeSet author="Gustavo Aguilera" id="INSERTA_VALOR_LOCALIDAD">  
+	    <comment>insert queries</comment>
+	    <sql dbms="h2, mysql" 
+	                splitStatements="true"
+	                stripComments="true">         
+			insert into property_configuration values ('gedo.localidad', 'Santiago', 'GEDO');
+	    </sql>    
+	</changeSet>
+	<changeSet author="Gustavo Aguilera" id="INSERTA_VALOR_IDIOMA">  
+	    <comment>insert queries</comment>
+	    <sql dbms="h2, mysql" 
+	                splitStatements="true"
+	                stripComments="true">         
+			insert into property_configuration (clave, valor, CONFIGURACION ) values ('app.system.lang', 'es_ES', 'SISTEMA');
+	    </sql>    
+	</changeSet>
+	<changeSet id="PROPERTIES_ASUNTOS_MAIL_DEO" author="Carlos Bellotti">
+  		<insert tableName="PROPERTY_CONFIGURATION">
+  			<column name="CLAVE" value="mail.asunto.alta"/>
+  			<column name="VALOR" value="Alta de Usuario EgobSV"/>
+  			<column name="CONFIGURACION" value="SISTEMA"/>  			
+  		</insert>
+  		<insert tableName="PROPERTY_CONFIGURATION">
+  			<column name="CLAVE" value="mail.asunto.reseteo"/>
+  			<column name="VALOR" value="Reseteo de contraseña EgobSV"/>
+  			<column name="CONFIGURACION" value="SISTEMA"/>  			
+  		</insert>
+	</changeSet>
+	<changeSet id="PROPERTIES_PDF_LOGO" author="Carlos Bellotti">
+		<insert tableName="PROPERTY_CONFIGURATION">
+  			<column name="CLAVE" value="tica.pdf.style.header.width1"/>
+  			<column name="VALOR" value="20"/>
+  			<column name="CONFIGURACION" value="SISTEMA"/>	
+		</insert>
+		<insert tableName="PROPERTY_CONFIGURATION">
+  			<column name="CLAVE" value="tica.pdf.style.header.width2"/>
+  			<column name="VALOR" value="23"/>
+  			<column name="CONFIGURACION" value="SISTEMA"/>	
+		</insert>
+		<insert tableName="PROPERTY_CONFIGURATION">
+  			<column name="CLAVE" value="tica.pdf.style.header.width3"/>
+  			<column name="VALOR" value="17"/>
+  			<column name="CONFIGURACION" value="SISTEMA"/>	
+		</insert>
+		<insert tableName="PROPERTY_CONFIGURATION">
+  			<column name="CLAVE" value="tica.pdf.style.header.width4"/>
+  			<column name="VALOR" value="20"/>
+  			<column name="CONFIGURACION" value="SISTEMA"/>	
+		</insert>
+		<insert tableName="PROPERTY_CONFIGURATION">
+  			<column name="CLAVE" value="tica.pdf.style.header.width5"/>
+  			<column name="VALOR" value="20"/>
+  			<column name="CONFIGURACION" value="SISTEMA"/>	
+		</insert>
+	</changeSet>
+</databaseChangeLog>

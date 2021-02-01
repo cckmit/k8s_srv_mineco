@@ -1,0 +1,137 @@
+<?page title="${c:l('digigob.Title')}" contentType="text/html;charset=UTF-8"?>
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+<?init class="org.zkoss.zk.ui.util.Composition" arg0="~./db_template.zul"?>
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./inboxWindow"?>
+<zk>
+
+	<zscript><![CDATA[
+	import java.util.Comparator;
+	import com.egoveris.te.base.util.comparator.InboxComparator;
+	Comparator tareaAsc = new InboxComparator(true, 1);
+	Comparator tareaDsc = new InboxComparator(false, 1);
+	Comparator fechaAsc = new InboxComparator(true, 2);
+	Comparator fechaDsc = new InboxComparator(false, 2);
+	Comparator codigoExpedienteAsc = new InboxComparator(true, 3);
+	Comparator codigoExpedienteDsc = new InboxComparator(false, 3);
+	Comparator codigoTrataAsc = new InboxComparator(true, 4);
+	Comparator codigoTrataDsc = new InboxComparator(false, 4);
+	Comparator descripcionTrataAsc = new InboxComparator(true, 5);
+	Comparator descripcionTrataDsc = new InboxComparator(false, 5);
+	Comparator usuarioAnteriorAsc = new InboxComparator(true, 6);
+	Comparator usuarioAnteriorDsc = new InboxComparator(false, 6);
+	
+	
+]]></zscript>
+	
+
+	<window id="inboxWindow" title="" border="none" width="100%"
+		
+		apply="com.egoveris.te.base.composer.InboxComposer" self="@{define(egovBody)}">
+		<window id="taskView" visible="false" />
+		<window id="formularioControladoWindows" visible="false" />
+		
+		<div sclass="page-header">
+		<label id="ee.inbox.titulo"
+					value="${c:l('ee.finProcesamiento.label.buzonTareas')}"/>
+		</div>
+
+
+		<hlayout>
+			<toolbarbutton autodisable="self" 
+				image="/imagenes/page_white_text.png"
+				id="ee.inbox.button.crearsolicitud"
+				label="${c:l('ee.inbox.button.crearsolicitud.value')}"
+				forward="onClick=inboxWindow$InboxComposer.onGenerarNuevaSolicitud" />
+			<!--<toolbarbutton autodisable="self" 
+				image="/imagenes/page_white_text.png" label="Crear Nuevo Expediente"/>  -->
+
+			<toolbarbutton autodisable="self" 
+				image="/imagenes/page_white_text.png"
+				id="caratularInterno"
+				label="${c:l('ee.inbox.button.caratularInterno.value')}"
+				forward="onClick=inboxWindow$composer.onCaratularInterno" />
+
+			<toolbarbutton autodisable="self" 
+				image="/imagenes/page_white_text.png"
+				id="caratularExterno"
+				label="${c:l('ee.inbox.button.caratularExterno.value')}"
+				forward="onClick=inboxWindow$InboxComposer.onCaratularExterno()" />
+		</hlayout>
+		
+		<paging id="taskPaginator" pageSize="10" />
+		<listbox fixedLayout="true" id="tasksList"
+			
+			model="@{inboxWindow$composer.tasks}" checkmark="true"
+			selectedItem="@{inboxWindow$composer.selectedTask}" maxlength="20"
+			itemRenderer="com.egoveris.te.base.rendered.InboxItemRenderer">
+
+			
+			<listhead sizable="false">
+				<listheader align="center" width="30px"
+					image="/imagenes/mail.png"/>
+				<listheader id="nombreTarea"
+					label="${c:l('ee.inbox.listheader.nombretarea.value')}"
+					 width="95px"
+					sort="auto" />
+					<!-- 					sortAscending="${tareaAsc}" sortDescending="${tareaDsc}" -->
+				<listheader id="fechaModificacion" align="center"
+                    sort="auto"
+					width="130px"
+					label="${c:l('ee.inbox.listheader.fechaUltimaModificacion.value')}"
+					 />
+					<!-- 					sortAscending="${fechaAsc}" sortDescending="${fechaDsc}" -->
+				<listheader id="codigoExpediente"
+					label="${c:l('ee.inbox.listheader.codigoexpediente.value')}"
+					 />
+					<!-- 					sortAscending="${codigoExpedienteAsc}" sortDescending="${codigoExpedienteDsc}" -->
+				<listheader id="codigoTrata"
+					align="center"
+					label="${c:l('ee.inbox.listheader.codigotrata.value')}"
+					 width="110px" />
+					<!-- 					sortAscending="${codigoTrataAsc}" sortDescending="${codigoTrataDsc}" -->
+				<listheader id="descripcionTrata"
+					label="${c:l('ee.inbox.listheader.descripciontrata.value')}"
+					 />
+					
+					<!-- 					sortAscending="${descripcionTrataAsc}" sortDescending="${descripcionTrataDsc}" -->
+				<listheader id="motivo" width="175px"
+					label="${c:l('ee.inbox.listheader.motivo.value')}"
+					 />
+				<listheader id="usuarioAnterior"
+					width="130px"  
+					label="${c:l('ee.inbox.listheader.usuarioanterior.value')}"
+					 />
+					<!-- 					sortAscending="${usuarioAnteriorAsc}" sortDescending="${usuarioAnteriorDsc}" -->
+				<listheader id="ee.inbox.listheader.accionarealizar"
+					label="${c:l('ee.inbox.listheader.accionarealizar.value')}" width="10%"
+					 />
+			</listhead>
+			<listfoot
+				>
+				<listfooter />
+				<listfooter />
+				<listfooter />
+				<listfooter />
+				<listfooter />
+				<listfooter />
+				<listfooter id="ee.inbox.listfooter.totaltareapendiente"
+					span="2"  align="right">
+					<label value="${c:l('ee.inbox.listfooter.totaltareapendiente.value')}"
+						style="font-weight: bold;" />
+				</listfooter>
+				<listfooter
+					label="@{inboxWindow$InboxComposer.taskPaginator.totalSize}" span="1"
+					 />
+			</listfoot>
+		</listbox>
+		<separator height="50px" />
+
+
+	</window>
+	<!--TOOLTIPS DE AYUDA-->
+	<popup id="helpNuevaSolicitud" width="150px">
+		<label multiline="true"
+			value="${c:l('ee.finProcesamiento.popup.presionarBoton')}" />
+	</popup>
+</zk>

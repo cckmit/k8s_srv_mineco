@@ -1,0 +1,102 @@
+<?page contentType="text/html;charset=UTF-8"?>
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./win_periodoLicencia" ?>
+<zk>
+	<window id="win_periodoLicencia" width="100%" border="none"
+		style="align=center; "
+		apply="com.egoveris.edt.web.admin.pl.PeriodoLicenciaComposer">
+
+		<vlayout>
+			<div align="center">
+				<vbox align="center" width="100%">
+					<grid>
+						<columns>
+							<column width="20%" align="left" />
+							<column width="80%" align="left" />
+						</columns>
+						<rows>
+							<row>
+								<label
+									value="${c:l('eu.datosPersonales.periodoLicencia.tab.dateBox.vigenciaDesde')}" />
+								<hlayout>
+									<datebox id="dbx_vigenciaDesde"
+										cols="12" width="150px" format="dd/MM/yyyy"
+										value="@{win_periodoLicencia$composer.dbx_vigenciaDesde.value}" />
+									<!--
+										<label style="color:red" width="65%"
+										value="${c:l('eu.datosPersonales.periodoLicencia.tab.aclaracionParaVigenciaDesde')}" />
+									-->
+								</hlayout>
+							</row>
+							<row>
+								<label
+									value="${c:l('eu.datosPersonales.periodoLicencia.tab.dateBox.vigenciaHasta')}" />
+								<datebox id="dbx_vigenciaHasta"
+									cols="12" width="150px" format="dd/MM/yyyy"
+									value="@{win_periodoLicencia$composer.dbx_vigenciaHasta.value}" />
+							</row>
+							<row>
+								<label
+									value="${c:l('eu.datosPersonales.periodoLicencia.tab.apoderado')}" />
+								<include id="inclBandboxUsuario"/>
+<!-- 								<bandbox id="bandBoxApoderados" -->
+<!-- 									width="150px"> -->
+<!-- 									<bandpopup width="380px"> -->
+<!-- 										<groupbox mold="3d"> -->
+<!-- 											<caption> -->
+<!-- 												<hbox> -->
+<!-- 													<label -->
+<!-- 														value="${c:l('eu.datosPersonales.hbox.bandBoxUsuarios.label.busquedaDeUsuarios')}" -->
+<!-- 														width="560px" /> -->
+<!-- 													<image -->
+<!-- 														src="/imagenes/help.png" width="16px" height="16px" -->
+<!-- 														tooltip="helpBusquedaUsuarios" align="right" /> -->
+<!-- 												</hbox> -->
+<!-- 											</caption> -->
+<!-- 											<separator height="2px"></separator> -->
+<!-- 											<vbox height="100px" -->
+<!-- 												width="100%"> -->
+<!-- 												<paging -->
+<!-- 													id="paginatorIncorporarSADE" pageSize="10" /> -->
+<!-- 												<listbox width="100%" -->
+<!-- 													id="usuariosListbox" mold="paging" -->
+<!-- 													paginal="${paginatorIncorporarSADE}" -->
+<!-- 													model="@{win_periodoLicencia$composer.listaUsuariosSeleccionados}" -->
+<!-- 													selectedItem="@{win_periodoLicencia$composer.usuarioSeleccionado}" -->
+<!-- 													itemRenderer="com.egoveris.edt.web.pl.renderers.UsuarioBandBoxDatosPersonalesItemRenderer"> -->
+<!-- 													<listhead> -->
+<!-- 														<listheader -->
+<!-- 															label="${c:l('eu.datosPersonales.periodoLicencia.tab.listhead.listheader.label.apoderado')}" -->
+<!-- 															width="100%" /> -->
+<!-- 													</listhead> -->
+<!-- 													<listfoot -->
+<!-- 														style=""> -->
+<!-- 														<listfooter -->
+<!-- 															id="totalUsuarios" span="1" style="color:#C4ECFF" /> -->
+<!-- 													</listfoot> -->
+<!-- 												</listbox> -->
+<!-- 											</vbox> -->
+<!-- 										</groupbox> -->
+<!-- 									</bandpopup> -->
+<!-- 								</bandbox> -->
+							</row>
+						</rows>
+					</grid>
+					<separator spacing="20px" />
+				</vbox>
+				<hbox id="hbox_botones" align="right">
+					<button id="btn_guardar"
+						iconSclass="z-icon-floppy-o"
+						label="${c:l('eu.datosPersonales.periodoLicencia.tab.guardar')}"
+						zclass="z-button" style="padding:8px 10px;"
+						tooltiptext="${c:l('eu.datosPersonales.periodoLicencia.tab.guardar')}" />
+					<button id="btn_cancelar"
+						iconSclass="z-icon-times" label="${c:l('edt.standar.cancelar')}"
+						zclass="z-button" style="padding:8px 10px;"
+						tooltiptext="${c:l('eu.datosPersonales.periodoLicencia.tab.cancelar')}" />
+				</hbox>
+			</div>
+		</vlayout>
+	</window>
+</zk>

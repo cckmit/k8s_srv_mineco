@@ -1,0 +1,204 @@
+<?page title="" contentType="text/html;charset=UTF-8"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./tareasMisSupervisadosDesktop"?>
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c" ?>
+<zk>
+	<window id="tareasMisSupervisadosDesktop" width="100%"
+		style="align=center; "  
+		apply="com.egoveris.edt.web.pl.TareasMisSupervisadosComposer"
+		use="com.egoveris.edt.web.pl.ActualizarEscritorioWindow">
+		
+		<label id="timeoutMisSupervisados" visible="false"></label>
+		<script type="text/javascript">
+			
+		  	var tiempoMisSupervisados;
+		
+			function notifyActualizarTareasMisSupervisados() {
+	  			if(typeof tiempoMisSupervisados === 'undefined'){
+		  			tiempoMisSupervisados = parseInt(jq('$timeoutMisSupervisados')[0].firstChild.nodeValue);
+		  			if (typeof window.console !== 'undefined') {
+		  				window.console.log("tiempoMisSupervisados: "+tiempoMisSupervisados);
+		  			}
+	  			}
+	  			//CON TIMEOUT = 0 INHABILITO EL REFRESH!
+	  			if (tiempoMisSupervisados > 0) {
+	  				if (typeof window.console !== 'undefined') {
+			  			window.console.log("Refrescando MisSupervisados...");
+			  		}	 
+		  			eventTarget=zk.Widget.$(jq('$misTareasDesktop')[0]);
+		  			zAu.send(new zk.Event(zk.Widget.$(eventTarget),
+		  			'onActualizarTareasMisSupervisados'));
+		  			setTimeout("notifyActualizarTareasMisSupervisados()", tiempoMisSupervisados); 
+		  		}
+      		}
+
+			setTimeout("notifyActualizarTareasMisSupervisados()", "60000");
+						
+		</script>
+
+		<separator />
+
+		<vlayout >
+			<label visible="false"
+				value="${c:l('eu.escritorioUnico.misTareas.sinAplicaciones')}"
+				id="labelMisTareasSinAplicacionId">
+			</label>
+			<label visible="false"
+				value="${c:l('eu.escritorioUnico.tareasMisSupervisados.sinSupervisados')}"
+				id="labelTareasMisSupervisadoSinSupervisadosId">
+			</label>
+
+
+
+			<listbox fixedLayout="true" id="tareasMisSupervisadosId"
+				style=""
+				maxlength="20">
+			</listbox>
+
+
+		</vlayout>
+		<vlayout  height="100%" >
+			<grid id="grillaDetalleTareasDetalleMisSupervisados" sizedByContent="true">
+				<auxhead>
+					<auxheader
+						label="${c:l('eu.escritorioUnico.detalleSupervisados')}">
+					</auxheader>
+				</auxhead>
+				<columns>
+					<column id="columnaDetalleTareasMisSupervisados"
+						valign="top" visible="false" width="100%" height="200px">
+						<listbox fixedLayout="true"
+							id="detalleTareasMisSupervisados"
+							selectedItem="@{tareasMisSupervisadosDesktop$composer.tareaSistemaUsuarioSel}"
+							style="background-color:#C4ECFF;background: #C4ECFF;"
+							maxlength="20"
+							model="@{tareasMisSupervisadosDesktop$composer.tareasSistemaUsuario}">
+
+										<auxhead>
+											<auxheader 
+												style="background: #C4ECFF;" rowspan="2" align="center">
+												<label 
+													value="${c:l('eu.escritorioUnico.tareasMisSupervisados.usuario')}"
+													style="">
+												</label>
+											</auxheader>
+											<auxheader
+												style="background: #C4ECFF;" rowspan="2" align="center">
+												<label
+													value="${c:l('eu.escritorioUnico.tareasMisSupervisados.sistema')}"
+													style="">
+												</label>
+											</auxheader>
+											<auxheader colspan="5"
+												style="background: #C4ECFF;" align="center">
+												<label
+													value="${c:l('eu.escritorioUnico.misTareas.pendientes')}"
+													style="">
+												</label>
+											</auxheader>
+
+											<auxheader colspan="3"
+												style="background: #77aa77;" align="center">
+												<label
+													value="${c:l('eu.escritorioUnico.misTareas.promedio')}"
+													style="">
+												</label>
+											</auxheader>
+											
+											<auxheader colspan="1" rowspan="2"
+												style="background: #C4ECFF;" align="center">
+												<label
+													value="${c:l('eu.escritorioUnico.misTareas.accion')}"
+													style="">
+												</label>
+											</auxheader>
+										</auxhead>
+
+								<listhead sizable="false" style="background: #C4ECFF;">
+								<listheader
+									label="${c:l('eu.escritorioUnico.misTareas.total')}"
+									style="background-color:#C4ECFF; " />
+								<listheader id="frec1" 
+									style="background-color:#C4ECFF; " />
+								<listheader id="frec2" 
+									style="background-color:#C4ECFF; " />
+								
+								<listheader id="frec3" 
+									style="background-color:#C4ECFF; "/>
+								
+								<listheader id="frec4" 
+									style="background-color:#C4ECFF; " />
+								<listheader 
+									id="porcentajeFrecuenciaMenor" style="background-color: #77aa77;" />
+								<listheader />
+								<listheader visible="true"
+									id="porcentajeFrecuenciaMayor" style="background-color: #77aa77;" />
+							
+																
+
+							</listhead>
+							<listitem
+								self="@{each='tareaSistemaUsuarioSel'}">
+
+								<listcell>
+										<label
+										id="labelUsuarioSupervisado" multiline="true">
+									</label>
+								</listcell>
+								<listcell
+									label="@{tareaSistemaUsuarioSel.aplicacion.nombreAplicacion}"
+									tooltiptext="@{tareasPorSistema.aplicacion.descripcionAplicacion}">
+								</listcell>
+								<listcell
+									label="@{tareaSistemaUsuarioSel.tareasPendientes}">
+								</listcell>
+								<listcell
+									label="@{tareaSistemaUsuarioSel.frecuencia1}">
+								</listcell>
+								<listcell
+									label="@{tareaSistemaUsuarioSel.frecuencia2}">
+								</listcell>
+								<listcell
+									label="@{tareaSistemaUsuarioSel.frecuencia3}">
+								</listcell>
+								<listcell
+									label="@{tareaSistemaUsuarioSel.frecuencia4}">
+								</listcell>
+								
+								<listcell
+									label="@{tareaSistemaUsuarioSel.porcentajeFrecuenciaMenor}"
+									style="font-weight:bold">
+								</listcell>
+								
+								<listcell/>
+								<listcell
+									label="@{tareaSistemaUsuarioSel.porcentajeFrecuenciaMayor}"
+									style="font-weight:bold">
+								</listcell>
+								
+								<listcell>
+										<hbox align="center">
+										<image id="imgIrSupervisados" src="/imagenes/play.png"
+											tooltiptext="${c:l('eu.escritorioUnico.helpIr')}"
+											forward="onClick=tareasMisSupervisadosDesktop$composer.onIrMisSupervisadosInbox" />
+										<label value="${c:l('eu.misApp.labels.ir') }"
+											forward="onClick=tareasMisSupervisadosDesktop$composer.onIrMisSupervisadosInbox"
+											style="font-size:11px;font-family: Arial;text-decoration: none;"/>
+									</hbox>
+								</listcell>
+
+								
+							</listitem>
+
+						</listbox>
+					</column>
+				</columns>
+			</grid>
+			<label visible="true"
+				value="${c:l('eu.escritorioUnico.tareasMisSupervisados.detalleTareas')}"
+				id="labelDetalleTareasMisSupervisadosSinDetalle"
+				style="align=center; ">
+			</label>
+		</vlayout>
+		<label id="labelAnchor"/>
+	</window>
+</zk>

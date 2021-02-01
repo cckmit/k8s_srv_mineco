@@ -1,0 +1,131 @@
+<?page title="Rehabilitar Expediente" contentType="text/html;charset=UTF-8"?>
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./desarchivarWindow" ?>
+<zk>
+	<window id="desarchivarWindow" title="" border="none"
+		
+		apply="com.egoveris.te.base.composer.DesarchivarComposer">
+		<window id="desarchivarEnvioWindow" visible="false" />
+		<hbox  width="100%">
+			<vbox>
+				<separator></separator>
+				<label value="${c:l('ee.panelusuario.tab.desarchivarexpediente.value')}"
+					style="padding-left: 10px; font: bold;" />
+				<separator></separator>
+			</vbox>
+		</hbox>
+		<hbox  align="center">
+			<image src="/imagenes/egovIconOrange.png" width="40px"
+				height="30px" style="padding-left: 10px;" />
+			<label value="${c:l('ee.panelusuario.tab.desarchivarexpediente.value')}" style="font: bold;" />
+		</hbox>
+		<separator bar="true"  />
+		<div align="center">
+			<hlayout style="align:center" spacing="0">
+				<grid align="center" width="740px"
+					id="gridConsultaDocumentos">
+					<columns>
+						<column width="180px" label="${c:l('ee.historialpases.column.tipo.value')}"
+							align="center" />
+						<column width="100px" label="${c:l('ee.historialpases.column.anio.value')}"
+							align="center" />
+						<column width="100px" label="${c:l('ee.historialpases.column.numero.value')}"
+							align="center" />
+						<column width="180px" label="${c:l('ee.historialpases.column.reparticion.value')}"
+							align="center" />
+						<column width="180px"
+							label="${c:l('ee.asociarexpediente.column.reparticionUsuario.value')}" align="center" />
+
+					</columns>
+					<rows>
+						<row id="camposSADE"
+							>
+							<combobox width="80px" id="tipoActuacion" readonly="true">
+							</combobox>
+							<intbox cols="4" maxlength="4"
+								id="anioSADE" />
+							<intbox maxlength="8" id="numeroSADE" />
+							<textbox id="reparticionActuacion" readonly="true">
+							</textbox>
+
+							<bandbox width="150px"
+								id="reparticionBusquedaUsuario">
+								<bandpopup
+									apply="com.egoveris.te.base.util.FindReparticionesConsulta"
+									id="reparticionesComboBusquedaSADE" width="650px">
+									<groupbox mold="3d">
+										<caption>
+											<hbox>
+												Búsqueda de Organismo
+												<image
+													src="/imagenes/help.png" width="16px" height="16px"
+													tooltip="helpBusquedaReparticion" align="right" />
+											</hbox>
+										</caption>
+										<separator></separator>
+										<vbox>
+											<hbox>
+												Buscar
+												<textbox
+													id="textoReparticionBusquedaUsuario" />
+											</hbox>
+											<paging
+												id="pagingReparticionesDocsSADE" pageSize="10" />
+											<listbox mold="paging"
+												width="500px" id="reparticionesBusquedaUsuarioListbox"
+												model="@{listaReparticionSADESeleccionada}"
+												selectedItem="@{reparticionSeleccionada}"
+												paginal="${pagingReparticionesDocsSADE}">
+												<listhead>
+													<listheader
+														label="${c:l('te.webapp.expediente.macros.documentofiltro.lbl.codigo')}" width="30%" />
+													<listheader
+														label="${c:l('te.webapp.expediente.macros.documentofiltro.lbl.nombre')}" height="70%" />
+												</listhead>
+												<listitem
+													self="@{each=reparticion}">
+													<listcell
+														label="@{reparticion.codigo}" />
+													<listcell
+														label="@{reparticion.nombre}" />
+												</listitem>
+											</listbox>
+										</vbox>
+									</groupbox>
+								</bandpopup>
+							</bandbox>
+						</row>
+					</rows>
+				</grid>
+				<space></space>
+				<!-- <toolbarbutton autodisable="self" id="buscarActuacion"   height="42px"
+				image="/imagenes/BuscarExpediente.png" forward="onBuscarActuacion"/>-->
+				<button autodisable="self" id="buscarActuacion"   height="42px"
+				label="${c:l('ee.expediente.tramitacion.lbl.buscarexpediente')}" forward="onBuscarActuacion"/>
+			</hlayout>
+		</div>
+		<separator height="16px"></separator>
+			<listbox id="consultaExpedienteList"
+				model="@{desarchivarWindow$DesarchivarComposer.expedientes}"
+				selectedItem="@{desarchivarWindow$DesarchivarComposer.selectedExpediente}"
+				itemRenderer="com.egoveris.te.base.rendered.DesarchivarItemRenderer"
+				forward="onSelectExpediente">
+				<listhead>
+					<listheader label="${c:l('ee.tramitacion.listheader.tipodocumento.value')}" width="125px"
+						align="center" />
+					<listheader label="${c:l('ee.tramitacion.listheader.anio.value')}" width="50px" align="center" />
+					<listheader label="${c:l('ee.tramitacion.listheader.numero.value')}" width="100px"
+						align="center" />
+					<listheader label="${c:l('ee.asociarexpediente.column.reparticionUsuario.value')}"
+						width="150px" align="center" />
+					<listheader label="${c:l('ee.desarchivar.tramite')}" width="250px"
+						align="center" />
+					<listheader label="${c:l('te.webapp.abmTrata.listbox.header.descripcion')}" width="100%"
+						align="center" />
+					<listheader label="${c:l('ee.expediente.subsanaciondocumentos.lbl.accion')}" width="150px"
+						align="center" />
+				</listhead>
+			</listbox>
+			<separator />
+	</window>
+</zk>

@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.egoveris</groupId>
+		<artifactId>vuc-front</artifactId>
+		<version>2.0.3-SNAPSHOT</version>
+	</parent>
+	<artifactId>vuc-front-base-core</artifactId>
+	<name>vuc-front base core project</name>
+	<dependencies>
+		<!-- == BEGIN EGOVERIS == -->
+		
+<!-- 		<dependency> -->
+<!-- 			<groupId>javax</groupId> -->
+<!-- 			<artifactId>javaee-api</artifactId> -->
+<!-- 			<scope>provided</scope> -->
+<!-- 		</dependency> -->
+		
+		<dependency>
+			<groupId>org.freemarker</groupId>
+			<artifactId>freemarker</artifactId>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.terasoluna.plus.mail</groupId>
+			<artifactId>terasoluna-plus-core-mail-javamail-conf</artifactId>
+		</dependency>
+		
+		<dependency>
+			<groupId>com.egoveris.commons.databaseConfiguration</groupId>
+			<artifactId>database-configuration-lib</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.egoveris</groupId>
+			<artifactId>deo-ws-common</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.egoveris</groupId>
+			<artifactId>shared-util</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.egoveris</groupId>
+			<artifactId>te-ws-common</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.egoveris</groupId>
+			<artifactId>shared-document-persistence-base-common</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.egoveris</groupId>
+			<artifactId>shared-document-persistence-base-core</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+		<!-- == END EGOVERIS == -->
+		<dependency>
+			<groupId>org.terasoluna.plus.framework</groupId>
+			<artifactId>terasoluna-plus-core</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.egoveris</groupId>
+			<artifactId>vuc-front-base-common</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.data</groupId>
+			<artifactId>spring-data-rest-core</artifactId>
+			<scope>provided</scope>
+			<optional>true</optional>
+		</dependency>
+		<dependency>
+			<groupId>org.terasoluna.plus.persistence</groupId>
+			<artifactId>terasoluna-plus-core-persistence-jpa-hibernate-conf</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.egoveris</groupId>
+			<artifactId>vuc-front-env</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+		    <groupId>org.liquibase</groupId>
+		    <artifactId>liquibase-core</artifactId>
+		    <version>3.5.3</version><!--$NO-MVN-MAN-VER$-->
+		</dependency>
+		
+		<dependency>
+		    <groupId>com.google.zxing</groupId>
+		    <artifactId>core</artifactId>
+		    <version>3.3.0</version>
+		</dependency>
+		<dependency>
+		    <groupId>com.google.zxing</groupId>
+		    <artifactId>javase</artifactId>
+		    <version>3.3.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>net.sf.barcode4j</groupId>
+			<artifactId>barcode4j</artifactId>
+			<version>2.1</version>
+		</dependency>
+		
+	</dependencies>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>com.mysema.maven</groupId>
+				<artifactId>apt-maven-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>generate-jpa-querydsl-sources</id>
+						<goals>
+							<goal>process</goal>
+						</goals>
+						<configuration>
+							<outputDirectory>target/generated-sources/java</outputDirectory>
+							<processor>com.mysema.query.apt.jpa.JPAAnnotationProcessor</processor>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+</project>

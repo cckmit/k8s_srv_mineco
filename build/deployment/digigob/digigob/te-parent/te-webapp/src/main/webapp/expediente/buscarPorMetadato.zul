@@ -1,0 +1,189 @@
+<?page title="Buscar por metadato" contentType="text/html;charset=UTF-8"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./buscarPorMetadatoWindow"?>
+<zk>
+<window title="${c:l('ee.buscarPorMetadato.title.buscarDatosPropios')}" border="normal" width="1000px" 
+		id="buscarPorMetadatoWindow"  
+		apply="com.egoveris.te.base.composer.BuscarPorMetadatoComposer">
+		<vlayout  width="100%">
+		
+			<groupbox style="width: 700px; margin: 20px auto; ">
+        		<caption label="${c:l('ee.buscarPorMetadato.caption.datosBusqueda')}" />
+				<hbox style="float: left;  margin: 10px 60px auto;">
+					<label value="${c:l('ee.consultaGeneradosReparticion.hbox.fechaDesde')}" width="50px"/>
+					<separator width="40px" />
+					<datebox id="fechaDesdeDateBox" width="148px" />
+		
+					<separator width="60px" />
+				
+					<label value="${c:l('ee.consultaGeneradosReparticion.hbox.fechaHasta')}" />
+					<separator width="18px" />
+					<datebox id="fechaHastaDateBox" width="148px"/>
+				</hbox>
+				<hbox style=" float: left; margin: 20px 60px auto;" >
+					<radiogroup id="tipoBusquedaRadioGroup" orient="horizontal"  >
+						<radio id="generadosPorMiRadio"  label="${c:l('ee.buscarPorMetadato.radio.generadosPorMi')}" style="float:left;" checked="true"></radio>
+						<radio id="generadosPorMiReparticionRadio" label="${c:l('ee.buscarPorMetadato.radio.generadosPorOrganismo')}" style="float:left; margin-left: 20px;"></radio>
+					</radiogroup>
+				</hbox>
+				<hbox id="usuarioFirmanteHbox" style=" float: left; margin: 20px 60px auto;" visible="false">
+					<checkbox id="usuarioFirmanteCheckbox" label="${c:l('ee.buscarPorMetadato.chekbox.usuarioFirmante')}"></checkbox>
+					<combobox id="usuarioFirmanteCombobox" buttonVisible="false" disabled="true" autodrop="true"></combobox>
+				</hbox>
+				
+				<hbox style="float: left; margin: 20px 60px auto;">
+					<checkbox id="soloActivosCheckbox" label="${c:l('ee.buscarPorMetadato.chekbox.mostrarTiposDocActivos')}"></checkbox>
+					<separator width="60px"></separator>
+					<checkbox id="todosCheckbox" label="${c:l('ee.buscarPorMetadato.chekbox.todosDoc')}"></checkbox>
+				</hbox>
+								
+				<hbox style="float: left; margin: 20px 60px auto;">
+					<label value="${c:l('te.webapp.expediente.macros.documentofiltro.tipodocumento')}"></label>
+					<separator width="6px"></separator>
+					<bandbox id="buscadorTipoDocumento">
+					<bandpopup id="familia" width="600px" height="auto"
+							   apply="com.egoveris.te.base.composer.BuscadorTipoDocumentoComposer">
+						<groupbox mold="3d" height="auto" closable="false" width="auto">
+							<caption>
+								<hbox>
+									<label value="${c:l('ee.busquedaTipoDocumento')}" />
+								</hbox>
+							</caption>
+							<separator></separator>
+							<vbox>
+								<hbox align="bottom">
+									<label value="${c:l('ee.consultaGeneradosReparticion.button.buscar')}" />
+									<separator width="2px" />
+									<textbox id="textoTipoDocumento" />
+									<separator width="100px" />
+								</hbox>
+								<separator width="25px" />
+								<tree id="familiaTipoTree" width="600px" height="auto">
+									<treecols>
+										<treecol width="30%"
+											label="${c:l('te.webapp.expediente.macros.documentofiltro.lbl.nombre')}" />
+										<treecol width="20%"
+											label="${c:l('ee.nuevoDocumento.acronimo')}"/>
+										<treecol width="25%"
+											label="${c:l('ee.nuevoDocumento.descripcion')}" />
+										<treecol width="25%" label="${c:l('ee.iniciarDocumento.caracteristicas')}" />
+									</treecols>
+								</tree>
+							</vbox>
+						</groupbox>
+					</bandpopup>
+				</bandbox>
+				</hbox>
+				<!-- LISTA DE Metadata -->
+				<hbox id="datosPropioHbox" visible="false" style="float: left; margin: 20px 60px auto;">
+					<label value="${c:l('ee.consultaGeneradosReparticion.hbox.datoPropio')}"></label>
+					<separator width="5px" ></separator>
+					<combobox id="nombreMetadato" readonly="true" width="120px"
+						model="@{buscarPorMetadatoWindow$BuscarPorMetadatoComposer.listaMetadata}" 
+						selectedItem="@{buscarPorMetadatoWindow$BuscarPorMetadatoComposer.selectedMetadata}">
+						
+					</combobox>
+					<separator width="560px" ></separator>
+					<label value="${c:l('ee.consultaGeneradosReparticion.listheader.valor')}"></label>
+					<separator width="5px" ></separator>
+					<textbox id="nuevo_valor"></textbox>
+					<button autodisable="self" id="agregar" image="/imagenes/control_add_blue.png"></button>
+				</hbox>
+				
+				<!-- LISTA DE CAMPOS FC -->
+				<hbox id="agregaDataFcHlayout" align="center" visible="false">
+					<label value="${c:l('ee.consultaGeneradosReparticion.hbox.datoPropio')}" style="padding-top: 2px;"/>
+					<vbox>
+						<combobox id="comboMetaFc" readonly="true" width="200px"
+							model="@{buscarPorMetadatoWindow$BuscarPorMetadatoComposer.listaMetaFc}" selectedItem="@{buscarPorMetadatoWindow$BuscarPorMetadatoComposer.selectedMetaFc}">
+						</combobox>
+						<div id="divFc" />
+					</vbox>
+					<button autodisable="self" visible="false" id="agregarFc" image="/imagenes/control_add_blue.png" height="45px"/>
+				</hbox>
+			
+			<separator />
+			<separator />
+			<!-- LISTA DE DocumentoMetadata -->
+			<hbox id="grillalayout" style="float: left; margin: 20px 60px auto;" visible="false">
+				<grid id="grillaValoresAgregados" width="300px"
+					style="margin-left: auto; margin-right: auto;" 
+					model="@{buscarPorMetadatoWindow$BuscarPorMetadatoComposer.listaDocMetadata}"
+					rowRenderer="com.egoveris.te.base.rendered.MetadatosGridRender">
+			
+					<columns>
+						<column align="center"
+							label="${c:l('ee.consultaGeneradosReparticion.hbox.datoPropio')}" />
+						<column align="center"
+							label="${c:l('ee.consultaGeneradosReparticion.listheader.valor')}"/>
+					</columns>
+				</grid>
+			</hbox>
+				<hbox style="float: right; margin: 20px 50px auto;">
+					<separator width="100px" ></separator>
+					<!--						
+					<toolbarbutton autodisable="self"
+						image="/imagenes/BotonBuscarDocumento.png"
+						forward="onClick=buscarPorMetadatoWindow$BuscarPorMetadatoComposer.onBuscarDocumentos"
+						 tabindex="1" />
+					-->
+					<button autodisable="self"
+						label="${c:l('ee.tramitacion.button.buscardocumento.value')}"
+						forward="onClick=buscarPorMetadatoWindow$BuscarPorMetadatoComposer.onBuscarDocumentos"
+						 tabindex="1" />
+					</hbox>	
+				</groupbox>
+	
+			
+			<separator height="20px"/>
+			<div align="center">
+		
+				<hbox >
+				  <paging id="pagingDocumento" pageSize="10" width="749px"/>
+				</hbox>
+				<listbox id="documentosEncontradosListBox"  style="padding: 1px;" width="749px" multiple="true">
+					<listhead >
+						<listheader width="150px" label="${c:l('ee.documentViewer.listhead.tipoDocumento')}" align="center"></listheader>
+						<listheader width="150px" label="${c:l('ee.documentViewer.listhead.numDocumento')}" align="center"></listheader>
+		                <listheader width="150px" label="${c:l('ee.documentViewer.listhead.referencia')}" align="center" ></listheader>
+		                <listheader width="150px" label="${c:l('ee.documentViewer.listhead.fechaCreacion')}" align="center"></listheader>
+		                <listheader width="150px"  label="${c:l('te.webapp.abmTrata.listbox.header.acciones')}" align="center"></listheader>
+					</listhead>
+					<listfoot
+						>
+					<listfooter id="foot" />
+			</listfoot>
+				</listbox>
+      	   </div>
+
+		
+			<div style="float: right; margin-right: 50px; margin-top:20px; margin-bottom:10px;">
+			<hbox>	
+				<!--
+				<toolbarbutton autodisable="self"
+				id="buscarDocumentoButton"
+				image="/imagenes/VincularDocumento.png"
+				forward="onClick=buscarPorMetadatoWindow$BuscarPorMetadatoComposer.onVincularDocumentos"
+				width="" left="50px" height="" tabindex="1" />
+				
+				<toolbarbutton autodisable="self"
+				id="subsanarButton"
+				image="/imagenes/Cancelar.png"
+				forward="onClick=buscarPorMetadatoWindow$BuscarPorMetadatoComposer.onCancelar"
+				width="" left="50px" height="" tabindex="2" />
+				-->
+				<button autodisable="self"
+				id="buscarDocumentoButton"
+				label="${c:l('ee.asociardocumento.column.vincularDocumento.value')}"
+				forward="onClick=buscarPorMetadatoWindow$BuscarPorMetadatoComposer.onVincularDocumentos"
+				left="50px" height="" tabindex="1" />
+				
+				<button autodisable="self"
+				id="subsanarButton"
+				label="${c:l('ee.documentViewer.button.cancelar')}"
+				forward="onClick=buscarPorMetadatoWindow$BuscarPorMetadatoComposer.onCancelar"
+				left="50px" height="" tabindex="2" />
+				</hbox>
+				</div>
+</vlayout>
+</window>
+</zk>

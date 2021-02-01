@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<complexComponent type="TRADE" name="Lote"
+	description="Vista Otr" zul="vistaotrdin.zul" 
+	mappingDTO="com.egoveris.ccomplejos.base.model.VistaOTRDinDTO">
+	
+	<field name="secuencialCuenta" width="90%" height="20px" class="com.egoveris.ffdd.render.zk.comp.ext.IntboxExt" disabled="true"/>
+	<field name="codigoCuentaOTR" width="90%" height="20px" class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt"  disabled="true"/>
+	<field name="montoCuentaOTR" width="90%" height="20px" class="com.egoveris.ffdd.render.zk.comp.ext.DecimalboxExt"  disabled="true"/>
+	
+	
+</complexComponent>

@@ -1,0 +1,46 @@
+<zk>
+	<zscript>
+		<![CDATA[
+			// Importante: especificar el alto en px de la imagen correspondiente al logo
+	    	altoImgLogo = "60px";
+		]]>
+	</zscript>
+	<div id="headerDiv" sclass="navbar" apply="com.egoveris.dashboard.web.composer.HeaderComposer">
+		<script type="text/javascript"><![CDATA[
+			
+				$(() => {
+				    var link = document.createElement('link');
+				    link.type = 'image/x-icon';
+				    link.rel = 'icon';
+				    link.href = window.location.origin + '/favicon.ico';
+				    document.getElementsByTagName('head')[0].appendChild(link);
+				});
+						]]></script>
+		<style>
+			.header-box-a {
+				line-height: ${altoImgLogo} !important;
+			}
+			
+			.header-box-user > div {
+				height: ${altoImgLogo} !important;
+			}
+			
+			.header-box-user .z-menu-content {
+				line-height: ${altoImgLogo} !important;
+				height: ${altoImgLogo} !important;
+			}
+		</style>
+		<hbox align="center" sclass="pull-left">
+			<!-- Logo -->
+			<!--image src="@load(dbvm.properties['logoUri'])" style="height: 55px;"  /-->
+			<image id="logo" style="height: 55px;"  />
+			<!-- Title -->
+			<!--label value="@load(dbvm.properties['headerText'])" sclass="navbar-brand" /-->
+			<label value="${c:l('digigob.header.Title')}" sclass="navbar-brand" />
+		</hbox>
+		
+		<!-- Se incluye controlUsuario primero porque la clase css pull-right posiciona notificaciones primero -->
+		<include id="controlUsuario" src="~./db_layout/header/controlUsuario.zul" />
+		<include id="notificaciones" src="~./db_layout/header/notificaciones.zul" if="${dbvm.properties['showNotificaciones'] eq 'true'}" />
+	</div>
+</zk>

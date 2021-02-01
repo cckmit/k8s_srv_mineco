@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.egoveris</groupId>
+		<artifactId>egoveris-master-config</artifactId>
+		<version>2.0.3-SNAPSHOT</version>
+	</parent>
+	<artifactId>workflow-designer</artifactId>
+	<packaging>pom</packaging>
+	<name>Application workflow-designer</name>
+	<scm>
+		<connection>${egoveris.scm.git.repository.group}workflow-designer-parent.git</connection>
+		<developerConnection>${egoveris.scm.git.repository.group}workflow-designer-parent.git</developerConnection>
+		<tag>System.setProperty("versionWithOutPrefix", "${project.version}".replace('-SNAPSHOT', ''))</tag>
+	</scm>
+	<modules>
+		<module>workflow-designer-webapp</module>
+		<module>workflow-designer-env</module>
+		<module>workflow-designer-module-common</module>
+		<module>workflow-designer-module-core</module>
+		<module>workflow-designer-module-web</module>
+	</modules>
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.terasoluna.plus.framework</groupId>
+				<artifactId>terasoluna-plus-bom</artifactId>
+				<version>0.2.0.RELEASE</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+			<dependency>
+				<groupId>com.egoveris</groupId>
+				<artifactId>workflow-designer-env</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.egoveris</groupId>
+				<artifactId>workflow-designer-webapp</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.egoveris</groupId>
+				<artifactId>workflow-designer-module-common</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.egoveris</groupId>
+				<artifactId>workflow-designer-module-core</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.egoveris</groupId>
+				<artifactId>workflow-designer-module-web</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+</project>

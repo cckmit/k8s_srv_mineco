@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<complexComponent type="TRADE" name="usuario"
+	description="Usuario Information" zul="usuario.zul"
+	composer="com.egoveris.ffdd.render.zk.comp.cc.UsuarioComposer"
+	mappingDTO="com.egoveris.ccomplejos.base.model.UsuarioDTO">
+
+	<field id="usuario" name="usuario" class="com.egoveris.ffdd.render.zk.comp.ext.BandboxExt"
+		height="20px" width="90%" label="Usuario" tooltip="Usuario"  />
+</complexComponent>

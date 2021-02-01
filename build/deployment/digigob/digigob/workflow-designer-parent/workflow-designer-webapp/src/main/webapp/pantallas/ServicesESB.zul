@@ -1,0 +1,63 @@
+<?page title="Servicios" id="servicesESB" contentType="text/html;charset=UTF-8"?>
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./servicesESB" ?>
+
+<zk xmlns:x="xhtml" xmlns:zk="zk" xmlns:w="http://www.zkoss.org/2005/zk/client">
+	<window id="servicesESB" apply="org.zkoss.bind.BindComposer"
+		viewModel="@id('vm') @init('com.egoveris.workflow.designer.module.controller.mv.ServicesESBVM')"
+		border="normal" mode="modal" title="Servicios ESB" 
+		width="350px">
+		<grid width="100%">
+			<columns>
+				<column width="30%"></column>
+				<column width="100%"></column>
+			</columns>
+			<rows>
+				<row>
+					<label value="${c:l('general.servicio')}"/>
+					<combobox id="lstServices" rows="1" model="@load(vm.services)" width="230px">
+						<template name="model" var="item">
+							<comboitem label="@bind(item.name)"/>
+						</template>
+					</combobox>
+				</row>
+				<row>
+					<label value="${c:l('general.codigo')}"/>
+					<combobox id="lstCodes" rows="1" model="@load(vm.codes)"
+					 onChange="@command('onLoadMessage', entry=item)"
+					 selectedItem="@bind(vm.codeSelected)" width="230px">
+						<template name="model" var="item">
+							<comboitem label="@bind(item.message)" value="@bind(item.code)"/>
+						</template>
+					</combobox>
+				</row>
+				<row>
+					<label value="${c:l('general.mensaje')}"/>
+					<textbox id="message" rows="10" cols="35"  width="230px" value="@load(vm.message)"
+					disabled="true"></textbox>
+				</row>		
+				<row id="rowBlockExpedient">
+					<label value="${c:l('general.bloqueoEE')}"/>
+					<combobox id="lstTypesBlock" rows="1" model="@load(vm.typesBlock)"
+					 	 width="230px">
+						<template name="model" var="item">
+							<comboitem label="@bind(item)" />
+						</template>
+					</combobox>
+				</row>
+				<row>
+					<label value="${c:l('general.tipoLlamada')}"/>
+					<combobox id="typeCall" rows="1"
+					 	 width="230px">
+							<comboitem label="${c:l('general.asincrono')}" value="ASYNC"/>
+							<comboitem label="${c:l('general.sincrono')}" value="SYNC"/>
+					</combobox>
+				</row>				
+			</rows>
+		</grid>
+		<div width="100%" align="center">
+			<button id="btnAceptar" label="${c:l('general.abrir')}" class="btn-info"/>
+			<button id="btnCancelar" label="${c:l('general.cancelar')}" class="btn-info"/>
+		</div>
+	</window>
+</zk>

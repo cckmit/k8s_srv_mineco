@@ -1,0 +1,18 @@
+<zk>
+	<div class="shortcuts">
+		<!-- Se muestran cuando el menu esta expandido -->
+		<div class="shortcuts-expanded">
+			<button type="button" class="btn-success" iconSclass="z-icon-signal"/>
+			<button type="button" class="btn-info" iconSclass="z-icon-pencil"/>
+			<button type="button" class="btn-warning" iconSclass="z-icon-group"/>
+			<button type="button" class="btn-danger" iconSclass="z-icon-cogs"/>
+		</div>
+		<!-- Se muestran cuando el menu esta reducido -->
+		<div class="shortcuts-collapsed">
+			<button type="button" class="btn-success"/>
+			<button type="button" class="btn-info"/>
+			<button type="button" class="btn-warning"/>
+			<button type="button" class="btn-danger"/>
+		</div>
+	</div>
+</zk>

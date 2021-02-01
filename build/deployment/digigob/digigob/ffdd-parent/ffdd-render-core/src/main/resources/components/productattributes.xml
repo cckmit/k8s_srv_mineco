@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<complexComponent type="TRADE" name="Product Attributes"
+	description="Product Attributes Information" zul="productAttributes.zul"
+	composer="com.everis.tramelec.dynform.comp.ext.ProductAttributesComposer"
+	mappingDTO="com.egoveris.ccomplejos.base.model.ProductAttributesDTO">
+
+	<field name="productAttributeId" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.LongboxExt" />
+	<field name="productId" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.LongboxExt" />
+	<field name="productCode" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" />
+	<field name="attributeSeq" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.IntboxExt" />
+	<field name="attributeCodeName" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" />
+	<field name="attributeCodeNameESP" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" />
+	<field name="attributeValue" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" />
+	<field name="attributeDataType" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" />
+	<field name="attributeDataSize" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" />
+	<field name="masterCodeType" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" />
+	<field name="isFixed" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" />
+	<field name="isMandatory" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" />
+	<field name="status" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" />
+	<field name="destinacionEnum" width="90%" height="20px"
+		factory="comboBoxFactory" comboName="DestinacionAduanera" />
+	<field name="attributeUniqueCode" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" />
+
+</complexComponent>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<complexComponent type="TRADE" name="DetallesOperacionImpo"
+	description="Detalles Operacion Impo" zul="detallesOperacionImpo.zul"
+	composer="com.egoveris.ffdd.render.zk.comp.ext.DetallesOperacionImpoComposer"
+	mappingDTO="com.egoveris.ccomplejos.base.model.DetallesOperacionImpoDTO">
+
+	<field name="numeroOp" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" disabled="true" />
+	<field name="tipoIngreso" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" disabled="true" />
+	<field name="tipoOperacion" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" disabled="true" />
+	<field name="fechaCreacion" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.DateboxExt" disabled="true" />
+	<field name="estadoOp" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" disabled="true" />
+
+
+</complexComponent>

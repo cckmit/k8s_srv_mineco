@@ -1,0 +1,62 @@
+<?page title="Panel Usuario" contentType="text/html;charset=UTF-8"?>
+<?init class="com.egoveris.edt.web.pl.InitPanelUsuario" ?>
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+<?link href="bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css"?>
+<?link href="css/fonts.css" rel="stylesheet" type="text/css"?>
+<?link href="less/index.css.dsp" rel="stylesheet" type="text/css"?>
+<zk>
+	<window id="panelUsuario" apply="com.egoveris.edt.web.mainlayout.DashboardComposer">
+		<custom-attributes composerName="comp"/>
+		<include src="mainLayout/header.zul"/>           
+		<hlayout id="main" spacing="0">
+			<div id="sidebar" sclass="sidebar">
+				<navbar id="navbar" sclass="nav-list" orient="vertical">
+					<navitem
+						label="${c:l('eu.adminSade.sidebar.inicio')}"
+						iconSclass="z-icon-home" context="./escritorioUnico.zul"
+						selected="true" disabled="${comp.usuarioDeshabilitado}" />
+					<navitem
+						label="${c:l('eu.adminSade.sidebar.datosPersonales')}"
+						iconSclass="z-icon-user"
+						context="./datosPersonales/perfilUsuario.zul" />
+					<navitem id="abmTab"
+						label="${c:l('eu.adminSade.sidebar.configuracion')}"
+						iconSclass="z-icon-cogs"
+						context="./abmMisSistemas/abmEscritorio.zul"
+						disabled="${comp.usuarioDeshabilitado}" />
+					<navitem
+						label="${c:l('eu.adminSade.sidebar.administracion')}"
+						iconSclass="z-icon-tasks" context="./administrator/admTabs.zul"
+						visible="${comp.administradorCentral || comp.administradorLocal}"
+						disabled="${comp.usuarioDeshabilitado}" />
+					<navitem
+						label="${c:l('eu.adminSade.sidebar.avisos')}"
+						iconSclass="z-icon-exclamation-triangle"
+						context="./administrator/avisos.zul"
+						disabled="${comp.usuarioDeshabilitado}" />
+					<navitem
+						label="${c:l('eu.adminSade.sidebar.liderProyectos')}"
+						iconSclass="z-icon-sitemap"
+						context="./administrator/proyectLider.zul"
+						visible="${comp.liderProyecto}"
+						disabled="${comp.usuarioDeshabilitado}" />
+					<navitem
+						label="${c:l('eu.adminSade.sidebar.novedades')}"
+						iconSclass="z-icon-envelope"
+						context="./administrator/novedadesTab.zul"
+						visible="${comp.administradorCentral}"
+						disabled="${comp.usuarioDeshabilitado}" />
+				</navbar>
+				<div sclass="sidebar-collapse">
+					<a id="toggler" iconSclass="z-icon-angle-double-left"/>
+				</div>
+			</div>   
+			<vlayout spacing="0" hflex="1">
+				<vlayout sclass="page-content" spacing="0">
+					<include id="breadcrumbs" src="/mainLayout/breadcrumbs.zul" />
+					<include id="pageInclude" sclass="content" hflex="7"/>
+				</vlayout>
+			</vlayout>
+		</hlayout>
+	</window>
+</zk>

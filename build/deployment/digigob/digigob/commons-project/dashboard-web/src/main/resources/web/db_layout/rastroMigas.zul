@@ -1,0 +1,9 @@
+<zk>
+	<div sclass="breadcrumbs">
+		<div sclass="breadcrumb">
+			<span sclass="@load(dbvm.rastroMigas.getIconClass(dbvm.selectedMenuElement))" />
+			<a label="@load(dbvm.rastroMigas.getSubsection(dbvm.selectedMenuElement))" />
+			<label value="@load(dbvm.selectedMenuElement.label)" />
+		</div>
+	</div>
+</zk>

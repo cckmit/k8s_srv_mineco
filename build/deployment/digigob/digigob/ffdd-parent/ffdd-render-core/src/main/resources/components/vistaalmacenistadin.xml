@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<complexComponent 
+		type="TRADE" name="vistaalmacenistadin" description="Vista Almacenista Information"
+		zul="vistaAlmacenistaDin.zul"
+		mappingDTO="com.egoveris.ccomplejos.base.model.VistaAlmacenistaDinDTO">
+		
+		<field name="codigoAlmacenista" width="90%" height="20px" class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" disabled="true"/>
+		<field name="fechaRecepcionMercancias" width="90%" height="20px" class="com.egoveris.ffdd.render.zk.comp.ext.DateboxExt" disabled="true"/>
+		<field name="fechaRetiroMercancias" width="90%" height="20px" class="com.egoveris.ffdd.render.zk.comp.ext.DateboxExt" disabled="true"/>
+		<field name="numeroRegReconocimiento" width="90%" height="20px" class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" disabled="true"/>
+		<field name="anioRegReconocimiento" width="90%" height="20px" class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" disabled="true"/>
+		<field name="codigoDeclaracionRegla" width="90%" height="20px" class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" disabled="true"/>
+		
+</complexComponent>

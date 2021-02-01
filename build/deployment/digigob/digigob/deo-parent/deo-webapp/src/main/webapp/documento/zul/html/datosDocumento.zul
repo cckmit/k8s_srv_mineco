@@ -1,0 +1,233 @@
+<?page title="Búsqueda de Beneficiario" contentType="text/html;charset=UTF-8"?>
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./datosDocumentoWindow" ?>
+<zk>
+	<window id="datosDocumentoWindow"
+		apply="com.egoveris.cdeo.web.visualizarDocumento.DatosDocumentoComposer"
+		width="100%" border="none" position="center">
+		
+		<grid>
+			<columns>
+				<column label="" width="15%" />
+				<column label="" width="85%" />
+			</columns>
+			<rows>
+				<row id="rowNumeroSade">
+					<label id="lblNumeroSade" value="${c:l('gedo.datosDocumentos.codigo')}" />
+					<label id="txtNumeroSade" width="99%"
+						value="@{datosDocumentoWindow$DatosDocumentoComposer.popupDocumentoDTO.numeroSade}" />
+				</row>
+				<row id="rowNumeroEspecial">
+					<label id="lblNumeroEspecial"
+						value="${c:l('gedo.datosDocumentos.numeroEspecial')}" />
+					<label id="txtNumeroEspecial" width="99%"
+						value="@{datosDocumentoWindow$DatosDocumentoComposer.popupDocumentoDTO.numeroEspecial}" />
+				</row>
+				<row id="rowReferencia">
+					<label id="lblReferencia" value="${c:l('ccoo.detalle.referencia')}" />
+					<label id="txtReferencia" width="99%"
+						value="@{datosDocumentoWindow$DatosDocumentoComposer.popupDocumentoDTO.referencia}" />
+				</row>
+				<row id="rowFechaCreacion">
+					<label id="lblFechaCreacion" value="${c:l('gedo.datosDocumentos.fechaCreacion')}" />
+					<label id="txtFechaCreacion"
+						value="@{datosDocumentoWindow$DatosDocumentoComposer.popupDocumentoDTO.fechaCreacion, converter='org.zkoss.zkplus.databind.DateFormatConverter'}"
+						self="@{format(yyyy-MM-dd\ HH:mm)}}" />
+				</row>
+				<row id="rowTipoDocumento">
+					<label id="lblTipoDocumento"
+						value="${c:l('gedo.datosDocumentos.tipoDocumento')}" />
+					<label id="txtTipoDocumento" width="99%"
+						value="@{datosDocumentoWindow$DatosDocumentoComposer.popupDocumentoDTO.tipoDocumento}" />
+				</row>
+				
+				<row id="rowListaFirmantes" valign="top">
+					<hbox id="hboxFirmantes">
+						<image id="imageFirmantes"
+							src="/documento/zul/html/imagenes/Firmantes.png" />
+						<label id="lblFirmantes" value="${c:l('gedo.datosDocumentos.firmantes')}" />
+					</hbox>
+					<groupbox id="gbFirmantes" style="border:0">
+						<paging id="pagingFirmantes" pageSize="4" autohide="true"/>
+						
+						<listbox tabindex="8" id="lstFirmantes"
+							multiple="true" width="99%"
+							model="@{datosDocumentoWindow$DatosDocumentoComposer.popupDocumentoDTO.listaFirmantes}"
+							paginal="${pagingFirmantes}">
+							<listhead>
+								<listheader label="" width="95%"
+									sort="auto" align="left" />
+								<listheader label="" width="5%"
+									align="right" />
+							</listhead>
+							<listfoot>
+								<listfooter label="${c:l('gedo.datosDocumentos.cantidad')}"
+									style="color:#026290" />
+								<listfooter
+									label="@{datosDocumentoWindow$DatosDocumentoComposer.popupDocumentoDTO.listaFirmantes.size}"
+									style="color:#026290" />
+							</listfoot>
+						</listbox>
+					</groupbox>
+				</row>
+				
+				<row id="rowDatosPropios" valign="top">
+					<hbox id="hboxDatosPropios">
+						<image id="imageDatosPropios"
+							src="/documento/zul/html/imagenes/DatosPropios.png" />
+						<label id="lblDatosPropios"
+							value="${c:l('gedo.iniciarDocumento.label.datosPropios')}" />
+					</hbox>
+					<groupbox id="gbDatosPropios" style="border:0">
+						<paging id="consultaPaginator" detailed="true" autohide="true"
+							pageSize="4" />
+						
+						<listbox id="consultaDocumentosList"
+							model="@{datosDocumentoWindow$DatosDocumentoComposer.popupDocumentoDTO.datosPropios}"
+							selectedItem="@{datosDocumentoWindow$DatosDocumentoComposer.selectedDocumento}"
+							mold="paging" paginal="${consultaPaginator}">
+							<listhead>
+								<listheader label="${c:l('gedo.detalleDocumento.row.label.nombre')}" align="left" />
+								<listheader label="${c:l('gedo.cosultaGeneradosEnMiReparticion.hbox.label.valor')}" align="right" />
+							</listhead>
+							<listitem
+								self="@{each=selectedDocumento}">
+								<listcell
+									label="@{selectedDocumento.nombre}" />
+								<listcell
+									label="@{selectedDocumento.valor}" />
+							</listitem>
+							<listfoot>
+								<listfooter label="${c:l('gedo.datosDocumentos.cantidad')}"
+									style="color:#026290" />
+								<listfooter
+									label="@{datosDocumentoWindow$DatosDocumentoComposer.popupDocumentoDTO.datosPropios.size}"
+									style="color:#026290" />
+							</listfoot>
+						</listbox>
+					</groupbox>
+				</row>
+				
+				<row id="rowArchivosTrabajo" valign="top">
+					<hbox id="hboxArchivosTrabajo">
+						<image id="imageArchivosTrabajo"
+							src="/documento/zul/html/imagenes/ArchivosDeTrabajo.png" />
+						<label id="lblArchivosTrabajo"
+							value="${c:l('gedo.archivosDeTrabajo.archivos')}" />
+					</hbox>
+					<groupbox id="gbArchivosTrabajo" style="border:0">
+						<!-- <paging id="pagingArchivoTrabajo" pageSize="4" autohide="true"/> -->
+						<listbox id="archivosTrabajoLb" mold="paging" pageSize="4"
+							model="@{datosDocumentoWindow$DatosDocumentoComposer.popupDocumentoDTO.listaArchivosDeTrabajo}"
+							selectedItem="@{datosDocumentoWindow$DatosDocumentoComposer.selectedArchivoDeTrabajo}"
+							itemRenderer="com.egoveris.cdeo.web.visualizarDocumento.renderers.ArchivosDeTrabajoItemRenderer">
+							<listhead>
+								<listheader label="${c:l('gedo.archivosDeTrabajo.label.orden')}" align="center" width="75px" />
+								<listheader label="${c:l('gedo.archivosEmbebidos.grid.archivo')}"
+									align="center" />
+								<listheader label="${c:l('gedo.inbox.accionARealizar')}"
+									align="center" width="150px" />
+							</listhead>
+							<listfoot>
+								<listfooter label=""
+									style="color:#026290" />
+								<listfooter
+									style="color:#026290;" align="right">
+									<label value="${c:l('gedo.datosDocumentos.cantidad2')}" style="font-weight: bold;" />
+								</listfooter>
+								<listfooter
+									label="@{datosDocumentoWindow$DatosDocumentoComposer.popupDocumentoDTO.listaArchivosDeTrabajo.size}"
+									style="color:#026290" align="left" />
+							</listfoot>
+						</listbox>
+					</groupbox>
+				</row>
+				
+				<row id="rowHistorial" valign="top">
+					<hbox id="hboxHistorial">
+						<image id="imageHistorial"
+							src="/documento/zul/html/imagenes/Historial.png" />
+						<label id="lblHistorial" value="${c:l('gedo.general.historial')}" />
+					</hbox>
+					<groupbox id="gbHistorial" style="border:0">
+						<paging id="consultaPaginator2" detailed="true"
+							pageSize="4"  autohide="true"/>
+						<listbox id="consultaHistorial"
+							model="@{datosDocumentoWindow$DatosDocumentoComposer.popupDocumentoDTO.listaHistorialDTO}"
+							mold="paging" paginal="${consultaPaginator2}">
+							<listhead>
+								<listheader label="${c:l('gedo.general.usuario')}"
+									align="left" width="150px" />
+								<listheader label="${c:l('gedo.consultaHistorialDelDocumento.listbox.listheader.label.actividad')}"
+									align="center" />
+								<listheader
+									label="${c:l('gedo.consultaHistorialDelDocumento.listbox.listheader.label.fechaDeFinalizacion')}" align="center" width="150px" />
+								<listheader label="${c:l('ccoo.alertaCO.alerta.mensaje')}"
+									align="right" />
+							</listhead>
+							<listitem
+								self="@{each=listaHistorialDTO}">
+								<listcell
+									label="@{listaHistorialDTO.usuario}" />
+								<listcell
+									label="@{listaHistorialDTO.actividad}" />
+								<listcell
+									label="@{listaHistorialDTO.fechaFin, converter='org.zkoss.zkplus.databind.DateFormatConverter'}"
+									self="@{format(yyyy-MM-dd\ HH:mm)}}" />
+								<listcell
+									label="@{listaHistorialDTO.mensaje}"
+									tooltiptext="@{listaHistorialDTO.mensaje}" />
+							</listitem>
+							<listfoot>
+								<listfooter label="${c:l('gedo.datosDocumentos.cantidad')}"
+									style="color:#026290" />
+								<listfooter label=""
+									style="color:#026290" />
+								<listfooter label=""
+									style="color:#026290" />
+								<listfooter
+									label="@{datosDocumentoWindow$DatosDocumentoComposer.popupDocumentoDTO.listaHistorialDTO.size}"
+									style="color:#026290" />
+							</listfoot>
+						</listbox>
+					</groupbox>
+				</row>
+				
+				<row id="rowListaUsuariosReservados" valign="top">
+					<hbox id="hboxUsuariosReservados">
+						<image id="imageUsuariosReservados"
+							src="/documento/zul/html/imagenes/iconoUsuariosReservados.png" />
+						<label id="lblUsuariosReservados" value="${c:l('gedo.datosDocumentos.usuariosReservados')}" />
+					</hbox>
+					<groupbox id="gbUsuariosReservados" style="border:0">
+						<paging id="pagingUsuariosReservados" pageSize="4" autohide="true"/>
+						<listbox tabindex="8" id="lstUsuariosReservados" 
+							width="99%" 
+							model="@{datosDocumentoWindow$DatosDocumentoComposer.popupDocumentoDTO.listaUsuariosReservados}"
+							mold="paging" paginal="${pagingUsuariosReservados}">
+							<listhead>
+								<listheader label="" width="95%"
+									sort="auto" align="left" />
+								<listheader label="" width="5%"
+									align="right" />
+							</listhead>
+							<listitem
+								self="@{each=listaUsuariosReservados}">
+								<listcell
+									label="@{listaUsuariosReservados.userName}" />
+							</listitem>
+							<listfoot>
+								<listfooter label="${c:l('gedo.datosDocumentos.cantidad')}"
+									style="color:#026290" />
+								<listfooter
+									label="@{datosDocumentoWindow$DatosDocumentoComposer.popupDocumentoDTO.listaUsuariosReservados.size}"
+									style="color:#026290" />
+							</listfoot>
+						</listbox>
+					</groupbox>
+				</row>
+			</rows>
+		</grid>
+	</window>
+</zk>

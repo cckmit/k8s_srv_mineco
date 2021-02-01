@@ -1,0 +1,1 @@
+ALTER TABLE qa_deo_egov_docker.gedo_tipodocumento ADD RESULTADO CHAR(1) NOT NULL DEFAULT 0;

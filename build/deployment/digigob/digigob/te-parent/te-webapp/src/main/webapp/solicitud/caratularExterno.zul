@@ -1,0 +1,270 @@
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+<?page title="Caratular Externo" contentType="text/html;charset=UTF-8"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./caratularExternoWindow" ?>
+<zk>
+	<window title="${c:l('ee.caratularExterno.titulo')}"  border="none" width="700px" 
+		 id="caratularExternoWindow"
+		apply="com.egoveris.te.base.composer.CaratularExternoComposer">
+		
+		<window id="formularioControladoWindows" visible="false" />
+							
+		<groupbox >
+			<separator />
+			<grid >
+				<rows width="100%">
+					<row visible="false">
+						<label value="${c:l('ee.nuevoexpediente.label.motivoInterno.value')}"  />
+						<textbox id="motivoInternoExpediente"
+							maxlength="255"  cols="40" rows="4">
+						</textbox>
+					</row>
+					<row>
+						<!--<label value="${c:l('ee.nuevoexpediente.label.motivoExterno.value')}"  />-->
+						<label value="${c:l('ee.track.detalle.label.motivo')}"  />
+						<textbox id="motivoExternoExpediente" 
+							tooltiptext="${c:l('ee.nuevoexpediente.label.popupMotivoExterno.value')}"
+							maxlength="255"  cols="40" rows="4">
+						</textbox>
+					</row>
+				</rows>
+			</grid>
+	
+			<separator />
+			<box orient="vertical" spacing="0" align="start"
+				width="100%">
+				<label value="${c:l('ee.nuevoexpediente.label.datosdelexpediente.value')}" style="font:bold;" />
+				<separator bar="true" />
+				<separator />
+				<grid >
+					<rows width="100%">
+						<row>
+						<label value="${c:l('ee.nuevoexpediente.label.codigotrata.value')}" />
+							<bandbox id="codigoTrata"  autodrop="true">
+							<bandpopup  width="620px" >
+									<groupbox mold="3d">
+										<caption>
+											<hbox>
+												<label value="${c:l('ee.consultaGeneradosReparticion.listheader.tramites')}" width="560px" />
+												<image	src="/imagenes/help.png" width="16px" height="16px"
+														 align="right" />
+											</hbox>
+										</caption>
+										<separator height="2px"></separator>
+										<vbox height="100px"	width="600px">
+											<paging	id="paginatorIncorporarSADE" pageSize="10" />
+											<listbox
+												id="trataListbox" mold="paging"
+												paginal="${paginatorIncorporarSADE}"
+												model="@{caratularExternoWindow$composer.tratasSeleccionadas}"
+												selectedItem="@{caratularExternoWindow$composer.selectedTrata}"
+												itemRenderer="com.egoveris.te.base.rendered.TrataListBoxItemRenderer">
+												<listhead>
+													<listheader	label="${c:l('ee.consultaGeneradosReparticion.listheader.tramites')}"/>
+												</listhead>	
+												<listfoot	>			
+													<listfooter id="Total"	label="${c:l('ee.consultaGeneradosReparticion.listfooter.totalTramites')}"	span="1"  />
+													<listfooter id="conteoDocumentos" label="@{caratularExternoWindow$composer.tratasSeleccionadas.size}" span="2"	 />
+											</listfoot>											
+											</listbox>
+										</vbox>
+									</groupbox>
+								</bandpopup>
+							</bandbox>
+							
+							
+								
+						</row>
+						
+						<row>
+							<label value="${c:l('ee.nuevoexpediente.label.descripcion.value')}"/>
+							<textbox id="descripcion"
+								maxlength="225" cols="40" rows="5" focus="true">
+							</textbox>
+						</row>
+						
+						<row>
+							<radiogroup>
+								<radio id="persona"
+									label="${c:l('ee.nuevasolicitud.label.persona.value')}"
+									checked="true"
+									forward="onClick=nuevaSolicitudWindow$CaratularExternoComposer.onClickApellidoNombres" />
+								<space />
+								<space />
+								<radio id="empresa"
+									label="${c:l('ee.nuevasolicitud.label.empresa.value')}"
+									checked="false"
+									forward="onClick=nuevaSolicitudWindow$CaratularExternoComposer.onClickEmpresa" />
+							</radiogroup>
+						</row>
+						
+						<!-- Se ocultan ID / Tipo de documento -->
+						<!--
+						<row>
+							
+								<label value="${c:l('ee.nuevoexpediente.label.cuitcuil.value')}" />
+							<hbox>
+								<longbox id="cuitCuilTipo" maxlength="2" cols="1"> </longbox>
+							
+								<longbox id="cuitCuilDocumento" maxlength="8" cols="8"> </longbox>
+							
+								<longbox id="cuitCuilVerificador" maxlength="1" cols="1"> </longbox>
+							
+								<checkbox id="noDeclaraNoPosee" label="${c:l('ee.nuevoexpediente.label.nodeclaranoposee.value')}"
+												forward="onCheck=caratularExternoWindow$CaratularExternoComposer.onSelectCheck" />
+							</hbox>
+						</row>
+						-->
+						
+						<!--
+						<row>
+							<label value="${c:l('ee.nuevoexpediente.label.tipodocumento.value')}" />
+							
+							<combobox id="tipoDocumento" width="200px" readonly="true"
+								model="@{caratularExternoWindow$CaratularExternoComposer.tiposDocumentos}"
+								forward="onSelect=caratularExternoWindow$CaratularExternoComposer.onSelectTipoDocumento"
+								selectedItem="@{caratularExternoWindow$CaratularExternoComposer.selectedTiposDocumentos}">
+							</combobox>
+
+						</row>
+						-->
+						
+						<row>
+							<label value="${c:l('ee.nuevoexpediente.label.numerodocumento.value')}" />
+							<!--
+							<longbox id="numeroDocumento"
+								maxlength="11">
+							</longbox>
+							-->
+							<textbox id="numeroDocumento"
+								maxlength="15" cols="40">
+							</textbox>
+						</row>
+						
+						<row>
+							<label value="${c:l('ee.nuevoexpediente.label.primerapellido.value')}" />
+							<textbox id="apellido"
+								maxlength="30" cols="40">
+							</textbox>
+						</row>
+						
+						<row>
+							<label value="${c:l('ee.nuevoexpediente.label.segundoapellido.value')}" />
+							<textbox id="segundoApellido"
+								maxlength="30" cols="40">
+							</textbox>
+						</row>
+						
+						<row>
+							<label value="${c:l('ee.nuevoexpediente.label.tercerapellido.value')}" />
+							<textbox id="tercerApellido" 
+								maxlength="30" cols="40">
+							</textbox>
+						</row>
+						
+						<row>
+							<label value="${c:l('ee.nuevoexpediente.label.primernombre.value')}" />
+							<textbox id="nombre"
+								maxlength="30" cols="40">
+							</textbox>
+						</row>
+						<row>
+							<label value="${c:l('ee.nuevoexpediente.label.segundonombre.value')}" />
+							<textbox id="segundoNombre"
+								maxlength="30" cols="40">
+							</textbox>
+						</row>
+						<row>
+							<label value="${c:l('ee.nuevoexpediente.label.tercernombre.value')}" />
+							<textbox id="tercerNombre"
+								maxlength="30" cols="40">
+							</textbox>
+						</row>
+						<row>
+							<label value="${c:l('ee.nuevoexpediente.label.razonsocial.value')}" />
+							<textbox id="razonSocial"
+								maxlength="30" cols="40">
+							</textbox>
+						</row>
+						<row>
+							<label value="${c:l('ee.nuevoexpediente.label.email.value')}" />
+							<textbox id="email"
+								maxlength="50" cols="40">
+							</textbox>
+						</row>
+						<row>
+							<label value="${c:l('ee.nuevoexpediente.label.telefono.value')}" />
+							<textbox id="telefono" 
+								maxlength="255" cols="40">
+							</textbox>
+						</row>
+					</rows>
+				</grid>
+			</box>
+			
+			<separator />
+			
+			<include src="/direccion/direccionCmp.zul" />
+			
+			<box orient="vertical" spacing="0" align="start"
+				width="100%" visible="false">
+				<label value="${c:l('ee.nuevoexpediente.label.separadordomicilio.value')}" style="font:bold;" />
+				<separator bar="true" />
+				<separator />
+				<grid >
+					<rows width="100%">
+						<row>
+							<label value="${c:l('ee.nuevoexpediente.label.direccion.value')}" />
+							<vlayout>
+							<label value="${c:l('ee.nuevoexpediente.label.callealtura.value')}" />
+							<textbox id="direccion" maxlength="100" cols="40">
+							</textbox>
+							<hlayout>
+							<label value="${c:l('ee.nuevoexpediente.label.piso.value')}" />
+							<textbox id="piso" 
+								maxlength="3" cols="3">
+							</textbox>
+							<label value="${c:l('ee.nuevoexpediente.label.departamento.value')}" />
+							<textbox id="departamento" 
+								maxlength="3" cols="3">
+							</textbox>
+							<label value="${c:l('ee.nuevoexpediente.label.codigopostal.value')}" />
+							<textbox id="codigoPostal" 
+								maxlength="10" cols="12">
+							</textbox>
+							</hlayout>
+<!-- 							<label value="${c:l('ee.nuevoexpediente.label.comuna.value')}" /> -->
+<!-- 							<textbox id="comuna" maxlength="100" cols="40"> -->
+<!-- 							</textbox> -->
+<!-- 							<label value="${c:l('ee.nuevoexpediente.label.barrio.value')}" /> -->
+<!-- 							<textbox id="barrio" maxlength="100" cols="40"> -->
+<!-- 							</textbox> -->
+							</vlayout>
+						</row>
+					</rows>
+				</grid>
+			</box>
+			
+			<separator />
+			
+			<grid align="center"
+				style="border:0px;">
+				<rows>
+					<row >
+						<hbox>
+							<button autodisable="seft" id="guardar" class="btn-info" iconSclass="z-icon-folder" 
+								label="${c:l('te.webapp.solicitud.caratularInterno.btn.caratular')}" forward="onClick=caratularExternoWindow$CaratularExternoComposer.onGuardarExpediente"/>
+								
+							<button autodisable="seft" id="cancelar" class="btn-info" iconSclass="z-icon-times-circle" 
+								label="${c:l('te.webapp.solicitud.caratularInterno.btn.cancelar')}" forward="onClick=caratularExternoWindow$CaratularExternoComposer.onCancelar"/>
+<!-- 							<toolbarbutton autodisable="self" id="guardar" image="/imagenes/Caratular.png" height="42px" -->
+<!-- 								forward="onClick=caratularExternoWindow$CaratularExternoComposer.onGuardarExpediente"/>							 -->
+<!-- 							<toolbarbutton autodisable="self" id="cancelar" image="/imagenes/CancelarExpediente.png" height="42px" -->
+<!-- 								forward="onClick=caratularExternoWindow$CaratularExternoComposer.onCancelar"/>						 -->
+						</hbox>
+					</row>
+				</rows>
+			</grid>
+		</groupbox>
+	</window>
+</zk>

@@ -1,0 +1,163 @@
+<?page title="${c:l('digigob.Title')}" contentType="text/html;charset=UTF-8"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./abmComboboxWindow" ?>
+<zk>
+	<window title="${c:l('abmCombobox.title.gestMultivalor')}"
+		border="normal" width="950px" id="abmComboboxWindow"
+		apply="com.egoveris.ffdd.web.adm.ABMComboboxComposer">
+		<!-- height="560px"  -->
+
+		<window id="previsualizarWindow" visible="false"></window>
+		<hbox>
+			<vbox align="center">
+				<space height="10px"></space>
+				<button label="${c:l('abmCombobox.nuevo')}"
+					width="125px" forward="onClick=onNuevo" />
+				<button
+					label="${c:l('abmCombobox.multivalores.existe')}"
+					forward="onClick=onExistentes" width="125px" />
+				<button id="btnModificar"
+					label="${c:l('abmCombobox.modificar')}" width="125px"
+					visible="${arg.modo != 'modoAltaFC'}"
+					forward="onClick=onModificar" />
+				<button id="btnPrevisualizar"
+					label="${c:l('abmCombobox.prev')}"
+					forward="onClick=onPrevisualizar" width="125px"
+					visible="${arg.modo != 'modoAltaFC'}" />
+				<button id="btnEliminar"
+					label="${c:l('fc.form.item.eliminar')}" width="125px"
+					visible="${arg.modo != 'modoAltaFC'}" forward="onClick=onEliminar" />
+				<button id="btnGuardar"
+					label="${c:l('abmCombobox.guardar')}" forward="onClick=onGuardar"
+					width="125px" visible="${arg.modo != 'modoAltaFC'}" />
+
+				<button label="${c:l('fc.export.cancelar')}"
+					id="cancelar" width="125px" forward="onClick=onCancelar" />
+				<fileupload id="uploadCombo" width="125px"
+					label="${c:l('abmCombobox.importar')}" />
+				<fileupload id="uploadBandbox" width="125px"
+					label="${c:l('abmCombobox.importar.bandbox')}" />
+			</vbox>
+			<grid>
+				<columns>
+					<column width="55%" />
+					<column width="45%" />
+				</columns>
+				<rows>
+					<row>
+						<cell>
+							<vbox>
+								<div align="center">
+
+									<grid width="375px">
+										<columns>
+											<column visible="true"
+												width="20%" />
+											<column visible="true"
+												width="80%" />
+										</columns>
+										<rows>
+											<row>
+												<label
+													value="${c:l('abmCombobox.nombreCombo')}">
+												</label>
+												<hlayout>
+													<textbox
+														id="nombreCombobox" width="290px" maxlength="255"
+														focus="true" />
+												</hlayout>
+											</row>
+											<row>
+												<label
+													value="${c:l('abmCombobox.row.descrip')}">
+												</label>
+												<hlayout>
+													<textbox
+														id="descripcionCombobox" width="287px" rows="3"
+														maxlength="255" />
+												</hlayout>
+											</row>
+										</rows>
+									</grid>
+									<checkbox id="bandBoxCheck"
+										label="${c:l('abmCombobox.bandBox')}" checked="false" />
+								</div>
+								<listbox style="padding:2px;"
+									mold="default" height="350px" id="listboxItemsCombo"
+									forward="onDrop=onDropItem" droppable="true" 
+									selectedItem="@{abmComboboxWindow$ABMComboboxComposer.elementoSeleccionado}"
+									model="@{abmComboboxWindow$ABMComboboxComposer.listaItemsCombo}">
+									<listhead>
+										<listheader
+											label="${c:l('abmCombobox.row.descrip')}" />
+										<listheader label=""
+											width="70px" />
+										<listheader label="${c:l('abmCombobox.multivalor')}"
+											width="90px" />
+
+									</listhead>
+									<listitem draggable="true" 
+										droppable="true" forward="onDrop=onDropItem"
+										self="@{each=itemCombobox}" value="@{itemCombobox}"
+										id="itemComponenteCombo">
+										<listcell
+											tooltiptext="@{itemCombobox.descripcion}">
+											<textbox
+												id="txtBoxDescripcion" value="@{itemCombobox.descripcion}"
+												width="250px" maxlength="255">
+											</textbox>
+										</listcell>
+										<listcell>
+											<space width="17px"></space>
+											<image id="imagenMas"
+												visible="@{itemCombobox.mas}" src="/imagenes/mas.png"
+												forward="onClick=onMas">
+											</image>
+										</listcell>
+
+										<listcell>
+											<space width="17px"></space>
+											<image
+												id="imagenMasConstraint" visible="true"
+												src="/imagenes/masConstraint.png"
+												forward="onClick=onAddMultivalor()">
+											</image>
+										</listcell>
+
+									</listitem>
+								</listbox>
+								<button id="btnBorrar"
+									label="${c:l('abmCombobox.label.arrastBorrar')}" width="100%"
+									height="40px" image="/imagenes/papelera.png"
+									forward="onDrop=onDropItem" droppable="true">
+								</button>
+							</vbox>
+						</cell>
+						<cell>
+
+							<textbox id="buscarSugerencia"
+								disabled="true" width="99%" />
+							<listbox
+								id="listboxCombosExistenSugerencias"
+								model="@{abmCombobox$ABMComboboxComposer.listaComboboxs}"
+								style="padding:2px;overflow:auto" mold="paging" pageSize="28"
+								height="495px">
+								<listhead>
+									<listheader label=""
+										id="tituloExistenSugerencias" />
+								</listhead>
+								<listitem draggable="true"
+									self="@{each=itemComboExiste}" value="@{itemComboExiste}"
+									label="@{itemComboExiste.nombre}"
+									style="white-space: nowrap;width:95%;text-overflow: ellipsis;">
+									<listcell
+										tooltiptext="@{itemComboExiste.nombre}">
+									</listcell>
+								</listitem>
+							</listbox>
+						</cell>
+					</row>
+				</rows>
+			</grid>
+		</hbox>
+	</window>
+</zk>

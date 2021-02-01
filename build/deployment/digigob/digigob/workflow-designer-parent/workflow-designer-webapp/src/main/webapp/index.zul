@@ -1,0 +1,91 @@
+<?page title="WorkFlow Designer" contentType="text/html;charset=UTF-8"?>
+<?link href="bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css"?>
+<?link href="less/index.css.dsp" rel="stylesheet" type="text/css"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./panelUsuario"?>
+<zk>
+	<?link rel="stylesheet" type="text/css" href="css/joint.css" ?>
+	<?link rel="stylesheet" type="text/css" href="css/joint.ui.halo.css" ?>
+	<?link rel="stylesheet" type="text/css" href="css/joint.ui.selectionView.css" ?>
+	<?link rel="stylesheet" type="text/css" href="css/joint.ui.paperScroller.css" ?>
+	<?link rel="stylesheet" type="text/css" href="css/jquery.contextmenu.css" ?>
+	<?link rel="stylesheet" type="text/css" href="css/codemirror.css"?>
+	<?link rel="stylesheet" type="text/css" href="css/docs.css"?>
+	<?link rel="stylesheet" type="text/css" href="css/show-hint.css"?>
+	<?link rel="stylesheet" type="text/css" href="css/fullscreen.css"?>
+	<?link rel="stylesheet" type="text/css" href="css/dialog.css"?>
+	<?link rel="stylesheet" type="text/css" href="css/matchesonscrollbar.css"?>
+	<?link rel="stylesheet" type="text/css" href="css/workflow.css"?>
+	<?link rel="stylesheet" type="text/css" href="css/font-awesome.min.css"?>
+
+	<script src="js/lastChanges.js"></script>
+	<script src="js/projectModel.js"></script>
+	<script src="js/validator.js"></script>
+	<script src="js/codeChecker.js"></script>
+	<script src="js/apiValidations.js"></script>
+	<script src="js/layout_functions.js"></script>
+	<script src="js/layout.js"></script>
+	<script src="js/changeLog.js"></script>
+	<script src="http://cdn.ckeditor.com/4.5.3/full/ckeditor.js"></script>
+	<script src="js/codemirror.js"></script>
+	<script src="js/javascript-hint.js"></script>
+	<script src="js/show-hint.js"></script>
+	<script src="js/fullscreen.js"></script>
+	<script src="js/annotatescrollbar.js"></script>
+	<script src="js/dialog.js"></script>
+	<script src="js/javascript.js"></script>
+	<script src="js/xml.js"></script>
+	<script src="js/searchcursor.js"></script>
+	<script src="js/matchesonscrollbar.js"></script>
+	<script src="js/search.js"></script>
+	<script src="js/joint.js"></script>
+	<script src="js/joint-all.js"></script>
+	<script src="js/joint.shapes.fsa.js"></script>
+	<script src="js/joint.ui.halo.js"></script>
+	<script src="js/joint.ui.selectionView.js"></script>
+	<script src="js/joint.ui.clipboard.js"></script>
+	<script src="js/joint.ui.paperScroller.js"></script>
+	<script src="js/designer.js"></script>
+	<script src="js/lastChanges.js"></script>
+	<script src="js/projectModel.js"></script>
+	<script src="js/validator.js"></script>
+	<script src="js/jquery.contextmenu.js"></script>
+	<script src="js/formularioCondicion.js"></script>
+	<script src="js/lz-string.js"></script>
+	<script src="js/herramientas.js"></script>
+	<window id="panelUsuario" apply="com.egoveris.workflow.designer.module.layout.SidebarComposer">
+		<include src="mainLayout/navbar.zul"/>           
+		<hlayout id="main" spacing="0">
+			<div id="sidebar" sclass="sidebar" >
+				<div class="shortcuts">
+					<div class="shortcuts-expanded">
+						<button type="button" class="btn-success" iconSclass="z-icon-signal"/>
+						<button type="button" class="btn-info" iconSclass="z-icon-pencil"/>
+						<button type="button" class="btn-warning" iconSclass="z-icon-group"/>
+						<button type="button" class="btn-danger" iconSclass="z-icon-cogs"/>
+					</div>
+					<div class="shortcuts-collapsed">
+						<button type="button" class="btn-success"/>
+						<button type="button" class="btn-info"/>
+						<button type="button" class="btn-warning"/>
+						<button type="button" class="btn-danger"/> 
+					</div>
+				</div>
+				<navbar id="navbar" sclass="nav-list" orient="vertical">
+					<nav id="nav">
+						<navitem label="${c:l('general.estados')}" iconSclass="z-icon-text-width" context="stateflow.zul" selected="true"/>
+						<navitem label="${c:l('general.tareas')}" iconSclass="z-icon-text-width" context="taskflow.zul" />
+					</nav>
+				</navbar>
+				<div sclass="sidebar-collapse">
+					<a id="toggler" iconSclass="z-icon-angle-double-left"/>
+				</div>
+			</div>   
+			<vlayout spacing="0" hflex="1">
+				<vlayout sclass="page-content" spacing="0">
+					<include id="breadcrumbs" src="/mainLayout/breadcrumbs.zul" />
+					<include id="pageInclude" sclass="content" hflex="7"/>
+				</vlayout>
+			</vlayout>
+		</hlayout>
+	</window>
+</zk>

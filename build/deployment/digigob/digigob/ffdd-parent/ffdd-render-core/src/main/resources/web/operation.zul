@@ -1,0 +1,89 @@
+<zk>
+	<vlayout
+		apply="com.egoveris.ffdd.render.zk.comp.cc.OperationComposer">
+		<vbox>
+			<hbox>
+				<cell id="${arg.formComp.nombre}_codigoOficinaAduanaDiv" />
+				<cell id="${arg.formComp.nombre}_codOperacionDiv" />
+				<cell id="${arg.formComp.nombre}_nombreAgenciaAduanaDiv" />
+			</hbox>
+			<hbox>
+				<cell id="${arg.formComp.nombre}_processingStatusDiv" />
+				<cell id="${arg.formComp.nombre}_codigoDestinacionDiv" />
+				<cell id="${arg.formComp.nombre}_codigoAgenciaAduanasDiv" />
+			</hbox>
+			<hbox>
+				<cell id="${arg.formComp.nombre}_codigoTransbordoDiv" />
+				<cell id="${arg.formComp.nombre}_actualizadoPorDiv" />
+				<cell id="${arg.formComp.nombre}_creadoPorDiv" />
+			</hbox>
+			<hbox>
+				<cell id="${arg.formComp.nombre}_fechaCreacionDiv" />
+				<cell id="${arg.formComp.nombre}_fechaActualizacionDiv" />
+			</hbox>
+			
+			<hbox>
+				<cell id="${arg.formComp.nombre}_listProductOperacionDiv" />
+			</hbox>
+			<hbox>
+				<cell id="${arg.formComp.nombre}_listaItemDiv" />
+			</hbox>
+			<hbox>
+				<cell id="${arg.formComp.nombre}_listaBultoDiv" />
+			</hbox>
+			<hbox>
+				<cell id="${arg.formComp.nombre}_listAutorizacionDiv" />
+			</hbox>
+			
+			<hbox>
+				<cell id="${arg.formComp.nombre}_transportDiv" />
+			</hbox>
+			<hbox>
+				<cell id="${arg.formComp.nombre}_contactoDiv" />
+			</hbox>
+			<hbox>
+				<cell id="${arg.formComp.nombre}_importadorDiv" />
+			</hbox>
+			<hbox>
+				<cell id="${arg.formComp.nombre}_consignatarioDiv" />
+			</hbox>
+			<hbox>
+				<cell id="${arg.formComp.nombre}_intermediarioDiv" />
+			</hbox>
+			<hbox>
+				<cell id="${arg.formComp.nombre}_exportadorPrincipalDiv" />
+			</hbox>
+			<hbox>
+				<cell id="${arg.formComp.nombre}_representanteDiv" />
+			</hbox>
+			<hbox>
+				<cell id="${arg.formComp.nombre}_exportadorSecundarioDiv" />
+			</hbox>
+			<hbox>
+				<cell id="${arg.formComp.nombre}_interopHeaderDiv" />
+			</hbox>
+			<hbox>
+				<cell id="${arg.formComp.nombre}_headerDiv" />
+			</hbox>
+			<hbox>
+				<cell id="${arg.formComp.nombre}_financieroDiv" />
+			</hbox>
+			<hbox>
+				<cell id="${arg.formComp.nombre}_detallesPuertoDiv" />
+			</hbox>
+			<hbox>
+				<cell id="${arg.formComp.nombre}_dinDiv" />
+			</hbox>
+			<hbox>
+				<cell id="${arg.formComp.nombre}_dusAtDiv" />
+			</hbox>
+			<hbox>
+				<cell id="${arg.formComp.nombre}_dusLegDiv" />
+			</hbox>
+
+			
+
+
+		</vbox>
+	</vlayout>
+</zk>

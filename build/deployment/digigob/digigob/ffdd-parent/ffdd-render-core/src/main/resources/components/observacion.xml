@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<complexComponent type="TRADE" name="Observacion"
+	description="Observacion Information" zul="observacion.zul"
+	composer="com.everis.tramelec.dynform.comp.ext.ObservacionComposer"
+	mappingDTO="com.egoveris.ccomplejos.base.model.ObservacionDTO">
+	
+	<field name="observacionCode" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" />
+	<field name="observacionDesc" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" />
+	
+</complexComponent>

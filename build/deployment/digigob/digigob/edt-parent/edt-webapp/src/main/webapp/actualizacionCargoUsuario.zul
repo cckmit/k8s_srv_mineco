@@ -1,0 +1,21 @@
+<?page title="${c:l('actualizacionCargoUsuario.title')}" contentType="text/html;charset=UTF-8"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./actualizacionCargoUsuario"?>
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c" ?>
+<zk>
+<window id = "actualizacionCargoUsuario" title="${c:l('actualizacionCargoUsuario.title')}" border="normal" 
+	style="align=center; "
+	apply = "com.egoveris.edt.web.pl.ActualizacionCargosUsuarioComposer">
+	<separator/>
+	<vlayout>
+		<label id = "leyendaTB" 
+			value = "${c:l('eu.actualCargoUsuario.label.actualiceCargo')}"/>
+		<hbox>
+		<combobox id = "cargosCB" 
+			model = "@{actualizacionCargoUsuario$composer.listaCargos}" 
+			itemRenderer="com.egoveris.edt.web.admin.pl.renderers.CargosComboBoxItemRenderer"
+			selectedItem="@{actualizacionCargoUsuario$composer.selectedCargo}" readonly= "true"/>
+		<button id = "guardarBT" label ="${c:l('eu.escritorioUnico.tareasMisSupervisados.btnGuardar')}"></button>
+		</hbox>
+	</vlayout>
+</window>
+</zk>

@@ -1,0 +1,53 @@
+<?page title="" contentType="text/html;charset=UTF-8"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./paseInternoWindow" ?>
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+
+<zk>
+	<window border="normal" id="paseInternoWindow" 
+		 visible="true"
+		width="410px" closable="true"
+		title="${c:l('ee.documentViewer.listhead.seleccioneUsario')}">
+		
+		<separator height="10px"/>
+		
+		<groupbox id="hbox1" width="390px" mold="3d">
+			<caption>
+			<hbox width="100%">
+				<label value="${c:l('ee.documentViewer.listhead.usuariosDeOrganismo')}"/>
+				<label id="reparticionSector"/>
+			</hbox>
+			</caption>
+			<listbox id="lstUsuarios" height="150px" width="370px" mold="paging" autopaging="true" >
+			</listbox>
+		</groupbox>
+		
+		<separator height="10px"/>
+		
+		<hbox id="hbox2" align="center">
+			<checkbox id="enviarBuzonGrupal" label="${c:l('ee.documentViewer.checkbox.enviarBuzonGrupal')}" onClick="enviarGrupo()"></checkbox>
+		</hbox>
+		
+		<separator height="10px"/>
+		
+		<hbox align="center">
+			<div width="210px" align="center">
+				<button autodisable="self" id="btnAceptar" label="${c:l('ee.documentViewer.button.aceptar')}" />
+			</div>
+			<div width="210px" align="center">		
+				<button autodisable="self" id="btnCancelar" label="${c:l('ee.documentViewer.button.cancelar')}"/>
+			</div>
+		</hbox>
+				
+		<separator height="10px"/>
+
+		<zscript language="Java">
+			public void enviarGrupo() {
+				Groupbox hb = (Groupbox)Path.getComponent("/paseInternoWindow/hbox1");	
+				Checkbox c = (Checkbox)Path.getComponent("/paseInternoWindow/enviarBuzonGrupal");
+
+				hb.setOpen(!c.isChecked());
+				hb.setClosable(c.isChecked());	
+			}
+		</zscript>	
+	</window>
+</zk>

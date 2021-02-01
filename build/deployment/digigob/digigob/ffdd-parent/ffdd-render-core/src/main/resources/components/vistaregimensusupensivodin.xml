@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<complexComponent 
+		type="TRADE" name="VistaRegimenSusupensivoDin" description="Vista Regimen"
+		zul="vistaRegimenSusupensivoDin.zul"
+		mappingDTO="com.egoveris.ccomplejos.base.model.VistaRegimenSusupensivoDinDTO">
+		 
+		<field name="direccionAlmacenamiento" width="90%" height="20px" class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" disabled="true"/>
+		<field name="codigoComunaAlmacen" width="90%" height="20px" class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt"  disabled="true"/>
+		<field name="codigoAduanaDeControl" width="90%" height="20px" class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt"  disabled="true"/>
+		<field name="plazoVigencia" width="90%" height="20px" class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt"  disabled="true"/>
+		<field name="mumeroHojasInsumos" width="90%" height="20px" class="com.egoveris.ffdd.render.zk.comp.ext.IntboxExt"  disabled="true"/>
+		<field name="totalInsumos" width="90%" height="20px" class="com.egoveris.ffdd.render.zk.comp.ext.DecimalboxExt"  disabled="true"/>
+		<field name="numeroDeRegimenSuspensivo" width="90%" height="20px" class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt"  disabled="true"/>
+		<field name="fechaRegimenSuspensivo" width="90%" height="20px" class="com.egoveris.ffdd.render.zk.comp.ext.DateboxExt"  disabled="true"/>
+		<field name="aduanaRegimenSuspensivo" width="90%" height="20px" class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt"  disabled="true"/>
+		<field name="numeroHojasAnexas" width="90%" height="20px" class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt"  disabled="true"/>
+		<field name="cantidadSecuencias" width="90%" height="20px" class="com.egoveris.ffdd.render.zk.comp.ext.IntboxExt"  disabled="true"/>
+		<field name="plazo" width="90%" height="20px" class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt"  disabled="true"/>
+				
+		
+</complexComponent>

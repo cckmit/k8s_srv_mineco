@@ -1,0 +1,11 @@
+<?page title="eGoveris" contentType="text/html;charset=UTF-8"?>
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+<zk>
+	<window id="formularioDinamico" apply="org.zkoss.bind.BindComposer"
+		viewModel="@id('ioVM') @init('com.egoveris.vucfront.base.vm.FormularioDinamicoVM')">
+		<hbox id="mainFormulario" width="100%"></hbox>
+
+		<button id="cmdGuardar" label="Guardar"
+			onClick="@command('cmdGuardar')" />
+	</window>
+</zk>

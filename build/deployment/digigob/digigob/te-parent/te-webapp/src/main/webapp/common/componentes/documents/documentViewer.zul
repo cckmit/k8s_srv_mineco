@@ -1,0 +1,49 @@
+<?page title="" contentType="text/html;charset=UTF-8"?>
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./vistaDocumentosViewer" ?>
+
+<zk>
+	<window border="normal" id="vistaDocumentosViewer" title="${arg.title}"
+		style=" overflow:auto">
+		<hbox>
+			<paging id="pagingDocumento" pageSize="10" />
+			<label id="labelPagina"
+                   value="${c:l('ee.tramitacion.paginado.masDeUnaPagina.value')}"
+				   visible="false" style="color:red; font-style: italic;"/>
+		</hbox>
+		<listbox id="listboxDocumentos" mold="paging"
+				 maxlength="20"
+				 paginal="${pagingDocumento}"
+				 
+				 >
+	    	<listhead>
+				<listheader label="${c:l('ee.caratulas.listheader.documento.orden.value')}" align="center" hflex="min" />
+				<listheader label="${c:l('ee.iniciarDocumento.documento')}" align="center" hflex="min" />
+				<listheader label="${c:l('ee.caratulas.listheader.documento.numeroSade.value')}" align="center" hflex="max" />
+				<listheader label="${c:l('ee.caratulas.listheader.documento.referencia.value')}" align="center" />
+				<listheader label="${c:l('ee.caratulas.listheader.documento.fechaAsociacion.value')}" align="center" hflex="min" />
+				<listheader label="${c:l('ee.caratulas.listheader.documento.fechaCreacion.value')}" align="center" width="123px" />
+				<listheader label="${c:l('ee.caratulas.listheader.documento.accion.value')}" align="center"  />
+			</listhead>
+			
+			<listfoot >
+				 <listfooter />
+				 <listfooter />
+				 <listfooter />
+				 <listfooter />
+				 <listfooter />
+				 <listfooter id="totalDocumentos" 
+				 			 label="${c:l('ee.tramitacion.listfooter.documentos.value')}"
+							 span="1" />
+		 		 <listfooter id="footerSize"
+							 span="1" 
+							 align="right" />
+		 	 </listfoot>
+		</listbox>
+		<div width="100%" align="right">
+			<hbox id="buttonPanel">
+			</hbox>		
+		</div>
+	</window>
+</zk>

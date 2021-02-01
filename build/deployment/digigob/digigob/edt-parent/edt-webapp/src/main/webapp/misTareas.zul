@@ -1,0 +1,172 @@
+<?page title="" contentType="text/html;charset=UTF-8"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./misTareasDesktop"?>
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c" ?>
+<zk>
+
+
+	<zscript><![CDATA[
+	import com.egoveris.edt.base.model.TareasPorSistemaBean;
+	import java.util.Comparator;
+	import com.egoveris.edt.base.util.comparators.MisTareasComparator;
+	Comparator promMenorAsc = new MisTareasComparator(true, 1);
+	Comparator promMenorDsc = new MisTareasComparator(false, 1);
+	Comparator promMayorAsc = new MisTareasComparator(true, 2);
+	Comparator promMayorDsc = new MisTareasComparator(false, 2);
+	Comparator frec1Asc = new MisTareasComparator(true, 3);
+	Comparator frec1Dsc = new MisTareasComparator(false, 3);
+	Comparator frec2Asc = new MisTareasComparator(true, 4);
+	Comparator frec2Dsc = new MisTareasComparator(false, 4);
+	Comparator frec3Asc = new MisTareasComparator(true, 5);
+	Comparator frec3Dsc = new MisTareasComparator(false, 5);
+	Comparator frec4Asc = new MisTareasComparator(true, 6);
+	Comparator frec4Dsc = new MisTareasComparator(false, 6);
+	Comparator pendientesAsc = new MisTareasComparator(true, 7);
+	Comparator pendientesDsc = new MisTareasComparator(false, 7);
+]]></zscript>
+
+
+
+	<window id="misTareasDesktop" width="100%"
+		style="align=center; "
+		apply="com.egoveris.edt.web.pl.MisTareasComposer"
+		use="com.egoveris.edt.web.pl.ActualizarEscritorioWindow">
+	
+	<label id="timeoutMisTareas" visible="false"></label>
+	
+  	<script type="text/javascript">
+		  	var tiempoMisTareas;
+		
+			function notifyActualizarMisTareas() {
+	  			if(typeof tiempoMisTareas === 'undefined'){
+		  			tiempoMisTareas = parseInt(jq('$timeoutMisTareas')[0].firstChild.nodeValue);
+		  			if (typeof window.console !== 'undefined') {
+		  				window.console.log("tiempoMisTareas: "+tiempoMisTareas);
+		  			}
+	  			}
+
+	  			//CON TIMEOUT = 0 INHABILITO EL REFRESH!
+	  			if (tiempoMisTareas > 0) {
+		  			if (typeof window.console !== 'undefined') {
+			  			window.console.log("Refrescando MisTareas...");
+			  		}	  			
+		  			eventTarget=zk.Widget.$(jq('$misTareasDesktop')[0]);
+		  			zAu.send(new zk.Event(zk.Widget.$(eventTarget),
+		  			'onActualizarMisTareas'));
+		  			setTimeout("notifyActualizarMisTareas()", tiempoMisTareas); 
+	  			}
+      		}
+
+			setTimeout("notifyActualizarMisTareas()", "60000");
+
+		</script>
+		<separator />
+		
+		
+		
+		<listbox fixedLayout="true" id="misTareasId" 
+			selectedItem="@{misTareasDesktop$composer.tareasPorSistema}"
+			style="" maxlength="20"
+			model="@{misTareasDesktop$composer.misTareas}">
+			<auxhead>
+				<auxheader style="background: #C4ECFF;" rowspan="2" align="center" >
+				<label value="${c:l('eu.escritorioUnico.misTareas.sistema')}"
+					style=" "></label>
+				</auxheader>
+				<auxheader colspan="5" style="background: #C4ECFF;" align="center" >
+					<label value="${c:l('eu.escritorioUnico.misTareas.pendientes')}" 
+					style=""></label>
+				</auxheader>
+				<auxheader colspan="3" style="background: #77aa77;" align="center" >
+					<label
+						value="${c:l('eu.escritorioUnico.misTareas.promedio')}"
+						style="">
+					</label>
+				</auxheader>
+				<auxheader colspan="1" rowspan="2" style="background: #C4ECFF;" align="center" >
+					<label
+						value ="${c:l('eu.escritorioUnico.misTareas.accion')}"
+						style="">
+					</label>
+				</auxheader>
+
+			</auxhead>
+			<listhead sizable="false"  style="background: #C4ECFF" width="100%" hflex="2">
+<!--				<listheader>-->
+<!--					<label value="${c:l('eu.escritorioUnico.misTareas.sistema')}" -->
+<!--					style=""></label>-->
+<!--				</listheader>-->
+				
+				<listheader id="tareasPendientes"
+					sortAscending="${pendientesAsc}" sortDescending="${pendientesDsc}" style="background-color: #C4ECFF;">
+					<label value ="${c:l('eu.escritorioUnico.misTareas.total')}"/>
+				</listheader>
+				<listheader id="frec1" sortAscending="${frec1Asc}"
+					sortDescending="${frec1Dsc}" style="background-color: #C4ECFF;" >
+				</listheader>	
+				<listheader id="frec2" sortAscending="${frec2Asc}"
+					sortDescending="${frec2Dsc}" style="background-color: #C4ECFF;">
+				</listheader>
+				<listheader id="frec3" sortAscending="${frec3Asc}"
+					sortDescending="${frec3Dsc}" style="background-color: #C4ECFF;" >
+				</listheader>
+				<listheader id="frec4" sortAscending="${frec4Asc}"
+					sortDescending="${frec4Dsc}" style="background-color: #C4ECFF;">
+				</listheader>
+				<listheader id="porcentajeFrecuenciaMenor"
+					sortAscending="${promMenorAsc}" sortDescending="${promMenorDsc}"
+					style="background-color: #77aa77;"
+					>
+				</listheader>
+				<listheader id="porcentajeFrecuenciaMayor"
+					sortAscending="${promMayorAsc}" sortDescending="${promMayorDsc}"
+					style="background-color: #77aa77;">
+				</listheader>
+				<listheader ></listheader>
+
+			</listhead>
+			<listitem self="@{each='tareasPorSistema'}">
+				<listcell
+					label="@{tareasPorSistema.aplicacion.nombreAplicacion}"
+					tooltiptext="@{tareasPorSistema.aplicacion.descripcionAplicacion}">
+				</listcell>
+				<listcell
+					label="@{tareasPorSistema.tareasPendientes}">
+					
+				</listcell>
+				<listcell label ="@{tareasPorSistema.frecuencia1}">
+				</listcell>
+				<listcell label="@{tareasPorSistema.frecuencia2}">
+				</listcell>
+				<listcell label="@{tareasPorSistema.frecuencia3}">
+				</listcell>
+				<listcell label="@{tareasPorSistema.frecuencia4}">
+				</listcell>
+				<listcell
+					label="@{tareasPorSistema.porcentajeFrecuenciaMenor}"
+					style="font-weight:bold">
+				</listcell>
+				<listcell
+					label="@{tareasPorSistema.porcentajeFrecuenciaMayor}"
+					style="font-weight:bold">
+				</listcell>
+				<listcell/>
+				<listcell >
+					<hlayout width="100%">
+						<image src="/imagenes/play.png"
+							tooltiptext="${c:l('eu.escritorioUnico.helpIr')}"
+							forward="onClick=misTareasDesktop$composer.onIrMisTareas" />
+						<label value="${c:l('eu.misApp.labels.ir') }"
+							forward="onClick=misTareasDesktop$composer.onIrMisTareas"
+							style="font-size:11px;font-family: Arial;text-decoration: none;" />
+					</hlayout>
+				</listcell>
+			</listitem>
+		</listbox>
+		<label visible="false"
+			value="${c:l('eu.escritorioUnico.misTareas.sinAplicaciones')}"
+			style="link" id="labelMisTareasSinAplicacionId">
+		</label>
+
+
+	</window>
+</zk>

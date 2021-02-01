@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	
+	<parent>
+		<groupId>com.egoveris</groupId>
+		<artifactId>vuc-front</artifactId>
+		<version>2.0.3-SNAPSHOT</version>
+	</parent>
+	
+	<artifactId>vuc-front-base-common</artifactId>
+	<name>vuc-front base common project</name>
+
+	<dependencies>
+		<!-- == Begin Egoveris == -->
+		<dependency>
+			<groupId>com.egoveris</groupId>
+			<artifactId>vuc-front-model-common</artifactId>
+		</dependency>
+		<!-- == End Egoveris == -->
+		<!-- == Begin TSF+ framework == -->
+		<dependency>
+			<groupId>org.terasoluna.plus.framework</groupId>
+			<artifactId>terasoluna-plus-common</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<!-- == End TSF+ framework == -->
+		<!-- https://mvnrepository.com/artifact/org.keycloak/keycloak-spring-security-adapter -->
+		<dependency>
+			<groupId>org.keycloak</groupId>
+			<artifactId>keycloak-spring-security-adapter</artifactId>
+			<version>10.0.1</version>
+		</dependency>
+	</dependencies>
+
+</project>

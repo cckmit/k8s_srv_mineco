@@ -1,0 +1,48 @@
+<?page title="Prueba DynForm" contentType="text/html;charset=UTF-8"?>
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./formularioControladoEjecucionDesdeConsulta" ?>
+<zk>
+	<window title="${c:l('ee.formularioControlado.title.datosControl')}" id="formularioControladoEjecucionDesdeConsulta" width="70%"
+		style="align=center; " border="normal" closable="true" sizable="false"
+		maximizable="false" maximized="false" position="center" contentStyle="background:#F0F8FF;align:left;"
+		apply="com.egoveris.te.base.composer.FormularioControladoComposerEjecucionDesdeConsulta"
+		mode="modal" height="100%">
+			 
+		<!-- <window id="taskView" visible="false" /> -->
+		 	
+		<groupbox >	
+		<grid align="center" style="border:0px;">
+				<rows>
+					<row >
+					
+						
+							<div id="div" height="500px" width="100%" style='white-space: pre-wrap; overflow:auto; position:relative;'>
+							</div>
+									
+						
+					
+					</row>
+					<row >
+						<hbox>
+							<!--
+							<toolbarbutton autodisable="self" id="guardar" image="/imagenes/Guardar.png"
+								forward="onClick=datosProp$FormularioControladoComposer.onGuardarExp"/>
+							<toolbarbutton autodisable="self" id="enviarAGuardaTemporalButton" image="/imagenes/btn_enviaraguardatemporal.png"
+								visible="@{formularioControladoEjecucionDesdeConsulta$FormularioControladoComposer.beforeExecuteTask}" />
+							<toolbarbutton autodisable="self" id="cancelar" image="/imagenes/CancelarExpediente.png"
+								forward="onClick=datosProp$FormularioControladoComposer.onCancelar"/>
+							-->
+							<button autodisable="self" id="guardar" label="${c:l('ee.expediente.tramitacion.lbl.guardar')}"
+								forward="onClick=datosProp$FormularioControladoComposer.onGuardarExp"/>
+							<button autodisable="self" id="enviarAGuardaTemporalButton" label="${c:l('ee.expediente.enviarGT')}"
+								visible="@{formularioControladoEjecucionDesdeConsulta$FormularioControladoComposer.beforeExecuteTask}" />
+							<button autodisable="self" id="cancelar" label="${c:l('ee.expediente.tramitacion.lbl.cancelar')}"
+								forward="onClick=datosProp$FormularioControladoComposer.onCancelar"/>
+						</hbox>
+					</row>
+				</rows>
+			</grid>
+		</groupbox>
+	</window>
+</zk>

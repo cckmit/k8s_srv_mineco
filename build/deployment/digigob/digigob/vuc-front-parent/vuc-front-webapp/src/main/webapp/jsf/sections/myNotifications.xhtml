@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/WEB-INF/faces/layout/mainLayout.xhtml">
+	<ui:define name="body">
+
+		<h:form id="myNotifications">
+			<div class="ui-g">
+				<div class="ui-g-12">
+					<h2>#{msg.sectionNotificaciones}</h2>
+				</div>
+			</div>
+			<div class="ui-g">
+				<div class="ui-g-12">
+					<p:dataTable id="tblNotificationes" var="expedienteNotificacion"
+						value="#{myNotificationsMb.mapaExpedienteListaNotificaciones.entrySet()}"
+						emptyMessage="#{msg.sectionSinNotificacionesNuevas}"
+						style="text-align: center;" rows="10" paginator="true"
+						paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+						currentPageReportTemplate="{currentPage} #{msg.sectionDe} {totalPages} #{msg.sectionPaginas}"
+						rowsPerPageTemplate="5,10,15" paginatorPosition="bottom">
+						<p:column headerText="#{msg.sectionCodigoExpediente}">
+							<p:outputLabel value="#{expedienteNotificacion.getKey()}" />
+						</p:column>
+						<p:column headerText="#{msg.sectionTramite}">
+							<p:outputLabel
+								value="#{expedienteNotificacion.getValue().get(0).expediente.tipoTramite.nombre}" />
+						</p:column>
+						<p:column headerText="#{msg.sectionFechaUltimaNotificacion}">
+							<p:outputLabel
+								value="#{expedienteNotificacion.getValue().get(0).formattedDate}" />
+						</p:column>
+						<p:column headerText="#{msg.sectionVer}" width="50">
+							<p:commandButton icon="fa fa-search"
+								style="height: 2em; width: 2em;"
+								actionListener="#{myNotificationsMb.cmdViewNotification(expedienteNotificacion)}"
+								oncomplete="PF('notificacionesDialog').show()"
+								update="tblNotificationes mainLayout:myNotifications:notificacionesDialog">
+							</p:commandButton>
+						</p:column>
+						<p:column headerText="#{msg.sectionEstado}">
+							<p:outputLabel
+								rendered="#{not myNotificationsMb.hasExpedienteAnyUnseenNotificacion(expedienteNotificacion)}"
+								styleClass="fa fa-envelope-open" />
+							<p:outputLabel
+								rendered="#{myNotificationsMb.hasExpedienteAnyUnseenNotificacion(expedienteNotificacion)}"
+								styleClass="fa fa-envelope" />
+						</p:column>
+					</p:dataTable>
+				</div>
+			</div>
+
+			<!-- DIALOGS -->
+			<p:dialog id="notificacionesDialog" widgetVar="notificacionesDialog"
+				width="60%" height="60%" modal="true"
+				header="#{msg.sectionNotificaciones} #{myNotificationsMb.selectedExpedienteMap.getKey()}"
+				style="margin-left: -15%;" >
+				<div class="ui-g">
+					<div class="ui-g-12">
+						<p:dataTable id="tblNotificaciones" var="notificacion"
+							value="#{myNotificationsMb.selectedExpedienteMap.getValue()}"
+							style="text-align: center; font-size:1.1em;"
+							emptyMessage="#{msg.step2SinDocumentos}" rows="5" >
+							<p:column headerText="#{msg.sectionCodigoDocumento}" width="30%">
+								<p:outputLabel value="#{notificacion.codSade}" />
+							</p:column>
+							<p:column headerText="#{msg.sectionFecha}" width="13%">
+								<p:outputLabel value="#{notificacion.formattedDate}" />
+							</p:column>
+							<p:column headerText="#{msg.sectionMotivo}">
+								<p:outputLabel value="#{notificacion.motivo}" />
+							</p:column>
+							<p:column headerText="#{msg.sectionDescargar}" width="12%">
+								<p:commandButton icon="fa fa-download" ajax="false">
+								<p:fileDownload
+									value="#{myNotificationsMb.cmdDownloadNotificacion(notificacion)}" />
+							</p:commandButton>
+							</p:column>
+							<p:column headerText="#{msg.sectionLeido}" width="12%">
+							<p:outputLabel
+								rendered="#{myNotificationsMb.isSeenNotificacion(notificacion)}"
+								styleClass="fa fa-envelope-open" />
+							<p:outputLabel
+								rendered="#{not myNotificationsMb.isSeenNotificacion(notificacion)}"
+								styleClass="fa fa-envelope" />
+							</p:column>
+						</p:dataTable>
+					</div>
+				</div>
+				<div class="ui-g-12" style="margin-top: 20px; text-align: center;">
+					<p:commandButton value="#{msg.step2Cancelar}"
+						onclick="PF('notificacionesDialog').hide()" />
+				</div>
+			</p:dialog>
+		</h:form>
+
+	</ui:define>
+</ui:composition>
+</html>

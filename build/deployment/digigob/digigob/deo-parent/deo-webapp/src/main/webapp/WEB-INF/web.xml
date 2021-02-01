@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="3.0" xmlns="http://java.sun.com/xml/ns/javaee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
+
+	<display-name>DEO web application</display-name>
+	<absolute-ordering>
+		<name>terasolunaPlusWebapp</name>
+		<name>zk</name>
+		<others />
+	</absolute-ordering>
+
+	<!-- CAS SSOut -->
+	<filter>
+		<filter-name>CAS Single Sign Out Filter</filter-name>
+		<filter-class>org.jasig.cas.client.session.SingleSignOutFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>CAS Single Sign Out Filter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	<listener>
+		<listener-class>org.jasig.cas.client.session.SingleSignOutHttpSessionListener</listener-class>
+	</listener>
+	<filter-mapping>
+		<filter-name>CAS Single Sign Out Filter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	<!-- FIN SPRING SECURITY -->
+
+	<!-- Remoting servlets -->
+	<servlet>
+		<servlet-name>GenerarDocumentoServlet</servlet-name>
+		<servlet-class>org.springframework.web.context.support.HttpRequestHandlerServlet</servlet-class>
+	</servlet>
+	
+	<servlet>
+		<servlet-name>GenerarDocumentoNombramientoServlet</servlet-name>
+		<servlet-class>org.springframework.web.context.support.HttpRequestHandlerServlet</servlet-class>
+	</servlet>
+
+	<servlet>
+		<servlet-name>ActualizarVisualizacionServlet</servlet-name>
+		<servlet-class>org.springframework.web.context.support.HttpRequestHandlerServlet</servlet-class>
+	</servlet>
+
+	<servlet>
+		<servlet-name>GenerarTareaServlet</servlet-name>
+		<servlet-class>org.springframework.web.context.support.HttpRequestHandlerServlet</servlet-class>
+	</servlet>
+
+	<servlet>
+		<servlet-name>GenerarTareaConRectificacionServlet</servlet-name>
+		<servlet-class>org.springframework.web.context.support.HttpRequestHandlerServlet</servlet-class>
+	</servlet>
+
+	<servlet>
+		<servlet-name>CancelarTareaServlet</servlet-name>
+		<servlet-class>org.springframework.web.context.support.HttpRequestHandlerServlet</servlet-class>
+	</servlet>
+
+	<servlet>
+		<servlet-name>BloquearTareaServlet</servlet-name>
+		<servlet-class>org.springframework.web.context.support.HttpRequestHandlerServlet</servlet-class>
+	</servlet>
+
+
+	<servlet>
+		<servlet-name>DepuracionDocumentoServlet</servlet-name>
+		<servlet-class>org.springframework.web.context.support.HttpRequestHandlerServlet</servlet-class>
+	</servlet>
+
+
+	<servlet>
+		<servlet-name>GenerarTareaNombramientoServlet</servlet-name>
+		<servlet-class>org.springframework.web.context.support.HttpRequestHandlerServlet</servlet-class>
+	</servlet>
+
+	<servlet>
+		<servlet-name>ConsultaDocumentoServlet</servlet-name>
+		<servlet-class>org.springframework.web.context.support.HttpRequestHandlerServlet</servlet-class>
+	</servlet>
+
+	<servlet>
+		<servlet-name>ConsultaDocumento2Servlet</servlet-name>
+		<servlet-class>org.springframework.web.context.support.HttpRequestHandlerServlet</servlet-class>
+	</servlet>
+
+	<servlet>
+		<servlet-name>ConsultaDocumento3Servlet</servlet-name>
+		<servlet-class>org.springframework.web.context.support.HttpRequestHandlerServlet</servlet-class>
+	</servlet>
+
+	<servlet>
+		<servlet-name>BuscarDocumentoServlet</servlet-name>
+		<servlet-class>org.springframework.web.context.support.HttpRequestHandlerServlet</servlet-class>
+	</servlet>
+
+	<servlet>
+		<servlet-name>TipoDocumentoServlet</servlet-name>
+		<servlet-class>org.springframework.web.context.support.HttpRequestHandlerServlet</servlet-class>
+	</servlet>
+
+	<servlet>
+		<servlet-name>TipoReservaServlet</servlet-name>
+		<servlet-class>org.springframework.web.context.support.HttpRequestHandlerServlet</servlet-class>
+	</servlet>
+
+	<servlet>
+		<servlet-name>FirmarDocServlet</servlet-name>
+		<servlet-class>org.springframework.web.context.support.HttpRequestHandlerServlet</servlet-class>
+	</servlet>
+
+    <servlet>
+        <servlet-name>Controladores</servlet-name>
+        <servlet-class>
+            org.springframework.web.servlet.DispatcherServlet
+        </servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    
+    <servlet-mapping>
+        <servlet-name>Controladores</servlet-name>
+        <url-pattern>/publico/*</url-pattern>
+    </servlet-mapping>
+    
+	<!-- Servlet Mapping -->
+
+	<servlet-mapping>
+		<servlet-name>GenerarDocumentoServlet</servlet-name>
+		<url-pattern>/remoting/generarDocumento</url-pattern>
+	</servlet-mapping>
+	
+	<servlet-mapping>
+		<servlet-name>GenerarDocumentoNombramientoServlet</servlet-name>
+		<url-pattern>/remoting/generarDocumentoNombramiento</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>ActualizarVisualizacionServlet</servlet-name>
+		<url-pattern>/remoting/actualizarVisualizacion</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>ConsultaDocumentoServlet</servlet-name>
+		<url-pattern>/remoting/consultaDocumento</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>ConsultaDocumento2Servlet</servlet-name>
+		<url-pattern>/remoting/consultaDocumento2</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>ConsultaDocumento3Servlet</servlet-name>
+		<url-pattern>/remoting/consultaDocumento3</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>BuscarDocumentoServlet</servlet-name>
+		<url-pattern>/remoting/buscarDocumento</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>GenerarTareaServlet</servlet-name>
+		<url-pattern>/remoting/generarTarea</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>GenerarTareaConRectificacionServlet</servlet-name>
+		<url-pattern>/remoting/generarTareaConRectificacion</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>CancelarTareaServlet</servlet-name>
+		<url-pattern>/remoting/cancelarTarea</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>BloquearTareaServlet</servlet-name>
+		<url-pattern>/remoting/bloquearTarea</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>DepuracionDocumentoServlet</servlet-name>
+		<url-pattern>/remoting/depuracionDocumento</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>TipoDocumentoServlet</servlet-name>
+		<url-pattern>/remoting/tipoDocumento</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>TipoReservaServlet</servlet-name>
+		<url-pattern>/remoting/tipoReserva</url-pattern>
+	</servlet-mapping>
+	
+	<!-- //// -->
+	<!-- MIME mapping -->
+	<mime-mapping>
+		<extension>gif</extension>
+		<mime-type>image/gif</mime-type>
+	</mime-mapping>
+	<mime-mapping>
+		<extension>html</extension>
+		<mime-type>text/html</mime-type>
+	</mime-mapping>
+	<mime-mapping>
+		<extension>htm</extension>
+		<mime-type>text/html</mime-type>
+	</mime-mapping>
+	<mime-mapping>
+		<extension>jpeg</extension>
+		<mime-type>image/jpeg</mime-type>
+	</mime-mapping>
+	<mime-mapping>
+		<extension>jpg</extension>
+		<mime-type>image/jpeg</mime-type>
+	</mime-mapping>
+	<mime-mapping>
+		<extension>js</extension>
+		<mime-type>application/x-javascript</mime-type>
+	</mime-mapping>
+	<mime-mapping>
+		<extension>png</extension>
+		<mime-type>image/png</mime-type>
+	</mime-mapping>
+	<mime-mapping>
+		<extension>txt</extension>
+		<mime-type>text/plain</mime-type>
+	</mime-mapping>
+	<mime-mapping>
+		<extension>xml</extension>
+		<mime-type>text/xml</mime-type>
+	</mime-mapping>
+	<mime-mapping>
+		<extension>zhtml</extension>
+		<mime-type>text/html</mime-type>
+	</mime-mapping>
+	<mime-mapping>
+		<extension>zul</extension>
+		<mime-type>text/html</mime-type>
+	</mime-mapping>
+	<mime-mapping>
+		<extension>ico</extension>
+		<mime-type>image/x-icon</mime-type>
+	</mime-mapping>
+	<welcome-file-list>
+		<welcome-file>inbox.zul</welcome-file>
+	</welcome-file-list>
+</web-app>

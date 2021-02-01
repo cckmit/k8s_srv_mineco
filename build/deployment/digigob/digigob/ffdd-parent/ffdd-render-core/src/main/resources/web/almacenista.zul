@@ -1,0 +1,38 @@
+<zk>
+	<vlayout
+		apply="com.egoveris.ffdd.render.zk.comp.cc.AlmacenistaComposer">
+
+		<grid>
+			<columns>
+				<column></column>
+				<column></column>
+				<column></column>
+				<column></column>
+			</columns>
+			<rows>
+				<row>
+					<cell id="${arg.formComp.nombre}_almacenistaDiv" />
+					<cell id="${arg.formComp.nombre}_fechaRecepcionMercanciasDiv" />
+				</row>
+				<row>
+					<cell id="${arg.formComp.nombre}_fechaRetiroMercanciasDiv" />
+					<cell id="${arg.formComp.nombre}_numeroRegistroReconocimientoDiv" />
+				</row>
+				<row>
+					<cell id="${arg.formComp.nombre}_anoRegistroReconocimientoDiv" />
+					<cell
+						id="${arg.formComp.nombre}_codigoReglaUnoProcedimientoAforoDiv" />
+				</row>
+				<row>
+					<cell id="${arg.formComp.nombre}_numeroResolucionReglaUnoDiv" />
+					<cell
+						id="${arg.formComp.nombre}_anoResolucionReglaUnoDiv" />
+				</row>
+				<row>
+					<cell id="${arg.formComp.nombre}_codigoUltimaResolucionReglaUnoDiv" />
+				</row>
+			</rows>
+		</grid>
+	</vlayout>
+</zk>
+

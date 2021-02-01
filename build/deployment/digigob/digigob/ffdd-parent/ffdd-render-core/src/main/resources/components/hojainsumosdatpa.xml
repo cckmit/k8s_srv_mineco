@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<complexComponent type="MACCS" name="Hoja Insumos DATPA"
+	description="Hoja Insumos DATPA" zul="hojaInsumosDATPA.zul"
+	composer="com.egoveris.ffdd.render.zk.comp.cc.HojaInsumosDATPAComposer"
+	mappingDTO="com.egoveris.ccomplejos.base.model.HojaInsumosDATPADTO">
+
+	<field name="aduana" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" disabled="true" />
+	<field name="codigoDespachador" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" disabled="true" />
+	<field name="consignatario" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" disabled="true" />
+	<field name="rutImportador" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" disabled="true" />
+
+
+</complexComponent>

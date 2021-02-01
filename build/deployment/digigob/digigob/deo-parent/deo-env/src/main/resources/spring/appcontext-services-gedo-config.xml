@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:solr="http://www.springframework.org/schema/data/solr"
+	xmlns:task="http://www.springframework.org/schema/task"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+           http://www.springframework.org/schema/beans/spring-beans.xsd
+           http://www.springframework.org/schema/context
+           http://www.springframework.org/schema/context/spring-context.xsd 
+           http://www.springframework.org/schema/data/solr 
+           http://www.springframework.org/schema/data/solr/spring-solr.xsd
+           http://www.springframework.org/schema/task
+           http://www.springframework.org/schema/task/spring-task.xsd">
+
+	<!-- BEAN PARA LIBRERIA DE REPARTICIONES -->
+	<bean id="tiempoRecargaReparticionesMs" class="java.lang.String">
+		<constructor-arg type="java.lang.String" value="${gedo.reparticion.tiempo}" />
+	</bean>
+
+	<!-- BEAN PARA LIBRERIA DE REPARTICIONES -->
+	<bean id="tiempoRecargaSectoresInternosMs" class="java.lang.String">
+		<constructor-arg type="java.lang.String" value="${gedo.usuario.tiempo}" />
+	</bean>
+
+	<!-- BEAN PARA PODER FIRMAR SIN TOKEN EN TEST -->
+	<bean id="ambienteDesa" class="java.lang.Boolean">
+		<constructor-arg value="${gedo.ambienteDesa:false}" />
+	</bean>
+
+	<!-- BEAN PARA OBTENER LA URL DE TSA -->
+	<bean id="tsa" class="java.lang.String">
+		<constructor-arg type="java.lang.String" value="${tsa.url}" />
+	</bean>
+
+	<bean id="appMailCCOOLink" class="java.lang.String">
+		<constructor-arg type="java.lang.String" value="${app.mail.ccoo.link}" />
+	</bean>
+
+	<bean id="appName" class="java.lang.String">
+		<constructor-arg type="java.lang.String" value="${app.name}" />
+	</bean>
+
+	<bean id="moduloName" class="java.lang.String">
+		<constructor-arg type="java.lang.String"
+			value="${modulo.name.guarda.documental}" />
+	</bean>
+
+	<bean id="gestorDocumentalName" class="java.lang.String">
+		<constructor-arg type="java.lang.String"
+			value="${app.sistema.gestor.documental}" />
+	</bean>
+
+
+
+	<bean name="profileMethod" class="com.egoveris.deo.model.model.MedicionMetodosConfigDTO">
+		<property name="formatoResultado" value="${gedo.medicion.formato}" />
+		<property name="acronimoTipoDocumento" value="${gedo.medicion.acronimo}" />
+		<property name="usuarioActual" value="${gedo.medicion.usuario}" />
+		<property name="contenido" value="${gedo.medicion.contenido}" />
+		<property name="tipoContenido" value="${gedo.medicion.tipoContenido}" />
+		<property name="referencia" value="${gedo.medicion.referencia}" />
+	</bean>
+
+	<bean name="configReintentosCierre" class="com.egoveris.deo.base.util.ConfiguracionTimerJBPM">
+		<property name="cantidadReintentos" value="${jbpm.cantidadReintentos}" />
+	</bean>
+
+	<bean name="documentoQueryFactory"
+		class="com.egoveris.deo.base.util.DocumentoQueryFactory">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+
+	<bean name="procesamientoTemplate"
+		class="com.egoveris.deo.base.service.impl.ProcesamientoTemplateImpl">
+	</bean>
+
+
+	<bean name="importarDocumento" class="com.egoveris.deo.base.task.ImportarDocumento">
+	</bean>
+
+	<bean name="cerrarDocumento" class="com.egoveris.deo.base.task.CerrarDocumento">
+	</bean>
+
+
+	<bean name="decisionReintentoCierre" class="com.egoveris.deo.base.decision.DecisionReintentoCierre">
+	</bean>
+
+
+	<bean name="rechazarDocumento" class="com.egoveris.deo.base.task.RechazarDocumento">
+	</bean>
+
+	<bean name="generadorDocumentoFactory" class="com.egoveris.deo.base.util.GeneradorDocumentoFactory">
+		<property name="generadorDocumentoBeans">
+			<map key-type="java.lang.String"
+				value-type="com.egoveris.deo.base.service.impl.GenerarDocumentoServiceImpl">
+				<entry>
+					<key>
+						<value>manual</value>
+					</key>
+					<ref bean="generarDocumentoManual" />
+				</entry>
+				<entry>
+					<key>
+						<value>importado</value>
+					</key>
+					<ref bean="generarDocumentoImportado" />
+				</entry>
+				<entry>
+					<key>
+						<value>firmaExterna</value>
+					</key>
+					<ref bean="generarDocumentoFirmaExterna" />
+				</entry>
+				<entry>
+					<key>
+						<value>importadoTemplate</value>
+					</key>
+					<ref bean="generarDocumentoImportadoTemplate"></ref>
+				</entry>
+			</map>
+		</property>
+	</bean>
+
+
+	<!-- SOLR -->
+	<solr:repositories base-package="com.egoveris.deo.base.solr" />
+	
+	<bean name="solrServer" class="org.apache.solr.client.solrj.impl.HttpSolrServer">
+		<constructor-arg type="java.lang.String" value="${solr.gedoCore.url}" />
+	</bean>
+	<bean name="solrTemplate" class="org.springframework.data.solr.core.SolrTemplate">
+		<constructor-arg ref="solrServer" />
+	</bean>
+
+
+
+</beans>

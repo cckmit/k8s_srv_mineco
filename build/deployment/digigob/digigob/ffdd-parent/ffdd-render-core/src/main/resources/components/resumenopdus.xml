@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<complexComponent type="TRADE" name="resumenopdus"
+	description="Resumen OPDUS Information" zul="resumenOpDus.zul"
+	mappingDTO="com.egoveris.ccomplejos.base.model.ResumenOpDusDTO">
+
+	<field name="codOperacion" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" disabled="true" />
+	<field name="destinacionAduanera" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" disabled="true" />
+	<field name="fechaCreacion" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.DateboxExt" disabled="true" />
+	<field name="processingStatus" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" disabled="true" />
+
+</complexComponent>

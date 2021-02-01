@@ -1,0 +1,55 @@
+<zk>
+	<grid>
+		<rows>
+			<row>
+				<cell width="225px">
+					<vbox>
+						<label value="${c:l('ee.tipoOperacion.admTipoOperaciones.formulario.cabecera.label.busqueda')}" />						
+					</vbox>
+				</cell>
+				<cell>
+					<hbox>
+						<textbox value="@bind(vm.inputBusquedaForm)" />
+						
+						<toolbarbutton autodisable="self"
+							image="/imagenes/edit-find.png" label="${c:l('ee.tipoOperacion.admTipoOperaciones.formulario.cabecera.button.buscar')}" onClick="@command('busquedaFormulario')" /> 
+
+						<toolbarbutton autodisable="self"
+							image="/imagenes/delete-process.png" label="${c:l('ee.tipoOperacion.admTipoOperaciones.formulario.cabecera.button.limpiar')}" onClick="@command('limpiarBusquedaFormulario')" /> 
+					</hbox>
+				</cell>
+			</row>
+			<row>
+				<cell colspan="2">
+					<vbox>
+						<grid>
+							<columns>
+								<column label="${c:l('ee.tipoOperacion.admTipoOperaciones.formulario.cabecera.column.nombre')}" width="225px" />
+								<column label="${c:l('ee.tipoOperacion.admTipoOperaciones.formulario.cabecera.column.acciones')}" />
+							</columns>
+						</grid>
+						
+						<listbox width="100%" multiple="true" checkmark="true" mold="paging" pageSize="5" model="@load(vm.formulariosDinamicos)" selectedItems="@bind(vm.formulariosSel)">
+							<listhead>
+								<listheader width="225px" />
+								<listheader />
+							</listhead>
+							<template name="model" var="item">
+								<listitem>
+									<listcell label="${item.nombre}" />
+									<listcell>
+										<hbox>
+											<toolbarbutton autodisable="self"
+												image="/imagenes/edit-find.png" label="${c:l('ee.tipoOperacion.admTipoOperaciones.formulario.cabecera.actions.previsualizar')}"
+												onClick="@command('previewDynamicForm', dynamicForm=item)" />
+										</hbox>
+									</listcell>
+								</listitem>
+							</template>
+						</listbox>
+					</vbox>
+				</cell>
+			</row>
+		</rows>
+	</grid>
+</zk>

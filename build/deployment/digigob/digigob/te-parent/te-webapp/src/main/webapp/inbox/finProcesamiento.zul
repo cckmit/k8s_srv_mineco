@@ -1,0 +1,45 @@
+<?page title="" contentType="text/html;charset=UTF-8"?>
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+<zk>
+<window id="finProcesamientoWindow" border="normal" title="${c:l('gedo.general.procesoExitoso')}"
+	apply="com.egoveris.te.base.composer.FinProcesamientoComposer"
+	closable="true" position="center" contentStyle="background: #EFEFEE" mode="embedded"
+	sizable="false" width="360px" height="150px">
+		  <style dynamic="true"> 
+			<!-- Make Plain Grid --> 
+			.GridLayoutNoBorder tr.z-row td.z-row-inner, tr.z-row .z-cell,div.z-grid 
+			{ 
+			border: none; 
+			overflow: hidden; 
+			zoom: 1; 
+			 
+			border-top: none; 
+			border-left: none; 
+			border-right: none; 
+			border-bottom: none; 
+			} 
+		</style> 
+ 	<box visible="true" width="100%" align="center" >
+	 	<vbox pack="center"  height="50px">
+	 		<label id="informacionVentanaPadre" value="${c:l('ee.finProcesamiento.label.continuarOperacion')}" />
+	 	</vbox>
+	 	<separator></separator>
+	 	<grid sclass="GridLayoutNoBorder">
+		<columns>
+			<column />
+		</columns>
+		<rows >
+			<row id="buttonsRow" align="center" spans="50%,50%">	
+<!-- 					<toolbarbutton autodisable="self" id="procesar" image="/imagenes/Continuar.png" /> -->
+					<button autodisable="self" id="procesar" label="${c:l('ee.documentoGenerado.botonContinuar')}"  />
+					
+<!-- 					<toolbarbutton autodisable="self" id="procesar"  image="/imagenes/Continuar.png"  onClick='org.zkoss.lang.Threads.sleep(3000);'/> -->
+					
+					<toolbarbutton autodisable="self" id="cerrar" label="${c:l('ee.documentViewer.button.cancelar')}" />
+			</row>
+		</rows>
+	</grid>
+	</box>	
+</window>
+</zk>

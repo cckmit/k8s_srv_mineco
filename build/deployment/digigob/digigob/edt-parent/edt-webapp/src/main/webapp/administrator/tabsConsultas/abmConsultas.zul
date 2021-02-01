@@ -1,0 +1,8 @@
+<?page title="${c:l('abmConsultas.title')}" contentType="text/html;charset=UTF-8"?>
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./win_abmConsulta" ?>
+<zk>
+	<window border="none" id="win_abmConsulta" apply="com.egoveris.edt.web.admin.pl.AdmConsultaComposer" width="100%" />
+</zk>
+

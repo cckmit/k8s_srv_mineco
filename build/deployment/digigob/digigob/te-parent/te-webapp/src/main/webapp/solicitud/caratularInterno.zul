@@ -1,0 +1,121 @@
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+<?page title="Caratular Interno" contentType="text/html;charset=UTF-8"?>
+<?link href="bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css"?>
+<?link href="css/fonts.css" rel="stylesheet" type="text/css"?>
+<?link href="less/index.css.dsp" rel="stylesheet" type="text/css"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./caratularInternoWindow" ?>
+<zk>
+	<window title="${c:l('ee.caratularInterno.titulo')}"  border="none" width="600px"
+		 id="caratularInternoWindow"
+		apply="com.egoveris.te.base.composer.CaratularInternoComposer">
+		<window id="formularioControladoWindows" visible="false" />
+		<groupbox >
+			<separator />
+			<grid >
+				<rows width="100%">
+					<row visible="false">
+						<label value="${c:l('ee.nuevoexpediente.label.motivoInterno.value')}"  />
+						<textbox id="motivoInternoExpediente"
+							maxlength="255"  cols="35" rows="4">
+						</textbox>
+					</row>
+					<row>
+						<!--<label value="${c:l('ee.nuevoexpediente.label.motivoExterno.value')}"  />-->
+						<label value="${c:l('ee.anularmodificarsolicitud.label.motivo.value')}" />
+						<textbox id="motivoExternoExpediente"
+							tooltiptext="${c:l('ee.nuevoexpediente.label.popupMotivoExterno.value')}"
+							maxlength="255"  cols="35" rows="4">
+						</textbox>
+					</row>
+				</rows>
+			</grid>
+			<separator />
+			<box orient="vertical" spacing="0" align="start"
+				width="100%">
+				<label value="${c:l('ee.nuevoexpediente.label.datosdelexpediente.value')}" style="font:bold;" />
+				<separator bar="true" />
+				<separator />
+				<grid >
+					<rows width="100%">
+						<row>
+							<label value="${c:l('ee.nuevoexpediente.label.codigotrata.value')}" />
+								<bandbox id="codigoTrata" autodrop="true"   >
+								<bandpopup  width="620px" >
+									<groupbox mold="3d">
+										<caption>
+											<hbox>
+												<label value="${c:l('ee.consultaGeneradosReparticion.listheader.tramites')}" width="560px" />
+												<image	src="/imagenes/help.png" width="16px" height="16px"
+														 align="right" />
+											</hbox>
+										</caption>
+										<separator height="2px"></separator>
+										<vbox height="100px"	width="600px">
+											<paging	id="paginatorIncorporarSADE" pageSize="10" />
+											<listbox
+												id="trataListbox" mold="paging"
+												paginal="${paginatorIncorporarSADE}"
+												model="@{caratularInternoWindow$composer.tratasSeleccionadas}"
+												selectedItem="@{caratularInternoWindow$composer.selectedTrata}"
+												itemRenderer="com.egoveris.te.base.rendered.TrataListBoxItemRenderer">
+												<listhead>
+													<listheader	label="${c:l('ee.consultaGeneradosReparticion.listheader.tramites')}"/>
+												</listhead>	
+												<listfoot	>			
+													<listfooter id="Total"	label="${c:l('ee.consultaGeneradosReparticion.listfooter.totalTramites')}"	span="1"  />
+													<listfooter id="conteoDocumentos" label="@{caratularInternoWindow$composer.tratasSeleccionadas.size}" span="2"	 />
+											</listfoot>											
+											</listbox>
+										</vbox>
+									</groupbox>
+								</bandpopup>
+							</bandbox>
+							
+						</row>
+						
+						<row>
+							<label value="${c:l('ee.nuevoexpediente.label.descripcion.value')}"/>
+							<textbox id="descripcion"
+								maxlength="225" cols="35" rows="5" focus="true">
+							</textbox>
+						</row>
+						
+						<row>
+							<label value="${c:l('ee.nuevoexpediente.label.email.value')}" />
+							<textbox id="email"
+								maxlength="225" cols="35">
+							</textbox>
+						</row>
+						<row>
+							<label value="${c:l('ee.nuevoexpediente.label.telefono.value')}" />
+							<textbox id="telefono" 
+								maxlength="255" cols="35">
+							</textbox>
+						</row>
+					</rows>
+				</grid>
+			</box>
+			<separator />
+			<separator />
+			<grid align="center"
+				style="border:0px;">
+				<rows>
+					<row >
+						<hbox>
+<!-- 							<toolbarbutton autodisable="self" id="guardar" image="/imagenes/Caratular.png" height="42px" -->
+<!-- 								forward="onClick=caratularInternoWindow$CaratularInternoComposer.onGuardarExpediente"/> -->
+							<button autodisable="seft" id="guardar" class="btn-info" iconSclass="z-icon-folder" label="${c:l('te.webapp.solicitud.caratularInterno.btn.caratular')}"
+								forward="onClick=caratularInternoWindow$CaratularInternoComposer.onGuardarExpediente"/>	
+							<button autodisable="seft" id="cancelar" class="btn-info" iconSclass="z-icon-times-circle" label="${c:l('te.webapp.solicitud.caratularInterno.btn.cancelar')}"
+								forward="onClick=caratularInternoWindow$CaratularInternoComposer.onCancelar"/>
+<!-- 							<toolbarbutton autodisable="self" id="cancelar" image="/imagenes/CancelarExpediente.png" -->
+<!-- 								forward="onClick=caratularInternoWindow$CaratularInternoComposer.onCancelar" height="42px"/> -->
+						</hbox>
+					</row>
+				</rows>
+			</grid>
+		</groupbox>
+
+	</window>
+</zk>

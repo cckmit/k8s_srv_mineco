@@ -1,0 +1,42 @@
+<?page title="HEADER" contentType="text/html;charset=UTF-8"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./header" ?>
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+<zk xmlns:h="native">
+
+	<window border="none" id="header"
+		apply="com.egoveris.ffdd.web.adm.HeaderComposer">
+
+		<grid>
+			<columns>
+				<column width="10%" align="left" />
+				<column width="75%" align="center" />
+				<column width="15%" align="left" />
+			</columns>
+			<rows>
+				<row style="background-color: #C4ECFF; border:#C4ECFF" height="72px">
+					<image id="logo" style="width: 50px;padding-left: 10px;" />
+
+					<vbox align="center">
+						<label value="${c:l('header.titulo')}" style="font-size:24px;font-weight:500;" />
+
+						<label id="version" style="font-size:9px;font-weight:500;"
+							value="--" />
+					</vbox>
+
+					<vbox style="width:170px;">
+						<div style="display:inline;" id="divUsuario">
+							<image src="/imagenes/egovIconoUsuario.png" style="vertical-align:middle"/>
+								<label id="name" value="@{header$HeaderComposer.loggedUser}"
+								style="vertical-align:middle; cursor:pointer;  font-size:12px; font-weight:500; padding-right:5px" />
+						</div>
+						<div  style="display:inline;">
+							<image src="/imagenes/logout.png"  style="vertical-align:middle" />
+							<label value="${c:l('header.botonSalir')}" id="logout"
+								style="vertical-align:middle; cursor:pointer;  font-size:12px; font-weight:500; padding-right:5px" />
+						</div>
+					</vbox>
+				</row>
+			</rows>
+		</grid>
+	</window>
+</zk>

@@ -1,0 +1,25 @@
+<zk>
+	<vlayout  apply="com.egoveris.ffdd.render.zk.comp.cc.DocumentoTransporteComposer">
+		<vbox>
+			<hbox>
+				<cell id="${arg.formComp.nombre}_idDocumentoTransporteDiv"/>
+				<cell id="${arg.formComp.nombre}_secuencialDocTransporteDiv"/>
+			</hbox>
+			<hbox>				
+				<cell id="${arg.formComp.nombre}_numeroDocTransporteDiv"/>
+				<cell id="${arg.formComp.nombre}_fechaDocTransporteDiv"/>
+			</hbox>
+			<hbox>
+				<cell id="${arg.formComp.nombre}_tipoDocTransporteDiv"/>
+				<cell id="${arg.formComp.nombre}_nombreNaveDiv"/>
+			</hbox>
+			<hbox>				
+				<cell id="${arg.formComp.nombre}_numeroViajeDiv"/>
+				<cell id="${arg.formComp.nombre}_numeroManifiestoDiv"/>
+			</hbox>
+			<hbox>				
+				<cell id="${arg.formComp.nombre}_idNaveDiv"/>
+			</hbox>
+	</vbox>
+ </vlayout>
+</zk>

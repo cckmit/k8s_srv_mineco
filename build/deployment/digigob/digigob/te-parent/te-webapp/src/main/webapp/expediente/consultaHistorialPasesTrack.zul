@@ -1,0 +1,218 @@
+<?page title="new page title" contentType="text/html;charset=UTF-8"?>
+<zk>
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./historialDePasesExpedienteTrackWindow" ?>
+<window title="${c:l('ee.consultaHistorialPases.movimientos')}" border="normal" id="historialDePasesExpedienteTrackWindow"
+		sclass="background-default" width="100%" position="center,top" closable="true"
+ 		apply="com.egoveris.te.base.composer.HistorialDePasesTrackComposer"> 
+	<style>
+		 .background-default{
+        			
+        }
+	</style>	
+	<div sclass="background-default">
+		<label value="${c:l('ee.track.detalle.label.identificacion.actuacion')}" style="font-weight: bold; font-size:10pt;"/>
+		<separator bar="true" spacing="20px"/>
+	</div>
+	<hbox sclass="background-default" width="100%">
+		<label value="${c:l('ee.track.detalle.label.letra')}"/>
+		<space/>
+		<textbox id="ex" readonly="true" width="50px"/>
+		<space/>
+		<label value="${c:l('ee.track.detalle.label.anio')}"/>
+		<space/>
+		<longbox id="anio" readonly="true" width="70px"/>
+		<space/>
+		<label value="${c:l('ee.track.detalle.label.numero')}"/>
+		<space/>
+		<longbox id="numero" readonly="true" width="150px"/>
+		<space/>
+		<label value="${c:l('ee.track.detalle.label.reparticion')}"/>
+		<textbox id="codigoReparticion" readonly="true" width="60px"/>
+		<space/>
+		<label value="${c:l('ee.track.detalle.label.reparticion.usuario')}"/>
+		<space/>
+		<textbox id="codigoRepUsuario" readonly="true" width="60px"/>
+	    <space/>
+	    <label value="${c:l('ee.track.detalle.label.sec')}"/>
+	    <textbox id="sec" readonly="true" width="100px"/>
+	    <label value="${c:l('ee.track.detalle.label.fecha')}"/>
+	    <textbox id="fechaDetalle" readonly="true" width="100px"/>	
+	</hbox>
+	<separator sclass="background-default" bar="true" spacing="15px"/>
+	<div sclass="background-default">
+		<label value="${c:l('ee.pases.auditoria.label.detalle')}" style="font-weight: bold;" sclass="background-default"/>
+	</div>
+	<paging id="consultaPaginator" detailed="true" pageSize="1" />
+	<listbox id="listHistorial" selectedItem="@{historialDePasesExpedienteTrackWindow$composer.selectedPase}"
+				  model="@{historialDePasesExpedienteTrackWindow$composer.historiales}"
+				  paginal ="${consultaPaginator }" mold="paging" checkmark="true"
+				  forward="onSelect=historialDePasesExpedienteTrackWindow$composer.onPopularDatosGenerales">	
+		<listhead>
+			<listheader label="${c:l('ee.pases.auditoria.label.usuario')}"/>
+			<listheader label="${c:l('ee.pases.auditoria.label.cod.sec.interno')}"/>
+			<listheader label="${c:l('ee.pases.auditoria.label.fecha.auditoria')}"/>
+			<listheader label="${c:l('ee.pases.auditoria.label.fecha.accion')}"/>
+		</listhead>
+		<listitem self="@{each=historial}">
+			<listcell label="@{historial.usuarioAuditoria}"/>					
+			<listcell label="@{historial.codigoSectorInterno}"/>
+			<listcell label="@{historial.fechaAuditoria}"/>
+			<listcell label="@{historial.accion}"/>
+		</listitem>
+	</listbox>
+	<separator sclass="background-default" spacing="40px" bar="true"/>
+	<div sclass="background-default">
+		<label value="${c:l('ee.pases.auditoria.label.datos.generales')}" style="font-weight: bold;"/>
+	</div>
+	<grid sclass="background-default" zclass="none">
+		<columns>
+			<column hflex="2"/>
+			<column hflex="2"/>
+			<column hflex="2"/>
+			<column hflex="2"/>
+			<column hflex="2"/>
+		</columns>
+		<rows>
+			<row zclass="none" sclass="background-default">
+				<vbox>
+					<label value="${c:l('ee.pases.auditoria.label.reparticion.origen')}"/>
+					<separator spacing="3px"/>
+					<radio id="repOrigenRadioExterno" label="${c:l('ee.tramitacion.label.externo.value')}" disabled="true"/>
+					<radio id="repOrigenRadioInterno" label="${c:l('ee.tramitacion.label.interno.value')}" disabled="true"/>
+				</vbox>
+				<vbox>
+					<label id="repOrigen" style="font-weight: bold;"/>
+					<label id="reparticionOrigen" style="font-weight: bold;"/>
+				</vbox>
+				<vbox>
+					<label value="${c:l('ee.pases.auditoria.label.reparticion.destino')}"/>
+					<radio id="repDestinoRadioExterno" label="${c:l('ee.tramitacion.label.externo.value')}" disabled="true"/>
+					<radio id="repDestinoRadioInterno" label="${c:l('ee.tramitacion.label.interno.value')}" disabled="true"/>
+				</vbox>
+				<vbox>
+					<label id="repDestino" style="font-weight: bold;"/>
+					<label id="reparticionDestino" style="font-weight: bold;"/>
+				</vbox>
+				<hbox>
+					<vbox>
+						<label value="${c:l('ee.pases.auditoria.label.fojas')}"/>
+						<label value="${c:l('ee.pases.auditoria.label.permanencia.archivo')}"/>
+					</vbox>
+					<vbox>
+						<longbox id="fojas" readonly="true"/>
+						<textbox id="permanenciaEnElArchivo"  readonly="true"/>
+					</vbox>
+				</hbox>
+			</row>
+			<row zclass="none" sclass="background-default">
+				<vbox></vbox>
+				<vbox></vbox>
+				<vbox>
+					<separator spacing="10px"/>
+					<checkbox label="${c:l('ee.consultaHistorialPases.checkbox.paraCaratulacion')}" disabled="true"/>
+				</vbox>				
+			</row>
+		</rows>
+	</grid>
+	<div sclass="background-default">
+		<separator spacing="30px"/>
+	</div>
+	<hbox sclass="background-default">
+		<listbox id="incorporacionesList" sclass="background-default" checkmark="true"
+		 selectedItem="@{historialDePasesExpedienteTrackWindow$composer.selectedAuditoria}"
+		 forward="onClick=historialDePasesExpedienteTrackWindow$composer.onMostrarDetalles"
+		  model="@{historialDePasesExpedienteTrackWindow$composer.selectedPase.detalles}">
+			<listhead>
+					<listheader label="${c:l('ee.pases.auditoria.pases.estructura.pase')}"/>
+			</listhead>
+			<listitem self="@{each=detalle}">
+				<listcell>
+						<label value="@{detalle.codigoExpedienteIncorporado}" style="color: blue; text-decoration:underline;"/>
+				</listcell>
+			</listitem>
+		</listbox>
+		<space height="350px" spacing="10px" bar="true" />
+		<vbox>
+		<div align="left" sclass="background-default">
+			<label value="${c:l('ee.historialpases.label.detalle.value')}" style="font-weight: bold;"/>
+			<separator spacing="20px"/>
+		</div>
+			<grid sizedByContent="true" oddRowSclass="none" zclass="none">
+				<columns>
+					<column/>
+					<column/>
+					<column/>
+					<column/>
+				</columns>
+				<rows>
+					<row zclass="none">
+						<label value="${c:l('ee.pases.auditoria.label.actuacion')}"  style="font-weight: bold;"/>
+						<textbox id="actuacion" readonly="true" hflex="1"/>
+					</row>
+					<row zclass="none"><separator spacing="5px"/></row>
+					<row zclass="none">
+						<label value="${c:l('ee.pases.auditoria.label.tipo')}" style="font-weight: bold;"/>
+						<textbox id="tipo" readonly="true" hflex="1"/>
+					</row>
+					<row zclass="none">
+						<label value="${c:l('ee.pases.auditoria.label.fojas')}" style="font-weight: bold;"/>
+						<longbox id="fojasDetalle" readonly="true" hflex="1"/>
+					</row>
+					
+					<row zclass="none"><separator spacing="5px"/></row>
+					<row zclass="none">
+						<label value="${c:l('ee.track.historial.row.label.trata')}" style="font-weight: bold;" />
+						<textbox id="trataDetalle" readonly="true" hflex="5" rows="3"/>
+					</row>
+					<row zclass="none"><separator spacing="5px"/></row>
+					<row zclass="none">
+						<label value="${c:l('ee.track.historial.row.label.extra.ejecutiva')}" style="font-weight: bold;"/>
+						<textbox id="extraEjecutiva" readonly="true" hflex="1"/>
+					</row>
+					<row zclass="none"><separator spacing="5px"/></row>
+					<row zclass="none">
+						<label value="${c:l('ee.track.historial.row.label.cuerpos.anexos')}" style="font-weight: bold;"/>
+						<textbox id="cuerposAnexos" readonly="true" hflex="1"/>
+					</row>
+					<row zclass="none"><separator spacing="5px"/></row>
+					<row zclass="none">
+						<label value="${c:l('ee.track.historial.row.label.observaciones.pase')}" style="font-weight: bold;"/>
+						<textbox id="observacionesDePase" readonly="true" hflex="3" rows="3"/>
+					</row>
+					<row zclass="none"><separator spacing="5px"/></row>
+					<row zclass="none">
+						<label value="${c:l('ee.track.historial.row.label.op.anio.numero')}" style="font-weight: bold;" hflex="1"/>
+						<longbox id="opAnio" readonly="true" hflex="1"/>
+						<longbox id="opNumero" readonly="true" hflex="1"/>
+					</row>
+					<row zclass="none"><separator spacing="5px"/></row>
+					<row zclass="none">
+						<label value="${c:l('ee.track.historial.row.label.comp.tipo.anio')}" style="font-weight: bold;" hflex="1"/>
+						<textbox id="compTipo" readonly="true" hflex="1"/>
+						<longbox id="compAnio" readonly="true" hflex="1"/>
+					</row>
+					<row zclass="none"><separator spacing="5px"/></row>
+					<row zclass="none">
+						<label value="${c:l('ee.track.historial.row.label.comp.numero.importe')}" style="font-weight: bold;" hflex="1"/>
+						<longbox id="compNro" readonly="true" hflex="1"/>
+						<longbox id="compImporte" readonly="true" hflex="1"/>
+					</row>
+					<row zclass="none"><separator spacing="5px"/></row>
+					<row zclass="none">
+						<label value="${c:l('ee.track.historial.row.label.anio.leg.est')}" style="font-weight: bold;" hflex="1"/>
+						<longbox id="ALEAnio" readonly="true" hflex="1"/>
+						<textbox id="ALELeg" readonly="true" hflex="1"/>
+						<longbox id="ALEEst" readonly="true" hflex="1"/>
+					</row>
+				</rows>
+			</grid>
+		</vbox>
+	</hbox>	
+	<div align="center" sclass="background-default" >
+		<separator spacing="20px"/>
+    	<button autodisable="self" label="${c:l('ee.track.detalle.button.label.volver')}" id="volver"/>
+    	<separator spacing="10px"/>
+	</div>
+</window>	
+</zk>

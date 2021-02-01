@@ -1,0 +1,43 @@
+<?page title="" contentType="text/html;charset=UTF-8"?>
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./cierreDelProcesoWindow" ?>
+
+<?component name="viewDocument" class="com.egoveris.te.base.component.DocumentViewerComponent" macroURI="/common/componentes/documents/documentViewer.zul"?>
+
+<zk>
+	<window border="normal" id="cierreDelProcesoWindow" 
+		apply="com.egoveris.te.base.composer.GenericDocumentoComposer" visible="true">
+
+		<div align="center">
+			<hlayout style="align:center">
+				<grid width="620px" align="center" >
+					<columns>
+						<column align="center" width="30%" />
+						<column align="center" />
+					</columns>
+					<rows height="100px">
+						<row align="left" >
+							<label style="word-wrap: break-word; width: 100px; white-space: normal;"  value="${c:l('ee.cierreProceso.label.notificacionEmitida')}"></label>
+							<vlayout id="notificaciones">
+								<vbox align="start">
+									<checkbox label="${c:l('ee.cierreProceso.checkbox.goars.daaeg')}" value="GOARS/DAAEG"></checkbox>
+									<checkbox label="${c:l('ee.cierreProceso.checkbox.orgPeticionante')}" value="organismo peticionante"></checkbox>
+								</vbox>
+							</vlayout>
+						</row>
+						<row align="center"  spans="2">
+<!-- 							<toolbarbutton autodisable="self" id="cerrarExpedienteBtn" visible="true" -->
+<!-- 								image="/imagenes/CerrarExpediente.png"	/> -->
+						</row>
+					</rows>
+				</grid>
+			</hlayout>
+		</div>
+
+		<separator height="16px"></separator>
+
+		<viewDocument  id="docAsociado" title="${c:l('ee.cierreProceso.checkbox.docTramitadorAsoc')}" loadMethod="loadLinkedExpedient"/>
+
+	</window>
+</zk>

@@ -1,0 +1,317 @@
+<?page title="" contentType="text/html;charset=UTF-8"?>
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./tramitacionEspecialWindow" ?>
+<?component name="tramitacionConjunta" inline="true" macroURI="./macros/expedientesEnTramitacionConjuntaConsulta.zul"?>
+<?component name="listaExpedienteAsociado" inline="true" macroURI="./macros/expedientesAsociados.zul"?>
+<?component name="fusion" inline="true" macroURI="./macros/expedientesEnFusionConsulta.zul"?>
+<?component name="acordeonDocumentos"  inline="true" macroURI="./macros/vistaDocumentos.zul"?>
+<?component name="historialDePases" inline="true" macroURI="./macros/historialDePases.zul"?>
+<zk>
+	<window title="${c:l('ee.tramitacionEspecial.title.tramitacion')}" border="normal"
+		id="tramitacionEspecialWindow" 
+		apply="com.egoveris.te.base.composer.TramitacionEspecialComposer">
+
+		<vlayout  width="100%">
+			<separator></separator>
+			<label id="titulo"
+				style="padding-left: 10px; font: bold;" />
+			<separator></separator>
+		</vlayout>
+
+
+		<tabbox  width="100%">
+			<tabs >
+				<tab id="documentos"
+					label="${c:l('ee.tramitacion.tab.documentos.value')}"
+					style="font:bold;" />
+				<tab id="documentosdetrabajo"
+					label="${c:l('ee.tramitacion.tab.documentosdetrabajo.value')}"
+					style="font:bold;" />
+				<tab id="expedientesAsociados"
+					label="${c:l('ee.tramitacion.tab.expedientesAsociados.value')}"
+					style="font:bold;" />
+				<tab id="tramitacionConjunta"
+					label="${c:l('ee.tramitacion.tab.tramitacionConjunta.value')}"
+					style="font:bold;" />
+				<tab id="fusion"
+					label="${c:l('ee.tramitacion.tab.fusion.value')}"
+					style="font:bold;" />
+				<tab id="historialDePases"
+					label="${c:l('ee.tramitacion.tab.historialdepases.value')}"
+					style="font:bold;" />
+				<tab id="datosdelacaratula"
+					label="${c:l('ee.tramitacion.tab.datosdelacaratula.value')}"
+					style="font:bold;" />
+
+			</tabs>
+			<tabpanels
+				style="align:center;">
+				<tabpanel
+					style="align:center">
+					<acordeonDocumentos/>
+				</tabpanel>
+				<tabpanel>
+					<paging id="pagingArchivoTrabajo" pageSize="10"
+						width="510px" />
+					<listbox id="documentoTrabajoLb" width="510px"
+						mold="paging"
+						model="@{tramitacionEspecialWindow$TramitacionEspecialComposer.listaArchivosDeTrabajoEE}"
+						selectedItem="@{tramitacionEspecialWindow$TramitacionEspecialComposer.selectedArchivoDeTrabajo}"
+						itemRenderer="com.egoveris.te.base.rendered.ArchivosDeTrabajoTramitacionEspecialRenderer"
+						paginal="${pagingArchivoTrabajo}">
+						<listhead>
+							<listheader label="${c:l('ee.documentoDetalle.label.orden')}" width="60px"
+								align="center" />
+							<listheader label="${c:l('ee.docTrabajoExpediente.listhead.archivo')}" width="250px"
+								align="center" />
+							<listheader label="${c:l('ee.expediente.subsanaciondocumentos.lbl.accion')}" width="200px"
+								align="center" />
+						</listhead>
+					</listbox>
+				</tabpanel>
+
+				<tabpanel>
+					<paging id="expedientesAsociadosPaginator"
+						pageSize="5" width="700px" />
+					<listbox id="listboxExpedientes" width="700px"
+						maxlength="20" mold="paging"
+						paginal="${expedientesAsociadosPaginator}" pagingPosition="top"
+						model="@{tramitacionEspecialWindow$TramitacionEspecialComposer.expedientesAsociadosFiltrados}"
+						selectedItem="@{tramitacionEspecialWindow$TramitacionEspecialComposer.selectedExpedienteAsociado}"
+						itemRenderer="com.egoveris.te.base.rendered.ExpedientesAsociadosTramitacionEspecialItemRenderer">
+
+						<listhead>
+							<listheader label="${c:l('ee.expedienteAsociado.listheader.tDoc')}" width="50px"
+								align="center" />
+							<listheader label="${c:l('ee.tramitacion.listheader.anio.value')}" width="50px"
+								align="center" />
+							<listheader label="${c:l('ee.tramitacion.listheader.numero.value')}" width="100px"
+								align="center" />
+							<listheader label="${c:l('ee.tramitacion.listheader.reparticion.value')}"
+								width="150px" align="center" />
+							<listheader label="${c:l('ee.expedienteAsociado.listheader.tramite')}"
+								width="150px" align="center" />
+							<listheader label="${c:l('ee.expedienteAsociado.listheader.exp')}" width="50px"
+								align="center" />
+							<listheader label="${c:l('ee.inbox.listheader.estado.value')}" width="150px"
+								align="center" />
+						</listhead>
+					</listbox>
+				</tabpanel>
+
+				<!--
+					<tabpanel fulfill="expedientesAsociados.onClick">
+					<listaExpedienteAsociado />
+				-->
+				<tabpanel fulfill="tramitacionConjunta.onClick">
+					<tramitacionConjunta />
+				</tabpanel>
+				<tabpanel fulfill="fusion.onClick">
+					<fusion />
+				</tabpanel>
+				<tabpanel fulfill="historialDePases.onClick">
+					<historialDePases />
+				</tabpanel>
+				<tabpanel >
+					<separator  />
+					<groupbox >
+						<separator  />
+						<grid
+							style="border:0px; " width="900px">
+							<rows>
+								<row width="800px">
+									<label width="100px"
+										id="ee.tramitacion.label.motivo"
+										value="${c:l('ee.tramitacion.label.motivo.value')}" />
+									<textbox id="motivoExpediente"
+										maxlength="4001" constraint="no empty" cols="80" rows="3">
+									</textbox>
+								</row>
+							</rows>
+						</grid>
+						<separator />
+						<label id="ee.tramitacion.label.datosexpediente"
+							value="${c:l('ee.tramitacion.label.datosexpediente.value')}"
+							style="font:bold;" />
+						<separator bar="true" />
+						<radiogroup>
+							<radio id="expedienteInterno"
+								label="${c:l('ee.tramitacion.label.interno.value')}"
+								checked="false"
+								forward="onClick=tramitacionEspecialWindow$TramitacionComposer.onClickExpedienteInterno" />
+							<space />
+							<space />
+							<radio id="expedienteExterno"
+								label="${c:l('ee.tramitacion.label.externo.value')}"
+								checked="false"
+								forward="onClick=tramitacionEspecialWindow$TramitacionComposer.onClickExpedienteExterno" />
+						</radiogroup>
+						<hbox align="start" spacing="0" width="100%">
+
+							<separator></separator>
+							<grid 
+								width="900px">
+								<rows>
+									<row width="500px">
+										<label width="80px"
+											id="ee.tramitacion.label.codigotrata"
+											value="${c:l('ee.tramitacion.label.codigotrata.value')}" />
+
+										<combobox id="codigoTrata"
+											width="272px"
+											forward="onSelect=tramitacionEspecialWindow$TramitacionComposer.onSelectTrata">
+											<comboitem id="trata1"
+												label="ACER00001" />
+											<comboitem id="trata2"
+												label="ACER00002" />
+											<comboitem id="trata3"
+												label="ACER00003" />
+											<comboitem id="trata4"
+												label="ACER00004" />
+											<comboitem id="trata5"
+												label="ACTO00001" />
+											<comboitem id="trata6"
+												label="ACTO00002" />
+											<comboitem id="trata7"
+												label="ANTM00001" />
+											<comboitem id="trata8"
+												label="ANTM00002" />
+											<comboitem id="trata9"
+												label="CULT00002" />
+											<comboitem id="trata10"
+												label="CULT00008" />
+											<comboitem id="trata11"
+												label="HABI00004" />
+											<comboitem id="trata12"
+												label="HABI00009" />
+											<comboitem id="trata13"
+												label="OBRA00033" />
+											<comboitem id="trata14"
+												label="RNOT00001" />
+											<comboitem id="trata15"
+												label="VIAP00006" />
+											<comboitem id="trata16"
+												label="TRAN00000" />
+										</combobox>
+									</row>
+									<row>
+										<label
+											value="${c:l('ee.nuevoexpediente.label.datospropios.datospropios')}" />
+										<toolbarbutton autodisable="self" width="272px"
+											style="background: white;" image="/imagenes/play.png"
+											id="datosPropios"
+											label="${c:l('ee.tramitacion.toolbarbutton.datospropios.value')}" />
+									</row>
+									<row width="500px">
+										<label width="100px"
+											id="ee.tramitacion.label.descripcion"
+											value="${c:l('ee.tramitacion.label.descripcion.value')}" />
+										<textbox id="descripcion"
+											maxlength="225" cols="80" rows="3">
+										</textbox>
+									</row>
+									<row>
+										<label width="80px"
+											id="ee.tramitacion.label.tipodocumento"
+											value="${c:l('ee.tramitacion.label.tipodocumento.value')}" />
+										<combobox id="tipoDocumento"
+											width="200px"
+											model="@{tramitacionEspecialWindow$TramitacionEspecialComposer.tiposDocumentos}"
+											forward="onSelect=tramitacionEspecialWindow$TramitacionEspecialComposer.onSelectTipoDocumento">
+										</combobox>
+
+									</row>
+									<row>
+										<label width="112px"
+											id="ee.tramitacion.label.numerodocumento"
+											value="${c:l('ee.tramitacion.label.numerodocumento.value')}" />
+										<longbox id="numeroDocumento"
+											maxlength="11">
+										</longbox>
+									</row>
+									<row>
+										<label width="100px"
+											value="${c:l('ee.tramitacion.label.apellido.value')}" />
+										<textbox id="apellido"
+											maxlength="225" cols="50">
+										</textbox>
+									</row>
+									<row>
+										<label width="100px"
+											value="${c:l('ee.tramitacion.label.nombre.value')}" />
+										<textbox id="nombre"
+											maxlength="225" cols="50">
+										</textbox>
+									</row>
+									<row>
+										<label width="100px"
+											value="${c:l('ee.tramitacion.label.razonsocial.value')}" />
+										<textbox id="razonSocial"
+											maxlength="225" cols="50">
+										</textbox>
+									</row>
+									<row>
+										<label width="100px"
+											value="${c:l('ee.tramitacion.label.email.value')}" />
+										<textbox id="email"
+											maxlength="225" cols="50">
+										</textbox>
+									</row>
+									<row>
+										<label width="100px"
+											value="${c:l('ee.tramitacion.label.telefono.value')}" />
+										<textbox id="telefono"
+											maxlength="225" cols="50">
+										</textbox>
+									</row>
+									<row>
+										<label width="100px"
+											id="ee.tramitacion.label.estado"
+											value="${c:l('ee.tramitacion.label.estado.value')}" />
+										<textbox id="estado"
+											width="200px"
+											forward="onSelect=tramitacionEspecialWindow$TramitacionComposer.onSelectEstado">
+										</textbox>
+									</row>
+								</rows>
+							</grid>
+						</hbox>
+					</groupbox>
+				</tabpanel>
+			</tabpanels>
+		</tabbox>
+		<separator  />
+		<separator  />
+		<grid align="center" style="border:0px;">
+			<rows >
+				<row >
+					<hbox>
+						<!-- 
+						<toolbarbutton autodisable="self" id="enviar"
+							image="/imagenes/RealizarPase.png"
+							forward="onClick=tramitacionEspecialWindow$TramitacionEspecialComposer.onEnviarTramitacion" />
+						
+						<toolbarbutton autodisable="self" id="cancelar"
+							 image="/imagenes/Cancelar.png"
+							forward="onClick=tramitacionEspecialWindow$TramitacionEspecialComposer.onCancelar"/>
+						-->
+						<button autodisable="self" id="enviar"
+							label="${c:l('ee.tramitacion.button.enviar.value')}"
+							forward="onClick=tramitacionEspecialWindow$TramitacionEspecialComposer.onEnviarTramitacion" />
+						
+						<button autodisable="self" id="cancelar"
+							label="${c:l('ee.nuevoexpediente.button.label.cancelar.value')}"
+							forward="onClick=tramitacionEspecialWindow$TramitacionEspecialComposer.onCancelar"/>
+						
+						<!--
+						<button id="sistemaExternobtn" image="/imagenes/nuevo.png" style="padding:2px;" height="38px" width="121px"
+							visible="false"/>
+						-->
+						<button id="sistemaExternobtn" label="${c:l('ee.tramitacion.nuevo')}" style="padding:2px;" visible="false"/>
+					</hbox>
+				</row>
+			</rows>
+		</grid>
+	</window>
+</zk>

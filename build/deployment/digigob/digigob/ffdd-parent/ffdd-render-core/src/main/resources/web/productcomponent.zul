@@ -1,0 +1,36 @@
+<zk>
+	<vlayout
+		apply="com.egoveris.ffdd.render.zk.comp.cc.ProductComponentComposer">
+		<grid>
+			<columns>
+				<column></column>
+			</columns>
+			<rows>
+				<row>
+					<vbox>
+						<hbox>
+							<cell
+								id="${arg.formComp.nombre}_productComponentidDiv" />
+							<cell id="${arg.formComp.nombre}_codigoDiv" />
+						</hbox>
+						<hbox>
+							<cell id="${arg.formComp.nombre}_nombreDiv" />
+							<cell
+								id="${arg.formComp.nombre}_descripcionDiv" />
+						</hbox>
+						<hbox>
+							<cell
+								id="${arg.formComp.nombre}_porcentajeConsituyenteDiv" />
+							<cell
+								id="${arg.formComp.nombre}_constituyentesUomDiv" />
+						</hbox>
+						<hbox>
+							<cell
+								id="${arg.formComp.nombre}_principioActivoDiv" />
+						</hbox>
+					</vbox>
+				</row>
+			</rows>
+		</grid>
+	</vlayout>
+</zk>

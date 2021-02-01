@@ -1,0 +1,185 @@
+<?page title="${c:l('digigob.Title')}" contentType="text/html;charset=UTF-8"?>
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+<?init class="org.zkoss.zk.ui.util.Composition" arg0="~./db_template.zul"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" ?>
+<zk>
+
+	
+	<window id="inboxWindow" title="" border="none" height="auto"
+		apply="com.egoveris.deo.web.satra.InboxComposer" self="@{define(egovBody)}">
+		<window id="taskView" visible="false" />
+		<window id ="crearAlertaView" visible="false"/>
+		
+		<!--
+		<hlayout>
+			<label value="${c:l('gedo.inbox.tituloBuzonDeTareas')}"
+				style="font: bold;" />
+		</hlayout>
+		-->
+		
+		<div sclass="page-header">
+			<label value="${c:l('gedo.inbox.tituloBuzonDeTareas')}" />
+		</div>
+		
+		<toolbar style="">
+			<toolbarbutton 
+				image="/imagenes/page_white_text.png" label="${c:l('gedo.inbox.botonCrearDocumento')}"
+				forward="onClick=inboxWindow$composer.onCreateNewDocument" />
+			<image src="/imagenes/help.png" width="16px" height="16px"
+				tooltip="helpCrearNuevoDocumento" />
+<!--			<toolbarbutton -->
+<!--				image="/imagenes/history.png"-->
+<!--				label="${c:l('gedo.inbox.buscarEnMisTareas')}"-->
+<!--				forward="onClick=inboxWindow$composer.onBuscarEnMisTareas" />-->
+<!--			<image src="/imagenes/help.png" width="16px" height="16px"-->
+<!--				tooltip="helpBuscarEnMisTareas" />-->
+		</toolbar>
+
+		<paging id="taskPaginator" pageSize="10" />
+		
+		<listbox fixedLayout="true" id="tasksList"
+			model="@{inboxWindow$composer.tasks}" 
+			selectedItem="@{inboxWindow$composer.selectedTask}"
+			itemRenderer="com.egoveris.deo.web.satra.renderers.InboxItemRenderer">
+			
+			<listhead sizable="false" style="background: #C4ECFF;">
+				<listheader id="nombreTarea" sort="auto" label="${c:l('gedo.supervisadosInbox.listheader.NombreTarea')}" 
+					width="15%"/>
+				<listheader id="createDateTask" sort="auto" label="${c:l('gedo.inbox.fechaUltimaModificacion')}"
+					 width="11%"/>
+				<listheader label="${c:l('gedo.inbox.enviadoPor')}"
+					 width="14%"/>
+				<listheader label="${c:l('gedo.inbox.derivadoPor')}"
+					 width="17%"/>
+				<listheader label="${c:l('gedo.inbox.motivo')}"
+					 width="22%"/>
+				<listheader label="${c:l('gedo.inbox.tipoDocumento')}"
+					 width="14%"/>
+				<listheader label="${c:l('gedo.inbox.accionARealizar')}"
+					 width="8%"/>
+			</listhead>
+
+			<listfoot>
+				<listfooter/>
+				<listfooter/>
+				<listfooter/>
+				<listfooter/>
+				<listfooter/>
+				<listfooter label="${c:l('gedo.inbox.totalTareasPendientes')}" span="1" style="color:#C4ECFF" />
+				<listfooter
+					label="@{inboxWindow$composer.taskPaginator.totalSize}" span="1" style="color:#C4ECFF"/>
+			</listfoot>
+		</listbox>
+		
+		<separator height="20px" />
+
+		<!-- ALARMAS -->
+		<div id="vistaAvisos">
+		
+		<!--
+		<hlayout>
+			<label value="${c:l('gedo.inbox.avisos.titulo')}" style="font: bold;" />
+		</hlayout>
+		-->
+		
+		<div sclass="page-header">
+			<label value="${c:l('gedo.inbox.avisos.titulo')}" />
+		</div>
+		
+		<div align="right">
+			<toolbar style="" id="toolbarAvisos" >
+				<toolbarbutton 
+					id="redirigirAvisosSeleccionados"
+					image="/imagenes/Redirigir.png" label="${c:l('gedo.inbox.avisos.redirigirSeleccionados')}"
+					forward="onClick=inboxWindow$composer.onRedirigirAvisosSeleccionados"
+					tooltiptext="${c:l('gedo.inbox.avisos.redirigirSeleccionados.tooltiptext')}" />
+				<toolbarbutton 
+					id="eliminarAvisosSeleccionados"
+					image="/imagenes/Eliminar.png" label="${c:l('gedo.inbox.avisos.eliminarSeleccionados')}"
+					forward="onClick=inboxWindow$composer.onEliminarAvisosSeleccionados"
+					tooltiptext="${c:l('gedo.inbox.avisos.EliminarAvisosSeleccionados.tooltiptext')}" />
+				<toolbarbutton 
+					image="/imagenes/EliminarTodo.png" label="${c:l('gedo.inbox.avisos.eliminarTodo')}"
+					forward="onClick=inboxWindow$composer.onEliminarTodosAvisos"
+					tooltiptext="${c:l('gedo.inbox.avisos.eliminarTodo.tooltiptext')}" />
+			</toolbar>
+		</div>
+		
+		<paging id="avisosPaginator" pageSize="10" />
+		
+		<listbox fixedLayout="true" id="avisosList" width="99,1%"
+			selectedItem="@{inboxWindow$composer.selectedAviso}"
+			model="@{inboxWindow$composer.avisos}" checkmark="true" multiple="true" style="overflow:auto;"
+			itemRenderer="com.egoveris.deo.web.satra.renderers.AvisosItemRenderer">
+			
+			<listhead sizable="false" style="background: #C4ECFF;" >
+				<listheader align="left" width="2%" id="seleccionAviso"
+					style="background-color: #C4ECFF;"/>
+				<listheader id="usuarioAccion" align="left" label="${c:l('gedo.inbox.avisos.usuarioAccion')}"
+					 width="13%" sort="auto" />
+				<listheader id="redirigidoPor" align="left" label="${c:l('gedo.inbox.avisos.redirigidoPor')}"
+					 width="13%" sort="auto"/>
+				<listheader align="left" label="${c:l('gedo.inbox.avisos.motivo')}" 
+					 />
+				<listheader id="referenciaDocumento" align="left" label="${c:l('gedo.inbox.avisos.referencia')}"
+					 />
+				<listheader id="fechaEnvio" label="${c:l('gedo.inbox.avisos.fechaEnvio')}" 
+				     sort="auto"
+					 width="9%"/>
+				<listheader id="fechaAccion" align="left" label="${c:l('gedo.inbox.avisos.fechaAccion')}"
+					 width="9%" sort="auto"/>
+				<listheader align="left" label="${c:l('gedo.inbox.avisos.numeroSADE')}"
+					 width="16%"/>
+				<listheader align="left" label="${c:l('gedo.inbox.avisos.numeroEspecial')}"
+					 width="10%"/>
+				<listheader align="left" label="${c:l('gedo.inbox.avisos.acciones')}"
+					 width="60px"/>
+			</listhead>
+
+			<listfoot >
+				<listfooter/>
+				<listfooter/>
+				<listfooter/>
+				<listfooter/>
+				<listfooter/>
+				<listfooter/>
+				<listfooter/>
+				<listfooter/>
+				<listfooter label="${c:l('gedo.inbox.avisos.totalAvisos')}"  span="1"
+					style="color:#C4ECFF;align:right"/>
+				<listfooter label="@{inboxWindow$composer.avisosPaginator.totalSize}" span="1" 
+				style="color:#C4ECFF;align=right"/>
+			</listfoot>
+		</listbox>
+		</div>
+		
+		<popup id="usuariosListPopUp" width="450px" >
+			<groupbox mold="3d">
+				<caption
+					label="${c:l('gedo.inbox.avisos.usuariosRedirigir')}" />
+				<hbox>
+					<combobox id="usuarioDestino"
+						autodrop="true"
+						buttonVisible="false"
+						width="300px">
+					</combobox>
+					<separator></separator>
+					<separator></separator>
+					<button id="redirigirAvisos"
+						label="${c:l('gedo.inbox.avisos.redirigir')}" />
+				</hbox>
+			</groupbox>
+		</popup>
+	</window>
+
+	<!--TOOLTIPS DE AYUDA-->
+
+	<popup id="helpCrearNuevoDocumento" width="150px">
+		<label multiline="true"
+			value="${c:l('gedo.iniciaDocumento.helpTipoDocumento')}" />
+	</popup>
+	<popup id="helpBuscarEnMisTareas" width="150px">
+		<label multiline="true"
+			value="${c:l('gedo.inbox.helpBuscarEnMisTareas')}" />
+	</popup>
+</zk>

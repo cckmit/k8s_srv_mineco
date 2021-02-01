@@ -1,0 +1,25 @@
+<zk>
+	<vlayout
+		apply="com.egoveris.ffdd.render.zk.comp.cc.HeaderComposer">
+		<vbox>
+			<hbox>
+				<cell id="${arg.formComp.nombre}_idHeaderDiv" />
+				<cell
+					id="${arg.formComp.nombre}_destinacionAduaneraDiv" />
+			</hbox>
+			<hbox>
+				<cell id="${arg.formComp.nombre}_tipoOperacionDiv" />
+				<cell id="${arg.formComp.nombre}_tipoTramiteDiv" />
+			</hbox>
+			<hbox>
+				<cell id="${arg.formComp.nombre}_aduanaTramitacionDiv" />
+				<cell
+					id="${arg.formComp.nombre}_numeroInternoDespachoDiv" />
+			</hbox>
+			<hbox>
+				<cell id="${arg.formComp.nombre}_comentarioDiv" />
+				<cell id="${arg.formComp.nombre}_tipoIngresoDiv" />
+			</hbox>
+		</vbox>
+	</vlayout>
+</zk>

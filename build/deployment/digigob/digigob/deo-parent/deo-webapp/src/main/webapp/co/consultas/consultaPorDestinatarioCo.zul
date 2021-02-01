@@ -1,0 +1,22 @@
+<?page title="" contentType="text/html;charset=UTF-8"?>
+<zk>
+<window title="${c:l('ccoo.consultaCo.buscarDestinatario')}" border="normal" width="450px" 
+		closable="true" id="consultaPorDestinatarioWindow"
+		apply="com.egoveris.deo.web.satra.consulta.ConsultaPorDestinatarioCoComposer">
+	<groupbox>
+			<separator height="20px"></separator>
+			<div align="center">
+				<hbox>
+					<label value="${c:l('ccoo.ingresar.destinatario.busqueda')}"></label>
+					<separator width="5px"></separator>
+					<combobox id="usuarioDestinatario"
+								width="320px" buttonVisible="false" autodrop="true" value=""
+								forward="onChange=onSelectItem" />
+					<separator width="5px"></separator>
+				</hbox>
+				<separator spacing="10px"></separator>
+				<button id="buscarComunicacion" label="${c:l('ccoo.consulta.botonBuscar')}"></button>
+			</div>
+		</groupbox>
+</window>
+</zk>

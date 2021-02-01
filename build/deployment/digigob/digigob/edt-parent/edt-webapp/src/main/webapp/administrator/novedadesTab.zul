@@ -1,0 +1,32 @@
+<?page title="eGoveris" contentType="text/html;charset=UTF-8"?>
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+<?init class="org.zkoss.zk.ui.util.Composition" arg0="~./db_template.zul"?>
+
+<zk>
+	<window id="abmNovedades" width="100%" style="align=center; "
+		apply="com.egoveris.edt.web.admin.pl.NovedadesAdminComposer" self="@{define(egovBody)}">
+
+		<tabbox>
+			<tabs>
+				<tab id="tabNovedades"
+					label="${c:l('eu.panelAdmin.tabNovedad.alta')}"
+					tooltiptext="${c:l('eu.panelAdmin.tabNovedad.alta.help')}">
+				</tab>
+				<tab id="tabNovedadesHist"
+					label="${c:l('eu.panelAdmin.tabNovedad.historicas')}"
+					tooltiptext="${c:l('eu.panelAdmin.tabNovedad.historicas.help')}">
+				</tab>
+			</tabs>
+			<tabpanels>
+				<tabpanel>
+					<include id="novedadesActivo"
+						src="/administrator/tabsNovedades/admNovedades.zul" />
+				</tabpanel>
+				<tabpanel>
+					<include id="novedadesHistorico"
+						src="/administrator/tabsNovedades/admNovedadesHistorico.zul" />
+				</tabpanel>
+			</tabpanels>
+		</tabbox>
+	</window>
+</zk>

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<complexComponent type="TRADE" name="Operation"
+	description="Operation Information" zul="operation.zul"
+	composer="com.everis.tramelec.dynform.comp.ext.OperationComposer"
+	mappingDTO="com.egoveris.ccomplejos.base.model.OperationDTO">
+
+	<field name="codigoOficinaAduana" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" />
+	<field name="codOperacion" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" />
+	<field name="nombreAgenciaAduana" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" />
+	<field name="processingStatus" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" />
+	<field name="codigoDestinacion" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" />
+	<field name="codigoAgenciaAduanas" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" />
+	<field name="codigoTransbordo" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" />
+	<field name="actualizadoPor" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" />
+	<field name="creadoPor" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" />
+
+	<field name="listProductOperacion"
+		class="com.egoveris.ffdd.render.zk.comp.ext.SeparatorComplex"
+		repetidor="true" xmlFile="productoperation.xml" />
+	<field name="listaItem"
+		class="com.egoveris.ffdd.render.zk.comp.ext.SeparatorComplex"
+		repetidor="true" xmlFile="item.xml" />
+	<field name="listaBulto"
+		class="com.egoveris.ffdd.render.zk.comp.ext.SeparatorComplex"
+		repetidor="true" xmlFile="bulto.xml" />
+	<field name="listAutorizacion"
+		class="com.egoveris.ffdd.render.zk.comp.ext.SeparatorComplex"
+		repetidor="true" xmlFile="autorizacion.xml" />
+
+	<field name="transport"
+		class="com.egoveris.ffdd.render.zk.comp.ext.SeparatorComplex" xmlFile="transport.xml" />
+	<field name="contacto"
+		class="com.egoveris.ffdd.render.zk.comp.ext.SeparatorComplex" xmlFile="participantes.xml" />
+	<field name="importador"
+		class="com.egoveris.ffdd.render.zk.comp.ext.SeparatorComplex" xmlFile="participantes.xml" />
+	<field name="consignatario"
+		class="com.egoveris.ffdd.render.zk.comp.ext.SeparatorComplex" xmlFile="participantes.xml" />
+	<field name="intermediario"
+		class="com.egoveris.ffdd.render.zk.comp.ext.SeparatorComplex" xmlFile="participantes.xml" />
+	<field name="exportadorPrincipal"
+		class="com.egoveris.ffdd.render.zk.comp.ext.SeparatorComplex" xmlFile="participantes.xml" />
+	<field name="representante"
+		class="com.egoveris.ffdd.render.zk.comp.ext.SeparatorComplex" xmlFile="participantes.xml" />
+	<field name="exportadorSecundario"
+		class="com.egoveris.ffdd.render.zk.comp.ext.SeparatorComplex" xmlFile="participantes.xml" />
+	<field name="interopHeader"
+		class="com.egoveris.ffdd.render.zk.comp.ext.SeparatorComplex" xmlFile="interopheader.xml" />
+	<field name="header"
+		class="com.egoveris.ffdd.render.zk.comp.ext.SeparatorComplex" xmlFile="header.xml" />
+	<field name="financiero"
+		class="com.egoveris.ffdd.render.zk.comp.ext.SeparatorComplex" xmlFile="financiero.xml" />
+	<field name="detallesPuerto"
+		class="com.egoveris.ffdd.render.zk.comp.ext.SeparatorComplex" xmlFile="detallespuerto.xml" />
+	<field name="din"
+		class="com.egoveris.ffdd.render.zk.comp.ext.SeparatorComplex" xmlFile="declaracion.xml" />
+	<field name="dusAt"
+		class="com.egoveris.ffdd.render.zk.comp.ext.SeparatorComplex" xmlFile="declaracion.xml" />
+	<field name="dusLeg"
+		class="com.egoveris.ffdd.render.zk.comp.ext.SeparatorComplex" xmlFile="declaracion.xml" />
+
+
+	<field name="fechaCreacion" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.DateboxExt" />
+	<field name="fechaActualizacion" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.DateboxExt" />
+</complexComponent>

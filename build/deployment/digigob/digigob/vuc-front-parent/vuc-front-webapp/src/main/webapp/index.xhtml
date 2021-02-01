@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/WEB-INF/faces/layout/mainLayout.xhtml">
+	<ui:define name="body">
+
+		<div class="ui-g" style="text-align: center; margin-bottom: 40px;">
+			<div class="ui-g-12 ui-md-6 ui-lg-3 section-btn">
+				<a href="./newApplication"><p:outputLabel
+						styleClass="fa fa-info-circle"
+						style="color:grey; font-size:5em; cursor: pointer;" /></a><br />#{msg.indxIniciarTramite}
+			</div>
+
+			<div class="ui-g-12 ui-md-6 ui-lg-3 section-btn">
+				<a href="./myApplications"><p:outputLabel
+						styleClass="fa fa-folder-open"
+						style="color:grey; font-size:5em; cursor: pointer;" /></a><br />#{msg.indxMisSolicitudes}
+			</div>
+
+			<div class="ui-g-12 ui-md-6 ui-lg-3 section-btn">
+				<a href="./myTareas"><p:outputLabel
+						styleClass="fa fa-pencil-square-o"
+						style="color:grey; font-size:5em; cursor: pointer;" /></a><br />#{msg.indxMisTareas}
+			</div>
+
+			<div class="ui-g-12 ui-md-6 ui-lg-3 section-btn">
+				<a href="./myNotifications"><p:outputLabel
+						styleClass="fa fa-envelope-o"
+						style="color:grey; font-size:5em; cursor: pointer;" /></a><br />#{msg.indxMisNotificaciones}
+			</div>
+		</div>
+		<div class="ui-g" style="text-align: center;">
+			<div class="ui-g-12 ui-md-6 ui-lg-3 section-btn">
+				<a href="./myDocuments"><p:outputLabel
+						styleClass="fa fa-file-text-o"
+						style="color:grey; font-size:5em; cursor: pointer;" /></a><br />#{msg.indxMisDocumentos}
+			</div>
+		</div>
+	</ui:define>
+</ui:composition>
+</html>

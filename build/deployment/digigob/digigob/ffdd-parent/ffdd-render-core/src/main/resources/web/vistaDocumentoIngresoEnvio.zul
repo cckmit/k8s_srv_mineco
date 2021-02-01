@@ -1,0 +1,26 @@
+<?page title="new page title" contentType="text/html;charset=UTF-8"?>
+<zk>
+	 <vlayout width="100%"
+		apply="com.egoveris.ffdd.render.zk.comp.cc.VistaDocumentoIngresoEnvioComposer">
+					<vbox >
+						<hbox>
+							<cell id="${arg.formComp.nombre}_numeroDocumentoIngresoDiv" />
+							<cell id="${arg.formComp.nombre}_tipoSolicitudDiv" />
+							<cell id="${arg.formComp.nombre}_fechaSolicitudDiv" />
+						</hbox>
+					</vbox>
+					<vbox>
+						<hbox>
+							<cell id="${arg.formComp.nombre}_fechaDocIngresoDiv" />
+							<cell id="${arg.formComp.nombre}_idSolicitudDiv" />
+							<cell id="${arg.formComp.nombre}_codiserviciosPublicosRelacionadosDiv" />
+						</hbox>
+					</vbox>
+					<vbox>
+						<hbox>
+							<cell id="${arg.formComp.nombre}_totalBultosDiv" />
+							<cell id="${arg.formComp.nombre}_idBultosDiv" />	
+						</hbox>
+					</vbox>
+	</vlayout>
+</zk>

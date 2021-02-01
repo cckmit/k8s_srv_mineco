@@ -1,0 +1,50 @@
+<?page title="Visualizacion Actividades" contentType="text/html;charset=UTF-8"?>
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./subTadWindow" ?>
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+<zk>
+	<window id="subTadWindow"
+		border="normal" width="700px" 
+		apply="com.egoveris.te.base.composer.AprobacionDocsTadComposer"
+		closable="true" position="center" mode="modal">
+		<div  width="100%">
+		
+		<vbox width="100%" >
+			<separator />
+			<hbox align="center">
+				<label value="${c:l('ee.act.label.exp')}" style="padding-left:10px; "/>
+				<separator />					
+				<label id="expLabel"  />
+				<separator spacing="15px" />
+				<toolbarbutton autodisable="self" id="ver_exp" image="/imagenes/ver_expediente.png" 
+					tooltiptext="${c:l('ee.act.label.visualizar.tooltip')}"
+					forward="onClick=subTadWindow$composer.onVerExpediente" 
+					label ="${c:l('ee.act.label.visualizar')}" style="color:#FFFFFF"/>
+			</hbox>
+			<separator />
+		</vbox>
+		
+		<separator />
+		<separator />	
+		<label value="${c:l('ee.act.label.apruebeRechace')}" style="font:bold;padding-left: 10px;" />
+		<separator height="10px" />
+		
+		<paging id="pagingActiv" pageSize="10" />
+		<listbox id="actividadesListbox" mold="paging"
+			paginal="${pagingActiv}">
+			<listhead>
+				<listheader label="${c:l('ee.act.label.doc.value')}" width="35%"/>
+				<listheader label="${c:l('ee.act.label.tipoDoc.value')}" width="35%"/>
+				<listheader label="${c:l('ee.act.label.acciones.value')}" width="30%"/>
+			</listhead>
+		</listbox>
+		<separator />
+		<separator />
+		<div align="center">
+<!-- 			<button autodisable="self" id="subsanar" label="Subsanar" image="/imagenes/pencil.png" width="100px" height="30px"/> -->
+			<button autodisable="self" id="cerrar" label="${c:l('ee.subsanacion.button.cerrar')}" image="/imagenes/eliminar.png" width="100px" height="30px"/>
+		</div>
+		<separator />
+		</div>
+	</window>
+</zk>

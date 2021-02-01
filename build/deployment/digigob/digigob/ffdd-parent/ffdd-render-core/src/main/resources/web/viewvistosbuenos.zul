@@ -1,0 +1,22 @@
+<zk>
+	<vlayout
+		apply="com.egoveris.ffdd.render.zk.comp.cc.ViewVistosBuenosComposer">
+
+		<vbox>
+				<hbox>
+					<cell id="${arg.formComp.nombre}_destinacionAduaneraDiv" />
+					<cell id="${arg.formComp.nombre}_paisDiv" />
+				</hbox>
+				<hbox>
+					<cell
+						id="${arg.formComp.nombre}_codOperacionDiv" />
+					<cell colspan="2" id="${arg.formComp.nombre}_createdDateDiv" />
+				</hbox>
+				<hbox>
+					<cell
+						id="${arg.formComp.nombre}_processingStatusDiv" />
+				</hbox>
+		</vbox>
+
+	</vlayout>
+</zk>

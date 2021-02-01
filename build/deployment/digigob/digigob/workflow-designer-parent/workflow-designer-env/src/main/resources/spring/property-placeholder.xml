@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:jee="http://www.springframework.org/schema/jee"
+	xsi:schemaLocation="      http://www.springframework.org/schema/jee 
+           http://www.springframework.org/schema/jee/spring-jee.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!--
+		Declare here the Spring beans shared by all the business modules of the application;
+		namely, the beans that define the environment of the application (e.g.: the main data source of the application)
+	 -->
+	
+	
+	<bean name="dBProperty" class="com.egoveris.commons.databaseconfiguration.propiedades.impl.DBAppPropertyImpl" init-method="showAllProperties"> 
+        <constructor-arg  type="javax.sql.DataSource" ref="dataSource"/>
+        <constructor-arg  type="java.lang.String" value="PROPERTY_CONFIGURATION"/>
+        <constructor-arg  type="java.lang.String" value="SISTEMA,WD"/>
+        <constructor-arg  ref="passwordBasedEncriptionService"/>
+	</bean>
+	
+	<!-- En este archivo se configuran las variables que luego son accedidas 
+		por los archivos de Spring con el mecanismo ${nombre_var} -->
+		
+		
+	<bean name="PropertyPlaceholderConfigurerDB"
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="properties">
+			<bean factory-bean="dBProperty" factory-method="getProperties" />
+		</property>
+	</bean>
+	
+	<jee:jndi-lookup id="masterKeyEncription" jndi-name="java:comp/env/masterKey"
+		expected-type="java.lang.String" />
+	
+	<import resource="classpath:/dbConfiguration-service-config.xml" />
+</beans>

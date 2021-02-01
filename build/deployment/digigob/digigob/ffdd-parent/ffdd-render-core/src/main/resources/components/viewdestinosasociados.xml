@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<complexComponent type="MACCS" name="View Destinos Asociados"
+	description="View Destinos Asociados" zul="viewDestinosAsociados.zul"
+	composer="com.everis.tramelec.dynform.comp.ext.ViewDestinosAsociadosComposer"
+	mappingDTO="com.egoveris.ccomplejos.base.model.ViewDestinosAsociadosDTO">
+
+	<field name="nombreInstalacion" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" disabled="true" />
+	<field name="codigoProducto" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" disabled="true" />
+	<field name="nombreProducto" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" disabled="true" />
+	<field name="cantidad" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.DecimalboxExt" disabled="true" />
+	<field name="usoPrevisto" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" disabled="true" />
+
+
+</complexComponent>

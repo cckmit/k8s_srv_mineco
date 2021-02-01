@@ -1,0 +1,510 @@
+<?page title="${c:l('abmReparticion.title')}" contentType="text/html;charset=UTF-8"?>
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./win_AbmReparticion" ?>
+<zk>
+	<window id="win_AbmReparticion" border="normal"
+		title="${c:l('eu.adminSade.altaReparticion')}"
+		apply="com.egoveris.edt.web.admin.pl.ABMReparticionComposer"
+		width="550px" position="center" mode="modal" closable="true">
+
+		<vbox id="vbox_headerAlta" visible="false"
+			style="background:#C4ECFF" width="100%" height="50px" align="center"
+			pack="center">
+			<label style="font-weight:bold"
+				value="${c:l('eu.adminSade.altaReparticion')}" />
+		</vbox>
+		<vbox id="vbox_headerVer" visible="false"
+			style="background:#C4ECFF" width="100%" height="50px" align="center"
+			pack="center">
+			<label style="font-weight:bold"
+				value="${c:l('eu.adminSade.visualizarReparticion')}" />
+		</vbox>
+		<vbox id="vbox_headerModificar" visible="false"
+			style="background:#C4ECFF" width="100%" height="50px" align="center"
+			pack="center">
+			<label style="font-weight:bold"
+				value="${c:l('eu.adminSade.modificarReparticion')}" />
+		</vbox>
+		<vbox align="center" width="100%">
+			<grid id="gr_altaReparticion" width="500px"
+				style="padding:0px; border:none; border-spacing:0px;">
+				<columns>
+					<column width="30%" align="right" />
+					<column width="70%" align="left" />
+				</columns>
+				<rows>
+					<row style="border:none;">
+						<label
+							value="${c:l('eu.adminSade.reparticion.codigo')}" />
+						<textbox id="txbx_codigo" width="270px"
+							constraint="no empty, /[0-9a-zA-Z_#]+/: ${c:l('eu.abmReparticionGDE.textbox.constraint.noEspaciosEspeciales')}"
+							maxlength="49" />
+					</row>
+					<row style="border:none;">
+						<cell valign="middle">
+							<label
+								value="${c:l('eu.adminSade.reparticion.calle')}" width="560px" />
+						</cell>
+						<cell valign="middle" colspan="2">
+							<bandbox id="bbx_calle">
+								<bandpopup id="callesComboSADE"
+									width="620px">
+									<groupbox mold="3d">
+										<caption>
+											<hbox>
+												<label
+													value="${c:l('eu.altaSector.row.label.ListaCalles')}"
+													width="560px" />
+												<image
+													src="/imagenes/help.png" width="16px" height="16px"
+													tooltip="helpBusquedaCalles" align="right" />
+											</hbox>
+										</caption>
+										<separator height="2px"></separator>
+										<vbox height="100px"
+											width="600px">
+											<paging id="paginatorCalles"
+												pageSize="10" />
+											<listbox
+												id="lbx_callesSADEListbox" mold="paging"
+												paginal="${paginatorCalles}"
+												model="@{win_AbmReparticion$composer.listaCallesSeleccionada}"
+												selectedItem="@{win_AbmReparticion$composer.calleSeleccionada}"
+												itemRenderer="com.egoveris.edt.web.pl.renderers.CalleItemRenderer">
+												<listhead>
+													<listheader
+														label="${c:l('eu.abmReparticionGDE.listhead.label.codigo')}"
+														width="25%" />
+													<listheader
+														label="${c:l('eu.abmReparticionGDE.listhead.label.codigoPostal') }"
+														width="75%" />
+													<listheader
+														label="${c:l('eu.consulta.sindicatura.listhead.listheader.label.nombre')}"
+														width="75%" />
+												</listhead>
+												<listfoot style="">
+													<listfooter
+														id="TotalCalles"
+														label="${c:l('eu.abmReparticionGDE.label.totalCalles') }"
+														span="1" style="color:#C4ECFF" />
+													<listfooter
+														id="conteoCalles"
+														label="@{win_AbmReparticion$composer.listaCallesSeleccionada.size}"
+														span="2" style="color:#C4ECFF" />
+												</listfoot>
+											</listbox>
+										</vbox>
+									</groupbox>
+								</bandpopup>
+							</bandbox>
+						</cell>
+					</row>
+					<row style="border:none;">
+						<label
+							value="${c:l('eu.adminSade.reparticion.numeroCalle')}" />
+						<textbox id="txbx_numCalle" width="150px"
+							maxlength="10" />
+					</row>
+					<row style="border:none;">
+						<label
+							value="${c:l('eu.adminSade.reparticion.telefono')}" />
+						<textbox id="txbx_telefono" width="270px"
+							maxlength="255" />
+					</row>
+					<row style="border:none;">
+						<cell valign="middle">
+							<label
+								value="${c:l('eu.adminSade.reparticion.estructura')}"
+								width="560px" />
+						</cell>
+						<cell valign="middle" colspan="2">
+							<bandbox id="bbx_estructura"
+								readonly="true">
+								<bandpopup id="estructurasComboSADE"
+									width="620px">
+									<groupbox mold="3d">
+										<caption>
+											<hbox>
+												<label
+													value="${c:l('eu.adminSade.reparticion.busqueda.estructura')}"
+													width="560px" />
+												<image
+													src="/imagenes/help.png" width="16px" height="16px"
+													tooltip="helpBusquedaReparticion" align="right" />
+											</hbox>
+										</caption>
+										<separator height="2px"></separator>
+										<vbox height="100px"
+											width="600px">
+
+											<hbox>
+												${c:l('eu.consulta.sindicatura.buscar')
+												}
+												<textbox
+													id="txtBusquedaEstructuraBusquedaSADE" />
+											</hbox>
+
+											<paging
+												id="paginatorIncorporarEstructuraSADE" pageSize="10" />
+											<listbox
+												id="lbx_estructurasSADEListbox" mold="paging"
+												paginal="${paginatorIncorporarSADE}"
+												model="@{win_AbmReparticion$composer.listaEstructurasSeleccionada}"
+												selectedItem="@{win_AbmReparticion$composer.estructuraSeleccionada}"
+												itemRenderer="com.egoveris.edt.web.pl.renderers.EstructuraItemRenderer">
+												<listhead>
+													<listheader
+														label="${c:l('eu.consulta.sindicatura.listhead.listheader.label.codigo')}"
+														width="25%" />
+													<listheader
+														label="${c:l('eu.consulta.sindicatura.listhead.listheader.label.nombre')}"
+														width="75%" />
+												</listhead>
+												<listfoot style="">
+													<listfooter
+														id="TotalEstructuras"
+														label="${c:l('eu.escritorioUnico.misTareas.total')}"
+														span="1" style="color:#C4ECFF" />
+													<listfooter
+														id="conteoEstructuras"
+														label="@{win_AbmReparticion$composer.listaEstructurasSeleccionada.size}"
+														span="2" style="color:#C4ECFF" />
+												</listfoot>
+											</listbox>
+										</vbox>
+									</groupbox>
+								</bandpopup>
+							</bandbox>
+						</cell>
+					</row>
+					<row style="border:none;">
+						<cell valign="middle">
+							<label
+								value="${c:l('eu.adminSade.reparticion.padre')}" width="560px" />
+						</cell>
+						<cell valign="middle" colspan="2">
+							<bandbox id="bbx_reparticionPadre"
+								readonly="true">
+								<bandpopup id="reparticionesComboSADE"
+									width="620px">
+									<groupbox mold="3d">
+										<caption>
+											<hbox>
+												<label
+													value="${c:l('eu.consulta.sindicatura.hbox.label.busquedaDeReparticion')}"
+													width="560px" />
+												<image
+													src="/imagenes/help.png" width="16px" height="16px"
+													tooltip="helpBusquedaReparticion" align="right" />
+											</hbox>
+										</caption>
+										<separator height="2px"></separator>
+										<vbox height="100px"
+											width="600px">
+
+											<hbox>
+												${c:l('eu.consulta.sindicatura.buscar')
+												}
+												<textbox
+													id="txtBusquedaReparticionPadreBusquedaSADE" />
+											</hbox>
+											<paging
+												id="paginatorIncorporarSADE" pageSize="10" />
+											<listbox
+												id="lbx_reparticionesSADEListbox" mold="paging"
+												paginal="${paginatorIncorporarSADE}"
+												model="@{win_AbmReparticion$composer.listaReparticionSeleccionada}"
+												selectedItem="@{win_AbmReparticion$composer.reparticionPadreSeleccionada}"
+												itemRenderer="com.egoveris.edt.web.pl.renderers.ReparticionItemRenderer">
+												<listhead>
+													<listheader
+														label="${c:l('eu.consulta.sindicatura.listhead.listheader.label.codigo')}"
+														width="25%" />
+													<listheader
+														label="${c:l('eu.consulta.sindicatura.listhead.listheader.label.nombre')}"
+														width="75%" />
+												</listhead>
+												<listfoot style="">
+													<listfooter
+														id="Total"
+														label="${c:l('eu.tabMigracionReparticion.label.totOrg') }"
+														span="1" style="color:#C4ECFF" />
+													<listfooter
+														id="conteoDocumentos"
+														label="@{win_AbmReparticion$composer.listaReparticionSeleccionada.size}"
+														span="2" style="color:#C4ECFF" />
+												</listfoot>
+											</listbox>
+										</vbox>
+									</groupbox>
+								</bandpopup>
+							</bandbox>
+						</cell>
+					</row>
+					<row style="border:none;">
+						<label
+							value="${c:l('eu.adminSade.reparticion.vigenciaDesde')}" />
+						<vlayout>
+							<datebox id="dbx_vigenciaDesde" cols="12"
+								format="dd/MM/yyyy" onCreate="self.value = new Date()" />
+						</vlayout>
+					</row>
+					<row style="border:none;">
+						<label
+							value="${c:l('eu.adminSade.reparticion.vigenciaHasta')}" />
+						<vlayout>
+							<datebox id="dbx_vigenciaHasta" cols="12"
+								format="dd/MM/yyyy" onCreate="self.value = new Date()" />
+						</vlayout>
+					</row>
+
+					<row style="border:none;">
+						<label
+							value="${c:l('eu.adminSade.reparticion.descripcion')}" />
+						<textbox id="txbx_descripcion" width="270px"
+							maxlength="255" />
+					</row>
+					<row style="border:none;">
+						<label
+							value="${c:l('eu.adminSade.reparticion.piso')}" />
+						<textbox id="txbx_piso" width="270px"
+							maxlength="255" />
+					</row>
+					<row style="border:none;">
+						<label
+							value="${c:l('eu.adminSade.reparticion.fax')}" />
+						<textbox id="txbx_fax" width="270px"
+							maxlength="255" />
+					</row>
+					<row style="border:none;">
+						<label
+							value="${c:l('eu.adminSade.reparticion.oficina')}" />
+						<textbox id="txbx_oficina" width="270px"
+							maxlength="255" />
+					</row>
+					<row style="border:none;">
+						<label
+							value="${c:l('eu.adminSade.reparticion.email')}" />
+						<textbox id="txbx_email" width="270px"
+							maxlength="255" />
+					</row>
+					<row style="border:none;">
+						<label
+							value="${c:l('eu.adminSade.reparticion.esDgtal')}" />
+						<checkbox id="chckBox_esDgtal" />
+					</row>
+
+					<!-- Version 3.5.0 -->
+					<row style="border:none;">
+						<cell valign="middle">
+							<label
+								value="${c:l('eu.adminSade.reparticion.jurisdiccion')}"
+								width="560px" />
+						</cell>
+						<cell valign="middle" colspan="2">
+							<bandbox id="bbx_jurisdiccion"
+								readonly="true">
+								<bandpopup id="band_Jurisdicciones"
+									width="620px">
+									<groupbox mold="3d">
+										<caption>
+											<hbox>
+												<label
+													value="${c:l('eu.consulta.sindicatura.hbox.label.busquedaDeReparticion')}"
+													width="560px" />
+												<image
+													src="/imagenes/help.png" width="16px" height="16px"
+													tooltip="helpBusquedaReparticion" align="right" />
+											</hbox>
+										</caption>
+										<separator height="2px"></separator>
+										<vbox height="100px"
+											width="600px">
+											<hbox>
+												${c:l('eu.consulta.sindicatura.buscar')}
+												<textbox
+													id="txtBusquedaReparticionJurisBusquedaSADE" />
+											</hbox>
+											<paging
+												id="paginatorJurisdiccion" pageSize="10" />
+											<listbox
+												id="lbx_jurisdiccion" mold="paging"
+												paginal="${paginatorJurisdiccion}"
+												model="@{win_AbmReparticion$composer.jurisdicciones}"
+												selectedItem="@{win_AbmReparticion$composer.reparticion.jurisdiccion}"
+												itemRenderer="com.egoveris.edt.web.pl.renderers.JurisdiccionItemRenderer">
+												<listhead>
+													<listheader
+														label="${c:l('eu.consulta.sindicatura.listhead.listheader.label.nombre')}"
+														width="100%" />
+												</listhead>
+												<listfoot style="">
+													<listfooter
+														id="totalJurisdiccionesTitulo"
+														label="${c:l('eu.abmReparticionGDE.label.totalJurisdicciones') }"
+														span="1" style="color:#C4ECFF" />
+													<listfooter
+														id="totalJurisdiccionesCantidad"
+														label="@{win_AbmReparticion$composer.jurisdicciones.size}"
+														span="2" style="color:#C4ECFF" />
+												</listfoot>
+											</listbox>
+										</vbox>
+									</groupbox>
+								</bandpopup>
+							</bandbox>
+						</cell>
+					</row>
+					<row style="border:none;">
+						<cell valign="middle">
+							<label
+								value="${c:l('eu.adminSade.reparticion.ministerio')}"
+								width="560px" />
+						</cell>
+						<cell valign="middle" colspan="2">
+							<bandbox id="bbx_ministerio"
+								readonly="true">
+								<bandpopup id="band_ministerio"
+									width="620px">
+									<groupbox mold="3d">
+										<caption>
+											<hbox>
+												<label
+													value="${c:l('eu.consulta.sindicatura.hbox.label.busquedaDeReparticion')}"
+													width="560px" />
+												<image
+													src="/imagenes/help.png" width="16px" height="16px"
+													tooltip="helpBusquedaReparticion" align="right" />
+											</hbox>
+										</caption>
+										<separator height="2px"></separator>
+										<vbox height="100px"
+											width="600px">
+
+											<hbox>
+												${c:l('eu.consulta.sindicatura.buscar')
+												}
+												<textbox
+													id="txtBusquedaReparticionMinisterioBusquedaSADE" />
+											</hbox>
+
+											<paging
+												id="paginatorMinisterio" pageSize="10" />
+											<listbox id="lbx_ministerio"
+												mold="paging" paginal="${paginatorMinisterio}"
+												model="@{win_AbmReparticion$composer.listaReparticionSeleccionada}"
+												selectedItem="@{win_AbmReparticion$composer.reparticion.ministerio}"
+												itemRenderer="com.egoveris.edt.web.pl.renderers.ReparticionItemRenderer">
+												<listhead>
+													<listheader
+														label="${c:l('eu.consulta.sindicatura.listhead.listheader.label.codigo')}"
+														width="25%" />
+													<listheader
+														label="${c:l('eu.consulta.sindicatura.listhead.listheader.label.nombre')}"
+														width="75%" />
+												</listhead>
+												<listfoot style="">
+													<listfooter
+														id="totalMinisteriosTitulo"
+														label="${c:l('eu.altaCargo.label.totalReparticiones')}"
+														span="1" style="color:#C4ECFF" />
+													<listfooter
+														id="totalMinisteriosCantidad"
+														label="@{win_AbmReparticion$composer.listaReparticionSeleccionada.size}"
+														span="2" style="color:#C4ECFF" />
+												</listfoot>
+											</listbox>
+										</vbox>
+									</groupbox>
+								</bandpopup>
+							</bandbox>
+						</cell>
+					</row>
+					<row style="border:none;">
+						<cell valign="middle">
+							<label
+								value="${c:l('eu.adminSade.reparticion.administradorPresupuesto')}"
+								width="560px" />
+						</cell>
+						<cell valign="middle" colspan="2">
+							<bandbox id="bbx_administradorPresupuesto"
+								readonly="true">
+								<bandpopup
+									id="band_administradorPresupuesto" width="620px">
+									<groupbox mold="3d">
+										<caption>
+											<hbox>
+												<label
+													value="${c:l('eu.consulta.sindicatura.hbox.label.busquedaDeReparticion')}"
+													width="560px" />
+												<image
+													src="/imagenes/help.png" width="16px" height="16px"
+													tooltip="helpBusquedaReparticion" align="right" />
+											</hbox>
+										</caption>
+										<separator height="2px"></separator>
+										<vbox height="100px"
+											width="600px">
+											<hbox>
+												${c:l('eu.consulta.sindicatura.buscar')
+												}
+												<textbox
+													id="txtBusquedaReparticionAdminBusquedaSADE" />
+											</hbox>
+											<paging
+												id="paginatorAdministradorPresupuesto" pageSize="10" />
+											<listbox
+												id="lbx_administradorPresupuesto" mold="paging"
+												paginal="${paginatorAdministradorPresupuesto}"
+												model="@{win_AbmReparticion$composer.listaReparticionSeleccionada}"
+												selectedItem="@{win_AbmReparticion$composer.reparticion.administradorPresupuesto}"
+												itemRenderer="com.egoveris.edt.web.pl.renderers.ReparticionItemRenderer">
+												<listhead>
+													<listheader
+														label="${c:l('eu.consulta.sindicatura.listhead.listheader.label.codigo')}"
+														width="25%" />
+													<listheader
+														label="${c:l('eu.consulta.sindicatura.listhead.listheader.label.nombre')}"
+														width="75%" />
+												</listhead>
+												<listfoot style="">
+													<listfooter
+														id="TotalAdministradorTitulo"
+														label="${c:l('eu.abmReparticion.label.totalAdministradoras') }"
+														span="1" style="color:#C4ECFF" />
+													<listfooter
+														id="totalAdminstradorCantidad"
+														label="@{win_AbmReparticion$composer.listaReparticionSeleccionada.size}"
+														span="2" style="color:#C4ECFF" />
+												</listfoot>
+											</listbox>
+										</vbox>
+									</groupbox>
+								</bandpopup>
+							</bandbox>
+						</cell>
+					</row>
+
+				</rows>
+			</grid>
+			<separator spacing="20px" />
+
+			<hbox id="hbox_visu" align="center" visible="false">
+				<button id="btn_salir" iconSclass="z-icon-times"
+					label="${c:l('edt.standar.cerrar')}" zclass="z-button" />
+			</hbox>
+			<hbox id="hbox_botones" align="center">
+				<button id="btn_guardar" iconSclass="z-icon-floppy-o"
+					label="${c:l('edt.standar.guardar')}" zclass="z-button"
+					style="padding:7px 10px;"
+					tooltiptext="${c:l('eu.adminSade.guardar')}" />
+				<button id="btn_cancelar" iconSclass="z-icon-times"
+					label="${c:l('edt.standar.cancelar')}" zclass="z-button"
+					style="padding:7px 10px;"
+					tooltiptext="${c:l('eu.adminSade.cancelar')}" />
+			</hbox>
+			<separator spacing="20px" />
+		</vbox>
+	</window>
+</zk>

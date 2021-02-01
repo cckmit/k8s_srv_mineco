@@ -1,0 +1,12 @@
+<zk>
+	<vlayout
+		apply="com.egoveris.ffdd.render.zk.comp.cc.VistaProductDAComposer">
+
+		<vbox>
+			<hbox> 
+				<cell id="${arg.formComp.nombre}_codigoProductoDiv" />
+				<cell id="${arg.formComp.nombre}_atributosDiv" />
+			</hbox> 
+		</vbox> 
+	</vlayout>
+</zk>

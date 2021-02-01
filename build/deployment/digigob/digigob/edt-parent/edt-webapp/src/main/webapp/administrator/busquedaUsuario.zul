@@ -1,0 +1,98 @@
+<?page title="${c:l('digigob.Title')}" contentType="text/html;charset=UTF-8"?>
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+<?init class="org.zkoss.zk.ui.util.Composition" arg0="~./db_template.zul"?>
+<!--
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./win_busquedaUsuario" ?>
+-->
+<zk>
+	<window border="none" id="win_busquedaUsuario"
+		apply="com.egoveris.edt.web.admin.pl.BusquedaUsuarioComposer"
+		width="100%" self="@{define(egovBody)}">
+		
+		<!-- 
+		<hbox style="" align="center">
+			<image src="/imagenes/egovIconOrange.png" width="40px"
+				height="30px" style="padding-left: 10px;" />
+
+			<label value="${c:l('eu.busquedausuario.hbox.label.admUsuarios')}"
+				style="font: bold;" />
+		</hbox>
+		<separator bar="true" style="" />
+		<separator />
+		-->
+
+		<div sclass="page-header">
+			<label value="${c:l('eu.busquedausuario.hbox.label.admUsuarios')}" />
+		</div>
+
+		<panel style="" border="none">
+			<panelchildren style="">
+				<toolbarbutton id="tbbtn_altaUsuario"
+					label="${c:l('eu.adminSade.altaUsuario')}"
+					style="" image="/imagenes/newUser.png" />
+			</panelchildren>
+		</panel>
+				
+		<borderlayout width="100%" height="650px">
+			<center border="none">
+				<borderlayout width="100%" >
+					<west width="100%" border="none"
+						style="">
+						<vbox width="50%" align="center">
+							<separator height="10px" />
+							<hbox width="100%" align="center">
+								<label
+									value="${c:l('eu.busquedausuario.hbox.label.ingreseNomUsuario')} " />
+								<textbox id="txbx_usuarioBuscado"
+									width="300px" height="25px" />
+								<button id="btn_buscar"
+									label="${c:l('eu.adminSade.buscar')}" width="120px"
+									height="30px" image="/imagenes/find.png"
+									hoverImage="/imagenes/find.png" />
+							</hbox>
+						</vbox>
+					</west>
+				</borderlayout>
+			</center>
+
+			<south border="none" height="85%"
+				style="" autoscroll="true">
+				<listbox id="lstbx_usuarios" fixedLayout="true"
+					style=""
+					model="@{win_busquedaUsuario$composer.listaResultadoUsuarios}"
+					mold="paging" pageSize="10"
+					itemRenderer="com.egoveris.edt.web.admin.pl.renderers.BusquedaUsuarioItemRenderer"
+					selectedItem="@{win_busquedaUsuario$composer.selectedUsuario}" >
+
+					<listhead sizable="false"
+						style="background: #C4ECFF;">
+						<listheader label="${c:l('eu.busquedausuario.listhead.label.nombApell')}"
+							width="18%" style="" />
+						<listheader label="${c:l('eu.adminSade.usuario.nombreUsuario')}"
+							width="18%" style="" />
+						<listheader label="${c:l('eu.busquedausuario.listhead.label.correoEle')}"
+							width="18%" style="" />
+						<listheader label="${c:l('eu.consulta.sindicatura.row.label.reparticion')}"
+							width="18%" style="" />
+						<listheader label="${c:l('eu.altaUsuario.row.label.sector')}"
+							width="18%" style="" />
+						<listheader label="${c:l('eu.altaUsuario.row.label.cargo')}"
+							width="18%" style="" />
+						<listheader align="center" label="${c:l('eu.admCargos.hbox.label.acciones')}"
+							width="10%" style="" />
+					</listhead>
+					<listfoot>
+						<listfooter />
+						<listfooter />
+						<listfooter label="${c:l('eu.historialCargos.listfooter.resultado')} "
+							style="color:#C4ECFF;float:right;" />
+						<listfooter
+							label="@{win_busquedaUsuario$composer.resultados}"
+							style="color:#C4ECFF;" />
+					</listfoot>
+				</listbox>
+			</south>
+		</borderlayout>
+	</window>
+</zk>

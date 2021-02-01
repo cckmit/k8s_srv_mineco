@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<complexComponent type="TRADE" name="vistaorigen Doc Ingreso"
+	description="Vista Origen Doc Ingreso" zul="vistaOrigenDocIng.zul"
+	mappingDTO="com.egoveris.ccomplejos.base.model.VistaOrigenDocIngDTO">
+
+
+
+<field name="viaDeTransporte" width="90%" height="20px" class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" disabled="true"/>
+<field name="codigoPuertoDeEmbarque" width="90%" height="20px" class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt"  disabled="true"/>
+<field name="codigoPaisProcedencia" width="90%" height="20px" class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt"  disabled="true"/>
+<field name="codigoPuertoDesembarque" width="90%" height="20px" class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt"  disabled="true"/>
+<field name="fechaEmbarque" width="90%" height="20px" class="com.egoveris.ffdd.render.zk.comp.ext.DateboxExt"  disabled="true"/>
+<field name="fechaDesembarque" width="90%" height="20px" class="com.egoveris.ffdd.render.zk.comp.ext.DateboxExt"  disabled="true"/>
+<field name="manifiesto" width="90%" height="20px" class="com.egoveris.ffdd.render.zk.comp.ext.SeparatorComplex" xmlFile="manifiesto.xml" />
+<field name="nombreNave" width="90%" height="20px" class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt"  disabled="true"/>
+<field name="codigoPaisOrigen" width="90%" height="20px" class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt"  disabled="true"/>
+<field name="nombreCompaniaTransporte" width="90%" height="20px" class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt"  disabled="true"/>
+<field name="numeroDocumentoTransporte" width="90%" height="20px" class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt"  disabled="true"/>
+<field name="fechaDocumentoTransporte" width="90%" height="20px" class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt"  disabled="true"/>
+<field name="transbordo" width="90%" height="20px" class="com.egoveris.ffdd.render.zk.comp.ext.SeparatorComplex" xmlFile="vistadetallespuertoda.xml" />
+<field name="emisor" width="90%" height="20px" class="com.egoveris.ffdd.render.zk.comp.ext.SeparatorComplex" xmlFile="vistaparticipantesda.xml" />
+  
+</complexComponent>

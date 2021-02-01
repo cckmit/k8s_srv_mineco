@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:jee="http://www.springframework.org/schema/jee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans-3.0.xsd 
+		http://www.springframework.org/schema/jee 
+		http://www.springframework.org/schema/jee/spring-jee-3.0.xsd">
+
+	
+	<bean id="dataSource" class="org.springframework.jndi.JndiObjectFactoryBean">
+		<property name="jndiName" value="java:comp/env/jdbc/edtDS"/>
+		<property name="resourceRef" value="true"/>
+		<property name="cache" value="true"/>
+		<property name="proxyInterface" value="javax.sql.DataSource"/>
+	</bean>
+	<bean name="PropertyPlaceholderConfigurerDB"
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="properties">
+			<bean factory-bean="dBProperty" factory-method="getProperties" />
+		</property>
+	</bean>
+	
+	<jee:jndi-lookup id="masterKeyEncription" jndi-name="java:comp/env/masterKey"
+		expected-type="java.lang.String" />
+		
+	<import resource="classpath:/dbConfiguration-service-config.xml" />
+	<bean name="dBProperty"
+		class="com.egoveris.commons.databaseconfiguration.propiedades.impl.DBAppPropertyImpl"
+		init-method="showAllProperties">
+		<constructor-arg type="javax.sql.DataSource" ref="dataSource" />
+		<constructor-arg type="java.lang.String" value="PROPERTY_CONFIGURATION" />
+		<constructor-arg type="java.lang.String" value="SISTEMA" />
+		<constructor-arg ref="passwordBasedEncriptionService" />
+	</bean>
+</beans>

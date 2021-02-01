@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>com.egoveris</groupId>
+    <artifactId>workflow-designer</artifactId>
+	<version>2.0.3-SNAPSHOT</version>
+  </parent>
+  <artifactId>workflow-designer-env</artifactId>
+  <name>WorkFlowDesigner shared environment project</name>
+  <dependencies>
+    <dependency>
+      <groupId>org.terasoluna.plus.persistence</groupId>
+      <artifactId>terasoluna-plus-core-persistence-jpa-hibernate-conf</artifactId>
+      <scope>runtime</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-jdbc</artifactId>
+      <scope>runtime</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.hsqldb</groupId>
+      <artifactId>hsqldb</artifactId>
+      <scope>runtime</scope>
+    </dependency>
+  </dependencies>
+</project>

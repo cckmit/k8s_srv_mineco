@@ -1,0 +1,43 @@
+<?page title="new page title" contentType="text/html;charset=UTF-8"?>
+<zk>
+	<vlayout
+		apply="com.egoveris.ffdd.render.zk.comp.cc.AutorizacionComposer">
+		<grid>
+			<columns>
+				<column></column>
+			</columns>
+			<rows>
+				<row>
+					<vbox>
+						<hbox>
+							<cell
+								id="${arg.formComp.nombre}_idAutorizacionDiv" />
+							<cell
+								id="${arg.formComp.nombre}_ssppEnumDiv" />
+							<cell
+								id="${arg.formComp.nombre}_submittedByDiv" />
+						</hbox>
+						<hbox>
+							<cell
+								id="${arg.formComp.nombre}_submittedDateDiv" />
+							<cell
+								id="${arg.formComp.nombre}_respDateDiv" />
+							<cell
+								id="${arg.formComp.nombre}_responseStatusDiv" />
+						</hbox>
+						<hbox>
+							<cell
+								id="${arg.formComp.nombre}_responseCodeDiv" />
+							<cell
+								id="${arg.formComp.nombre}_vigenciaDateDiv" />
+							<cell id="${arg.formComp.nombre}_uRLDiv" />
+						</hbox>
+						<cell id="${arg.formComp.nombre}_documentoDiv" />
+						<cell
+							id="${arg.formComp.nombre}_listObservacionesDiv" />
+					</vbox>
+				</row>
+			</rows>
+		</grid>
+	</vlayout>
+</zk>

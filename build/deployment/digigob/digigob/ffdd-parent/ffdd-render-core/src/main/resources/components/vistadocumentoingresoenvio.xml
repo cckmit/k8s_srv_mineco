@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<complexComponent 
+		type="TRADE" name="vistadocumentoingresoenvio" description="Vista Documento ingreso Envio"
+		zul="vistaDocumentoIngresoEnvio.zul" 
+		mappingDTO="com.egoveris.ccomplejos.base.model.VistaDocumentoIngresoEnvioDTO">
+		
+		
+		<field name="numeroDocumentoIngreso" width="90%" height="20px" class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" disabled="true"/>
+		<field name="tipoSolicitud" width="90%" height="20px" class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" disabled="true"/>
+		<field name="fechaSolicitud" width="90%" height="20px" class="com.egoveris.ffdd.render.zk.comp.ext.DateboxExt" disabled="true"/>
+		<field name="fechaDocIngreso" width="90%" height="20px" class="com.egoveris.ffdd.render.zk.comp.ext.DateboxExt" disabled="true"/>
+		<field name="idSolicitud" width="90%" height="20px" class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" disabled="true"/>
+		<field name="codiserviciosPublicosRelacionados" width="90%" height="20px" class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" disabled="true"/>
+		<field name="totalBultos" width="90%" height="20px" class="com.egoveris.ffdd.render.zk.comp.ext.IntboxExt" disabled="true"/>
+		<field name="idBultos" width="90%" height="20px" class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" disabled="true"/>
+	
+</complexComponent>

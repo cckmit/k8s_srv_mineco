@@ -1,0 +1,39 @@
+<?page title="" contentType="text/html;charset=UTF-8"?>
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./vistaDocumentosWindow" ?>
+<?component name="documentosSinPase" inline="true" macroURI="documentosSinPase.zul"?>
+<?component name="documentosConPase" inline="true" macroURI="documentosConPase.zul"?>
+<?component name="documentosFiltro" inline="true" macroURI="documentosFiltro.zul"?>
+<zk>
+	<window border="none" id="vistaDocumentosWindow"
+		style=" overflow:auto"
+		apply="com.egoveris.te.base.composer.GenericDocumentoComposer">
+	 	
+		<tabbox id="tabBoxDoc" 
+				forward="onSelect=vistaDocumentosWindow$GenericDocumentoComposer.onCambioDeVentana">
+			<tabs   width="100px">
+				<tab id="conPase" 
+				label="${c:l('ee.tramitacion.tab.conPase.value')}"
+				style="font:bold;"  />
+				<tab id="sinPase"
+				label="${c:l('ee.tramitacion.tab.sinPase.value')}"
+				style="font:bold;"  />
+				<tab id="filtroDocu"
+				label="${c:l('ee.tramitacion.tab.filtro.value')}"
+				style="font:bold;"  />
+			</tabs>
+			<tabpanels   height="100%" style="align:center;">
+				<tabpanel id="conPasePanel"  fulfill="conPase.onClick" style="align:center; overflow:auto" vflex="1" >
+					<documentosConPase/>		
+				</tabpanel>
+				<tabpanel    fulfill="sinPase.onClick" >
+					<documentosSinPase/>
+				</tabpanel>
+				<tabpanel    fulfill="filtroDocu.onClick"  >
+					<documentosFiltro/>
+				</tabpanel>
+			</tabpanels>
+		</tabbox>	
+	</window>
+</zk>

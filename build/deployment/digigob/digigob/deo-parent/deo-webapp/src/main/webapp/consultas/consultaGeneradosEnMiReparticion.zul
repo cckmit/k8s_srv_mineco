@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./creadosPorMiReparticionWindow"  ?>
+<?page title="${c:l('gedo.consultaSecNum.wintitle.datosConsulta')}"?>
+<zk>
+	<window id="creadosPorMiReparticionWindow"
+		title="${c:l('gedo.cosultaGeneradosEnMiReparticion.window.title')}"
+		border="normal" width="500px"
+		apply="com.egoveris.deo.web.satra.consulta.ConsultaGeneradosEnMiReparticionComposer"
+		closable="true">
+		<separator></separator>
+		<groupbox>
+			<separator height="20px"></separator>
+			<hbox>
+				<label value="${c:l('gedo.cosultaGeneradosEnMiReparticion.hbox.label.fechaDesde')}" />
+				<separator width="18px"></separator>
+				<datebox id="fechaDesde" constraint="no empty" />
+				<separator width="30px"></separator>
+				<label value="${c:l('gedo.cosultaGeneradosEnMiReparticion.hbox.label.fechaHasta')}" />
+				<datebox id="fechaHasta" constraint="no empty" />
+			</hbox>
+			<separator height="20px"></separator>
+			
+			<hbox>
+		         <label value="${c:l('gedo.revisarDocumento.label.usuarioFirmante')}" />
+				 <combobox width="200px" id="usuarioFirmante" buttonVisible="false" autodrop="true" />
+			</hbox>		
+						
+		    <separator height="20px"></separator>
+			<!-- LISTA DE Document -->
+			<checkbox id="mostrar" label="${c:l('gedo.consultaGeneradosEnMiReparticion.checkbox.label.mostrar')}" checked="true"/>
+			<checkbox id="mostrarTodos" label="${c:l('gedo.consultaDocumentos.todosLosDocumentos')}" checked="false"/>
+			<separator height="20px"></separator>
+
+			<label value="${c:l('gedo.consultaDocumentos.tipoDocumento')}" />
+			<bandbox id="familiaEstructuraTree" width="35%" height="auto">
+				<bandpopup id="familia" width="600px" height="auto"
+					apply="com.egoveris.deo.web.satra.InicioDocumentoFamiliaTipoDocumentoBandBoxComposer">
+					<groupbox mold="3d" height="auto" closable="false"
+						width="auto">
+						<caption>
+							<hbox>
+								<label
+									value="${c:l('gedo.busquedaTipoDocumento')}" />
+							</hbox>
+						</caption>
+						<separator></separator>
+						<vbox>
+							<hbox align="bottom">
+								<label value="$c:l{('gedo.importarDocumento.button.label')}" />
+								<separator width="2px" />
+								<textbox
+									id="textoTipoDocumento" />
+								<separator width="100px" />
+							</hbox>
+							<separator width="25px" />
+							<tree id="familiaTipoTree"
+								width="600px" height="auto">
+								<treecols>
+									<treecol width="30%"	label="${c:l('gedo.agregarReparticiones.listhead.listheader.label.nombre')}" />
+									<treecol width="20%"	label="${c:l('gedo.abmTipoDocumento.acronimo')}" />
+									<treecol width="25%"	label="${c:l('gedo.inbox.alarmas.descripcion')}" />
+									<treecol width="25%" label="${c:l('gedo.inbox.caracteristicas')}" />
+								</treecols>
+							</tree>
+						</vbox>
+					</groupbox>
+				</bandpopup>
+			</bandbox>
+
+			<separator />
+			<!-- LISTA DE Metadata -->
+			<hbox id="agregaMetaDataHbox" visible="false">
+				<label value="${c:l('gedo.cosultaGeneradosEnMiReparticion.hbox.label.datoPropio')}"  width="100%"/>
+				<separator width="25px"></separator>
+				<combobox id="nombreMetadato" readonly="true" 
+							width="120px" 
+							model="@{creadosPorMiReparticionWindow$composer.listaMetadata}"
+							selectedItem="@{creadosPorMiReparticionWindow$composer.selectedMetadata}">
+				</combobox>
+
+				<separator orient="vertical" width="16px" />
+				<label value="${c:l('gedo.cosultaGeneradosEnMiReparticion.hbox.label.valor')}"  />
+				<textbox id="nuevo_valor" width="110px" />
+				<button id="agregar" image="/imagenes/control_add_blue.png" />
+			</hbox>
+			
+			<!-- LISTA DE CAMPOS FC -->
+			<hbox id="agregaDataFcHlayout" align="center" visible="false">
+				<label value="${c:l('gedo.cosultaGeneradosEnMiReparticion.hbox.label.datoPropio')}" style="padding-top: 2px;"/>
+				<vbox>
+					<combobox id="comboMetaFc" readonly="true" width="200px"
+						model="@{creadosPorMiReparticionWindow$composer.listaMetaFc}" selectedItem="@{creadosPorMiReparticionWindow$composer.selectedMetaFc}">
+					</combobox>
+					<div id="divFc" />
+				</vbox>
+				<button visible="false" id="agregarFc" image="/imagenes/control_add_blue.png" height="45px"/>
+			</hbox>
+			
+			<separator />
+			<separator />
+			<!-- LISTA DE DocumentoMetadata -->
+		<grid visible="false" id="grillaValoresAgregados" width="300px" style="margin-left: auto; margin-right: auto;" 
+			model = "@{creadosPorMiReparticionWindow$composer.listaDocMetadata}"
+				rowRenderer="com.egoveris.deo.web.satra.renderers.ValoresMetadatosRenderer">
+				<columns>
+				<column align="center" label="${c:l('gedo.cosultaGeneradosEnMiReparticion.column.label.nombre')}" />
+				<column align="center" label= "${c:l('gedo.cosultaGeneradosEnMiReparticion.column.label.valor')}" />
+				</columns>
+			</grid>
+			<separator />
+			<hbox>
+			<button id="buscar"   label="${c:l('gedo.cosultaGeneradosEnMiReparticion.hbox.label.button.buscar')}"/>
+			<button id="cancelar" label="${c:l('gedo.cosultaGeneradosEnMiReparticion.hbox.label.button.cancelar')}" />
+			</hbox>
+		</groupbox>
+	</window>
+</zk>

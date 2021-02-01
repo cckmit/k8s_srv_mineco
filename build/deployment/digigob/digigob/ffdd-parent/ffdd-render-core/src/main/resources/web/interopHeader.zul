@@ -1,0 +1,14 @@
+<zk>
+	<vlayout
+		apply="com.egoveris.ffdd.render.zk.comp.cc.InteropHeaderComposer">
+		<vbox>
+				<hbox>
+					<cell id="${arg.formComp.nombre}_idTransaccionDiv" />
+					<cell id="${arg.formComp.nombre}_idMensajeDiv" />
+				</hbox>
+				<hbox>
+					<cell id="${arg.formComp.nombre}_destinatarioDiv" />
+				</hbox>
+		</vbox>
+	</vlayout>
+</zk>

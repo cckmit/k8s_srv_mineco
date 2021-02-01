@@ -1,0 +1,85 @@
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+<?page title="Auditoría de Trata" contentType="text/html;charset=UTF-8"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./historialTrataWindow" ?>
+<zk>
+	<window id="historialTrataWindow" title="${c:l('te.webapp.historialtrata.titulo')}"
+		border="normal" width="99%" closable="true"
+		apply="com.egoveris.te.base.composer.HistorialTrataComposer">
+
+		<separator />
+		<style>
+			div.z-listbox-header th.z-listheader-sort
+			div.z-listheader-cnt{ word-wrap: break-word; }
+		</style>
+
+		<paging id="consultaPaginator" pageSize="5" />
+		<listbox id="listaHistoricoList"
+			model="@{historialTrataWindow$HistorialTrataComposer.listaHistoricoFiltrado}"
+			itemRenderer="com.egoveris.te.base.rendered.TrataHistoricotemRenderer"
+			mold="paging" paginal="${consultaPaginator}">
+			<listhead sizable="true">
+				<listheader
+					label="${c:l('ee.trata.auditoria.label.codigo')}" width="13%"
+					align="center" />
+				<listheader
+					label="${c:l('ee.trata.auditoria.label.descripcion')}" width="12%"
+					align="center" />
+				<listheader
+					label="${c:l('ee.trata.auditoria.label.tipoDocumento')}"
+					width="11%" align="center" style="white-space: normal;"
+					vflex="true" />
+				<listheader
+					label="${c:l('ee.trata.auditoria.label.workflow')}" width="9%"
+					align="center" />
+				<listheader
+					label="${c:l('ee.trata.auditoria.label.esAutomatico')}" width="5%"
+					align="center" />
+				<listheader
+					label="${c:l('ee.trata.auditoria.label.esManual')}" width="8%"
+					align="center" />
+				<listheader
+					label="${c:l('ee.trata.auditoria.label.esInterno')}" width="7%"
+					align="center" />
+				<listheader
+					label="${c:l('ee.trata.auditoria.label.esExterno')}" width="8%"
+					align="center" />
+				<listheader
+					label="${c:l('ee.trata.auditoria.label.esEnvioAutomaticoGT')}"
+					width="7%" align="center" style="white-space: normal;"
+					vflex="true" />
+				<listheader
+					label="${c:l('ee.trata.auditoria.label.fecha')}" width="19%"
+					align="center" />
+				<listheader
+					label="${c:l('ee.trata.auditoria.label.usuario')}" width="12%"
+					align="center" />
+				<listheader
+					label="${c:l('ee.trata.auditoria.label.tiempoEstimado')}"
+					width="9%" align="center" style="white-space: normal;"
+					vflex="true" />
+				<listheader
+					label="${c:l('ee.trata.auditoria.label.tipoActuacion')}" width="6%"
+					align="center" style="white-space: normal;" vflex="true" />
+				<listheader
+					label="${c:l('ee.trata.auditoria.label.tipoReserva')}" width="12%"
+					align="center" />
+				<listheader
+					label="${c:l('ee.trata.auditoria.label.tipoTipoOperacion')}"
+					width="14%" align="center" />
+			</listhead>
+		</listbox>
+		<separator />
+		<grid align="center" style="border:0px">
+			<rows>
+				<row>
+					<hbox>
+						<button autodisable="self" id="cancelar"
+							label="${c:l('ee.detalleTrata.button.volver')}" forward="onClick=onCancelar">
+						</button>
+					</hbox>
+				</row>
+			</rows>
+		</grid>
+	</window>
+</zk>

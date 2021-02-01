@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" 
+"http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+	<!-- <bean class="org.springframework.aop.aspectj.annotation.AnnotationAwareAspectJAutoProxyCreator" 
+		/> -->
+
+	<!-- SERVICIO DE WEB_DAV ALFRESCO -->
+	<bean name="hostConfiguration" class="org.apache.commons.httpclient.HostConfiguration" />
+	<bean name="httpConnectionManagerParams"
+		class="org.apache.commons.httpclient.params.HttpConnectionManagerParams" />
+<!-- 	<bean name="connectionManager" -->
+<!-- 		class="org.apache.commons.httpclient.MultiThreadedHttpConnectionManager" /> -->
+
+	<bean name="webDavService"
+		class="com.egoveris.shareddocument.base.service.impl.WebDavApacheServiceImpl">
+		<property name="hostConfiguration" ref="hostConfiguration" />
+		<property name="httpConnectionManagerParams" ref="httpConnectionManagerParams" />
+<!-- 		<property name="connectionManager" ref="connectionManager" /> -->
+		<property name="hostname" ref="hostname" />
+		<property name="port" ref="port" />
+		<property name="documentRoot" ref="documentRoot" />
+		<property name="defaultUsername" ref="defaultUsername" />
+		<property name="defaultPassword" ref="defaultPassword" />
+		<property name="defaultConnectionTimeout" ref="connectionTimeout" />
+	</bean>
+
+</beans>

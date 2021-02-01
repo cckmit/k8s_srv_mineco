@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
+    http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+	<include file="liquibase/tablas/gedo_tipodocumento.changelog.xml"/>
+	<include file="liquibase/tablas/gedo_documento.changelog.xml"/>
+	<include file="liquibase/tablas/doble_factor.changelog.xml"/>
+	<include file="liquibase/tablas/gedo_formato_tamano_archivo.changelog.xml"/>
+	<include file="liquibase/tablas/gedo_doc_publicable.changelog.xml"/>
+	<include file="liquibase/tablas/ffdd_df_component_type.changelog.xml"/>
+	<include file="liquibase/tablas/df_component_multilinea.changelog.xml"/>
+	<include file="liquibase/tablas/df_component_usuariologin.changelog.xml"/>
+	<include file="liquibase/tablas/df_component_difdatessinferiados.changelog.xml"/>
+	<include file="liquibase/tablas/df_component_difhoras.changelog.xml"/>
+	<include file="liquibase/tablas/df_component_reparticion.changelog.xml"/>
+	<include file="liquibase/tablas/df_component_reparticionsector.changelog.xml"/>
+	<include file="liquibase/tablas/df_component_usuario.changelog.xml"/>
+	<include file="liquibase/tablas/df_component_dates.changelog.xml"/>
+	<include file="liquibase/tablas/gedo_template.changelog.xml"/>
+	
+</databaseChangeLog>

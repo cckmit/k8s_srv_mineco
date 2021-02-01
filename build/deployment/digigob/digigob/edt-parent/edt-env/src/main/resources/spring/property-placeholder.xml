@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx" 
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:jee="http://www.springframework.org/schema/jee"
+	xmlns:sec="http://www.springframework.org/schema/security"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+           http://www.springframework.org/schema/beans/spring-beans.xsd
+           http://www.springframework.org/schema/context
+           http://www.springframework.org/schema/context/spring-context.xsd
+           http://www.springframework.org/schema/tx
+    	   http://www.springframework.org/schema/tx/spring-tx.xsd
+   	 	   http://www.springframework.org/schema/aop
+           http://www.springframework.org/schema/aop/spring-aop.xsd
+           http://www.springframework.org/schema/jee 
+           http://www.springframework.org/schema/jee/spring-jee.xsd
+		   http://www.zkoss.org/2008/zkspring/core 
+           http://www.zkoss.org/2008/zkspring/core/zkspring-core.xsd
+           http://www.springframework.org/schema/security 
+           http://www.springframework.org/schema/security/spring-security.xsd
+           http://www.zkoss.org/2008/zkspring/security 
+           http://www.zkoss.org/2008/zkspring/security/zkspring-security.xsd">
+	
+	
+	<bean name="dBProperty"
+		class="com.egoveris.commons.databaseconfiguration.propiedades.impl.DBAppPropertyImpl"
+		init-method="showAllProperties">
+		<constructor-arg type="javax.sql.DataSource" ref="dataSource" />
+		<constructor-arg type="java.lang.String" value="PROPERTY_CONFIGURATION" />
+		<constructor-arg type="java.lang.String" value="EU,SISTEMA" />
+		<constructor-arg ref="passwordBasedEncriptionService" />
+	</bean>
+	
+	<!-- En este archivo se configuran las variables que luego son accedidas 
+		por los archivos de Spring con el mecanismo ${nombre_var} -->
+	<bean name="PropertyPlaceholderConfigurerDB"
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="properties">
+			<bean factory-bean="dBProperty" factory-method="getProperties" />
+		</property>
+	</bean>
+	
+	<jee:jndi-lookup id="masterKeyEncription" jndi-name="java:comp/env/masterKey"
+		expected-type="java.lang.String" />
+	
+	<import resource="classpath:/dbConfiguration-service-config.xml" />
+
+</beans>

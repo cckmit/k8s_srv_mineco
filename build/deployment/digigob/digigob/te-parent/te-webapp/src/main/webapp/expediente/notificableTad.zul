@@ -1,0 +1,79 @@
+<?page title="Datos Propios de la Trata" contentType="text/html;charset=UTF-8"?>
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./notificarExpedienteTadWindow" ?>
+<zk>
+		<window title="${c:l('ee.notificable.title.notificExped')}" border="normal" width="99%"
+		id="notificarExpedienteTadWindow" 
+		apply="com.egoveris.te.base.composer.NotificableTadComposer" 
+		closable="true" position="center" sizable="false"
+		maximizable="false" maximized="false">  
+		
+		<hbox>
+			<paging id="pagingDocumento" pageSize="10" /> 
+			<label id="labelPagina" 
+                 value="${c:l('ee.tramitacion.paginado.masDeUnaPagina.value')}"
+				   visible="false" style="color:red; font-style: italic;"/> 
+		</hbox>
+		
+		<listbox id="item" mold="paging"
+				 maxlength="20"
+				 model="@{notificarExpedienteTadWindow$NotificableTadComposer.listaDocsDef}"
+			 	 selectedItem="@{notificarExpedienteTadWindow$NotificableTadComposer.selectedDocumento}"
+				 itemRenderer="com.egoveris.te.base.rendered.NotificableTadRenderer"
+				 paginal="${pagingDocumento}">
+	    	<listhead>
+				<listheader label="${c:l('ee.expediente.subsanaciondocumentos.lbl.orden')}" align="center" hflex="2" />
+				<listheader label="${c:l('ee.expediente.subsanaciondocumentos.lbl.tipodocumento')}" align="center" hflex="3" />
+				<listheader label="${c:l('ee.expediente.subsanaciondocumentos.lbl.numerodocumento')}" align="center" hflex="3" />
+				<listheader label="${c:l('ee.expediente.subsanaciondocumentos.lbl.rerferencia')}" align="center" />
+				<listheader label="${c:l('ee.expediente.subsanaciondocumentos.lbl.fechadeasociacion')}" align="center" hflex="3" />
+				<listheader label="${c:l('ee.expediente.subsanaciondocumentos.lbl.fechacreacion')}" align="center" />
+				<listheader label="${c:l('ee.notificable.listheader.notificar')}" align="center" />
+				<listheader label="${c:l('ee.expediente.subsanaciondocumentos.lbl.accion')}" align="center" />
+			</listhead>
+			<listfoot >
+				 <listfooter />
+				 <listfooter />
+				 <listfooter />
+				 <listfooter />
+				 <listfooter />
+				 <listfooter />
+				 <listfooter id="totalDocumentos" 
+				 			 label="${c:l('ee.tramitacion.listfooter.documentos.value')}"
+							 span="1" 
+							 
+							 align="right" />
+		 		 <listfooter id="footerSize"
+							 span="1" 
+							  
+							 align="left" />
+		 	 </listfoot>
+		</listbox>
+		<grid >
+			<columns>
+				<column width="80px"/>
+				<column/>
+			</columns>
+			<rows width="600px">
+				<row>
+					<label value="${c:l('ee.notificable.listheader.motivo')}"/>                                                                                                                                                      
+					<textbox maxlength="500"  id="motivoNotificacion"  rows="12" cols="120" style="resize: none;"/>
+				</row>
+			</rows>
+		</grid>
+ 			<!--
+ 			<toolbarbutton autodisable="self" id="comunicarTadButton" image="/imagenes/notificar.png"
+			forward="onClick=tramitacionWindow$NotificableTadComposer.onNotificar" height="42px"/>
+				
+ 			<toolbarbutton autodisable="self" id="cancelar" image="/imagenes/Cancelar.png" 
+ 					tabindex="16"  height="42px"
+ 					forward="onClick=tramitacionWindow$NoticifableTad.onCancelar" />
+ 			-->
+ 			<button autodisable="self" id="comunicarTadButton" label="${c:l('ee.notificable.listheader.notificar')}"
+				forward="onClick=tramitacionWindow$NotificableTadComposer.onNotificar" />
+				
+ 			<button autodisable="self" id="cancelar" label="${c:l('te.webapp.expediente.tramitacion.lbl.cancelar')}"
+ 					tabindex="16"
+ 					forward="onClick=tramitacionWindow$NoticifableTad.onCancelar" />
+	</window>
+</zk>

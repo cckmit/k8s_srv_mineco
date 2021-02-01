@@ -1,0 +1,167 @@
+<?page title="${c:l('eu.panelAdmin.tabPerfil')}" contentType="text/html;charset=UTF-8"?>
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./win_tabGestionDatosPersonalesUsuario" ?>
+<zk>
+	<window border="none" id="win_tabGestionDatosPersonalesUsuario"
+		apply="com.egoveris.edt.web.admin.pl.GestionDatosPersonalesUsuarioComposer"
+		width="100%">
+		<hbox style="" align="center">
+			<!-- 			<image src="/imagenes/egovIconOrange.png" width="40px" -->
+			<!-- 				height="30px" style="padding-left: 10px;" /> -->
+
+			<label
+				value="${c:l('eu.datosPersonales.datosUsuario.titulo')}"
+				style="font: bold;" />
+		</hbox>
+		<separator bar="true" style="" />
+		<grid>
+			<columns>
+				<column width="320px" />
+				<column />
+			</columns>
+			<rows>
+				<row>
+					<label
+						value="${c:l('eu.datosPersonales.datosUsuario.tab.mail.label')}" />
+					<hlayout>
+						<textbox id="txbx_email" width="300px"
+							value="@{win_tabGestionDatosPersonalesUsuario$composer.datosUsuario.mail}" />
+					</hlayout>
+				</row>
+				<row width="100%">
+					<label
+						value="${c:l('eu.datosPersonales.datosUsuario.tab.cuit.label')}" />
+					<hlayout>
+						<textbox id="txbx_cuit" width="300px"
+							maxlength="13"
+							value="@{win_tabGestionDatosPersonalesUsuario$composer.datosUsuario.numeroCuit}" />
+						<label id="labelCuit"
+							value="${c:l('eu.datosPersonales.datosUsuario.tab.cuit.info.label')}" />
+					</hlayout>
+				</row>
+				<row width="100%">
+					<label
+						value="${c:l('eu.datosPersonales.datosUsuario.tab.usuarioSuperior.label')}" />
+					<hbox vflex="true" align="center">
+						<bandbox id="bandBoxSuperiores" height="31px">
+							<bandpopup width="400px">
+								<groupbox mold="3d">
+									<caption>
+										<hbox>
+											<label
+												value="${c:l('eu.datosPersonales.hbox.bandBoxUsuarios.label.busquedaDeUsuarios')}"
+												 />
+
+										</hbox>
+									</caption>
+									<separator height="2px"></separator>
+									<vbox height="100px" width="100%">
+										<paging
+											id="paginatorIncorporarSADE" pageSize="10" />
+										<listbox width="100%"
+											id="superioresListbox" mold="paging"
+											paginal="${paginatorIncorporarSADE}"
+											model="@{win_tabGestionDatosPersonalesUsuario$composer.listaSuperioresSeleccionados}"
+											selectedItem="@{win_tabGestionDatosPersonalesUsuario$composer.superiorSeleccionado}"
+											itemRenderer="com.egoveris.edt.web.pl.renderers.UsuarioBandBoxDatosPersonalesItemRenderer">
+											<listhead>
+												<listheader
+													label="${c:l('eu.escritorioUnico.tareasMisSupervisados.usuario')}"
+													width="40%" />
+												<listheader
+													label="${c:l('eu.busquedausuario.listhead.label.nombApell')}"
+													width="60%" />
+											</listhead>
+											<listfoot style="">
+												<listfooter
+													id="totalUsuarios" span="1" style="color:#C4ECFF" />
+											</listfoot>
+										</listbox>
+									</vbox>
+								</groupbox>
+							</bandpopup>
+						</bandbox>
+					</hbox>
+				</row>
+				<row width="100%">
+					<label
+						value="${c:l('eu.datosPersonales.datosUsuario.tab.sectorMesa.label')}" />
+					<hbox vflex="true" align="center">
+						<combobox id="cbx_sectorMesa" width="300px"
+							height="31px" readonly="true"
+							model="@{win_tabGestionDatosPersonalesUsuario$composer.sectoresMesaDisponibles}"
+							selectedItem="@{win_tabGestionDatosPersonalesUsuario$composer.selectedSector}"
+							itemRenderer="com.egoveris.edt.web.admin.pl.renderers.SectorMesaComboBoxItemRenderer">
+						</combobox>
+					</hbox>
+				</row>
+				<row width="100%">
+					<label
+						value="${c:l('eu.datosPersonales.datosUsuario.tab.cargo.label')}" />
+					<hbox vflex="true" align="center">
+						<combobox id="cbx_cargo" width="300px"
+							readonly="true" height="31px"
+							model="@{win_tabGestionDatosPersonalesUsuario$composer.cargosDisponibles}"
+							selectedItem="@{win_tabGestionDatosPersonalesUsuario$composer.selectedCargo}"
+							value="@{win_tabGestionDatosPersonalesUsuario$composer.datosUsuario.cargoAsignado.cargoNombre}"
+							itemRenderer="com.egoveris.edt.web.admin.pl.renderers.CargosComboBoxItemRenderer">
+						</combobox>
+					</hbox>
+				</row>
+				<row width="100%">
+					<label
+						value="${c:l('eu.datosPersonales.datosUsuario.tab.password.label')}"
+						id="labelPassword" />
+					<hlayout>
+						<textbox id="txbx_passwordActual"
+							type="password" width="300px" />
+						<label
+							value="${c:l('eu.datosPersonales.datosUsuario.passwordObligatorio')}" />
+					</hlayout>
+				</row>
+
+				<row width="100%">
+					<label
+						value="${c:l('eu.datosPersonales.datosUsuario.tab.passwordNuevo.label')}"
+						id="labelNuevoPassword" />
+					<textbox id="txbx_nuevoPsswd" type="password"
+						width="300px" />
+				</row>
+
+				<row width="100%">
+					<label
+						value="${c:l('eu.datosPersonales.datosUsuario.tab.passwordConfirmacion.label')}"
+						id="labelNuevoPasswordConfirmacion" />
+					<textbox id="txbx_nuevoPsswdConfirmacion"
+						type="password" width="300px" />
+				</row>
+
+				<row width="100%">
+					<label
+						value="${c:l('eu.datosPersonales.datosUsuario.tab.TyC.label')}" />
+					<cell align="center">
+						<vlayout>
+							<textbox id="txbx_tyc" type="password"
+								width="700px" rows="10" readonly="true"
+								value="@{win_tabGestionDatosPersonalesUsuario$composer.terminosYCondiciones}" />
+							<checkbox id="chbx_tyc" label="${c:l('eu.gesDatPerssUsuComp.lbl.leido')}"
+								checked="@{win_tabGestionDatosPersonalesUsuario$composer.datosUsuario.aceptacionTyC}">
+							</checkbox>
+						</vlayout>
+					</cell>
+				</row>
+			</rows>
+		</grid>
+
+		<hbox id="hbox_botones" align="center">
+			<button id="btn_guardar" iconSclass="z-icon-floppy-o"
+				label="${c:l('eu.datosPersonales.periodoLicencia.tab.guardar')}"
+				zclass="z-button" style="padding:7px 10px;" />
+			<button visible="false" disabled="true" id="btn_eliminar" image="/imagenes/delete_24px.png"
+				label="${c:l('eu.abm.configuracion.feriados.eliminar')}" />
+		</hbox>
+
+	</window>
+</zk>
+

@@ -1,0 +1,194 @@
+<?page title="${c:l('digigob.Title')}" contentType="text/html;charset=UTF-8"?>
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+<?init class="org.zkoss.zk.ui.util.Composition" arg0="~./db_template.zul"?>
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./consultaExpedientesWindow"?>
+<zk>
+	<zscript><![CDATA[
+	import java.util.Comparator;
+	import com.egoveris.te.base.util.comparator.ConsultaExpedienteElectronicoComparator;
+	Comparator numeroExpedienteMayor = new ConsultaExpedienteElectronicoComparator(true, 1);
+	Comparator numeroExpedienteMenor = new ConsultaExpedienteElectronicoComparator(false, 1);
+	Comparator reparticionMayor = new ConsultaExpedienteElectronicoComparator(true, 2);
+	Comparator reparticionMenor = new ConsultaExpedienteElectronicoComparator(false, 2);
+	Comparator fechaMayor = new ConsultaExpedienteElectronicoComparator(true, 3);
+	Comparator fechaMenor = new ConsultaExpedienteElectronicoComparator(false, 3);
+	Comparator usuarioGeneradorMayor = new ConsultaExpedienteElectronicoComparator(true, 4);
+	Comparator usuarioGeneradorMenor = new ConsultaExpedienteElectronicoComparator(false, 4);
+	Comparator referenciaMayor = new ConsultaExpedienteElectronicoComparator(true, 5);
+	Comparator referenciaMenor = new ConsultaExpedienteElectronicoComparator(false, 5);
+]]></zscript>
+	<window title="" border="none" width="100%"
+		id="consultaExpedientesWindow"
+		apply="com.egoveris.te.base.composer.ConsultaExpedienteElectronicoComposer"
+		self="@{define(egovBody)}">
+		<window id="parametrosConsultaWindow" visible="false" />
+
+
+		<div sclass="page-header">
+			<label
+				value="${c:l('ee.panelconsultas.label.consultas.value')}" />
+		</div>
+
+		<menubar>
+			<menu image="/imagenes/page_white_text.png"
+				label="${c:l('ee.consultaExpediente.busqueda')}">
+				<menupopup width="400px">
+					<menuitem
+						label="${c:l('ee.consultaExpediente.menuitem.buscarExpedientes')}"
+						id="generadosPorMi" />
+					<menuitem
+						label="${c:l('ee.consultaExpediente.menuitem.buscarExpedienteOrganismo')}"
+						id="generadosEnReparticion" />
+					<menuitem
+						label="${c:l('ee.consultaExpediente.menuitem.buscarExpedientesTramitados')}"
+						id="tramitadosPorMi" />
+				</menupopup>
+			</menu>
+			<menuitem image="/imagenes/page_white_text.png"
+				label="${c:l('ee.consultaExpediente.menuitem.consultaExpedienteNumero')}" id="porNumeroSADE" />
+
+			<menu image="/imagenes/page_white_text.png"
+				label="${c:l('ee.consultaExpediente.menuitem.consultaExpedienteGuarda')}">
+				<menupopup width="400px">
+					<menuitem
+						label="${c:l('ee.consultaExpediente.menuitem.buscarExpedientesGenerados')}"
+						id="generadosPorMiGT" />
+					<menuitem
+						label="${c:l('ee.consultaExpediente.menuitem.buscarExpedientesGeneradosOrganismo')}"
+						id="generadosEnReparticionGT" />
+					<menuitem
+						label="${c:l('ee.consultaExpediente.menuitem.buscarExpedientesTramitados')}"
+						id="tramitadosPorMiGT" />
+				</menupopup>
+			</menu>
+
+		</menubar>
+
+		<paging id="consultaPaginator" detailed="true" pageSize="10" />
+		<listbox id="consultaExpedientesList"
+			paginal="${consultaPaginator }" mold="paging"
+			model="@{consultaExpedientesWindow$composer.expedienteElectronico}"
+			selectedItem="@{consultaExpedientesWindow$composer.selectedExpedienteElectronico}"
+			itemRenderer="com.egoveris.te.base.rendered.ExpedienteConsultaRenderer">
+			<listhead>
+				<listheader label="${c:l('ee.consultaExpediente.listheader.codigoExp')}" align="center"
+					sortAscending="${numeroExpedienteMayor}"
+					sortDescending="${numeroExpedienteMenor}" />
+				<listheader
+					label="${c:l('ee.consultaExpediente.listheader.fechaCreacion')}"
+					align="center" sortAscending="${fechaMayor}"
+					sortDescending="${fechaMenor}" />
+				<listheader label="${c:l('ee.consultaExpediente.listheader.usuarioGenerador')}" align="center"
+					sortAscending="${usuarioGeneradorMayor}"
+					sortDescending="${usuarioGeneradorMenor}" />
+				<listheader label="${c:l('ee.consultaExpediente.listheader.referencia')}" align="center"
+					sortAscending="${usuarioGeneradorMayor}"
+					sortDescending="${usuarioGeneradorMenor}" />
+				<listheader label="${c:l('ee.documentViewer.listhead.accion')}" align="center"
+					sortAscending="${referenciaMayor}"
+					sortDescending="${referenciaMenor}" />
+			</listhead>
+		</listbox>
+
+		<!--
+			<listbox id="consultaExpedientesList"
+			model="@{consultaExpedientesWindow$composer.expedienteElectronico}"
+			selectedItem="@{consultaExpedientesWindow$composer.selectedExpedienteElectronico}"
+			mold="paging" paginal="${consultaPaginator}">
+			<listhead>
+			<listheader label="Expediente Electrónico"
+			align="center" 
+			sortAscending="${numeroExpedienteMayor}"
+			sortDescending="${numeroExpedienteMenor}" />
+			<listheader label="Fecha creación" align="center"
+			sortAscending="${fechaMayor}"
+			sortDescending="${fechaMenor}" />
+			<listheader label="Usuario Generador" align="center"
+			sortAscending="${usuarioGeneradorMayor}"
+			sortDescending="${usuarioGeneradorMenor}" />
+			<listheader label="Referencia" align="center"
+			sortAscending="${referenciaMayor}"
+			sortDescending="${referenciaMenor}" />
+			<listheader label="Acción" align="center" />
+			</listhead>
+			<listitem self="@{each=expedienteElectronico}">
+			<listcell label="@{expedienteElectronico.getCodigoCaratula}" />
+			<listcell
+			label="@{expedienteElectronico.fechaCreacion,converter='org.zkoss.zkplus.databind.DateFormatConverter'}"  self="@{format('dd/MM/yyyy H:mm:ss')}" />
+			<listcell
+			label="@{expedienteElectronico.usuarioCreador}" />
+			<listcell
+			label="@{expedienteElectronico.solicitudIniciadora.motivo}"
+			tooltiptext="@{expedienteElectronico.solicitudIniciadora.motivo}" />
+			<listcell>
+			<hbox align="center">
+			<image src="/imagenes/ver_expediente.png"
+			tooltiptext="Ver Expediente"
+			forward="onClick=consultaExpedientesWindow$composer.onVerExpediente" />
+			<label value="Visualizar"
+			tooltiptext="Ver Expediente"
+			forward="onClick=consultaExpedientesWindow$composer.onVerExpediente" />
+			<separator spacing="10px" />
+			<image src="/imagenes/btn-menu-hor-over.gif"
+			tooltiptext="Tramitar Expediente"
+			popup="tramitarPopup" />
+			<label value="Tramitar" 
+			tooltiptext="Tramitar Expediente"
+			popup="tramitarPopup"/>
+			
+			
+			</hbox>
+			</listcell>
+			</listitem> 
+			</listbox>
+		-->
+		<!--  <menupopup id="tramitarPopup">
+			<menuitem  
+			image="/imagenes/play.png"
+			label="Ejecutar Tarea"
+			id="ejecutarTarea" forward="onClick=consultaExpedientesWindow$composer.onEjecutarTarea"/>
+			<menuitem 
+			image="/imagenes/egovReturn.png" 
+			label="Adquirir tarea"
+			id="adquirirTarea"  forward="onClick=consultaExpedientesWindow$composer.onAdquirirTarea"/>
+			</menupopup> -->
+		<!--  </window> -->
+
+		<!--TOOLTIPS DE AYUDA-->
+		<popup id="helpAñoEspecial" width="150px">
+			<!--			<label value="${c:l='ee.consultaDocumentos.helpAñoEspecial')}" />-->
+			<label multiline="true"
+				value="${c:l('ee.consultaDocumentos.helpAnioEspecial')}" />
+			<!-- <image src="/imagenes/help/añoEspecial.png" /> -->
+		</popup>
+
+		<popup id="helpNumeroEspecial" width="150px">
+			<!--			<label value="${c:l='ee.consultaDocumentos.helpNumeroEspecial')}" />-->
+			<label multiline="true"
+				value="${c:l('ee.consultaDocumentos.helpNumeroEspecial')}" />
+			<!-- <image src="/imagenes/help/numeroEspecial.png" /> -->
+		</popup>
+		<popup id="helpTipoDocumento" width="150px">
+			<!--			<label multiline="true" value="${c:l('ee.consultaDocumentos.helpTipoDocumento')}" />-->
+			<label multiline="true"
+				value="${c:l('ee.iniciarDocumento.helpTipoDocumento')}" />
+			<!-- <image src="/imagenes/help/motivoDocumento.png" /> -->
+		</popup>
+		<popup id="usuarioPopUp" width="550px">
+			<groupbox id="idGroupbox" mold="3d">
+				<caption label="${c:l('ee.consultaExpediente.caption.seleccioneUsuario')}" />
+				<hbox>
+				<include id="inclBandboxUsuario"/>
+<!-- 					<combobox id="usuario" autodrop="true" -->
+<!-- 						buttonVisible="false" width="280px"> -->
+<!-- 					</combobox> -->
+					<separator></separator>
+					<separator></separator>
+					<button autodisable="self" id="enviarUsuario"
+						label="${c:l('ee.documentViewer.button.aceptar')}" />
+				</hbox>
+			</groupbox>
+		</popup>
+	</window>
+</zk>

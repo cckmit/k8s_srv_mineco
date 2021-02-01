@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<complexComponent type="TRADE" name="vistadocumento"
+	description="Vista Documento Information" zul="vistaDocumento.zul"
+	mappingDTO="com.egoveris.ccomplejos.base.model.VistaDocumentoDTO">
+
+	<field name="emisorDocumentoComercial" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" disabled="true"/>
+		
+	<field name="numeroDocumentoComercial" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" disabled="true"/>
+		
+	<field name="codigoPaisEmisorDocumentoComercial" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" disabled="true"/>
+		
+	<field name="tipoDocumentoComercial" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" disabled="true"/>
+		
+	<field name="fechaDocumentoComercial" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.DateboxExt" disabled="true"/>
+	
+		
+</complexComponent>

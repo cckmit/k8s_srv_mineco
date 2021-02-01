@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<complexComponent type="TRADE" name="almacenista"
+	description="Almacenista Information" zul="almacenista.zul"
+	composer="com.everis.tramelec.dynform.comp.ext.AlmacenistaComposer"
+	mappingDTO="com.egoveris.ccomplejos.base.model.AlmacenistaDTO">
+
+	<field name="almacenista" width="90%" height="20px"
+		factory="comboBoxFactory" />
+		
+	<field name="fechaRecepcionMercancias" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.DateboxExt"  />
+		
+	<field name="fechaRetiroMercancias" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.DateboxExt"  />
+		
+	<field name="numeroRegistroReconocimiento" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt"/>
+		
+	<field name="anoRegistroReconocimiento" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" />
+		
+	<field name="codigoReglaUnoProcedimientoAforo" width="90%" height="20px"
+		factory="comboBoxFactory" />
+		
+	<field name="numeroResolucionReglaUno" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" />
+		
+	<field name="anoResolucionReglaUno" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" />
+		
+	<field name="codigoUltimaResolucionReglaUno" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" />
+
+</complexComponent>

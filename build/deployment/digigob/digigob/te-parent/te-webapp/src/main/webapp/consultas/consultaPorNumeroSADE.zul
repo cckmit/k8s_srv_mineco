@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./consultaPorNumeroSADEWindow"  ?>
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+<?page title="Datos de la consulta"?>
+<zk>
+	<window id="consultaPorNumeroSADEWindow"
+		title="${c:l('ee.consultaNumero.title.consultaExpediente')}" border="normal"
+		width="40%"
+		apply="com.egoveris.te.base.composer.ConsultaPorNumeroSADEComposer"
+		closable="true">
+		<grid align="center" width="99%"
+			id="gridConsultaDocumentos">
+			<rows>
+				<row >
+					<label value="${c:l('ee.consultaNumero.label.tipoActuacion')}" />
+					<combobox width="80px" id="expediente" readonly="true" disabled="false"/>
+				</row>
+				<row >
+					<label value="${c:l('ee.consultaNumero.label.anio')}" />
+					<intbox cols="4" maxlength="4" id="anioSADE" />
+				</row>
+				<row >
+					<label value="${c:l('ee.consultaDocumentos.numSADEnumero')}" />
+					<intbox maxlength="8" id="numeroSADE" />
+				</row>
+				<row >
+					<label value="${c:l('ee.caratulas.listheader.expediente.reparticion.value')}" />
+					<combobox width="80px" id="reparticionActuacion" readonly="true" disabled="true"/>
+				</row>
+				<row >
+					<label value="${c:l('ee.caratulas.listheader.expediente.reparticionUsuario.value')}" />
+					<bandbox id="reparticionBusquedaUsuario">
+						<bandpopup
+							apply="com.egoveris.te.base.util.FindReparticionesConsulta"
+							id="reparticionesComboBusquedaSADE" width="650px">
+							<groupbox mold="3d">
+								<caption>
+									<hbox>
+										Búsqueda de Organismo
+										<image src="/imagenes/help.png"
+											width="16px" height="16px" tooltip="helpBusquedaReparticion"
+											align="right" />
+									</hbox>
+								</caption>
+								<separator></separator>
+								<vbox>
+									<hbox>
+										Buscar
+										<textbox
+											id="textoReparticionBusquedaUsuario" />
+									</hbox>
+									<paging
+										id="pagingReparticionesExpSADE" pageSize="10" />
+									<listbox mold="paging" width="600px"
+										id="reparticionesBusquedaUsuarioListbox"
+										model="@{listaReparticionSADESeleccionada}"
+										selectedItem="@{reparticionSeleccionada}"
+										paginal="${pagingReparticionesExpSADE}">
+										<listhead>
+											<listheader label="${c:l('te.webapp.expediente.macros.documentofiltro.lbl.codigo')}"
+												width="30%" />
+											<listheader label="${c:l('te.webapp.expediente.macros.documentofiltro.lbl.nombre')}"
+												height="70%" />
+										</listhead>
+										<listitem
+											self="@{each=reparticion}">
+											<listcell
+												label="@{reparticion.codigo}" />
+											<listcell
+												label="@{reparticion.nombre}" />
+										</listitem>
+									</listbox>
+								</vbox>
+							</groupbox>
+						</bandpopup>
+					</bandbox>
+				</row>
+			</rows>
+		</grid>
+		<separator></separator>
+		<separator></separator>
+		<hbox>
+			<button autodisable="self" class="btn-info" label="${c:l('te.webapp.expediente.macros.documentofiltro.lbl.buscar')}" id="buscar" />
+			<separator></separator>
+			<button autodisable="self" class="btn-info" label="${c:l('ee.subsanacion.button.cerrar')}" id="cerrar" />
+		</hbox>
+		<separator></separator>
+	</window>
+</zk>

@@ -1,0 +1,33 @@
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+<?page title="${('gedo.abmTipoDocTemplate.winTitle.producirTemplate')}" contentType="text/html;charset=UTF-8"?>
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./producirTemplateWindow" ?>
+<zk>
+	<window width="720px" height="385px" id="producirTemplateWindow"
+		border="none" closable="false" mode="embedded"
+		apply="com.egoveris.deo.web.satra.produccion.ProducirTemplateComposer"
+		sizable="false" >
+		
+		<hbox>
+			<cell>
+				<label 
+				    id="aplicarPlantilla"
+					value="${c:l('gedo.plantillas.listhead.listheader.label.aplicarplantilla')}"
+					tooltiptext="${c:l('gedo.plantillas.listhead.listheader.label.aplicarplantillamsg')}" />
+			</cell>
+			<cell>
+				<combobox id="comboboxPlantillas" width="400px"
+					readonly="true"
+					model="@{producirTemplateWindow$ProducirTemplateComposer.listaPlantilla}"
+					selectedItem="@{producirTemplateWindow$ProducirTemplateComposer.selectedPlantilla}"
+					autodrop="true" visible="true">
+					<comboitem self="@{each=plantilla}"
+						value="@{plantilla}" label="@{plantilla.getNombre}"
+						tooltiptext="@{plantilla.getDescripcion}" />
+				</combobox>
+			</cell>
+		</hbox>
+		<separator height="10px"></separator>
+		<ckeditor customConfigurationsPath="/js/ckeditor.js"  width="100%" height="245px" id="ckeditor" />
+	</window>
+</zk>

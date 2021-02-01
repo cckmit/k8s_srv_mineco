@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>com.egoveris</groupId>
+    <artifactId>egoveris-master-config</artifactId>
+    <version>2.0.3-SNAPSHOT</version>
+  </parent>
+  <artifactId>tica</artifactId>
+  <packaging>pom</packaging>
+  <name>Application tica</name>
+
+  <distributionManagement>
+    <repository>
+       <id>local-releases</id>
+       <name>Repositorio interno everis Argentina - RELEASES</name>
+       <url>https://steps.everis.com/nexus/repository/EGOVERISTE.Release/</url>
+    </repository>
+    <snapshotRepository>
+       <id>local-snapshots</id>
+       <name>Repositorio interno eGoveris - SNAPSHOTS</name>
+       <url>https://steps.everis.com/nexus/repository/EGOVERISTE.Snapshot/</url>
+    </snapshotRepository>
+  </distributionManagement>
+
+  <modules>
+    <module>tica-env</module>
+    <module>tica-base-common</module>
+    <module>tica-ws-common</module>
+    <module>tica-base-core</module>
+    <module>tica-ws-web</module>
+    <module>tica-webapp</module>
+  </modules>
+  <properties>
+    <appShortId>tica</appShortId>
+  </properties>
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>com.egoveris</groupId>
+        <artifactId>tica-env</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.egoveris</groupId>
+        <artifactId>tica-webapp</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.egoveris</groupId>
+        <artifactId>tica-base-common</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+       <dependency>
+        <groupId>com.egoveris</groupId>
+        <artifactId>tica-ws-common</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.egoveris</groupId>
+        <artifactId>tica-base-core</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.egoveris</groupId>
+        <artifactId>tica-ws-web</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
+</project>

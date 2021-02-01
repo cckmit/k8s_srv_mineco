@@ -1,0 +1,21 @@
+<?page title="" contentType="text/html;charset=UTF-8"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./abmConstraintEditWindow" ?>
+<zk>
+	<window id="abmConstraintEditWindow" title="${c:l('abmConstraint.abmRestriccion.title')}" position="center"
+		closable="false" sizable="false" style="padding:2px" border="normal" contentStyle="overflow:auto"
+		mode="overlapped"
+		apply="com.egoveris.ffdd.web.adm.ABMFCConstraintEditComposer"
+		height="550px" width="900px">
+		<div align="center">
+			<hbox>
+				<button height="40px" label="${c:l('abmConstraint.boton.nuevaRestriccion')}"
+					forward="onClick=onAltaConstraint" image="/imagenes/constraint.png">
+				</button>
+				<space width="5px"></space>
+				<button id="botonGuardar" height="40px" label="${c:l('abmConstraint.boton.aplicarRestriccion')}" image="/imagenes/aplicar.png"
+					forward="onClick=onGuardarConstraint">
+				</button>
+			</hbox>
+		</div>
+	</window>
+</zk>

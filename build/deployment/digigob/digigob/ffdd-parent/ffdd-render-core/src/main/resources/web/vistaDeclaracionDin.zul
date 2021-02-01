@@ -1,0 +1,42 @@
+<?page title="new page title" contentType="text/html;charset=UTF-8"?>
+<zk>
+	<vlayout
+		apply="com.egoveris.ffdd.render.zk.comp.cc.VistaDeclaracionDinComposer">
+		<grid>
+			<columns>
+				<column></column>
+			</columns>
+			<rows>
+				<row>
+					<vbox>
+						<hbox>
+							<cell
+								id="${arg.formComp.nombre}_numeroIdentificacionDiv" />
+							<cell
+								id="${arg.formComp.nombre}_codigoAduanaDiv" />
+								
+							<cell
+								id="${arg.formComp.nombre}_campoFormDiv" />
+						</hbox>
+						<hbox>
+							<cell
+								id="${arg.formComp.nombre}_fechaDeVencimientoDiv" />
+							<cell
+								id="${arg.formComp.nombre}_codigoTipoOperacionDiv" />
+							<cell
+								id="${arg.formComp.nombre}_tipoDeIngresoDiv" />
+						</hbox>
+						<hbox>
+							<cell
+								id="${arg.formComp.nombre}_urlDinDiv" />
+							<cell
+								id="${arg.formComp.nombre}_tipoDestinacionDiv" />
+							<cell
+								id="${arg.formComp.nombre}_regionIngresoDiv" />
+						</hbox>
+					</vbox>
+				</row>
+			</rows>
+		</grid>
+	</vlayout>
+</zk>

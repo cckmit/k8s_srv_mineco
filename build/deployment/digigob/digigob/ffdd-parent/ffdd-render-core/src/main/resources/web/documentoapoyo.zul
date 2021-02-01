@@ -1,0 +1,45 @@
+<zk>
+	<vlayout
+		apply="com.egoveris.ffdd.render.zk.comp.cc.DocumentoApoyoComposer">
+		<grid>
+			<columns>
+				<column></column>
+			</columns>
+			<rows>
+				<row>
+					<vbox>
+						<hbox>
+							<cell
+								id="${arg.formComp.nombre}_documentoApoyoIdDiv" />
+							<cell
+								id="${arg.formComp.nombre}_secuenciaNroDiv" />
+						</hbox>
+						<hbox>
+							<cell
+								id="${arg.formComp.nombre}_idDocumentoDiv" />
+							<cell
+								id="${arg.formComp.nombre}_fechaDocumentoDiv" />
+						</hbox>
+						<hbox>
+							<cell
+								id="${arg.formComp.nombre}_comentariosDiv" />
+							<cell
+								id="${arg.formComp.nombre}_adjuntoDiv" />
+						</hbox>
+						<hbox>
+							<cell
+								id="${arg.formComp.nombre}_numeroDocumentoDiv" />
+							<cell
+								id="${arg.formComp.nombre}_tipoDocumentoDiv" />
+						</hbox>
+						<hbox>
+							<cell
+								id="${arg.formComp.nombre}_emisorDocumentoDiv" />
+						</hbox>
+					</vbox>
+				</row>
+			</rows>
+		</grid>
+	</vlayout>
+</zk>
+

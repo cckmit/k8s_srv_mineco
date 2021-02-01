@@ -1,0 +1,53 @@
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+<?page title="${c:l('gedo.importarDocumento.adjuntarDocumento')}" contentType="text/html;charset=UTF-8"?>
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./adjuntarDocumentoWindow" ?>
+<zk>
+
+	<window id="adjuntarDocumentoWindow" border="none" closable="false"
+		mode="embedded"
+		apply="com.egoveris.deo.web.satra.AdjuntarDocumentoComposer"
+		 sizable="false" position="center"
+		width="700px">
+
+		<grid width="100%">
+			<columns>
+				<column width="25%"></column>
+				<column width="75%"></column>
+			</columns>
+			<rows sclass="narrow">
+				<row align="left"
+					style=" border-style:hidden;">
+					<cell>
+						
+						<space width="10px" />
+						<separator height="10px" />
+							
+						<button height="42px"
+							width="120px" class="btn-secondary"
+							iconSclass="z-icon-file-text-o" style="white-space:normal;margin-bottom:3px"
+							id="uploadDocumento"
+							label="${c:l('gedo.enviarARevisar.wintitle.subir')}" disabled = "true" />
+					</cell>
+					<cell>
+						<groupbox width="90%" height="40px">
+							<hbox align="center" widths="300px,100px">
+								<label id="nombreArchivoLabel"
+									value="${c:l('gedo.digitalizarDocumento.ningunArchivo')}" />
+								<space width="10px" />
+								<toolbar mold="panel"
+									orient="horizontal" width="100%" align="start">
+									<toolbarbutton
+										id="eliminarDocumento"
+										tooltiptext="${c:l('gedo.adjuntarDocumentoComposer.tooltext.eliminarDocumento')}" />
+								</toolbar>
+							</hbox>
+						</groupbox>
+					</cell>
+				</row>				
+			</rows>			
+		</grid>
+			<label id="formatosPermitidos"
+							value="${c:l('gedo.digitalizarDocumento.formatosPermitidos')}" />
+	</window>
+</zk>

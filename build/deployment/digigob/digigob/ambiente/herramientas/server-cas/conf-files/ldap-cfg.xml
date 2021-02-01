@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+	<!--configuracion del ldap para servidor de CAS -->
+	<!-- Son referenciadas desde el archivo deployConfigContext.xml, otros -->
+	
+	<bean id="ldap:Url" class="java.lang.String">
+		<constructor-arg type="java.lang.String" value="ldap://docker-host.egoveris.com/"/>
+	</bean>	
+	
+	<bean id="ldap:UserDn" class="java.lang.String">
+		<constructor-arg type="java.lang.String" value="cn=Manager,DC=egoveris,DC=com"/>
+	</bean>	
+	
+	<bean id="ldap:Password" class="java.lang.String">
+		<constructor-arg type="java.lang.String" value="secret"/>
+	</bean>	
+  
+ 	<bean id="ldap:SearchBase" class="java.lang.String">
+		<constructor-arg type="java.lang.String" value="ou=funcionarios,DC=egoveris,DC=com"/>
+	</bean>
+
+ 	<bean id="ldap:BaseDN" class="java.lang.String">
+		<constructor-arg type="java.lang.String" value="ou=funcionarios,DC=egoveris,DC=com"/>
+	</bean>
+	
+ 	<bean id="ldap:Timeout" class="java.lang.String">
+		<constructor-arg type="java.lang.String" value="6000"/>
+	</bean>	
+
+  <bean id="ldap:Mapping" class="java.util.Hashtable">
+    <constructor-arg> 
+      <map>
+        <!-- Mapping between LDAP attributes (key) and Principal's (value) -->
+        <entry value="cn" key="username" />
+        <entry value="DN" key="distinguishedName" />
+        <entry value="employeeType" key="memberOf" />
+        <entry value="uid" key="usernameNyA" />
+      </map>
+    </constructor-arg> 
+	</bean>			    
+</beans>

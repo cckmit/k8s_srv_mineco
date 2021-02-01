@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<complexComponent type="TRADE" name="resumendeclaracioningreso"
+	description="Resumen Declaración Ingreso Information" zul="resumenDeclaracionIngreso.zul"
+	composer="com.egoveris.ffdd.render.zk.comp.cc.ResumenDeclaracionIngresoComposer"
+	mappingDTO="com.egoveris.ccomplejos.base.model.ResumenDeclaracionIngresoDTO">
+
+	<field name="id" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" disabled="true" />
+	<field name="destinacionAduanera" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" disabled="true" />
+	<field name="tipoOperacion" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" disabled="true" />
+	<field name="fechaCreacion" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" disabled="true" />
+	<field name="estadoOp" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" disabled="true" />
+	<field name="totalGiroUSD" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" disabled="true" />
+
+
+</complexComponent>

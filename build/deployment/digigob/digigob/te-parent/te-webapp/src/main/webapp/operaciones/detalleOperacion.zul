@@ -1,0 +1,64 @@
+<?page title="${c:l('digigob.Title')}" contentType="text/html;charset=UTF-8"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./boInOp" ?>
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+
+<zk>
+	<window id="boInOp" apply="org.zkoss.bind.BindComposer"
+		viewModel="@id('ioVM') @init('com.egoveris.te.base.vm.DetalleOperacionVM')">
+
+		<hbox visible="${arg.vistaBorrador}">
+			<label value="${c:l('ee.detalleOperacion.label.borrador')}"
+				style="padding-left: 10px;" />
+			<button class="btn-info"
+				label="${c:l('ee.nuevoDocumento.botonGuardar')}"
+				onClick="@command('onGuardar', mostrarConfirmacion=true)" />
+			<button class="btn-info"
+				label="${c:l('ee.detalleOperacion.label.confirmar')}"
+				onClick="@command('onConfirmar')" />
+			<button class="btn-info"
+				label="${c:l('ee.tramitacion.label.eliminar.value')}" />
+			<button class="btn-info" label="${c:l('ee.general.volver')}"
+				onClick="@command('onVolver')" />
+		</hbox>
+
+		<hbox visible="${!arg.vistaBorrador}">
+		<label value="${c:l('ee.detalleOperacion.label.borrador')}"
+				style="padding-left: 10px;" />
+			<button class="btn-info"
+				label="${c:l('ee.nuevoDocumento.botonGuardar')}"
+				onClick="@command('onGuardar', mostrarConfirmacion=true)" />
+			<button class="btn-info"
+				label="${c:l('ee.detalleOperacion.label.confirmar')}"
+				onClick="@command('onConfirmar')" />
+			<button class="btn-info"
+				label="${c:l('ee.tramitacion.label.eliminar.value')}" />
+			<button class="btn-info" label="${c:l('ee.general.volver')}"
+				onClick="@command('onVolver')" />
+		</hbox>
+
+		<separator height="10px" />
+
+		<tabbox>
+			<tabs id="tabs">
+				<tab label="${c:l('ee.caches.row.formulario')}" />
+				<tab label="${c:l('ee.subsanacion.label.datos')}" />
+				<tab label="${c:l('ee.tramitacion.tab.documentos.value')}" />
+				<tab label="${c:l('ee.detalleOperacion.label.pagos')}" />
+			</tabs>
+			<tabpanels>
+				<tabpanel>
+					<tabbox id="tabDinamico" />
+				</tabpanel>
+				<tabpanel>
+					<include src="/operaciones/tabs/datosOperacionTab.zul" />
+				</tabpanel>
+				<tabpanel>
+					<include operacion="${ioVM.operacion}" soloLectura="${!arg.vistaBorrador}" src="/operaciones/tabs/documentosOperacionTab.zul" />
+				</tabpanel>
+				<tabpanel>
+					<include src="/operaciones/tabs/pagosOperacionTab.zul" />
+				</tabpanel>
+			</tabpanels>
+		</tabbox>
+	</window>
+</zk>

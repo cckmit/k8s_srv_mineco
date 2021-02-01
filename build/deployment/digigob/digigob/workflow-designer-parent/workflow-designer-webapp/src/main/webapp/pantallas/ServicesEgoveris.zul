@@ -1,0 +1,58 @@
+<?page title="Servicios" id="servicesESB" contentType="text/html;charset=UTF-8"?>
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./servicesEgoveris" ?>
+
+<zk xmlns:x="xhtml" xmlns:zk="zk" xmlns:w="http://www.zkoss.org/2005/zk/client">
+	<window id="servicesEgoveris" apply="org.zkoss.bind.BindComposer"
+		viewModel="@id('vm') @init('com.egoveris.workflow.designer.module.controller.mv.ServicesEgoverisVM')"
+		border="normal" mode="modal" title="Servicios Egoveris" closable="true" 
+		width="750px" height="auto">
+		<grid width="100%" >
+			<columns>
+				<column width="30%"></column>
+				<column width="100%"></column>
+			</columns>
+			<rows>
+				<row>
+					<label value="${c:l('general.servicio')}"/>
+					<combobox id="cbxServices" rows="1" model="@load(vm.listServicesRest)"
+					 	 onChange="@command('onLoadAviablesEndPoints', entry=self.selectedIndex)"
+					 	 width="230px">
+						<template name="model" var="item" >
+							<comboitem label="@load(item.apiName)" value="@load(item.baseUrl)"/>
+						</template>
+					</combobox>
+				</row>
+				<row>
+					<label value="Api"/>
+					<combobox id="cbxEndPoints" rows="1" model="@load(vm.paths.entrySet())" 
+					    onChange="@command('onLoadParameters')" 
+					    selectedItem="@bind(vm.endPointSelected)" width="230px">
+						<template name="model" var="item">
+							<comboitem label="@bind(item.key)"/>
+						</template>
+					</combobox>
+				</row>
+				<row>
+					<label value="Type"/>
+					<textbox id="typeRequest" disabled="true" value="@bind(vm.typeRequest)" width="230px"/>
+				</row>
+				<row>
+					<label value="TypeParameter"/>
+					<textbox id="typeParameter" disabled="true" value="@bind(vm.parameterType)" width="230px"/>
+				</row>
+				<row id="rowParameters" visible="false">
+					<cell colspan="2">
+						<grid width="100%" id="gridParameters">
+							<rows></rows>
+						</grid>
+					</cell>
+				</row>
+			</rows>
+		</grid>
+		<div width="100%" align="center">
+			<button id="btnAceptar" label="${c:l('general.guardar')}" class="btn-info"/>
+			<button id="btnCancelar" label="${c:l('general.cancelar')}" class="btn-info"/>
+		</div>
+	</window>
+</zk>

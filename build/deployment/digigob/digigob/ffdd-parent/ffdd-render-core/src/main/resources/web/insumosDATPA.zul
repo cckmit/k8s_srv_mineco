@@ -1,0 +1,27 @@
+<zk>
+	<vlayout
+		apply="com.egoveris.ffdd.render.zk.comp.cc.InsumosDATPAComposer">
+		<vbox>
+			<hbox>
+				<cell id="${arg.formComp.nombre}_numeroInsumoDiv" />
+				<cell id="${arg.formComp.nombre}_descripcionInsumoDiv" />
+			</hbox>
+			<hbox>
+				<cell id="${arg.formComp.nombre}_cantidadInsumoDiv" />
+				<cell id="${arg.formComp.nombre}_unidadMedidaCantidadDiv" />
+			</hbox>
+			<hbox>
+				<cell id="${arg.formComp.nombre}_numeroHojaDiv" />
+				<cell id="${arg.formComp.nombre}_numeroItemDiv" />
+			</hbox>
+			<hbox>
+				<cell id="${arg.formComp.nombre}_valorCIFUnitarioDiv" />
+				<cell id="${arg.formComp.nombre}_unidadMedidaCIFDiv" />
+			</hbox>
+			<hbox>
+				<cell id="${arg.formComp.nombre}_consignatarioDiv" />
+				<cell id="${arg.formComp.nombre}_rutImportadorDiv" />
+			</hbox>
+		</vbox>
+	</vlayout>
+</zk>

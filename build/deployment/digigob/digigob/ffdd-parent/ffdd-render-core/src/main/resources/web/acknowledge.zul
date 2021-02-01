@@ -1,0 +1,29 @@
+<?page title="new page title" contentType="text/html;charset=UTF-8"?>
+<zk>
+	<vlayout  apply="com.egoveris.ffdd.render.zk.comp.cc.AcknowledgeComposer">
+		<grid>
+		<columns>
+			<column></column>
+			<column></column>
+		</columns>
+		<rows>
+			<row>
+				<hbox>
+					 <cell id="${arg.formComp.nombre}_idMensajeDiv"/>
+				</hbox>
+				<hbox>
+					 <cell id="${arg.formComp.nombre}_idTransaccionDiv"/>
+				</hbox>	
+			</row>
+			<row>
+				<hbox>
+					 <cell id="${arg.formComp.nombre}_codigoRecepcionDiv"/>
+				</hbox>
+				<hbox>
+					 <cell id="${arg.formComp.nombre}_descripcionRecepcionDiv"/>
+				</hbox>
+			</row>
+		</rows>		
+	</grid>
+ </vlayout>
+</zk>

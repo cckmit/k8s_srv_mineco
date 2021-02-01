@@ -1,0 +1,82 @@
+<?page title="HEADER" contentType="text/html;charset=UTF-8"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./header" ?>
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c" ?>
+<zk>
+	<window border="none" id="header"
+		apply="com.egoveris.edt.web.pl.HeaderComposer">
+		<grid>
+			<columns>
+				<column width="10%" align="left" />
+				<column width="60%" align="center" />
+				<column width="30%" align="right" />
+			</columns>
+			<rows>
+				<row style="background-color: #C4ECFF; border:#C4ECFF">
+					<image id="imagenLogo" tooltip="infoServidor" style="padding-left: 8px;"/>
+					
+					<vbox align="label" width="100%">
+					<label value="${c:l('eu.header.titulo')}" style="font-size:17px;font-weight:500;" />
+
+					</vbox>
+					<div align="right">
+						<div>
+							<hbox sclass="space" height="46px">
+								<div style="display:inline;"
+									id="divUsuario">
+									<toolbarbutton  id="cambiarParticion"  
+										image="/imagenes/egovIconoUsuario.png" label="@{header$HeaderComposer.loggedUser}" 
+										tooltiptext="@{header$HeaderComposer.loggedUserName}" />
+											
+								</div>
+
+								<div style="display:inline;"
+									id="divEscritorio">
+									<hbox visible="false">
+										<image
+											src="/imagenes/escritorio.png" />
+										<label
+											value="${c:l('eu.header.botonIrEU')}"
+											id="irEscritorioUnico" style="cursor:pointer;"
+											sclass="texto" />
+									</hbox>
+								</div>
+
+								<div style="display:inline;"
+									id="divLogout">
+									<hbox>
+										<image
+											src="/imagenes/logout.png" />
+										<label
+											value="${c:l('eu.header.botonSalir')}" id="logout"
+											style="cursor:pointer;" sclass="texto" />
+									</hbox>
+
+
+								</div>
+							</hbox>
+						</div>
+						<div>
+							<label id="nombreServidor"
+								style=" font-size:10px; font-weight:500; " />
+						</div>
+					</div>
+				</row>
+			</rows>
+		</grid>
+
+		<style>
+			.texto{
+				font-weight:500;
+				font-size:11px;
+				
+			}
+			.space{
+				padding-right: 0.5cm;
+				padding-top: 0.2cm;
+			}
+		</style>
+	</window>
+	<popup id="infoServidor" width="200px">
+		<label id="labelServidor" />
+	</popup>
+</zk>

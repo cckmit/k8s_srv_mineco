@@ -1,0 +1,264 @@
+<?page title="" contentType="text/html;charset=UTF-8"?>
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./vincularDocumentoWindow" ?>
+<zk>
+	<window id="vincularDocumentoWindow" closable="true"
+		title="${c:l('te.webapp.expediente.tramitacion.lbl.vinculardoc')}" border="normal"
+		apply="com.egoveris.te.base.composer.VincularDocumentoComposer">
+
+		<div align="center" style="margin-bottom : 6px">
+				<vbox>
+					<hbox>
+						<grid width="740px" align="center"
+							id="gridConsultaDocumentos">
+							<columns>
+								<column width="180px"
+									label="${c:l('ee.asociardocumento.column.buscar.value')}"
+									align="center" />
+								<column width="180px"
+									label="${c:l('ee.asociardocumento.column.tipo.value')}"
+									align="center" />
+								<column width="100px"
+									label="${c:l('ee.asociardocumento.column.anio.value')}"
+									align="center" />
+								<column width="100px"
+									label="${c:l('ee.asociardocumento.column.numero.value')}"
+									align="center" />
+								<column width="180px"
+									label="${c:l('ee.asociardocumento.column.reparticion.value')}"
+									align="center" />
+							</columns>
+							<rows>
+								<row id="camposDocumento"
+									style="background-color: #EFEFEE;">
+									<label
+										value="${c:l('ee.tramitacion.listheader.numero.value')} ${nombreEcosistema}">
+									</label>
+
+									<bandbox id="tiposDocumentoBandbox"
+										width="70%" height="auto">
+										<bandpopup
+											id="tiposDocumentoFamilia" width="360px" height="auto"
+											apply="com.egoveris.te.base.composer.TipoDocumentoExpedienteVincularDocumentoBandboxComposer">
+											<groupbox mold="3d"
+												height="auto" closable="false" width="auto">
+												<caption>
+													<hbox>
+														<label
+															value="${c:l('ee.busquedaTipoDocumento')}" />
+													</hbox>
+												</caption>
+												<separator></separator>
+												<vbox>
+													<hbox
+														align="bottom">
+														<label
+															value="${c:l('ee.consultaGeneradosReparticion.button.buscar')}" />
+														<separator
+															width="2px" />
+														<textbox
+															id="tipoDocumentoTexto" />
+														<separator
+															width="100px" />
+													</hbox>
+													<separator
+														width="25px" />
+													<tree
+														id="documentTypeTree" width="330px"
+														height="auto">
+														<treecols>
+															<treecol
+																width="72%"
+																label="${c:l('ee.nuevoDocumento.descripcion')}" />
+															<treecol
+																width="28%"
+																label="${c:l('ee.nuevoDocumento.acronimo')}" />
+														</treecols>
+													</tree>
+												</vbox>
+											</groupbox>
+										</bandpopup>
+									</bandbox>
+
+									<intbox cols="4" maxlength="4"
+										id="anioSADEDocumento"  />
+									<intbox maxlength="9"
+										id="numeroSADEDocumento" width="89px" />
+
+
+									<bandbox
+										id="reparticionBusquedaDocumento"
+										width="169px">
+										<bandpopup
+											apply="com.egoveris.te.base.composer.FindReparticionesBusquedaDocumentoBandboxComposer"
+											id="reparticionesComboBusquedaDocumento" width="650px">
+											<groupbox mold="3d">
+												<caption>
+													<hbox>
+														Búsqueda de
+														Organismo
+														<image
+															src="./imagenes/help.png" width="16px" height="16px"
+															tooltip="helpBusquedaReparticion" align="right" />
+													</hbox>
+												</caption>
+												<separator></separator>
+												<vbox>
+													<hbox>
+														Buscar
+														<textbox
+															id="textoReparticionBusquedaDocumento" />
+													</hbox>
+													<paging
+														id="pagingReparticionesDocumento" pageSize="10" />
+													<listbox
+														mold="paging" width="600px"
+														id="reparticionesBusquedaDocumentoListbox"
+														model="@{listaReparticionSADEDocumentoSeleccionada}"
+														selectedItem="@{reparticionSeleccionadaDocumento}"
+														paginal="${pagingReparticionesDocumento}">
+														<listhead>
+															<listheader
+																label="${c:l('te.webapp.expediente.macros.documentofiltro.lbl.codigo')}" width="30%" />
+															<listheader
+																label="${c:l('te.webapp.expediente.macros.documentofiltro.lbl.nombre')}" height="70%" />
+														</listhead>
+														<listitem
+															self="@{each=reparticion}">
+															<listcell 
+															forward="onClick=reparticionBusquedaDocumento$FindReparticionesBusquedaDocumentoBandboxComposer.onSelect$reparticionesBusquedaDocumentoListbox"
+																label="@{reparticion.codigo}" />
+															<listcell
+																label="@{reparticion.nombre}" />
+														</listitem>
+													</listbox>
+												</vbox>
+											</groupbox>
+										</bandpopup>
+									</bandbox>
+								</row>
+								<row id="camposDocumentoNumeroEspecial"
+									style="background-color: #EFEFEE;">
+									<label
+										value="${c:l('ee.asociardocumento.column.buscarPorNumeroEspecial.value')}">
+									</label>
+
+									<bandbox
+										id="tiposDocumentoEspecialBandbox" width="130px"
+										height="auto">
+										<bandpopup
+											id="tipoDocumentoEspecialCombo" width="350px" height="auto"
+											apply="com.egoveris.te.base.composer.TipoDocumentoEspecialExpedienteBandboxComposer">
+											<groupbox mold="3d"
+												height="auto" width="auto">
+												<caption>
+													<label
+														value="${c:l('ee.tramitacion.caption.busquedaTipoDoc')}" />
+												</caption>
+												<separator />
+												<vbox>
+													<hbox
+														align="bottom">
+														<label
+															value="${c:l('ee.consultaGeneradosReparticion.button.buscar')}" />
+														<separator
+															width="2px" />
+														<textbox
+															id="textoTipoDocumentoEspcial" />
+														<separator
+															width="100px" />
+													</hbox>
+													<tree
+														id="specialDocumentTypeTree" width="330px"
+														height="auto">
+														<treecols>
+															<treecol
+																width="72%" label="${c:l('ee.nuevoDocumento.descripcion')}" />
+															<treecol
+																width="28%" label="${c:l('ee.nuevoDocumento.acronimo')}" />
+														</treecols>
+													</tree>
+												</vbox>
+											</groupbox>
+										</bandpopup>
+									</bandbox>
+
+									<intbox cols="4" 
+										maxlength="4" id="anioSADEDocumentoNumeroEspecial" />
+									<intbox maxlength="8"
+										id="numeroSADEDocumentoNumeroEspecial" width="89px" />
+
+
+									<bandbox 
+										id="reparticionBusquedaDocumentoNumeroEspecial"
+										width="169px">
+										<bandpopup
+											apply="com.egoveris.te.base.composer.FindReparticionesBusquedaBandboxNumeroEspecial"
+											id="reparticionesComboBusquedaDocumentoNumeroEspecial"
+											width="650px">
+											<groupbox mold="3d">
+												<caption>
+													<hbox>
+														Búsqueda de
+														Repartición
+														<image
+															src="./imagenes/help.png" width="16px" height="16px"
+															tooltip="helpBusquedaReparticion" align="right" />
+													</hbox>
+												</caption>
+												<separator></separator>
+												<vbox>
+													<hbox>
+														Buscar
+														<textbox
+															id="textoReparticionBusquedaDocumentoNumeroEspecial" />
+													</hbox>
+													<paging
+														id="pagingReparticionesDocumentoNumeroEspecial"
+														pageSize="10" />
+													<listbox
+														mold="paging" width="600px"
+														id="reparticionesBusquedaDocumentoListboxNumeroEspecial"
+														model="@{listaReparticionSADEDocumentoSeleccionadaNumeroEspecial}"
+														selectedItem="@{reparticionSeleccionadaDocumentoNumeroEspecial}"
+														paginal="${pagingReparticionesDocumentoNumeroEspecial}">
+														<listhead>
+															<listheader
+																label="${c:l('te.webapp.expediente.macros.documentofiltro.lbl.codigo')}" width="30%" />
+															<listheader
+																label="${c:l('te.webapp.expediente.macros.documentofiltro.lbl.nombre')}" height="70%" />
+														</listhead>
+														<listitem
+															self="@{each=reparticion}">
+															<listcell
+																label="@{reparticion.codigo}" />
+															<listcell
+																label="@{reparticion.nombre}" />
+														</listitem>
+													</listbox>
+												</vbox>
+											</groupbox>
+										</bandpopup>
+									</bandbox>
+								</row>
+							</rows>
+						</grid>
+					</hbox>
+				</vbox>
+				<vbox>
+					<hbox>
+						<button id="buscarDocumentoButton"
+							visible="true" label="${c:l('ee.asociardocumento.column.vincularDocumentos')}"
+							style="cursor: hand; cursor: pointer; padding:7px 10px; margin-left: 10px; margin-top : 10px"
+							forward="onClick=vincularDocumentoWindow$VincularDocumentoComposer.onBuscarDocumentoValidar"
+							iconSclass="z-icon-link" />
+					</hbox>
+
+
+				</vbox>
+		</div>
+
+
+	</window>
+</zk>

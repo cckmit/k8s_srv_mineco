@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<zk>
+	<config-name>ffddZK</config-name>
+	<log>
+		<log-base>org.zkoss</log-base>
+	</log>
+	<!-- Indica que el progress indicator vaya al medio en lugar de en la esquina 
+		superior izquierda -->
+	<library-property>
+		<name>org.zkoss.zul.progressbox.position</name>
+		<value>center</value>
+	</library-property>
+
+
+	<library-property>
+		<name>org.zkoss.zul.Button.mold</name>
+		<value>trendy</value>
+	</library-property>
+</zk>

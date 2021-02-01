@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<complexComponent 
+		type="TRADE" name="detallesPuerto" description="Detalle Cuota"
+		zul="detalleCuota.zul" composer="com.egoveris.ffdd.render.zk.comp.ext.DetalleCuotaComposer"
+		mappingDTO="com.egoveris.ccomplejos.base.model.DetalleCuotaDTO">
+		
+		<field name="codigoUno" class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" height="20px" width="90%"/>	
+		<field name="codigoDos" class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" height="20px"  width="90%" />
+		<field name="fecha" class="com.egoveris.ffdd.render.zk.comp.ext.DateboxExt" height="20px" width="90%"/>	
+		<field name="monto" class="com.egoveris.ffdd.render.zk.comp.ext.LongboxExt" height="20px" width="90%"/>	
+
+</complexComponent>

@@ -1,0 +1,30 @@
+<zk>
+	<vlayout
+		apply="com.egoveris.ffdd.render.zk.comp.cc.CuentaComposer">
+		<grid>
+			<columns>
+				<column></column>
+				<column></column>
+				<column></column>
+				<column></column>
+			</columns>
+			<rows>
+				<row>
+					<cell id="${arg.formComp.nombre}_montoCuentaOTRDiv" />
+					<cell
+						id="${arg.formComp.nombre}_codigoDiv" />
+				</row>
+				<row>
+					<cell id="${arg.formComp.nombre}_montoDiv" />
+					<cell
+						id="${arg.formComp.nombre}_codigoCuentaOTRDiv" />
+				</row>
+				<row>
+					<cell
+						id="${arg.formComp.nombre}_porcentajeDiv" />
+					<cell id="${arg.formComp.nombre}_signoDiv" />
+				</row>
+			</rows>
+		</grid>
+	</vlayout>
+</zk>

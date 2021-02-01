@@ -1,0 +1,24 @@
+<?page title="" contentType="text/html;charset=UTF-8"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./sindicatura"?>
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c" ?>
+<zk>
+ <window id="sindicatura" width="100%" 
+		style="align=center; "
+		apply="com.egoveris.edt.web.pl.SindicaturaComposer">		
+		<vlayout width="100%">
+			<grid id="panel1" align="center">
+				<auxhead>
+					<auxheader
+						label="${c:l('eu.consulta.sindicatura')}" tooltip="helpConsultaSindicatura" image="/imagenes/help.png">
+					</auxheader>
+				</auxhead>
+				<columns>
+					<column id="consultaActuaciones" valign="top">
+						<include src="/abmSindicatura/consultaSindicatura.zul"></include>
+					</column>
+				</columns>
+			</grid>
+		</vlayout>
+		
+</window>
+</zk>

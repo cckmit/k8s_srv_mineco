@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<complexComponent type="TRADE" name="Participantes"
+	description="Participantes Information" zul="participantes.zul"
+	composer="com.everis.tramelec.dynform.comp.ext.ParticipantesComposer"
+	mappingDTO="com.egoveris.ccomplejos.base.model.ParticipantesDTO">
+
+	<field name="participanteId" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.LongboxExt" disabled="true"/>
+
+	<field name="participanteType" width="90%" height="20px"
+		factory="comboBoxFactory" disabled="true"/>
+
+	<field name="dispatcherCode" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" disabled="true"/>
+
+	<field name="personaTypeEnum" width="90%" height="20px"
+		factory="comboBoxFactory" disabled="true"/>
+
+	<field name="docPersonaType" width="90%" height="20px"
+		factory="comboBoxFactory" disabled="true"/>
+
+	<field name="docPersonaNum" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" disabled="true"/>
+
+	<field name="participanteNombre" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" disabled="true"/>
+
+	<field name="participanteApellido" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" disabled="true"/>
+
+	<field name="participantePorcentaje" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.DoubleboxExt" disabled="true"/>
+
+	<field name="participanteAddress" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.SeparatorComplex" xmlFile="viewaddress.xml" />
+
+	<field name="participanteEmail" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" disabled="true"/>
+
+	<field name="participanteNumeroTelefonoFijo" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" disabled="true"/>
+
+	<field name="participanteNumeroTelefonoMovil" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" disabled="true"/>
+
+	<field name="contacto" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.SeparatorComplex" xmlFile="viewparticipantesecundario.xml" />
+
+
+</complexComponent>

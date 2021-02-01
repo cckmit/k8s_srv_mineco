@@ -1,0 +1,32 @@
+<?page title="new page title" contentType="text/html;charset=UTF-8"?>
+<zk>
+	<vlayout
+		apply="com.egoveris.ffdd.render.zk.comp.cc.ListaDocumentoIngresoComposer">
+		<grid>
+			<columns>
+				<column></column>
+			</columns>
+			<rows>
+				<row>
+					<vbox>
+						<hbox>
+							<cell 
+								id="${arg.formComp.nombre}_idSolicitudDiv" />
+				
+							<cell 
+								id="${arg.formComp.nombre}_nombreSSPPDiv" />
+					
+						</hbox>
+						<hbox>
+							<cell
+								 id="${arg.formComp.nombre}_nombreDocumentoDiv" />
+					
+							<cell 
+								id="${arg.formComp.nombre}_nombreInstalacionDestinoDiv" />					
+						</hbox>
+					</vbox>
+				</row>
+			</rows>
+		</grid>
+	</vlayout>
+</zk>

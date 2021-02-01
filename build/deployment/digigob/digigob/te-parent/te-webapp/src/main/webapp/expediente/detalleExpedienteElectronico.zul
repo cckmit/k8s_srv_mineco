@@ -1,0 +1,87 @@
+<?page title="Detalle Expediente Electrónico" contentType="text/html;charset=UTF-8"?>
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+<!-- <?init class="com.egoveris.te.web.ee.satra.pl.InitPanelUsuario" ?> -->
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./detalleExpedienteElectronicoWindow"?>
+<?component name="listaDocumentoTrabajo" inline="true" macroURI="./macros/documentosDeTrabajoExpediente.zul"?>
+<?component name="listaExpedienteAsociado" inline="true" macroURI="./macros/expedientesAsociados.zul"?>
+<?component name="datosExpediente" inline="true" macroURI="./macros/datosExpediente.zul"?>
+<?component name="historialDePases" inline="true" macroURI="./macros/historialDePases.zul"?>
+<?component name="tramitacionConjunta" inline="true" macroURI="./macros/expedientesEnTramitacionConjuntaConsulta.zul"?>
+<?component name="fusion" inline="true" macroURI="./macros/expedientesEnFusionConsulta.zul"?>
+<?component name="acordeonDocumentos"  inline="true" macroURI="./macros/vistaDocumentos.zul"?>
+<zk>
+	<window title="" border="normal" closable="true"
+		id="detalleExpedienteElectronicoWindow"
+		
+		apply="com.egoveris.te.base.composer.DetalleExpedienteElectronicoComposer"
+		width="100%" position="center,top" >
+		
+		<vlayout  width="100%">
+			<separator></separator>
+			<!--<label id="ee.tramitacion.label.tarea"
+				value="${c:l('ee.tramitacion.label.tarea.value')}"
+				style="padding-left: 10px; font: bold;" /> -->
+			<label id="titulo"
+				style="padding-left: 10px; font: bold;" />
+
+			<separator></separator>
+		</vlayout>
+
+		<tabbox  mold="default">
+			<tabs >
+				<tab id="documentos"
+					label="${c:l('ee.tramitacion.tab.documentos.value')}"
+					style="font:bold;" />
+				<tab id="documentosDeTrabajo"
+					label="${c:l('ee.tramitacion.tab.documentosdetrabajo.value')}"
+					style="font:bold;" />
+				<tab id="expedientesAsociados"
+					label="${c:l('ee.tramitacion.tab.expedientesAsociados.value')}"
+					style="font:bold;" />
+				<tab id="tramitacionConjunta"
+					label="${c:l('ee.tramitacion.tab.tramitacionConjunta.value')}"
+					style="font:bold;" />
+				<tab id="fusion"
+					label="${c:l('ee.tramitacion.tab.fusion.value')}"
+					style="font:bold;" />
+				<tab id="historialDePases"
+					label="${c:l('ee.tramitacion.tab.historialdepases.value')}"
+					style="font:bold;" />
+				<tab id="datosDeLaCaratula"
+					label="${c:l('ee.tramitacion.tab.datosdelacaratula.value')}"
+					style="font:bold;" />
+				<tab id="buzonAct" 
+					label="${c:l('ee.tramitacion.tab.act.value')}"
+					style="font:bold;" />
+
+			</tabs>
+			<tabpanels >
+				<tabpanel>
+					<acordeonDocumentos/>
+				</tabpanel>
+				<tabpanel fulfill="documentosDeTrabajo.onClick">
+					<listaDocumentoTrabajo />
+				</tabpanel>
+				<tabpanel fulfill="expedientesAsociados.onClick">
+					<listaExpedienteAsociado />
+				</tabpanel>
+				<tabpanel fulfill="tramitacionConjunta.onClick">
+					<tramitacionConjunta />
+				</tabpanel>
+				<tabpanel fulfill="fusion.onClick">
+					<fusion />
+				</tabpanel>
+				<tabpanel fulfill="historialDePases.onClick">
+					<historialDePases />
+				</tabpanel>
+				<tabpanel fulfill="datosDeLaCaratula.onClick">
+					<datosExpediente />
+				</tabpanel>
+				<tabpanel fulfill="buzonAct.onClick">
+					<include src="/activ/historicoActividades.zul" modificacion="false" ></include>
+				</tabpanel>
+			</tabpanels>
+		</tabbox>
+	</window>
+</zk>
