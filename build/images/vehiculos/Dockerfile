@@ -9,7 +9,7 @@
 FROM gjuniioor/php-sqlsrv:7.0
 EXPOSE 80 
 # COPY --from=build /app /app 
-# COPY vhost.conf /etc/apache2/sites-available/000-default.conf 
+COPY vhost.conf /etc/apache2/sites-available/000-default.conf 
 
 # RUN apt-get update && apt-get install -y \
 #         libfreetype6-dev \
@@ -52,8 +52,8 @@ EXPOSE 80
 #     && sed -i 's,^\(CipherString[ ]*=\).*,\1'DEFAULT@SECLEVEL=1',g' /etc/ssl/openssl.cnf
 
 # RUN chown -R www-data:www-data /app \
-# RUN chown -R www-data:www-data /var/www/html \
-#     && a2enmod rewrite 
+RUN chown -R www-data:www-data /var/www/html \
+    && a2enmod rewrite 
 
 
 # WORKDIR /app
@@ -65,14 +65,14 @@ WORKDIR /var/www/html
 # RUN chmod -R 777 /app/public
 
 # install node and npm
-# ENV NODE_VERSION=12.6.0
-# RUN apt install -y curl
-# RUN curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.34.0/install.sh | bash
-# ENV NVM_DIR=/root/.nvm
-# RUN . "$NVM_DIR/nvm.sh" && nvm install ${NODE_VERSION}
-# RUN . "$NVM_DIR/nvm.sh" && nvm use v${NODE_VERSION}
-# RUN . "$NVM_DIR/nvm.sh" && nvm alias default v${NODE_VERSION}
-# ENV PATH="/root/.nvm/versions/node/v${NODE_VERSION}/bin/:${PATH}"
+ENV NODE_VERSION=12.6.0
+RUN apt install -y curl
+RUN curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.34.0/install.sh | bash
+ENV NVM_DIR=/root/.nvm
+RUN . "$NVM_DIR/nvm.sh" && nvm install ${NODE_VERSION}
+RUN . "$NVM_DIR/nvm.sh" && nvm use v${NODE_VERSION}
+RUN . "$NVM_DIR/nvm.sh" && nvm alias default v${NODE_VERSION}
+ENV PATH="/root/.nvm/versions/node/v${NODE_VERSION}/bin/:${PATH}"
 
 # install composer
 # RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
