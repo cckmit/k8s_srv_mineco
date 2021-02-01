@@ -34,7 +34,8 @@
 # # Start asadmin console and the domain
 # CMD ["asadmin", "start-domain", "-v"]
 
-FROM        java:8-jdk
+# FROM        java:8-jdk
+FROM        store/oracle/serverjre:8 
 
 ENV         JAVA_HOME         /usr/lib/jvm/java-8-openjdk-amd64
 ENV         GLASSFISH_HOME    /usr/local/glassfish5
