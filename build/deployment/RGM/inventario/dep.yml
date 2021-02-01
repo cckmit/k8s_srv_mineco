@@ -24,9 +24,9 @@ spec:
             protocol: TCP
           - containerPort: 4848
             protocol: TCP
-        volumeMounts:
-            - mountPath: "/glassfish5/"
-              name: vol-rgm-inv
+        # volumeMounts:
+        #     - mountPath: "/glassfish5/"
+        #       name: vol-rgm-inv
       volumes:
         - name: vol-rgm-inv
           persistentVolumeClaim:
