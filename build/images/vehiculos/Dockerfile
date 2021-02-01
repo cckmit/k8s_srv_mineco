@@ -44,7 +44,7 @@ RUN apt-get install -y apt-transport-https gnupg \
     && locale-gen \
     # && pecl install pdo_sqlsrv sqlsrv \
     && pecl channel-update pecl.php.net \
-    && pecl install pdo_sqlsrv-4.0.5 sqlsrv-4.0.5 \
+    && pecl install pdo_sqlsrv-3.0.1 sqlsrv-3.0.1 \
     && docker-php-ext-enable pdo_sqlsrv sqlsrv \
     && php -m | grep -q 'pdo_sqlsrv' \
     && php -m | grep -q 'sqlsrv' \
