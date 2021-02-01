@@ -18,7 +18,7 @@ spec:
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: rmg-inv-mineco
+  name: rgm-inv-mineco
   namespace: mineco
 spec:
   storageClassName: manual
