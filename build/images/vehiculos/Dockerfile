@@ -20,7 +20,7 @@ RUN apt-get update && apt-get install -y \
         zip \ 
         unzip \
         libzip-dev \
-    && pecl install mcrypt-1.0.1  \
+    && pecl install mcrypt-1.0.0  \
     && docker-php-ext-install -j$(nproc) iconv   \
     && docker-php-ext-install zip  \
     && docker-php-ext-install pdo_mysql   \
