@@ -30,5 +30,5 @@ spec:
         #       name: vol-rgm-inv
       volumes:
         - name: vol-rgm-inv
-          persistentVolumeClaim:
-            claimName: rgm-inv-mineco
+          # persistentVolumeClaim:
+          #   claimName: rgm-inv-mineco
