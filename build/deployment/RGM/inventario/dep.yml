@@ -25,9 +25,9 @@ spec:
             protocol: TCP
           - containerPort: 4848
             protocol: TCP
-        volumeMounts:
-            - mountPath: "/usr/local"
-              name: vol-rgm-inv
+        # volumeMounts:
+        #     - mountPath: "/usr/local"
+        #       name: vol-rgm-inv
       volumes:
         - name: vol-rgm-inv
           persistentVolumeClaim:
