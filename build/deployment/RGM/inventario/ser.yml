@@ -4,8 +4,8 @@ metadata:
   name: service-rgm-glassfish
   namespace: mineco
   labels:
-    app.kubernetes.io/name: rgm
-    app.kubernetes.io/part-of: rgm
+    app.kubernetes.io/name: rgm-inventario
+    app.kubernetes.io/part-of: rgm-inventario
   annotations:
     metallb.universe.tf/address-pool: production-public-ips
 spec:

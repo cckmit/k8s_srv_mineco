@@ -4,7 +4,7 @@ metadata:
   name: rgm-inventario
   namespace: mineco
   labels:
-    run: nginx
+    run: rgm-inventario
 spec:
   replicas: 2
   selector:
