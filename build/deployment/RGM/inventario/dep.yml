@@ -25,10 +25,10 @@ spec:
             protocol: TCP
           - containerPort: 4848
             protocol: TCP
-        # volumeMounts:
-        #     - mountPath: "/usr/local"
-        #       name: vol-rgm-inv
-      # volumes:
-      #   - name: vol-rgm-inv
-      #     persistentVolumeClaim:
-      #       claimName: rgm-inv-mineco
+        volumeMounts:
+            - mountPath: "/usr/local"
+              name: vol-rgm-inv
+      volumes:
+        - name: vol-rgm-inv
+          persistentVolumeClaim:
+            claimName: rgm-inv-mineco
