@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: rgm-inventario
-        image: rgm2:latest 
+        image: glassfish:latest 
         # image: store/oracle/serverjre:1.8.0_241-b07 
         imagePullPolicy: IfNotPresent
         ports:
