@@ -54,4 +54,4 @@ FROM        store/oracle/serverjre:1.8.0_241-b07
 ENV         GLASSFISH_HOME    /usr/local/glassfish5
 ENV         PATH              $PATH:$JAVA_HOME/bin:$GLASSFISH_HOME/bin
 EXPOSE      8080 4848 8181
-WORKDIR     /usr/local/glassfish5
+WORKDIR     /usr/local
