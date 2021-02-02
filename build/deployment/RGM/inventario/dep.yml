@@ -26,7 +26,7 @@ spec:
           - containerPort: 4848
             protocol: TCP
         volumeMounts:
-            - mountPath: "/glassfish5"
+            - mountPath: "/usr/local/glassfish5"
               name: vol-rgm-inv
       volumes:
         - name: vol-rgm-inv
