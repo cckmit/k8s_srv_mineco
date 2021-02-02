@@ -41,9 +41,9 @@ ENV         JAVA_HOME         /usr/lib/jvm/java-8-openjdk-amd64
 ENV         GLASSFISH_HOME    /usr/local/glassfish5
 ENV         PATH              $PATH:$JAVA_HOME/bin:$GLASSFISH_HOME/bin
 
-RUN         yum install -y && \
-            curl unzip zip inotify-tools && \
-            rm -rf /var/lib/apt/lists/*
+# RUN         yum install -y && \
+#             curl unzip zip inotify-tools && \
+#             rm -rf /var/lib/apt/lists/*
 
 # RUN         curl -L -o /tmp/glassfish-4.1.zip http://download.java.net/glassfish/4.1/release/glassfish-4.1.zip && \
 # RUN         curl -L -o /tmp/glassfish-5.0.zip http://download.java.net/glassfish/5.0/release/glassfish-5.0.zip && \
