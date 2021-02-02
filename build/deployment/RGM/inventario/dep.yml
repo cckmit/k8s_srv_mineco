@@ -28,7 +28,7 @@ spec:
         # volumeMounts:
         #     - mountPath: "/usr/local"
         #       name: vol-rgm-inv
-      volumes:
-        - name: vol-rgm-inv
+      # volumes:
+      #   - name: vol-rgm-inv
           # persistentVolumeClaim:
           #   claimName: rgm-inv-mineco
