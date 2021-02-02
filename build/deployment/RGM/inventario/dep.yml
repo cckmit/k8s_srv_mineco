@@ -17,16 +17,17 @@ spec:
     spec:
       containers:
       - name: rgm-inventario
-        image: shinyay/docker-glassfish5:latest 
+        image: glassfish:latest 
+        # image: shinyay/docker-glassfish5:latest 
         imagePullPolicy: IfNotPresent
         ports:
           - containerPort: 8080
             protocol: TCP
           - containerPort: 4848
             protocol: TCP
-        # volumeMounts:
-        #     - mountPath: "/glassfish5/"
-        #       name: vol-rgm-inv
+        volumeMounts:
+            - mountPath: "/glassfish5"
+              name: vol-rgm-inv
       volumes:
         - name: vol-rgm-inv
           persistentVolumeClaim:
