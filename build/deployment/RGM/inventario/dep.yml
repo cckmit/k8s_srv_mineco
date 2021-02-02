@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: rgm-inventario
-  namespace: mineco
+  # namespace: mineco
   labels:
     run: rgm-inventario
 spec:
