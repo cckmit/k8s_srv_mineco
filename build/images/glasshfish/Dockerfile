@@ -46,13 +46,13 @@ RUN         yum install -y && \
             rm -rf /var/lib/apt/lists/*
 
 # RUN         curl -L -o /tmp/glassfish-4.1.zip http://download.java.net/glassfish/4.1/release/glassfish-4.1.zip && \
-RUN         curl -L -o /tmp/glassfish-5.0.zip http://download.java.net/glassfish/5.0/release/glassfish-5.0.zip && \
-            unzip /tmp/glassfish-5.0.zip -d /usr/local && \
-            rm -f /tmp/glassfish-5.0.zip
+# RUN         curl -L -o /tmp/glassfish-5.0.zip http://download.java.net/glassfish/5.0/release/glassfish-5.0.zip && \
+#             unzip /tmp/glassfish-5.0.zip -d /usr/local && \
+#             rm -f /tmp/glassfish-5.0.zip
 
 EXPOSE      8080 4848 8181
 
 WORKDIR     /usr/local/glassfish5
 
 # verbose causes the process to remain in the foreground so that docker can track it
-CMD         asadmin start-domain --verbos
+# CMD         asadmin start-domain --verbos
