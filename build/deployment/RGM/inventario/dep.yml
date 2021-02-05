@@ -27,8 +27,8 @@ spec:
             protocol: TCP
         volumeMounts:
             - mountPath: "/glassfish5/glassfish/domains"
-              name: vol-rgm-inv
+              name: vol-rgm
       volumes:
-        - name: vol-rgm-inv
+        - name: vol-rgm
           persistentVolumeClaim:
             claimName: rgm
