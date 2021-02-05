@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC 
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN" 
+    "http://struts.apache.org/dtds/struts-2.0.dtd" >
+<struts>
+	<package name="perfil-action" extends="base-action"
+		namespace="/administracion/perfil">
+		
+		<action name="edit" method="edit" class="perfilAction">
+			<result type="tiles">perfil.edit</result>
+		</action>
+		
+		<action name="update" method="update" class="perfilAction">
+			<result type="tiles">perfil.edit</result>
+			<result name="input" type="tiles">perfil.edit</result>
+			<result name="error" type="tiles">perfil.edit</result>
+		</action>
+	</package>
+</struts>

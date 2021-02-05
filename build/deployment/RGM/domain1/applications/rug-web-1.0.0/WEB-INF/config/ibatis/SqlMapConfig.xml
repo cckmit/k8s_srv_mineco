@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMapConfig
+        PUBLIC "-//ibatis.apache.org//DTD SQL Map Config 2.0//EN"
+        "http://ibatis.apache.org/dtd/sql-map-config-2.dtd">
+
+<sqlMapConfig>
+	
+<!-- 	<typeHandler javaType="mx.gob.economia.dgi.framework.mail.constant.MessageStatus" callback="mx.gob.economia.dgi.framework.mail.typeHandler.MessageStatusTypeHandler" />
+	<typeHandler javaType="mx.gob.economia.dgi.framework.mail.constant.ContentType" callback="mx.gob.economia.dgi.framework.mail.typeHandler.ContentTypeTypeHandler" />
+	<typeHandler javaType="mx.gob.economia.dgi.framework.mail.constant.RecipientType" callback="mx.gob.economia.dgi.framework.mail.typeHandler.RecipientTypeTypeHandler" />
+	<typeHandler javaType="mx.gob.economia.dgi.framework.document.constant.FileType" callback="mx.gob.economia.dgi.framework.mail.typeHandler.FileTypeTypeHandler" />
+	<typeHandler javaType="java.io.InputStream" callback="mx.gob.economia.dgi.framework.mail.typeHandler.InputStreamTypeHandler" />
+	<typeHandler javaType="boolean" callback="mx.gob.economia.dgi.tuempresa.common.typehandler.BooleanStringTypeHandler" /> -->
+	
+	<!-- Por cada entidad debe existir un mapeo -->
+	<!--sqlMap resource="./mx/gob/se/rug/ibatis/infra/MailMessage.xml" /-->
+	<!--sqlMap resource="./mx/gob/se/rug/ibatis/infra/TerminosCondiciones.xml" /-->
+		 
+</sqlMapConfig>    

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC 
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN" 
+    "http://struts.apache.org/dtds/struts-2.0.dtd" >
+         
+<struts>
+	<package name="formulario-action" namespace="/home" extends="base-action">
+		<action name="formularioUnico" method="inicia" class="formularioAction">
+			<result name="input" type="tiles" >formulario.home</result>
+			<result name="success" type="tiles">formulario.home</result>			    
+			<result name="failed" type="tiles">busqueda.home</result>    
+		</action>    
+		
+		<action name="saveformulario" method="saveformulario" class="formularioAction" >
+			<result type="tiles">formulario.home</result>
+			<result name="success" type="redirectAction">
+                 <param name="actionName">firma</param>                 
+                 <param name="namespace">/firma</param>
+            </result>
+			<result name="failure" type="tiles">busqueda.home</result>			
+		</action>
+		<action name="iniciaFormulario" method="iniciaFormulario" class="formularioAction" >
+			<result name="input" type="tiles" >formulario.home</result>
+			<result name="success" type="redirectAction">
+                 <param name="actionName">formulario</param>                 
+                 <param name="namespace">/home</param>
+                 <param name="esModificacion">${esModificacion}</param>
+            </result>		    
+			<result name="failed" type="tiles">busqueda.home</result> 
+		</action>
+	</package>
+</struts>

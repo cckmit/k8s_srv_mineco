@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dwr="http://www.directwebremoting.org/schema/spring-dwr"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.directwebremoting.org/schema/spring-dwr
+        http://www.directwebremoting.org/schema/spring-dwr-2.0.xsd">
+
+	<bean id="privilegiosServiceImpl"
+		class="mx.gob.se.rug.seguridad.serviceimpl.PrivilegiosServiceImpl"
+		scope="prototype">
+		<property name="privilegiosDAO" ref="privilegiosDAO" />
+	</bean>
+	<bean id="privilegiosAction" class="mx.gob.se.rug.seguridad.action.PrivilegiosAction">
+		<property name="privilegiosService" ref="privilegiosServiceImpl" />
+	</bean>
+
+	<bean id="privilegiosDAO" class="mx.gob.se.rug.seguridad.dao.PrivilegiosDAO"
+		scope="prototype" />
+
+	<bean id="PrivilegiosTO" class="mx.gob.se.rug.seguridad.to.PrivilegiosTO"
+		scope="prototype" />
+
+	<!-- ============================== MENU SERVICE ================================== -->
+
+	<bean id="menusServiceImpl" class="mx.gob.se.rug.seguridad.serviceimpl.MenusServiceImpl">
+		<property name="menuDAO" ref="menuDAO" />
+	</bean>
+
+	<bean id="menuDAO" class="mx.gob.se.rug.seguridad.dao.MenuDAO" />
+</beans>

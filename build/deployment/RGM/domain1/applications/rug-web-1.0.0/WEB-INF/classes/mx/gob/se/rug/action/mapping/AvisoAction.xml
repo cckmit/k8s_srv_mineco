@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC 
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN" 
+    "http://struts.apache.org/dtds/struts-2.0.dtd" >
+    
+<struts>
+	<package name="aviso-action" namespace="/home" extends="base-action">
+		<action name="avisoGuarda" method="avisoPreventivo" class="avisoAction">
+			<result type="tiles">aviso.home</result>
+			<result name="success" type="redirectAction">
+            	<param name="actionName">firma</param>
+            	<param name="namespace">/firma</param>
+            </result>
+			<result name="failed" type="tiles">aviso.home</result>
+		</action>
+		<action name="aviso" method="inicia" class="avisoAction">
+			<result type="tiles">aviso.home</result>
+			<result name="success" type="tiles">aviso.home</result>
+			<result name="error" type="tiles">busqueda.home</result>
+		</action>
+		
+		<action name="detalleAviso" method="detalle" class="avisoAction">
+			<result type="tiles">aviso.detalle</result>
+			<result name="success" type="tiles">aviso.detalle</result>
+			<result name="failed" type="tiles">busqueda.home</result>
+		</action>
+		
+		<action name="iniciaAviso" method="iniciaAviso" class="avisoAction">
+			<result type="tiles">aviso0.home</result>
+			<result name="success" type="tiles">aviso0.home</result>
+			<result name="failed" type="redirectAction">
+            	<param name="actionName">inicia</param>
+            	<param name="namespace">/acreedor</param>
+            </result>
+		</action>
+		
+		<action name="creaTramAviso" method="creaTramAviso" class="avisoAction">
+			<result type="tiles">aviso.home</result>
+			<result name="success" type="redirectAction">
+            	<param name="actionName">aviso</param>
+            	<param name="namespace">/home</param>
+            </result>
+			<result name="failed" type="tiles">busqueda.home</result>
+		</action>
+		
+	</package>
+</struts>

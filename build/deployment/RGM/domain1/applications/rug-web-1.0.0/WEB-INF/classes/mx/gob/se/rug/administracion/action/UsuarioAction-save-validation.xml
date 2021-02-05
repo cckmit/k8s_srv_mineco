@@ -1,0 +1,72 @@
+<!DOCTYPE validators PUBLIC
+        "-//Apache Struts//XWork Validator 1.0.3//EN"
+        "http://struts.apache.org/dtds/xwork-validator-1.0.3.dtd">
+
+<validators>
+    
+    <field name="personaFisica.nombre">
+        <field-validator type="requiredstring">
+			<param name="trim">true</param>
+            <message key="usuario.nombre.required" />
+        </field-validator>
+    </field>
+    
+    <!--field name="personaFisica.rfc">
+		<field-validator type="regex">
+			<param name="trim">true</param>
+			<param name="expression">
+        		<![CDATA[ (\d+)\-?([\dk]) ]]>
+        	</param>
+			<message key="invalid.fieldvalue.persona.fisica.rfc" />
+		</field-validator>
+	</field-->
+	
+    
+    <field name="personaFisica.datosContacto.emailPersonal">
+        <field-validator type="requiredstring" short-circuit="true">
+			<param name="trim">true</param>
+            <message key="usuario.correo.required" />
+        </field-validator>
+		<field-validator type="email">
+			<message key="usuario.correo.invalid" />  
+		</field-validator>  
+    </field>
+    
+    <field name="registroUsuario.password">
+    
+    	<field-validator type="requiredstring" short-circuit="true">
+			<param name="trim">true</param>
+            <message key="usuario.password.required" />
+        </field-validator>
+        
+    	<field-validator type="regex" short-circuit="true">
+    		<param name="trim">true</param>
+            <param name="expression">
+            <![CDATA[ (?=.*[0-9])(?=.+[a-z])(?=.*[A-Z]).{8,16} ]]></param>
+            <message key="usuario.password.invalid" />
+        </field-validator>
+    
+        <field-validator type="fieldexpression">
+            <param name="expression">
+            <![CDATA[ registroUsuario.password eq registroUsuario.confirmacion ]]></param>
+            <message key="usuario.confirmacion.diferent" />
+        </field-validator>
+    </field>
+    
+    <field name="registroUsuario.respuesta">
+    	<field-validator type="requiredstring">
+			<param name="trim">true</param>
+            <message key="usuario.respuesta.required" />
+        </field-validator>
+    </field>
+    
+    <field name="registroUsuario.terminos">
+        <field-validator type="fieldexpression">
+            <param name="expression">
+            <![CDATA[ registroUsuario.terminos eq true ]]></param>
+            <message key="usuario.terminos.required" />
+        </field-validator>
+	</field>
+    
+</validators>
+	

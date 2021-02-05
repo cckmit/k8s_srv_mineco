@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC 
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN" 
+    "http://struts.apache.org/dtds/struts-2.0.dtd" >
+    
+<struts>
+	<package name="Boletas-action" namespace="/home" extends="base-action">
+			
+		<action name="misBoletas" method="cargaPagina" class="boletasAction">
+			<result type="tiles">misBoletas.home</result>
+			<result name="success" type="tiles">misBoletas.home</result>
+			<result name="failed" type="tiles">http.error.action</result>
+			
+		</action>
+		
+		<action name="registrarBoleta" method="registrarBoleta" class="boletasAction">
+			<result type="tiles">misBoletas.home</result>
+			<result name="success" type="redirectAction">
+            	<param name="actionName">misBoletas</param>
+            	<param name="namespace">/home</param>
+            </result>
+			<result name="failed" type="tiles">misBoletas.error</result>
+		</action>
+		
+		<action name="validoQr" method="validoQr" class="boletasAction">
+			<result type="tiles">boletas.validated</result>
+		</action>
+		
+		<action name="invalidoQr" method="invalidoQr" class="boletasAction">
+			<result type="tiles">boletas.validated</result>
+		</action>
+		
+		<action name="exportExcel" method="exportExcel" class="boletasAction">
+			<result type="tiles">misBoletas.home</result>
+	    </action>
+	</package>
+</struts>

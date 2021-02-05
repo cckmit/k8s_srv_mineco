@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap
+PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="ResidosPeligosos">
+	<!-- Alias -->
+	<typeAlias alias="TerminosCondiciones"
+		type="mx.gob.economia.dgi.tuempresa.terminos.dto.TerminosCondiciones" />
+
+	<!-- Mapas de parametros -->
+	<parameterMap class="map" id="terminosCondicionesMap">
+		<parameter property="peOperacion" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN"/>
+		<parameter property="peCveUsuario" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN"/>
+		<parameter property="peIdTramite" jdbcType="INTEGER" javaType="java.lang.Integer" mode="IN"/>
+		<parameter property="peBcommit" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN"/>
+		<parameter property="psResult" jdbcType="INTEGER" javaType="java.lang.Integer" mode="OUT"/>
+		<parameter property="psTxResult" jdbcType="VARCHAR" javaType="java.lang.String" mode="OUT"/>
+	</parameterMap>
+	
+	<parameterMap class="map" id="consultaAceptacionMap">
+		<parameter property="peCveUsuario" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN"/>
+		<parameter property="peIdTramite" jdbcType="INTEGER" javaType="java.lang.Integer" mode="IN"/>
+	</parameterMap>
+	
+	
+	<!-- Consultas -->
+	<select id="getAceptacion" parameterMap="consultaAceptacionMap"  resultClass="int">
+	<![CDATA[
+		SELECT COUNT(CVE_USUARIO) 
+		FROM V_REL_USUARIOS_TC 
+		WHERE CVE_USUARIO = ? AND ID_TRAMITE = ?
+		
+	]]>
+	</select>
+	
+	
+	<!-- Stored Procedures -->
+	<procedure id="registraTerminosCondiciones" parameterMap="terminosCondicionesMap">
+	<![CDATA[
+		{ call
+			begin
+				PKGEMPTRAMITE.ActUsuariosTC(?,?,?,?,?,?);
+			end
+		}
+	]]>
+	</procedure>
+
+</sqlMap>

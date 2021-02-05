@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC 
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN" 
+    "http://struts.apache.org/dtds/struts-2.0.dtd" >
+    
+<struts>
+	<package name="controlusuario-action" namespace="/controlusuario" extends="base-action">
+		<action name="setAcreedor" method="setAcreedorId" class="controlUsuarioAction">
+			<result type="tiles">controlusuario.home</result>
+			<result name="success" type="redirectAction">
+            	<param name="actionName">iniciaAltaUsuario</param>            	
+            	<param name="namespace">/controlusuario</param>
+            </result>
+			<result name="failed" type="tiles">busqueda.home</result>
+		</action>
+		
+		<action name="iniciaAltaUsuario" method="iniciaAltaUsuario" class="controlUsuarioAction">
+			<result type="tiles">controlusuario.home</result>			
+			<result name="success" type="tiles">controlusuario.home</result>
+			<result name="failed" type="tiles">busqueda.home</result>
+		</action>
+		
+		<action name="iniciaAltaGrupo" method="iniciaAltaGrupo" class="controlUsuarioAction">
+			<result type="tiles">controlgrupos.home</result>			
+			<result name="success" type="tiles">controlgrupos.home</result>
+			<result name="failed" type="tiles">busqueda.home</result>
+		</action>
+		
+		<action name="iniciaAltaGrupoModal" method="iniciaAltaGrupo" class="controlUsuarioAction">
+			<result type="tiles">controlgruposModal.home</result>			
+			<result name="success" type="tiles">controlgruposModal.home</result>
+			<result name="failed" type="tiles">busqueda.home</result>
+		</action>
+		
+		<action name="guardaUsuario" method="guardaUsuario" class="controlUsuarioAction">
+			<result type="tiles">controlusuario.home</result>
+			<result name="success" type="redirectAction">
+            	<param name="actionName">iniciaAltaUsuario</param>
+            	<param name="namespace">/controlusuario</param>
+            	<param name="existeUsuario">${existeUsuario}</param>
+            </result>	
+            <result name="errorRFC" type="redirectAction">
+            	<param name="actionName">iniciaAltaUsuario</param>
+            	<param name="namespace">/controlusuario</param>
+            	<param name="existeUsuario">${existeUsuario}</param>
+            	<param name="rfcError">${rfcError}</param>
+            </result>	
+			<result name="failed" type="tiles">busqueda.home</result>
+		</action>
+		
+		<action name="eliminaUsuario" method="eliminaUsuario" class="controlUsuarioAction">
+			<result type="tiles">controlusuario.home</result>
+			<result name="success" type="redirectAction">
+            	<param name="actionName">iniciaAltaUsuario</param>
+            	<param name="namespace">/controlusuario</param>
+            </result>
+			<result name="failed" type="tiles">busqueda.home</result>
+		</action>
+		
+		<action name="busquedaGrupo" method="busquedaGrupo" class="controlUsuarioAction">
+			<result type="tiles">controlgrupos.home</result>
+			<result name="success" type="redirectAction">
+            	<param name="actionName">iniciaAltaGrupoModal</param>
+            	<param name="namespace">/controlusuario</param>
+            </result>
+			<result name="failed" type="tiles">busqueda.home</result>
+		</action>
+		
+	</package>
+</struts>

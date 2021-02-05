@@ -1,0 +1,62 @@
+dl {
+	font-size: 10px;
+	color: #0A4172;
+    position: relative;
+    width: 200px;
+}
+
+dt {
+    clear: both;
+    float:left;
+    width: 130px;
+    padding: 4px 0 2px 0;
+    text-align: left;
+}
+dd {
+    float: left;
+    width: 300px;
+    margin: -5px 0 8px 30;
+    padding-left: 0px;
+    font-size: 10px;
+    
+}
+
+
+/* The hint to Hide and Show */
+.hint {
+   	display: none;
+    position: absolute;
+    right: -280px;
+    width: 180px;
+    margin-top: -24px;
+    padding: 5px 5px;
+    /* to fix IE6, I can't just declare a background-color,
+    I must do a bg image, too!  So I'm duplicating the pointer.gif
+    image, and positioning it so that it doesn't show up
+    within the box */
+    background: #FFF url(../imgs/pointer.gif) no-repeat -10px 5px;
+    z-index: 200;
+    
+}
+
+/* The pointer image is hadded by using another span */
+.hint .hint-pointer {
+    position: absolute;
+    left: -10px;
+    top: 5px;
+    width: 10px;
+    height: 19px;
+    background: url(../imgs/pointer.gif) left top no-repeat;
+}
+
+.hint div.cerrar{
+	margin-top: -5px;
+	margin-left: 176px; 
+}
+
+.hint div.contenido{
+	color: #989898;
+	margin-top: -2px;
+	text-align: justify;
+}
+

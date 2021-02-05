@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC 
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN" 
+    "http://struts.apache.org/dtds/struts-2.0.dtd" >
+    
+<struts>
+	<package name="firma-action" namespace="/firma" extends="base-action" >
+	
+		<action name="confirmacion" method="confirmacion" class="firmaAction">
+			<result type="tiles">firma.home</result>
+			<result name="success" type="tiles">confirmacion.home</result>
+			<result name="error" type="tiles">busqueda.home</result>
+		</action>
+	
+		<action name="firma" method="firma" class="firmaAction">
+			<result type="tiles">firma.home</result>
+			<result name="success" type="tiles">firma.home</result>
+			<result name="rfc" type="tiles">firma.rfc.home</result>
+			<result name="error" type="tiles">pago.home</result>
+			<result name="failed" type="tiles">http.error.action</result>
+			<result name="fechainv" type="redirectAction">
+            	<param name="actionName">detalle</param>
+            	<param name="namespace">/home</param>
+            	<param name="idTramite">${idTramiteTemporal}</param>
+            	<param name="idGarantia">${idGarantia}</param>
+            	<param name="bvalida">${bvalida}</param>
+            </result>            
+            <result name="rfcInvalido" type="redirectAction">
+            	<param name="actionName">edit</param>
+            	<param name="namespace">/administracion/perfil</param>
+            	<param name="errorFirma">${errorFirma}</param>            	
+            </result>            
+            <result name="errorIdTramite" type="tiles">busqueda.home </result>
+			
+		</action>
+			<action name="firmaUsuario" method="firmaUsuario" class="firmaAction">
+			<result type="tiles">firma.home</result>
+			<result name="success" type="tiles">firma.home</result>
+			<result name="rfc" type="tiles">firma.rfc.home</result>
+			<result name="error" type="tiles">pago.home</result>
+			<result name="failed" type="tiles">http.error.action</result>
+		</action>
+		<action name="firmaAcreedores" method="firmaAcreedores" class="firmaAction">
+			<result name="success" type="tiles">firma.home</result>
+			<result name="rfc" type="tiles">firma.rfc.home</result>
+			<result name="error" type="tiles">pago.home</result>
+			<result name="failed" type="tiles">http.error.action</result>
+		</action>
+		<action name="validarFirma" method="validarFirma" class="firmaAction">
+			<result type="tiles">firma.home</result>
+			<result name="success" type="tiles">boleta.home</result>
+			<result name="error" type="tiles">firma.home</result>
+		</action>
+		<action name="firmaApplet" method="firmaApplet" class="firmaAction">
+			<result type="tiles">firma.home</result>
+			<result name="success" type="tiles">boleta.home</result>
+			<result name="error" type="tiles">firma.home</result>
+		</action>
+		<action name="guardaRfc" method="guardaRfc" class="firmaAction">
+			<result name="success" type="redirectAction">
+            	<param name="actionName">firma</param>
+            	<param name="namespace">/firma</param>
+            	<param name="idTramite">${idTramite}</param>
+            </result>
+		</action>
+		
+		<action name="firmaGuarda" method="firmaGuarda" class="firmaAction">
+            <result name="success" type="tiles">boleta.home</result>
+            <result name="failed" type="tiles">http.error.action</result>
+            <result name="nosaldo" type="tiles">confirmacion.home</result>
+            <result name="acreedor" type="redirectAction">
+            	<param name="actionName">inicia</param>
+            	<param name="namespace">/acreedor</param>
+            </result>
+            <result name="usuario" type="redirectAction">
+            	<param name="actionName">iniciaAltaUsuario</param>
+            	<param name="namespace">/controlusuario</param>
+            </result>
+            <result name="masiva" type="redirectAction">
+            	<param name="actionName">boleta</param>
+            	<param name="namespace">/home</param>
+            </result>
+		</action>
+		
+	</package>
+</struts>

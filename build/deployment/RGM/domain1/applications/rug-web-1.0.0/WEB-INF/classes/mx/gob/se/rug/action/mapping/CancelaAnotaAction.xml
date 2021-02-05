@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC 
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN" 
+    "http://struts.apache.org/dtds/struts-2.0.dtd" >
+    
+<struts>
+	<package name="default" namespace="/home" extends="base-action">	
+			
+		<action name="cancelacionAnotacion" method="cancelacionAnota" class="cancelaAnotaAction">
+			<result name="success" type="redirectAction">
+				<param name="actionName">cancelacionTramiteAnota</param>
+                <param name="namespace">/home</param>
+                <param name="autoridad">${autoridad}</param>
+             </result>
+			<result name="failed" type="tiles">busqueda.home</result>	
+		</action>
+		
+		<action name="cancelacionTramiteAnota" method="cancelacionTramite" class="cancelaAnotaAction">
+			<result name="success" type="tiles">
+				iniciaCancelacionAnota.cierra.modal
+            </result>
+		</action>
+	<action name="iniciaCancelacionAn" method="iniciaCancelacionAnSinGa" class="cancelaAnotaAction">
+			<result type="tiles">cancelacionAnotacion.home</result>
+			<result name="success" type="tiles">cancelacionAnotacion.home</result>
+			<result name="error" type="tiles">busqueda.home</result>
+		</action>
+		
+		<action name="cancelacionAnotacion" method="cancelarAnotacion" class="cancelaAnotaAction">
+			<result type="tiles">cancelacionAnotacion.home</result>
+			<result name="success" type="tiles">cancelacionAnotacion.home</result>
+			<result name="error" type="tiles">busqueda.home</result>
+		</action>
+			
+	</package>
+</struts>
+
+    

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC 
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN" 
+    "http://struts.apache.org/dtds/struts-2.0.dtd" >
+<struts>
+	<package name="encuesta-action" namespace="/encuesta" extends="base-action">
+		
+		<action name="encuesta" method="crearEncuesta" class="encuestaAction">
+			<result type="tiles">encuesta.encuesta</result>
+		</action>
+		
+		<action name="guardar" method="guardarEncuesta" class="encuestaAction">
+			<result name="failure" type="tiles">http.error.action</result>
+			<result name="sucess" type="redirectAction">
+				<param name="actionName">inicio</param>
+				<param name="namespace">/home</param>
+			</result>
+		</action>
+		
+	</package>
+</struts>

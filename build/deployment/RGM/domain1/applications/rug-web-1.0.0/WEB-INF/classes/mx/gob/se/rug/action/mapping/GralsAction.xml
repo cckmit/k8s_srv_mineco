@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC 
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN" 
+    "http://struts.apache.org/dtds/struts-2.0.dtd" >
+   
+<struts>
+	<package name="grals-action" namespace="/home" extends="base-action">
+		<action name="grals" method="grals" class="gralsAction">
+			<result type="tiles">grals.home</result>
+			<result name="success" type="tiles">grals.home</result>
+			<result name="error" type="tiles">grals.home</result>
+		</action>
+	</package>
+</struts>

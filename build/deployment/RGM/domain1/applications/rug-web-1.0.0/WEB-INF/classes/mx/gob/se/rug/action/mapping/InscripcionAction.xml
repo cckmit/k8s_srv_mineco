@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC 
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN" 
+    "http://struts.apache.org/dtds/struts-2.0.dtd" >
+    
+<struts>
+	<package name="inscripcion-action" namespace="/inscripcion" extends="base-action">	
+				
+		<!-- Inicia el proceso de inscripcion escojiendo el acreedor al que se va a representar  -->
+		<action name="seleccionaInscripcion" method="iniciaInscripcion" class="inscripcionAction">
+			<result type="tiles">inscripcion.selecciona.acreedor</result>
+			<result name="success" type="tiles">inscripcion.selecciona.acreedor</result>
+		    <result name="failed" type="redirectAction">
+            	<param name="actionName">inicia</param>
+            	<param name="namespace">/acreedor</param>
+            </result>			
+		</action>
+		
+		<action name="cambioEstatus" method="cambiaEstatusGarantia" class="inscripcionAction">			
+			<result name="success" type="redirectAction">inscripcion3.home
+				<param name="actionName">paso3</param>
+            	<param name="namespace">/inscripcion</param>
+            	<param name="idInscripcion">${idInscripcion}</param>
+            </result>
+			<result name="failed" type="tiles">busqueda.home</result>
+		</action>
+		
+		<!-- Termina Inicio del proceso de inscripcion -->
+		 <action name="load" class="inscripcionAction" method="load">
+			<result name="success" type="redirectAction">
+            	<param name="actionName">paso2</param>
+            	<param name="namespace">/inscripcion</param>
+            </result>
+		</action>
+		 
+		<action name="paso1" method="paso1" class="inscripcionAction">
+			<result type="tiles">inscripcion.partes</result>
+			<result name="success" type="tiles">inscripcion.partes</result>
+			<result name="failed" type="tiles">busqueda.home</result>
+		</action>		
+		
+		<action name="paso2" method="paso2" class="inscripcionAction">
+			<result type="tiles">inscripcion.garantia</result>
+			<result name="success" type="tiles">inscripcion.garantia</result>
+			<result name="failed" type="tiles">busqueda.home</result>
+		</action>
+		
+		<action name="paso3" method="paso3" class="inscripcionAction">
+			<result type="tiles">inscripcion.vigencia</result>
+			<result name="success" type="tiles">inscripcion.vigencia</result>
+			<result name="failed" type="tiles">busqueda.home</result>
+		</action>
+		
+		<!-- INICIA Agregar Garantia -->
+		<action name="agregarGarantia" method="agregarGarantia" class="inscripcionAction">
+			<result type="tiles">inscripcion.vigencia</result>
+			<result name="success" type="redirectAction">inscripcion.vigencia
+				<param name="actionName">paso3</param>
+            	<param name="namespace">/inscripcion</param>
+            </result>
+			<result name="failed" type="tiles">busqueda.home</result>
+		</action>
+		<!-- TERMINA Agregar Garantia -->
+		<action name="actualizaVigencia" method="actualizaVigencia" class="inscripcionAction">
+			<result type="tiles">busqueda.home</result>
+			<result name="success" type="redirectAction">
+            	<param name="actionName">firma</param>
+            	<param name="namespace">/firma</param>
+            </result>
+			<result name="failed" type="tiles">busqueda.home</result>
+		</action>		
+				
+		<action name="creaInscripcion" method="creaInscripcion" class="inscripcionAction">
+			<result type="tiles">inscripcion.partes</result>
+			<result name="success" type="redirectAction">
+            	<param name="actionName">paso1</param>
+            	<param name="namespace">/inscripcion</param>
+            </result>
+			<result name="failed" type="tiles">busqueda.home</result>
+		</action>
+		
+		
+		
+	</package>
+</struts>

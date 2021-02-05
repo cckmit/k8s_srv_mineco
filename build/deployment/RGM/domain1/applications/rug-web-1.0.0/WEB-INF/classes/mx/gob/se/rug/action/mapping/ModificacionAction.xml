@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC 
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN" 
+    "http://struts.apache.org/dtds/struts-2.0.dtd" >
+         
+<struts>
+	<package name="modificacion-action" namespace="/home" extends="base-action">
+		<action name="modificacion" method="inicia" class="modificacionAction">
+			<result name="input" type="tiles" >modificacion.home</result>
+			<result name="success" type="tiles">modificacion.home</result>			    
+			<result name="failed" type="tiles">busqueda.home</result>    
+		</action>    
+		
+		<action name="savemodificacion" method="guarda" class="modificacionAction" >
+			<result type="tiles">modificacion.home</result>
+			<result name="success" type="redirectAction">
+                 <param name="actionName">firma</param>                 
+                 <param name="namespace">/firma</param>
+            </result>
+			<result name="failure" type="tiles">busqueda.home</result>			
+		</action>
+		<action name="iniciaModificacion" method="iniciaModificacion" class="modificacionAction" >
+			<result name="input" type="tiles" >modificacion.home</result>
+			<result name="success" type="redirectAction">
+                 <param name="actionName">modificacion</param>                 
+                 <param name="namespace">/home</param>
+                 <param name="esModificacion">${esModificacion}</param>
+            </result>		    
+			<result name="failed" type="tiles">busqueda.home</result> 
+		</action>
+	</package>
+</struts>

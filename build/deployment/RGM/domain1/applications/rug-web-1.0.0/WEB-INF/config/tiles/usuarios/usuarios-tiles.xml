@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC
+        "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+        "http://tiles.apache.org/dtds/tiles-config_3_0.dtd" >
+    
+ <tiles-definitions>
+   
+	
+	
+	<definition name="usuarios.home" extends=".base">
+		<put-attribute name=".header" value="/WEB-INF/jsp/Layout/header.jsp" />
+        <put-attribute name=".showNav" value="false" />
+        <put-attribute name=".tabs" value="/WEB-INF/jsp/Layout/empty.jsp" />
+        <put-attribute name=".avance" value="/WEB-INF/jsp/Layout/empty.jsp" />
+        <put-attribute name=".sideMenu" value="/WEB-INF/jsp/Layout/empty.jsp" />
+        <put-attribute name="working.region" value="/WEB-INF/jsp/content/proceso/Usuarios.jsp" />	 
+	</definition>
+	
+	<!--definition name="usuarios.home" extends=".base">
+		<put-attribute name=".header" value="/WEB-INF/jsp/Layout/header.jsp" />
+        <put-attribute name=".showNav" value="false" />
+        <put-attribute name=".tabs" value="/WEB-INF/jsp/Layout/empty.jsp" />
+        <put-attribute name=".avance" value="/WEB-INF/jsp/Layout/empty.jsp" />
+        <put-attribute name=".sideMenu" value="/WEB-INF/jsp/Layout/menu/lateral.jsp" />
+        <put-attribute name="working.region" value="/WEB-INF/jsp/content/proceso/DatosGarantia.jsp" />	 
+	</definition-->
+	
+</tiles-definitions>  

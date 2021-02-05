@@ -1,0 +1,19 @@
+.brand-logo img {
+	max-height: 100px;
+}
+ul.menu {
+	display: inline-block;
+	margin-left: 216px;
+}
+.side-nav {
+    background-color: #264d87;
+}
+.note {
+	background-color: #0863b16b;
+    padding: 500px;
+}
+.note-example {
+	background-color: #cecece;
+	font-style: italic;
+}
+

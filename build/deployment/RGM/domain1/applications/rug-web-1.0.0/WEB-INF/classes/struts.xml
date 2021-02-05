@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC 
+        "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN" 
+        "http://struts.apache.org/dtds/struts-2.0.dtd" >
+<struts>
+	<constant name="struts.objectFactory"
+			value="org.apache.struts2.spring.StrutsSpringObjectFactory" />
+	<constant name="struts.autoWire" value="true" />
+	<constant name="struts.action.extension" value="do" />
+	<constant name="struts.multipart.maxSize" value="500909663" />
+	<constant name="struts.locale" value="es_MX" />
+	<constant name="struts.ognl.allowStaticMethodAccess" value="false" />
+	<constant name="struts.custom.i18n.resources" value="resources.bundles.CommonMessages" />
+	<constant name="struts.devMode" value="false" />
+	<package name="base-action" abstract="true" extends="struts-default">
+	
+		<result-types>
+			<result-type name="tiles"
+				class="org.apache.struts2.views.tiles.TilesResult" />
+		</result-types>  
+		
+		<interceptors>
+			<interceptor name="portalException"
+				class="mx.gob.economia.dgi.framework.struts2.interceptor.ExceptionInterceptor" />
+				<!--
+			<interceptor name="captchaInterceptor"
+				class="mx.gob.se.rug.common.captcha.interceptor.CaptchaInterceptor" />
+
+			--><!--			<interceptor name="mensajeInterceptor"-->
+			<!--
+				class="mx.gob.economia.dgi.tuempresa.catalogos.interceptores.MensajeInterceptor"
+				/>
+			-->
+			
+			<interceptor-stack name="portalBaseStack">
+				<interceptor-ref name="portalException" />
+				<interceptor-ref name="alias" />
+				<interceptor-ref name="servletConfig" />
+				<interceptor-ref name="prepare" />
+				<interceptor-ref name="i18n" />
+				<interceptor-ref name="chain" />
+				<interceptor-ref name="debugging" />
+				<interceptor-ref name="profiling" />
+				<interceptor-ref name="scopedModelDriven" />
+				<interceptor-ref name="modelDriven" />
+				<interceptor-ref name="fileUpload"/>
+ 
+				<interceptor-ref name="checkbox" />
+				<interceptor-ref name="staticParams" />
+				<!--				<interceptor-ref name="mensajeInterceptor" />-->
+				<interceptor-ref name="params">
+					<param name="excludeParams">dojo\..*</param>
+				</interceptor-ref>
+				<interceptor-ref name="conversionError" />
+				<interceptor-ref name="validation">
+					<param name="excludeMethods">input,back,cancel,browse</param>
+				</interceptor-ref>
+				<interceptor-ref name="workflow">
+					<param name="excludeMethods">input,back,cancel,browse</param>
+				</interceptor-ref>
+			</interceptor-stack>
+
+			<!--<interceptor-stack name="captchaStack">
+			
+				<interceptor-ref name="captchaInterceptor" />
+			</interceptor-stack>
+		--></interceptors>    
+		
+		
+		
+	</package>
+
+	<include file="/mx/gob/se/rug/action/mapping/LayoutAction.xml" />
+	<include file="/mx/gob/se/rug/action/mapping/BuscaAction.xml" />
+	<include file="/mx/gob/se/rug/action/mapping/CancelacionAction.xml" />
+	<include file="/mx/gob/se/rug/action/mapping/ExpedienteAction.xml" />
+	<include file="/mx/gob/se/rug/action/mapping/GarantiaAction.xml" />
+<!--	<include file="/mx/gob/se/rug/action/mapping/PagoAction.xml" />-->
+	<include file="/mx/gob/se/rug/action/mapping/ValidaAction.xml" />
+	<include file="/mx/gob/se/rug/action/mapping/AvisoAction.xml" />
+	<include file="/mx/gob/se/rug/action/mapping/GralsAction.xml" />
+	<include file="/mx/gob/se/rug/action/mapping/InicioAction.xml" />
+	<include file="/mx/gob/se/rug/action/mapping/ErrorLoginAction.xml" />
+	<!--<include file="/mx/gob/se/rug/action/mapping/IdentificarseAction.xml" />-->
+	<include file="/mx/gob/se/rug/action/mapping/UsuariosAction.xml" />	
+	<include file="/resources/action/common/PublicoAction.xml" />
+	<include file="/mx/gob/se/rug/action/mapping/UsuarioAction.xml" />
+	<!--<include file="/mx/gob/se/rug/action/mapping/LoginAction.xml" />
+	<include file="/mx/gob/se/rug/action/mapping/MenuPrincipalAction.xml" />-->
+	<include file="/mx/gob/se/rug/action/mapping/BusquedaAction.xml" />
+	<include file="/mx/gob/se/rug/action/mapping/MisOperacionesAction.xml" />
+	<include file="/mx/gob/se/rug/action/mapping/MisBoletasAction.xml" />
+	<include file="/mx/gob/se/rug/action/mapping/InscripcionAction.xml" />				
+	<include file="/mx/gob/se/rug/action/mapping/AnotacionAction.xml" />
+	<include file="/mx/gob/se/rug/action/mapping/ProrrogaAction.xml" />
+	<include file="/mx/gob/se/rug/action/mapping/EjecucionAction.xml" />
+	<include file="/mx/gob/se/rug/action/mapping/EmbargoAction.xml" />		
+	<include file="/mx/gob/se/rug/action/mapping/ModificacionAction.xml" />
+	<include file="/mx/gob/se/rug/action/mapping/FormularioUnicoAction.xml" />
+	<include file="/mx/gob/se/rug/action/mapping/FactorajeAction.xml" />
+	<include file="/mx/gob/se/rug/action/mapping/RectificacionAction.xml" />
+	<include file="/mx/gob/se/rug/action/mapping/TransmisionAction.xml" />
+	<include file="/mx/gob/se/rug/action/mapping/AcreedorAction.xml" />
+	<include file="/mx/gob/se/rug/action/mapping/DetalleAction.xml" />
+	<include file="/mx/gob/se/rug/action/mapping/HeaderAction.xml" />
+	<include file="/mx/gob/se/rug/action/mapping/AnotacionGarantiaAction.xml" />
+	<include file="/mx/gob/se/rug/action/mapping/CertificacionAction.xml" />
+	<include file="/mx/gob/se/rug/action/mapping/BoletaAction.xml" />
+	<include file="/mx/gob/se/rug/action/mapping/BusquedaCertAction.xml" />
+	<!--<include file="/mx/gob/se/rug/action/mapping/ParteAction.xml" />-->
+	<include file="/mx/gob/se/rug/action/mapping/RolesAction.xml" />
+	<include file="/mx/gob/se/rug/action/mapping/PerfilAction.xml" />
+	<include file="/mx/gob/se/rug/action/mapping/FirmaElectronicaAction.xml" />
+	<include file="/mx/gob/se/rug/action/mapping/ControlUsuarioAction.xml" />
+	<include file="/mx/gob/se/rug/action/mapping/HttpErrorHandlerAction.xml" />
+	<include file="/mx/gob/se/rug/action/mapping/CancelacionAction.xml" />
+	<!--<include file="/mx/gob/se/rug/action/mapping/CancelaAnotaAction.xml" /> -->
+	<include file="/mx/gob/se/rug/action/mapping/MasivaAction.xml" />
+	<include file="/mx/gob/se/rug/action/mapping/AnotacionSnGarantiaTramitesAction.xml"/>
+	<include file="/mx/gob/se/rug/action/mapping/AdmAction.xml"/>
+	<include file="/mx/gob/se/rug/action/mapping/EncuestaAction.xml" />
+</struts>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC 
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN" 
+    "http://struts.apache.org/dtds/struts-2.0.dtd" >
+    
+<struts>
+	<package name="inicio-action" namespace="/home" extends="base-action">
+		<action name="login" method="login" class="inicioAction">
+			<result type="tiles">login.home</result>
+			<result name="success" type="tiles">login.home</result>
+			<result name="error" type="tiles">login.home</result>
+		</action>
+		
+		<action name="inicio" method="inicio" class="inicioAction">
+			<result type="tiles">inicio.home</result>
+			<result name="success" type="tiles">inicio.home</result>
+			<result name="error" type="redirectAction">
+				<param name="actionName">login</param>
+				<param name="namespace">/home</param>
+			</result>		
+		</action>
+				
+	</package>
+</struts>

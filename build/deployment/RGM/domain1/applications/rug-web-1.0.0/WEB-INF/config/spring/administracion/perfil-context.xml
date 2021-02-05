@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dwr="http://www.directwebremoting.org/schema/spring-dwr"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans.xsd
+	 http://www.directwebremoting.org/schema/spring-dwr
+            http://www.directwebremoting.org/schema/spring-dwr-2.0.xsd">
+
+	<!-- Actions  -->
+	<bean id="perfilAction"
+		class="mx.gob.se.rug.administracion.action.PerfilAction" scope="prototype">
+		<property name="regexp" ref="regexp" />
+		<property name="perfilService" ref="perfilService" />
+		<property name="homeService" ref="homeService" />
+		<property name="cipher" ref="cipher" />
+		<property name="acreedoresCatalogosService" ref="acreedoresCatalogosService" />
+		<property name="usuarioService" ref="usuarioService" />
+	</bean>
+	
+	<!-- Service -->
+	<bean id="regexp" class="mx.gob.economia.dgi.framework.regexp.impl.RegexpPerl5Impl" />
+	
+	<bean id="perfilService" class="mx.gob.se.rug.administracion.service.impl.PerfilServicePojoImpl">
+		<property name="perfilDao" ref="perfilDao" />
+	</bean>
+
+	<bean id="cipher"  class="mx.gob.economia.dgi.framework.cipher.service.impl.CipherSHA1Impl" />
+	
+	<!-- DAO -->
+	<bean id="perfilDao" class="mx.gob.se.rug.administracion.dao.impl.PerfilDaoJdbcImpl">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+	
+
+</beans>

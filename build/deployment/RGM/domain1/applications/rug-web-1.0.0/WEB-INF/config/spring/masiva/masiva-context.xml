@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dwr="http://www.directwebremoting.org/schema/spring-dwr"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.directwebremoting.org/schema/spring-dwr
+        http://www.directwebremoting.org/schema/spring-dwr-2.0.xsd">
+	
+	<!-- thread -->
+	<bean id="masivaAutoridadThread" scope="prototype"
+		class="mx.gob.se.rug.masiva.thread.AutoridadMasivaThread">
+		<property name="masivaService" ref="masivaService" />
+		<property name="inscripcionService" ref="inscripcionService" />
+		<property name="acreedoresService" ref="acreedoresService" />
+	</bean>
+	
+	<!-- Action's -->
+	<bean id="masivaAction" scope="prototype"	class="mx.gob.se.rug.masiva.action.CargaMasivaAction" >
+		<property name="masivaService" ref="masivaService" />
+		<property name="avisoPreventivoMasivaService" ref="avisoPreventivoMasivaService" />	
+		<property name="homeService" ref="homeService" />
+	</bean>
+	
+	<bean id="masivaAutoridadAction" scope="prototype"	class="mx.gob.se.rug.masiva.action.AutoridadMasivaAction">
+		<property name="masivaService" ref="masivaService" />
+		<property name="inscripcionService" ref="inscripcionService" />
+		<property name="acreedoresService" ref="acreedoresService" />
+	</bean>
+	
+	<!-- Dwr -->
+	<bean id="masivaDwrAction" scope="prototype"
+		class="mx.gob.se.rug.masiva.dwr.action.MasivaDwrAction">
+		<dwr:remote javascript="MasivaDwrAction">
+			<dwr:filter class="mx.gob.se.rug.fwk.interceptor.ExceptionDwrInterceptor" />
+		</dwr:remote>
+	</bean>
+
+	<!-- servicios -->
+	<bean id="masivaService" class="mx.gob.se.rug.masiva.service.impl.MasivaServiceImpl">
+		<property name="acreedoresService" ref="acreedoresService" />
+	</bean>
+
+	<bean id="avisoPreventivoMasivaService" class="mx.gob.se.rug.masiva.service.impl.AvisoPreventivoMasivaServiceImpl">
+		<property name="masivaService" ref="masivaService" />
+		<property name="inscripcionService" ref="inscripcionService" />
+	</bean>
+
+	<!-- dao's -->
+</beans>

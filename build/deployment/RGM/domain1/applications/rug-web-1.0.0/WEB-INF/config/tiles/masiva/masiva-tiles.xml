@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC
+        "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+        "http://tiles.apache.org/dtds/tiles-config_3_0.dtd" >
+
+<tiles-definitions>
+	<definition name="carga.masiva.autoridad.inicio" extends=".base">
+		<put-attribute name=".header" value="/WEB-INF/jsp/Layout/header.jsp" />
+		<put-attribute name=".showNav" value="false" />
+		<put-attribute name=".tabs"
+			value="/WEB-INF/jsp/content/masiva/menuCargaMasiva.jsp" />
+		<put-attribute name=".avance" value="/WEB-INF/jsp/Layout/empty.jsp" />
+		<put-attribute name=".sideMenu" value="/WEB-INF/jsp/Layout/empty.jsp" />
+		<put-attribute name="working.region"
+			value="/WEB-INF/jsp/content/masiva/cargaMasivaAutoridad.jsp" />
+	</definition>
+	<definition name="carga.masiva.autoridad.resultado" extends=".base">
+		<put-attribute name=".header" value="/WEB-INF/jsp/Layout/header.jsp" />
+		<put-attribute name=".showNav" value="false" />
+		<put-attribute name=".tabs"
+			value="/WEB-INF/jsp/content/masiva/menuCargaMasiva.jsp" />
+		<put-attribute name=".avance" value="/WEB-INF/jsp/Layout/empty.jsp" />
+		<put-attribute name=".sideMenu" value="/WEB-INF/jsp/Layout/empty.jsp" />
+		<put-attribute name="working.region"
+			value="/WEB-INF/jsp/content/masiva/resultadoAutoridad.jsp" />
+	</definition>
+	<definition name="carga.masiva.autoridad.desatendido"
+		extends=".base">
+		<put-attribute name=".header" value="/WEB-INF/jsp/Layout/header.jsp" />
+		<put-attribute name=".showNav" value="false" />
+		<put-attribute name=".tabs"
+			value="/WEB-INF/jsp/content/masiva/menuCargaMasiva.jsp" />
+		<put-attribute name=".avance" value="/WEB-INF/jsp/Layout/empty.jsp" />
+		<put-attribute name=".sideMenu" value="/WEB-INF/jsp/Layout/empty.jsp" />
+		<put-attribute name="working.region"
+			value="/WEB-INF/jsp/content/masiva/respuestaThreadAutoridad.jsp" />
+	</definition>
+	<definition name="carga.masiva.inicio" extends=".base">		
+		<put-attribute name=".showNav" value="false" />
+		<put-attribute name=".tabs" value="/WEB-INF/jsp/Layout/menu/lateral.jsp" />
+		<put-attribute name=".avance" value="/WEB-INF/jsp/Layout/empty.jsp" />
+		<put-attribute name=".sideMenu" value="/WEB-INF/jsp/Layout/empty.jsp" />
+		<put-attribute name=".include-scripts" value="/WEB-INF/jsp/Layout/empty.jsp" />
+		<put-attribute name=".header-scripts" value="/WEB-INF/jsp/content/masiva/scripts.jsp" />
+		<put-attribute name="working.region"
+			value="/WEB-INF/jsp/content/masiva/cargaMasiva.jsp" />
+	</definition>
+	<definition name="carga.masiva.resultado" extends=".base">		
+		<put-attribute name=".showNav" value="false" />
+		<put-attribute name=".tabs" value="/WEB-INF/jsp/Layout/menu/lateral.jsp" />
+		<put-attribute name=".avance" value="/WEB-INF/jsp/Layout/empty.jsp" />
+		<put-attribute name=".sideMenu" value="/WEB-INF/jsp/Layout/empty.jsp" />		
+		<put-attribute name="working.region"
+			value="/WEB-INF/jsp/content/inscripcion/resCargaMasiva.jsp" />
+	</definition>
+	<definition name="carga.masiva.batch" extends=".base">		
+		<put-attribute name=".showNav" value="false" />
+		<put-attribute name=".tabs" value="/WEB-INF/jsp/Layout/menu/lateral.jsp" />
+		<put-attribute name=".avance" value="/WEB-INF/jsp/Layout/empty.jsp" />
+		<put-attribute name=".sideMenu" value="/WEB-INF/jsp/Layout/empty.jsp" />
+		<put-attribute name="working.region"
+			value="/WEB-INF/jsp/content/inscripcion/batchCM.jsp" />
+	</definition>
+	<definition name="carga.masiva.error" extends=".base">		
+		<put-attribute name=".showNav" value="false" />
+		<put-attribute name=".tabs" value="/WEB-INF/jsp/Layout/menu/lateral.jsp" />
+		<put-attribute name=".avance" value="/WEB-INF/jsp/Layout/empty.jsp" />
+		<put-attribute name=".sideMenu" value="/WEB-INF/jsp/Layout/empty.jsp" />
+		<put-attribute name="working.region"
+			value="/WEB-INF/jsp/content/inscripcion/errorCargaMasiva.jsp" />
+	</definition>
+
+</tiles-definitions>  

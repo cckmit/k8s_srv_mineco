@@ -1,0 +1,483 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!-- edited with XMLSpy v2005 sp2 U (http://www.altova.com) by Kishor (Green Point Technology Services) -->
+<xs:schema xmlns="carga-masiva" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="carga-masiva" elementFormDefault="qualified" attributeFormDefault="unqualified">
+
+    <xs:element name="carga-masiva">
+        <xs:complexType>
+            <xs:choice>
+                <xs:sequence maxOccurs="unbounded" minOccurs="0">
+                    <xs:element ref="inscripcion"/>
+                </xs:sequence>
+                <xs:sequence maxOccurs="unbounded" minOccurs="0">
+                    <xs:element ref="cancelacion"/>
+                </xs:sequence>
+                <xs:sequence maxOccurs="unbounded" minOccurs="0">
+                    <xs:element ref="modificacion"/>
+                </xs:sequence>
+                <xs:sequence maxOccurs="unbounded" minOccurs="0">
+                    <xs:element ref="renovacion-reduccion"/>
+                </xs:sequence>
+                <xs:sequence maxOccurs="unbounded" minOccurs="0">
+                    <xs:element ref="transmision"/>
+                </xs:sequence>
+
+                <xs:sequence maxOccurs="unbounded" minOccurs="0">
+                    <xs:element ref="rectificacion-por-error"/>
+                </xs:sequence>
+                <xs:sequence maxOccurs="unbounded" minOccurs="0">
+                    <xs:element ref="anotacion-garantia"/>
+                </xs:sequence>
+                <xs:sequence maxOccurs="unbounded" minOccurs="0">
+                    <xs:element ref="anotacion"/>
+                </xs:sequence>
+                <xs:sequence maxOccurs="unbounded" minOccurs="0">
+                    <xs:element ref="aviso-preventivo"/>
+                </xs:sequence>
+                <xs:sequence maxOccurs="unbounded" minOccurs="0">
+                    <xs:element ref="traslado"/>
+                </xs:sequence>
+                
+
+                <xs:element ref="acreedores"/>
+
+            </xs:choice>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="inscripcion">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="persona-solicita-autoridad-instruye-asiento" minOccurs="0" maxOccurs="1"/>
+                <xs:element ref="partes" minOccurs="1" maxOccurs="1"/>
+                <xs:element ref="garantia" minOccurs="1" maxOccurs="1"/>
+                <xs:element ref="vigencia" minOccurs="1" maxOccurs="1"/>
+                <xs:element ref="identificador" minOccurs="1" maxOccurs="1"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+	<xs:element name="traslado">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="persona-solicita-autoridad-instruye-asiento" minOccurs="0" maxOccurs="1"/>
+                <xs:element ref="partes" minOccurs="1" maxOccurs="1"/>
+                <xs:element ref="garantia" minOccurs="1" maxOccurs="1"/>
+                <xs:element ref="vigencia" minOccurs="1" maxOccurs="1"/>
+                <xs:element ref="identificador" minOccurs="1" maxOccurs="1"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="cancelacion">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="persona-solicita-autoridad-instruye-asiento" minOccurs="0" maxOccurs="1"/>
+                <xs:element ref="identificador-garantia" minOccurs="1" maxOccurs="1"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="modificacion">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="persona-solicita-autoridad-instruye-asiento" minOccurs="0" maxOccurs="1"/>
+                <xs:element ref="eliminar-partes-modificacion" minOccurs="0" maxOccurs="1"/>
+                <xs:element ref="deudor" minOccurs="0" maxOccurs="unbounded"/>
+                <xs:element ref="datos-modificacion" minOccurs="0" maxOccurs="1"/>
+                <xs:element ref="obligacion-garantiza-modificacion" minOccurs="0" maxOccurs="1"/>
+                <xs:element ref="convenio" minOccurs="1" maxOccurs="1"/>
+                <xs:element ref="identificador-garantia" minOccurs="1" maxOccurs="1"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="renovacion-reduccion">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="persona-solicita-autoridad-instruye-asiento" minOccurs="0" maxOccurs="1"/>
+                <xs:element ref="datos-renovacion-reduccion" minOccurs="1" maxOccurs="1"/>
+                <xs:element ref="identificador-garantia" minOccurs="1" maxOccurs="1"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="transmision">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="persona-solicita-autoridad-instruye-asiento" minOccurs="0" maxOccurs="1"/>
+                <xs:element ref="acreedor" minOccurs="0" maxOccurs="1"/>
+                <xs:element ref="eliminar-partes-transmision" minOccurs="0" maxOccurs="1"/>
+                <xs:element ref="otorgante" minOccurs="0" maxOccurs="unbounded"/>
+                <xs:element ref="acreedor-adicional" minOccurs="0" maxOccurs="unbounded"/>
+                <xs:element ref="convenio" minOccurs="1" maxOccurs="1"/>
+                <xs:element ref="identificador-garantia" minOccurs="1" maxOccurs="1"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="rectificacion-por-error">
+        <xs:complexType>
+            <xs:sequence>
+
+                <xs:element ref="persona-solicita-autoridad-instruye-asiento" minOccurs="0" maxOccurs="1"/>
+                <xs:element ref="acreedor" minOccurs="0" maxOccurs="1"/>
+                <xs:element ref="eliminar-partes-rectificacion" minOccurs="0" maxOccurs="1"/>
+                <xs:element ref="partes-rectificacion" minOccurs="0" maxOccurs="1"/>
+                <xs:element ref="datos-garantia" minOccurs="0" maxOccurs="1"/>
+                <xs:element ref="obligacion-garantiza" minOccurs="0" maxOccurs="1"/>
+                <xs:element ref="identificador-garantia" minOccurs="1" maxOccurs="1"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="anotacion-garantia">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="persona-solicita-autoridad-instruye-asiento" minOccurs="1" maxOccurs="1"/>
+                <xs:element ref="vigencia" minOccurs="1" maxOccurs="1"/>
+                <xs:element ref="datos-anotacion" minOccurs="1" maxOccurs="1"/>
+                <xs:element ref="identificador-garantia" minOccurs="1" maxOccurs="1"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="anotacion">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="persona-solicita-autoridad-instruye-asiento" minOccurs="1" maxOccurs="1"/>
+                <xs:element ref="otorgante" minOccurs="1" maxOccurs="1"/>
+                <xs:element ref="vigencia" minOccurs="1" maxOccurs="1"/>
+                <xs:element ref="datos-anotacion" minOccurs="1" maxOccurs="1"/>
+                <xs:element ref="identificador" minOccurs="1" maxOccurs="1"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="aviso-preventivo">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="persona-solicita-autoridad-instruye-asiento" minOccurs="0" maxOccurs="1"/>
+                <xs:element ref="otorgante" minOccurs="1" maxOccurs="1"/>
+                <xs:element ref="datos-aviso-preventivo" minOccurs="1" maxOccurs="1"/>
+                <xs:element ref="identificador" minOccurs="1" maxOccurs="1"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="acreedores">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="acreedor-autoridad" minOccurs="1" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="acreedor-autoridad">
+        <xs:complexType>
+            <xs:attribute name="tipo-persona" type="xs:string" use="required"/>
+            <xs:attribute name="id-nacionalidad" type="xs:string" use="required"/>
+            <xs:attribute name="denominacion-razon-social" type="xs:string"/>
+            <xs:attribute name="nombre" type="xs:string"/>
+            <xs:attribute name="apellido-paterno" type="xs:string"/>
+            <xs:attribute name="apellido-materno" type="xs:string"/>
+            <xs:attribute name="telefono" type="xs:string" use="required"/>
+            <xs:attribute name="telefono-extension" type="xs:string"/>
+            <xs:attribute name="correo-electronico" type="xs:string"/>
+            <xs:attribute name="rfc" type="xs:string"/>
+            <xs:attribute name="id-pais-residencia" type="xs:string" use="required"/>
+            <xs:attribute name="calle" type="xs:string"/>
+            <xs:attribute name="numero-exterior" type="xs:string"/>
+            <xs:attribute name="numero-interior" type="xs:string"/>
+            <xs:attribute name="id-colonia" type="xs:string"/>
+            <xs:attribute name="id-localidad" type="xs:string"/>
+            <xs:attribute name="domicilio-extranjero-uno" type="xs:string"/>
+            <xs:attribute name="domicilio-extranjero-dos" type="xs:string"/>
+            <xs:attribute name="poblacion" type="xs:string"/>
+            <xs:attribute name="zona-postal" type="xs:string"/>
+        </xs:complexType>
+    </xs:element>
+
+
+
+    <xs:element name="partes">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="otorgante" minOccurs="0" maxOccurs="unbounded"/>
+                <xs:element ref="deudor" minOccurs="0" maxOccurs="unbounded"/>
+                <xs:element ref="acreedor-adicional" minOccurs="0" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="partes-rectificacion">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="otorgante" minOccurs="0" maxOccurs="unbounded"/>
+                <xs:element ref="deudor" minOccurs="0" maxOccurs="unbounded"/>
+                <xs:element ref="acreedor-adicional" minOccurs="0" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="otorgante">
+        <xs:complexType>
+            <xs:attribute name="id-nacionalidad" type="xs:string" use="required"/>
+            <xs:attribute name="tipo-persona" type="xs:string" use="required"/>
+            <xs:attribute name="denominacion-razon-social" type="xs:string"/>
+            <xs:attribute name="nombre" type="xs:string"/>
+            <xs:attribute name="apellido-paterno" type="xs:string"/>
+            <xs:attribute name="apellido-materno" type="xs:string"/>
+            <xs:attribute name="curp" type="xs:string"/>
+            <xs:attribute name="folio-electronico" type="xs:string"/>
+            <xs:attribute name="rfc" type="xs:string"/>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="deudor">
+        <xs:complexType>
+            <xs:attribute name="id-nacionalidad" type="xs:string"/>
+            <xs:attribute name="tipo-persona" type="xs:string" use="required"/>
+            <xs:attribute name="denominacion-razon-social" type="xs:string"/>
+            <xs:attribute name="info-inscripcion" type="xs:string"/>
+            <xs:attribute name="nombre" type="xs:string"/>
+            <xs:attribute name="apellido-paterno" type="xs:string"/>
+            <xs:attribute name="apellido-materno" type="xs:string"/>
+            <xs:attribute name="identificador" type="xs:string"/>
+            <xs:attribute name="nit" type="xs:string"/>
+            <xs:attribute name="correo-electronico" type="xs:string" use="required"/>
+            <xs:attribute name="domicilio" type="xs:string" use="required"/>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="acreedor">
+        <xs:complexType>
+            <xs:attribute name="id-acreedor" type="xs:string" use="required"/>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="acreedor-adicional">
+        <xs:complexType>
+            <xs:attribute name="id-nacionalidad" type="xs:string"/>
+            <xs:attribute name="tipo-persona" type="xs:string" use="required"/>
+            <xs:attribute name="denominacion-razon-social" type="xs:string"/>
+            <xs:attribute name="info-inscripcion" type="xs:string"/>
+            <xs:attribute name="nombre" type="xs:string"/>
+            <xs:attribute name="apellido-paterno" type="xs:string"/>
+            <xs:attribute name="apellido-materno" type="xs:string"/>
+            <xs:attribute name="telefono" type="xs:string"/>
+            <xs:attribute name="telefono-extension" type="xs:string"/>
+            <xs:attribute name="correo-electronico" type="xs:string" use="required"/>
+            <xs:attribute name="calle" type="xs:string" />
+            <xs:attribute name="numero-exterior" type="xs:string" />
+            <xs:attribute name="numero-interior" type="xs:string"/>
+            <xs:attribute name="id-colonia" type="xs:string"/>
+            <xs:attribute name="id-localidad" type="xs:string"/>
+            <xs:attribute name="id-pais-residencia" type="xs:string" />
+            <xs:attribute name="domicilio" type="xs:string" use="required"/>
+            <xs:attribute name="domicilio-extranjero-dos" type="xs:string"/>
+            <xs:attribute name="poblacion" type="xs:string"/>
+            <xs:attribute name="zona-postal" type="xs:string"/>
+            <xs:attribute name="nit" type="xs:string"/>
+            <xs:attribute name="identificador" type="xs:string"/>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="garantia">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="creacion" minOccurs="1" maxOccurs="1"/>
+                <xs:element ref="obligacion" minOccurs="0" maxOccurs="1"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="creacion">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="tipo-bien-mueble" minOccurs="0" maxOccurs="unbounded"/>
+                <xs:element ref="bienes-especiales" minOccurs="1" maxOccurs="unbounded"/>
+            </xs:sequence>            
+            <xs:attribute name="id-tipo-garantia" type="xs:string" use="optional"/>
+            <xs:attribute name="fecha-celebracion" type="xs:string" use="optional"/>
+            <xs:attribute name="monto-maximo" type="xs:string" use="optional"/>
+            <xs:attribute name="id-moneda" type="xs:string" use="optional"/>
+            <xs:attribute name="descripcion-bienes-muebles" type="xs:string" use="required"/>
+            <xs:attribute name="observaciones-adicionales" type="xs:string" use="required"/>
+            <xs:attribute name="info-general-contrato" type="xs:string" use="required"/>
+            <xs:attribute name="info-registro" type="xs:string" use="optional"/>
+            <xs:attribute name="b-no-bienes-otorgados" type="xs:string" use="required"/>            
+            <xs:attribute name="b-es-prioritaria" type="xs:string" use="required"/>
+            <xs:attribute name="b-en-otro-registro" type="xs:string" use="required"/>
+            <xs:attribute name="b-atribuibles-no-afectos" type="xs:string" use="required"/>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="bienes-especiales">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="bien-especial" minOccurs="1" maxOccurs="unbounded"/>                
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="bien-especial">
+        <xs:complexType>
+            <xs:attribute name="tipo-bien-especial" type="xs:string" use="required"/>
+            <xs:attribute name="tipo-identificador" type="xs:string" use="required"/>
+            <xs:attribute name="identificador" type="xs:string" use="required"/>
+            <xs:attribute name="descripcion" type="xs:string" use="required"/>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="datos-garantia">
+        <xs:complexType>
+            <xs:sequence minOccurs="0" maxOccurs="unbounded">
+                <xs:element ref="tipo-bien-mueble"/>
+            </xs:sequence>
+            <xs:attribute name="id-tipo-garantia" type="xs:string" use="optional"/>
+            <xs:attribute name="fecha-celebracion" type="xs:string" use="optional"/>
+            <xs:attribute name="monto-maximo" type="xs:string" use="optional"/>
+            <xs:attribute name="id-moneda" type="xs:string" use="optional"/>
+            <xs:attribute name="descripcion-bienes-muebles" type="xs:string" use="optional"/>
+            <xs:attribute name="terminos-condiciones" type="xs:string" use="optional"/>
+            <xs:attribute name="datos-instrumento-publico" type="xs:string" use="optional"/>
+            <xs:attribute name="b-datos-modificables" type="xs:string" use="optional"/>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="obligacion">
+        <xs:complexType>
+            <xs:attribute name="acto-contrato" type="xs:string" use="optional"/>
+            <xs:attribute name="fecha-celebracion" type="xs:string" use="optional"/>
+            <xs:attribute name="fecha-terminacion" type="xs:string" use="optional"/>
+            <xs:attribute name="terminos" type="xs:string" use="optional"/>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="obligacion-garantiza">
+        <xs:complexType>
+            <xs:attribute name="acto-contrato" type="xs:string" use="optional"/>
+            <xs:attribute name="fecha-celebracion" type="xs:string" use="optional"/>
+            <xs:attribute name="fecha-terminacion" type="xs:string" use="optional"/>
+            <xs:attribute name="terminos" type="xs:string" use="optional"/>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="obligacion-garantiza-modificacion">
+        <xs:complexType>
+            <xs:attribute name="acto-contrato" type="xs:string" use="optional"/>
+            <xs:attribute name="fecha-terminacion" type="xs:string" use="optional"/>
+            <xs:attribute name="terminos" type="xs:string" use="optional"/>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="convenio">
+        <xs:complexType>
+            <xs:attribute name="acto-convenio" type="xs:string" use="required"/>
+            <xs:attribute name="fecha-celebracion" type="xs:string" use="required"/>
+            <xs:attribute name="fecha-terminacion" type="xs:string" use="optional"/>
+            <xs:attribute name="terminos-condiciones" type="xs:string" use="optional"/>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="datos-transmision">
+        <xs:complexType>
+            <xs:attribute name="transmision-contenido-resolucion" type="xs:string" use="required"/>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="eliminar-partes-rectificacion">
+        <xs:complexType>
+            <xs:attribute name="elimina-otorgantes" type="xs:string" use="optional"/>
+            <xs:attribute name="elimina-deudores" type="xs:string" use="optional"/>
+            <xs:attribute name="elimina-acreedor-adicional" type="xs:string" use="optional"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="eliminar-partes-modificacion">
+        <xs:complexType>
+            <xs:attribute name="elimina-deudores" type="xs:string" use="optional"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="eliminar-partes-transmision">
+        <xs:complexType>
+            <xs:attribute name="elimina-otorgantes" type="xs:string" use="optional"/>
+            <xs:attribute name="elimina-acreedor-adicional" type="xs:string" use="optional"/>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="persona-solicita-autoridad-instruye-asiento">
+        <xs:complexType>
+            <xs:attribute name="contenido-resolucion" type="xs:string" use="required"/>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="datos-modificacion">
+        <xs:complexType>
+            <xs:sequence minOccurs="0" maxOccurs="unbounded">
+                <xs:element ref="tipo-bien-mueble"/>
+            </xs:sequence>
+            <xs:attribute name="monto-maximo" type="xs:string" use="optional"/>
+            <xs:attribute name="id-moneda" type="xs:string" use="optional"/>
+            <xs:attribute name="descripcion-bienes-muebles" type="xs:string" use="optional"/>
+            <xs:attribute name="terminos-condiciones" type="xs:string" use="optional"/>
+            <xs:attribute name="preve-cambios-bienes-muebles-monto" type="xs:string" use="optional"/>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="vigencia">
+        <xs:complexType>
+            <xs:attribute name="anios" type="xs:string" use="required"/>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="tipo-bien-mueble">
+        <xs:complexType>
+            <xs:attribute name="id" type="xs:string" use="required"/>
+            <xs:attribute name="descripcion" type="xs:string" use="optional"/>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="identificador">
+        <xs:complexType>
+            <xs:attribute name="clave-rastreo" use="required">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:minLength value="1"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="identificador-garantia">
+        <xs:complexType>
+            <xs:attribute name="clave-rastreo" use="required">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:minLength value="1"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="id-garantia" type="xs:string" use="required"/>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="datos-renovacion-reduccion">
+        <xs:complexType>
+            <xs:attribute name="vigencia" type="xs:string" use="required"/>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="datos-anotacion">
+        <xs:complexType>
+            <xs:attribute name="contenido-resolucion" type="xs:string" use="required"/>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="datos-aviso-preventivo">
+        <xs:complexType>
+            <xs:attribute name="descripcion-bienes-muebles" type="xs:string" use="required"/>
+        </xs:complexType>
+    </xs:element>
+
+</xs:schema>

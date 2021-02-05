@@ -1,0 +1,166 @@
+body {
+	display: flex;
+	min-height: 100vh;
+	flex-direction: column;
+	background: #fff;
+}
+
+main {
+	flex: 1 0 auto;
+	margin-top: 30px;
+}
+.brand-logo img {
+	max-height: 100px;
+}
+@media (min-width: 991px) {
+	ul.menu {
+		margin-left: 250px;
+	}
+}
+.side-nav {
+    background-color: #264d87;
+}
+.note {
+	background-color: #0863b16b;
+    padding: 5px;
+}
+.note-example {
+	background-color: #cecece;
+	font-style: italic;
+}
+
+/*menu detalle garantia */
+
+#menuh {
+        font: Trajan;
+       float: right;    
+}
+
+#menuh ul, li {
+        list-style-type: none;
+}
+
+#menuh ul {
+        margin: 0;
+        padding: 0;
+}
+
+#menuh li {
+        float: left;
+        cursor: pointer;
+}
+
+#menuh a {
+ 		text-decoration: none;
+        color: #666666;
+        background-color: #FAFAFA;
+        display: block;
+        padding: 3px 10px;
+        text-align: center;
+        border-width: 1px 1px 1px 0px;
+		border-bottom: 2px solid #DEDEDE;
+  	    list-style-type: none;
+}
+
+#menuh a#primero {
+        border-left: 1px solid #ACCFE8;
+}
+
+#menuh a:hover {
+        color: #BA2025;
+}
+.errorMessage li span {
+    position: relative;
+    top: -1rem;
+    left: 0rem;
+    font-size: 0.8rem;
+    color: #FF4081;
+    -webkit-transform: translateY(0%);
+    -ms-transform: translateY(0%);
+    -o-transform: translateY(0%);
+    transform: translateY(0%);
+}
+
+textarea {
+	height: 6rem;
+}
+.inciso {
+	list-style-type: upper-alpha;
+}
+.browser-default > li {
+	list-style-type: disc !important;
+}
+.middle-indicator {
+	position:absolute;
+	top:50%;
+}
+.middle-indicator-text {
+	font-size: 4.2rem;
+}
+a.middle-indicator-text {
+	color:white !important;
+}
+.content-indicator {
+	width: 64px;
+    height: 64px;
+    background: none;
+    -moz-border-radius: 50px;
+    -webkit-border-radius: 50px;
+    border-radius: 50px; 
+}
+.carousel {
+  	max-height: 225px
+}
+.middle-indicator {
+	position:absolute;
+	top:50%;
+}
+.middle-indicator-text {
+	font-size: 4.2rem;
+}
+a.middle-indicator-text {
+	color:white !important;
+}
+.content-indicator {
+	width: 64px;
+    height: 64px;
+    background: none;
+    -moz-border-radius: 50px;
+    -webkit-border-radius: 50px;
+    border-radius: 50px; 
+}
+.carousel {
+  	max-height: 225px
+}
+
+i.icon-green {
+    color: green;
+}
+
+i.icon-yellow {
+    color: #cc9900;
+}
+.no-js #loader { display: none;  }
+.js #loader { display: block; position: absolute; left: 100px; top: 0; }
+.se-pre-con {
+	position: fixed;
+	left: 0px;
+	top: 0px;
+	width: 100%;
+	height: 100%;
+	z-index: 9999;
+	background: url(../imgs/Preloader_2.gif) center no-repeat #fff;
+	background-color: rgba(255,255,255,0.6);
+}
+.user-data.visible {
+  /*visibility: visible;*/
+  opacity: 1;
+  background-color: #fff;
+  transition: opacity 2s linear;
+}
+.user-data.hidden {
+  /*visibility: hidden;*/
+  opacity: 0;
+  background-color: #cecece;
+  transition: visibility 0s 2s, opacity 2s linear;
+}

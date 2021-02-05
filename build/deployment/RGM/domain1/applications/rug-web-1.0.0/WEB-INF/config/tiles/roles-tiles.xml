@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC
+        "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+        "http://tiles.apache.org/dtds/tiles-config_3_0.dtd" >
+    
+ <tiles-definitions>
+	<definition name="roles.captura" extends=".base" >
+		<put-attribute name=".header" value="/WEB-INF/jsp/Layout/header.jsp" />
+		<put-attribute name="working.region" value="/WEB-INF/jsp/content/roles/captura.jsp" />
+	</definition>
+	
+	<definition name="roles.save" extends=".base" >
+		<put-attribute name=".header" value="/WEB-INF/jsp/Layout/header.jsp" />
+		<put-attribute name="working.region" value="/WEB-INF/jsp/content/roles/save.jsp" />
+	</definition>
+	
+</tiles-definitions>

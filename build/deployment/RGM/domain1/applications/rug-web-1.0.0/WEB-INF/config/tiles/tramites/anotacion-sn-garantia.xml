@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC
+        "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+        "http://tiles.apache.org/dtds/tiles-config_3_0.dtd" >
+<tiles-definitions>
+	<definition name="anotacion.sn.garantia.rectificacion" extends=".base">
+		<put-attribute name=".header" value="/WEB-INF/jsp/Layout/header.jsp" />
+		<put-attribute name=".showNav" value="false" />
+		<put-attribute name=".tabs" value="/WEB-INF/jsp/Layout/Pestanas.jsp" />
+		<put-attribute name=".tabs" value="/WEB-INF/jsp/Layout/submenuAnotacion.jsp" />
+		<put-attribute name=".avance" value="/WEB-INF/jsp/Layout/empty.jsp" />
+		<put-attribute name=".sideMenu" value="/WEB-INF/jsp/Layout/empty.jsp" />
+		<put-attribute name="working.region"
+				value="/WEB-INF/jsp/content/anotacion/AsinGarantia/tramites/RectificacionAnotacionSinGarantia.jsp" />
+	</definition>
+	
+	<definition name="anotacion.sn.garantia.modificacion" extends=".base">
+		<put-attribute name=".header" value="/WEB-INF/jsp/Layout/header.jsp" />
+		<put-attribute name=".showNav" value="false" />
+		<put-attribute name=".tabs" value="/WEB-INF/jsp/Layout/Pestanas.jsp" />
+		<put-attribute name=".tabs" value="/WEB-INF/jsp/Layout/submenuAnotacion.jsp" />
+		<put-attribute name=".avance" value="/WEB-INF/jsp/Layout/empty.jsp" />
+		<put-attribute name=".sideMenu" value="/WEB-INF/jsp/Layout/empty.jsp" />
+		<put-attribute name="working.region"
+				value="/WEB-INF/jsp/content/anotacion/AsinGarantia/tramites/ModificacionAnotacionSnGarantia.jsp" />
+	</definition>
+
+	<definition name="anotacion.sn.garantia.renovacion" extends=".base">
+		<put-attribute name=".header" value="/WEB-INF/jsp/Layout/header.jsp" />
+		<put-attribute name=".showNav" value="false" />
+		<put-attribute name=".tabs" value="/WEB-INF/jsp/Layout/Pestanas.jsp" />
+		<put-attribute name=".tabs" value="/WEB-INF/jsp/Layout/submenuAnotacion.jsp" />
+		<put-attribute name=".avance" value="/WEB-INF/jsp/Layout/empty.jsp" />
+		<put-attribute name=".sideMenu" value="/WEB-INF/jsp/Layout/empty.jsp" />
+		<put-attribute name="working.region"
+				value="/WEB-INF/jsp/content/anotacion/AsinGarantia/tramites/RenovacionAnotacionSinGarantia.jsp" />
+	</definition>
+	<definition name="anotacion.sn.garantia.cancelacion" extends=".base">
+		<put-attribute name=".header" value="/WEB-INF/jsp/Layout/header.jsp" />
+		<put-attribute name=".showNav" value="false" />
+		<put-attribute name=".tabs" value="/WEB-INF/jsp/Layout/Pestanas.jsp" />
+		<put-attribute name=".tabs" value="/WEB-INF/jsp/Layout/submenuAnotacion.jsp" />
+		<put-attribute name=".avance" value="/WEB-INF/jsp/Layout/empty.jsp" />
+		<put-attribute name=".sideMenu" value="/WEB-INF/jsp/Layout/empty.jsp" />
+		<put-attribute name="working.region"
+				value="/WEB-INF/jsp/content/anotacion/AsinGarantia/tramites/CancelacionAnotacionSinGarantia.jsp" />
+	</definition>
+
+</tiles-definitions>  

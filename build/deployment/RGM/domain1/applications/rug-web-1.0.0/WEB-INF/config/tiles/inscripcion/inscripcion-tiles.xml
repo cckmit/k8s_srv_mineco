@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC
+        "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+        "http://tiles.apache.org/dtds/tiles-config_3_0.dtd" >
+
+<tiles-definitions>
+	<definition name="inscripcion.selecciona.acreedor" extends=".base">
+		<put-attribute name=".showNav" value="false" />
+		<put-attribute name=".tabs" value="/WEB-INF/jsp/Layout/menu/lateral.jsp" />						
+		<put-attribute name=".avance" value="/WEB-INF/jsp/Layout/empty.jsp" />
+		<put-attribute name=".sideMenu" value="/WEB-INF/jsp/Layout/empty.jsp" />
+		<put-attribute name=".include-scripts" value="/WEB-INF/jsp/content/inscripcion/scripts.jsp" />
+		<put-attribute name="working.region"
+			value="/WEB-INF/jsp/content/inscripcion/seleccionaAcredor.jsp" />
+	</definition>
+	<definition name="inscripcion.partes" extends=".base">		
+		<put-attribute name=".showNav" value="false" />
+		<put-attribute name=".tabs" value="/WEB-INF/jsp/Layout/menu/lateral.jsp" />		
+		<put-attribute name=".avance" value="/WEB-INF/jsp/Layout/empty.jsp" />
+		<put-attribute name=".sideMenu" value="/WEB-INF/jsp/Layout/empty.jsp" />	
+		<put-attribute name=".include-scripts" value="/WEB-INF/jsp/Layout/empty.jsp" />
+		<put-attribute name=".header-scripts" value="/WEB-INF/jsp/content/inscripcion/scripts.jsp" />	
+		<put-attribute name="working.region"
+			value="/WEB-INF/jsp/content/inscripcion/paso1.jsp" />
+	</definition>
+
+	<definition name="inscripcion.garantia" extends=".base">		
+		<put-attribute name=".showNav" value="false" />
+		<put-attribute name=".tabs" value="/WEB-INF/jsp/Layout/menu/lateral.jsp" />
+		<put-attribute name=".avance" value="/WEB-INF/jsp/Layout/empty.jsp" />
+		<put-attribute name=".sideMenu" value="/WEB-INF/jsp/Layout/empty.jsp" />
+		<put-attribute name=".include-scripts" value="/WEB-INF/jsp/Layout/empty.jsp" />
+		<put-attribute name=".header-scripts" value="/WEB-INF/jsp/content/inscripcion/scripts.jsp" />
+		<put-attribute name="working.region"
+			value="/WEB-INF/jsp/content/inscripcion/paso2.jsp" />
+	</definition>
+	
+	<definition name="inscripcion.vigencia" extends=".base">
+		<put-attribute name=".showNav" value="false" />
+		<put-attribute name=".tabs" value="/WEB-INF/jsp/Layout/menu/lateral.jsp" />
+		<put-attribute name=".avance" value="/WEB-INF/jsp/Layout/empty.jsp" />
+		<put-attribute name=".sideMenu" value="/WEB-INF/jsp/Layout/empty.jsp" />
+		<put-attribute name=".include-scripts" value="/WEB-INF/jsp/content/inscripcion/scripts2.jsp" />
+		<put-attribute name="working.region"
+			value="/WEB-INF/jsp/content/inscripcion/paso3.jsp" />
+	</definition>
+</tiles-definitions>  

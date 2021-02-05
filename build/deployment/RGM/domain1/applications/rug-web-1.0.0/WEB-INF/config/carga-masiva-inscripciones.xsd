@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<xs:schema xmlns="carga-masiva-inscripciones" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="carga-masiva-inscripciones" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:element name="carga-masiva-inscripciones">
+		<xs:complexType>
+			<xs:sequence maxOccurs="unbounded">
+				<xs:element ref="inscripcion"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="identificador">
+		<xs:complexType/>
+	</xs:element>
+	<xs:element name="inscripcion">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="partes"/>
+				<xs:element ref="garantia"/>
+				<xs:element ref="vigencia"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="partes">
+		<xs:complexType>
+			<xs:sequence maxOccurs="unbounded">
+				<xs:element ref="persona"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="persona">
+		<xs:complexType>
+			<xs:attribute name="id-tipo-parte" type="xs:int" use="required"/>
+			<xs:attribute name="id-tipo-persona" type="xs:int" use="required"/>
+			<xs:attribute name="id-nacionalidad" type="xs:int" use="required"/>
+			<xs:attribute name="nombre" type="xs:string" use="optional"/>
+			<xs:attribute name="apellido-paterno" type="xs:string" use="optional"/>
+			<xs:attribute name="apellido-materno" type="xs:string" use="optional"/>
+			<xs:attribute name="razon-social" type="xs:string" use="optional"/>
+			<xs:attribute name="folio-electronico" type="xs:string" use="optional"/>
+			<xs:attribute name="rfc" type="xs:string" use="optional"/>
+			<xs:attribute name="curp" type="xs:string" use="optional"/>
+			<xs:attribute name="documento-extranjero" type="xs:string" use="optional"/>
+			<xs:attribute name="calle" type="xs:string" use="optional"/>
+			<xs:attribute name="numero-exterior" type="xs:string" use="optional"/>
+			<xs:attribute name="numero-interior" type="xs:string" use="optional"/>
+			<xs:attribute name="codigo-postal" type="xs:string" use="optional"/>
+			<xs:attribute name="id-colonia" type="xs:int" use="optional"/>
+			<xs:attribute name="id-localidad" type="xs:int" use="optional"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="garantia">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="creacion"/>
+				<xs:element ref="obligacion"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="creacion">
+		<xs:complexType>
+			<xs:attribute name="id-tipo-garantia" type="xs:int" use="required"/>
+			<xs:attribute name="fecha-celebracion" type="xs:string" use="required"/>
+			<xs:attribute name="monto-maximo" type="xs:double" use="optional"/>
+			<xs:attribute name="id-moneda" type="xs:int" use="optional"/>
+			<xs:attribute name="lista-tipo-bienes-muebles" type="xs:string" use="required"/>
+			<xs:attribute name="descripcion-bienes-muebles" type="xs:string" use="required"/>
+			<xs:attribute name="terminos-condiciones" type="xs:string" use="optional"/>
+			<xs:attribute name="datos-instrumento-publico" type="xs:string" use="optional"/>
+			<xs:attribute name="b-datos-modificables" type="xs:boolean" use="required"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="obligacion">
+		<xs:complexType>
+			<xs:attribute name="id-tipo-acto-contrato" type="xs:int" use="optional"/>
+			<xs:attribute name="fecha-celebracin" type="xs:string" use="optional"/>
+			<xs:attribute name="fecha-terminacion" type="xs:string" use="optional"/>
+			<xs:attribute name="terminos" type="xs:string" use="optional"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="vigencia">
+		<xs:complexType>
+			<xs:attribute name="meses" type="xs:int" use="required"/>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

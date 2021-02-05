@@ -1,0 +1,549 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC 
+        "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN" 
+        "http://tiles.apache.org/dtds/tiles-config_3_0.dtd" >
+
+<tiles-definitions>
+	<!-- Pantallas públicas -->
+
+	
+	
+	<definition name="publico.ayuda.legislacion" extends=".baseAyuda" >
+		<put-attribute name="working.region" value="/jsp/comun/publico/ayuda/legislacion.jsp" />
+	</definition>
+	
+	<definition name="publico.ayuda.contacto" extends=".baseAyuda" >
+		<put-attribute name="working.region" value="/jsp/comun/publico/ayuda/contacto.jsp" />
+	</definition>
+	
+	<definition name="ayuda.denominacion.nombre" extends=".baseAyuda" >
+		<put-attribute name="working.region" value="/jsp/comun/publico/ayuda/denominacion.jsp" />
+	</definition>
+	
+	<definition name="ayuda.denominacion.empresasYaRegistradas" extends=".baseAyuda" >
+		<put-attribute name="working.region" value="/jsp/comun/publico/ayuda/empresasYaRegistradas.jsp" />
+	</definition>
+	
+	<definition name="ayuda.tipo.empresa.regimenJuridico" extends=".baseAyuda" >
+		<put-attribute name="working.region" value="/jsp/comun/publico/ayuda/regimenJuridico.jsp" />
+	</definition>
+	
+	<definition name="ayuda.tipo.empresa.tipoAdministracion" extends=".baseAyuda" >
+		<put-attribute name="working.region" value="/jsp/comun/publico/ayuda/tipoAdministracion.jsp" />
+	</definition>
+	
+	
+	
+	
+	<definition name="ayuda.anotacion.sn.garantia.modificacion" extends=".baseAyuda" >
+		<put-attribute name="working.region" value="/WEB-INF/jsp/comun/publico/ayuda/ayudaModificacionAnotacionSnGarantia.jsp" />
+	</definition>
+    <definition name="ayuda.anotacion.sn.garantia.modificacion.deudor" extends=".baseAyuda">
+        <put-attribute name="working.region" value="/WEB-INF/jsp/comun/publico/ayuda/ayudaModificacionSnGarantiaDeudor.jsp" />
+    </definition>	
+    <definition name="ayuda.anotacion.sn.garantia.modificacion.tipopersona" extends=".baseAyuda">
+       <put-attribute name="working.region" value="/WEB-INF/jsp/comun/publico/ayuda/ayudaModificacionSnGarantiaTipoPersona.jsp" />
+    </definition>
+    <definition name="ayuda.anotacion.sn.garantia.modificacion.denominacion.social" extends=".baseAyuda">
+       <put-attribute name="working.region" value="/WEB-INF/jsp/comun/publico/ayuda/ayudaModificacionSnGarantiaDenominacionSocial.jsp" />
+    </definition>
+
+	
+		
+	<definition name="ayuda.tipo.empresa.vigenciaSociedad" extends=".baseAyuda" >
+		<put-attribute name="working.region" value="/jsp/comun/publico/ayuda/vigenciaSociedad.jsp" />
+	</definition>
+	
+	<definition name="ayuda.tipo.empresa.actividadesEconomicas" extends=".baseAyuda" >
+		<put-attribute name="working.region" value="/jsp/comun/publico/ayuda/actividadesEconomicas.jsp" />
+	</definition>
+	
+	<definition name="ayuda.tipo.empresa.accionistasExtranjeros" extends=".baseAyuda" >
+		<put-attribute name="working.region" value="/jsp/comun/publico/ayuda/accionistasExtranjeros.jsp" />
+	</definition>
+	
+	<definition name="ayuda.actividad.economica.sectoresEconomicos" extends=".baseAyuda" >
+		<put-attribute name="working.region" value="/jsp/comun/publico/ayuda/sectoresEconomicos.jsp" />
+	</definition>
+	
+	<definition name="ayuda.domicilios.domicilio" extends=".baseAyuda" >
+		<put-attribute name="working.region" value="/jsp/comun/publico/ayuda/domicilio.jsp" />
+	</definition>
+	
+	<definition name="ayuda.domicilios.domiciliosRegistrados" extends=".baseAyuda" >
+		<put-attribute name="working.region" value="/jsp/comun/publico/ayuda/domiciliosRegistrados.jsp" />
+	</definition>
+	
+	<definition name="ayuda.integracion.capital.integracionCapital" extends=".baseAyuda" >
+		<put-attribute name="working.region" value="/jsp/comun/publico/ayuda/integracionCapital.jsp" />
+	</definition>
+
+	<definition name="ayuda.integracion.capital.estructuraCapital" extends=".baseAyuda" >
+		<put-attribute name="working.region" value="/jsp/comun/publico/ayuda/estructuraCapital.jsp" />
+	</definition>
+	
+	<definition name="ayuda.integracion.capital.sociosAccionistas" extends=".baseAyuda" >
+		<put-attribute name="working.region" value="/jsp/comun/publico/ayuda/sociosAccionistas.jsp" />
+	</definition>
+	
+	<definition name="ayuda.administracion.administracionConsejo" extends=".baseAyuda" >
+		<put-attribute name="working.region" value="/jsp/comun/publico/ayuda/administracionConsejo.jsp" />
+	</definition>
+	
+	<definition name="ayuda.administracion.administracionUnipersonal" extends=".baseAyuda" >
+		<put-attribute name="working.region" value="/jsp/comun/publico/ayuda/administracionUnipersonal.jsp" />
+	</definition>
+	
+	
+	<definition name="ayuda.vigilancia.comisario" extends=".baseAyuda" >
+		<put-attribute name="working.region" value="/jsp/comun/publico/ayuda/comisario.jsp" />
+	</definition>
+	
+	<definition name="ayuda.pago.confirmacionPago" extends=".baseAyuda" >
+		<put-attribute name="working.region" value="/jsp/comun/publico/ayuda/confirmacionPago.jsp" />
+	</definition>
+	
+   <definition name="ayuda.elegir.fedatario.ayudaLocalizaFedatario" extends=".baseAyuda" >
+        
+		<put-attribute name="working.region" value="/jsp/comun/publico/ayuda/ayudaLocalizaFedatario.jsp" />
+	</definition>
+	
+	<definition name="ayuda.perfil.perfilDatosGenerales" extends=".baseAyuda" >
+		<put-attribute name="working.region" value="/jsp/comun/publico/ayuda/perfilDatosGenerales.jsp" />
+	</definition>
+	
+	<definition name="ayuda.perfil.perfilDomicilioParticular" extends=".baseAyuda" >
+		<put-attribute name="working.region" value="/jsp/comun/publico/ayuda/perfilDomicilioParticular.jsp" />
+	</definition>
+	
+	<definition name="ayuda.perfil.perfiDatosContacto" extends=".baseAyuda" >
+		<put-attribute name="working.region" value="/jsp/comun/publico/ayuda/perfiDatosContacto.jsp" />
+	</definition>
+	
+	<definition name="ayuda.perfil.perfiCambioContrasena" extends=".baseAyuda" >
+		<put-attribute name="working.region" value="/jsp/comun/publico/ayuda/perfiCambioContrasena.jsp" />
+	</definition>
+	
+	<!--Tramite CONAGUA-->	
+	<definition name="ayuda.tramite.conagua.domicilioNotificacion" extends=".baseAyuda" >
+		<put-attribute name="working.region" value="/jsp/comun/publico/tramites/conagua/domicilioNotificacion.jsp" />
+	</definition>
+	
+	<definition name="ayuda.tramite.conagua.ayudaDescarga" extends=".baseAyuda" >
+		<put-attribute name="working.region" value="/jsp/comun/publico/tramites/conagua/ayudaDescarga.jsp" />
+	</definition>
+	
+	<definition name="ayuda.tramite.conagua.ayudaDescargaDocumentos" extends=".baseAyuda" >
+		<put-attribute name="working.region" value="/jsp/comun/publico/tramites/conagua/ayudaDescargaDocumentos.jsp" />
+	</definition>
+	
+	<!--Tramite IMPI-->
+	<definition name="ayuda.tramite.impi.referenciaDePago" extends=".baseAyuda" >
+		<put-attribute name="working.region" value="/jsp/ayuda/referenciaDePago.jsp" />
+	</definition>
+	
+	<definition name="ayuda.tramite.impi.marcaRegistrar" extends=".baseAyuda" >
+		<put-attribute name="working.region" value="/jsp/ayuda/marcaRegistrar.jsp" />
+	</definition>
+	
+	<definition name="ayuda.tramite.impi.fechaPrimerUso" extends=".baseAyuda" >
+		<put-attribute name="working.region" value="/jsp/ayuda/fechaPrimerUso.jsp" />
+	</definition>
+
+	<definition name="ayuda.tramite.impi.domicilioRegistroMarca" extends=".baseAyuda" >
+		<put-attribute name="working.region" value="/jsp/ayuda/domicilioRegistroMarca.jsp" />
+	</definition>
+		
+	<!--Tramite COFEPRIS-->	
+	<definition name="ayuda.tramite.cofepris.cofeprisActividades" extends=".baseAyuda" >
+		<put-attribute name="working.region" value="/jsp/comun/publico/tramites/cofepris/cofeprisActividades.jsp" />
+	</definition>
+	
+	<definition name="ayuda.tramite.cofepris.cofeprisDenominacionGenerica" extends=".baseAyuda" >
+		<put-attribute name="working.region" value="/jsp/comun/publico/tramites/cofepris/cofeprisDenominacionGenerica.jsp" />
+	</definition>
+	
+	<definition name="ayuda.tramite.cofepris.cofeprisEstablecimiento" extends=".baseAyuda" >
+		<put-attribute name="working.region" value="/jsp/comun/publico/tramites/cofepris/cofeprisEstablecimiento.jsp" />
+	</definition>
+	
+	<definition name="ayuda.tramite.cofepris.cofeprisHorario" extends=".baseAyuda" >
+		<put-attribute name="working.region" value="/jsp/comun/publico/tramites/cofepris/cofeprisHorario.jsp" />
+	</definition>
+	
+	<definition name="ayuda.tramite.cofepris.cofeprisMaquila" extends=".baseAyuda" >
+		<put-attribute name="working.region" value="/jsp/comun/publico/tramites/cofepris/cofeprisMaquila.jsp" />
+	</definition>
+	
+	<definition name="ayuda.tramite.cofepris.cofeprisMarcaComercial" extends=".baseAyuda" >
+		<put-attribute name="working.region" value="/jsp/comun/publico/tramites/cofepris/cofeprisMarcaComercial.jsp" />
+	</definition>
+	
+	<definition name="ayuda.tramite.cofepris.cofeprisNacionalImportado" extends=".baseAyuda" >
+		<put-attribute name="working.region" value="/jsp/comun/publico/tramites/cofepris/cofeprisNacionalImportado.jsp" />
+	</definition>
+	
+	<definition name="ayuda.tramite.cofepris.cofeprisPersonasAutorizadas" extends=".baseAyuda" >
+		<put-attribute name="working.region" value="/jsp/comun/publico/tramites/cofepris/cofeprisPersonasAutorizadas.jsp" />
+	</definition>
+	
+	<definition name="ayuda.tramite.cofepris.cofeprisProceso" extends=".baseAyuda" >
+		<put-attribute name="working.region" value="/jsp/comun/publico/tramites/cofepris/cofeprisProceso.jsp" />
+	</definition>
+	
+	<definition name="ayuda.tramite.cofepris.cofeprisProductoServicio" extends=".baseAyuda" >
+		<put-attribute name="working.region" value="/jsp/comun/publico/tramites/cofepris/cofeprisProductoServicio.jsp" />
+	</definition>
+	
+	<definition name="ayuda.tramite.cofepris.cofeprisPropietario" extends=".baseAyuda" >
+		<put-attribute name="working.region" value="/jsp/comun/publico/tramites/cofepris/cofeprisPropietario.jsp" />
+	</definition>
+	
+	<definition name="ayuda.tramite.cofepris.cofeprisRepresentanteLegal" extends=".baseAyuda" >
+		<put-attribute name="working.region" value="/jsp/comun/publico/tramites/cofepris/cofeprisRepresentanteLegal.jsp" />
+	</definition>
+	
+	<definition name="ayuda.tramite.cofepris.cofeprisResponsableSanitario" extends=".baseAyuda" >
+		<put-attribute name="working.region" value="/jsp/comun/publico/tramites/cofepris/cofeprisResponsableSanitario.jsp" />
+	</definition>
+	
+	<definition name="ayuda.tramite.cofepris.cofeprisTipoTramite" extends=".baseAyuda" >
+		<put-attribute name="working.region" value="/jsp/comun/publico/tramites/cofepris/cofeprisTipoTramite.jsp" />
+	</definition>
+	
+	<definition name="ayuda.tramite.cofepris.cofeprisAmbulancia" extends=".baseAyuda" >
+		<put-attribute name="working.region" value="/jsp/comun/publico/tramites/cofepris/cofeprisAmbulancia.jsp" />
+	</definition>
+	
+	<definition name="ayuda.tramite.imss.domicilio.centro" extends=".baseAyuda" >
+		<put-attribute name="working.region" value="/jsp/ayuda/personasAutorizadas.jsp" />
+	</definition>
+	
+	<definition name="ayuda.tramite.imss.datos.generales.patron" extends=".baseAyuda" >
+		<put-attribute name="working.region" value="/jsp/ayuda/datosGeneralesPatron.jsp" />
+	</definition>
+	
+	<definition name="ayuda.tramite.imss.personas.autorizadas" extends=".baseAyuda" >
+		<put-attribute name="working.region" value="/jsp/ayuda/personasAutorizadas.jsp" />
+	</definition>
+	
+	<definition name="ayuda.tramite.imss.clasificacion.actividad" extends=".baseAyuda" >
+		<put-attribute name="working.region" value="/jsp/ayuda/clasificacionActividadEconomica.jsp" />
+	</definition>
+	
+	<definition name="ayuda.tramite.imss.principales.productos" extends=".baseAyuda" >
+		<put-attribute name="working.region" value="/jsp/ayuda/principalesProductosServicios.jsp" />
+	</definition>
+	
+	<definition name="ayuda.tramite.imss.principales.materias" extends=".baseAyuda" >
+		<put-attribute name="working.region" value="/jsp/ayuda/principalesMateriasPrimas.jsp" />
+	</definition>
+	
+	<definition name="ayuda.tramite.imss.principales.maquinas" extends=".baseAyuda" >
+		<put-attribute name="working.region" value="/jsp/ayuda/maquinasEquipos.jsp" />
+	</definition>
+	
+	<definition name="ayuda.tramite.imss.actividades.complementarias" extends=".baseAyuda" >
+		<put-attribute name="working.region" value="/jsp/ayuda/actividadesComplementarias.jsp" />
+	</definition>
+	
+	<definition name="ayuda.tramite.cofepris.aviso.funcionamiento" extends=".baseAyuda" >
+		<put-attribute name="working.region" value="/jsp/ayuda/domiciliosGeneradoresResiduos.jsp" />
+	</definition>
+	
+	<definition name="ayuda.tramite.cofepris.aviso.funcionamiento" extends=".baseAyuda" >
+		<put-attribute name="working.region" value="/jsp/ayuda/domiciliosGeneradoresResiduos.jsp" />
+	</definition>
+	
+	<definition name="ayuda.tramite.conagua.registro.generador" extends=".baseAyuda" >
+		<put-attribute name="working.region" value="/jsp/ayuda/domiciliosGeneradoresResiduos.jsp" />
+	</definition>
+	
+	<definition name="ayuda.tramite.semarnat.domicilios.peligrosos" extends=".baseAyuda" >
+		<put-attribute name="working.region" value="/jsp/comun/publico/tramites/semarnat/domiciliosPeligrosos.jsp" />
+	</definition>
+
+	<definition name="ayuda.tramite.semarnat.residuos.peligrosos" extends=".baseAyuda" >
+		<put-attribute name="working.region" value="/jsp/comun/publico/tramites/semarnat/residuosPeligrosos.jsp" />
+	</definition>
+
+	<definition name="ayuda.tramite.semarnat.agregar.residuos.peligrosos" extends=".baseAyuda" >
+		<put-attribute name="working.region" value="/jsp/comun/publico/tramites/semarnat/agregarResiduosPeligrosos.jsp" />
+	</definition>
+
+	<definition name="ayuda.tramite.semarnat.estado.tramite" extends=".baseAyuda" >
+		<put-attribute name="working.region" value="/jsp/comun/publico/tramites/semarnat/estadoTramite.jsp" />
+	</definition>
+	
+	<definition name="ayuda.tramite.semarnat.generadores.residuos" extends=".baseAyuda" >
+		<put-attribute name="working.region" value="/jsp/comun/publico/tramites/semarnat/generadoresResiduos.jsp" />
+	</definition>
+	
+	<definition name="ayuda.tramite.semarnat.caracteristicas.peligrosidad" extends=".baseAyuda" >
+		<put-attribute name="working.region" value="/jsp/comun/publico/tramites/semarnat/caracteristicasPeligrosidad.jsp" />
+	</definition>
+	
+	<definition name="ayuda.tramite.semarnat.agregar.otro.residuos.peligrosos" extends=".baseAyuda" >
+		<put-attribute name="working.region" value="/jsp/comun/publico/tramites/semarnat/agregarOtrosResiduosPeligrosos.jsp" />
+	</definition>
+	
+	<definition name="ayuda.tramite.semarnat.residuos.peligrosos.mezcla" extends=".baseAyuda" >
+		<put-attribute name="working.region" value="/jsp/comun/publico/tramites/semarnat/mezcla.jsp" />
+	</definition>
+	
+	<!-- Tramite STPS -->
+	<definition name="ayuda.tramite.stps.planes.objetivos" extends=".baseAyuda">
+		<put-attribute name="working.region" value="/jsp/comun/publico/tramites/stps/planesAdiestramiento.jsp"></put-attribute>
+	</definition>
+	<definition name="ayuda.tramite.stps.planes.modalidad" extends=".baseAyuda">
+		<put-attribute name="working.region" value="/jsp/comun/publico/tramites/stps/planesModalidad.jsp"></put-attribute>
+	</definition>
+	<definition name="ayuda.tramite.stps.planes.rige.establecimientos" extends=".baseAyuda">
+		<put-attribute name="working.region" value="/jsp/comun/publico/tramites/stps/planRigeEstablecimientos.jsp"></put-attribute>
+	</definition>
+	
+	<!-- Tramite CFE -->
+	<definition name="ayuda.tramite.cfe.general" extends=".baseAyuda">
+		<put-attribute name="working.region" value="/jsp/comun/publico/tramites/cfe/general.jsp"></put-attribute>
+	</definition>
+	
+	<!-- A Y U D A S -->
+	<definition name="busqueda.criterio.inicia" extends=".baseAyuda" >
+		<put-attribute name="working.region" value="/WEB-INF/jsp/comun/publico/ayuda/busquedaCriterios.jsp" />
+	</definition>
+	
+	
+	<definition name="busqueda.numero.garantia" extends=".baseAyuda" >
+		<put-attribute name="working.region" value="/WEB-INF/jsp/comun/publico/ayuda/busquedaNumeroGarantia.jsp" />
+	</definition>
+	
+	<definition name="busqueda.numero.asiento" extends=".baseAyuda" >
+		<put-attribute name="working.region" value="/WEB-INF/jsp/comun/publico/ayuda/busquedaNumeroAsiento.jsp" />
+	</definition>
+	
+	
+	<definition name="busqueda.nombre.otorgante" extends=".baseAyuda" >
+		<put-attribute name="working.region" value="/WEB-INF/jsp/comun/publico/ayuda/busquedaNombreOtorgante.jsp" />
+	</definition>
+
+	<definition name="busqueda.curp.otorgante" extends=".baseAyuda" >
+		<put-attribute name="working.region" value="/WEB-INF/jsp/comun/publico/ayuda/busquedaCurpOtorgante.jsp" />
+	</definition>
+	
+	<definition name="busqueda.folio.electronico" extends=".baseAyuda" >
+		<put-attribute name="working.region" value="/WEB-INF/jsp/comun/publico/ayuda/busquedaFolioElectronico.jsp" />
+	</definition>
+	
+	<definition name="busqueda.descripcion.bienes" extends=".baseAyuda" >
+		<put-attribute name="working.region" value="/WEB-INF/jsp/comun/publico/ayuda/busquedaDescripcionBienes.jsp" />
+	</definition>
+	
+	
+	<definition name="aviso.preventivo.inicio" extends=".baseAyuda" >
+		<put-attribute name="working.region" value="/WEB-INF/jsp/comun/publico/ayuda/avisoPreventivoInicio.jsp" />
+	</definition>
+	
+	<definition name="aviso.preventivo.descripcion.bienes" extends=".baseAyuda" >
+		<put-attribute name="working.region" value="/WEB-INF/jsp/comun/publico/ayuda/avisoPreventivoDescripcion.jsp" />
+	</definition>
+	
+	
+	<definition name="transmision.autoridad" extends=".baseAyuda" >
+		<put-attribute name="working.region" value="/WEB-INF/jsp/comun/publico/ayuda/transmisionAutoridad.jsp" />
+	</definition>
+	
+	<definition name="anotacion.contenido.resolucion" extends=".baseAyuda" >
+		<put-attribute name="working.region" value="/WEB-INF/jsp/comun/publico/ayuda/anotacionAnotacionContenido.jsp" />
+	</definition>	
+	
+	<definition name="anotacion.folio.electronico" extends=".baseAyuda" >
+		<put-attribute name="working.region" value="/WEB-INF/jsp/comun/publico/ayuda/anotacionFolioElectronico.jsp" />
+	</definition>	
+	
+	
+	<definition name="anotacion.rfc" extends=".baseAyuda" >
+		<put-attribute name="working.region" value="/WEB-INF/jsp/comun/publico/ayuda/anotacionRfc.jsp" />
+	</definition>
+	
+	<definition name="anotacion.persona.moral" extends=".baseAyuda" >
+		<put-attribute name="working.region" value="/WEB-INF/jsp/comun/publico/ayuda/anotacionDenominacion.jsp" />
+	</definition>
+	
+	<definition name="anotacion.tipo.persona" extends=".baseAyuda" >
+		<put-attribute name="working.region" value="/WEB-INF/jsp/comun/publico/ayuda/anotacionTipoPersona.jsp" />
+	</definition>
+	
+	<definition name="inscripcion.seleccione" extends=".baseAyuda" >
+		<put-attribute name="working.region" value="/WEB-INF/jsp/comun/publico/ayuda/inscripcionSeleccione.jsp" />
+	</definition>
+	<definition name="autoridad.aviso.preventivo" extends=".baseAyuda" >
+		<put-attribute name="working.region" value="/WEB-INF/jsp/comun/publico/ayuda/autoridadAvisoPreventivo.jsp" />
+	</definition>
+	<definition name="autoridad.renov.reduc.vig" extends=".baseAyuda" >
+		<put-attribute name="working.region" value="/WEB-INF/jsp/comun/publico/ayuda/autoridadRenovReducVig.jsp" />
+	</definition>
+	
+	<definition name="autoridad.cancelacion" extends=".baseAyuda" >
+		<put-attribute name="working.region" value="/WEB-INF/jsp/comun/publico/ayuda/autoridadCancelacion.jsp" />
+	</definition>
+	
+	<definition name="http.error.action" extends=".base">
+        <put-attribute name=".htmlHeader" value="/WEB-INF/jsp/Layout/empty.jsp" />
+        <put-attribute name=".header" value="/WEB-INF/jsp/Layout/header.jsp" />
+		<put-attribute name="working.region" value="/WEB-INF/jsp/error/errorHandler.jsp" />
+		<put-attribute name=".footer" value="/WEB-INF/jsp/Layout/footer.jsp" />
+    </definition>
+    
+    
+    <definition name="header.info.legislacion" extends=".baseAyuda" >
+		<put-attribute name="working.region" value="/WEB-INF/jsp/comun/publico/legislacion/legislacion.jsp" />
+	</definition>
+	
+	<definition name="titulo.otorgante.garantia" extends=".baseAyuda" >
+		<put-attribute name="working.region" value="/WEB-INF/jsp/comun/publico/ayuda/otorganteGarantia.jsp" />
+	</definition>    
+    
+    <definition name="ayuda.deudores" extends=".baseAyuda" >
+		<put-attribute name="working.region" value="/WEB-INF/jsp/comun/publico/ayuda/ayudaDeudores.jsp" />
+	</definition> 
+    
+    <definition name="ayuda.acreedor.adicional" extends=".baseAyuda" >
+		<put-attribute name="working.region" value="/WEB-INF/jsp/comun/publico/ayuda/ayudaAcreedorAdicional.jsp" />
+	</definition> 
+	
+	<definition name="ayuda.domicilio.efectos.rug" extends=".baseAyuda" >
+		<put-attribute name="working.region" value="/WEB-INF/jsp/comun/publico/ayuda/ayudaDomicilioEfectosRug.jsp" />
+	</definition>
+	
+	<definition name="ayuda.agregar.deudor" extends=".baseAyuda" >
+		<put-attribute name="working.region" value="/WEB-INF/jsp/comun/publico/ayuda/ayudaAgregaDeudores.jsp" />
+	</definition> 
+	
+	<definition name="ayuda.agregar.acreedor" extends=".baseAyuda" >
+		<put-attribute name="working.region" value="/WEB-INF/jsp/comun/publico/ayuda/ayudaAgregarAcreedor.jsp" />
+	</definition>
+	
+	<definition name="titulo.autoridad" extends=".baseAyuda" >
+		<put-attribute name="working.region" value="/WEB-INF/jsp/comun/publico/ayuda/Autoridad.jsp" />
+	</definition>
+	
+	<definition name="ayuda.tipo.garantia.mobiliaria" extends=".baseAyuda" >
+		<put-attribute name="working.region" value="/WEB-INF/jsp/comun/publico/ayuda/TipoGarantiaMobiliaria.jsp" />
+	</definition>
+	
+	<definition name="instrumento.publico" extends=".baseAyuda" >
+		<put-attribute name="working.region" value="/WEB-INF/jsp/comun/publico/ayuda/instrumentoPublico.jsp" />
+	</definition>
+	
+	<definition name="tipo.bienes.muebles" extends=".baseAyuda" >
+		<put-attribute name="working.region" value="/WEB-INF/jsp/comun/publico/ayuda/tipoBienesMuebles.jsp" />
+	</definition>
+	
+	<definition name="descripcion.bienes.muebles" extends=".baseAyuda" >
+		<put-attribute name="working.region" value="/WEB-INF/jsp/comun/publico/ayuda/descripcionBienesMuebles.jsp" />
+	</definition>	
+	
+	<definition name="acto.contrato.preve" extends=".baseAyuda" >
+		<put-attribute name="working.region" value="/WEB-INF/jsp/comun/publico/ayuda/actoContratoQuePreve.jsp" />
+	</definition>	
+		
+	<definition name="terminosy.condiciones.acto.contrato" extends=".baseAyuda" >
+		<put-attribute name="working.region" value="/WEB-INF/jsp/comun/publico/ayuda/terminosyCondicionesActoContrato.jsp" />
+	</definition>	
+	
+	<definition name="datos.instrumento.publico" extends=".baseAyuda" >
+		<put-attribute name="working.region" value="/WEB-INF/jsp/comun/publico/ayuda/datosInstrumentoPublico.jsp" />
+	</definition>
+			
+	<definition name="autoridad.modificacion" extends=".baseAyuda" >
+		<put-attribute name="working.region" value="/WEB-INF/jsp/comun/publico/ayuda/autoridadModificacion.jsp" />
+	</definition>
+
+	<definition name="tipo.bienes.muebles.mod" extends=".baseAyuda" >
+		<put-attribute name="working.region" value="/WEB-INF/jsp/comun/publico/ayuda/tipoBienesMueblesmod.jsp" />
+	</definition>
+
+	<definition name="autoridad.trans" extends=".baseAyuda" >
+		<put-attribute name="working.region" value="/WEB-INF/jsp/comun/publico/ayuda/autoridadTransmision.jsp" />
+	</definition>
+	
+	<definition name="tipo.acto.rectifacion" extends=".baseAyuda" >
+		<put-attribute name="working.region" value="/WEB-INF/jsp/comun/publico/ayuda/tipoActoRectifacion.jsp" />
+	</definition>
+
+	<definition name="tipo.bienes.muebles.rec" extends=".baseAyuda" >
+		<put-attribute name="working.region" value="/WEB-INF/jsp/comun/publico/ayuda/tipoBienesMueblesrec.jsp" />
+	</definition>			
+		
+	<definition name="acto.contrato.crea.obligacion.garantizada" extends=".baseAyuda" >
+		<put-attribute name="working.region" value="/WEB-INF/jsp/comun/publico/ayuda/actoContratoCreaObligacionGarantizada.jsp" />
+	</definition>	
+		
+	<definition name="acto.o.contrato.que.crea.obligacion.garantizada" extends=".baseAyuda" >
+		<put-attribute name="working.region" value="/WEB-INF/jsp/comun/publico/ayuda/actoContratoQueCreaObligacionGarantizada.jsp" />
+	</definition>
+		
+	<definition name="terminosy.condiciones.acto.contrato2" extends=".baseAyuda" >
+		<put-attribute name="working.region" value="/WEB-INF/jsp/comun/publico/ayuda/terminosyCondicionesActoContrato2.jsp" />
+	</definition>	
+		
+	<definition name="otorgante.garantia.es.deudor" extends=".baseAyuda" >
+		<put-attribute name="working.region" value="/WEB-INF/jsp/comun/publico/ayuda/otorganteGarantiaEsDeudor.jsp" />
+	</definition>	
+		
+	<definition name="cancelacion.autoridad" extends=".baseAyuda" >
+		<put-attribute name="working.region" value="/WEB-INF/jsp/comun/publico/ayuda/cancelacionAutoridad.jsp" />
+	</definition>	
+	
+	<definition name="vigencia.garantia.mobiliaria3" extends=".baseAyuda" >
+		<put-attribute name="working.region" value="/WEB-INF/jsp/comun/publico/ayuda/vigenciaGarantiaMobiliaria.jsp" />
+	</definition>
+	
+	<definition name="modif.otorgante" extends=".baseAyuda" >
+		<put-attribute name="working.region" value="/WEB-INF/jsp/comun/publico/ayuda/modifOtorgante.jsp" />
+	</definition>
+	
+	<definition name="modif.deudor" extends=".baseAyuda" >
+		<put-attribute name="working.region" value="/WEB-INF/jsp/comun/publico/ayuda/modifDeudor.jsp" />
+	</definition>
+	
+	<definition name="ayuda.monto.maximo" extends=".baseAyuda" >
+		<put-attribute name="working.region" value="/WEB-INF/jsp/comun/publico/ayuda/ayudaMontoMaximo.jsp" />
+	</definition>
+	
+	<definition name="vigencia.inscripcion" extends=".baseAyuda" >
+		<put-attribute name="working.region" value="/WEB-INF/jsp/comun/publico/ayuda/vigenciaInscripcion.jsp" />
+	</definition>
+	
+	<definition name="modif.acr.adic" extends=".baseAyuda" >
+		<put-attribute name="working.region" value="/WEB-INF/jsp/comun/publico/ayuda/modifAcrAdic.jsp" />
+	</definition>
+	
+	<definition name="trans.rec.vig" extends=".baseAyuda" >
+		<put-attribute name="working.region" value="/WEB-INF/jsp/comun/publico/ayuda/transRecVig.jsp" />
+	</definition>
+	
+	<definition name="rec.otorgante" extends=".baseAyuda" >
+		<put-attribute name="working.region" value="/WEB-INF/jsp/comun/publico/ayuda/rectOtorgante.jsp" />
+	</definition>
+	<definition name="otorgante.garantia.mobiliaria" extends=".baseAyuda" >
+		<put-attribute name="working.region" value="/WEB-INF/jsp/comun/publico/ayuda/otorganteGarantiaMobiliaria.jsp" />
+	</definition>
+	
+	<definition name="transmision.acreedores.adicionales" extends=".baseAyuda" >
+		<put-attribute name="working.region" value="/WEB-INF/jsp/comun/publico/ayuda/transmisionAcreedoresAdicionales.jsp" />
+	</definition>
+	
+	<definition name="terminos.condiciones.de.uso" extends=".baseAyuda" >
+		<put-attribute name="working.region" value="/WEB-INF/jsp/comun/publico/ayuda/terminosCondicionesUso.jsp" />
+	</definition>
+	
+	<definition name="acto.preve.incrementos" extends=".baseAyuda" >
+		<put-attribute name="working.region" value="/WEB-INF/jsp/comun/publico/ayuda/actoPreveIncrementos.jsp" />
+	</definition>
+	
+	<definition name="video.renovacion" extends=".baseAyuda" >
+		<put-attribute name="working.region" value="/resources/videos/video.jsp" />
+	</definition>
+	
+</tiles-definitions>

@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!-- edited with XMLSpy v2005 sp2 U (http://www.altova.com) by Kishor (Green Point Technology Services) -->
+<xs:schema xmlns="carga-masiva" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="carga-masiva" elementFormDefault="qualified" attributeFormDefault="unqualified">
+
+	<xs:element name="carga-masiva">
+        <xs:complexType>
+        	<xs:choice>
+        	 	<xs:sequence maxOccurs="unbounded" minOccurs="0">
+                    <xs:element ref="traslado"/>
+                </xs:sequence>
+                <xs:sequence maxOccurs="unbounded" minOccurs="0">
+                    <xs:element ref="inscripcion"/>
+                </xs:sequence>
+                <xs:sequence maxOccurs="unbounded" minOccurs="0">
+                    <xs:element ref="modificacion"/>
+                </xs:sequence>
+                 <xs:sequence maxOccurs="unbounded" minOccurs="0">
+                    <xs:element ref="renovacion"/>
+                </xs:sequence>
+                <xs:sequence maxOccurs="unbounded" minOccurs="0">
+                    <xs:element ref="ejecucion"/>
+                </xs:sequence>
+                <xs:sequence maxOccurs="unbounded" minOccurs="0">
+                    <xs:element ref="cancelacion"/>
+                </xs:sequence>
+            </xs:choice>
+        </xs:complexType>
+    </xs:element>  
+    
+    <xs:element name="traslado">
+        <xs:complexType>
+            <xs:sequence>
+            	<xs:element name="identificador" type="xs:string" minOccurs="1" maxOccurs="1"/>
+            	<xs:element name="vigencia" type="xs:int" minOccurs="1" maxOccurs="1"/>                
+                <xs:element ref="partes" minOccurs="1" maxOccurs="1"/>
+                <xs:element ref="garantia" minOccurs="1" maxOccurs="1"/>                                
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="inscripcion">
+        <xs:complexType>
+            <xs:sequence>
+            	<xs:element name="identificador" type="xs:string" minOccurs="1" maxOccurs="1"/>
+            	<xs:element name="vigencia" type="xs:int" minOccurs="1" maxOccurs="1"/>                
+                <xs:element ref="partes" minOccurs="1" maxOccurs="1"/>
+                <xs:element ref="garantia" minOccurs="1" maxOccurs="1"/>                                
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>  
+    
+    <xs:element name="modificacion">
+        <xs:complexType>
+            <xs:sequence>
+            	<xs:element name="identificador" type="xs:string" minOccurs="1" maxOccurs="1"/>            	
+            	<xs:element name="id-garantia" type="xs:int" minOccurs="1" maxOccurs="1"/>                
+                <xs:element ref="partes" minOccurs="0" maxOccurs="1"/>
+                <xs:element ref="garantia" minOccurs="0" maxOccurs="1"/>   
+                <xs:element name="razon-modificacion" minOccurs="1" maxOccurs="1"/>                             
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element> 
+    
+    <xs:element name="renovacion">
+        <xs:complexType>
+            <xs:sequence>
+            	<xs:element name="identificador" type="xs:string" minOccurs="1" maxOccurs="1"/>
+            	<xs:element name="id-garantia" type="xs:int" minOccurs="1" maxOccurs="1"/>
+            	<xs:element name="vigencia" type="xs:int" minOccurs="1" maxOccurs="1"/>                                                               
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="ejecucion">
+        <xs:complexType>
+            <xs:sequence>
+            	<xs:element name="identificador" type="xs:string" minOccurs="1" maxOccurs="1"/>
+            	<xs:element name="id-garantia" type="xs:int" minOccurs="1" maxOccurs="1"/>
+            	<xs:element name="razon-ejecucion" minOccurs="1" maxOccurs="1"/>                                                             
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>  
+    
+    <xs:element name="cancelacion">
+        <xs:complexType>
+            <xs:sequence>
+            	<xs:element name="identificador" type="xs:string" minOccurs="1" maxOccurs="1"/>
+            	<xs:element name="id-garantia" type="xs:int" minOccurs="1" maxOccurs="1"/>
+            	<xs:element name="razon-cancelacion" minOccurs="1" maxOccurs="1"/>                                                             
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>  
+    
+    <xs:element name="partes">
+        <xs:complexType>
+            <xs:sequence>                
+                <xs:element ref="deudor-garante" minOccurs="0" maxOccurs="unbounded"/>
+                <xs:element ref="acreedor-garantizado" minOccurs="0" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="deudor-garante">
+        <xs:complexType>
+        	<xs:sequence>
+	            <xs:element name="codigo-nacionalidad" type="xs:string" maxOccurs="1" minOccurs="0"/>
+	            <xs:element name="tipo-persona" type="xs:string" minOccurs="1" maxOccurs="1"/>
+	            <xs:element name="identificador" type="xs:string" maxOccurs="1" minOccurs="0"/>
+	            <xs:element name="nit" type="xs:string" maxOccurs="1" minOccurs="0"/>
+	            <xs:element name="denominacion-razon-social" type="xs:string" maxOccurs="1" minOccurs="0"/>
+	            <xs:element name="info-inscripcion" type="xs:string" maxOccurs="1" minOccurs="0"/>
+	            <xs:element name="nombre" type="xs:string" maxOccurs="1" minOccurs="0"/>	            	            	            
+	            <xs:element name="correo-electronico" type="xs:string" minOccurs="0" maxOccurs="1"/>
+	            <xs:element name="domicilio" type="xs:string" minOccurs="0" maxOccurs="1"/>
+	            <xs:element name="operacion" type="xs:int" minOccurs="0" maxOccurs="1"/>
+	        </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="acreedor-garantizado">
+        <xs:complexType>
+        	<xs:sequence>
+	            <xs:element name="codigo-nacionalidad" type="xs:string" maxOccurs="1" minOccurs="0"/>
+	            <xs:element name="tipo-persona" type="xs:string" minOccurs="1"/>
+	            <xs:element name="identificador" type="xs:string" maxOccurs="1" minOccurs="0"/>
+	            <xs:element name="nit" type="xs:string" maxOccurs="1" minOccurs="0"/>
+	            <xs:element name="denominacion-razon-social" type="xs:string" maxOccurs="1" minOccurs="0"/>
+	            <xs:element name="info-inscripcion" type="xs:string" maxOccurs="1" minOccurs="0"/>
+	            <xs:element name="nombre" type="xs:string" maxOccurs="1" minOccurs="0"/>	            	            	            
+	            <xs:element name="correo-electronico" type="xs:string" minOccurs="0" maxOccurs="1"/>
+	            <xs:element name="domicilio" type="xs:string" minOccurs="0" maxOccurs="1"/>
+	            <xs:element name="operacion" type="xs:int" minOccurs="0" maxOccurs="1"/>
+	        </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="garantia">
+        <xs:complexType>
+            <xs:sequence>                        
+	            <xs:element name="info-general-contrato" type="xs:string" minOccurs="0" maxOccurs="1"/>
+	            <xs:element name="info-representante" type="xs:string" minOccurs="0" maxOccurs="1"/>	            
+	            <xs:element name="observaciones-adicionales" type="xs:string" minOccurs="0" maxOccurs="1"/>	            
+	            <xs:element name="info-registro" type="xs:string" maxOccurs="1" minOccurs="0"/>
+	            <xs:element name="fecha-registro" type="xs:string" maxOccurs="1" minOccurs="0"/>
+	            <xs:element name="b-no-bienes-otorgados" type="xs:boolean" maxOccurs="1" minOccurs="0"/>            
+	            <xs:element name="b-es-prioritaria" type="xs:boolean" maxOccurs="1" minOccurs="0"/>
+	            <xs:element name="b-en-otro-registro" type="xs:boolean" maxOccurs="1" minOccurs="0"/>
+	            <xs:element name="b-atribuibles-no-afectos" type="xs:boolean" maxOccurs="1" minOccurs="0"/>
+	            <xs:element name="descripcion-bienes-muebles" type="xs:string" maxOccurs="1" minOccurs="0"/>
+	            <xs:element ref="bien-especial" minOccurs="0" maxOccurs="unbounded"/>   
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="bien-especial">
+        <xs:complexType>
+        	<xs:sequence>
+	            <xs:element name="tipo-bien-especial" type="xs:string" minOccurs="0" maxOccurs="1"/>
+	            <xs:element name="tipo-identificador" type="xs:string" minOccurs="0" maxOccurs="1"/>
+	            <xs:element name="identificador" type="xs:string" minOccurs="1"/>
+	            <xs:element name="descripcion" type="xs:string" minOccurs="0" maxOccurs="1"/>
+	            <xs:element name="fecha" type="xs:string" maxOccurs="1" minOccurs="0"/>
+	            <xs:element name="operacion" type="xs:int" minOccurs="0" maxOccurs="1"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="3.0" xmlns="http://java.sun.com/xml/ns/javaee"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
+  <display-name>Rug</display-name>
+  <welcome-file-list>
+    <welcome-file>index.jsp</welcome-file>
+  </welcome-file-list>
+  <context-param>
+    <param-name>org.apache.tiles.impl.BasicTilesContainer.DEFINITIONS_CONFIG</param-name>
+    <param-value>
+			/WEB-INF/config/tiles/tiles.xml
+		</param-value>
+  </context-param>
+  <context-param>
+    <param-name>contextConfigLocation</param-name>
+    <param-value>/WEB-INF/config/spring/begin-context.xml
+        			 /WEB-INF/config/spring/portada/home-context.xml
+        			 /WEB-INF/config/spring/usuario/usuario-context.xml	
+                     /WEB-INF/config/spring/rug-context.xml
+        			 /WEB-INF/config/spring/usuarios/usuarios-context.xml
+        			 /WEB-INF/config/spring/common/publico-context.xml
+        			 /WEB-INF/config/spring/roles/roles-context.xml
+        			 /WEB-INF/config/spring/administracion/perfil-context.xml
+        			 /WEB-INF/config/spring/inscripcion/inscripcion-context.xml
+        			  /WEB-INF/config/spring/masiva/masiva-context.xml
+        </param-value>
+  </context-param>
+  <listener>
+    <listener-class>org.apache.struts2.tiles.StrutsTilesListener </listener-class>
+  </listener>
+  <listener>
+    <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+  </listener>
+  <listener>
+    <listener-class>mx.gob.se.rug.fwk.listener.RugSessionListener</listener-class>
+  </listener>
+  <filter>
+    <filter-name>struts2</filter-name>
+    <filter-class>
+            org.apache.struts2.dispatcher.filter.StrutsPrepareAndExecuteFilter
+        </filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>struts2</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+  <filter>
+ 
+  <filter-name>monitoring</filter-name>
+ 
+  <filter-class>net.bull.javamelody.MonitoringFilter</filter-class>
+ 
+</filter>
+ 
+<filter-mapping>
+ 
+  <filter-name>monitoring</filter-name>
+ 
+  <url-pattern>/*</url-pattern>
+ 
+</filter-mapping>
+ 
+<listener>
+ 
+  <listener-class>net.bull.javamelody.SessionListener</listener-class>
+ 
+</listener>
+  
+  <servlet>
+    <servlet-name>pdf</servlet-name>
+    <servlet-class>mx.gob.se.rug.util.pdf.PdfServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>pdf</servlet-name>
+    <url-pattern>/pdf.pdo</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>captcha</servlet-name>
+    <servlet-class>mx.gob.se.rug.captcha.Captcha</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>captcha</servlet-name>
+    <url-pattern>/captcha.jp</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>dwr-invoker</servlet-name>
+    <servlet-class>org.directwebremoting.spring.DwrSpringServlet</servlet-class>
+    <init-param>
+      <param-name>debug</param-name>
+      <param-value>true</param-value>
+    </init-param>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>dwr-invoker</servlet-name>
+    <url-pattern>/dwr/*</url-pattern>
+  </servlet-mapping>
+
+  <welcome-file-list>
+    <welcome-file>index.jsp</welcome-file>
+  </welcome-file-list>
+  <listener>
+    <listener-class>mx.gob.se.rug.fwk.listener.InitListener</listener-class>
+  </listener>
+  <resource-ref>
+    <res-ref-name>jdbc/rugDS</res-ref-name>
+    <res-type>javax.sql.DataSource</res-type>
+    <res-auth>Container</res-auth>
+    <res-sharing-scope>Shareable</res-sharing-scope>
+  </resource-ref>
+  <security-role>
+    <role-name>CIUDADANO</role-name>
+  </security-role>
+  <security-role>
+    <role-name>ACREEDOR</role-name>
+  </security-role>
+  <security-role>
+    <role-name>ADMINISTRADOR</role-name>
+  </security-role>
+  <security-role>
+    <role-name>OPERATIVO</role-name>
+  </security-role>
+  <security-role>
+    <role-name>AUTORIDAD</role-name>
+  </security-role>
+  <servlet>
+    <servlet-name>errores</servlet-name>
+    <servlet-class>mx.gob.se.rug.error.servlet.ErroresServlet</servlet-class>
+    <init-param>
+      <param-name>debug</param-name>
+      <param-value>true</param-value>
+    </init-param>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>errores</servlet-name>
+    <url-pattern>/httpErrors.error</url-pattern>
+  </servlet-mapping>
+  <login-config>
+    <auth-method>FORM</auth-method>
+    <realm-name>rugRealm</realm-name>
+    <form-login-config>
+      <form-login-page>/home/login.do</form-login-page>
+      <form-error-page>/home/login.do?error=true</form-error-page>
+    </form-login-config>
+  </login-config>
+  <security-constraint>
+    <web-resource-collection>
+      <web-resource-name>REPORTE</web-resource-name>
+      <description>Restriccion reporte general</description>
+      <url-pattern>/home/portada.do</url-pattern>
+      <url-pattern>/home/boleta.do</url-pattern>
+      <url-pattern>/masiva/muestraResultado.do</url-pattern>
+      <url-pattern>/acreedor/*</url-pattern>
+      <http-method>GET</http-method>
+      <http-method>POST</http-method>
+    </web-resource-collection>
+    <auth-constraint>
+      <description>Roles del reporte</description>
+      <role-name>CIUDADANO</role-name>
+      <role-name>ACREEDOR</role-name>
+      <role-name>ROOT</role-name>
+      <role-name>AUTORIDAD</role-name>
+    </auth-constraint>
+  </security-constraint>
+  <error-page>
+    <error-code>400</error-code>
+    <location>/httpErrors.error?code=400</location>
+  </error-page>
+  <error-page>
+    <error-code>408</error-code>
+    <location>/httpErrors.error?code=408</location>
+  </error-page>
+  <error-page>
+    <error-code>404</error-code>
+    <location>/httpErrors.error?code=404</location>
+  </error-page>
+  <error-page>
+    <error-code>406</error-code>
+    <location>/httpErrors.error?code=406</location>
+  </error-page>
+  <error-page>
+    <error-code>414</error-code>
+    <location>/httpErrors.error?code=414</location>
+  </error-page>
+  <error-page>
+    <error-code>407</error-code>
+    <location>/httpErrors.error?code=407</location>
+  </error-page>
+  <error-page>
+    <error-code>403</error-code>
+    <location>/httpErrors.error?code=403</location>
+  </error-page>
+  <error-page>
+    <error-code>500</error-code>
+    <location>/httpErrors.error?code=500</location>
+  </error-page>
+  <error-page>
+    <error-code>501</error-code>
+    <location>/httpErrors.error?code=501</location>
+  </error-page>
+  <error-page>
+    <error-code>503</error-code>
+    <location>/httpErrors.error?code=503</location>
+  </error-page>
+  <error-page>
+    <error-code>502</error-code>
+    <location>/httpErrors.error?code=502</location>
+  </error-page>
+  <error-page>
+    <error-code>504</error-code>
+    <location>/httpErrors.error?code=504</location>
+  </error-page>
+  <session-config>
+    <session-timeout>120</session-timeout>
+    <tracking-mode>COOKIE</tracking-mode>
+  </session-config>
+  <servlet>
+    <description></description>
+    <display-name>DescargaArchivoXML</display-name>
+    <servlet-name>DescargaArchivoXML</servlet-name>
+    <servlet-class>mx.gob.se.rug.masiva.servlet.DescargaArchivoXML</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DescargaArchivoXML</servlet-name>
+    <url-pattern>/carga/masiva/descargaArchivo.servlet</url-pattern>
+  </servlet-mapping>
+</web-app>

@@ -1,0 +1,23 @@
+<!DOCTYPE dwr PUBLIC
+    "-//GetAhead Limited//DTD Direct Web Remoting 3.0//EN"
+    "http://getahead.org/dwr/dwr30.dtd">
+
+<dwr>
+	<allow>
+		
+		<convert match="mx.gob.se.rug.busqueda.to.BusquedaResponseDwrTO" javascript="busquedaResponseDwrTO" converter="bean"></convert>
+		
+		
+		<!-- Manejo de errores -->
+		<convert match="java.lang.Exception" converter="exception">
+			<param name='include' value='message'/>
+		</convert>
+		
+		<!--  FIN Documentos del Fedatario -->
+		
+		<!-- Carga de archivo -->
+	    	<convert match="java.io.FileInputStream" converter="bean"></convert>
+		<!--  FIN Carga de archivo -->	    
+		
+	</allow>
+</dwr>

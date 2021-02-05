@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC 
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN" 
+    "http://struts.apache.org/dtds/struts-2.0.dtd" >
+    
+<struts>
+	<package name="errorlogin-action" namespace="/home" extends="base-action">
+		<action name="errorlogin" method="errorlogin" class="errorloginAction">
+			<result type="tiles">home.errorlogin</result>
+			<result name="success" type="tiles">home.errorlogin</result>
+			<result name="error" type="tiles">home.errorlogin</result>
+		</action>
+	</package>
+</struts>

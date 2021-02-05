@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC
+        "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+        "http://tiles.apache.org/dtds/tiles-config_3_0.dtd" >
+    
+ <tiles-definitions>
+ 
+ 	<definition name="usuario.addExtranjero" extends=".base" >
+		<put-attribute name=".header" value="/WEB-INF/jsp/content/proceso/usuario/MenuaddExtranjero.jsp" />
+		<put-attribute name=".header" value="/WEB-INF/jsp/Layout/header.jsp" />
+		<put-attribute name=".showNav" value="false" />
+		<put-attribute name=".tabs" value="/WEB-INF/jsp/Layout/Pestanas.jsp" />
+		<put-attribute name=".avance" value="/WEB-INF/jsp/Layout/empty.jsp" />
+		<put-attribute name=".sideMenu" value="/WEB-INF/jsp/Layout/empty.jsp" />
+		<put-attribute name="working.region" value="/WEB-INF/jsp/content/proceso/usuario/addExtranjero.jsp" />		
+	</definition>
+		
+	<!-- IMC  -->	
+	<definition name="usuario.jobModifica" extends=".base" >
+		<put-attribute name=".header" value="/WEB-INF/jsp/content/proceso/usuario/MenuaddExtranjero.jsp" />
+		<put-attribute name=".header" value="/WEB-INF/jsp/Layout/header.jsp" />
+		<put-attribute name=".showNav" value="false" />
+		<put-attribute name=".tabs" value="/WEB-INF/jsp/Layout/Pestanas.jsp" />
+		<put-attribute name=".avance" value="/WEB-INF/jsp/Layout/empty.jsp" />
+		<put-attribute name=".sideMenu" value="/WEB-INF/jsp/Layout/empty.jsp" />
+		<put-attribute name="working.region" value="/WEB-INF/jsp/content/proceso/usuario/jobModificaAviso.jsp" />		
+	</definition>
+	
+	<definition name="usuario.jobBuscaMod" extends=".base" >
+		<put-attribute name=".header" value="/WEB-INF/jsp/content/proceso/usuario/MenuaddExtranjero.jsp" />
+		<put-attribute name=".header" value="/WEB-INF/jsp/Layout/header.jsp" />
+		<put-attribute name=".showNav" value="false" />
+		<put-attribute name=".tabs" value="/WEB-INF/jsp/Layout/Pestanas.jsp" />
+		<put-attribute name=".avance" value="/WEB-INF/jsp/Layout/empty.jsp" />
+		<put-attribute name=".sideMenu" value="/WEB-INF/jsp/Layout/empty.jsp" />
+		<put-attribute name="working.region" value="/WEB-INF/jsp/content/proceso/usuario/jobModificaAviso.jsp" />		
+	</definition>
+	
+	<definition name="usuario.jobEjecuta" extends=".base" >
+		<put-attribute name=".header" value="/WEB-INF/jsp/content/proceso/usuario/MenuaddExtranjero.jsp" />
+		<put-attribute name=".header" value="/WEB-INF/jsp/Layout/header.jsp" />
+		<put-attribute name=".showNav" value="false" />
+		<put-attribute name=".tabs" value="/WEB-INF/jsp/Layout/Pestanas.jsp" />
+		<put-attribute name=".avance" value="/WEB-INF/jsp/Layout/empty.jsp" />
+		<put-attribute name=".sideMenu" value="/WEB-INF/jsp/Layout/empty.jsp" />
+		<put-attribute name="working.region" value="/WEB-INF/jsp/content/proceso/usuario/jobAvisoP.jsp" />		
+	</definition>
+	
+	<definition name="usuario.jobOperacionExitosa" extends=".base" >
+		<put-attribute name=".header" value="/WEB-INF/jsp/content/proceso/usuario/MenuaddExtranjero.jsp" />
+		<put-attribute name=".header" value="/WEB-INF/jsp/Layout/header.jsp" />
+		<put-attribute name=".showNav" value="false" />
+		<put-attribute name=".tabs" value="/WEB-INF/jsp/Layout/Pestanas.jsp" />
+		<put-attribute name=".avance" value="/WEB-INF/jsp/Layout/empty.jsp" />
+		<put-attribute name=".sideMenu" value="/WEB-INF/jsp/Layout/empty.jsp" />
+		<put-attribute name="working.region" value="/WEB-INF/jsp/content/proceso/usuario/jobOpExitosa.jsp" />		
+	</definition>
+	
+	<!-- IMC  -->	
+	<definition name="usuario.jobAvisoP" extends=".base" >
+		<put-attribute name=".header" value="/WEB-INF/jsp/content/proceso/usuario/MenuaddExtranjero.jsp" />
+		<put-attribute name=".header" value="/WEB-INF/jsp/Layout/header.jsp" />
+		<put-attribute name=".showNav" value="false" />
+		<put-attribute name=".tabs" value="/WEB-INF/jsp/Layout/Pestanas.jsp" />
+		<put-attribute name=".avance" value="/WEB-INF/jsp/Layout/empty.jsp" />
+		<put-attribute name=".sideMenu" value="/WEB-INF/jsp/Layout/empty.jsp" />
+		<put-attribute name="working.region" value="/WEB-INF/jsp/content/proceso/usuario/jobAvisoP.jsp" />		
+	</definition>
+	
+	<definition name="usuario.add" extends=".base" >
+		<put-attribute name=".include-styles" value="/WEB-INF/jsp/content/inicio/styles.jsp" />
+		<put-attribute name=".include-scripts" value="/WEB-INF/jsp/content/proceso/usuario/scripts.jsp" />
+		<put-attribute name="working.region" value="/WEB-INF/jsp/content/proceso/usuario/add.jsp" />		
+	</definition>
+	
+	<definition name="usuario.save" extends=".base" >
+		<put-attribute name=".include-styles" value="/WEB-INF/jsp/content/inicio/styles.jsp" />
+		<put-attribute name=".include-scripts" value="/WEB-INF/jsp/content/inicio/scripts.jsp" />
+		<put-attribute name="working.region" value="/WEB-INF/jsp/content/proceso/usuario/save.jsp" />
+	</definition>
+	
+	<definition name="usuario.saveExtranjero" extends=".base" >
+		<put-attribute name=".header" value="/WEB-INF/jsp/Layout/header.jsp" />
+		<put-attribute name=".showNav" value="false" />
+		<put-attribute name=".tabs" value="/WEB-INF/jsp/Layout/Pestanas.jsp" />
+		<put-attribute name=".avance" value="/WEB-INF/jsp/Layout/empty.jsp" />
+		<put-attribute name=".sideMenu" value="/WEB-INF/jsp/Layout/empty.jsp" />
+		<put-attribute name="working.region" value="/WEB-INF/jsp/content/proceso/usuario/saveExtranjero.jsp" />
+	</definition>
+	
+	<definition name="usuario.activation" extends=".base" >
+		<put-attribute name=".header" value="/WEB-INF/jsp/Layout/header.jsp" />
+		<put-attribute name="working.region" value="/WEB-INF/jsp/content/proceso/usuario/activation.jsp" />
+	</definition>
+	
+	<definition name="usuario.activated" extends=".base" >
+		<put-attribute name=".include-styles" value="/WEB-INF/jsp/content/inicio/styles.jsp" />
+		<put-attribute name=".include-scripts" value="/WEB-INF/jsp/content/inicio/scripts.jsp" />
+		<put-attribute name="working.region" value="/WEB-INF/jsp/content/proceso/usuario/activated.jsp" />
+	</definition>
+	
+	<definition name="usuario.recover" extends=".base" >
+		<put-attribute name=".include-styles" value="/WEB-INF/jsp/content/inicio/styles.jsp" />
+		<put-attribute name=".include-scripts" value="/WEB-INF/jsp/content/proceso/usuario/scripts.jsp" />
+		<put-attribute name="working.region" value="/WEB-INF/jsp/content/proceso/usuario/recover.jsp" />
+	</definition>
+	
+	<definition name="usuario.valid" extends=".base" >
+		<put-attribute name=".header" value="/WEB-INF/jsp/Layout/header.jsp" />
+		<put-attribute name="working.region" value="/WEB-INF/jsp/content/proceso/usuario/valid.jsp" />
+	</definition>
+	
+	<definition name="usuario.change" extends=".base" >
+		<put-attribute name=".include-styles" value="/WEB-INF/jsp/content/inicio/styles.jsp" />
+		<put-attribute name="working.region" value="/WEB-INF/jsp/content/proceso/usuario/changed.jsp" />
+	</definition>
+	
+	<definition name="usuario.prerecover" extends=".base" >
+		<put-attribute name=".header" value="/WEB-INF/jsp/Layout/header.jsp" />
+		<put-attribute name="working.region" value="/WEB-INF/jsp/content/proceso/usuario/prerecover.jsp" />
+	</definition>
+	
+	<definition name="usuario.error" extends=".base" >
+		<put-attribute name=".header" value="/WEB-INF/jsp/Layout/header.jsp" />
+		<put-attribute name=".showNav" value="false" />
+		<put-attribute name=".tabs" value="/WEB-INF/jsp/Layout/Pestanas.jsp" />
+		<put-attribute name=".avance" value="/WEB-INF/jsp/Layout/empty.jsp" />
+		<put-attribute name=".sideMenu" value="/WEB-INF/jsp/Layout/empty.jsp" />
+		<put-attribute name="working.region" value="/WEB-INF/jsp/error/errorHandler.jsp" />		
+	</definition>
+	
+	<definition name="usuario.misUsuarios" extends=".base">
+		<put-attribute name=".header" value="/WEB-INF/jsp/Layout/header.jsp" />
+		<put-attribute name=".include-scripts" value="/WEB-INF/jsp/content/proceso/scripts.jsp" />
+		<put-attribute name=".showNav" value="false" />
+		<put-attribute name=".sideMenu" value="/WEB-INF/jsp/Layout/menu/lateral.jsp" />
+		<put-attribute name="working.region" value="/WEB-INF/jsp/content/proceso/misUsuarios.jsp" />
+	</definition>
+	
+	<definition name="usuario.ammend" extends=".base" >
+		<put-attribute name=".include-styles" value="/WEB-INF/jsp/content/inicio/styles.jsp" />
+		<put-attribute name=".include-scripts" value="/WEB-INF/jsp/content/proceso/usuario/scripts.jsp" />
+		<put-attribute name="working.region" value="/WEB-INF/jsp/content/proceso/usuario/ammend.jsp" />
+	</definition>
+</tiles-definitions>

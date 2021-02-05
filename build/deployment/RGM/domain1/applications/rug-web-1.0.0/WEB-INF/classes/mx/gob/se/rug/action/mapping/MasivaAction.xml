@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC 
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN" 
+    "http://struts.apache.org/dtds/struts-2.0.dtd" >
+    
+<struts>
+	<package name="masiva-action" namespace="/masiva" extends="base-action">
+	
+		<action name="cargaMasiva" method="cargaMasivaXML" class="masivaAction">
+			<result type="tiles">carga.masiva.inicio</result>							
+             <result name="success" type="tiles">carga.masiva.resultado</result>           
+             <result name="failed" type="tiles">carga.masiva.error</result>    
+             <result name="batch" type="tiles">carga.masiva.batch</result>
+             <result name="resultado" type="redirectAction">
+             	<param name="actionName">muestraResultado</param>
+            	<param name="namespace">/masiva</param>
+            	<param name="idArchivoResultado">${idArchivoResultado}</param>            	
+             </result>
+		</action>
+		
+		<action name="firmarTodos" method="firmarTodos" class="masivaAction">
+			<result type="tiles">carga.masiva.inicio</result>
+			 <result name="success" type="redirectAction">
+            	<param name="actionName">firma</param>
+            	<param name="namespace">/firma</param>
+            </result> 
+		    <result name="failed" type="redirectAction">
+            	<param name="actionName">inicia</param>
+            	<param name="namespace">/masiva</param>
+            </result>		
+		</action>
+		
+		<action name="inicia" method="iniciaCargaMasiva" class="masivaAction">
+			<result type="tiles">carga.masiva.inicio</result>
+			<result name="success" type="tiles">carga.masiva.inicio</result>
+		    <result name="failed" type="redirectAction">
+            	<param name="actionName">inicia</param>
+            	<param name="namespace">/acreedor</param>
+            </result>			
+		</action>
+		
+		<action name="muestraResultado" method="obtenResultado" class="masivaAction">
+			<result type="tiles">carga.masiva.inicio</result>
+			<result name="success" type="tiles">carga.masiva.resultado</result>
+		    <result name="failed" type="redirectAction">
+            	<param name="actionName">inicia</param>
+            	<param name="namespace">/masiva</param>
+            </result>			
+		</action>
+		
+	</package>
+	
+	<package name="masiva-autoridad-action" namespace="/masiva/autoridad" extends="base-action">
+		<action name="inicia" method="iniciaCargaMasiva" class="masivaAutoridadAction">
+			<result name="success" type="tiles">carga.masiva.autoridad.inicio</result>
+		    <result name="failed" type="redirectAction">
+            	<param name="actionName">inicia</param>
+            	<param name="namespace">/masiva</param>
+            	<param name="mensaje.mensaje">${mensaje.mensaje}</param>
+            </result>	
+		</action>
+		<action name="carga" method="cargaMasivaXML" class="masivaAutoridadAction">
+			<result name="success" type="tiles">carga.masiva.autoridad.resultado</result>
+			<result name="failed" type="tiles">carga.masiva.autoridad.inicio</result>
+			<result name="desatendido" type="tiles">carga.masiva.autoridad.desatendido</result>
+             <result name="resultado" type="redirectAction">
+             	<param name="actionName">muestraResultado</param>
+            	<param name="namespace">/masiva</param>
+            	<param name="idArchivoResultado">${idArchivoResultado}</param>            	
+            	<param name="idArchivoRes">${idArchivoRes}</param>
+            	<param name="sizeListaTramites">${sizeListaTramites}</param>
+             </result>		
+		</action>
+		<action name="desatendido" method="cargaMasivaXML" class="masivaAutoridadAction">
+			<result name="success" type="tiles">carga.masiva.autoridad.resultado</result>
+			<result name="failed" type="tiles">carga.masiva.autoridad.inicio</result>
+		</action>
+		<action name="firma" method="firma" class="masivaAutoridadAction">
+			<result type="tiles">carga.masiva.inicio</result>
+			 <result name="success" type="redirectAction">
+            	<param name="actionName">firma</param>
+            	<param name="namespace">/firma</param>
+            </result> 
+		    <result name="failed" type="redirectAction">
+            	<param name="actionName">inicia</param>
+            	<param name="namespace">/masiva/autoridad</param>
+            	<param name="mensaje.mensaje">${mensaje.mensaje}</param>
+            </result>		
+		</action>
+	</package>
+</struts>

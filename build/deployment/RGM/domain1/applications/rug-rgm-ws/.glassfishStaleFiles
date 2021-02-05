@@ -1,0 +1,6 @@
+rgm-rug-ws-1.0.0_war/
+rgm-rug-ws-1.0.0_war/WEB-INF/
+rgm-rug-ws-1.0.0_war/WEB-INF/lib/
+rgm-rug-ws-1.0.0_war/WEB-INF/lib/spring-web-5.0.5.RELEASE.jar
+rgm-rug-ws-1.0.0_war/WEB-INF/lib/spring-data-jpa-2.0.7.RELEASE.jar
+rgm-rug-ws-1.0.0_war/WEB-INF/lib/jaxws-rt-2.2.8.jar

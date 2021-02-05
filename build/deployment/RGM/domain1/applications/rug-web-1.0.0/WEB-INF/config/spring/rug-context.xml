@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:jee="http://www.springframework.org/schema/jee"
+	xmlns:dwr="http://www.directwebremoting.org/schema/spring-dwr"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jpa="http://www.springframework.org/schema/data/jpa"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+		http://www.directwebremoting.org/schema/spring-dwr
+    	http://www.directwebremoting.org/schema/spring-dwr-3.0.xsd
+    	http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context-4.0.xsd
+    	http://www.springframework.org/schema/data/jpa
+        http://www.springframework.org/schema/data/jpa/spring-jpa.xsd
+        http://www.springframework.org/schema/tx 
+        http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
+
+	<!-- Datasource configuration -->
+	<bean id="dataSource" class="org.springframework.jndi.JndiObjectFactoryBean">
+    	<property name="jndiName" value="jdbc/rugDS"/>
+	</bean>
+	
+	<jpa:repositories base-package="gt.gob.rgm.dao" />
+	
+	<bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="packagesToScan" value="gt.gob.rgm.model" />
+		<property name="jpaVendorAdapter">
+			<bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter" />
+		</property>
+	</bean>
+	
+	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+		<property name="entityManagerFactory" ref="entityManagerFactory" />
+	</bean>
+	<tx:annotation-driven />
+	
+    <bean id="jmsConnectionFactory" class="org.springframework.jndi.JndiObjectFactoryBean">
+    	<property name="jndiName" value="jms/MailConnectionFactory" />
+    	<property name="proxyInterface" value="javax.jms.ConnectionFactory" />
+    </bean>
+    
+    <bean id="jmsDestination" class="org.springframework.jms.support.destination.JndiDestinationResolver">
+    </bean>
+    
+    <bean id="jmsTemplate" class="org.springframework.jms.core.JmsTemplate">
+    	<property name="connectionFactory" ref="jmsConnectionFactory" />
+    	<property name="destinationResolver" ref="jmsDestination" />
+    	<property name="pubSubDomain" value="true"/>
+    </bean>
+    
+    <bean id="jmsMessageSender" class="gt.gob.rgm.service.JmsMessageSender">
+    	<property name="jmsTemplate" ref="jmsTemplate" />
+    	<property name="jndiDestination" value="jms/MailTopic" />
+    </bean>
+    
+    <bean id="jmsSolrMessageSender" class="gt.gob.rgm.service.JmsSolrMessageSender">
+    	<property name="jmsTemplate" ref="jmsTemplate" />
+    	<property name="jndiDestination" value="jms/SolrTopic" />
+    </bean>
+    
+    <bean id="mailService" class="gt.gob.rgm.mail.service.MailServiceImp"></bean>
+
+	<!-- IBatis configuration -->
+	<!--bean id="sqlMapClient" class="org.springframework.orm.ibatis.SqlMapClientFactoryBean">
+		<property name="configLocation">
+			<value>/WEB-INF/config/ibatis/SqlMapConfig.xml
+			</value>  
+		</property>
+	</bean-->
+
+	
+	<bean id="tilesConfigurer"
+		class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
+		<property name="definitions">
+			<list>
+				<value>/WEB-INF/config/tiles/tiles.xml</value>
+				<value>/WEB-INF/config/tiles/home-tiles.xml</value>			
+				<value>/WEB-INF/config/tiles/usuario-tiles.xml</value>
+<!-- 				<value>/WEB-INF/config/tiles/home-tiles.xml</value> -->
+				<value>/WEB-INF/config/tiles/usuarios/usuarios-tiles.xml</value>
+				<value>/WEB-INF/config/tiles/roles-tiles.xml</value>
+				<value>/WEB-INF/config/tiles/administracion/perfil-tiles.xml</value>
+				<value>/WEB-INF/config/tiles/common/publico-tiles.xml</value>
+				<value>/WEB-INF/config/tiles/inscripcion/inscripcion-tiles.xml</value>
+				<value>/WEB-INF/config/tiles/masiva/masiva-tiles.xml</value>
+				<value>/WEB-INF/config/tiles/tramites/anotacion-sn-garantia.xml</value>
+			</list>
+		</property>
+	
+		<property name="preparerFactoryClass"
+			value="org.springframework.web.servlet.view.tiles3.SpringBeanPreparerFactory" />
+	</bean>
+	
+	<bean id="viewResolver"
+		class="org.springframework.web.servlet.view.UrlBasedViewResolver">
+		<property name="viewClass"
+			value="org.springframework.web.servlet.view.tiles3.TilesView" />
+	</bean>
+	
+	
+		<!-- DWR configuration-->
+	<dwr:configuration>
+<!-- 		<dwr:create javascript="validator" type="new" -->
+<!-- 			class="org.apache.struts2.validators.DWRValidator" /> -->
+	
+		<dwr:convert type="bean"
+			class="com.opensymphony.xwork2.ValidationAwareSupport" />
+	</dwr:configuration>
+	 
+</beans>

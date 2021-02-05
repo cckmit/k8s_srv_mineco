@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC 
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN" 
+    "http://struts.apache.org/dtds/struts-2.0.dtd" >
+    
+    
+<struts>
+	<package name="anotacionGarantia-action" namespace="/anotacion" extends="base-action">
+		
+		<action name="inicia" method="inicia" class="anotacionGarantiaAction">
+			<!--<result name="success" type="redirectAction">
+				<param name="actionName">tramiteAnotacion</param>
+                <param name="namespace">/anotacion</param>
+             </result>
+			-->
+			<result name="success" type="tiles">anotacionGarantia.home</result>
+			<result name="failed" type="tiles">busqueda.home</result>
+		</action>
+		
+		<action name="tramiteAnotacion" method="tramiteAnotacion" class="anotacionGarantiaAction">
+			<result type="tiles">anotacionGarantia.home</result>
+			<result name="success" type="tiles">anotacionGarantia.home</result>
+			<result name="failed" type="tiles">busqueda.home</result>
+		</action>
+		
+		<action name="consulta" method="consulta" class="anotacionGarantiaAction">
+			<result type="tiles">anotacionGarantia.home</result>
+			<result name="success" type="tiles">anotacionGarantia.home</result>
+			<result name="error" type="tiles">anotacionGarantia.home</result>
+		</action>
+		<action name="guardaAnotacionGarantia" method="guardaAnotacionGarantia" class="anotacionGarantiaAction">
+			<result type="tiles">anotacionGarantia.home</result>
+			<result name="success" type="redirectAction">
+            	<param name="actionName">firma</param>
+            	<param name="namespace">/firma</param>
+            </result>
+			<result name="failed" type="tiles">busqueda.home</result>
+		</action>
+	</package>
+</struts>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC 
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN" 
+    "http://struts.apache.org/dtds/struts-2.0.dtd" >
+    
+<struts>
+	<package name="identificarse-action" namespace="/home" extends="base-action">
+		<action name="identificarse" method="identificarse" class="identificarseAction">
+			<result type="tiles">identificarse.home</result>
+			<result name="success" type="tiles">identificarse.home</result>
+			<result name="error" type="tiles">identificarse.home</result>
+		</action>
+	</package>
+</struts>
+

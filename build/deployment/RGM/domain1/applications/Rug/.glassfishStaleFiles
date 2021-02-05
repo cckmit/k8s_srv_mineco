@@ -1,0 +1,8 @@
+rug-web-1.0.0_war/
+rug-web-1.0.0_war/WEB-INF/
+rug-web-1.0.0_war/WEB-INF/lib/
+rug-web-1.0.0_war/WEB-INF/lib/struts2-tiles-plugin-2.5.14.1.jar
+rug-web-1.0.0_war/WEB-INF/lib/struts2-spring-plugin-2.5.14.1.jar
+rug-web-1.0.0_war/WEB-INF/lib/struts2-jquery-plugin-4.0.3.jar
+rug-web-1.0.0_war/WEB-INF/lib/struts2-core-2.5.14.1.jar
+rug-web-1.0.0_war/WEB-INF/lib/spring-web-5.2.7.RELEASE.jar

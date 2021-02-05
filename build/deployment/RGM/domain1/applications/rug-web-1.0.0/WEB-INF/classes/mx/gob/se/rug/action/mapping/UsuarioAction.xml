@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC 
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN" 
+    "http://struts.apache.org/dtds/struts-2.0.dtd" >
+<struts>
+	<package name="usuario-action" namespace="/usuario" extends="base-action">
+		
+		<action name="addExtranjero" method="addExtranjero" class="usuarioAction">
+			<result name="success" type="tiles">usuario.addExtranjero</result>
+			<result name="error" type="tiles">usuario.error</result>
+		</action>
+		
+
+		
+		
+		<action name="jobAvisoP" method="detallejobAviso" class="usuarioAction">
+			<result type="tiles">usuario.jobAvisoP</result>
+			<result name="success" type="tiles">usuario.jobAvisoP</result>
+			<result name="error" type="tiles">usuario.jobAvisoP</result>
+			
+		</action>
+		
+		<action name="jobBuscaMod" method="buscarJobMod" class="usuarioAction">
+			<result type="tiles">usuario.jobBuscaMod</result>
+			<result name="success" type="tiles">usuario.jobBuscaMod</result>
+			<result name="error" type="tiles">usuario.jobBuscaMod</result>
+			
+		</action>
+		
+		<action name="jobModifica" method="actualizaJobAviso" class="usuarioAction">
+			<result type="tiles">usuario.jobModifica</result>
+			<result name="success" type="tiles">usuario.jobOperacionExitosa</result>
+			<result name="error" type="tiles">usuario.jobModifica</result>
+		</action>
+		
+		
+		<action name="jobEjecuta" method="ejecutaJobAviso" class="usuarioAction">
+			<result type="tiles">usuario.jobEjecuta</result>
+			<result name="success" type="tiles">usuario.jobOperacionExitosa</result>
+			<result name="error" type="tiles">usuario.jobEjecuta</result>
+		</action>
+		
+		
+		
+		
+		<action name="add" method="add" class="usuarioAction">
+			<result type="tiles">usuario.add</result>
+			<!--<interceptor-ref name="captchaStack"/>-->
+			</action>
+			
+		<action name="saveExtranjero" method="saveExtranjero" class="usuarioAction">
+			<result type="tiles">usuario.saveExtranjero</result>
+			<result name="input" type="tiles">usuario.addExtranjero
+			</result>
+			<result name="error" type="tiles">usuario.saveExtranjero
+			</result>		
+		</action>	
+		
+		<action name="save" method="save" class="usuarioAction">
+			<result type="tiles">usuario.save</result>
+			<result name="input" type="tiles">usuario.add
+			</result>
+			<result name="error" type="tiles">usuario.add
+			</result>		
+		</action>
+		
+		<action name="activated" method="activated" class="usuarioAction">
+			<result type="tiles">usuario.activated</result>
+		</action>
+		
+	    <action name="activatedError" method="activatedError" class="usuarioAction">
+			<result type="tiles">usuario.activated.error</result>
+		</action>
+ 		
+		<action name="activation" method="activation" class="usuarioAction">
+			<result type="tiles">usuario.activation</result>
+			<result name="input" type="tiles">usuario.activation
+			</result>
+			<result name="error" type="tiles">usuario.activation
+			</result>
+		</action>
+		
+		<action name="recover" method="recover" class="usuarioAction">
+			<result type="tiles">usuario.recover</result>
+		</action>
+		
+		<action name="valid" method="valid" class="usuarioAction">
+			<result type="tiles">usuario.recover</result>
+			<result name="input" type="tiles">usuario.recover</result>
+			<result name="error" type="tiles">usuario.recover</result>
+		</action>
+			
+		<action name="change" method="change" class="usuarioAction">
+			<result type="tiles">usuario.change</result>
+			<result name="input" type="tiles">usuario.recover</result>
+			<result name="error" type="tiles">usuario.recover</result>
+		</action>
+		
+		<action name="preActivation" method="preActivation" class="usuarioAction">
+			<result type="tiles">usuario.prerecover</result>
+			<result name="input" type="tiles">usuario.prerecover</result>
+		</action>
+		
+		<action name="activAcreedor" method="activAcreedor" class="usuarioAction">
+			<result type="tiles">usuario.activation</result>
+			<result name="input" type="tiles">usuario.prerecover
+			</result>
+			<result name="error" type="tiles">usuario.prerecover
+			</result>
+		</action>
+
+		<action name="users" method="users" class="usuarioAction">
+			<result type="tiles">usuario.misUsuarios</result>
+			<result name="forbidden" type="redirectAction">
+				<param name="actionName">inicio</param>
+				<param name="namespace">/home</param>
+			</result>
+		</action>
+		
+		<action name="ammend" method="ammend" class="usuarioAction">
+			<result type="tiles">usuario.ammend</result>
+		</action>
+		
+		<action name="saveAmmend" method="saveAmmend" class="usuarioAction">
+			<result type="tiles">usuario.save</result>
+			<result name="input" type="tiles">usuario.ammend</result>
+			<result name="error" type="tiles">usuario.ammend</result>		
+		</action>
+	</package>
+</struts>

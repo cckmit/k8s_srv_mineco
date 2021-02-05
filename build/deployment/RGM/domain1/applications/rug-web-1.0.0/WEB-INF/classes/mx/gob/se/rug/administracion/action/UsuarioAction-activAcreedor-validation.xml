@@ -1,0 +1,14 @@
+<!DOCTYPE validators PUBLIC
+        "-//Apache Struts//XWork Validator 1.0.3//EN"
+        "http://struts.apache.org/dtds/xwork-validator-1.0.3.dtd">
+
+<validators>
+    <field name="registroUsuario.terminos">
+        <field-validator type="fieldexpression">
+            <param name="expression">
+            <![CDATA[ registroUsuario.terminos eq true ]]></param>
+            <message key="usuario.terminos.required" />
+        </field-validator>
+	</field>
+</validators>
+	

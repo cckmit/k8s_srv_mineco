@@ -1,0 +1,52 @@
+{
+	"folders": [
+		{
+			"path": "..\\..\\..\\..\\..\\..\\..\\..\\rug-adm-web"
+		},
+		{
+			"path": "..\\..\\..\\..\\..\\..\\..\\.."
+		},
+		{
+			"path": "..\\..\\..\\..\\..\\..\\..\\..\\..\\..\\..\\laragon\\www\\inventario"
+		},
+		{
+			"path": "..\\..\\..\\..\\..\\..\\..\\..\\..\\..\\..\\laragon\\www\\juridico"
+		},
+		{
+			"path": "..\\..\\..\\..\\..\\..\\..\\..\\..\\..\\..\\certificado_RGM\\Certificado\\certificado"
+		},
+		{
+			"path": "..\\..\\..\\..\\..\\..\\..\\..\\..\\..\\..\\laragon\\www\\comercios_exterior"
+		},
+		{
+			"path": "..\\..\\..\\..\\..\\..\\..\\..\\..\\..\\..\\laragon\\www\\diaco"
+		},
+		{
+			"path": "..\\..\\..\\..\\..\\..\\..\\..\\..\\..\\..\\laragon\\www\\marraneria"
+		},
+		{
+			"path": "..\\..\\..\\..\\..\\..\\..\\..\\..\\..\\..\\laragon\\www\\Desarrollo_Docker"
+		},
+		{
+			"path": "..\\..\\..\\..\\..\\..\\..\\..\\..\\..\\..\\laragon\\www\\entorno"
+		},
+		{
+			"path": "..\\..\\..\\..\\..\\..\\..\\..\\..\\..\\..\\laragon\\www\\vehiculos"
+		},
+		{
+			"path": "..\\..\\..\\..\\..\\..\\..\\..\\entregar\\rgm-inventario-frontend"
+		},
+		{
+			"path": "..\\..\\..\\..\\..\\..\\..\\..\\..\\pki_v4\\pki"
+		},
+		{
+			"path": "..\\..\\..\\..\\..\\..\\..\\..\\..\\..\\..\\laragon\\www\\glassfish"
+		}
+	],
+	"settings": {
+		"git.ignoreLimitWarning": true,
+		"maven.view": "hierarchical",
+		"editor.fontSize": 16,
+		"editor.tabSize": 2
+	}
+}

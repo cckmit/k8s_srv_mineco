@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC 
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN" 
+    "http://struts.apache.org/dtds/struts-2.0.dtd" >
+    
+<struts>
+	<package name="busquedaCert-action" namespace="/busquedaCert" extends="base-action">
+		
+		<action name="inicia" method="inicia" class="busquedaCertAction">
+			<result type="tiles">busquedaCert.busquedaCert</result>
+			<result name="success" type="tiles">busquedaCert.busquedaCert</result>
+			<result name="error" type="tiles">busqueda.home</result>
+		</action>
+		<action name="busquedaCert" method="busquedaCert" class="busquedaCertAction">
+			<result type="tiles">busquedaCert.busquedaCert</result>
+			<result name="success" type="tiles">busquedaCert.busquedaCert</result>
+			<result name="error" type="tiles">busqueda.home</result>
+		</action>
+		
+	</package>
+</struts>

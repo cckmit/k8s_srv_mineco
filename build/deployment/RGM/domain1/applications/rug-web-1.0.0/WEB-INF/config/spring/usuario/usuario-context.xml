@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dwr="http://www.directwebremoting.org/schema/spring-dwr"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans.xsd
+	 http://www.directwebremoting.org/schema/spring-dwr
+            http://www.directwebremoting.org/schema/spring-dwr-2.0.xsd">
+            
+	<bean class="gt.gob.rgm.rs.SpringApplicationContext"></bean>
+
+	<bean id="usuarioAction" class="mx.gob.se.rug.administracion.action.UsuarioAction" scope="prototype">
+		<property name="usuarioService" ref="usuarioService" />
+		<property name="mailRegistroService" ref="mailRegistroService" />
+		<property name="passwordService" ref="passwordService" />
+		<property name="acreedoresCatalogosService" ref="acreedoresCatalogosService" />
+		<property name="filesService" ref="filesService" />
+		<property name="archivoSvc" ref="archivoSvc" />
+		<property name="usuariosBusinessService" ref="usuariosBusinessService" />
+		<property name="rechazoService" ref="rechazoCuentaService" />
+	</bean>
+	
+	<!-- Service -->
+	<bean id="usuarioService" scope="prototype" 
+	class="mx.gob.se.rug.administracion.service.impl.UsuarioServicePojoImpl">
+		<property name="usuarioDao" ref="usuarioDao" />
+	</bean>
+
+	<bean id="mailRegistroService" scope="prototype" class="mx.gob.se.rug.mailservice.MailRegistroService">
+		<property name="mailService" ref="mailService" />
+		<property name="messageSender" ref="jmsMessageSender" />
+	</bean>
+	
+	<bean id="mailService" scope="prototype" class="gt.gob.rgm.mail.service.MailServiceImp">
+	</bean>
+	
+	<!--bean id="captchaRegistroService" scope="prototype" class="mx.gob.se.rug.captcha.Captcha">
+		<property name="captchaService" ref="captchaService" />
+	</bean-->
+	
+	<bean id="captchaService" scope="prototype" class="gt.gob.rgm.captcha.service.CaptchaServiceImp">
+	</bean>
+	
+	<bean id="filesService" scope="prototype" class="gt.gob.rgm.files.service.FilesServiceImp">
+	</bean>
+	
+	<bean id="passwordService" class="mx.gob.economia.dgi.framework.password.service.impl.PasswordServicePojoImpl" />	
+	
+
+	<!-- DAO -->
+	<bean id="usuarioDao" scope="prototype" 
+	class="mx.gob.se.rug.administracion.dao.impl.UsuarioDaoJdbcImpl">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+	
+	<bean id="usuariosBusinessService" scope="prototype" class="gt.gob.rgm.service.UsuariosServiceImp">
+		<property name="personaDao" ref="rugPersonasRepository" />
+		<property name="personaFisicaDao" ref="rugPersonasFisicasRepository" />
+		<property name="secuUsuarioDao" ref="rugSecuUsuariosRepository" />
+		<property name="secuPerfilUsuarioDao" ref="rugSecuPerfilesUsuarioRepository" />
+		<property name="relUsuAcreedorDao" ref="relUsuAcreedorRepository" />
+		<property name="rugRelGrupoAcreedorDao" ref="rugRelGrupoAcreedorRepository" />
+		<property name="secuUsuarioExtDao" ref="rugSecuUsuariosExternosRepository" />
+		<property name="bitacoraDao" ref="bitacoraOperacionesRepository" />			
+	</bean>
+	
+	<bean id="rechazoCuentaService" scope="prototype" class="gt.gob.rgm.service.RechazoCuentaServiceImp">
+		<property name="rechazoDao" ref="rechazoCuentaRepository" />
+	</bean>
+</beans>

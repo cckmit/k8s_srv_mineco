@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="baseCommonHttpErrorAction" class="mx.gob.se.rug.common.action.HttpErrorHandlerAction" />
+
+	<bean id="environmentService" class="mx.gob.se.rug.common.environment.service.impl.EnvironmentServicePojoImpl">
+		<property name="environmentDao">
+			<bean class="mx.gob.se.rug.common.environment.dao.impl.EnvironmentDaoJdbcImpl">
+				<property name="dataSource" ref="dataSource" />
+			</bean>
+		</property>
+	</bean>
+
+</beans>

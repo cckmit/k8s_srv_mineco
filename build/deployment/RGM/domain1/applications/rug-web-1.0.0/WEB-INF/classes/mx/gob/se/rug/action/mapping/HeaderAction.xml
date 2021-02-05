@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC 
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN" 
+    "http://struts.apache.org/dtds/struts-2.0.dtd" >
+    
+<struts>
+	<package name="header-action" namespace="/home" extends="base-action">
+		<action name="inicioLogo" method="inicioLogo" class="headerAction">
+			<result type="tiles">header.home</result>
+			<result name="success" type="tiles">busqueda.home</result>
+			<result name="error" type="tiles">inicio.home</result>
+		</action>
+		<action name="closeSession" method="closeSession" class="headerAction">
+			<result type="tiles">header.home</result>
+			<result name="success" type="tiles">inicio.home</result>
+			<result name="error" type="tiles">inicio.home</result>
+		</action>
+	</package>
+</struts>
