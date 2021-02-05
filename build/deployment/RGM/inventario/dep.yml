@@ -25,10 +25,10 @@ spec:
             protocol: TCP
           - containerPort: 4848
             protocol: TCP
-        volumeMounts:
-            - mountPath: "/glassfish5/glassfish/domains/domain1"
-              name: vol-rgm
-      volumes:
-        - name: vol-rgm
-          persistentVolumeClaim:
-            claimName: rgm
+      #   volumeMounts:
+      #       - mountPath: "/glassfish5/glassfish/domains/domain1"
+      #         name: vol-rgm
+      # volumes:
+      #   - name: vol-rgm
+      #     persistentVolumeClaim:
+      #       claimName: rgm
