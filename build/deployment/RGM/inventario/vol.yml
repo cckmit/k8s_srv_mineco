@@ -1,10 +1,10 @@
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: rgm-inv-mineco
+  name: rgm
   namespace: mineco
   labels:
-    rgm_inv: ready
+    name: rgm
 spec:
   storageClassName: manual
   capacity:
@@ -12,14 +12,14 @@ spec:
   accessModes:
     - ReadWriteOnce
   hostPath:
-    path: "/deployment/application/glassfish5/glassfish/domains"
+    path: "/deployment/application/glassfish5/glassfish/domains/"
     # path: "/deployment/application/domains"
 
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: rgm-inv-mineco
+  name: rgm
   namespace: mineco
 spec:
   storageClassName: manual
@@ -30,4 +30,4 @@ spec:
       storage: 10Gi
   selector:
     matchLabels:
-      rgm_inv: ready
+      name: rgm

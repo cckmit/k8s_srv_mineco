@@ -31,4 +31,4 @@ spec:
       volumes:
         - name: vol-rgm-inv
           persistentVolumeClaim:
-            claimName: rgm-inv-mineco
+            claimName: rgm
