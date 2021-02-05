@@ -6,7 +6,7 @@ metadata:
   labels:
     run: rgm-inventario
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       run: rgm-inventario
