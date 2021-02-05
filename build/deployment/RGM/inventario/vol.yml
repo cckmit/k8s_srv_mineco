@@ -12,7 +12,8 @@ spec:
   accessModes:
     - ReadWriteOnce
   hostPath:
-    path: "/deployment/application/glassfish5/glassfish/domains"
+    # path: "/deployment/application/glassfish5/glassfish/domains"
+    path: "/deployment/application/domains1"
 
 ---
 apiVersion: v1
