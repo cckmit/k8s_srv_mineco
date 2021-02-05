@@ -13,7 +13,7 @@ spec:
     - ReadWriteOnce
   hostPath:
     # path: "/deployment/application/glassfish5/glassfish/domains"
-    path: "/deployment/application/domains/domain1"
+    path: "/deployment/application/domains"
 
 ---
 apiVersion: v1
