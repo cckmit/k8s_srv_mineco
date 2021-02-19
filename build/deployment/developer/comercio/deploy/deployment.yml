@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: laravel-documentos
+  namespace: mineco_dev
+  labels:
+    run: nginx
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      run: laravel-documentos
+  template:
+    metadata:
+      labels:
+        run: laravel-documentos
+    spec:
+      containers:
+      - name: laravel-documentos
+        image: documentos:latest
+        imagePullPolicy: IfNotPresent
+        ports:
+          - containerPort: 80
+            protocol: TCP
+          - containerPort: 443
+            protocol: TCP
+        volumeMounts:
+            - mountPath: "/var/www/html"
+              name: vol-documento
+      volumes:
+        - name: vol-documento
+          persistentVolumeClaim:
+            claimName: documentos-mineco
