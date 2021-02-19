@@ -44,15 +44,18 @@ RUN docker-php-ext-install mysqli pdo pdo_mysql
 
 # RUN sed -i 's/^\(\[supervisord\]\)$/\1\nnodaemon=true/' /etc/supervisor/supervisord.conf
 # RUN echo "supervisord -c /etc/supervisord.conf" >> /root/.bashrc
-COPY supervisord.conf /etc/supervisor/conf.d/laravel-worker.conf
+COPY supervisord.conf /etc/supervisord.conf
+
 
 
 # CMD ["/usr/bin/supervisord"]
 # CMD ["supervisord", "-c", "/etc/supervisor/supervisord.conf"]
 # RUN supervisord -c /etc/supervisor/supervisor.conf
-RUN sudo supervisorctl reread
-RUN sudo supervisorctl update
-RUN sudo supervisorctl start laravel-worker:*
+# RUN supervisorctl reread
+# RUN supervisorctl update
+# RUN supervisorctl start laravel-worker:*
+
+ENTRYPOINT ["/usr/bin/supervisord", "-n", "-c",  "/etc/supervisord.conf"]
 
 # RUN chown -R www-data:www-data /app \
 RUN chown -R www-data:www-data /var/www/html \
