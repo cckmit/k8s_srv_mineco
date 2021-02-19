@@ -50,9 +50,9 @@ COPY supervisord.conf /etc/supervisor/conf.d/laravel-worker.conf
 # CMD ["/usr/bin/supervisord"]
 # CMD ["supervisord", "-c", "/etc/supervisor/supervisord.conf"]
 # RUN supervisord -c /etc/supervisor/supervisor.conf
-RUN supervisorctl reread
-RUN supervisorctl update
-RUN supervisorctl start laravel-worker:*
+RUN sudo supervisorctl reread
+RUN sudo supervisorctl update
+RUN sudo supervisorctl start laravel-worker:*
 
 # RUN chown -R www-data:www-data /app \
 RUN chown -R www-data:www-data /var/www/html \
