@@ -30,7 +30,7 @@ RUN apt-get update && apt-get install -y \
         unzip \
         libzip-dev \
         nano \
-        python \
+        supervisor  \
     && pecl install mcrypt-1.0.1  \
     && docker-php-ext-install -j$(nproc) iconv   \
     && docker-php-ext-install zip  \
@@ -41,9 +41,7 @@ RUN apt-get update && apt-get install -y \
 
 RUN docker-php-ext-install mysqli pdo pdo_mysql
 
-RUN curl "https://bootstrap.pypa.io/get-pip.py" -o "get-pip.py"
-RUN python get-pip.py
-RUN pip install supervisor
+RUN sed -i 's/^\(\[supervisord\]\)$/\1\nnodaemon=true/' /etc/supervisor/supervisord.conf
 RUN echo "supervisord -c /etc/supervisord.conf" >> /root/.bashrc
 COPY supervisord.conf /etc/supervisord.conf
 
