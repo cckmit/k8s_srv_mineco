@@ -31,6 +31,7 @@ RUN apt-get update && apt-get install -y \
         libzip-dev \
         nano \
         supervisor  \
+        python2  \
     && pecl install mcrypt-1.0.1  \
     && docker-php-ext-install -j$(nproc) iconv   \
     && docker-php-ext-install zip  \
