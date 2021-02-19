@@ -45,6 +45,7 @@ RUN sed -i 's/^\(\[supervisord\]\)$/\1\nnodaemon=true/' /etc/supervisor/supervis
 RUN echo "supervisord -c /etc/supervisord.conf" >> /root/.bashrc
 COPY supervisord.conf /etc/supervisord.conf
 
+RUN supervisord -c /etc/supervisor/supervisor.conf
 RUN supervisorctl reread
 RUN supervisorctl update
 RUN supervisorctl status
