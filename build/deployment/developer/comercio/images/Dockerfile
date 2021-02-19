@@ -45,17 +45,17 @@ RUN docker-php-ext-install mysqli pdo pdo_mysql
 
 # RUN sed -i 's/^\(\[supervisord\]\)$/\1\nnodaemon=true/' /etc/supervisor/supervisord.conf
 # RUN echo "supervisord -c /etc/supervisord.conf" >> /root/.bashrc
-COPY supervisord-laravel.conf /etc/supervisor/
+# COPY supervisord-laravel.conf /etc/supervisor/
 # CMD ["supervisord", "-c", "/etc/supervisor/supervisord.conf"]
 
 
 
 # CMD ["/usr/bin/supervisord"]
 # RUN supervisord -c /etc/supervisor/supervisor.conf
-RUN service supervisor start
-RUN supervisorctl reread
-RUN supervisorctl update
-RUN supervisorctl start supervisord-laravel:*
+# RUN service supervisor start
+# RUN supervisorctl reread
+# RUN supervisorctl update
+# RUN supervisorctl start supervisord-laravel:*
 
 # ENTRYPOINT ["/usr/bin/supervisord", "-n", "-c",  "/etc/supervisord.conf"]
 
