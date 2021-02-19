@@ -43,11 +43,12 @@ RUN docker-php-ext-install mysqli pdo pdo_mysql
 
 
 RUN sed -i 's/^\(\[supervisord\]\)$/\1\nnodaemon=true/' /etc/supervisor/supervisord.conf
-RUN echo "supervisord -c /etc/supervisord.conf" >> /root/.bashrc
+# RUN echo "supervisord -c /etc/supervisord.conf" >> /root/.bashrc
 COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
 
-CMD ["/usr/bin/supervisord"]
+# CMD ["/usr/bin/supervisord"]
+CMD ["supervisord", "-c", "/etc/supervisor/supervisord.conf"]
 # RUN supervisord -c /etc/supervisor/supervisor.conf
 # RUN supervisorctl reread
 # RUN supervisorctl update
