@@ -42,17 +42,17 @@ RUN apt-get update && apt-get install -y \
 RUN docker-php-ext-install mysqli pdo pdo_mysql
 
 
-RUN sed -i 's/^\(\[supervisord\]\)$/\1\nnodaemon=true/' /etc/supervisor/supervisord.conf
+# RUN sed -i 's/^\(\[supervisord\]\)$/\1\nnodaemon=true/' /etc/supervisor/supervisord.conf
 # RUN echo "supervisord -c /etc/supervisord.conf" >> /root/.bashrc
-COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+COPY supervisord.conf /etc/supervisor/conf.d/laravel-worker.conf
 
 
 # CMD ["/usr/bin/supervisord"]
-CMD ["supervisord", "-c", "/etc/supervisor/supervisord.conf"]
+# CMD ["supervisord", "-c", "/etc/supervisor/supervisord.conf"]
 # RUN supervisord -c /etc/supervisor/supervisor.conf
-# RUN supervisorctl reread
-# RUN supervisorctl update
-# RUN supervisorctl status
+RUN supervisorctl reread
+RUN supervisorctl update
+RUN supervisorctl start laravel-worker:*
 
 # RUN chown -R www-data:www-data /app \
 RUN chown -R www-data:www-data /var/www/html \
