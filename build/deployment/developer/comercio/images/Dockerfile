@@ -54,9 +54,9 @@ RUN apt-get -y install supervisor
 # CMD ["/usr/bin/supervisord"]
 # RUN supervisord -c /etc/supervisor/supervisor.conf
 RUN service supervisor start \
-    supervisorctl reread
-RUN supervisorctl update
-# RUN supervisorctl start supervisord-laravel:*
+    supervisorctl reread \ 
+    supervisorctl update \
+    supervisorctl start supervisord-laravel:*
 
 # ENTRYPOINT ["/usr/bin/supervisord", "-n", "-c",  "/etc/supervisord.conf"]
 
