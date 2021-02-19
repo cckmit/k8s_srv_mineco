@@ -30,7 +30,7 @@ RUN apt-get update && apt-get install -y \
         unzip \
         libzip-dev \
         nano \
-        supervisor  \
+        # supervisor  \
     && pecl install mcrypt-1.0.1  \
     && docker-php-ext-install -j$(nproc) iconv   \
     && docker-php-ext-install zip  \
@@ -44,7 +44,7 @@ RUN docker-php-ext-install mysqli pdo pdo_mysql
 
 # RUN sed -i 's/^\(\[supervisord\]\)$/\1\nnodaemon=true/' /etc/supervisor/supervisord.conf
 # RUN echo "supervisord -c /etc/supervisord.conf" >> /root/.bashrc
-COPY supervisord.conf /etc/supervisord.conf
+# COPY supervisord.conf /etc/supervisord.conf
 
 
 
@@ -55,7 +55,7 @@ COPY supervisord.conf /etc/supervisord.conf
 # RUN supervisorctl update
 # RUN supervisorctl start laravel-worker:*
 
-ENTRYPOINT ["/usr/bin/supervisord", "-n", "-c",  "/etc/supervisord.conf"]
+# ENTRYPOINT ["/usr/bin/supervisord", "-n", "-c",  "/etc/supervisord.conf"]
 
 # RUN chown -R www-data:www-data /app \
 RUN chown -R www-data:www-data /var/www/html \
