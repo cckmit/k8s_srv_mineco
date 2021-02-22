@@ -14,15 +14,15 @@ spec:
   - 128.5.9.77
   # type: NodePort
   ports:
-    # - name: http
-    #   port: 80
-    #   targetPort: 80
-    #   protocol: TCP
-    #   nodePort: 32000
-    - name: https
-      port: 443
-      targetPort: 443
+    - name: http
+      port: 80
+      targetPort: 80
       protocol: TCP
+    #   nodePort: 32000
+    # - name: https
+    #   port: 443
+    #   targetPort: 443
+    #   protocol: TCP
   selector:
     run: laravel-documentos
 
