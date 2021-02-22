@@ -50,6 +50,7 @@ COPY supervisord-laravel.conf /etc/supervisor/conf.d/supervisor-laravel.conf
 # RUN echo user=root >> /etc/supervisor/supervisord.conf
 # CMD ["/usr/bin/supervisord","-c","/etc/supervisor/supervisord.conf"]
 # CMD ["supervisord", "-c", "/etc/supervisor/supervisord.conf"]
+# /usr/bin/supervisord -c /etc/supervisor/supervisord.conf
 
 
 
