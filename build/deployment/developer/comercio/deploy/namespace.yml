@@ -1,4 +1,6 @@
+kind: Namespace
 apiVersion: v1
-kind: namespace
 metadata:
   name: mineco_dev
+  labels:
+    name: mineco_dev
