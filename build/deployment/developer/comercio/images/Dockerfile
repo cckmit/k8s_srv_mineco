@@ -46,17 +46,17 @@ RUN apt-get -y install supervisor
 
 # RUN sed -i 's/^\(\[supervisord\]\)$/\1\nnodaemon=true/' /etc/supervisor/supervisord.conf
 # RUN echo "supervisord -c /etc/supervisord.conf" >> /root/.bashrc
-COPY supervisord-laravel.conf /etc/supervisor/conf.d/
+# COPY supervisord-laravel.conf /etc/supervisor/conf.d/
 CMD ["supervisord", "-c", "/etc/supervisor/supervisord.conf"]
 
 
 
 # CMD ["/usr/bin/supervisord"]
 # RUN supervisord -c /etc/supervisor/supervisor.conf
-RUN service supervisor start \
-    supervisorctl reread \ 
-    supervisorctl update \
-    supervisorctl start supervisord-laravel:*
+# RUN service supervisor start \
+#     supervisorctl reread \ 
+#     supervisorctl update \
+#     supervisorctl start supervisord-laravel:*
 
 # ENTRYPOINT ["/usr/bin/supervisord", "-n", "-c",  "/etc/supervisord.conf"]
 
