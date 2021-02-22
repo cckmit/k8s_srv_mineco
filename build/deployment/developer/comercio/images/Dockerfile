@@ -47,7 +47,8 @@ RUN apt-get -y install supervisor
 # RUN sed -i 's/^\(\[supervisord\]\)$/\1\nnodaemon=true/' /etc/supervisor/supervisord.conf
 # RUN echo "supervisord -c /etc/supervisord.conf" >> /root/.bashrc
 COPY supervisord-laravel.conf /etc/supervisor/conf.d/supervisor-laravel.conf
-CMD ["/usr/bin/supervisord"]
+RUN echo user=root >> /etc/supervisor/supervisord.conf
+CMD ["/usr/bin/supervisord","-n"]
 # CMD ["supervisord", "-c", "/etc/supervisor/supervisord.conf"]
 
 
