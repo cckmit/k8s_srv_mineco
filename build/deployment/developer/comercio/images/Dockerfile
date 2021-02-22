@@ -48,7 +48,7 @@ RUN apt-get -y install supervisor
 # RUN echo "supervisord -c /etc/supervisord.conf" >> /root/.bashrc
 COPY supervisord-laravel.conf /etc/supervisor/conf.d/supervisor-laravel.conf
 # RUN echo user=root >> /etc/supervisor/supervisord.conf
-CMD ["/usr/bin/supervisord","-c","/etc/supervisor/supervisord.conf"]
+# CMD ["/usr/bin/supervisord","-c","/etc/supervisor/supervisord.conf"]
 # CMD ["supervisord", "-c", "/etc/supervisor/supervisord.conf"]
 
 
