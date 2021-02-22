@@ -71,9 +71,9 @@ WORKDIR /var/www/html
 
 RUN a2enmod headers \
    && service apache2 restart 
-RUN chmod -R 777 /app/storage
-RUN chmod -R 777 /app/bootstrap/cache
-RUN chmod -R 777 /app/public
+# RUN chmod -R 777 /app/storage
+# RUN chmod -R 777 /app/bootstrap/cache
+# RUN chmod -R 777 /app/public
 
 # install node and npm
 ENV NODE_VERSION=12.6.0
@@ -93,7 +93,7 @@ RUN php -r "unlink('composer-setup.php');"
 RUN mv composer.phar /usr/local/bin/composer
 
 #################################################
-RUN composer install
-RUN npm install
+# RUN composer install
+# RUN npm install
 # RUN npm run dev
-RUN cp .env.example .env
+# RUN cp .env.example .env
