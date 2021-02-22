@@ -2,7 +2,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: service-document
-  namespace: mineco_dev
+  namespace: mineco-dev
   labels:
     app.kubernetes.io/name: documentos
     app.kubernetes.io/part-of: documentos

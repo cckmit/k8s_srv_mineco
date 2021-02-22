@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: laravel-documentos
-  namespace: mineco_dev
+  namespace: mineco-dev
   labels:
     run: nginx
 spec:
