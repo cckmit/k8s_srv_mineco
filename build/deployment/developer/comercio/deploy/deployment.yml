@@ -19,7 +19,8 @@ spec:
       - name: laravel-documentos
         image: documentos_dev1:latest
         imagePullPolicy: IfNotPresent
-        command: ["composer install"]
+        command: ["composer"]
+        args: ["install"]
         # command: ["php","artisan"]
         ports:
           - containerPort: 80
