@@ -19,6 +19,8 @@ spec:
       - name: laravel-documentos
         image: documentos_dev1:latest
         imagePullPolicy: IfNotPresent
+        command: ["composer install"]
+        # command: ["php","artisan"]
         ports:
           - containerPort: 80
             protocol: TCP
@@ -27,6 +29,7 @@ spec:
         volumeMounts:
             - mountPath: "/var/www/html"
               name: vol-documento
+      # command: ["/usr/local/bin/php", "artisan", "horizon lifecycle: preStop: exec: command: ["/usr/local/bin/php", "artisan", "horizon:terminate"]
       volumes:
         - name: vol-documento
           persistentVolumeClaim:
