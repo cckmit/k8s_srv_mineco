@@ -17,7 +17,7 @@ spec:
       protocol: TCP
       port: 8282
       targetPort: 8282
-    - name: http
+    - name: my-port
       protocol: TCP
       port: 8181
       targetPort: 8181
