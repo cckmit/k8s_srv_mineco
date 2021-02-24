@@ -1,0 +1,15 @@
+/* AUTOMATICALLY GENERATED ON Fri May 11 00:41:29 CST 2018*/
+/* DO NOT EDIT */
+
+grant {
+  permission javax.security.jacc.WebResourcePermission "/";
+  permission javax.security.jacc.WebUserDataPermission "/";
+};
+
+grant      principal * * {
+  permission javax.security.jacc.WebRoleRefPermission "jsp", "**";
+  permission javax.security.jacc.WebRoleRefPermission "", "**";
+  permission javax.security.jacc.WebRoleRefPermission "TimerWelcomeServlet", "**";
+  permission javax.security.jacc.WebRoleRefPermission "default", "**";
+};
+

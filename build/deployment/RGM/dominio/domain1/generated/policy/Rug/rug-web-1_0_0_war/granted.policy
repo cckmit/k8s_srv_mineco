@@ -1,0 +1,113 @@
+/* AUTOMATICALLY GENERATED ON Thu Feb 18 08:08:43 CST 2021*/
+/* DO NOT EDIT */
+
+grant {
+  permission javax.security.jacc.WebResourcePermission "/home/portada.do", "!GET,POST";
+  permission javax.security.jacc.WebResourcePermission "/masiva/muestraResultado.do", "!GET,POST";
+  permission javax.security.jacc.WebResourcePermission "/:/masiva/muestraResultado.do:/acreedor/*:/home/portada.do:/home/boleta.do";
+  permission javax.security.jacc.WebResourcePermission "/home/boleta.do", "!GET,POST";
+  permission javax.security.jacc.WebResourcePermission "/acreedor/*", "!GET,POST";
+  permission javax.security.jacc.WebUserDataPermission "/masiva/muestraResultado.do";
+  permission javax.security.jacc.WebUserDataPermission "/acreedor/*";
+  permission javax.security.jacc.WebUserDataPermission "/home/boleta.do";
+  permission javax.security.jacc.WebUserDataPermission "/:/masiva/muestraResultado.do:/acreedor/*:/home/portada.do:/home/boleta.do";
+  permission javax.security.jacc.WebUserDataPermission "/home/portada.do";
+};
+
+grant      principal org.glassfish.security.common.Group "ADMINISTRADOR" {
+  permission javax.security.jacc.WebRoleRefPermission "errores", "ADMINISTRADOR";
+  permission javax.security.jacc.WebRoleRefPermission "pdf", "ADMINISTRADOR";
+  permission javax.security.jacc.WebRoleRefPermission "dwr-invoker", "ADMINISTRADOR";
+  permission javax.security.jacc.WebRoleRefPermission "jsp", "ADMINISTRADOR";
+  permission javax.security.jacc.WebRoleRefPermission "gt.gob.rgm.rs.JAXRSConfiguration", "ADMINISTRADOR";
+  permission javax.security.jacc.WebRoleRefPermission "", "ADMINISTRADOR";
+  permission javax.security.jacc.WebRoleRefPermission "captcha", "ADMINISTRADOR";
+  permission javax.security.jacc.WebRoleRefPermission "default", "ADMINISTRADOR";
+  permission javax.security.jacc.WebRoleRefPermission "FacesServlet", "ADMINISTRADOR";
+  permission javax.security.jacc.WebRoleRefPermission "DescargaArchivoXML", "ADMINISTRADOR";
+};
+
+grant      principal * * {
+  permission javax.security.jacc.WebRoleRefPermission "pdf", "**";
+  permission javax.security.jacc.WebRoleRefPermission "jsp", "**";
+  permission javax.security.jacc.WebRoleRefPermission "", "**";
+  permission javax.security.jacc.WebRoleRefPermission "errores", "**";
+  permission javax.security.jacc.WebRoleRefPermission "gt.gob.rgm.rs.JAXRSConfiguration", "**";
+  permission javax.security.jacc.WebRoleRefPermission "captcha", "**";
+  permission javax.security.jacc.WebRoleRefPermission "FacesServlet", "**";
+  permission javax.security.jacc.WebRoleRefPermission "dwr-invoker", "**";
+  permission javax.security.jacc.WebRoleRefPermission "DescargaArchivoXML", "**";
+  permission javax.security.jacc.WebRoleRefPermission "default", "**";
+};
+
+grant      principal org.glassfish.security.common.Group "OPERATIVO" {
+  permission javax.security.jacc.WebRoleRefPermission "default", "OPERATIVO";
+  permission javax.security.jacc.WebRoleRefPermission "", "OPERATIVO";
+  permission javax.security.jacc.WebRoleRefPermission "errores", "OPERATIVO";
+  permission javax.security.jacc.WebRoleRefPermission "pdf", "OPERATIVO";
+  permission javax.security.jacc.WebRoleRefPermission "dwr-invoker", "OPERATIVO";
+  permission javax.security.jacc.WebRoleRefPermission "jsp", "OPERATIVO";
+  permission javax.security.jacc.WebRoleRefPermission "captcha", "OPERATIVO";
+  permission javax.security.jacc.WebRoleRefPermission "FacesServlet", "OPERATIVO";
+  permission javax.security.jacc.WebRoleRefPermission "DescargaArchivoXML", "OPERATIVO";
+  permission javax.security.jacc.WebRoleRefPermission "gt.gob.rgm.rs.JAXRSConfiguration", "OPERATIVO";
+};
+
+grant      principal org.glassfish.security.common.Group "ROOT" {
+  permission javax.security.jacc.WebResourcePermission "/home/portada.do", "GET,POST";
+  permission javax.security.jacc.WebResourcePermission "/masiva/muestraResultado.do", "GET,POST";
+  permission javax.security.jacc.WebResourcePermission "/home/boleta.do", "GET,POST";
+  permission javax.security.jacc.WebResourcePermission "/acreedor/*", "GET,POST";
+};
+
+grant      principal org.glassfish.security.common.Group "AUTORIDAD" {
+  permission javax.security.jacc.WebRoleRefPermission "errores", "AUTORIDAD";
+  permission javax.security.jacc.WebRoleRefPermission "default", "AUTORIDAD";
+  permission javax.security.jacc.WebRoleRefPermission "", "AUTORIDAD";
+  permission javax.security.jacc.WebRoleRefPermission "dwr-invoker", "AUTORIDAD";
+  permission javax.security.jacc.WebRoleRefPermission "jsp", "AUTORIDAD";
+  permission javax.security.jacc.WebRoleRefPermission "pdf", "AUTORIDAD";
+  permission javax.security.jacc.WebRoleRefPermission "gt.gob.rgm.rs.JAXRSConfiguration", "AUTORIDAD";
+  permission javax.security.jacc.WebRoleRefPermission "DescargaArchivoXML", "AUTORIDAD";
+  permission javax.security.jacc.WebRoleRefPermission "FacesServlet", "AUTORIDAD";
+  permission javax.security.jacc.WebRoleRefPermission "captcha", "AUTORIDAD";
+  permission javax.security.jacc.WebResourcePermission "/home/portada.do", "GET,POST";
+  permission javax.security.jacc.WebResourcePermission "/masiva/muestraResultado.do", "GET,POST";
+  permission javax.security.jacc.WebResourcePermission "/home/boleta.do", "GET,POST";
+  permission javax.security.jacc.WebResourcePermission "/acreedor/*", "GET,POST";
+};
+
+grant      principal org.glassfish.security.common.Group "CIUDADANO" {
+  permission javax.security.jacc.WebRoleRefPermission "errores", "CIUDADANO";
+  permission javax.security.jacc.WebRoleRefPermission "dwr-invoker", "CIUDADANO";
+  permission javax.security.jacc.WebRoleRefPermission "gt.gob.rgm.rs.JAXRSConfiguration", "CIUDADANO";
+  permission javax.security.jacc.WebRoleRefPermission "default", "CIUDADANO";
+  permission javax.security.jacc.WebRoleRefPermission "", "CIUDADANO";
+  permission javax.security.jacc.WebRoleRefPermission "jsp", "CIUDADANO";
+  permission javax.security.jacc.WebRoleRefPermission "captcha", "CIUDADANO";
+  permission javax.security.jacc.WebRoleRefPermission "pdf", "CIUDADANO";
+  permission javax.security.jacc.WebRoleRefPermission "DescargaArchivoXML", "CIUDADANO";
+  permission javax.security.jacc.WebRoleRefPermission "FacesServlet", "CIUDADANO";
+  permission javax.security.jacc.WebResourcePermission "/home/portada.do", "GET,POST";
+  permission javax.security.jacc.WebResourcePermission "/masiva/muestraResultado.do", "GET,POST";
+  permission javax.security.jacc.WebResourcePermission "/home/boleta.do", "GET,POST";
+  permission javax.security.jacc.WebResourcePermission "/acreedor/*", "GET,POST";
+};
+
+grant      principal org.glassfish.security.common.Group "ACREEDOR" {
+  permission javax.security.jacc.WebRoleRefPermission "pdf", "ACREEDOR";
+  permission javax.security.jacc.WebRoleRefPermission "dwr-invoker", "ACREEDOR";
+  permission javax.security.jacc.WebRoleRefPermission "jsp", "ACREEDOR";
+  permission javax.security.jacc.WebRoleRefPermission "", "ACREEDOR";
+  permission javax.security.jacc.WebRoleRefPermission "captcha", "ACREEDOR";
+  permission javax.security.jacc.WebRoleRefPermission "gt.gob.rgm.rs.JAXRSConfiguration", "ACREEDOR";
+  permission javax.security.jacc.WebRoleRefPermission "DescargaArchivoXML", "ACREEDOR";
+  permission javax.security.jacc.WebRoleRefPermission "FacesServlet", "ACREEDOR";
+  permission javax.security.jacc.WebRoleRefPermission "errores", "ACREEDOR";
+  permission javax.security.jacc.WebRoleRefPermission "default", "ACREEDOR";
+  permission javax.security.jacc.WebResourcePermission "/home/portada.do", "GET,POST";
+  permission javax.security.jacc.WebResourcePermission "/masiva/muestraResultado.do", "GET,POST";
+  permission javax.security.jacc.WebResourcePermission "/home/boleta.do", "GET,POST";
+  permission javax.security.jacc.WebResourcePermission "/acreedor/*", "GET,POST";
+};
+
