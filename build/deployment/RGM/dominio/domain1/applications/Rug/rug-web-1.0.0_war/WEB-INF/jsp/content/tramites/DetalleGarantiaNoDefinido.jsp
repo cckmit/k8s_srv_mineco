@@ -1,1 +1,0 @@
-Situación no definida

@@ -1,1 +1,0 @@
-<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/resources/css/form.css" />

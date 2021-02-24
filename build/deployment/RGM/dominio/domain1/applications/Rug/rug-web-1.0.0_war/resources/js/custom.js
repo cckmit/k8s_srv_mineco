@@ -1,2 +1,0 @@
-
-  //  $('#mdDescripcion').characterCounter();
