@@ -13,10 +13,12 @@ spec:
   externalIPs:
   - 128.5.9.76
   ports:
-    - protocol: TCP
+    - name: http
+      protocol: TCP
       port: 8282
       targetPort: 8282
-    - protocol: TCP
+    - name: http
+      protocol: TCP
       port: 8181
       targetPort: 8181
     - name: https
