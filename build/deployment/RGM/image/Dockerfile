@@ -6,9 +6,9 @@ FROM store/oracle/serverjre:8
 # ENV GLASSFISH_PKG=glassfish-5.0-b16-07_30_2017.zip \
 #     GLASSFISH_URL=http://download.oracle.com/glassfish/5.0/nightly \
 RUN mkdir /glassfish5
-ENV GLASSFISH_HOME=/glassfish5 \
-    PATH=$PATH:/glassfish5/bin \
-    PASSWORD=glassfish
+ENV GLASSFISH_HOME=/glassfish5 
+    # PATH=$PATH:/glassfish5/bin \
+    # PASSWORD=glassfish
 
 # Install packages, download and extract GlassFish
 # Setup password file
