@@ -1,4 +1,4 @@
-FROM andriiderevianko/glassfish5:5.0-jdk-1.8.0_152
+FROM pramoth/glassfish5:5.0-full
 
 EXPOSE 4848 8080 8181 8282
 
