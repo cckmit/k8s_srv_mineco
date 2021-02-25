@@ -31,7 +31,7 @@ spec:
             protocol: TCP
         volumeMounts:
             # - mountPath: "/glassfish5/glassfish/domains/domain1"
-            - mountPath: "/"
+            - mountPath: "/glassfish5"
               name: vol-rgm
       volumes:
         - name: vol-rgm
