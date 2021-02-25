@@ -12,7 +12,7 @@ spec:
   accessModes:
     - ReadWriteOnce
   hostPath:
-    path: "/deployment/application/domains/glassfish5/glassfish"
+    path: "/deployment/application/domains/glassfish5/glassfish/domains/domain1"
     # path: "/deployment/application/domains"
 
 ---
