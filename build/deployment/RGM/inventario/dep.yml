@@ -21,7 +21,7 @@ spec:
         # image: glassfishrgm:latest 
         # image: rgm3:latest 
         # image: store/oracle/serverjre:1.8.0_241-b07 
-        imagePullPolicy: IfNotPresent
+        # imagePullPolicy: IfNotPresent
         # ports:
         #   # - containerPort: 8080
         #   #   protocol: TCP
