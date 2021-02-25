@@ -17,7 +17,7 @@ RUN yum install -y wget unzip && \
     wget --no-check-certificate ${GLASSFISH_URL}/${GLASSFISH_PKG} && \
     unzip -o ${GLASSFISH_PKG} && \
     rm -f ${GLASSFISH_PKG} && \
-    yum remove -y wget unzip && 
+    yum remove -y wget unzip 
     # echo "----- CREATE PASSWORD FILE --------------------" && \
     # echo "AS_ADMIN_PASSWORD=" > /tmp/gfpassword && \
     # echo "AS_ADMIN_NEWPASSWORD=${PASSWORD}" >> /tmp/gfpassword  && \
