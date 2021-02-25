@@ -1,4 +1,4 @@
-FROM pramoth/glassfish5:5.0-full
+FROM divya0201/docker-glassfish5:latest
 
 EXPOSE 4848 8080 8181 8282
 
