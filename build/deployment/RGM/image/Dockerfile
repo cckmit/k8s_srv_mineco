@@ -1,4 +1,4 @@
-FROM ubuntu:20.04
+FROM andriiderevianko/glassfish5:5.0-jdk-1.8.0_152
 
 EXPOSE 4848 8080 8181 8282
 
