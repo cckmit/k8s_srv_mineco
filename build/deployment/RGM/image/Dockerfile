@@ -1,4 +1,5 @@
-FROM  shinyay/docker-glassfish5:latest 
+# FROM  shinyay/docker-glassfish5:latest 
+FROM  jelastic/glassfish:5.0-jdk-1.8.0_152
 
 EXPOSE 4848 8080 8181 8282
 
