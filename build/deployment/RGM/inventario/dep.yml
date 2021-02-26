@@ -18,7 +18,7 @@ spec:
       containers:
       - name: rgm-inventario
         # image: rug:latest 
-        image: rgm4:latest 
+        image: payara/server-full
         # image: store/oracle/serverjre:1.8.0_241-b07 
         imagePullPolicy: IfNotPresent
         ports:
@@ -26,15 +26,15 @@ spec:
           #   protocol: TCP
           - containerPort: 8181
             protocol: TCP
-          - containerPort: 8282
-            protocol: TCP
+          # - containerPort: 8282
+          #   protocol: TCP
           - containerPort: 4848
             protocol: TCP
-        volumeMounts:
-            # - mountPath: "/glassfish5/glassfish/domains/domain1"
-            - mountPath: "/glassfish5/glassfish/domains/domain1"
-              name: vol-rgm
-      volumes:
-        - name: vol-rgm
-          persistentVolumeClaim:
-            claimName: rgm
+      #   volumeMounts:
+      #       # - mountPath: "/glassfish5/glassfish/domains/domain1"
+      #       - mountPath: "/glassfish5/glassfish/domains/domain1"
+      #         name: vol-rgm
+      # volumes:
+      #   - name: vol-rgm
+      #     persistentVolumeClaim:
+      #       claimName: rgm
