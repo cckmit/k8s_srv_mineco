@@ -1,3 +1,4 @@
+#data persisten domain.xml
 apiVersion: v1
 kind: PersistentVolume
 metadata:
@@ -31,3 +32,39 @@ spec:
   selector:
     matchLabels:
       name: rgm
+---
+
+# persinsten deploy payara
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: rgm_deploy
+  namespace: mineco
+  labels:
+    name: rgm_deploy
+spec:
+  storageClassName: manual
+  capacity:
+    storage: 20Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: "/deployment/application/deploy"
+
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: rgm_deploy
+  namespace: mineco
+spec:
+  storageClassName: manual
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 20Gi
+  selector:
+    matchLabels:
+      name: rgm_deploy
+
