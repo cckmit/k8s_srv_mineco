@@ -1,8 +1,10 @@
 # FROM  shinyay/docker-glassfish5:latest 
 FROM  payara/server-full
 
-COPY domain.xml /opt/payara/appserver/glassfish/domains/domain1/config/domain.xml
+# COPY domain.xml /opt/payara/appserver/glassfish/domains/domain1/config/domain.xml
 COPY ojdbc7-12.1.0.jar /opt/payara
+
+RUN asadmin add-library /opt/payara/ojdbc7-12.1.0.jar
 
 EXPOSE 4848 8080 8181 8282
 
