@@ -38,10 +38,10 @@ spec:
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: rgm_deploy
+  name: rgm-deploy
   namespace: mineco
   labels:
-    name: rgm_deploy
+    name: rgm-deploy
 spec:
   storageClassName: manual
   capacity:
@@ -55,7 +55,7 @@ spec:
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: rgm_deploy
+  name: rgm-deploy
   namespace: mineco
 spec:
   storageClassName: manual
@@ -66,5 +66,5 @@ spec:
       storage: 20Gi
   selector:
     matchLabels:
-      name: rgm_deploy
+      name: rgm-deploy
 

@@ -42,4 +42,4 @@ spec:
             claimName: rgm
         - name: vol-deploy
           persistentVolumeClaim:
-            claimName: rgm_deploy
+            claimName: rgm-deploy
