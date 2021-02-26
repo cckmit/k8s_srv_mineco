@@ -34,7 +34,7 @@ spec:
             # - mountPath: "/glassfish5/glassfish/domains/domain1"
             - mountPath: "/opt/payara/appserver/glassfish/domains/domain1/config/domain.xml"
               name: vol-rgm
-            - mountPath: "/opt/payara/appserver/glassfish/domains/domain1/applications"
+            - mountPath: "/opt/payara/appserver/glassfish/domains/domain1/autodeploy"
               name: vol-deploy
       volumes:
         - name: vol-rgm

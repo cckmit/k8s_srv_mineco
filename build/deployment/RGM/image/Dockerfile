@@ -4,7 +4,7 @@ FROM  payara/server-full
 # COPY domain.xml /opt/payara/appserver/glassfish/domains/domain1/config/domain.xml
 COPY ojdbc7-12.1.0.jar /opt/payara/appserver/glassfish/domains/domain1/lib/
 
-RUN mkdir -p /opt/payara/appserver/glassfish/domains/domain1/applications
+# RUN mkdir -p /opt/payara/appserver/glassfish/domains/domain1/applications
 
 # RUN echo 'asadmin add-library /opt/payara/ojdbc7-12.1.0.jar' > $POSTBOOT_COMMANDS
 
