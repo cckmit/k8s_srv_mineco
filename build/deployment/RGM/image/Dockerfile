@@ -1,5 +1,7 @@
 # FROM  shinyay/docker-glassfish5:latest 
-FROM  jelastic/glassfish:5.0-jdk-1.8.0_152
+FROM  payara/server-full
+
+COPY domain.xml $PAYARA_DIR/glassfish/domains/domain1/config/domain.xml
 
 EXPOSE 4848 8080 8181 8282
 
