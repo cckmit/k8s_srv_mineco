@@ -6,7 +6,7 @@ COPY ojdbc7-12.1.0.jar /opt/payara
 
 RUN echo "AS_ADMIN_PASSWORD=${ADMIN_PASSWORD}" >> ${PASSWORD_FILE}
 
-RUN  ${PAYARA_DIR}/bin/asadmin --user ${ADMIN_USER} --passwordfile=/tmp/tmpfile add-library /opt/payara/ojdbc7-12.1.0.jar
+RUN  ${PAYARA_DIR}/bin/asadmin --user ${ADMIN_USER} --passwordfile=${PASSWORD_FILE} add-library /opt/payara/ojdbc7-12.1.0.jar
 
 # RUN asadmin add-library /opt/payara/ojdbc7-12.1.0.jar
 
