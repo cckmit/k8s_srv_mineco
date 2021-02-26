@@ -4,7 +4,11 @@ FROM  payara/server-full
 # COPY domain.xml /opt/payara/appserver/glassfish/domains/domain1/config/domain.xml
 COPY ojdbc7-12.1.0.jar /opt/payara
 
-RUN asadmin add-library /opt/payara/ojdbc7-12.1.0.jar
+RUN echo "AS_ADMIN_PASSWORD=${ADMIN_PASSWORD}" >> ${PASSWORD_FILE}
+
+RUN  ${PAYARA_DIR}/bin/asadmin --user ${ADMIN_USER} --passwordfile=/tmp/tmpfile add-library /opt/payara/ojdbc7-12.1.0.jar
+
+# RUN asadmin add-library /opt/payara/ojdbc7-12.1.0.jar
 
 EXPOSE 4848 8080 8181 8282
 
