@@ -18,8 +18,6 @@ spec:
       containers:
       - name: rgm-inventario
         image: payara/rug:latest 
-        # image: payara/server-full
-        # image: store/oracle/serverjre:1.8.0_241-b07 
         imagePullPolicy: IfNotPresent
         ports:
           # - containerPort: 8080
