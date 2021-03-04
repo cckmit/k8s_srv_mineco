@@ -40,6 +40,14 @@ RUN apt-get update && apt-get install -y \
 
 RUN docker-php-ext-install mysqli pdo pdo_mysql
 
+RUN echo "\
+max_execution_time = 6000\n\
+memory_limit = 1G\n\
+upload_max_filesize = 200M\n\
+max_file_uploads = 200\n\
+default_charset = \"UTF-8\"\n\
+short_open_tag = On" > /usr/local/etc/php/php.ini
+
 # RUN chown -R www-data:www-data /app \
 RUN chown -R www-data:www-data /var/www/html \
     && a2enmod rewrite 
