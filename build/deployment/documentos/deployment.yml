@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: laravel-documentos
-        image: comerciov1:latest
+        image: comerciov2:latest
         imagePullPolicy: IfNotPresent
         ports:
           - containerPort: 80
