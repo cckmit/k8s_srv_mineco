@@ -78,6 +78,14 @@ RUN a2enmod headers \
 # RUN chmod -R 777 /app/bootstrap/cache
 # RUN chmod -R 777 /app/public
 
+RUN echo "\
+max_execution_time = 6000\n\
+memory_limit = 1G\n\
+upload_max_filesize = 200M\n\
+max_file_uploads = 200\n\
+default_charset = \"UTF-8\"\n\
+short_open_tag = On" > /usr/local/etc/php/php.ini
+
 # install node and npm
 ENV NODE_VERSION=12.6.0
 RUN apt install -y curl
