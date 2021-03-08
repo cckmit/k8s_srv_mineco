@@ -6,8 +6,8 @@ metadata:
   labels:
     app.kubernetes.io/name: rgm-inventario
     app.kubernetes.io/part-of: rgm-inventario
-  annotations:
-    metallb.universe.tf/address-pool: production-public-ips
+  # annotations:
+  #   metallb.universe.tf/address-pool: production-public-ips
 spec:
   type: LoadBalancer
   externalIPs:
