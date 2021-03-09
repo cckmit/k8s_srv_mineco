@@ -5,6 +5,7 @@ COPY bcpkix-jdk15on-155.jar /usr/lib/jvm/zulu8-ca-amd64/jre/lib/ext
 COPY bcprov-jdk15on-155.jar /usr/lib/jvm/zulu8-ca-amd64/jre/lib/ext
 COPY java.security /usr/lib/jvm/zulu8-ca-amd64/jre/lib/security/java.security
 
+USER root
 RUN mkdir -p /opt/firma/
 
 
