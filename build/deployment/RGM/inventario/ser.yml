@@ -16,11 +16,12 @@ spec:
     - name: http
       protocol: TCP
       port: 8282
-      targetPort: 8282
     - name: my-port
       protocol: TCP
       port: 8181
-      targetPort: 8181
+    - name: my-port-80
+      protocol: TCP
+      port: 80
     - name: https
       port: 4848
       targetPort: 4848

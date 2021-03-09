@@ -67,4 +67,39 @@ spec:
   selector:
     matchLabels:
       name: rgm-deploy
+---
+
+# persinsten signature
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: rgm-signature
+  namespace: mineco
+  labels:
+    name: rgm-signature
+spec:
+  storageClassName: manual
+  capacity:
+    storage: 20Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: "/deployment/application/signature"
+
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: rgm-signature
+  namespace: mineco
+spec:
+  storageClassName: manual
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 20Gi
+  selector:
+    matchLabels:
+      name: rgm-signature
 
