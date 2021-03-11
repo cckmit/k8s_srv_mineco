@@ -11,6 +11,7 @@ EXPOSE 80
 EXPOSE 443
 # COPY --from=build /app /app 
 COPY vhost.conf /etc/apache2/sites-available/000-default.conf 
+COPY /ssl /etc/ssl/certs/
 
 RUN apt-get update && apt-get install -y \
         libfreetype6-dev \
