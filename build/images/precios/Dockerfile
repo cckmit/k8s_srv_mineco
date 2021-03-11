@@ -6,12 +6,14 @@
 # RUN apk add libpng libpng-dev libjpeg-turbo-dev libwebp-dev zlib-dev libxpm-dev gd && docker-php-ext-install gd
 # RUN composer install
 
-FROM php:7.3-apache 
+FROM php:7.3.26-apache 
 EXPOSE 80 
 EXPOSE 443
 # COPY --from=build /app /app 
 COPY vhost.conf /etc/apache2/sites-available/000-default.conf 
 COPY /ssl /etc/ssl/certs/
+
+RUN a2enmod ssl
 
 RUN apt-get update && apt-get install -y \
         libfreetype6-dev \
@@ -23,7 +25,7 @@ RUN apt-get update && apt-get install -y \
         unzip \
         libzip-dev \
         nano \
-    && pecl install mcrypt-1.0.1  \
+    && pecl install mcrypt-1.0.2  \
     && docker-php-ext-install -j$(nproc) iconv   \
     && docker-php-ext-install zip  \
     && docker-php-ext-install pdo_mysql   \
@@ -58,6 +60,9 @@ RUN chown -R www-data:www-data /var/www/html \
 
 # WORKDIR /app
 WORKDIR /var/www/html
+
+RUN a2enmod headers \
+   && service apache2 restart 
 
 
 # RUN chmod -R 777 /app/storage
