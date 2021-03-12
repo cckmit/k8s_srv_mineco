@@ -28,8 +28,8 @@ spec:
             protocol: TCP
           - containerPort: 4848
             protocol: TCP
-          # - containerPort: 80
-          #   protocol: TCP
+          - containerPort: 80
+            protocol: TCP
         volumeMounts:
             # - mountPath: "/glassfish5/glassfish/domains/domain1"
             # - mountPath: "/opt/payara/appserver/glassfish/domains/domain1/config/domain.xml"
