@@ -12,8 +12,11 @@ spec:
     storage: 10Gi
   accessModes:
     - ReadWriteOnce
-  hostPath:
-    path: "/deployment/application/domains/domain.xml"
+  nfs:
+    server: 128.5.105.221
+    path: "/deployment/application/RGM/domains/domain.xml"
+  # hostPath:
+  #   path: "/deployment/application/domains/domain.xml"
     # path: "/deployment/application/domains"
 
 ---
@@ -48,8 +51,11 @@ spec:
     storage: 20Gi
   accessModes:
     - ReadWriteOnce
-  hostPath:
-    path: "/deployment/application/deploy"
+  nfs:
+    server: 128.5.105.221
+    path: "/deployment/application/RGM/deploy"
+  # hostPath:
+  #   path: "/deployment/application/deploy"
 
 ---
 apiVersion: v1
@@ -83,8 +89,11 @@ spec:
     storage: 20Gi
   accessModes:
     - ReadWriteOnce
-  hostPath:
-    path: "/deployment/application/signature"
+  nfs:
+    server: 128.5.105.221
+    path: "/deployment/application/RGM/signature"
+  # hostPath:
+  #   path: "/deployment/application/signature"
 
 ---
 apiVersion: v1
