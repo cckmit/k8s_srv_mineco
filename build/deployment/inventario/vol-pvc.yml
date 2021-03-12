@@ -11,9 +11,9 @@ spec:
     storage: 10Gi
   accessModes:
     - ReadWriteOnce
-  hostPath:
+  nfs:
+    server: 128.5.105.221
     path: "/deployment/application/inventario"
-
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim

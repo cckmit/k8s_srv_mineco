@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: laravel-inventario
-        image: inventario:latest
+        image: jjolon/inventario:latest
         imagePullPolicy: IfNotPresent
         ports:
           # - containerPort: 80
