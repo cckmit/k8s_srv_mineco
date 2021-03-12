@@ -11,8 +11,10 @@ spec:
     storage: 10Gi
   accessModes:
     - ReadWriteOnce
-  hostPath:
-    path: "/deployment/application/vehiculos"
+  nfs:
+    server: 128.5.105.221
+    path: "/deployment/application/vehiculo"
+
 
 ---
 apiVersion: v1

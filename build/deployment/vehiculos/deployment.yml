@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: laravel-vehiculos
-        image: php7.0:latest
+        image: jjolon/vehiculo:latest
         imagePullPolicy: IfNotPresent
         ports:
           - containerPort: 80
