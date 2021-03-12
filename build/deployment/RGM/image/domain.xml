@@ -46,26 +46,25 @@
     <connector-resource pool-name="jms/__defaultConnectionFactory-Connection-Pool" object-type="system-all-req" jndi-name="jms/__defaultConnectionFactory"></connector-resource>
     <context-service object-type="system-all" jndi-name="concurrent/__defaultContextService"></context-service>
     <managed-thread-factory object-type="system-all" jndi-name="concurrent/__defaultManagedThreadFactory"></managed-thread-factory>
-    <jdbc-connection-pool datasource-classname="oracle.jdbc.pool.OracleDataSource" name="rug" res-type="javax.sql.DataSource">
+    <jdbc-connection-pool datasource-classname="oracle.jdbc.pool.OracleDataSource" name="rug-db" res-type="javax.sql.DataSource">
       <property name="ConnectionDriver" value="oracle.jdbc.driver.OracleDriver"></property>
       <property name="URL" value="jdbc:oracle:thin:@128.5.9.20:1521:rugdb"></property>
       <property name="password" value="RUG"></property>
       <property name="user" value="RUG"></property>
     </jdbc-connection-pool>
-    <jdbc-resource pool-name="rug" jndi-name="jdbc/rugDS"></jdbc-resource>
-    <connector-connection-pool resource-adapter-name="jmsra" max-pool-size="250" steady-pool-size="1" name="jms/MailConnectionFactory-Connection-Pool" connection-definition-name="javax.jms.TopicConnectionFactory" transaction-support=""></connector-connection-pool>
-    <connector-resource pool-name="jms/MailConnectionFactory-Connection-Pool" jndi-name="jms/MailConnectionFactory"></connector-resource>
+    <jdbc-resource pool-name="rug-db" jndi-name="jdbc/rugDS"></jdbc-resource>
     <admin-object-resource res-adapter="jmsra" res-type="javax.jms.Topic" jndi-name="jms/MailTopic">
       <property name="Name" value="MailTopic"></property>
     </admin-object-resource>
     <admin-object-resource res-adapter="jmsra" res-type="javax.jms.Topic" jndi-name="jms/SolrTopic">
       <property name="Name" value="SolrTopic"></property>
     </admin-object-resource>
+    <connector-resource pool-name="jms/__defaultConnectionFactory-Connection-Pool" jndi-name="jms/MailConnectionFactory"></connector-resource>
+    <connector-connection-pool resource-adapter-name="jmsra" name="jms/MailConnectionFactory-Connection-Pool" connection-definition-name="javax.jms.TopicConnectionFactory" transaction-support=""></connector-connection-pool>
   </resources>
   <servers>
     <server config-ref="server-config" name="server">
       <application-ref ref="__admingui" virtual-servers="__asadmin"></application-ref>
-      <application-ref ref="Rug" virtual-servers="server"></application-ref>
       <resource-ref ref="jdbc/__TimerPool"></resource-ref>
       <resource-ref ref="jdbc/__default"></resource-ref>
       <resource-ref ref="concurrent/__defaultManagedExecutorService"></resource-ref>
@@ -74,9 +73,9 @@
       <resource-ref ref="concurrent/__defaultContextService"></resource-ref>
       <resource-ref ref="concurrent/__defaultManagedThreadFactory"></resource-ref>
       <resource-ref ref="jdbc/rugDS"></resource-ref>
-      <resource-ref ref="jms/MailConnectionFactory"></resource-ref>
       <resource-ref ref="jms/MailTopic"></resource-ref>
       <resource-ref ref="jms/SolrTopic"></resource-ref>
+      <resource-ref ref="jms/MailConnectionFactory"></resource-ref>
     </server>
   </servers>
   <nodes>
@@ -161,8 +160,6 @@
       </ejb-container>
       <rest-config></rest-config>
       <environment-warning-configuration></environment-warning-configuration>
-      <cdi-service></cdi-service>
-      <jdbc-config-source-configuration></jdbc-config-source-configuration>
       <diagnostic-service></diagnostic-service>
       <security-service>
         <auth-realm classname="com.sun.enterprise.security.auth.realm.file.FileRealm" name="admin-realm">
@@ -603,34 +600,5 @@
   </secure-admin>
   <deployment-groups></deployment-groups>
   <clusters></clusters>
-  <applications>
-    <application deployment-time="17590" object-type="user" name="Rug" location="${com.sun.aas.instanceRootURI}/applications/Rug/" time-deployed="1614350994663">
-      <property name="archiveType" value="ear"></property>
-      <property name="cdiDevModeEnabled" value="false"></property>
-      <property name="java-web-start-enabled" value="true"></property>
-      <property name="implicitCdiEnabled" value="true"></property>
-      <property name="preserveAppScopedResources" value="false"></property>
-      <property name="isComposite" value="true"></property>
-      <property name="appLocation" value="${com.sun.aas.instanceRootURI}/applications/__internal/Rug/Rug7944276530341293347.ear"></property>
-      <property name="org.glassfish.ejb.container.application_unique_id" value="105798094603812864"></property>
-      <property name="defaultAppName" value="Rug7944276530341293347"></property>
-      <module name="rug-web-1.0.0.war">
-        <engine sniffer="health"></engine>
-        <engine sniffer="metrics"></engine>
-        <engine sniffer="openapi"></engine>
-        <engine sniffer="config"></engine>
-        <engine sniffer="jpa"></engine>
-        <engine sniffer="security"></engine>
-        <engine sniffer="web"></engine>
-      </module>
-      <module name="rug-ejb-1.0.0.jar">
-        <engine sniffer="cdi"></engine>
-        <engine sniffer="ejb"></engine>
-        <engine sniffer="security"></engine>
-        <engine sniffer="config"></engine>
-      </module>
-      <engine sniffer="config"></engine>
-      <engine sniffer="ear"></engine>
-    </application>
-  </applications>
+  <applications></applications>
 </domain>

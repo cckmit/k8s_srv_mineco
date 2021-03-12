@@ -1,41 +1,41 @@
-#data persisten domain.xml
-apiVersion: v1
-kind: PersistentVolume
-metadata:
-  name: rgm
-  namespace: mineco
-  labels:
-    name: rgm
-spec:
-  storageClassName: manual
-  capacity:
-    storage: 10Gi
-  accessModes:
-    - ReadWriteOnce
-  nfs:
-    server: 128.5.105.221
-    path: "/deployment/application/RGM/domains/domain.xml"
-  # hostPath:
-  #   path: "/deployment/application/domains/domain.xml"
-    # path: "/deployment/application/domains"
+# #data persisten domain.xml
+# apiVersion: v1
+# kind: PersistentVolume
+# metadata:
+#   name: rgm
+#   namespace: mineco
+#   labels:
+#     name: rgm
+# spec:
+#   storageClassName: manual
+#   capacity:
+#     storage: 10Gi
+#   accessModes:
+#     - ReadWriteOnce
+#   nfs:
+#     server: 128.5.105.221
+#     path: "/deployment/application/RGM/domains/domain.xml"
+#   # hostPath:
+#   #   path: "/deployment/application/domains/domain.xml"
+#     # path: "/deployment/application/domains"
 
----
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: rgm
-  namespace: mineco
-spec:
-  storageClassName: manual
-  accessModes:
-    - ReadWriteOnce
-  resources:
-    requests:
-      storage: 10Gi
-  selector:
-    matchLabels:
-      name: rgm
----
+# ---
+# apiVersion: v1
+# kind: PersistentVolumeClaim
+# metadata:
+#   name: rgm
+#   namespace: mineco
+# spec:
+#   storageClassName: manual
+#   accessModes:
+#     - ReadWriteOnce
+#   resources:
+#     requests:
+#       storage: 10Gi
+#   selector:
+#     matchLabels:
+#       name: rgm
+# ---
 
 # persinsten deploy payara
 apiVersion: v1
