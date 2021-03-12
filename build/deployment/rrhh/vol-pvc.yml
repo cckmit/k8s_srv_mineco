@@ -11,8 +11,11 @@ spec:
     storage: 10Gi
   accessModes:
     - ReadWriteOnce
-  hostPath:
+  nfs:
+    server: 128.5.105.221
     path: "/deployment/application/recursos"
+  # hostPath:
+  #   path: "/deployment/application/recursos"
 
 ---
 apiVersion: v1

@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: laravel-recursos
-        image: recursos:latest
+        image: jjolon/recursos:latest
         imagePullPolicy: IfNotPresent
         ports:
           - containerPort: 443
