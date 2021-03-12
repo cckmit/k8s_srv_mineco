@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: laravel-financiero
-        image: financiero:latest
+        image: jjolon/financiero:latest
         imagePullPolicy: IfNotPresent
         ports:
           - containerPort: 80
