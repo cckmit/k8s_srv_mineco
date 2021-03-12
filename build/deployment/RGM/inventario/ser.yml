@@ -18,7 +18,7 @@ spec:
       port: 8282
     - name: my-port
       protocol: TCP
-      port: 80
+      port: 8181
       targetPort: 8181
     # - name: my-port-80
     #   protocol: TCP
