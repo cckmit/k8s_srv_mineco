@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: rgm-inventario
-        image: jjolon/payara/rug:latest 
+        image: jjolon/rug:latest 
         imagePullPolicy: IfNotPresent
         ports:
           # - containerPort: 8080
