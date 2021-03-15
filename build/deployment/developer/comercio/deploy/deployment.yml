@@ -23,7 +23,7 @@ spec:
           - correo.mineco.gob.gt
         options:
           - name: ndots
-            values: "2"
+            value: "2"
           - name: edns0
       containers:
       - name: laravel-documentos
