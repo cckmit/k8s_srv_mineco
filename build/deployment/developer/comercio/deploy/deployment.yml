@@ -25,6 +25,10 @@ spec:
         ports:
           - containerPort: 80
             protocol: TCP
+          - containerPort: 25
+            protocol: TCP
+          - containerPort: 587
+            protocol: TCP
           # - containerPort: 443
           #   protocol: TCP
         volumeMounts:
