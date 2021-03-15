@@ -79,6 +79,8 @@ RUN a2enmod headers \
 # RUN chmod -R 777 /app/public
 
 RUN echo "\
+SMTP = correo.mineco.gob.gt\n\
+smtp_port = 25\n\
 max_execution_time = 6000\n\
 memory_limit = 1G\n\
 upload_max_filesize = 200M\n\
