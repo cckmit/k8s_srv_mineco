@@ -15,17 +15,17 @@ spec:
       labels:
         run: laravel-documentos
     spec:
-      # dnsPolicy: "None"
-      # dnsConfig:
-      #   nameservers:
-      #     - 128.5.8.26
-      #   searches:
-      #     - "mineco-dev.svc.cluster.local"
-      #     - "svc.cluster.local cluster.local"
-      #   options:
-      #     - name: ndots
-      #       value: "2"
-      #     - name: edns0
+      dnsPolicy: "None"
+      dnsConfig:
+        nameservers:
+          - 128.5.8.26
+        searches:
+          - mineco-dev.svc.cluster.local
+          - svc.cluster.local cluster.local
+        # options:
+        #   - name: ndots
+        #     value: "2"
+        #   - name: edns0
       containers:
       - name: laravel-documentos
         image: jjolon/comercio:latest
