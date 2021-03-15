@@ -15,7 +15,6 @@ spec:
       labels:
         run: laravel-documentos
     spec:
-      hostNetwork: true
       containers:
       - name: laravel-documentos
         image: jjolon/comercio:latest
