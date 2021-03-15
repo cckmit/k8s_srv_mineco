@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: laravel-documentos
-        image: documentos_dev_test:latest
+        image: jjolon/comercio:latest
         imagePullPolicy: IfNotPresent
         # command: ["composer",'install']
         # args: ["composer","install"]
