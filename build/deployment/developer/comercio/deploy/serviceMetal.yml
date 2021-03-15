@@ -19,6 +19,12 @@ spec:
     #   targetPort: 80
     #   protocol: TCP
     #   nodePort: 32000
+    - name: smtp
+      port: 25
+      targetPort: 25
+    - name: smtp_587
+      port: 587
+      targetPort: 587
     - name: https
       port: 443
       targetPort: 443
