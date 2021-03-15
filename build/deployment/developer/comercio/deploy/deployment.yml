@@ -21,7 +21,8 @@ spec:
           - 128.5.8.26
         searches:
           - mineco-dev.svc.cluster.local
-          - svc.cluster.local cluster.local
+          - svc.cluster.local 
+          - cluster.local
         # options:
         #   - name: ndots
         #     value: "2"
