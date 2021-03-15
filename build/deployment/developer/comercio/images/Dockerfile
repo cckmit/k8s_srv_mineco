@@ -8,8 +8,8 @@
 
 
 FROM php:7.2-apache 
-EXPOSE 80
-EXPOSE 443 
+EXPOSE 80 443 587 25
+
 
 # ENV APP_HOST='localhost'
 # COPY --from=build /app /app 
