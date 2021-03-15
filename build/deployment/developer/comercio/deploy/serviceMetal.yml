@@ -23,7 +23,7 @@ spec:
       port: 25
       targetPort: 25
       protocol: TCP
-    - name: smtp_587
+    - name: smtp-587
       port: 587
       targetPort: 587
       protocol: TCP
