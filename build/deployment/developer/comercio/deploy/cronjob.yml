@@ -6,7 +6,6 @@ metadata:
   labels:
     run: supervisord
 spec:
-  parallelism: 1
   concurrencyPolicy: Forbid
   failedJobsHistoryLimit: 1
   schedule: "*/1 * * * *"
