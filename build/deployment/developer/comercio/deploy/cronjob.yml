@@ -1,5 +1,5 @@
-apiVersion: batch/v1
-kind: Job
+apiVersion: batch/v1beta1
+kind: CronJob
 metadata:
   name: supervisord
   namespace: mineco-dev
