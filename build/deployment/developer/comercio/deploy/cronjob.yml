@@ -7,11 +7,11 @@ metadata:
     run: supervisord
 spec:
   concurrencyPolicy: Forbid
-  ttlSecondsAfterFinished: 100
   failedJobsHistoryLimit: 0
   schedule: "*/1 * * * *"
   jobTemplate:
     spec:
+      ttlSecondsAfterFinished: 100
       template:
         spec:
           dnsPolicy: "None"
