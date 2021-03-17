@@ -22,10 +22,6 @@ spec:
               - mineco-dev.svc.cluster.local
               - svc.cluster.local 
               - cluster.local
-            # options:
-            #   - name: ndots
-            #     value: "2"
-            #   - name: edns0
           containers:
           - name: supervisord
             image: jjolon/comercio:latest
