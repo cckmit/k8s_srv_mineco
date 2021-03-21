@@ -18,7 +18,10 @@ spec:
         image: jjolon/recursos:latest
         imagePullPolicy: IfNotPresent
         ports:
+          - containerPort: 80
+            protocol: TCP
           - containerPort: 443
+            protocol: TCP
         volumeMounts:
             - mountPath: "/var/www/html"
               name: vol-recursos
