@@ -11,11 +11,11 @@ spec:
     storage: 10Gi
   accessModes:
     - ReadWriteOnce
-  nfs:
-    server: 128.5.105.221
-    path: "/deployment/application/precios"
-  # hostPath:
+  # nfs:
+  #   server: 128.5.105.221
   #   path: "/deployment/application/precios"
+  hostPath:
+    path: "/deployment/application/precios"
 
 ---
 apiVersion: v1
