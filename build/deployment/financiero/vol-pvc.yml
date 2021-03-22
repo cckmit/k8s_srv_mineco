@@ -11,11 +11,11 @@ spec:
     storage: 10Gi
   accessModes:
     - ReadWriteOnce
-  nfs:
-    server: 128.5.105.221
-    path: "/deployment/application/financiero"
-  # hostPath:
+  # nfs:
+  #   server: 128.5.105.221
   #   path: "/deployment/application/financiero"
+  hostPath:
+    path: "/deployment/application/financiero"
 
 ---
 apiVersion: v1
