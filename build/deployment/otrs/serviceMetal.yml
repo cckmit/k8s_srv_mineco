@@ -1,0 +1,28 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: service-otrs
+  namespace: mineco
+  labels:
+    app.kubernetes.io/name: otrs
+    app.kubernetes.io/part-of: otrs
+  annotations:
+    metallb.universe.tf/address-pool: production-public-ips
+spec:
+  type: LoadBalancer
+  externalIPs:
+  - 128.5.9.71
+  # type: NodePort
+  ports:
+    # - name: http
+    #   port: 80
+    #   targetPort: 80
+    #   protocol: TCP
+    #   nodePort: 32000
+    - name: https
+      port: 443
+      targetPort: 443
+      protocol: TCP
+  selector:
+    run: otrs
+
