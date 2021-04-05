@@ -25,7 +25,7 @@ spec:
           - cluster.local
       containers:
       - name: otrs
-        image: otrs:latest
+        image: jjolon/otrs:latest
         imagePullPolicy: IfNotPresent
         ports:
           - containerPort: 80
