@@ -7,7 +7,7 @@
 # RUN composer install
 
 
-FROM php:7.3-apache 
+FROM php:7.2-apache 
 EXPOSE 80 443 587 25
 
 
