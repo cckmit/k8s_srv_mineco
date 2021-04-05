@@ -11,9 +11,11 @@ spec:
     storage: 10Gi
   accessModes:
     - ReadWriteOnce
-  nfs:
-    server: 128.5.105.221
-    path: "/deployment/application/comercio"
+  hostPath:
+    path: "/deployment/application/desarrollo/documentos/comercio"
+  # nfs:
+  #   server: 128.5.105.221
+  #   path: "/deployment/application/comercio"
 
 ---
 apiVersion: v1

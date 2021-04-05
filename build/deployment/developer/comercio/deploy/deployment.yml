@@ -29,7 +29,7 @@ spec:
         #   - name: edns0
       containers:
       - name: laravel-documentos
-        image: jjolon/comercio:latest
+        image: jjolon/comercio-dev:latest
         imagePullPolicy: IfNotPresent
         # command: ["composer",'install']
         # args: ["composer","install"]
