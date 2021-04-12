@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: biometrico
+  namespace: mineco
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      run: biometrico
+  template:
+    metadata:
+      labels:
+        run: biometrico
+    spec:
+      containers:
+      - name: biometrico
+        image: jjolon/biometrico:latest
+        imagePullPolicy: IfNotPresent
+        ports:
+          - containerPort: 80
+            protocol: TCP 
+          # - containerPort: 443
+          #   protocol: TCP
+        volumeMounts:
+            - mountPath: "/var/www/html"
+              name: vol-biometrico
+      volumes:
+        - name: vol-biometrico
+          persistentVolumeClaim:
+            claimName: biometrico
