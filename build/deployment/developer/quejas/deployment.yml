@@ -22,10 +22,10 @@ spec:
             protocol: TCP
           # - containerPort: 443
           #   protocol: TCP
-        volumeMounts:
-            - mountPath: "/var/www/html"
-              name: quejas
-      volumes:
-        - name: quejas
-          persistentVolumeClaim:
-            claimName: quejas
+        # volumeMounts:
+        #     - mountPath: "/var/www/html"
+        #       name: quejas
+      # volumes:
+      #   - name: quejas
+      #     persistentVolumeClaim:
+      #       claimName: quejas
