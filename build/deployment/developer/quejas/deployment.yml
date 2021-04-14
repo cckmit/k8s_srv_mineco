@@ -15,18 +15,18 @@ spec:
     spec:
       containers:
       - name: quejas
-        image: php:5.6-zts-jessie
-        # image: jjolon/quejas:latest
+        # image: php:5.6-zts-jessie
+        image: jjolon/quejas:latest
         imagePullPolicy: IfNotPresent
         ports:
           - containerPort: 80
             protocol: TCP
           # - containerPort: 443
           #   protocol: TCP
-        # volumeMounts:
-        #     - mountPath: "/var/www/html"
-        #       name: quejas
-      # volumes:
-      #   - name: quejas
-      #     persistentVolumeClaim:
-      #       claimName: quejas
+        volumeMounts:
+            - mountPath: "/var/www/html"
+              name: quejas
+      volumes:
+        - name: quejas
+          persistentVolumeClaim:
+            claimName: quejas

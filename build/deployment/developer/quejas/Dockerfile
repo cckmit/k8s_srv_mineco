@@ -1,4 +1,4 @@
-FROM php:5.6-zts-jessie
+FROM php:5.6-apache
 EXPOSE 80 
 # COPY --from=build /app /app 
 COPY vhost.conf /etc/apache2/sites-available/000-default.conf 
@@ -44,12 +44,12 @@ COPY vhost.conf /etc/apache2/sites-available/000-default.conf
 #     && sed -i 's,^\(CipherString[ ]*=\).*,\1'DEFAULT@SECLEVEL=1',g' /etc/ssl/openssl.cnf
 
 # RUN chown -R www-data:www-data /app \
-# RUN chown -R www-data:www-data /var/www/html \
-#     && a2enmod rewrite 
+RUN chown -R www-data:www-data /var/www/html \
+    && a2enmod rewrite 
 
 
 # WORKDIR /app
-# WORKDIR /var/www/html
+WORKDIR /var/www/html
 
 
 # RUN chmod -R 777 /app/storage
