@@ -15,7 +15,8 @@ spec:
     spec:
       containers:
       - name: quejas
-        image: jjolon/quejas:latest
+        image: php:5.6-zts-jessie
+        # image: jjolon/quejas:latest
         imagePullPolicy: IfNotPresent
         ports:
           - containerPort: 80
