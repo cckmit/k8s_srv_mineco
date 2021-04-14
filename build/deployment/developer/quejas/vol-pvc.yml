@@ -11,8 +11,7 @@ spec:
     storage: 10Gi
   accessModes:
     - ReadWriteOnce
-  nfs:
-    server: 128.5.105.221
+  hostPath:
     path: "/deployment/application/quejas_dev/quejas"
 
 
