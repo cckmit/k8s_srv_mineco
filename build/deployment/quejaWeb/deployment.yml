@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: quejaweb
+  namespace: mineco
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      run: quejaweb
+  template:
+    metadata:
+      labels:
+        run: quejaweb
+    spec:
+      containers:
+      - name: quejaweb
+        image: jjolon/quejaweb:latest
+        imagePullPolicy: IfNotPresent
+        ports:
+          - containerPort: 80
+            protocol: TCP 
+          - containerPort: 443
+            protocol: TCP
+        volumeMounts:
+            - mountPath: "/var/www/html"
+              name: vol-quejaweb
+      volumes:
+        - name: vol-quejaweb
+          persistentVolumeClaim:
+            claimName: quejaweb
