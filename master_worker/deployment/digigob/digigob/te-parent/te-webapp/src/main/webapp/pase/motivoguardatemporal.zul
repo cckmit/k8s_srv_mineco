@@ -1,0 +1,29 @@
+<?page title="Enviar a" contentType="text/html;charset=UTF-8"?>
+<!-- <?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./motivoGuardaTemporalWindow" ?> -->
+<zk>
+	<window title="${c:l('ee.envio.titulo')}" border="normal" width="500px" 
+		 id="motivoGuardaTemporalWindow"
+		apply="com.egoveris.te.base.composer.MotivoGuardaTemporalComposer">
+		<grid >
+			<rows width="498px">
+				<row>
+					<label value="${c:l('ee.anularmodificarsolicitud.label.motivo.value')}" />
+					<textbox id="motivoExpediente" maxlength="255"
+						cols="38" rows="5">
+					</textbox>
+				</row>
+			</rows>
+		</grid>
+		<!--
+		<toolbarbutton autodisable="self" id="enviar" image="/imagenes/RealizarPase.png"
+			forward="onClick=envioWindow$MotivoGuardaTemporalComposer.onEnviar" />
+		<toolbarbutton autodisable="self" id="cancelar"
+			image="/imagenes/BotonCancelar.png"
+			forward="onClick=envioWindow$MotivoGuardaTemporalComposer.onCancelar" />
+		-->
+		<button autodisable="self" id="enviar" label="${c:l('ee.tramitacion.button.enviar.value')}"
+			forward="onClick=envioWindow$MotivoGuardaTemporalComposer.onEnviar" />
+		<button autodisable="self" id="cancelar" label="${c:l('ee.nuevoexpediente.button.label.cancelar.value')}"
+			forward="onClick=envioWindow$MotivoGuardaTemporalComposer.onCancelar" />
+	</window>
+</zk>

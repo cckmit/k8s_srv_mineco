@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<complexComponent type="ADDRESS" name="address"
+	description="Address Information" zul="address.zul"
+	composer="com.egoveris.ffdd.render.zk.comp.ext.AddressComposer"
+	mappingDTO="com.egoveris.ccomplejos.base.model.AddressDTO">
+
+	<field name="direccion" class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt"
+		height="20px" width="90%" label="Dirección" tooltip="Dirección" disabled="true"/>
+	<field name="comuna" factory="comboBoxFactory" 
+		height="20px" width="90%" label="Comuna" tooltip="Comuna" disabled="true"/>
+	<field name="pais" factory="comboBoxFactory" 
+		height="20px" width="90%" label="País" tooltip="País" disabled="true"/>
+	<field name="region" factory="comboBoxFactory" 
+		height="20px" width="90%" label="Región" tooltip="Región" disabled="true"/>
+</complexComponent>

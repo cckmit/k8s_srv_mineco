@@ -1,0 +1,116 @@
+<zk>
+	<vlayout
+		apply="com.egoveris.ffdd.render.zk.comp.cc.FinancieroComposer">
+
+		<vbox>
+			<hbox>
+				<cell
+					id="${arg.formComp.nombre}_valorLiquidoRetornoDiv" />
+				<cell id="${arg.formComp.nombre}_valorFleteDiv" />
+			</hbox>
+			<hbox>
+				<cell id="${arg.formComp.nombre}_valorExFabricaDiv" />
+				<cell id="${arg.formComp.nombre}_valorClausulaVentaDiv" />
+			</hbox>
+			<hbox>
+				<cell id="${arg.formComp.nombre}_valorCIFDiv" />
+				<cell id="${arg.formComp.nombre}_totalValorFOBDiv" />
+			</hbox>
+			<hbox>
+				<cell id="${arg.formComp.nombre}_totalDiferidoDiv" />
+				<cell id="${arg.formComp.nombre}_tasaInteresDiv" />
+			</hbox>
+			<hbox>
+				<cell id="${arg.formComp.nombre}_tasaCambioDiv" />
+				<cell id="${arg.formComp.nombre}_seguroTeoricoDiv" />
+			</hbox>
+
+			<hbox>
+				<cell id="${arg.formComp.nombre}_regimenImportacionDiv" />
+				<cell id="${arg.formComp.nombre}_aduanaDIPagoDifDiv" />
+			</hbox>
+			<hbox>
+				<cell id="${arg.formComp.nombre}_plazoPagoDiv" />
+				<cell id="${arg.formComp.nombre}_paisAdquisicionDiv" />
+			</hbox>
+			<hbox>
+				<cell
+					id="${arg.formComp.nombre}_otrosGastosDeduciblesDiv" />
+				<cell id="${arg.formComp.nombre}_origenDivisasDiv" />
+			</hbox>
+			<hbox>
+				<cell id="${arg.formComp.nombre}_obsBancoSNADiv" />
+				<cell id="${arg.formComp.nombre}_numFacturaDiv" />
+			</hbox>
+			<hbox>
+				<cell
+					id="${arg.formComp.nombre}_numeroCuotasPagoDiferidoDiv" />
+				<cell
+					id="${arg.formComp.nombre}_montoTotalAdvaloremDiv" />
+			</hbox>
+			<hbox>
+				<cell id="${arg.formComp.nombre}_montoTotalDiv" />
+				<cell id="${arg.formComp.nombre}_montoSeguroDiv" />
+			</hbox>
+			<hbox>
+				<cell id="${arg.formComp.nombre}_monedaDiv" />
+				<cell id="${arg.formComp.nombre}_modalidadVentaDiv" />
+			</hbox>
+			<hbox>
+				<cell id="${arg.formComp.nombre}_ivaDiv" />
+				<cell id="${arg.formComp.nombre}_idPagoDiferidoDiv" />
+			</hbox>
+			<hbox>
+				<cell id="${arg.formComp.nombre}_gastosHastaFOBDiv" />
+				<cell
+					id="${arg.formComp.nombre}_formaPagoGravamenesDiv" />
+			</hbox>
+			<hbox>
+				<cell id="${arg.formComp.nombre}_formaPagoDiv" />
+				<cell id="${arg.formComp.nombre}_fleteTeoricoDiv" />
+			</hbox>
+			<hbox>
+				<cell id="${arg.formComp.nombre}_fechaPagoDiferidoDiv" />
+				<cell id="${arg.formComp.nombre}_fechaPagoDiv" />
+			</hbox>
+			<hbox>
+				<cell id="${arg.formComp.nombre}_fecFacturaDiv" />
+				<cell id="${arg.formComp.nombre}_facturaIdDiv" />
+			</hbox>
+			<hbox>
+				<cell
+					id="${arg.formComp.nombre}_facturaComercialDefinitivaDiv" />
+				<cell id="${arg.formComp.nombre}_descuentoDiv" />
+			</hbox>
+			<hbox>
+				<cell id="${arg.formComp.nombre}_declaracionIdDiv" />
+			</hbox>
+			<hbox>
+				<cell id="${arg.formComp.nombre}_cuotaContadoDiv" />
+				<cell id="${arg.formComp.nombre}_comisionesExteriorDiv" />
+			</hbox>
+			<hbox>
+				<cell
+					id="${arg.formComp.nombre}_codigoTotalAdvaloremDiv" />
+				<cell id="${arg.formComp.nombre}_codigoSeguroDiv" />
+			</hbox>
+			<hbox>
+				<cell id="${arg.formComp.nombre}_codigoFleteDiv" />
+				<cell
+					id="${arg.formComp.nombre}_codigoBancoComercialDiv" />
+			</hbox>
+			<hbox>
+				<cell id="${arg.formComp.nombre}_clausulaVentaDiv" />
+				<cell id="${arg.formComp.nombre}_clausulaCompraDiv" />
+			</hbox>
+			<hbox>
+				<cell 
+					id="${arg.formComp.nombre}_proveedorOfabricanteDiv" />
+			</hbox>
+			<hbox>
+				<cell  id="${arg.formComp.nombre}_cuotasDiv" />
+			</hbox>
+		</vbox>
+
+	</vlayout>
+</zk>

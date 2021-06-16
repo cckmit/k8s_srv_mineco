@@ -1,0 +1,79 @@
+<zk>
+
+	<popup id="tarjetaDatosUsuarioPopup" apply="com.egoveris.te.base.tarjetausuario.TarjetaDatosUsuarioComposer"
+		width="550px">
+			<style dynamic="true">
+				.link{ color: blue; text-decoration: underline; }
+	
+	
+				.myimage{ padding-left: 10px; padding-right: 10px;
+				margin-bottom: 80px; } .myvbox{ margin-top: 80px; }
+	
+				div.z-column-cnt { text-align: center; font-weight: bold;}
+	
+				div.z-row-cnt span { font-family: arial, sans-serif; color:
+				#0E3A99; }
+	
+				div.z-window-overlapped-cm{ border: none; }
+				
+				td.z-cell, td.z-row-inner, td.z-groupfoot-inner, div.z-row-cnt, z-window-highlighted-cnt{
+					padding:0px;
+				}
+	
+			</style>
+	
+	
+			<grid sizedByContent="true" id="tarjetaDatosUsuarioPopupDetalle" visible="false">
+				<columns>
+					<column valign="top" />
+				</columns>
+				<rows>
+					<row align="left" valign="top">
+						<hlayout spacing="0">
+							<image id="image"
+								src="~./zul/html/imagenes/registro.jpg" zclass="myimage" />
+							<vlayout>
+								<hlayout>
+									<label id="apellidoNombre"
+										value="@{tarjetaDatosUsuarioWindow$composer.tarjetaDatosUsuarioBean.getApellidoNombre}"
+										style="font-weight:bold;" />
+									<label id="user"
+										value="@{tarjetaDatosUsuarioWindow$composer.tarjetaDatosUsuarioBean.getUser}"
+										style="font-style: italic;" />
+								</hlayout>
+								<hlayout>
+									<separator spacing="20px" />
+								</hlayout>
+								<hlayout top="20px">
+									<label id="ocupacion"
+										value="@{tarjetaDatosUsuarioWindow$composer.tarjetaDatosUsuarioBean.getOcupacion}"
+										multiline="true" />
+								</hlayout>
+								<hlayout>
+									<label id="descripcionReparticion"
+										value="@{tarjetaDatosUsuarioWindow$composer.tarjetaDatosUsuarioBean.getDescripcionReparticion}"
+										style="font-weight:bold;" />
+									<label id="codigoReparticion"
+										value="@{tarjetaDatosUsuarioWindow$composer.tarjetaDatosUsuarioBean.getCodigoReparticion}"
+										style="font-style:italic;" />
+								</hlayout>
+								<hlayout>
+									<label id="descripcionSector"
+										value="@{tarjetaDatosUsuarioWindow$composer.tarjetaDatosUsuarioBean.getDescripcionSector}"
+										style="font-weight:bold;" />
+									<label id="codigoSector"
+										value="@{tarjetaDatosUsuarioWindow$composer.tarjetaDatosUsuarioBean.getCodigoSector}"
+										style="font-style: italic;" />
+								</hlayout>
+	<!-- 							<hlayout> -->
+	<!-- 								<label id="mail" -->
+	<!-- 									value="@{tarjetaDatosUsuarioWindow$composer.tarjetaDatosUsuarioBean.getMail}" /> -->
+	<!-- 							</hlayout> -->
+							</vlayout>
+						</hlayout>
+					</row>
+				</rows>
+			</grid>
+			<label id="tarjetaDatosUsuarioPopupSinDetalle" visible="false"></label>
+	</popup>
+</zk>

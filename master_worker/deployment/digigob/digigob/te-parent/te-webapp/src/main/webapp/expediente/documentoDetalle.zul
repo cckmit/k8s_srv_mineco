@@ -1,0 +1,54 @@
+<?page title="Archivos de trabajo" contentType="text/html;charset=UTF-8"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./documentoDetalleWindow" ?>
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+<zk>
+<window  border="normal"
+         apply="com.egoveris.te.base.composer.DocumentoDetalleComposer"
+         id="documentoDetalleWindow"  width="516px" 
+		height="320px" >
+		<groupbox width="470px" height="280px" >
+							<separator  />
+							<separator 
+								 />
+								<paging id="pagingArchivoTrabajo"
+								pageSize="10" width="458px"/>
+								<listbox id="archivosTrabajoListBox"
+								width="460px" mold="paging"
+ 								model="@{documentoDetalleWindow$composer.archDeTrabajo}"
+								selectedItem="@{documentoDetalleWindow$composer.selectedArchDeTrabajo}"
+ 								paginal="${pagingArchivoTrabajo}">
+								<listhead>
+									<listheader label="${c:l('ee.documentoDetalle.label.orden')}"
+										width="60px" align="center" />
+									<listheader label="${c:l('ee.docTrabajoExpediente.listhead.archivo')}"
+										width="200px" align="center" />
+									<listheader label="${c:l('ee.caratulas.listheader.documento.accion.value')}"
+										width="200px" align="center" />
+							   </listhead>
+							   <listitem height="28px" self="@{each='documentoArchivoDeTrabajo'}"
+				               value="@{documentoArchivoDeTrabajo}">
+				               <listcell label="@{documentoArchivoDeTrabajo.orden}" />
+				               <listcell label="@{documentoArchivoDeTrabajo.archivo}" />
+				               <listcell>
+					           <hbox align="center">
+					           <image src="/imagenes/download_documento.png" 
+							   tooltiptext="${c:l('ee.documentoDetalle.tooltip.desArchivoTrabajo')}"
+							   forward="onClick=documentoDetalleWindow$DocumentoDetalleComposer.onVisualizar" />
+						       <label value="${c:l('ee.inbox.listheader.visualizar.value')}"
+							   tooltiptext="${c:l('ee.documentoDetalle.tooltip.desArchivoTrabajo')}"
+							   forward="onClick=documentoDetalleWindow$DocumentoDetalleComposer.onVisualizar"
+							   style="font-size:11px;font-family: Arial;text-decoration: none;" />
+					           </hbox>
+				               </listcell>
+				               </listitem>
+				               <listfoot
+				               >
+				        	   <listfooter label="" span="3" />
+				           	   </listfoot>
+					    	   </listbox>
+							<space width="210px"></space>	
+							<button autodisable="self"  id="volver" label="${c:l('ee.general.volver')}"></button>
+						</groupbox>
+</window>
+</zk>

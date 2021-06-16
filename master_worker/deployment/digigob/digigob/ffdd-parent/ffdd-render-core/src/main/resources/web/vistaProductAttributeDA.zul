@@ -1,0 +1,17 @@
+<zk>
+	<vlayout
+		apply="com.egoveris.ffdd.render.zk.comp.cc.VistaProductAttributeDAComposer">
+
+		<vbox>
+			<hbox>
+				<cell id="${arg.formComp.nombre}_secuenciaAtributoDiv" />
+				<cell id="${arg.formComp.nombre}_nombreAtributoDiv" />
+			</hbox>
+			<hbox>
+				<cell id="${arg.formComp.nombre}_esFijoDiv" />
+				<cell id="${arg.formComp.nombre}_valorAtributoDiv" />
+			</hbox>
+		</vbox>
+
+	</vlayout>
+</zk>

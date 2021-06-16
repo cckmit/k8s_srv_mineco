@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<complexComponent 
+		type="TRADE" name="chapter" description="chapter Information"
+		zul="chapter.zul" composer="com.egoveris.ffdd.render.zk.comp.ext.ChapterComposer"
+		mappingDTO="com.egoveris.ccomplejos.base.model.ChapterDTO">
+		
+		<field name="chapterId" class="com.egoveris.ffdd.render.zk.comp.ext.LongboxExt" height="20px" width="90%"/>	
+		<field name="chapterCode" class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" height="20px"  width="90%"/>
+		<field name="chapterDesc" class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" height="20px" width="90%"/>
+			
+		<field name="chapterDescSP" class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" height="20px"  width="90%"/>
+		<field name="chapterStatus" class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" height="20px" width="90%"/>	
+		<field name="year" class="com.egoveris.ffdd.render.zk.comp.ext.LongboxExt" height="20px"  width="90%"/>
+</complexComponent>

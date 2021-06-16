@@ -1,0 +1,284 @@
+<?page title="eGoveris for Trade" id="tramitacion" contentType="text/html;charset=UTF-8"?>
+<?init class="org.zkoss.zk.ui.util.Composition" arg0="~./db_template.zul"?>
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./info" ?>
+<zk xmlns:x="xhtml" xmlns:zk="zk"
+	xmlns:w="http://www.zkoss.org/2005/zk/client">
+	<?link rel="stylesheet" type="text/css" href="css/joint.css" ?>
+	<?link rel="stylesheet" type="text/css" href="css/joint.ui.halo.css" ?>
+	<?link rel="stylesheet" type="text/css" href="css/joint.ui.selectionView.css" ?>
+	<?link rel="stylesheet" type="text/css" href="css/joint.ui.paperScroller.css" ?>
+	<?link rel="stylesheet" type="text/css" href="css/jquery.contextmenu.css" ?>
+	<?link rel="stylesheet" type="text/css" href="css/codemirror.css"?>
+	<?link rel="stylesheet" type="text/css" href="css/docs.css"?>
+	<?link rel="stylesheet" type="text/css" href="css/show-hint.css"?>
+	<?link rel="stylesheet" type="text/css" href="css/fullscreen.css"?>
+	<?link rel="stylesheet" type="text/css" href="css/dialog.css"?>
+	<?link rel="stylesheet" type="text/css" href="css/matchesonscrollbar.css"?>
+	<?link rel="stylesheet" type="text/css" href="css/workflow.css"?>
+	<?link rel="stylesheet" type="text/css" href="css/font-awesome.min.css"?>
+
+	<script src="js/lastChanges.js"></script>
+	<script src="js/projectModel.js"></script>
+	<script src="js/validator.js"></script>
+	<script src="js/codeChecker.js"></script>
+	<script src="js/apiValidations.js"></script>
+	<script src="js/layout_functions.js"></script>
+	<script src="js/layout.js"></script>
+	<script src="js/changeLog.js"></script>
+	<script src="http://cdn.ckeditor.com/4.5.3/full/ckeditor.js"></script>
+	<script src="js/codemirror.js"></script>
+	<script src="js/javascript-hint.js"></script>
+	<script src="js/show-hint.js"></script>
+	<script src="js/fullscreen.js"></script>
+	<script src="js/annotatescrollbar.js"></script>
+	<script src="js/dialog.js"></script>
+	<script src="js/javascript.js"></script>
+	<script src="js/xml.js"></script>
+	<script src="js/searchcursor.js"></script>
+	<script src="js/matchesonscrollbar.js"></script>
+	<script src="js/search.js"></script>
+	<script src="js/joint.js"></script>
+	<script src="js/joint-all.js"></script>
+	<script src="js/joint.shapes.fsa.js"></script>
+	<script src="js/joint.ui.halo.js"></script>
+	<script src="js/joint.ui.selectionView.js"></script>
+	<script src="js/joint.ui.clipboard.js"></script>
+	<script src="js/joint.ui.paperScroller.js"></script>
+	<script src="js/designer.js"></script>
+	<script src="js/lastChanges.js"></script>
+	<script src="js/projectModel.js"></script>
+	<script src="js/validator.js"></script>
+	<script src="js/jquery.contextmenu.js"></script>
+	<script src="js/formularioCondicion.js"></script>
+	<script src="js/lz-string.js"></script>
+	<script src="js/herramientas.js"></script>
+	
+	
+	<window id="info" title=""  self="@{define(egovBody)}"
+		xmlns:w="http://www.zkoss.org/2005/zk/client"
+		apply="com.egoveris.workflow.designer.module.controller.StateFlowComposer"
+		width="100%" height="98%" closable="false" border="normal"> 
+		<vbox id="bigPanel" width="100%" height="98%">
+			<hbox>
+				<div width="300px">
+					<hbox id="panelAcciones" style="color:green;">
+					 	<a iconSclass="z-icon-file-o fa-2x"   w:onClick="newProject()" tooltiptext="${c:l('title.nuevoProyecto')}"/>
+		                <a iconSclass="z-icon-folder-open-o fa-2x"  w:onClick="openProject()" tooltiptext="${c:l('title.abrirProyecto')}"/>
+		                <a iconSclass="z-icon-floppy-o fa-2x"  w:onClick="saveModel()" tooltiptext="${c:l('stateflow.guardar')}" />
+		                <a iconSclass="z-icon-floppy-o fa-2x" w:onClick="saveAsModel()" tooltiptext="${c:l('stateflow.guardarComo')}" >
+		                	<label sclass="z-icon-pencil fa-1x" style="margin-left: 2px; display: flex;margin-top: -29px;font-size: 22px;"/>
+		                </a>
+		                <a  iconSclass="z-icon-upload fa-2x"  tooltiptext="${c:l('stateflow.importar')}"/>
+		                <a iconSclass="z-icon-download fa-2x" w:onClick="exportJSON();" tooltiptext="${c:l('stateflow.exportar')}"/>
+						<a iconSclass="z-icon-play fa-2x" w:onClick="makePackageModel('', 'STATE')" tooltiptext="${c:l('stateflow.instalar')}"/>
+						<a iconSclass="z-icon-th-large fa-2x" w:onClick="makePackageModel('local', 'STATE')" tooltiptext="${c:l('stateflow.descargar')}"/>
+						<a iconSclass="z-icon-undo fa-2x"  w:onClick="undo()" tooltiptext="${c:l('stateflow.deshacer')}"/>
+						<a iconSclass="z-icon-repeat fa-2x"   w:onClick="redo()"  tooltiptext="${c:l('stateflow.rehacer')}"/>
+					</hbox>
+				</div>
+				<div  id="dataInfoProject">
+					<grid style="background-color: #E6E9EB">
+						<columns>
+							<column width="20%" />
+							<column />
+							<column />
+							<column />
+						</columns>
+						<rows>
+							<row style="background-color: #E6E9EB">
+								<cell>
+									<label value="${c:l('general.label.proyecto')}" class="bold"></label>
+									<label id="nombreProyecto"></label>
+								</cell>
+								<cell>
+									<label value="${c:l('general.label.autor')}" class="bold"></label>
+									<label id="autorProyecto"></label>
+								</cell> 
+								<cell>
+									<label value="${c:l('general.label.version')}" class="bold"></label>
+									<label id="versionProyecto"></label>
+								</cell>
+								<cell>
+									<label value="${c:l('general.label.descripcion')}" class="bold"></label>
+									<label id="descripcionProyecto"></label>
+								</cell>
+							</row>
+						</rows>
+					</grid>
+				</div>
+			</hbox>
+			<borderlayout vflex="min" hflex="1"  height="770px">
+				<west id="panelControles" flex="true" splittable="true"
+					collapsible="true" width="245px" >
+					<div>
+						<borderlayout height="100%">
+							<north id="panelComponentes"
+								title="${c:l('title.componentes')}" splittable="true" collapsible="true"
+								height="200px">
+								<div>
+									<div>
+										<vbox align="center"
+											width="100%">
+											<box id="panelElements"
+												align="center" width="100%">
+												<svg
+													xmlns="native:http://www.w3.org/2000/svg" width="100%"
+													height="500" version="1.1">
+
+													<svg id="start"
+														x="12%" y="-50" width="100%" height="480">
+														<g
+															onclick="onClickStart('start')"
+															onmouseover="this.style.cursor='pointer'">
+															<circle
+																fill="#000000" stroke="#000000" stroke-width="0"
+																stroke-linejoin="null" stroke-linecap="null"
+																cx="68.58877" cy="72.87253" r="10.40976" id="svg_44" />
+															<text
+																id="svg_42" fill="#000000" stroke="#000000"
+																stroke-width="0" stroke-linejoin="null"
+																stroke-linecap="null" x="69.58042" y="95.43399"
+																font-size="12" font-family="serif" text-anchor="middle"
+																xml:space="preserve" font-weight="bold">Inicio</text>
+														</g>
+													</svg>
+
+													<svg id="end"
+														x="12%" y="10" width="100%" height="480">
+														<g
+															onclick="onClickEnd('end')"
+															onmouseover="this.style.cursor='pointer'">
+															<circle
+																fill="#000000" stroke="#000000" stroke-width="0"
+																stroke-linejoin="null" stroke-linecap="null"
+																cx="68.98797" cy="66.0861" r="10.40976" id="svg_44" />
+															<circle
+																id="svg_46" r="13.4982" cy="66.26747" cx="69.16168"
+																stroke="#000000" fill="none" />
+															<text
+																font-weight="bold" xml:space="preserve"
+																text-anchor="middle" font-family="serif" font-size="12"
+																y="92.24038" x="69.18122" stroke-linecap="null"
+																stroke-linejoin="null" stroke-width="0" stroke="#000000"
+																fill="#000000" id="svg_42">Cierre</text>
+														</g>
+													</svg>
+
+													<svg x="25%" y="110"
+														width="100%" height="180">
+														<g id="state"
+															onclick="onClickState('state')"
+															onmouseover="this.style.cursor='pointer'">
+															<circle
+																fill="#ffffaa" stroke="#000000" stroke-width="3"
+																cx="37.5" cy="39.5" r="27.2036" id="svg_34" />
+															<text
+																fill="#000000" stroke="#000000" stroke-width="0"
+																stroke-linejoin="null" stroke-linecap="null" x="36.5"
+																y="36" id="svg_40" font-size="12" font-family="serif"
+																text-anchor="middle" xml:space="preserve"
+																font-weight="bold">Nuevo</text>
+															<text
+																fill="#000000" stroke="#000000" stroke-width="0"
+																stroke-linejoin="null" stroke-linecap="null" x="36.5"
+																y="49" font-size="12" font-family="serif"
+																text-anchor="middle" xml:space="preserve"
+																font-weight="bold" id="svg_41">Estado</text>
+														</g>
+													</svg>
+												</svg>
+											</box>
+										</vbox>
+									</div>
+									<div zindex="100"
+										id="shadowPanelElements"
+										style="position:absolute; left: 0px; top: 0px; visibility:visible"
+										width="100%" height="100%" sclass="transbox">
+										Debe generar un nuevo proyecto
+										para que se habilite la pizarra
+										de diseño
+									</div>
+								</div>
+							</north>
+							<center title="${c:l('title.propiedades')}">
+								<div>
+									<div>
+										<grid>
+											<columns>
+												<column width="50%"></column>
+												<column width="100%"></column>
+											</columns>
+											<rows>
+												<row>
+													<label
+														value="${c:l('general.nombre')}" />
+													<textbox
+														id="stateName" cols="15" constraint="no empty"
+														w:onChanging="propertiesChange()" />
+												</row>
+												<row>
+													<label
+														value="${c:l('general.subproceso')}" />
+													<button id="btnAddSubProccess"  label="${c:l('general.subprocesos')}" forward="info$composer.onOpenSubProcess"/>
+												</row>
+												<row sclass="no-show-task-temp">
+				            						<label value="${c:l('stateflow.scriptInicio')}"/>
+				            						<textbox id="stateFlowStart" multiline="true" cols="15" rows="1" disabled="true"
+				            							 w:onDoubleClick="editScriptStartState('Script Inicio Estado',this)"/>
+										 		</row>
+										 		<row sclass="no-show-task-temp">
+				            						<label value="${c:l('stateflow.scriptSalida')}"/>
+				            						<textbox id="stateFlowEnd" multiline="true" cols="15" rows="1" disabled="true"
+				            							 w:onDoubleClick="editScriptEndState('Script Inicio Estado',this)"/>
+										 		</row>	
+											</rows>
+										</grid>
+									</div>
+									<div zindex="100" id="shadowPanel"
+										style="position:absolute; left: 0px; top: 0px; visibility:visible"
+										width="100%" height="100%" sclass="transbox">
+										Debe generar un nuevo proyecto
+										para que se habilite la pizarra
+										de diseño
+									</div>
+									<div zindex="90" id="shadowEstado"
+										style="position:absolute; left: 0px; top: 0px; visibility:visible"
+										width="100%" height="100%" sclass="transbox">
+										Haga clic sobre un estado para
+										que se muestren sus propiedades
+									</div>
+								</div>
+							</center>
+						</borderlayout>
+					</div>
+				</west>
+				<center id="drawBoard" style="width:'100%'">
+					<html>
+						<![CDATA[ <body> <div z-index="-1" id="paper"
+						witdh="100%" height="100%"
+						onclick="onClickPaper();"> </div>
+
+						<div z-index="100" id="shadow"
+						style="position:absolute; left: 0px; top: 0px;
+						visibility:visible" id="nopaper" witdh="100%"
+						height="100%" class="transbox" align="center">
+						<p>Debe generar un nuevo proyecto para que se
+						habilite la pizarra de diseño</p> </div>
+
+						<div id="z_messages" style="position: absolute;
+						left: 0px; top: 8.5px; z-index: 1800;"
+						class="z-window z-window-modal"> </div> </body>
+						]]>
+					</html>
+				</center>
+			</borderlayout>
+		</vbox>
+		<zscript language="Java">
+			public void drawRender(){
+				Clients.evalJavaScript("inicializar();");
+			}
+			drawRender();
+		</zscript>	
+    </window>
+</zk>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+	
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <Pattern>
+                %d{yyyy-MM-dd HH:mm:ss} [%t] %-5level %logger{50} - %msg%n
+            </Pattern>
+        </layout>
+    </appender>
+<!-- 			<Patttern> -->
+<!-- 				%d{dd-MM-yyyy HH:mm:ss.SSS} %magenta([%thread]) %highlight(%-5level) %logger{36}.%M - %msg%n -->
+<!-- 			</Patttern> -->
+ 
+ <!-- se activa los debug de spring  
+   <logger name="org.springframework" level="debug" additivity="false">
+		<appender-ref ref="CONSOLE" />
+	</logger>
+-->
+
+    <logger name="com.egoveris" level="info" additivity="false">
+        <appender-ref ref="CONSOLE"/>
+    </logger>
+
+    <root level="error">
+        <appender-ref ref="CONSOLE"/>
+    </root>
+
+</configuration>

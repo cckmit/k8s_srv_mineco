@@ -1,0 +1,69 @@
+<?page title="${c:l('ccoo.header.title')}" contentType="text/html;charset=UTF-8"?>
+<?init class="org.zkoss.zk.ui.util.Composition" arg0="/co/headerCo.zul"?>
+<?init class="com.egoveris.deo.web.satra.InitPanelUsuarioCO" ?>
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+<zk>
+	<window id="panelUsuario" width="100%" height="89%"
+		style="align=center; background-color:#EFEFEF;">
+		<tabbox tabscroll="false" width="100%" id="ccooTabs"
+			height="100%" style=""
+			apply="com.egoveris.deo.web.satra.PanelUsuarioCoComposer">
+			<tabs >
+				<tab label="${c:l('ccoo.panelUsuario.tabInbox')}"
+					tooltiptext="${c:l('ccoo.panelUsuario.tabInbox.help')}"
+					style="" id="inBoxTab" />
+				<tab
+					label="${c:l('ccoo.panelUsuario.tabMisSupervisados')}"
+					tooltiptext="${c:l('ccoo.panelUsuario.tabMisSupervisados.help')}"
+					style="" id="tareasSupervisadosTab" />
+				<tab label="${c:l('ccoo.panelUsuario.tabBandejaCO')}"
+					tooltiptext="${c:l('ccoo.panelUsuario.tabBandejaCO.help')}"
+					id="bandejaCoTab" style="" />
+				<tab
+					label="${c:l('ccoo.panelUsuario.tabBandejaSupervisadosCO')}"
+					tooltiptext="${c:l('ccoo.panelUsuario.tabBandejaSupervisadosCO.help')}"
+					style="" id="bandejaCoSupervisadosTab"  />
+				<tab
+					label="${c:l('ccoo.panelUsuario.tabSectorMesa')}"
+					tooltiptext="${c:l('ccoo.panelUsuario.tabSectorMesa.help')}"
+					style="" id="sectorMesaTab" />
+				<tab
+					label="${c:l('ccoo.panelUsuario.tabConsultaCO')}" 
+					tooltiptext="${c:l('ccoo.panelUsuario.tabConsultaCO.help')}"
+					style="" id="consultarCoTab" />
+				<tab
+					label="${c:l('ccoo.tab.consulta.usuarios')}" style=""
+					id="consultaUsuarios"/>
+			</tabs>
+			<tabpanels style="">
+				<tabpanel id="inbox" style="overflow:auto">
+					<include src="/inbox.zul"></include>
+				</tabpanel>
+				<tabpanel fulfill="tareasSupervisadosTab.onClick">
+					<include src="/misSupervisados.zul"></include>
+				</tabpanel>
+				<tabpanel style="overflow:auto"
+					fulfill="bandejaCoTab.onClick">
+					<include src="/co/bandejaCo.zul"></include>
+				</tabpanel>
+				<tabpanel style="overflow:auto"
+					fulfill="bandejaCoSupervisadosTab.onClick">
+					<include src="/co/misSupervisadosCo.zul"></include>
+				</tabpanel>
+				<tabpanel style="overflow:auto"
+					fulfill="sectorMesaTab.onClick">
+					<include src="/co/sectorMesa.zul"></include>
+				</tabpanel>
+				<tabpanel style="overflow:auto"
+					fulfill="consultarCoTab.onClick">
+					<include src="/co/consultarCo.zul"></include>
+				</tabpanel>
+				<tabpanel style="overflow:auto"
+					fulfill="consultaUsuarios.onClick">	
+				</tabpanel>
+			</tabpanels>
+		</tabbox>
+	</window>
+
+</zk>

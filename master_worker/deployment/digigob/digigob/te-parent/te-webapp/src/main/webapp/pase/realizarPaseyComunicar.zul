@@ -1,0 +1,104 @@
+<?page title="Enviar a"  contentType="text/html;charset=UTF-8"?>
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./realizarPaseyComunicarWindow" ?>
+<zk>
+
+<window title="${c:l('ee.comunicar.titulo')}" border="normal" width="800px"
+		 id="realizarPaseyComunicarWindow"
+		apply="com.egoveris.te.base.composer.RealizarPaseyComunicarComposer">
+<style>
+</style>
+	<grid >
+		<rows width="799px">
+			<row>
+				
+					<label value="${c:l('ee.pase.comunicar.destinatario')}"/>
+				
+					<div  id="contactosList" width="350px"  style="border:1px solid #86A4BE;min-height: 20px; overflow: hidden;"  >
+					
+						<div>	
+  							<combobox zindex="1" id="comboDeContactos" style="margin: 5px;width: 340px;" buttonVisible="false" autodrop="true" 
+									  forward="onChange=realizarPaseyComunicarWindow$RealizarPaseyComunicarComposer.onSelectedItem"  >
+							</combobox>
+	  					</div>
+					</div>
+					
+			
+	
+			</row>
+			<row>
+				
+					<label value="${c:l('ee.pase.comunicar.copia')}" />
+		
+				
+					<div  id="conCopiaDiv" width="350px"  style="border:1px solid #86A4BE;min-height: 20px; overflow: hidden;"  >
+					
+						<div>	
+  							<combobox zindex="1" id="comboDeConCopia" style="margin: 5px;width: 340px;" buttonVisible="false" autodrop="true" 
+									  forward="onChange=realizarPaseyComunicarWindow$RealizarPaseyComunicarComposer.onSelectedConCopia"  >
+							</combobox>
+	  					</div>
+					</div>
+			
+			
+			</row>
+			<row>
+				
+					<label value="${c:l('ee.anularmodificarsolicitud.label.motivo.value')}" />
+				
+					<textbox id="motivo"  width="350px" readonly="true" >
+							
+					</textbox>
+
+			</row>
+			<row>	
+				
+					<label value="${c:l('ee.pase.comunicar.oficial')}" />
+				
+						<textbox id="comunicacionOficial"  rows="15" width="350px">
+							
+						</textbox>
+				
+			</row>
+			
+		</rows>
+	</grid>
+	<separator/>
+	<grid >
+			<rows width="799px">
+				<row>
+					<label value="${c:l('ee.pase.comunicar.adjunto')}" />
+													   
+					<div  id="archivoDiv" width="350px"  style="border:1px solid #86A4BE;min-height: 20px; overflow: hidden;"  >
+						
+					</div>
+					
+				</row>
+			</rows>
+	</grid>
+	
+	<separator height="30px"></separator>
+		<hbox>
+			<!--
+			<toolbarbutton autodisable="self" id="realizarPaseyComunicar" image="/imagenes/RealizarPaseyComunicar.png" 
+				forward="onClick=realizarPaseyComunicarWindow$RealizarPaseyComunicarComposer.onRealizarPaseyComunicar"/>	
+
+			<toolbarbutton autodisable="self" id="adjuntarArchivo" image="/imagenes/AdjuntarArchivo.png" width="121px" height="38px"
+				upload="true"/>	
+		
+			<toolbarbutton autodisable="self" id="cancelar" image="/imagenes/BotonCancelar.png"
+				forward="onClick=realizarPaseyComunicarWindow$RealizarPaseyComunicarComposer.onCancelar"/>
+			-->
+			<button autodisable="self" id="realizarPaseyComunicar" label="${c:l('ee.pase.comunicar.realizarPase')}"
+				forward="onClick=realizarPaseyComunicarWindow$RealizarPaseyComunicarComposer.onRealizarPaseyComunicar"/>	
+
+			<button autodisable="self" id="adjuntarArchivo" label="${c:l('ee.pase.comunicar.archivo')}" width="121px" height="38px"
+				upload="true"/>	
+		
+			<button autodisable="self" id="cancelar" label="${c:l('ee.documentViewer.button.cancelar')}"
+				forward="onClick=realizarPaseyComunicarWindow$RealizarPaseyComunicarComposer.onCancelar"/>
+		</hbox>	
+ <separator height="10px"></separator>
+</window>
+
+</zk>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<complexComponent type="TRADE"
+	name="Vista Declaración Documento Ingreso Envìo" description="Vista Declaración Documento Ingreso Envìo"
+	zul="vistaDecDocIngEnv.zul" mappingDTO="com.egoveris.ccomplejos.base.model.VistaDecDocIngEnvDTO">
+
+	<field name="codigoAduana" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" disabled="true"/>
+	<field name="codigoTipoOperacion" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" disabled="true"/>
+	<field name="tipoDestinacion" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" disabled="true"/>
+	<field name="regionIngreso" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" disabled="true"/>
+
+</complexComponent>

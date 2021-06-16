@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<complexComponent type="TRADE"
+	name="Vista Codigo Operacion" description="VistaCodigo Operacion"
+	zul="vistaCodigoOperacion.zul" mappingDTO="com.egoveris.ccomplejos.base.model.VistaCodigoOperacionDTO">
+
+	<field name="codigoOperacion" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" disabled="true"/>
+
+
+</complexComponent>

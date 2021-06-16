@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<link rel="icon" type="image/png" href="#" />
+	<link rel="stylesheet" href="#" media="all" />
+	<h:outputStylesheet library="application" name="vuc.css" />
+	<h:outputStylesheet library="webjars"
+		name="font-awesome/4.7.0/css/font-awesome-jsf.css" />
+	<h:outputStylesheet library="webjars"
+		name="bootstrap/3.3.7-1/css/bootstrap-jsf.css" />
+	<h:outputScript library="webjars"
+		name="bootstrap/3.3.7-1/js/bootstrap.min.js" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+</h:head>
+<h:body>
+	<ui:composition template="/WEB-INF/faces/layout/mainLayout.xhtml">
+		<ui:define name="body">
+			<p:remoteCommand name="showError"
+				actionListener="#{step2Mb.showErrorDialogFromBean}" out="count" />
+			<script type="text/javascript">
+				function showErrorJs(mensaje) {
+					showError([ {
+						name : 'mensaje',
+						value : mensaje
+					} ]);
+				}
+			</script>
+			<h:form id="step2Form">
+				<div class="ui-g">
+					<div class="ui-g-12">
+						<h2>#{msg.stepsTramite}
+							#{step2Mb.expediente.tipoTramite.nombre}</h2>
+					</div>
+					<div class="ui-g-12">
+						<h3>#{msg.step2DocsSolicitados}</h3>
+					</div>
+					<div class="ui-g-12" style="margin-top: 10px; text-align: center;">
+						<p:dataTable id="tblDocumentos" var="tipoTramiteTipoDoc"
+							value="#{step2Mb.expediente.tipoTramite.tipoTramiteTipoDoc}"
+							style="text-align: center;">
+							<p:column headerText="#{msg.step2Nombre}" width="30%">
+								<p:outputLabel value="#{tipoTramiteTipoDoc.tipoDoc.nombre}" />
+							</p:column>
+							<p:column headerText="#{msg.step2Requerido}" width="10%">
+								<p:outputLabel
+									value="#{tipoTramiteTipoDoc.obligatorio ? 'Si' : 'No'}" />
+							</p:column>
+							<p:column headerText="#{msg.step2NombreArchivo}" rendered="true">
+								<p:outputLabel
+									value="#{step2Mb.getUploadedDocumentoByTipodocumento(tipoTramiteTipoDoc.tipoDoc.id).nombreOriginal}" />
+							</p:column>
+							<p:column headerText="#{msg.step2Acciones}" width="30%">
+								<!-- UPLOAD BUTTON  -->
+								<!-- DOCUMENTOS REGULARES -->
+								<p:commandButton id="actionUploadRegularDoc" icon="fa fa-upload"
+									rendered="#{not step2Mb.isTipoDocumentoFfdd(tipoTramiteTipoDoc.tipoDoc)}"
+									actionListener="#{step2Mb.setTipoDocumentoSeleccionado(tipoTramiteTipoDoc.tipoDoc)}"
+									oncomplete="PF('cargaDocumentos').show()"
+									update="@form:cargaDocumentos" />
+								<p:tooltip id="actionUploadRegularDocTooltip"
+									for="actionUploadRegularDoc"
+									value="#{msg.step2.tooltip.action.uploadDocument}"
+									position="top" />
+								<!-- FFDD -->
+								<p:commandButton id="actionUploadFfddDoc" icon="fa fa-upload"
+									rendered="#{step2Mb.isTipoDocumentoFfdd(tipoTramiteTipoDoc.tipoDoc) and not step2Mb.uploadedTiposDocumento[tipoTramiteTipoDoc.tipoDoc.id]}"
+									actionListener="#{step2Mb.setTipoDocumentoSeleccionado(tipoTramiteTipoDoc.tipoDoc)}"
+									oncomplete="PF('statusDialog').show()"
+									update="mainLayout:step2Form:ffddDialog" />
+								<p:tooltip id="actionUploadFfddDocTooltip"
+									for="actionUploadFfddDoc"
+									value="#{msg.step2.tooltip.action.uploadDocument}"
+									position="top" />
+									
+								<p:commandButton id="actionUploadFfddDocDisable" icon="fa fa-upload"
+									rendered="#{step2Mb.isTipoDocumentoFfdd(tipoTramiteTipoDoc.tipoDoc) and step2Mb.uploadedTiposDocumento[tipoTramiteTipoDoc.tipoDoc.id]}"
+									disabled="true" />
+								<p:tooltip id="actionUploadFfddDocDisableTooltip"
+									for="actionUploadFfddDocDisable"
+									value="#{msg.step2.tooltip.action.uploadDocument}"
+									position="top" />
+							
+								<!-- MY DOCUMENTS BUTTON -->
+								<p:commandButton id="actionMyDocuments" icon="fa fa-file-text-o"
+									rendered="#{not step2Mb.isTipoDocumentoFfdd(tipoTramiteTipoDoc.tipoDoc)}"
+									actionListener="#{step2Mb.showMyDocuments(tipoTramiteTipoDoc.tipoDoc)}"
+									update="mainLayout:step2Form:misDocumentos" />
+								<p:tooltip id="actionMyDocumentsTooltip" for="actionMyDocuments"
+									value="#{msg.step2.tooltip.action.myDocuments}" position="top" />
+								<!-- PREVIEW BUTTON  -->
+								<!-- NOT UPLOADED YET -->
+								<p:commandButton id="actionPreviewDisabled" icon="fa fa-file-o"
+									rendered="#{not step2Mb.uploadedTiposDocumento[tipoTramiteTipoDoc.tipoDoc.id]}"
+									disabled="true" />
+								<p:tooltip id="actionPreviewDisabledTooltip"
+									for="actionPreviewDisabled"
+									value="#{msg.step2.tooltip.action.preview}" position="top" />
+								<!-- DOCUMENTOS REGULARES -->
+								<p:commandButton id="actionPreview" icon="fa fa-file-o"
+									rendered="#{step2Mb.uploadedTiposDocumento[tipoTramiteTipoDoc.tipoDoc.id] and not step2Mb.isTipoDocumentoFfdd(tipoTramiteTipoDoc.tipoDoc)}"
+									actionListener="#{step2Mb.viewDocument(step2Mb.getUploadedDocumentoByTipodocumento(tipoTramiteTipoDoc.tipoDoc.id))}"
+									oncomplete="PF('archivoView').show()"
+									update="mainLayout:step2Form:archivoView" />
+								<p:tooltip id="actionPreviewTooltip" for="actionPreview"
+									value="#{msg.step2.tooltip.action.preview}" position="top" />
+								<!-- FFDD -->
+								<p:commandButton id="actionPreviewFfdd" icon="fa fa-file-o"
+									rendered="#{step2Mb.uploadedTiposDocumento[tipoTramiteTipoDoc.tipoDoc.id] and step2Mb.isTipoDocumentoFfdd(tipoTramiteTipoDoc.tipoDoc)}"
+									actionListener="#{step2Mb.viewDocument(step2Mb.getUploadedDocumentoByTipodocumento(tipoTramiteTipoDoc.tipoDoc.id))}"
+									oncomplete="PF('ffddDialog').show()"
+									update="mainLayout:step2Form:ffddDialog" />
+								<p:tooltip id="actionPreviewFfddTooltip" for="actionPreviewFfdd"
+									value="#{msg.step2.tooltip.action.preview}" position="top" />
+								<!-- DELETE BUTTON -->
+								<!-- NOT UPLOADED YET -->
+								<p:commandButton id="actionDeleteDisabled" icon="fa fa-trash"
+									rendered="#{not step2Mb.uploadedTiposDocumento[tipoTramiteTipoDoc.tipoDoc.id]}"
+									disabled="true" />
+								<p:tooltip id="actionDeleteDisabledTooltip"
+									for="actionDeleteDisabled"
+									value="#{msg.step2.tooltip.action.delete}" position="top" />
+								<p:commandButton id="actionDelete" icon="fa fa-trash"
+									rendered="#{step2Mb.uploadedTiposDocumento[tipoTramiteTipoDoc.tipoDoc.id]}"
+									actionListener="#{step2Mb.deleteDocument(step2Mb.getUploadedDocumentoByTipodocumento(tipoTramiteTipoDoc.tipoDoc.id))}">
+									<p:confirm header="#{msg.step2EliminarArchivo}"
+										message="#{msg.step2ConfirmarEliminacion}"
+										icon="ui-icon-alert" />
+								</p:commandButton>
+								<p:tooltip id="actionDeleteTooltip" for="actionDelete"
+									value="#{msg.step2.tooltip.action.delete}" position="top" />
+							</p:column>
+						</p:dataTable>
+					</div>
+				</div>
+
+				<!-- BACK, CANCEL, SAVE AND NEXT BUTTONS -->
+				<div class="ui-g-12" style="margin-top: 20px; text-align: center;">
+					<p:commandButton value="#{msg.stepsAtras}"
+						actionListener="#{step2Mb.cmdBack()}" class="buttonSpace" />
+					<p:commandButton value="#{msg.stepsCancelar}" class="buttonSpace"
+						actionListener="#{step2Mb.cmdCancel()}" />
+					<p:commandButton value="#{msg.stepsGuardar}"
+						disabled="#{not step2Mb.borrador}" class="buttonSpace"
+						actionListener="#{step2Mb.cmdSave()}" />
+					<p:commandButton value="#{msg.stepsContinuar}" class="buttonSpace"
+						actionListener="#{step2Mb.cmdNext()}" />
+				</div>
+
+				<!-- DIALOGS -->
+				<!-- DIALOG CARGA DOCUMENTOS -->
+				<p:dialog id="cargaDocumentos" widgetVar="cargaDocumentos" 
+					width="60%" modal="true" header="#{msg.step2CargarDocumento}">
+					<div class="ui-g">
+						<div class="ui-g-12">
+							<p:fileUpload id="fileUploadContent" label="#{msg.step2MiPc}"
+								fileUploadListener="#{step2Mb.handleFileUpload}" auto="true"
+								mode="advanced" dragDropSupport="false" update="@this messages"
+								sizeLimit="5000000" fileLimit="1" allowTypes="/(\.|\/)(pdf)$/"
+								invalidFileMessage="#{msg.step2ArchivoNoPermitido}"
+								invalidSizeMessage="#{msg.step2ArchivoMuyGrande}"
+								fileLimitMessage="#{msg.step2SoloUnArchivo}"
+								class="buttonSpace" />
+							<p:messages id="messages" showDetail="true" />
+						</div>
+					</div>
+					<div class="ui-g-12" style="margin-top: 20px; text-align: center;">
+						<p:commandButton value="#{msg.step2Aceptar}" class="buttonSpace"
+							actionListener="#{step2Mb.upload()}" />
+						<p:commandButton value="#{msg.step2Cancelar}"
+							onclick="PF('cargaDocumentos').hide()" />
+					</div>
+				</p:dialog>
+
+				<!-- DIALOG MIS DOCUMENTOS -->
+				<p:dialog id="misDocumentos" widgetVar="misDocumentos" width="60%" height="60%"
+					header="#{msg.step2MisDocumentos}"
+					style="margin-left: -15%;" resizable="false"  >
+
+					<div class="ui-g">
+						<div class="ui-g-12">
+							<p:tabView id="tabs" dynamic="false" cache="false" reflow="true"
+								value="#{step2Mb.mapMyDocuments.entrySet().toArray()}"
+								var="entry" scrollable="true" >
+								<p:tab title="#{entry.getKey()}" >
+									<p:dataTable value="#{entry.getValue()}" var="documento"
+										style="text-align: center;" reflow="true"
+										emptyMessage="#{msg.step2SinDocumentos}" rows="5"
+										paginator="true"
+										paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+										currentPageReportTemplate="{currentPage} #{msg.step2De} {totalPages} #{msg.step2Paginas}"
+										paginatorPosition="bottom" >
+										<p:column headerText="#{msg.step2TipoDoc}">
+											<p:outputLabel value="#{documento.tipoDocumento.descripcion}" />
+										</p:column>
+										<p:column headerText="#{msg.step2Fecha}">
+											<p:outputLabel value="#{documento.formattedFechaCreacion}" />
+										</p:column>
+										<p:column headerText="#{msg.step2Ver}" width="10%">
+											<p:commandButton icon="fa fa-file-o"
+												actionListener="#{step2Mb.viewDocument(documento)}"
+												oncomplete="PF('archivoView').show()"
+												update="mainLayout:step2Form:archivoView" />
+										</p:column>
+										<p:column headerText="#{msg.step2CargarAlTramite}" width="10%">
+											<p:commandButton icon="fa fa-upload"
+												actionListener="#{step2Mb.loadDeoDocument(documento)}" />
+										</p:column>
+									</p:dataTable>
+								</p:tab>
+							</p:tabView>
+						</div>
+					</div>
+					<div class="ui-g-12" style="margin-top: 20px; text-align: center;">
+						<p:commandButton value="#{msg.step2Cancelar}"
+							onclick="PF('misDocumentos').hide()" />
+					</div>
+				</p:dialog>
+
+				<!-- DIALOG FFDD -->
+				<p:dialog id="ffddDialog" widgetVar="ffddDialog" width="60%"
+					height="500px" position="50,50" modal="true" resizable="false"
+					header="#{msg.step2Formulario}" class="disable-scroll custom-dialog">
+					<p:ajax event="close" listener="#{step2Mb.closeEventFfddDialog()}"
+						global="false" />
+					<div class="ui-g">
+						<div class="ui-g-12">
+							<iframe
+								src="#{request.contextPath}/zul/formularioDinamico.zul?idTipoDoc=#{step2Mb.tipoDocumentoSeleccionado.id}&amp;idExp=#{step2Mb.expediente.id}&amp;view=#{step2Mb.viewFfdd}&amp;subsanar=false"
+								width="100%" style="border: none;" />
+						</div>
+					</div>
+				</p:dialog>
+
+				<p:dialog id="archivoView" widgetVar="archivoView" modal="true"
+					fitViewport="true" responsive="true" header="Documento"
+					resizable="false" width="60%" style="margin-left: -5%;">
+					<object type="application/pdf"
+						data="#{request.contextPath.concat(step2Mb.pdfViewUrl)}"
+						height="500px" width="100%"> </object>
+				</p:dialog>
+
+				<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+					<p:commandButton value="Yes" type="button"
+						styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+					<p:commandButton value="No" type="button"
+						styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+				</p:confirmDialog>
+			</h:form>
+		</ui:define>
+	</ui:composition>
+
+</h:body>
+
+</html>

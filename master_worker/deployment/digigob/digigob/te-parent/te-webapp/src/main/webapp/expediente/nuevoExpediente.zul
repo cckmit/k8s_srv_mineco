@@ -1,0 +1,253 @@
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+<?page title="Nuevo Expediente" contentType="text/html;charset=UTF-8"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./nuevoExpedienteWindow" ?>
+<zk>
+	<window title="${c:l('ee.nuevoexpediente.title.value')}"  border="none" width="700px"
+		 id="nuevoExpedienteWindow"
+		apply="com.egoveris.te.base.composer.GenerarNuevoExpedienteComposer">
+		<groupbox >
+			<separator />
+			<grid >
+				<rows width="100%">
+					<row>
+						<label value="${c:l('ee.nuevoexpediente.label.motivo.value')}"  />
+						<textbox id="motivoExpediente"
+							maxlength="255"  cols="35" rows="5">
+						</textbox>
+					</row>
+				</rows>
+			</grid>
+			<separator />
+			<box orient="vertical" spacing="0" align="start"
+				width="100%">
+				<label value="${c:l('ee.nuevoexpediente.label.datosdelexpediente.value')}" style="font:bold;" />
+				<separator bar="true" />
+				<radiogroup>
+					<radio id="expedienteInterno" label="${c:l('ee.nuevoexpediente.label.interno.value')}"
+						checked="false"
+						forward="onClick=nuevoExpedienteWindow$GenerarNuevoExpedienteComposer.onClickExpedienteInterno" />
+					<space />
+					<space />
+					<radio id="expedienteExterno" label="${c:l('ee.nuevoexpediente.label.externo.value')}"
+						checked="false"
+						forward="onClick=nuevoExpedienteWindow$GenerarNuevoExpedienteComposer.onClickExpedienteExterno"  />
+				</radiogroup>
+
+				<separator />
+				<grid >
+					<rows width="100%">
+						<row>
+							<label value="${c:l('ee.nuevoexpediente.label.codigotrata.value')}" />
+							<!--
+							<combobox id="codigoTrata" width="270px" readonly="true"
+									model="@{nuevoExpedienteWindow$GenerarNuevoExpedienteComposer.tratas}"
+									selectedItem="@{nuevoExpedienteWindow$GenerarNuevoExpedienteComposer.selectedTrata}"
+									itemRenderer="com.egoveris.te.base.rendered.TrataComboBoxItemRenderer">
+							</combobox>
+							-->
+							
+							<bandbox id="codigoTrata" autodrop="true">
+								<bandpopup width="620px" >
+									<groupbox mold="3d">
+										<caption>
+											<hbox>
+												<label value="${c:l('te.webapp.solicitud.caratularInterno.lbl.tramite')}" width="560px" />
+												<image src="/imagenes/help.png" width="16px" height="16px"
+													   align="right" />
+											</hbox>
+										</caption>
+										<separator height="2px"></separator>
+										<vbox height="100px" width="600px">
+											<paging	id="paginatorIncorporarSADE" pageSize="10" />
+											<listbox
+												id="trataListbox" mold="paging"
+												paginal="${paginatorIncorporarSADE}"
+												model="@{nuevoExpedienteWindow$composer.tratasSeleccionadas}"
+												selectedItem="@{nuevoExpedienteWindow$composer.selectedTrata}"
+												itemRenderer="com.egoveris.te.base.rendered.TrataListBoxItemRenderer">
+												<listhead>
+													<listheader	label="${c:l('te.webapp.solicitud.caratularInterno.lbl.tramite')}"/>
+												</listhead>	
+												<listfoot>			
+													<listfooter id="Total" label="${c:l('te.webapp.solicitud.caratularInterno.incorporasade.lbl.totaltramites')}" span="1"  />
+													<listfooter id="conteoDocumentos" label="@{nuevoExpedienteWindow$composer.tratasSeleccionadas.size}" span="2" />
+												</listfoot>											
+											</listbox>
+										</vbox>
+									</groupbox>
+								</bandpopup>
+							</bandbox>
+						</row>
+						
+						<row>
+							<label value="${c:l('ee.nuevoexpediente.label.descripcion.value')}"/>
+							<textbox id="descripcion"
+								maxlength="225" cols="35" rows="5" focus="true">
+							</textbox>
+						</row>
+						
+						<!-- Se ocultan ID / Tipo de documento -->
+						<!--
+						<row>
+							
+								<label value="${c:l('ee.nuevoexpediente.label.cuitcuil.value')}" />
+							<hbox>
+								<longbox id="cuitCuilTipo" maxlength="2" cols="1"> </longbox>
+							
+								<longbox id="cuitCuilDocumento" maxlength="8" cols="8"> </longbox>
+							
+								<longbox id="cuitCuilVerificador" maxlength="1" cols="1"> </longbox>
+							</hbox>
+						</row>
+						
+						<row>
+							<label value="${c:l('ee.nuevoexpediente.label.tipodocumento.value')}" />
+							<combobox id="tipoDocumento" width="200px"
+								model="@{nuevoExpedienteWindow$GenerarNuevoExpedienteComposer.tiposDocumentos}"
+								forward="onSelect=nuevoExpedienteWindow$GenerarNuevoExpedienteComposer.onSelectTipoDocumento">
+							</combobox>
+						</row>
+						-->
+						
+						<row>
+							<label value="${c:l('ee.nuevoexpediente.label.numerodocumento.value')}" />
+							<!--<longbox id="numeroDocumento"
+								maxlength="11">
+							</longbox>-->
+							<textbox id="numeroDocumento"
+								maxlength="15" cols="40">
+							</textbox>
+						</row>
+
+						<row>
+							<label value="${c:l('ee.nuevoexpediente.label.primerapellido.value')}" />
+							<textbox id="apellido"
+								maxlength="30" cols="40">
+							</textbox>
+						</row>
+						
+						<row>
+							<label value="${c:l('ee.nuevoexpediente.label.segundoapellido.value')}" />
+							<textbox id="segundoApellido"
+								maxlength="30" cols="40">
+							</textbox>
+						</row>
+						
+						<row>
+							<label value="${c:l('ee.nuevoexpediente.label.tercerapellido.value')}" />
+							<textbox id="tercerApellido" 
+								maxlength="30" cols="40">
+							</textbox>
+						</row>
+						
+						<row>
+							<label value="${c:l('ee.nuevoexpediente.label.primernombre.value')}" />
+							<textbox id="nombre"
+								maxlength="30" cols="40">
+							</textbox>
+						</row>
+						<row>
+							<label value="${c:l('ee.nuevoexpediente.label.segundonombre.value')}" />
+							<textbox id="segundoNombre"
+								maxlength="30" cols="40">
+							</textbox>
+						</row>
+						<row>
+							<label value="${c:l('ee.nuevoexpediente.label.tercernombre.value')}" />
+							<textbox id="tercerNombre"
+								maxlength="30" cols="40">
+							</textbox>
+						</row>
+						<row>
+							<label value="${c:l('ee.nuevoexpediente.label.razonsocial.value')}" />
+							<textbox id="razonSocial"
+								maxlength="225" cols="40">
+							</textbox>
+						</row>
+						<row>
+							<label value="${c:l('ee.nuevoexpediente.label.email.value')}" />
+							<textbox id="email"
+								maxlength="225" cols="40">
+							</textbox>
+						</row>
+						<row>
+							<label value="${c:l('ee.nuevoexpediente.label.telefono.value')}" />
+							<textbox id="telefono"
+								maxlength="255" cols="40">
+							</textbox>
+						</row>
+					</rows>
+				</grid>
+			</box>
+			
+			<separator />
+			
+			<include src="/direccion/direccionCmp.zul" />
+			
+			<box orient="vertical" spacing="0" align="start" width="100%" visible="false">
+				<grid id="domicilioGrid">
+					<rows width="100%">
+						<row>
+							<label id="domicilioLabel" value="${c:l('ee.nuevoexpediente.label.separadordomicilio.value')}" style="font:bold;" />
+						</row>
+						<row>
+							<label value="${c:l('ee.nuevoexpediente.label.direccion.value')}" />
+							<vlayout>
+							<label value="${c:l('ee.nuevoexpediente.label.callealtura.value')}" />
+							<textbox id="direccion" maxlength="100" cols="40">
+							</textbox>
+							<hlayout>
+							<label value="${c:l('ee.nuevoexpediente.label.piso.value')}" />
+							<textbox id="piso" 
+								maxlength="3" cols="3">
+							</textbox>
+							<label value="${c:l('ee.nuevoexpediente.label.departamento.value')}" />
+							<textbox id="departamento" 
+								maxlength="3" cols="3">
+							</textbox>
+							<label value="${c:l('ee.nuevoexpediente.label.codigopostal.value')}" />
+							<textbox id="codigoPostal" 
+								maxlength="10" cols="10">
+							</textbox>
+							</hlayout>
+<!-- 							<label value="${c:l('ee.nuevoexpediente.label.comuna.value')}" /> -->
+<!-- 							<textbox id="comuna" maxlength="100" cols="40"> -->
+<!-- 							</textbox> -->
+<!-- 							<label value="${c:l('ee.nuevoexpediente.label.barrio.value')}" /> -->
+<!-- 							<textbox id="barrio" maxlength="100" cols="40"> -->
+<!-- 							</textbox> -->
+							</vlayout>
+						</row>
+						
+					</rows>
+				</grid>
+			</box>
+			<separator />
+			<separator />
+			<grid align="center"
+				style="border:0px;">
+				<rows>
+					<row >
+						<hbox>
+						 
+							<button id="guardar" label="${c:l('ee.subsanacion.button.guardar')}" iconSclass="z-icon-save" height="42px"  left="10px" 
+							forward="onClick=onGuardarExpediente" />
+										
+							<button id="rechazar" label="${c:l('ee.act.label.rechazar')}" iconSclass="z-icon-ban" height="42px"  left="10px" 
+							forward="onClick=onRechazar" />
+							
+							<button id="cancelar" class="btn-secondary" iconSclass="z-icon-times-circle" label="${c:l('ee.nuevoexpediente.button.label.cancelar.value')}" height="42px" left="10px"
+							forward="onClick=onCancelar" /> 
+							 	 
+							<button id="datosPropios" class="btn-secondary" iconSclass="z-icon-folder-open" label="${c:l('ee.expediente.tramitacion.lbl.datospropiosexpediente')}" height="42px" left="10px"
+							forward="onClick=onDatosPropios" />  
+							
+						</hbox>
+					</row>
+				</rows>
+			</grid>
+		</groupbox>
+
+	</window>
+</zk>

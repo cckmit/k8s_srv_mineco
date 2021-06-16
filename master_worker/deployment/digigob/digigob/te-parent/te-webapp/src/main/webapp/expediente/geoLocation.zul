@@ -1,0 +1,15 @@
+<?page title="Archivos de trabajo" contentType="text/html;charset=UTF-8"?>
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+<zk>
+
+	<window title="${c:l('ee.geoLocation.title')}" id="iframeWindow" border="none"
+		apply="org.zkoss.bind.BindComposer" closable="true" width="750px"
+		height="500px"
+		viewModel="@id('ioVM') @init('com.egoveris.te.base.composer.GeoLocationVM')">
+		<iframe id="iframeMap" width="100%" height="90%" scrolling="no" />
+		<button height="30px" class="btn-secondary"
+			iconSclass="z-icon-external-link" label="${c:l('ee.subsanacion.button.cerrar')}"
+			onClick="@command('onCerrar')" />
+	</window>
+</zk>

@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<complexComponent type="MACCS" name="Report 1" zul="rep1.zul" description="Report 1 request"
+	composer="com.everis.tramelec.dynform.comp.ext.Rep1Composer"
+	mappingDTO="com.everis.tramelec.dynform.trade.Rep1Dto">
+</complexComponent>

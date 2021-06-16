@@ -1,0 +1,40 @@
+<?page title="new page title" contentType="text/html;charset=UTF-8"?>
+<zk>
+	<vlayout  apply="com.egoveris.ffdd.render.zk.comp.cc.DetallesPuertoComposer">
+		<vbox>
+			<hbox>
+				<hbox>
+					 <cell id="${arg.formComp.nombre}_idDetallesPuertoDiv"/>
+				</hbox>
+				<hbox>
+					 <cell id="${arg.formComp.nombre}_paisDiv"/>
+				</hbox>
+				<hbox>
+					 <cell id="${arg.formComp.nombre}_codPuertoDiv"/>
+				</hbox>
+			</hbox>
+			<hbox>
+				<hbox>
+					 <cell id="${arg.formComp.nombre}_tipoPuertoDiv"/>
+				</hbox>
+				<hbox>
+					 <cell id="${arg.formComp.nombre}_nombrePuertoDiv"/>
+				</hbox>
+					<hbox>
+					 <cell id="${arg.formComp.nombre}_locacionPuertoDiv"/>
+				</hbox>
+			</hbox>
+			<hbox>
+				<hbox>
+					 <cell id="${arg.formComp.nombre}_fechaDiv"/>
+				</hbox>
+				<hbox>
+					 <cell id="${arg.formComp.nombre}_regionDiv"/>
+				</hbox>
+					<hbox>
+					 <cell id="${arg.formComp.nombre}_fechaEstimadaDiv"/>
+				</hbox>
+			</hbox>
+	</vbox>
+ </vlayout>
+</zk>

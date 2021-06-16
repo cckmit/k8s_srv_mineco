@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:composite="http://java.sun.com/jsf/composite"
+	xmlns:egov="http://java.sun.com/jsf/composite/egov">
+<composite:interface>
+	<composite:attribute name="value" required="true"
+		type="com.egoveris.vucfront.model.model.PersonaDTO" />
+</composite:interface>
+
+<composite:implementation>
+	<p:fieldset legend="#{msg.egovDatosSolicitante}"
+		style="margin-bottom:20px;width:100%;">
+		<div class="ui-g">
+			<div class="ui-g-3">
+				<p:outputLabel styleClass="negrita">#{msg.egovPrimerNombre}</p:outputLabel>
+			</div>
+			<div class="ui-g-9">
+				<h:inputText id="nombre1" value="#{cc.attrs.value.nombre1}"
+					disabled="true" />
+			</div>
+		</div>
+		<div class="ui-g">
+			<div class="ui-g-3">
+				<p:outputLabel styleClass="negrita">#{msg.egovApellidoPaterno}</p:outputLabel>
+			</div>
+			<div class="ui-g-9">
+				<h:inputText id="apellido1" value="#{cc.attrs.value.apellido1}"
+					disabled="true" />
+			</div>
+		</div>
+		<div class="ui-g">
+			<div class="ui-g-3">
+				<p:outputLabel styleClass="negrita">#{msg.egovApellidoMaterno}</p:outputLabel>
+			</div>
+			<div class="ui-g-9">
+				<h:inputText id="apellido2" value="#{cc.attrs.value.apellido2}"
+					disabled="true" />
+			</div>
+		</div>
+		<div class="ui-g">
+			<div class="ui-g-3">
+				<p:outputLabel styleClass="negrita">#{msg.egovRut}</p:outputLabel>
+			</div>
+			<div class="ui-g-9">
+				<h:inputText id="cuit" value="#{cc.attrs.value.cuit}"
+					disabled="true" />
+			</div>
+		</div>
+		<div class="ui-g">
+			<div class="ui-g-3">
+				<p:outputLabel styleClass="negrita">#{msg.egovEmail}</p:outputLabel>
+			</div>
+			<div class="ui-g-9">
+				<h:inputText id="email" value="#{cc.attrs.value.email}"
+					disabled="true" />
+			</div>
+		</div>
+		<div class="ui-g">
+			<div class="ui-g-3">
+				<p:outputLabel styleClass="negrita">#{msg.egovNumeroTelefono}</p:outputLabel>
+			</div>
+			<div class="ui-g-9">
+				<h:inputText id="numeroTelefono"
+					value="#{cc.attrs.value.telefonoContacto}" disabled="true" />
+			</div>
+		</div>
+		<div class="ui-g">
+			<div class="ui-g-3">
+				<p:outputLabel styleClass="negrita">#{msg.egovSexo}</p:outputLabel>
+			</div>
+			<div class="ui-g-9">
+				<h:inputText id="sexo" value="#{cc.attrs.value.sexo}"
+					disabled="true" />
+			</div>
+		</div>
+	</p:fieldset>
+</composite:implementation>
+
+</html>

@@ -1,0 +1,126 @@
+
+<?page title="" contentType="text/html;charset=UTF-8"?>
+<!-- <?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./tramitacionWindow" ?> -->
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+
+<zk>
+	<window id="tramitacionWindow" title="@load(tramitacionVM.task.activityName)" width="95%"
+		border="none" closable="true" position="center, top"
+		maximizable="true" 
+		apply="org.zkoss.bind.BindComposer"
+		viewModel="@id('tramitacionVM') @init('com.egoveris.te.base.vm.TramitacionVM')">
+		
+		<include src="/operaciones/tramitacion/tramitacionRetroCompatibilidad.zul" />
+		
+		<panel border="none" sclass="transparent">
+			<caption>
+				<vbox>
+					<hbox>
+						<cell width="90px">
+							<label value="${c:l('ee.tramitacion.header.label.expediente')}" />
+						</cell>
+						<cell>
+							<label value="${tramitacionVM.codigoExpediente}" style="font-weight: bold;" />
+						</cell>
+					</hbox>
+					<hbox visible="@load(tramitacionVM.expediente.propertyResultado ne null)">
+						<cell width="90px">
+							<label value="${c:l('ee.tramitacion.header.label.resultado')}" />
+						</cell>
+						<cell>
+							<label value="@load(tramitacionVM.expediente.propertyResultado.valor)" style="font-weight: bold;" />
+						</cell>
+					</hbox>
+				</vbox>
+			</caption>
+			
+			<panelchildren>
+				<separator />
+				<tabbox width="100%">
+					<tabs>
+						<!-- Tab correspondiente a ffdd segun workflow -->
+						<tab id="controlNombramiento" visible="false" />
+						<tab id="documentosTab"
+							label="${c:l('ee.tramitacion.tab.documentos.value')}" />
+						<tab id="formulariosTab"
+							label="${c:l('ee.tramitacion.tab.formularios.value')}" />
+						<tab id="documentosTrabajoTab"
+							label="${c:l('ee.tramitacion.tab.documentosdetrabajo.value')}" />
+						<tab id="asociarExpedienteTab"
+							label="${c:l('ee.tramitacion.tab.asociarexpediente.value')}" />
+						<tab id="tramitacionConjuntaTab"
+							label="${c:l('ee.tramitacion.tab.tramitacionConjunta.value')}" />
+						<tab id="fusionTab"
+							label="${c:l('ee.tramitacion.tab.fusion.value')}" />
+						<tab id="historialDePasesTab"
+							label="${c:l('ee.consultaExpedienteRenderer.tooltip.historial')}" />
+						<tab id="datosCaratulaTab"
+							label="${c:l('ee.tramitacion.tab.datosdelacaratula.value')}" />
+						
+					</tabs>
+					<tabpanels>
+						<tabpanel id="winNombramientoPanel">
+							<!-- Tab correspondiente a ffdd segun workflow -->
+							<include id="incStatesNombramiento" />
+						</tabpanel>
+						<tabpanel>
+							<include expediente="${tramitacionVM.expediente}" src="/operaciones/tramitacion/documentos/documentosTab.zul" />
+						</tabpanel>
+						<tabpanel>
+							<include expediente="${tramitacionVM.expediente}" src="/operaciones/tramitacion/formularios/formulariosTab.zul" />
+						</tabpanel>
+						<tabpanel>
+							<include src="/operaciones/tramitacion/documentosTrabajo/documentosTrabajoTab.zul" />
+						</tabpanel>
+						<tabpanel>
+							<include src="/operaciones/tramitacion/asociarExpediente/asociarExpedienteTab.zul" />
+						</tabpanel>
+						<tabpanel>
+							<include src="/operaciones/tramitacion/tramitacionConjunta/tramitacionConjuntaTab.zul" />
+						</tabpanel>
+						<tabpanel>
+							<include src="/operaciones/tramitacion/fusion/fusionTab.zul" />
+						</tabpanel>
+						<tabpanel>
+							<include expediente="${tramitacionVM.expediente}" src="/operaciones/tramitacion/historial/historialTab.zul" />
+						</tabpanel>
+						<tabpanel>
+							<include src="/operaciones/tramitacion/datosCaratula/datosCaratulaTab.zul" />
+						</tabpanel>
+					</tabpanels>
+				</tabbox>
+				
+				<separator />
+				
+				<hbox width="100%" height="44px">
+					<button height="30px" class="btn-secondary"
+						iconSclass="z-icon-external-link" label="${c:l('te.webapp.expediente.tramitacion.lbl.salirsinpase')}"
+						onClick="@command('onCancelar')"
+						disabled="@load(tramitacionVM.soloLectura)" />
+					
+					<button height="30px" class="btn-secondary"
+						iconSclass="z-icon-times-circle" label="${c:l('ee.expediente.tramitacion.lbl.cancelar')}"
+						onClick="@command('onCancelar')" />
+					
+					<button height="30px" class="btn-secondary"
+						iconSclass="z-icon-files-o" label="${c:l('te.webapp.expediente.tramitacion.lbl.realizarpase')}"
+						tooltiptext="${c:l('ee.tramitacion.button.enviar.tooltiptext')}"
+						onClick="@command('onEnviarPase')"
+						disabled="@load(tramitacionVM.soloLectura)" />
+					
+					<!--
+					<toolbarbutton autodisable="self" image="/imagenes/GestionAbiertaControlada.png" />
+					<toolbarbutton autodisable="self" image="/imagenes/reservar.png" visible="false" />
+					<toolbarbutton autodisable="self" image="/imagenes/quitar-reserva.png" visible="false" />
+					<toolbarbutton autodisable="self" image="/imagenes/GenerarCopia.png" tooltiptext="${c:l('ee.tramitacion.boton.tooltip.value')}" />
+					<toolbarbutton autodisable="self" image="/imagenes/NotificarExpedienteTAD.png" disabled="true" />
+					<toolbarbutton autodisable="self" image="/imagenes/Subsanar_pedir.png" />
+					<label id="leyendaLabel" value="${c:l('ee.subsanacion.actividades.pendientes')}" visible="false" style="color: red" />
+					<toolbarbutton autodisable="self" image="/imagenes/Rechazar.png" visible="false" />
+					<toolbarbutton id="sistemaExternobtn" image="/imagenes/nuevo.png" style="padding: 2px;" visible="false"/>
+					-->
+				</hbox>
+			</panelchildren>
+		</panel>
+	</window>
+</zk>

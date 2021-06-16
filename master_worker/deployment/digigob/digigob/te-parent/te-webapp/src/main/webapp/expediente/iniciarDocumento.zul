@@ -1,0 +1,178 @@
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./inicioDocumentoWindow" ?>
+<zk>		
+		<window id="inicioDocumentoWindow"
+		width="850px"
+		apply="com.egoveris.te.base.composer.InicioDocumentoComposer"
+		title="${c:l('ee.iniciarDocumento.titulo')}"
+		border="normal" closable="true"  sizable="false"
+		maximizable="false" maximized="false"
+		position="center" contentStyle="align:left;">
+
+				<!--ELECCION DEL TIPO DE DOCUMENTO-->
+
+		<groupbox height="125px" closable="false">
+			<caption label="${c:l('ee.iniciarDocumento.documento')}" />
+			<hbox>
+				<!-- .............................recuadro.............................. -->
+				<groupbox height="80px" closable="false"
+					style="border:0; magin-top:5px">
+					<hbox align="center">
+						<!-- .............................Primer columna.........................-->
+						<label
+							value="${c:l('gedo.iniciarDocumento.tipoDeDocumento')}" />
+						<!-- .........................Segunda columna ..........................  -->
+						<bandbox id="familiaEstructuraTree" width="70%"
+							height="auto">
+							<bandpopup id="Familia" width="600px"
+								height="auto"
+								apply="com.egoveris.te.base.composer.InicioDocumentoFamiliaTipoDocumentoBandBoxComposer">
+								<groupbox mold="3d" height="auto" closable="false"
+									width="auto">
+									<caption >
+										<hbox>
+											<label
+												value="${c:l('ee.busquedaTipoDocumento')}" />
+										</hbox>
+									</caption>
+									<separator></separator>
+									<vbox>
+										<hbox align="bottom">
+											<label value="${c:l('te.webapp.expediente.macros.documentofiltro.lbl.buscar')}" />
+											<separator width="2px" />
+											<textbox
+												id="textoTipoDocumento" />
+											<separator width="100px" />
+										</hbox>
+										<separator width="25px" />
+										<tree id="familiaTipoTree"
+											width="600px" height="auto">
+											<treecols>
+												<treecol width="30%"	label="${c:l('ee.nuevoDocumento.nombre')}" />
+												<treecol width="20%"	label="${c:l('ee.nuevoDocumento.acronimo')}" />
+												<treecol width="25%"	label="${c:l('ee.nuevoDocumento.descripcion')}" />
+  												<treecol width="25%"    label="${c:l('ee.iniciarDocumento.caracteristicas')}" />  											
+											</treecols>
+										</tree>
+									</vbox>
+								</groupbox>
+							</bandpopup>
+						</bandbox>
+
+					</hbox>
+					<separator spacing="20px" />
+
+					<!--.........................cierra recuadro......................... -->
+				</groupbox>
+				<!--.........................Tercer columna.......................... -->
+				<vlayout>
+					<groupbox height="80px" width="400px"
+						closable="false">
+						<caption>
+							<label
+								value="${c:l('ee.iniciarDocumento.label.descripTipoDoc')}" />
+
+						</caption>
+						<div style="overflow:auto" height="75px"
+							width="400px">
+							<label multiline="true"
+								value="@{inicioDocumentoWindow$InicioDocumentoComposer.labelDetalle"
+								id="labelDetalle"/>
+								<separator/>
+								<image id="imagenDocumentoTemplate"/>
+								<image id="imagenDocumentoEspecial"/>
+								<image id="imagenDocumentoFirmaExterna"/>
+								<image id="imagenDocumentoReservado"/>
+								<image id="imagenDocumentoFirmaConToken"/>
+								<image id="imagenDocumentoFirmaConjunta"/>
+						</div>
+					</groupbox>
+				</vlayout>
+				<!--...............................Terminan las columnas............................. -->
+			</hbox>
+
+		</groupbox>
+		<separator height="30px"></separator>
+		
+		<!--ASIGNACION DEL USUARIO QUE CONFECCIONA EL DOCUMENTO-->
+
+		<groupbox closable="false">
+			<caption
+				label="${c:l('ee.iniciarDocumento.label.tareaDeProduccion')}" />
+				
+			<grid>
+				<rows>
+					<row>
+							<label value="${c:l('ee.iniciarDocumento.usuarioProductor')}" />	
+							<combobox width="100%" id="usuarioProductor" buttonVisible="false" autodrop="true" />
+					</row>
+					<row>
+						<label
+							value="${c:l('ee.iniciarDocumento.mensajeParaProductor')}" />
+						<textbox style="resize:none;" id="mensaje" maxlength="250"
+							value="@{inicioDocumentoWindow$InicioDocumentoComposer.mensaje}"
+							multiline="true" rows="3" width="98.5%" />
+					</row>
+				</rows>
+			</grid>
+		</groupbox>
+		
+		<separator height="10px"></separator>
+		
+		<!--BOTONES PARA CONTINUAR-->
+
+
+		<grid align="center" style="border:0px">
+			<rows>
+				<row align="center"
+					style="border: none; 
+					overflow: hidden; 
+					zoom: 1; 
+					 
+					border-top: none; 
+					border-left: none; 
+					border-right: none; 
+					border-bottom: none; ">
+
+					<hbox align="center">
+
+						<button autodisable="self"
+							iconSclass="z-icon-share"
+							label="${c:l('te.webapp.expediente.iniciardocumento.btn.enviaraproducir')}"
+							zclass="z-button"
+							style="cursor: hand; cursor: pointer; padding:7px 10px;"
+							forward="onClick=inicioDocument$compose.onIniciarDocumento"
+							tooltiptext="${c:l('ee.iniciarDocumento.boton.tootip.enviarAProducir')}" />
+
+						<button autodisable="self" visible="false"
+							iconSclass="z-icon-user"
+							label="${c:l('te.webapp.expediente.iniciardocumento.btn.enviaraproduciryomismo')}"
+							zclass="z-button"
+							style="cursor: hand; cursor: pointer; padding:7px 10px;"
+							forward="onClick=inicioDocument$compose.onIniciarDocumentoYoMismo"
+							tooltiptext="${c:l('ee.iniciarDocumento.boton.tootip.enviarAProducirYoMismo')}" />
+
+
+						<button autodisable="self"
+						 iconSclass="z-icon-times"
+							label="${c:l('te.webapp.expediente.iniciardocumento.btn.cancelar')}"
+							zclass="z-button"
+							style="cursor: hand; cursor: pointer; padding:7px 10px;"
+							forward="onClick=inicioDocumentoWindow.onClose"
+							tooltiptext="${c:l('ee.iniciarDocumento.boton.tootip.cancelar')}" />
+
+						<button upload="true,maxsize=-1" id="inciarDocumentoButton" visible="false" 
+							label="${c:l('te.webapp.expediente.iniciardocumento.subir')}"
+							style="cursor: hand; cursor: pointer; padding:7px 10px;" 
+							iconSclass="z-icon-upload"/>
+
+					</hbox>
+
+				</row>
+
+			</rows>
+		</grid>
+
+	</window>
+</zk>

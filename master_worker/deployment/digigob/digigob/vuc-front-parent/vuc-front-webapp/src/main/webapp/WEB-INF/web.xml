@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="3.0" xmlns="http://java.sun.com/xml/ns/javaee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
+
+	<display-name>vuc-front web application</display-name>
+
+	<welcome-file-list>
+		<welcome-file>login.jsf</welcome-file>
+	</welcome-file-list>
+
+	<!--  Keycloak y spring security -->
+	<listener>
+	     <listener-class>org.springframework.security.web.session.HttpSessionEventPublisher</listener-class>
+	</listener>
+  <listener>
+    <listener-class>
+            org.springframework.web.context.ContextLoaderListener
+        </listener-class>
+  </listener>
+  <listener>
+    <listener-class>
+            org.springframework.web.context.request.RequestContextListener
+        </listener-class>
+  </listener>
+     <filter>
+        <filter-name>springSecurityFilterChain</filter-name>
+        <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+     </filter>
+
+     <filter-mapping>
+        <filter-name>springSecurityFilterChain</filter-name>
+        <url-pattern>/*</url-pattern>
+     </filter-mapping>
+
+	<!-- Fin Keycloak y spring security -->
+	<filter>
+		<filter-name>PrimeFaces FileUpload Filter</filter-name>
+		<filter-class>org.primefaces.webapp.filter.FileUploadFilter</filter-class>
+
+	</filter>
+	<filter-mapping>
+		<filter-name>PrimeFaces FileUpload Filter</filter-name>
+		<servlet-name>Faces Servlet</servlet-name>
+		<dispatcher>FORWARD</dispatcher>
+		<dispatcher>REQUEST</dispatcher>
+	</filter-mapping>
+	<servlet>
+		<servlet-name>viewArchivo</servlet-name>
+		<servlet-class>com.egoveris.vucfront.base.util.ViewPDFServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>viewArchivo</servlet-name>
+		<url-pattern>/viewArchivo</url-pattern>
+	</servlet-mapping>
+
+	<!-- DOCUMENTOS -->
+	<servlet>
+		<servlet-name>externalDocumentoService</servlet-name>
+		<servlet-class>org.springframework.web.context.support.HttpRequestHandlerServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>externalDocumentoService</servlet-name>
+		<url-pattern>/remoting/documentos</url-pattern>
+	</servlet-mapping>
+	<!-- NOTIFICACIÓN DOCUMENTO -->
+	<servlet>
+		<servlet-name>externalNotificacionService</servlet-name>
+		<servlet-class>org.springframework.web.context.support.HttpRequestHandlerServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>externalNotificacionService</servlet-name>
+		<url-pattern>/remoting/notificar</url-pattern>
+	</servlet-mapping>
+	<!-- TAREA -->
+    <servlet>
+        <servlet-name>externalTareaService</servlet-name>
+        <servlet-class>org.springframework.web.context.support.HttpRequestHandlerServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>externalTareaService</servlet-name>
+        <url-pattern>/remoting/tarea</url-pattern>
+    </servlet-mapping>
+    
+    
+   <!-- CONSOLIDACION -->
+    <servlet>
+        <servlet-name>externalConsolidacionService</servlet-name>
+        <servlet-class>org.springframework.web.context.support.HttpRequestHandlerServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>externalConsolidacionService</servlet-name>
+        <url-pattern>/remoting/consolidacion</url-pattern>
+    </servlet-mapping>
+    
+	<!-- Tad Persona  -->
+	<servlet>
+		<servlet-name>tadPersonaServlet</servlet-name>
+		<servlet-class>com.egoveris.vucfront.base.controller.TadPersonaServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>tadPersonaServlet</servlet-name>
+		<url-pattern>/api/personas</url-pattern>
+	</servlet-mapping>	
+	<!-- Fin Tad Persona -->
+
+	<!-- Logout  -->
+	<servlet>
+		<servlet-name>logoutServlet</servlet-name>
+		<servlet-class>com.egoveris.vucfront.base.controller.LogoutServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>logoutServlet</servlet-name>
+		<url-pattern>/logout</url-pattern>
+	</servlet-mapping>	
+	<!-- Fin Logout -->
+	
+	<!-- Notificaciones -->
+	<servlet>
+		<servlet-name>tadNotificacionesServlet</servlet-name>
+		<servlet-class>com.egoveris.vucfront.ws.controller.NotificacionesServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>tadNotificacionesServlet</servlet-name>
+		<url-pattern>/api/notificaciones</url-pattern>
+	</servlet-mapping>	
+	<!-- Fin Notificaciones -->
+	
+	<!-- Documentos -->
+	<servlet>
+		<servlet-name>tadDocumentosServlet</servlet-name>
+		<servlet-class>com.egoveris.vucfront.ws.controller.DocumentosServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>tadDocumentosServlet</servlet-name>
+		<url-pattern>/api/documentos/*</url-pattern>
+	</servlet-mapping>	
+	<!-- Fin Documentos -->
+	
+	<!-- Tareas -->
+	<servlet>
+		<servlet-name>tadTareasServlet</servlet-name>
+		<servlet-class>com.egoveris.vucfront.ws.controller.TareasServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>tadTareasServlet</servlet-name>
+		<url-pattern>/api/tareas</url-pattern>
+	</servlet-mapping>	
+	<!-- Fin Tareas -->
+	
+	<!-- Tipo Documentos -->
+	<servlet>
+		<servlet-name>tipoDocumentosServlet</servlet-name>
+		<servlet-class>com.egoveris.vucfront.ws.controller.TipoDocumentosServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>tipoDocumentosServlet</servlet-name>
+		<url-pattern>/api/tipoDocumentos</url-pattern>
+	</servlet-mapping>	
+	<!-- Fin Tipo Documentos -->
+
+</web-app>

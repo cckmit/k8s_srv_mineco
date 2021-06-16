@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./consultaConsolidacionFechasWindow"  ?>
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+<?page title="Consultar consolidación por fecha"?>
+<zk>
+	<window id="consultaConsolidacionFechasWindow"
+		title="${c:l('ee.consulta.consolidacion.fechas.titulo')}" border="normal"
+		width="40%"
+		apply="com.egoveris.te.base.composer.ConsultaConsolidacionEntreFechasComposer"
+		closable="true">
+		<grid align="center" width="99%"
+			id="gridConsultaConsolidacion">
+			<rows>
+				<row >
+					<label value="${c:l('ee.consulta.consolidacion.fechas.fechaDesde')}" />
+					<datebox width="120px" id="fechaDesde" readonly="true" format="dd/MM/yyyy"/>
+				</row>
+				<row >
+					<label value="${c:l('ee.consulta.consolidacion.fechas.fechaHasta')}" />
+					<datebox width="120px" id="fechaHasta" readonly="true" format="dd/MM/yyyy" />
+				</row>
+				<row >
+					<label value="${c:l('ee.consulta.consolidacion.fechas.organismo')}" />
+					<textbox id="organismoUsuario" disabled="true" />
+				</row>
+			</rows>
+		</grid>
+		<separator></separator>
+		<separator></separator>
+		<div align="center">
+			<hbox>
+				<button autodisable="self" class="btn-info" 
+				label="${c:l('ee.consulta.consolidacion.fechas.buscar')}" 
+				id="buscar" />
+				<separator></separator>
+				<button autodisable="self" class="btn-info" 
+				label="${c:l('ee.consulta.consolidacion.fechas.cerrar')}" 
+				id="cerrar" />
+			</hbox>		
+		</div>
+		<separator></separator>
+	</window>
+</zk>

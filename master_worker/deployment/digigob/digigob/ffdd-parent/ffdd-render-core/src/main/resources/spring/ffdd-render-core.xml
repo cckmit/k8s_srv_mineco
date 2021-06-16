@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<!-- Scan for Spring beans declared via annotations -->
+	<context:component-scan base-package="com.egoveris.ffdd.render.zk" />
+
+
+	<bean name="formFactory" class="com.egoveris.ffdd.render.zk.form.GenericGridFactory">
+		<property name="componentFactoriesMap">
+			<map>
+				<entry key="TEXTBOX" value-ref="textBoxFactory" />
+				<entry key="DATEBOX" value-ref="dateFactory" />
+				<entry key="DOUBLEBOX" value-ref="doubleFactory" />
+				<entry key="INTBOX" value-ref="intFactory" />
+				<entry key="LONGBOX" value-ref="longBoxFactory" />
+				<entry key="COMBOBOX" value-ref="comboBoxFactory" />
+				<entry key="CHECKBOX" value-ref="checkBoxFactory" />
+				<entry key="FILE" value-ref="fileUploadFactory" />
+				<entry key="TIMEBOX" value-ref="timeFactory" />
+			</map>
+		</property>
+	</bean>
+
+<!-- 	<bean name="formManagerFactory" -->
+<!-- 		class="com.egoveris.ffdd.render.zk.manager.ZkFormManagerFactory"> -->
+<!-- 		<property name="formFactory" ref="formFactory" /> -->
+<!-- 		<property name="formularioService" ref="formularioService" /> -->
+<!-- 		<property name="transaccionService" ref="transaccionService" /> -->
+<!-- 		<property name="sistemaOrigen" ref="sistemaOrigen" /> -->
+<!-- 	</bean> -->
+
+
+	<!-- CONSTRAINTS -->
+	<bean id="applicationContextProviderFC" class="com.egoveris.ffdd.render.zk.constr.ApplicationContextProvider"/>
+	<bean name="cuitConstr" class="com.egoveris.ffdd.render.zk.constr.CuitConstraint"></bean>
+	<bean name="anioConstr" class="com.egoveris.ffdd.render.zk.constr.AnioConstraint"></bean>
+</beans>

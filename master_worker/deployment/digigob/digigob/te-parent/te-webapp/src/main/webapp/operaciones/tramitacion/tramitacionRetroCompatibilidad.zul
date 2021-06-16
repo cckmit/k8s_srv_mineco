@@ -1,0 +1,21 @@
+<?page title="" contentType="text/html;charset=UTF-8"?>
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+
+<zk>
+	<!-- Zul con componentes ocultos, pero con ids definidos. Se usa para retrocompatibilidad con TramitacionHelper -->
+	<tabbox visible="false">
+		<tabs>
+			<tab id="expedienteFusion" />
+			<tab id="expedienteTramitacionConjunta" />
+		</tabs>
+		
+		<tabpanels>
+			<tabpanel />
+			<tabpanel />
+		</tabpanels>
+	</tabbox>
+	
+	<hbox id="pie" visible="false">
+		<toolbarbutton id="tramitacionParalelo" />
+	</hbox>
+</zk>

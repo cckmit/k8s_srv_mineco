@@ -1,0 +1,20 @@
+<?page title="new page title" contentType="text/html;charset=UTF-8"?>
+<zk>
+	<vlayout
+		apply="com.egoveris.ffdd.render.zk.comp.cc.ResumenDeclaracionIngresoComposer">
+		<vbox>
+			<hbox>
+				<cell id="${arg.formComp.nombre}_numeroOpDiv" />
+				<cell id="${arg.formComp.nombre}_destinacionAduaneraDiv" />
+			</hbox>
+			<hbox>
+				<cell id="${arg.formComp.nombre}_tipoOperacionDiv" />
+				<cell id="${arg.formComp.nombre}_fechaCreacionDiv" />
+			</hbox>
+				<hbox>
+				<cell id="${arg.formComp.nombre}_estadoOpDiv" />
+				<cell id="${arg.formComp.nombre}_totalGiroUSDDiv" />
+			</hbox>
+		</vbox>
+	</vlayout>
+</zk>

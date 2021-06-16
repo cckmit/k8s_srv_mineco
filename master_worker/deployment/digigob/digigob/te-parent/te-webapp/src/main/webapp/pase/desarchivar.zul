@@ -1,0 +1,47 @@
+<?page title="Desarchivar" contentType="text/html;charset=UTF-8"?>
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./desarchivarWindow" ?>
+<zk>
+	<window title="${c:l('ee.desarchivar.title.desarchivar')}" border="none" width="500"
+		 id="envioEspecialWindow"
+		apply="com.egoveris.te.base.composer.DesarchivarComposer">
+		<groupbox>
+			<grid >
+				<rows width="100%">
+					<row>
+						<label value="${c:l('ee.anularmodificarsolicitud.label.motivo.value')}" />
+						<textbox id="motivoExpediente" maxlength="255"
+							constraint="no empty" cols="50" rows="5">
+						</textbox>
+					</row>
+				</rows>
+			</grid>
+			<separator />
+			<label value="${c:l('ee.historialpases.listheader.destino.value')}" style="font:bold;" />
+			<grid >
+				<rows width="100%">
+					<row>
+						<textbox id="usuario" width="200px" readonly="true">
+						</textbox>
+					</row>
+				</rows>
+			</grid>
+			<separator></separator>
+			<grid align="center"
+				style="border:0px;">
+				<rows>
+					<row >
+						<hbox>
+							<button autodisable="self" id="enviar" label="${c:l('ee.subsanacion.button.enviar')}"
+								forward="onClick=desarchivarWindow$DesarchivarComposer.onEnviar">
+							</button>
+							<button autodisable="self" id="cancelar" label="${c:l('ee.nuevasolicitud.button.cancelar.value')}"
+								forward="onClick=desarchivarWindow$DesarchivarComposer.onCancelar">
+							</button>
+						</hbox>
+					</row>
+				</rows>
+			</grid>
+		</groupbox>
+	</window>
+</zk>

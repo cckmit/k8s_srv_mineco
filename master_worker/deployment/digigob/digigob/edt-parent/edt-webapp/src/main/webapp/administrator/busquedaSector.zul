@@ -1,0 +1,132 @@
+<?page title="${c:l('digigob.Title')}" contentType="text/html;charset=UTF-8"?>
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+<?init class="org.zkoss.zk.ui.util.Composition" arg0="~./db_template.zul"?>
+<zk>
+	<window border="none" id="win_busquedaSectores"
+		apply="com.egoveris.edt.web.admin.pl.BusquedaSectorComposer"
+		width="100%" self="@{define(egovBody)}">
+
+		<div sclass="page-header">
+			<label
+				value="${c:l('eu.busquedaSector.hbox.label.admSectores')}" />
+		</div>
+
+		<borderlayout width="100%" height="600px">
+			<center border="none">
+				<grid id="gr_altaUsuario" sizedByContent="true" height="230px"
+					style="padding:0px; border:none; border-spacing:0px;">
+					<rows style="">
+						<row>
+							<cell width="100px">
+								<toolbarbutton id="tbbtn_altaSector"
+									label="${c:l('eu.adminSade.altaSector')}" style=""
+									image="/imagenes/newUser.png" />
+							</cell>
+						</row>
+						<row>
+							<cell width="100px">
+								<label
+									value="${c:l('eu.consulta.sindicatura.listhead.listheader.label.codigo')}" />
+							</cell>
+							<cell>
+								<textbox
+									id="txbx_sectorBuscadoPorCodigo" height="25px" width="200px"
+									style="" />
+							</cell>
+							<cell>
+								<button id="btn_buscarPorCodigo"
+									label="${c:l('eu.adminSade.buscarCodigo')}" width="175px"
+									height="30px" image="/imagenes/find.png"
+									hoverImage="/imagenes/find.png" style="" />
+							</cell>
+						</row>
+						<row>
+							<cell>
+								<label
+									value="${c:l('eu.adminSade.Descripcion')}" />
+							</cell>
+							<cell>
+								<textbox
+									id="txbx_sectorBuscadoPorDescripcion" height="25px"
+									width="200px" />
+							</cell>
+							<cell>
+								<button id="btn_buscarPorDescripcion"
+									label="${c:l('eu.adminSade.buscarDescripcion')}" width="175px"
+									height="30px" image="/imagenes/find.png"
+									hoverImage="/imagenes/find.png" />
+							</cell>
+						</row>
+						<row>
+							<cell>
+								<label
+									value="${c:l('eu.panelAdmin.tabAdministracionReparticion.organismo')}" />
+							</cell>
+							<cell>
+								<textbox
+									id="txbx_sectorBuscadoPorCodigoReparticion" height="25px"
+									width="200px" />
+							</cell>
+							<cell>
+								<button
+									id="btn_buscarPorCodigoReparticion"
+									label="${c:l('eu.adminSade.buscarReparticion')}" width="175px"
+									height="30px" image="/imagenes/find.png"
+									hoverImage="/imagenes/find.png" />
+							</cell>
+						</row>
+					</rows>
+				</grid>
+			</center>
+
+			<south border="none" height="70%" style="">
+				<listbox id="lstbx_sectores" fixedLayout="true" style=""
+					model="@{win_busquedaSectores$composer.listaSectores}"
+					mold="paging" pageSize="10" pagingPosition="top"
+					itemRenderer="com.egoveris.edt.web.admin.pl.renderers.ListadoSectorItemRender"
+					selectedItem="@{win_busquedaSectores$composer.sectorSeleccionado}">
+
+					<listhead sizable="false"
+						style="background: #C4ECFF;">
+						<listheader align="center"
+							label="${c:l('eu.busquedaSector.listheader.label.codigo')}"
+							style="" />
+						<listheader align="center"
+							label="${c:l('eu.busquedaSector.listheader.label.codigoInterno')}"
+							style="" width="18%" />
+						<listheader align="center"
+							label="${c:l('eu.adminSade.seleccionReparticion.descripcionReparticion')}"
+							width="30%" style="" />
+						<listheader align="center"
+							label="${c:l('eu.admActuacion.listhead.label.vigenteDesde')}"
+							style="" />
+						<listheader align="center"
+							label="${c:l('eu.admActuacion.listhead.label.vigenteHasta')}"
+							style="" />
+						<listheader align="center"
+							label="${c:l('eu.audDatosPersonales.label.sectorMesa')}"
+							style="" />
+						<listheader align="center"
+							label="${c:l('eu.adminSade.reparticion.enRed')}" style="" />
+						<listheader align="center"
+							label="${c:l('eu.configuracionNovedades.crearNovedad.estado')}"
+							width="90px" style="" />
+						<listheader align="center"
+							label="${c:l('eu.abmNovedades.listbox.acciones')}" width="90px"
+							style="" />
+					</listhead>
+					<listfoot>
+						<listfooter />
+						<listfooter />
+						<listfooter
+							label="${c:l('eu.historialCargos.listfooter.resultado')} "
+							style="color:#C4ECFF;float:right;" />
+						<listfooter
+							label="@{win_busquedaSectores$composer.resultados}"
+							style="color:#C4ECFF;" />
+					</listfoot>
+				</listbox>
+			</south>
+		</borderlayout>
+	</window>
+</zk>

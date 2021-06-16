@@ -1,0 +1,198 @@
+version: '3.1'
+networks: 
+  egoveris-network: 
+    external: 
+      name: egoveris-network
+
+volumes:
+  db-egoveris-volume:
+    external : false
+
+services:
+  db-egoveris:
+    image: mariadb:10.3
+    command: --lower_case_table_names=1
+    environment:
+      MYSQL_ROOT_PASSWORD: egoveris
+      MYSQL_DATABASE: egoveris
+      MYSQL_USER: digigob
+      MYSQL_PASSWORD: digigob      
+    ports:
+      - 3306:3306
+    networks:
+      - egoveris-network
+    volumes:
+      - db-egoveris-volume:/var/lib/mysql
+      - ./initial-db-scripts:/docker-entrypoint-initdb.d
+  numerador-egoveris:
+    image: numerador-egoveris:latest
+    environment:
+      DB_HOST: db-egoveris
+      DB_PORT: 3306
+      DB_NAME_PREFIX: QA_
+      DB_NAME_SUFIX: _TRADE
+      DB_USER: temuco
+      DB_PASS: temuco
+      NOMBRE_NODO: CJB
+      CERTIFICADOS: apache-selfsigned.crt
+    ports:
+      - 8180:8080
+    networks:
+      - egoveris-network
+    volumes:
+      - /home/javier/proyectos/egoveris/ambientes/certificados/docker:/etc/certs
+    extra_hosts:
+      - "docker-host.egoveris.com:40.87.103.121"
+      - "docker1-host.egoveris.com:40.71.27.78"
+      - "db.egoveris.com:192.168.1.61"
+      - "webdav.egoveris.com:40.71.27.78"
+    links:
+      - db-egoveris
+  edt-egoveris:
+    image: edt-egoveris:latest
+    environment:
+      DB_HOST: db-egoveris
+      DB_PORT: 3306
+      DB_NAME_PREFIX: QA_
+      DB_NAME_SUFIX: _TRADE
+      DB_USER: temuco
+      DB_PASS: temuco
+      NOMBRE_NODO: CJB
+      CERTIFICADOS: apache-selfsigned.crt
+      DEBUG_PORT: 9011
+    ports:
+      - 8181:8080
+    networks:
+      - egoveris-network
+    volumes:
+      - /home/javier/proyectos/egoveris/ambientes/certificados/docker:/etc/certs
+    extra_hosts:
+      - "docker-host.egoveris.com:40.87.103.121"
+      - "docker1-host.egoveris.com:40.71.27.78"
+      - "solr-host.egoveris.com:40.71.27.78"
+    links:
+      - db-egoveris
+  deo-egoveris:
+    image: deo-egoveris:latest
+    environment:
+      DB_HOST: db-egoveris
+      DB_PORT: 3306
+      DB_NAME_PREFIX: QA_
+      DB_NAME_SUFIX: _TRADE
+      DB_USER: temuco
+      DB_PASS: temuco
+      NOMBRE_NODO: CJB
+      CERTIFICADOS: apache-selfsigned.crt
+      DEBUG_PORT: 9011
+    ports:
+      - 8182:8080
+    networks:
+      - egoveris-network
+    volumes:
+      - /home/javier/proyectos/egoveris/ambientes/certificados/docker:/etc/certs
+    extra_hosts:
+      - "docker-host.egoveris.com:40.87.103.121"
+      - "docker1-host.egoveris.com:40.71.27.78"
+      - "db.egoveris.com:192.168.1.61"
+      - "webdav.egoveris.com:40.71.27.78"
+    links:
+      - db-egoveris
+  ffdd-egoveris:
+    image: ffdd-egoveris:latest
+    environment:
+      DB_HOST: db-egoveris
+      DB_PORT: 3306
+      DB_NAME_PREFIX: QA_
+      DB_NAME_SUFIX: _TRADE
+      DB_USER: temuco
+      DB_PASS: temuco
+      NOMBRE_NODO: CJB
+      CERTIFICADOS: apache-selfsigned.crt
+    ports:
+      - 8183:8080
+    networks:
+      - egoveris-network
+    volumes:
+      - /home/javier/proyectos/egoveris/ambientes/certificados/docker:/etc/certs
+    extra_hosts:
+      - "docker-host.egoveris.com:40.87.103.121"
+      - "docker1-host.egoveris.com:40.71.27.78"
+      - "db.egoveris.com:192.168.1.61"
+      - "webdav.egoveris.com:40.71.27.78"
+    links:
+      - db-egoveris
+  te-egoveris:
+    image: te-egoveris:latest
+    environment:
+      DB_HOST: db-egoveris
+      DB_PORT: 3306
+      DB_NAME_PREFIX: QA_
+      DB_NAME_SUFIX: _TRADE
+      DB_USER: temuco
+      DB_PASS: temuco
+      NOMBRE_NODO: CJB
+      CERTIFICADOS: apache-selfsigned.crt
+    ports:
+      - 8184:8080
+    networks:
+      - egoveris-network
+    volumes:
+      - /home/javier/proyectos/egoveris/ambientes/certificados/docker:/etc/certs
+    extra_hosts:
+      - "docker-host.egoveris.com:40.87.103.121"
+      - "docker1-host.egoveris.com:40.71.27.78"
+      - "webdav.egoveris.com:40.71.27.78"
+      - "solr-host.egoveris.com:40.71.27.78"
+    links:
+      - db-egoveris
+  tica-egoveris:
+    image: tica-egoveris:latest
+    environment:
+      DB_HOST: db-egoveris
+      DB_PORT: 3306
+      DB_NAME_PREFIX: QA_
+      DB_NAME_SUFIX: _TRADE
+      DB_USER: temuco
+      DB_PASS: temuco
+      NOMBRE_NODO: CJB
+      CERTIFICADOS: apache-selfsigned.crt
+    ports:
+      - 8185:8080
+    networks:
+      - egoveris-network
+    volumes:
+      - /home/javier/proyectos/egoveris/ambientes/certificados/docker:/etc/certs
+    extra_hosts:
+      - "docker-host.egoveris.com:40.87.103.121"
+      - "docker1-host.egoveris.com:40.71.27.78"
+      - "db.egoveris.com:192.168.1.61"
+      - "webdav.egoveris.com:40.71.27.78"
+    links:
+      - db-egoveris
+  vuc-egoveris:
+    image: vuc-egoveris:latest
+    environment:
+      DB_HOST: db-egoveris
+      DB_PORT: 3306
+      DB_NAME_PREFIX: QA_
+      DB_NAME_SUFIX: _TRADE
+      DB_USER: temuco
+      DB_PASS: temuco
+      NOMBRE_NODO: CJB
+      CERTIFICADOS: apache-selfsigned.crt
+      KEYCLOAK_REALM: everis
+      KEYCLOAK_CLIENT_ID: local
+      KEYCLOAK_URL: https://docker-host.egoveris.com/auth
+    ports:
+      - 8099:8080
+    networks:
+      - egoveris-network
+    volumes:
+      - /home/javier/proyectos/egoveris/ambientes/certificados/docker:/etc/certs
+    extra_hosts:
+      - "docker-host.egoveris.com:40.87.103.121"
+      - "docker1-host.egoveris.com:40.71.27.78"
+      - "db.egoveris.com:192.168.1.61"
+      - "webdav.egoveris.com:40.71.27.78"
+    links:
+      - db-egoveris

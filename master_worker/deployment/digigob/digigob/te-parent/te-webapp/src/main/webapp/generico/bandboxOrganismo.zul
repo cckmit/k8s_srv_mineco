@@ -1,0 +1,39 @@
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./bandboxOrganismo" ?>
+
+<zk>
+	<bandbox id="bandboxOrganismo" 
+		apply="com.egoveris.te.base.composer.BandboxOrganismoComposer">
+		<bandpopup id="sectorReparticionesComboBusquedaSADE" width="650px">
+			<groupbox mold="3d">
+				<caption>
+					<hbox>
+						<label
+							value="${c:l('te.webapp.inbox.reparticionestrata.lbl.buscaorganismo')}"
+							width="410px" />
+					</hbox>
+				</caption>
+				<separator height="2px"></separator>
+				<vbox height="100px" width="100%">
+					<paging id="pagingSectorReparticionesDocsSADE" pageSize="10" />
+					<listbox width="600px" id="listboxOrganismos"
+					    mold="paging" paginal="${pagingSectorReparticionesDocsSADE}"
+						model="@{bandboxOrganismo$composer.listaOrganismosSeleccionados}"
+						selectedItem="@{bandboxOrganismo$composer.organismoSeleccionado}" >
+						<listhead>
+							<listheader
+								label="${c:l('te.bandbox.listheader.codigo')}" width="30%" />
+							<listheader
+								label="${c:l('te.bandbox.listheader.nombre')}" height="70%" />
+						</listhead>
+						<listfoot style="">
+							<listfooter id="totalOrganismos" span="1" 
+								style="color:#C4ECFF" />
+						</listfoot>
+					</listbox>
+				</vbox>
+			</groupbox>
+		</bandpopup>
+	</bandbox>
+</zk>

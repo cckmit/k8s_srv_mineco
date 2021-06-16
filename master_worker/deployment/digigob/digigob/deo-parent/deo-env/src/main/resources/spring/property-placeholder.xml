@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:jee="http://www.springframework.org/schema/jee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans-3.0.xsd 
+		http://www.springframework.org/schema/jee 
+		http://www.springframework.org/schema/jee/spring-jee-3.0.xsd">
+
+
+
+	<!-- En este archivo se configuran las variables que luego son accedidas 
+		por los archivos de Spring con el mecanismo ${nombre_var} -->
+		
+	<bean name="PropertyPlaceholderConfigurerDB"
+	class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+	<property name="properties">
+		<bean factory-bean="dBProperty" factory-method="getProperties" />
+	</property>
+</bean>
+
+	<jee:jndi-lookup id="masterKeyEncription" jndi-name="java:comp/env/masterKey"
+		expected-type="java.lang.String" />
+
+	<bean name="dBProperty"
+		class="com.egoveris.commons.databaseconfiguration.propiedades.impl.DBAppPropertyImpl"
+		init-method="showAllProperties">
+		<constructor-arg type="javax.sql.DataSource" ref="edtDataSource" />
+		<constructor-arg type="java.lang.String" value="PROPERTY_CONFIGURATION" />
+		<constructor-arg type="java.lang.String" value="GEDO,SISTEMA" />
+		<constructor-arg ref="passwordBasedEncriptionService" />
+	</bean>
+
+	<import resource="classpath:/dbConfiguration-service-config.xml" />
+</beans>

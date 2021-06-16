@@ -1,0 +1,33 @@
+<?page title="" contentType="text/html;charset=UTF-8"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./historialEmbebidosWindow" ?>
+<zk>
+	<window id="historialEmbebidosWindow"
+		title="${c:l('gedo.historial.embebidos.titulo.ventana')}"
+		border="normal" position="center" closable="true"
+		width="700px"
+		apply="com.egoveris.deo.web.satra.produccion.HistorialEmbebidosComposer">
+		<listbox id="archivosEmbebidosLb" width="100%" mold="paging"
+			pageSize="5"
+			model="@{historialEmbebidosWindow$composer.listaTipoDocumentoEmbebidos}"
+			itemRenderer="com.egoveris.deo.web.satra.renderers.HistorialEmbebidosItemRender">
+			<listhead style="background: #C4ECFF;"
+				width="100%">
+				<listheader
+					label="${c:l('gedo.historial.embebidos.formato')}" align="center"
+					width="20%" />
+				<listheader
+					label="${c:l('gedo.historial.embebidos.descripcion')}"
+					align="center" width="30%" />
+				<listheader
+					label="${c:l('gedo.archivosEmbebidos.grid.fecha')}" align="center"
+					width="30%" />
+				<listheader
+					label="${c:l('gedo.historial.embebidos.tamanio')}" align="center"
+					width="10%" />
+				<listheader
+					label="${c:l('gedo.historial.embebidos.obligatorio')}"
+					align="center" width="10%" />
+			</listhead>
+		</listbox>
+	</window>
+</zk>

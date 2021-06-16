@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: laravel-financiero
+  namespace: mineco
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      run: laravel-financiero
+  template:
+    metadata:
+      labels:
+        run: laravel-financiero
+    spec:
+      containers:
+      - name: laravel-financiero
+        image: jjolon/financiero:latest
+        imagePullPolicy: IfNotPresent
+        ports:
+          - containerPort: 80
+            protocol: TCP
+          - containerPort: 443
+            protocol: TCP
+        volumeMounts:
+            - mountPath: "/var/www/html"
+              name: vol-financiero
+      volumes:
+        - name: vol-financiero
+          persistentVolumeClaim:
+            claimName: financiero-mineco

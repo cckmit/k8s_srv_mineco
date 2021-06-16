@@ -1,0 +1,48 @@
+<?page title="${('gedo.rechazarDocumento.titulo')}" contentType="text/html;charset=UTF-8"?>
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+<zk>
+<window title="${c:l('gedo.rechazarDocumento.titulo')}" border="normal"
+	id="rechazoDocumentoWindow"
+	apply="com.egoveris.deo.web.satra.firma.RechazoDocumentoComposer"
+	width="370px" height="99%px">
+	    <style dynamic="true"> 
+			<!-- Make Plain Grid --> 
+			.GridLayoutNoBorder tr.z-row td.z-row-inner, tr.z-row .z-cell,div.z-grid 
+			{ 
+			border: none; 
+			overflow: hidden; 
+			zoom: 1; 
+			 
+			border-top: none; 
+			border-left: none; 
+			border-right: none; 
+			border-bottom: none; 
+			} 
+		</style> 
+
+		<grid  sclass="GridLayoutNoBorder" >
+			<rows >
+				<row align="left" >	
+				     <label value="${c:l('gedo.rechazarDocumento.label.motivoRechazo')}" style="color: black"/>
+				</row>
+				<row align="center">	
+					<textbox style="resize:none;" id="motivoRechazo" rows="5" multiline="true" width="300px" 
+				      maxlength="200">
+			        </textbox>
+				
+				</row>
+				<row align="left">
+				     <checkbox  id="solicitudEnvioCorreo" label="${c:l('gedo.general.solicitudEnvioCorreo')}" />
+				</row>
+				<row>
+					<toolbar mold="panel" orient="horizontal" align="center">  
+							<button height="42px" class="btn-secondary"  iconSclass="z-icon-clipboard" id="confirmar" 
+								label = "${c:l('gedo.rechazarDocumento.label.motivoRechazo.confirmar')}" /> 
+							<button height="42px" class="btn-secondary"  iconSclass="z-icon-close" id="cancelar" 
+								label = "${c:l('gedo.perfilConversion.botonVolver')}" /> 
+					</toolbar>
+				</row>
+		 </rows>
+	</grid>
+</window>
+</zk>

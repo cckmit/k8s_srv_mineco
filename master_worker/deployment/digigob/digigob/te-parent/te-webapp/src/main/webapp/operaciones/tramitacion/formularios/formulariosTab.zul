@@ -1,0 +1,99 @@
+<?page title="" contentType="text/html;charset=UTF-8"?>
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+
+<zk>
+	<div apply="org.zkoss.bind.BindComposer" 
+		 viewModel="@id('formulariosVM') @init('com.egoveris.te.base.vm.FormulariosTabVM')">
+		 
+		 <grid>
+		 	<rows>
+		 		<row>
+		 			<cell width="135px">
+		 				<label value="${c:l('ee.formTab.cell.buscarForm')}" />
+		 			</cell>
+		 			<cell width="275px">
+		 				<bandbox id="tipoFormBandbox" width="265px" disabled="@load(tramitacionVM.soloLectura)">
+			 				<bandpopup id="tipoFormCombo" width="265px"
+			 					height="auto"
+			 					apply="com.egoveris.te.base.composer.SearchFormComposer">
+			 					<groupbox height="auto" width="255px">
+			 						<caption>
+			 							<label
+			 								value="${c:l('ee.documentoDetalle.title.arramitacion.label.busquedaDeForm')}" />
+			 						</caption>
+			 						<separator />
+			 						<vbox>
+			 							<hbox align="bottom">
+			 								<label value="${c:l('ee.formTab.label.buscar')}" />
+			 								<separator width="2px" />
+			 								<textbox id="textTypeForm" />
+			 								<separator width="100px" />
+			 							</hbox>
+			 							<tree id="formTypeTree"
+			 								width="255px" height="auto">
+			 								<treecols>
+			 									<treecol width="98%"
+			 										label="${c:l('ee.tramitacion.label.nomForm')}" />
+			 								</treecols>
+			 							</tree>
+			 						</vbox>
+			 					</groupbox>
+			 				</bandpopup>
+		 				</bandbox>
+		 			</cell>
+		 			<cell>
+		 				<button class="btn-secondary" iconSclass="z-icon-magnet" label="${c:l('ee.formTab.button.vincularForm')}" onClick="@command('onVincularFormulario')" disabled="@load(tramitacionVM.soloLectura)" />
+		 			</cell>
+		 		</row>
+		 	</rows>
+		 </grid>
+		 
+		 <separator height="15px" />
+		 
+		 <listbox mold="paging" pageSize="5" model="@load(formulariosVM.listaFormularios)">
+			<listhead>
+				<listheader label="${c:l('ee.historialpases.listheader.orden.value')}" align="center" />
+				<listheader label="${c:l('ee.tramitacion.label.nombreForm')}" align="center" />
+				<listheader label="${c:l('ee.formTab.listheader.frchaCreacion')}" align="center" />
+				<listheader label="${c:l('ee.tramitacion.listheader.usuCreador')}" align="center" />
+				<listheader label="${c:l('ee.caratulas.listheader.documento.accion.value')}" align="center" />
+			</listhead>
+			<template name="model" var="item">
+				<listitem>
+					<listcell label="${c:length(formulariosVM.listaFormularios) - itemStatus.index}" /><!-- Descendente (9, 8, 7...) -->
+					<listcell label="${item.formName}" />
+					<listcell label="@load(item.dateCration) @converter('formatedDate', format='dd/MM/yyyy HH:mm:ss')" />
+					<listcell label="${item.userCreation}" />
+					<listcell>
+						<hbox>
+							<toolbarbutton autodisable="self"
+								image="/imagenes/edit-find.png" label="${c:l('ee.inbox.listheader.visualizar.value')}"
+								onClick="@command('onVisualizarFormulario', formulario=item)" />
+							<toolbarbutton autodisable="self"
+								image="/imagenes/pencil.png" label="${c:l('ee.formTab.label.editar')}"
+								onClick="@command('onEditarFormulario', formulario=item)"
+								visible="@load(!formulariosVM.esFormularioDefinitivo(item))"
+								disabled="@load(tramitacionVM.soloLectura)" />
+							<toolbarbutton autodisable="self"
+								image="/imagenes/eliminar.png" label="${c:l('ee.tramitacion.label.eliminar.value')}"
+								onClick="@command('onEliminarFormulario', formulario=item)"
+								visible="@load(!formulariosVM.esFormularioDefinitivo(item))"
+								disabled="@load(tramitacionVM.soloLectura)" />
+							<toolbarbutton autodisable="self"
+								image="/imagenes/clone.png" label="${c:l('ee.formTab.label.clonar')}"
+								onClick="@command('onClonarFormulario', formulario=item)"
+								visible="@load(formulariosVM.esFormularioDefinitivo(item))"
+								disabled="@load(tramitacionVM.soloLectura)" />
+						</hbox>
+					</listcell>
+				</listitem>
+			</template>
+			<listfoot>
+				<listfooter span="5" align="right">
+					<label value="${c:l('te.tramitacion.listfooter.formularios.value')} " />
+					<label value="@load(formulariosVM.totalFormularios)" />
+				</listfooter>
+			</listfoot>
+		</listbox>
+	</div>
+</zk>

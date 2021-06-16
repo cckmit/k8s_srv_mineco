@@ -1,0 +1,196 @@
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+<?page title="Detalle Documento" contentType="text/html;charset=UTF-8"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./detalleTrataWindow" ?>
+<zk>
+	<window id="detalleTrataWindow" title="${c:l('ee.detalleExp.title.detalleTramite')}"
+		border="normal" width="650px" closable="true"
+		apply="com.egoveris.te.base.composer.DetalleTrataComposer">
+		<!-- use="com.egoveris.te.base.util.AskBeforeCloseWindow"> -->
+		<window id="historialView" visible="false" forward="onClose=detalleTrataWindow$composer.onVerHistorial" />
+		<zscript>
+	Execution exec = Executions.getCurrent();
+	Map map = exec.getArg();
+	com.egoveris.te.base.model.TrataDTO trata = (com.egoveris.te.base.model.TrataDTO) map.get("trata");
+</zscript>
+
+		<separator></separator>
+		<groupbox>
+			
+				<grid width="650px">
+					<columns sizable="true">
+            			<column width="250px"/>
+            			<column width="400px" />
+			        </columns>
+					<rows>
+						<row>
+							<label value="${c:l('ee.detalleTrata.label.codigo')}" width="250px"/>
+							<textbox id="codigoTrata" value="@{trata.codigoTrata}" cols="10" readonly="true" width="347px"/>
+						</row>
+						<row>
+							<label value="${c:l('ee.detalleTrata.label.desTipoTramite')}" width="250px"/>
+							<textbox id="descripcionTrata" value="@{detalleTrataWindow$composer.descripcionTrata}" cols="50" rows="6" readonly="true" width="347px" />
+						</row>
+						<row>
+							<label value="${c:l('ee.detalleTrata.label.tipoCaratulacion')}"  width="250px"/>
+							<hbox width="400px">
+								<radiogroup>
+									<radio id="interno" 		label="${c:l('te.webapp.inbox.detalletrata.lbl.interno')}" checked="false"/>
+									<radio id="externo" 		label="${c:l('te.webapp.inbox.detalletrata.lbl.externo')}" checked="false"/>
+									<radio id="ambosRadioCarat" label="${c:l('ee.detalleTrata.radio.ambos')}" checked="true"/>
+								</radiogroup>
+							</hbox>
+						</row>
+						<row>
+							<label value="${c:l('te.webapp.inbox.nuevatrata.tramitecorrespondiente')}" width="250px"/>
+							<hlayout>
+								<textbox cols="10" readonly="true" value="@{detalleTrataWindow$composer.trataSade}" width="350px" />
+							</hlayout>
+						</row>
+						<row>
+							<label value="${c:l('te.webapp.inbox.nuevatrata.tipodocumentotemplate')}"/>
+							<hbox>
+								<bandbox id="tiposDocumento" autodrop="true" width="275px">
+									<bandpopup  width="620px">
+										<groupbox mold="3d">
+											<caption>
+												<hbox>
+													<label value="${c:l('te.webapp.inbox.nuevatrata.lbl.tiposdocumento')}" width="560px" />
+													<image src="/imagenes/help.png" width="16px" 
+														   height="16px" align="right"/>
+												</hbox>
+											</caption>
+											<separator height="2px"></separator>
+											<paging	id="paginatorIncorporarSADE" pageSize="10" />
+											<listbox
+												id="documento" mold="paging"
+												paginal="${paginatorIncorporarSADE}"
+												model="@{detalleTrataWindow$composer.tiposDeDocumentoSeleccionados}"
+												selectedItem="@{detalleTrataWindow$composer.tipoDoc}"
+												itemRenderer="com.egoveris.te.base.rendered.TipoDeDocListBoxItemRenderer">
+												<listhead>
+													<listheader	label="${c:l('te.webapp.inbox.nuevatrata.lbl.tiposdocumento')}"/>
+												</listhead>
+												<listfoot >	
+													<listfooter id="Total" label="${c:l('te.webapp.inbox.nuevatrata.documento.lbl.totaldocumento')}" span="1"  />
+													<listfooter id="conteoDocumentos"
+													label="@{detalleTrataWindow$composer.tiposDeDocumentoSeleccionados.size}"
+													span="2" />
+												</listfoot>											
+											</listbox>
+										</groupbox>
+									</bandpopup>
+								</bandbox>
+							</hbox>
+						</row>	
+						<row> 
+ 							<label value="${c:l('te.webapp.inbox.nuevatrata.funcionesespeciales')}" width="250px"/>
+ 							<hbox width="400px">
+								<radiogroup>
+ 									<radio id="sinReservaDetalle" label="${c:l('te.webapp.inbox.nuevatrata.lbl.sinreserva')}" disabled="true" />
+									<radio id="reservaParcialDetalle" label="${c:l('te.webapp.inbox.nuevatrata.lbl.reservaparcial')}" disabled="true" />
+ 									<radio id="reservaTotalDetalle" label="${c:l('te.webapp.inbox.nuevatrata.lbl.reservatotal')}" disabled="true" />
+ 								</radiogroup>
+							</hbox>						
+ 						</row>
+						<row>
+							<label value="${c:l('te.webapp.inbox.nuevatrata.lbl.generacion')}"  width="250px"/>
+							<hbox width="350px">
+								<radiogroup>
+									<radio disabled="true" id="automatica" label="${c:l('te.webapp.inbox.nuevatrata.generacion.lbl.automatico')}" />
+									<radio disabled="true" id="manual" label="${c:l('te.webapp.inbox.nuevatrata.generacion.lbl.manual')}" />
+									<radio disabled="true" id="ambosRadios" label="${c:l('te.webapp.inbox.nuevatrata.generacion.lbl.ambos')}" />
+	<!-- 								checked="@{detalleTrataWindow$composer.getAutomatica}" -->
+	<!--                                     checked="@{detalleTrataWindow$composer.getManual}" -->
+	<!-- 									checked="@{detalleTrataWindow$composer.getAmbos}" -->
+								</radiogroup>
+							</hbox>
+						</row>
+						<row>
+							<label value="${c:l('te.webapp.inbox.nuevatrata.generacion.tipodetramite')}"  width="250px"/>
+							<hbox width="350px">
+								<radiogroup>
+									<radio id="tipoTrSubproceso" label="${c:l('te.webapp.inbox.nuevatrata.tipodetramite.lbl.subproceso')}" />
+									<radio id="tipoTrExpediente" label="${c:l('te.webapp.inbox.nuevatrata.tipodetramite.lbl.expediente')}" />
+									<radio id="tipoTrAmbos" label="${c:l('te.webapp.inbox.nuevatrata.tipodetramite.lbl.ambos')}" />
+								</radiogroup>
+							</hbox>
+						</row>
+						<row>
+							<label value="${c:l('te.webapp.inbox.nuevatrata.tipodetramite.lbl.asignacion')}"  width="250px"/>
+							<hbox width="350px">
+								<radiogroup>
+									<radio id="tipoBuzonGrupal" label="${c:l('ee.inbox.titulo.buzon.value')}" />
+									<radio id="tipoCarga" label="${c:l('te.webapp.inbox.nuevatrata.tipodetramite.lbl.carga')}" /> 
+								</radiogroup>
+							</hbox>
+						</row>
+						<row>
+							<cell>
+								<label value="${c:l('te.webapp.inbox.nuevatrata.tiporesultado')}" width="250px"/>
+							</cell>
+							<cell>
+								<bandbox id="bandboxTipoResultado" width="275px" readonly="true">
+									<bandpopup width="275px">
+										<listbox id="listboxTipoResultado" multiple="true" checkmark="true" width="99%" mold="paging" pageSize="10" pagingPosition="top"
+											model="@{detalleTrataWindow$composer.allResultTypes}" forward="onSelect=onSelectComboTipoResultado" visible="@{detalleTrataWindow$composer.hasResultTypes}">
+											<listhead>
+												<listheader label="${c:l('te.webapp.inbox.nuevatrata.tiporesultado.lbl.todos')}" />
+											</listhead>
+											<template name="model">
+												<listitem label="${each.valor}" selected="${each.selected}" />
+											</template>
+										</listbox>
+									</bandpopup>
+								</bandbox>
+							</cell>
+						</row>
+						<row>
+							<label value="${c:l('te.webapp.inbox.nuevatrata.workflow')}" width="250px"/>
+							<combobox id="comboWorkflows" readonly="true"
+								width="275px"
+								model="@{detalleTrataWindow$composer.workflows}"
+								value="@{detalleTrataWindow$composer.selectedWorkflow}"/>
+						</row>
+						<row>
+							<label value="${c:l('te.webapp.inbox.nuevatrata.lbl.tiempoestimadoresolucion')}" width="50px"/>
+							<intbox id="tiempoRes" value="@{trata.tiempoResolucion}" readonly="false" cols="3" width="47px"/>
+						</row>
+						<row>
+							<label value="${c:l('te.webapp.inbox.nuevatrata..lbl.tipoactuacion')}" width="50px"/>
+							<textbox id="tipoActuacion" value="@{trata.tipoActuacion}" readonly="true" cols="3" width="47px"/>
+						</row>
+						<row>
+							<label value="${c:l('te.webapp.inbox.nuevatrata.lbl.envioautomatico')}"  width="250px"/>
+							<hbox width="400px">
+									<checkbox id="envioGT" />
+							</hbox>
+						</row>			
+						<row>
+							<label value="${c:l('ee.detalleTrata.label.verHistorial')}" width="50px"/>
+							<button autodisable="self" id="verHistorial"
+							label="${c:l('ee.detalleTrata.button.verHistorial')}" disabled="false"
+							forward="onClick=detalleTrataWindow$DetalleTrataComposer.onVerHistorial" />
+						</row>
+					</rows>
+				</grid>
+			
+		</groupbox>
+		<separator></separator>
+		<grid align="center" style="border:0px">
+			<rows>
+				<row>
+					<hbox>
+						<button autodisable="self" id="guardar"
+							label="${c:l('te.webapp.inbox.detalletrata.btn.guardarcambio')}" disabled="false"
+							forward="onClick=detalleTrataWindow$DetalleTrataComposer.onGuardarTrata" />
+						<button autodisable="self" id="cancelar"
+							label="${c:l('te.webapp.inbox.detalletrata.btn.volver')}"
+							forward="onClick=onCancelar">
+						</button>
+					</hbox>
+				</row>
+			</rows>
+		</grid>
+	</window>
+</zk>

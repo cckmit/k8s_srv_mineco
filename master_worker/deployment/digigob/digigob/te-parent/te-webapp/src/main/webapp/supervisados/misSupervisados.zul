@@ -1,0 +1,42 @@
+<?page title="${c:l('digigob.Title')}" contentType="text/html;charset=UTF-8"?>
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+<?init class="org.zkoss.zk.ui.util.Composition" arg0="~./db_template.zul"?>
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./misSupervisadosWindow"?>
+<zk>
+	<window id="misSupervisadosWindow" title="" border="none"
+		
+		apply="com.egoveris.te.base.composer.SupervisadosComposer" self="@{define(egovBody)}">
+		<window id="taskView" visible="false"  />
+		
+		<div sclass="page-header">
+			<label value="${c:l('ee.misSupervisados.supervisados')}" />
+		</div>
+		
+		<window id="supervisadosView"/>
+		<paging id="supervisadosPaginator" pageSize="20" visible="true"/>
+		<listbox fixedLayout="true" id="tasksBriefingList" visible="true"
+			
+			model="@{misSupervisadosWindow$composer.tareasSupervisados}" checkmark="true"
+			selectedItem="@{misSupervisadosWindow$composer.selectedSupervisado}"
+			maxlength="20" mold="paging" paginal="${supervisadosPaginator}">
+			<listhead sizable="false" >
+				<listheader align="center" width="40px"
+					image="/imagenes/mail.png"/>
+				<listheader label="${c:l('ee.misSupervisados.nombre')}"  sort="auto" />
+				<listheader label="${c:l('ee.misSupervisados.tareas')}"  sort="auto(tareasPendientes)" />
+				<listheader label="${c:l('ee.inbox.accionARealizar')}"
+					 />
+			</listhead>
+			<listitem self="@{each=tareasUsuario}">
+				<listcell/>
+				<listcell label="@{tareasUsuario.datosUsuario.nombreYApellido}" />
+				<listcell label="@{tareasUsuario.tareasPendientes}" />
+				<listcell>
+					<label value="${c:l('ee.misSupervisados.ver')}" id="verTareas" visible="@{tareasUsuario.tareasPendientes.size>0}"/>
+				</listcell>
+			</listitem>
+		</listbox>
+		<label id="labelPersonalACargo" value="${c:l('ee.misSupervisados.personal')}" visible="false"></label>
+	</window>
+</zk>

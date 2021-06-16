@@ -1,0 +1,90 @@
+<?page title="${c:l('digigob.Title')}" contentType="text/html;charset=UTF-8"?>
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+<?init class="org.zkoss.zk.ui.util.Composition" arg0="~./db_template.zul"?>
+<zk>
+	<window id="misOperaciones" apply="org.zkoss.bind.BindComposer"
+		viewModel="@id('ioVM') @init('com.egoveris.te.base.vm.OperacionesVM')"
+		self="@{define(egovBody)}">
+		<div id="divMain">
+			<div sclass="page-header">
+				<label id="ee.inbox.titulo" value="${c:l('ee.misOperaciones.operaciones')}" />
+			</div>
+			<separator height="10px" />
+			<hbox>
+				<button class="btn-info"
+					label="${c:l('ee.misOperaciones.button.iniciarOpe')}"
+					onClick="@command('openPopup')" />
+				<!-- <button class="btn-info" label="${c:l('ee.misOperaciones.button.cargarOpe')}" /> -->
+			</hbox>
+			<separator height="10px" />
+
+			<listbox id="opListBox" model="@load(ioVM.operaciones)"
+				width="100%" mold="paging" pageSize="10">
+
+				<listhead>
+					<listheader
+						label="${c:l('ee.agregarReparticiones.listhead.listheader.label.codigo')}"
+						sort="auto(numOficial)" />
+					<listheader
+						label="${c:l('ee.trata.auditoria.label.tipoTipoOperacion')}"
+						sort="auto(tipoOperacionOb.nombre)" />
+					<listheader
+						label="${c:l('ee.inbox.listheader.estado.value')}"
+						sort="auto(estadoOperacion)" />
+					<listheader
+						label="${c:l('ee.misOperaciones.listheader.fechaInicio')}"
+						sort="auto(fechaInicio)" />
+					<listheader
+						label="${c:l('ee.misOperaciones.listheader.opciones')}" />
+				</listhead>
+
+				<template name="model" var="item">
+					<listitem>
+						<listcell>
+							<label value="${item.numOficial}" />
+						</listcell>
+						<listcell>
+							<label
+								value="${item.tipoOperacionOb.nombre}" />
+						</listcell>
+						<listcell>
+							<label value="${item.estadoOperacion}" />
+						</listcell>
+						<listcell>
+							<label
+								value="@load(item.fechaInicio) @converter('formatedDate', format='dd/MM/yyyy')" />
+						</listcell>
+						<listcell>
+							<button class="btn-info" label="${c:l('ee.misOperaciones.label.opListBox.ejecutar')}"
+								onClick="@command('onEjecutarOp', operacion=item)" />
+						</listcell>
+					</listitem>
+				</template>
+			</listbox>
+		</div>
+		<popup id="popupIniciarOp">
+			<hbox>
+				<label
+					value="${c:l('ee.misOperaciones.label.seleccioneTipoOperacion')}"
+					style="padding-left: 10px;" />
+				<combobox width="200px"
+					model="@load(ioVM.listTipoOperacion)"
+					selectedItem="@bind(ioVM.tipoOperacion)" readonly="true">
+					<template name="model">
+						<comboitem label="@load(each.nombre)" />
+					</template>
+				</combobox>
+			</hbox>
+			<separator height="30px" />
+			<hbox align="center">
+				<button
+					label="${c:l('ee.documentViewer.button.aceptar')}"
+					style="padding-left: 10px;" class="btn-info"
+					onClick="@command('aceptar')" />
+				<button
+					label="${c:l('ee.documentViewer.button.cancelar')}"
+					class="btn-info" onClick="@command('cancelar')" />
+			</hbox>
+		</popup>
+	</window>
+</zk>

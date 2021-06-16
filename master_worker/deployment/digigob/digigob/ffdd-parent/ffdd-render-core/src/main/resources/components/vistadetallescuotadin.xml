@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<complexComponent type="TRADE" name="Lote" description="Vista detalles cuota"
+	zul="vistadetallescuotadin.zul" mappingDTO="com.egoveris.ccomplejos.base.model.VistaDetallesCuotaDinDTO">
+
+	<field name="codigoMontoCuota" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" disabled="true" />
+	<field name="fechaVencimientoCuota" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.DateboxExt" disabled="true" />
+	<field name="montoCuota" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" disabled="true" />
+
+
+</complexComponent>

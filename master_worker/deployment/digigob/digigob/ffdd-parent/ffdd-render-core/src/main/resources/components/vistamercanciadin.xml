@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<complexComponent type="TRADE" name="vistaMercanciaDin"
+	description="vistaMercanciaDin" zul="vistaMercanciaDin.zul"
+	mappingDTO="com.egoveris.ccomplejos.base.model.VistaMercanciaDinDTO">
+
+	
+	<field name="totalBultos" width="90%" height="20px" class="com.egoveris.ffdd.render.zk.comp.ext.IntboxExt" disabled="true"/>
+	<field name="identificacionDeBultos" width="90%" height="20px" class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt"  disabled="true"/>
+	<field name="totalPesoBruto" width="90%" height="20px" class="com.egoveris.ffdd.render.zk.comp.ext.DecimalboxExt"  disabled="true"/>
+	<field name="numeroTotalDeItems" width="90%" height="20px" class="com.egoveris.ffdd.render.zk.comp.ext.IntboxExt"  disabled="true"/>
+	<field name="item" width="90%" height="20px" class="com.egoveris.ffdd.render.zk.comp.ext.SeparatorComplex"  disabled="true" xmlFile="vistaitemsdocingresoenvio.xml"/>
+		 
+</complexComponent>

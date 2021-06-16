@@ -1,0 +1,17 @@
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+<?page title="" contentType="text/html;charset=UTF-8"?>
+<zk>
+	<window width="990px" height="700px" id="producirDocumento" border="default"
+		title="" position="center" closable="true" onClose="@command('cerrarYActualizarExpediente')"
+		apply="org.zkoss.bind.BindComposer"
+		viewModel="@id('ioVM') @init('com.egoveris.te.base.composer.ProducirDocumentoVM')">
+		<iframe id="ifrProducirDocumento" width="100%" height="100%" scrolling="false" />
+		<script
+			src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js" />
+		<script type="text/javascript">
+			function closeIframe(){ zAu.send(new
+			zk.Event(zk.Widget.$("producirDocumento"), 'onClose',
+			null)); }
+		</script>
+	</window>
+</zk>

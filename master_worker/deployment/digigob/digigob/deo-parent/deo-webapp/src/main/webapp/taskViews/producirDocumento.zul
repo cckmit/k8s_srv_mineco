@@ -1,0 +1,15 @@
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+<?page title="${c:l('gedo.producirDocumento.windows.title')}" contentType="text/html;charset=UTF-8"?>
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./producirWindow" ?>
+<zk>
+	<window width="990px" id="producirWindow" mode="embedded"
+		border="normal" closable="true"
+		title="${c:l('gedo.producirDocumento.windows.title')}"
+		position="center" 
+		use="com.egoveris.deo.web.satra.AskBeforeCloseWindow"
+		apply="com.egoveris.deo.web.satra.produccion.ConfeccionDocumentoComposer"
+		sizable="false">
+		<include src="/taskViews/redactarDocumento.zul" id="redactarDocumento"/>
+	</window>
+</zk>

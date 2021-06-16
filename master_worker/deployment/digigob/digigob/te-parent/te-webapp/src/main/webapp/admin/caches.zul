@@ -1,0 +1,62 @@
+<?page title="Caches" contentType="text/html;charset=UTF-8"?>
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./cachesWindow"?>
+<zk>
+	<window title="" border="normal" id="cachesWindow" 
+		apply="com.egoveris.te.base.composer.CachesComposer">
+
+		<grid>
+			<auxhead>
+				<auxheader colspan="4" label="Caches de Expediente" />
+			</auxhead>
+
+			<columns>
+				<column hflex="5">Nombre</column>
+				<column hflex="5">Id Bean</column>
+				<column hflex="2">Cant. Registros</column>
+				<column hflex="3">Acciones</column>
+			</columns>
+			<rows>
+				<row>
+					<label value="Propiedades" />
+					<label value="dBProperty" />
+					<label id="sizeDBProperty" />
+					<div></div>
+				</row>
+				<row>
+					<label value="Formulario" />
+					<label value="formularioService" />
+					<label id="sizeFormulario" />
+					<div>
+						<button autodisable="self" id="reinicioFormulario" label="Reinicio" />
+					</div>
+				</row>
+				<row>
+					<label value="Tipos de documento" />
+					<label value="tipoDocumentoService" />
+					<label id="sizeTipoDoc" />
+					<div>
+						<button autodisable="self" id="reinicioTipoDoc" label="Reinicio" />
+					</div>
+				</row>
+				<row>
+					<label value="Usuarios SADE" />
+					<label value="usuariosSADEService" />
+					<label id="sizeUsuarios" />
+					<div>
+						<button autodisable="self" id="reinicioUsuarios" label="Reinicio" />
+					</div>
+				</row>
+				<row>
+					<label value="Tratas" />
+					<label value="trataService" />
+					<label id="sizeTratas" />
+					<div>
+						<button autodisable="self" id="reinicioTratas" label="Reinicio" />
+					</div>
+				</row>
+			</rows>
+		</grid>
+	</window>
+</zk>

@@ -1,0 +1,42 @@
+<?page title="" contentType="text/html;charset=UTF-8"?>
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./historialDePasesWindow"?>
+<zk>
+	<window title="" id="historialDePasesWindow"
+		
+		apply="com.egoveris.te.base.composer.GenericHistorialDePasesComposer">
+		<window id="datosUsuarioView" visible="false" />
+		<hbox>
+			<paging id="historialDePasesPaginator" pageSize="10" />
+			<label id="labelPagina"
+				value="${c:l('ee.tramitacion.paginado.masDeUnaPagina.value')}"
+				visible="false" style="color:red; font-style: italic;">
+			</label>
+		</hbox>
+		<listbox id="consultaPasesList" maxlength="20" width="99%"
+			mold="paging" pagingPosition="top"
+			model="@{historialDePasesWindow$composer.pases}"
+			selectedItem="@{historialDePasesWindow$composer.selectedPase}"
+			itemRenderer="com.egoveris.te.base.rendered.GenericListaPasesItemRenderer"
+			paginal="${historialDePasesPaginator}">
+
+			<listhead>
+				<listheader align="center" hflex="min"
+					label="${c:l('ee.historialpases.listheader.orden.value')}" />
+				<listheader align="center"
+					label="${c:l('ee.historialpases.listheader.fecha.value')}" />
+				<listheader align="center"
+					label="${c:l('ee.historialpases.listheader.emisor.value')}" />
+				<listheader align="center"
+					label="${c:l('ee.historialpases.listheader.destino.value')}" />
+				<listheader align="center"
+					label="${c:l('ee.historialpases.listheader.estado.value')}" />
+				<listheader align="center"
+					label="${c:l('ee.historialpases.listheader.resultado.value')}" />
+				<listheader
+					label="${c:l('ee.historialpases.listheader.motivo.value')}" />
+			</listhead>
+		</listbox>
+	</window>
+</zk>

@@ -1,0 +1,131 @@
+<zk>
+	<?page title="${c:l('gedo.agregarReparticiones.windows.title')}" contentType="text/html;charset=UTF-8"?>
+	<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+	<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+	<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./agregarReparticionesWindow" ?>
+	<window width="510px" id="agregarReparticionesWindow"
+		border="normal" closable="true"
+		title="${c:l('gedo.agregarReparticiones.windows.title')}"
+		apply="com.egoveris.deo.web.satra.produccion.AgregarReparticionesComposer"
+		position="center">
+		<custom-attributes org.zkoss.zul.listbox.rod="true" />
+		<custom-attributes org.zkoss.zul.listbox.initRodSize="200" />
+		<grid>
+			<rows>
+				<row style="" spans="100%"
+					align="center">
+					<listbox fixedLayout="true"
+						id="reparticionesAgregadosListBox"
+						selectedItem="@{agregarReparticionesWindow$composer.reparticionSeleccionada}"
+						model="@{agregarReparticionesWindow$composer.reparticionesHabilitadas}"
+						 width="98%"
+						rows="10">
+						<listhead>
+							<listheader
+								label="${c:l('gedo.consultaDocumentos.resultadosReparticion')}"
+								width="120px" align="left">
+							</listheader>
+							<listheader
+								label="${c:l('gedo.reparticionesHabilitadas.permisoIniciar')}"
+								width="80px" align="center">
+							</listheader>
+							<listheader
+								label="${c:l('gedo.reparticionesHabilitadas.permisoFirmar')}"
+								width="80px" align="center">
+							</listheader>
+							<listheader
+								label="${c:l('gedo.reparticionesHabilitadas.ultimoNumero')}"
+								width="110px" align="center">
+							</listheader>
+							<listheader
+								label="${c:l('gedo.reparticionesHabilitadas.anio')}"
+								width="80px" align="center">
+							</listheader>
+							<!-- <listheader
+								label="${c:l('gedo.reparticionesHabilitadas.habilitar')}" width="90px"
+								align="center">
+								</listheader> -->
+						</listhead>
+					</listbox>
+				</row>
+				<row spans="65%, 35%" align="center">
+					<bandbox id="reparticionImportarDocumentoSADE" width="200px" height="auto" >
+						<bandpopup id="reparticionesComboImportarDocumentosSADE" width="610px" height="auto"
+							apply="com.egoveris.deo.web.satra.ReparticionesSADEBandboxTreeComposer" >
+							<groupbox mold="3d" height="auto" width="auto">
+								<caption>
+									<hbox>
+										<label value="${c:l('gedo.agregarReparticiones.caption.hbox.label.busquedaDeReparticion')}" />
+										<image src="/imagenes/help.png" width="16px" height="16px"
+											tooltip="helpBusquedaReparticion" align="right" />
+									</hbox>
+								</caption>
+								<separator></separator>
+								<vbox>
+									<hbox align="bottom">
+										<label value="${c:l('gedo.agregarReparticiones.vbox.hbox.label')}" />
+										<separator width="2px" />
+										<textbox id="textoReparticionImportarDocumentoSADE" />
+										<separator width="100px" />
+										<radiogroup id="busquedaRadioGroup" orient="vertical" >
+											<radio id="busquedaPorNombreRadioButton" checked="true"
+												label="${c:l('gedo.agregarReparticiones.rows.row.label.busquedaPorNombre')}" />
+											<radio id="busquedaPorEstructuraRadioButton" checked="false"
+												label="${c:l('gedo.agregarReparticiones.rows.row.label.busquedaPorEstructura')}" />
+										</radiogroup>
+									</hbox>
+									<paging id="paginatorIncorporarSADE" pageSize="10" visible="true"/>
+									<listbox
+										id="reparticionesImportarDocumentoSADEListbox" mold="paging"
+										paginal="${paginatorIncorporarSADE}"
+										model="@{listaReparticionSADESeleccionada}"
+										selectedItem="@{reparticionSeleccionada}" width="590px" visible="true">
+										<listhead>
+											<listheader width="85%"
+												label="${c:l('gedo.agregarReparticiones.listhead.listheader.label.descripcion')}" />
+											<listheader width="15%"
+												label="${c:l('gedo.agregarReparticiones.listhead.listheader.label.codigo')}" />
+										</listhead>
+										<listitem self="@{each=reparticion}">
+											<listcell label="@{reparticion.nombre}" />
+											<listcell label="@{reparticion.codigo}" />
+										</listitem>
+									</listbox>
+
+									<tree id="reparticionesImportarDocumentoSADEPorEstructuraTree" width="590px" visible="false" height="auto">
+										<treecols>
+											<treecol width="85%"
+												label="${c:l('gedo.agregarReparticiones.listhead.listheader.label.descripcion')}" />
+											<treecol width="15%"
+												label="${c:l('gedo.agregarReparticiones.listhead.listheader.label.codigo')}" />
+										</treecols>
+									</tree>
+
+								</vbox>
+							</groupbox>
+						</bandpopup>
+					</bandbox>
+					<button id="agregarReparticionSade"
+						label="${c:l('gedo.nuevoDocumento.botonAgregar')}" 
+						forward="onClick=agregarReparticionesWindow$composer.onAgregarReparticionSade" />
+				</row>
+			</rows>
+		</grid>
+		<separator></separator>
+		<grid align="center" style="border:0px">
+			<rows>
+				<row>
+					<toolbar mold="panel" orient="horizontal"
+						width="100%" align="center">
+						<button id="guardar" class="btn-secondary"
+								iconSclass="z-icon-save" label="${c:l('gedo.detalleDocumentos.botonGuardar')}" height="42px"
+								left="10px" forward="onClick=onGuardarTipoDocumento" />
+						<button id="cancelar" class="btn-secondary"
+								iconSclass="z-icon-times-circle" label="${c:l('gedo.firmaConjunta.botonCancelar')}" height="42px" left="10px"
+						forward="onClick=onCancelar" />
+					</toolbar>
+				</row>
+			</rows>
+		</grid>
+	</window>
+</zk>

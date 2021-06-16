@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
+    http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+
+	<changeSet author="Carlos Marin" id="INSERTA_PERMISO_CONSOLIDACION">  
+	    <comment>insert queries</comment>
+	    <sql dbms="h2, mysql" 
+	                splitStatements="true"
+	                stripComments="true">         
+			INSERT INTO adminsade_permisos (ID, PERMISO, ROL, DESCRIPCION, SISTEMA)
+			select (max(id) + 1), 'ou=te.consulta.consolidacion,ou=grupos,dc=egoveris,dc=com',
+			NULL, 'Consulta consolidación', 'TE' from adminsade_permisos;
+
+	    </sql>    
+	</changeSet>
+
+	<changeSet author="Carlos Marin" id="INSERTA_GRUPO_PERMISO_CONSOLIDACION">  
+	    <comment>insert queries</comment>
+	    <sql dbms="h2, mysql" 
+	                splitStatements="true"
+	                stripComments="true">         
+
+			INSERT INTO eu_grupo_permisos (ID, FK_ADMINSADE_PERMISOS , GRUPO_USUARIO)
+			select (max(id) + 1), 
+			(select per.id from adminsade_permisos per where per.PERMISO = 'ou=te.consulta.consolidacion,ou=grupos,dc=egoveris,dc=com'),
+			 'AC' from eu_grupo_permisos;
+
+	    </sql>    
+	</changeSet>
+
+	
+
+    
+</databaseChangeLog>

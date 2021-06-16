@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<complexComponent type="MACCS" name="HS Code"
+	description="HS Code Information" zul="hscode.zul"
+	composer="com.everis.tramelec.dynform.comp.ext.HSCodeComposer"
+	mappingDTO="com.egoveris.ccomplejos.base.model.HSCodeDTO">
+
+	<field name="subheading2" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.LongboxExt" />
+	<field name="description" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" />
+	<field name="descriptionOther" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" />
+	<field name="createdBy" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" />
+	<field name="modifiedBy" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" />
+	<field name="modifiedDate" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.DateboxExt" />
+	<field name="controlledIndicator" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" />
+	<field name="hsCodeId" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.LongboxExt" />
+	<field name="hsCode" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" />
+	<field name="dutiable" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" />
+	<field name="uomCode" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" />
+	<field name="subheadingId" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.LongboxExt" />
+	<field name="chapterDto" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.SeparatorComplex" xmlFile="chapter.xml" />
+	<field name="headingDto" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.SeparatorComplex" xmlFile="heading.xml" />
+	<field name="subHeadingDto" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.SeparatorComplex" xmlFile="subheading.xml" />
+	<field name="year" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.IntboxExt" />
+	<field name="effectiveDate" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.DateboxExt" />
+	<field name="createdDate" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.DateboxExt" />
+	<field name="status" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" />
+
+</complexComponent>

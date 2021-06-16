@@ -1,0 +1,70 @@
+
+<?page title="subir documento importado" id="subirDocumentoImportado" contentType="text/html;charset=UTF-8"?>
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./subirDocumentoWindow" ?>
+<zk>
+	<window title="${c:l('ee.tramitacion.tab.lbl.importarDoc')}" border="normal" 
+	width="300px" closable="true"  id="subirDocumentoWindow"
+	apply="com.egoveris.te.base.composer.SubirDocumentoImportadoComposer">
+
+		<vbox>
+			<separator height="20px" />
+			<hbox>
+				<label value="${c:l('ee.expediente.subsanaciondocumentos.lbl.tipodocumento')}" />
+
+				<bandbox id="familiaEstructuraTree" width="70%"
+					height="auto">
+					<bandpopup id="familia" width="600px" height="auto"
+						apply="com.egoveris.te.base.composer.InicioDocumentoFamiliaTipoDocumentoBandBoxComposer">
+						<groupbox mold="3d" height="auto"
+							closable="false" width="auto">
+							<caption>
+								<hbox>
+									<label
+										value="${c:l('ee.busquedaTipoDocumento')}" />
+								</hbox>
+							</caption>
+							<separator></separator>
+							<vbox>
+								<hbox align="bottom">
+									<label value="${c:l('ee.consultaGeneradosReparticion.button.buscar')}" />
+									<separator width="2px" />
+									<textbox id="textoTipoDocumento" />
+									<separator width="100px" />
+								</hbox>
+								<separator width="25px" />
+								<tree id="familiaTipoTree" width="600px"
+									height="auto">
+									<treecols>
+										<treecol width="30%"
+											label="${c:l('ee.nuevoDocumento.nombre')}" />
+										<treecol width="20%"
+											label="${c:l('ee.nuevoDocumento.acronimo')}" />
+										<treecol width="25%"
+											label="${c:l('ee.nuevoDocumento.descripcion')}" />
+										<treecol width="25%"
+											label="${c:l('ee.iniciarDocumento.caracteristicas')}" />
+									</treecols>
+								</tree>
+							</vbox>
+						</groupbox>
+					</bandpopup>
+				</bandbox>
+			</hbox>
+			<separator height="20px" />
+			<div align="center">
+			<button autodisable="self" upload="true,maxsize=-1"
+				id="inciarDocumentoButtond" visible="true"
+				label="${c:l('ee.subirDocumento')}" left="10px"
+				style="padding-top:13px 10px;"
+				iconSclass="z-icon-file-o" zclass="z-button" width=""
+				height="42px" tabindex="11" />
+			<separator height="20px" />
+			<label left="10px" value="${c:l('ee.subirDocumento.formatoPDF')}" />
+			
+			</div>
+			
+		</vbox>
+	</window>
+</zk>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<complexComponent 
+		type="TRADE" name="audit" description="Audit Information"
+		zul="audit.zul" composer="com.egoveris.ffdd.render.zk.comp.ext.AuditComposer"
+		mappingDTO="com.egoveris.ccomplejos.base.model.AuditDTO">
+		
+		<field name="updatedBy" class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" height="20px" width="90%"
+			tooltip="actualizado por" />	
+		<field name="updatedDate" class="com.egoveris.ffdd.render.zk.comp.ext.DateboxExt" height="20px"  width="90%"
+			tooltip="fecha actualizacion" />
+		<field name="createdBy" class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" height="20px" width="90%"
+			tooltip="creado por" />	
+		<field name="createdDate" class="com.egoveris.ffdd.render.zk.comp.ext.DateboxExt" height="20px"  width="90%"
+			tooltip="fecha creacion" />
+</complexComponent>

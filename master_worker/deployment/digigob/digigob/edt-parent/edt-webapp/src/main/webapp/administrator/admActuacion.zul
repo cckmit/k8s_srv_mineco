@@ -1,0 +1,99 @@
+<?page title="${c:l('digigob.Title')}" contentType="text/html;charset=UTF-8"?>
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+<?init class="org.zkoss.zk.ui.util.Composition" arg0="~./db_template.zul"?>
+<!--
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./win_busquedaActuacion" ?>
+-->
+<zk>
+	<window border="none" id="win_busquedaActuacion"
+		apply="com.egoveris.edt.web.admin.pl.GestionActuacionComposer"
+		width="100%" self="@{define(egovBody)}">
+		
+		<!--
+		<hbox style="" align="center">
+			<image src="/imagenes/egovIconOrange.png" width="40px"
+				height="30px" style="padding-left: 10px;" />
+
+			<label value="${c:l('eu.admActuacion.hbox.label.admActuaciones')}"
+				style="font: bold;" />
+		</hbox>
+		<separator bar="true" style="" />
+		<separator />
+		-->
+		
+		<div sclass="page-header">
+			<label value="${c:l('eu.admActuacion.hbox.label.admActuaciones')}" />
+		</div>
+		
+		<panel style="" border="none">
+			<panelchildren style="">
+				<toolbarbutton id="tbbtn_altaActuacion"
+					label="${c:l('eu.adminSade.altaActuacion')}"
+					style="" image="/imagenes/newUser.png" />
+			</panelchildren>
+		</panel>
+		
+		<separator bar="true" style="" />
+		
+		<borderlayout width="100%" height="600px">
+			<center border="none">
+				<borderlayout width="100%" height="20%">
+					<west width="100%" border="none"
+						style="">
+						<vbox width="50%" align="center">
+							<separator height="20px" />
+							<hbox width="100%" align="center">
+								<label 
+									value="${c:l('eu.adminSade.actuacion')}" />
+								<textbox id="txbx_actuacionBuscada"
+									width="300px" height="25px" />
+								<button id="btn_buscar"
+									label="${c:l('eu.adminSade.buscar')}" width="120px"
+									height="30px" image="/imagenes/find.png"
+									hoverImage="/imagenes/find.png" />
+							</hbox>
+						</vbox>
+					</west>
+				</borderlayout>
+			</center>
+
+			<south border="none" height="80%"
+				style="">
+				<listbox id="lstbx_actuacion" fixedLayout="true"
+					style=""
+					model="@{win_busquedaActuacion$composer.listaResultadoActuaciones}"
+					mold="paging" pageSize="10" pagingPosition="top"
+					itemRenderer="com.egoveris.edt.web.admin.pl.renderers.ListadoActuacionItemRender"
+					selectedItem="@{win_busquedaActuacion$composer.selectedActuacion}">
+
+					<listhead sizable="false"
+						style="background: #C4ECFF;">
+						
+						<listheader align="center" label="${c:l('eu.admActuacion.listhead.label.codActuacion')}" 
+							style="" />
+						<listheader align="center" label="${c:l('eu.consulta.sindicatura.listhead.listheader.label.nombre')}"
+							style="" />					
+						<listheader align="center" label="${c:l('eu.admActuacion.listhead.label.vigenteDesde')}"
+							style="" />
+						<listheader align="center" label="${c:l('eu.admActuacion.listhead.label.vigenteHasta')}"
+							style="" />
+						<listheader align="center" label="${c:l('eu.admActuacion.listhead.label.usuarioCreador')}"
+							style="" />
+						<listheader align="center" label="${c:l('eu.admCargos.hbox.label.acciones')}"
+							style="" />
+					</listhead>
+					<listfoot>
+						<listfooter />
+						<listfooter />
+						<listfooter label="${c:l('eu.historialCargos.listfooter.resultado') } "
+							style="color:#C4ECFF;float:right;" />
+						<listfooter
+							label="@{win_busquedaActuacion$composer.resultados}"
+							style="color:#C4ECFF;" />
+					</listfoot>
+				</listbox>
+			</south>
+		</borderlayout>
+	</window>
+</zk>

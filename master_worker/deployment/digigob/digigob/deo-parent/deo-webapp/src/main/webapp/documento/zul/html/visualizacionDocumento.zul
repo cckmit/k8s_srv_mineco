@@ -1,0 +1,51 @@
+<?page title="" contentType="text/html;charset=UTF-8"?>
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./visualizacionDocumentoWindow" ?>
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+
+<?component name="previsualizar" inline="true" macroURI="/documento/zul/html/previsualizar.zul"?>
+<?component name="datos" inline="true" macroURI="/documento/zul/html/datosDocumento.zul"?>
+<?component name="datosFormulario" inline="true" macroURI="/documento/zul/html/datosFormulario.zul"?>
+
+<zk xmlns:n="native">
+	<!-- Si cambia el alto aqui, revisar en ppVisualizarGedo.zul, visualizacionDocumento.zul y previsualizar.zul -->
+	<window id="visualizacionDocumentoWindow" width="100%" height="98%" border="none" 
+		apply="com.egoveris.cdeo.web.visualizarDocumento.VisualizacionDocumentoComposer" 
+		position="center" closable="true">
+		
+		<!-- CSS  -->
+		<style src="http://fonts.googleapis.com/css?family=Open+Sans:300,400" />
+		<style src="~./db_theme/ace/bootstrap/css/bootstrap.css" />
+		<style src="~./db_theme/ace/less/index.css.dsp" />
+		
+		<tabbox id="documentoTab" width="100%">
+						<tabs id="tabs">
+							<tab id="previsualizarDocumento" label="${c:l('gedo.revisarDocumento.previsualizar')}" />
+							<tab id="datosDocumento" label="${c:l('gedo.visualizacion.datos')}" visible="false" disabled="true" />
+							<tab id="datosFormulario" label="${c:l('gedo.visualizacion.datosCreacion')}" />
+						</tabs>
+						<tabpanels width="100%">
+							<tabpanel>
+								<!-- NOTA: esta pestana, al ser la primera, extendera de VisualizacionDocumentoComposer, para precargar los datos -->
+								<previsualizar />
+							</tabpanel>
+							<tabpanel fulfill="datosDocumento.onClick">
+								<datos />
+							</tabpanel>
+							<tabpanel fulfill="datosFormulario.onClick">
+								<datosFormulario />
+							</tabpanel>
+						</tabpanels>
+					</tabbox>
+		<!-- <grid width="100%">
+			<rows>
+				<row align="center" height="45px">
+					<button id="btnDescargarDocumento" height="30px" class="btn-secondary"
+						iconSclass="z-icon-download" label="Descargar documento" />
+					<button id="btnCerrar" height="30px" class="btn-secondary"
+						iconSclass="z-icon-times-circle" label="Cerrar" visible="false" />
+				</row>
+			</rows>
+		</grid> -->
+	</window>
+</zk>

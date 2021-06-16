@@ -1,0 +1,200 @@
+<?page title="${c:l('gedo.digitalizarDocumento.filaTipoDocumento')}" contentType="text/html;charset=UTF-8"?>
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+<?init class="org.zkoss.zk.ui.util.Composition" arg0="~./db_template.zul"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./abmTipoDocumentoWindow" ?>
+
+<zk>
+	<window id="abmTipoDocumentoWindow" title="" border="none"
+		apply="com.egoveris.deo.web.satra.tipos.ABMTipoDocumentoComposer" self="@{define(egovBody)}">
+
+		<window id="hiddenView" visible="false"
+			forward="onClose=abmTipoDocumentoWindow$composer.onNuevoDocumentoCreado" />
+
+
+		<hbox  align="center">
+
+			<image src="/imagenes/egovIconOrange.png" width="40px"
+				height="30px" style="padding-left: 10px;" />
+
+			<label
+				value="${c:l('gedo.abmTipoDocumento.tituloTipoDocumento')}"
+				style="font: bold;" />
+
+		</hbox>
+
+		<separator bar="true"  />
+		<separator />
+
+		<toolbar >
+
+			<toolbarbutton 
+				image="/imagenes/page_white_text.png"
+				label="${c:l('gedo.abmTipoDocumento.toolbar.toolbarbutton.label.crearNuevoTipoDcoumento')}"
+				forward="onClick=abmTipoDocumentoWindow$composer.onCreateNuevoTipoDocumento" />
+
+		<!--    <toolbarbutton 
+				image="/imagenes/page_white_text.png"
+				label="${c:l('gedo.abmTipoDocumento.toolbar.toolbarbutton.label.crearNuevoPerfilConversion')}"
+				forward="onClick=abmTipoDocumentoWindow$composer.onCreatePerfilConversion" /> -->
+
+			<toolbarbutton 
+				image="/imagenes/page_white_text.png"
+				label="${c:l('gedo.abmTipoDoc.wintitle.admFamiliasDoc')}"
+				forward="onClick=abmTipoDocumentoWindow$composer.onCreateFamilia" />
+		</toolbar>
+
+		<toolbar >
+			<textbox id="buscarPorNombreOAcronimoTb" />
+
+			<toolbarbutton 
+				image="/imagenes/edit-find.png" label="${c:l('gedo.abmTipoDoc.label.buscarNombre')}"
+				forward="onClick=abmTipoDocumentoWindow$composer.onBuscarPorNombre" />
+
+			<toolbarbutton 
+				image="/imagenes/edit-find.png" label="${c:l('gedo.abmTipoDoc.label.buscarAcronimo')}"
+				forward="onClick=abmTipoDocumentoWindow$composer.onBuscarPorAcronimo" />
+
+			<toolbarbutton 
+				image="/imagenes/delete-process.png" label="${c:l('gedo.abmTipoDoc.label.limBusqueda')}"
+				forward="onClick=abmTipoDocumentoWindow$composer.onLimpiarBusqueda" />
+
+		</toolbar>
+
+		<paging id="tipoDocumentoPaginator" pageSize="10" />
+
+		<div
+			style="overflow:auto"
+			width="99,9%">
+			<listbox id="tiposDocumentoLb" width="99,9%"
+				
+				model="@{abmTipoDocumentoWindow$composer.tiposDocumentos}"
+				selectedItem="@{abmTipoDocumentoWindow$composer.selectedTipoDocumento}"
+				mold="paging" paginal="${tipoDocumentoPaginator}"
+				itemRenderer="com.egoveris.deo.web.satra.renderers.ABMTipoDocumentoRenderer">
+
+
+				<listhead sizable="false"
+					style="background: #C4ECFF;">
+
+					<listheader align="center" width="14%">
+						<label
+							value="${c:l('gedo.abmTipoDocumento.listhead.listheader.label.nombreTipoDeDocumento')}" />
+					</listheader>
+
+					<listheader align="center" width="5%">
+						<label
+							value="${c:l('gedo.abmTipoDocumento.acronimo')}" />
+					</listheader>
+
+					<listheader align="center" width="5%">
+						<label multiline="true"
+							value="${c:l('gedo.abmTipoDocumento.genPorTemplate')}" />
+					</listheader>
+
+					<listheader align="center" width="5%"
+						style="white-space:normal">
+						<label multiline="true"
+							value="${c:l('gedo.abmTipoDocumento.numEspecial')}" />
+					</listheader>
+
+					<listheader align="center" width="5%"
+						style="white-space:normal">
+						<label multiline="true"
+							value="${c:l('gedo.abmTipoDocumento.reqFirmaConjunta')}" />
+					</listheader>
+
+					<listheader align="center" width="5%"
+						style="white-space:normal">
+						<label multiline="true"
+							value="${c:l('gedo.abmTipoDocumento.firmaExterna')}" />
+					</listheader>
+
+					<listheader align="center" width="5%"
+						style="white-space:normal">
+						<label multiline="true"
+							value="${c:l('gedo.abmTipoDocumento.tieneAviso')}" />
+					</listheader>
+					
+					<listheader align="center" width="5%"
+						style="white-space:normal">
+						<label multiline="true"
+							value="${c:l('gedo.abmTipoDocumento.permiteEmbebidos')}" />
+					</listheader>
+
+					<listheader style="white-space:normal"
+						align="center" width="5%">
+						<label
+							value="${c:l('gedo.abmTipoDocumento.reservado')}" />
+					</listheader>
+
+					<listheader style="white-space:normal"
+						align="center" width="4%">
+						<label
+							value="${c:l('gedo.abmTipoDocumento.resultado')}" />
+					</listheader>
+
+					<listheader style="white-space:normal"
+						align="center" width="4%">
+
+						<label
+							value="${c:l('gedo.abmTipoDocumento.habilitado')}" />
+					</listheader>
+
+					<listheader align="center" width="4%"
+						style="white-space:normal">
+						<label multiline="true"
+							value="${c:l('gedo.abmTipoDocumento.ActuacionSade')}" />
+					</listheader>
+
+					<listheader width="14%" align="center">
+						<label
+							value="${c:l('gedo.abmTipoDocumento.acciones')}" />
+					</listheader>
+
+				</listhead>
+
+				<listfoot
+					>
+
+					<listfooter
+						label="${c:l('gedo.nuevoDocumento.totalDocumentos')}" span="12"
+						style="color:#C4ECFF; right:0px" align="right"/>
+
+					<listfooter id="cantidadTipoDocumentosLf"
+						label="@{tiposDocumentoLb.getItemCount}" 
+						span="1" left="0px" style="color:#C4ECFF" width="50px" align="left"/>
+				</listfoot>
+			</listbox>
+		</div>
+
+		<grid align="center"
+			style="border:0px; ">
+
+			<rows >
+
+				<row >
+
+					<hbox align="center">
+						<separator />
+					</hbox>
+
+				</row>
+
+			</rows>
+
+		</grid>
+
+	</window>
+
+	<!--TOOLTIPS DE AYUDA-->
+	<popup id="helpNuevoTipoDoc" width="150px">
+
+		<label multiline="true"
+			value="${c:l('gedo.abmTipoDocumento.helpNuevoTipoDoc')}" />
+
+		<image src="/imagenes/help/nuevoTipoDocumento.png" />
+
+	</popup>
+
+</zk>

@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" 
+"http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+	<bean id="generarCaratulaExternalService"
+		class="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean">
+		<property name="serviceUrl" value="${app.ee.url}/remoting/generar-caratula" />
+		<property name="serviceInterface">
+			<value>com.egoveris.te.ws.service.IGenerarExpedienteService</value>
+		</property>
+	</bean>
+
+	<bean id="vincularFormularioExternalService"
+		class="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean">
+		<property name="serviceUrl" value="${app.ee.url}/remoting/vincular-formulario" />
+		<property name="serviceInterface">
+			<value>com.egoveris.te.ws.service.IVincularFormularioService</value>
+		</property>
+	</bean>
+
+	<bean id="rehabilitarExpedienteExternalService"
+		class="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean">
+		<property name="serviceUrl"
+			value="${app.ee.url}/remoting/rehabilitar-expediente" />
+		<property name="serviceInterface">
+			<value>com.egoveris.te.ws.service.IRehabilitarExpedienteService</value>
+		</property>
+	</bean>
+
+	<bean id="fullImportSolrEe"
+		class="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean">
+		<property name="serviceUrl" value="${app.ee.url}/remoting/full-import-solr-ee" />
+		<property name="serviceInterface">
+			<value>com.egoveris.te.ws.service.IFullImportSolr</value>
+		</property>
+	</bean>
+
+	<bean id="consultaExternalService"
+		class="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean">
+		<property name="serviceUrl" value="${app.ee.url}/remoting/consulta" />
+		<property name="serviceInterface">
+			<value>com.egoveris.te.ws.service.IConsultaExpedienteService</value>
+		</property>
+	</bean>
+
+	<bean id="administracionTrataExternalService"
+		class="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean">
+		<property name="serviceUrl" value="${app.ee.url}/remoting/administracion-trata" />
+		<property name="serviceInterface">
+			<value>com.egoveris.te.ws.service.IAdministracionTrataService</value>
+		</property>
+	</bean>
+
+	<bean id="generarPaseExternalService"
+		class="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean">
+		<property name="serviceUrl" value="${app.ee.url}/remoting/generar-pase" />
+		<property name="serviceInterface">
+			<value>com.egoveris.te.ws.service.IGenerarPaseExpedienteService</value>
+		</property>
+	</bean>
+
+	<bean id="generarPaseExternalServiceCsigla"
+		class="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean">
+		<property name="serviceUrl" value="${app.ee.url}/remoting/generar-paseCSigla" />
+		<property name="serviceInterface">
+			<value>com.egoveris.te.ws.service.IGenerarPaseEECSiglaOMigracion</value>
+		</property>
+	</bean>
+
+	<bean id="actividadesExternalService"
+		class="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean">
+		<property name="serviceUrl" value="${app.ee.url}/remoting/actividades" />
+		<property name="serviceInterface">
+			<value>com.egoveris.te.ws.service.IActividadExternalService</value>
+		</property>
+	</bean>
+
+	<bean id="bloqueoExpedienteExternalService"
+		class="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean">
+		<property name="serviceUrl" value="${app.ee.url}/remoting/bloqueo-expediente" />
+		<property name="serviceInterface">
+			<value>com.egoveris.te.ws.service.IBloqueoExpedienteService</value>
+		</property>
+	</bean>
+
+	<bean id="estadosPaseExternalService"
+		class="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean">
+		<property name="serviceUrl" value="${app.ee.url}/remoting/estados-pase" />
+		<property name="serviceInterface">
+			<value>com.egoveris.te.ws.service.IConsultaEstadosPaseService</value>
+		</property>
+	</bean>
+
+	<bean id="documentosOficialesExternalService"
+		class="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean">
+		<property name="serviceUrl" value="${app.ee.url}/remoting/documentos-oficiales" />
+		<property name="serviceInterface">
+			<value>com.egoveris.te.ws.service.IAdministracionDeDocumentosOficialesService</value>
+		</property>
+	</bean>
+
+	<bean id="expedientesAsociadosExternalService"
+		class="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean">
+		<property name="serviceUrl" value="${app.ee.url}/remoting/expedientes-asociados" />
+		<property name="serviceInterface">
+			<value>com.egoveris.te.ws.service.IAdministracionDeExpedientesAsociadosService</value>
+		</property>
+	</bean>
+
+	<bean id="documentosTrabajoExternalService"
+		class="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean">
+		<property name="serviceUrl" value="${app.ee.url}/remoting/documentos-trabajo" />
+		<property name="serviceInterface">
+			<value>com.egoveris.te.ws.service.IAdministracionDocumentosDeTrabajoService</value>
+		</property>
+	</bean>
+
+	<bean id="tomavistaExternalService"
+		class="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean">
+		<property name="serviceUrl" value="${app.ee.url}/remoting/tomavista" />
+		<property name="serviceInterface">
+			<value>com.egoveris.te.ws.service.ITomaVistaExternalService</value>
+		</property>
+	</bean>
+
+	<bean id="trataPermisoService"
+		class="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean">
+		<property name="serviceUrl" value="${app.ee.url}/remoting/trata-reparticion" />
+		<property name="serviceInterface">
+			<value>com.egoveris.te.ws.service.ITrataReservaReparticionService</value>
+		</property>
+	</bean>
+
+	<bean id="historialOperacionService"
+		class="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean">
+		<property name="serviceUrl" value="${app.ee.url}/remoting/historialoperacion" />
+		<property name="serviceInterface">
+			<value>com.egoveris.te.ws.service.ExternalHistorialOperacionService</value>
+		</property>
+	</bean>
+</beans>

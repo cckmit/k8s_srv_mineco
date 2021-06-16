@@ -1,0 +1,36 @@
+<?page title="" contentType="text/html;charset=UTF-8"?>
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+
+<zk>
+	<div apply="org.zkoss.bind.BindComposer" 
+		 viewModel="@id('tabdocsVM') @init('com.egoveris.te.base.vm.DocumentosTabVM')">
+		<tabbox width="100%">
+			<tabs>
+				<tab id="conPase"
+					label="${c:l('ee.tramitacion.tab.sinPase.value')}" />
+				<tab id="sinPase"
+					label="${c:l('ee.tramitacion.tab.conPase.value')}" />
+				<tab id="conFiltro"
+					label="${c:l('ee.tramitacion.tab.filtro.value')}" />
+			</tabs>
+			<tabpanels>
+				<tabpanel>
+					<include sinPase="true"
+						expediente="${tabdocsVM.expediente}"
+						labelDescarga="${c:l('ee.docGrid.tabPanel.desDoc')}"
+						src="/operaciones/tramitacion/documentos/documentosGrid.zul" />
+				</tabpanel>
+				<tabpanel>
+					<include expediente="${tabdocsVM.expediente}"
+						labelDescarga="${c:l('ee.docGrid.tabPanel.desDocPase')}"
+						src="/operaciones/tramitacion/documentos/documentosGrid.zul" />
+				</tabpanel>
+				<tabpanel>
+					<include conFiltro="true" expediente="${tabdocsVM.expediente}"
+						labelDescarga="${c:l('ee.docGrid.tabPanel.desDocFiltro')}"
+						src="/operaciones/tramitacion/documentos/documentosGrid.zul" />
+				</tabpanel>
+			</tabpanels>
+		</tabbox>
+	</div>
+</zk>

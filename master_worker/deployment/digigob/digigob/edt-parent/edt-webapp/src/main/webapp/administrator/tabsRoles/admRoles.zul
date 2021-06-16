@@ -1,0 +1,79 @@
+<?page title="${c:l('digigob.Title')}" contentType="text/html;charset=UTF-8"?> <!-- ${c:l('admCargos.title')} -->
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+<?init class="org.zkoss.zk.ui.util.Composition" arg0="~./db_template.zul"?>
+<zk>
+	<window border="none" id="win_admRoles"
+		apply="com.egoveris.edt.web.admin.pl.AdmRolComposer"
+		width="100%" height="100%" self="@{define(egovBody)}">
+		
+	
+		
+		<div sclass="page-header">
+			<label value="${c:l('eu.panelAdmin.tabAdmRoles.admRoles')}" />
+		</div>
+		
+		<panel style="" border="none">
+			<panelchildren style="">
+				<toolbarbutton id="tbbtn_altaRol"
+					label="${c:l('eu.adminSade.alta.rol.titulo')}"
+					style="" image="/imagenes/newUser.png" />
+			</panelchildren>
+		</panel>
+		
+		<borderlayout width="100%" height="600px">
+			<center border="none">
+				<borderlayout width="100%" >
+					<west width="100%" border="none"
+						style="">
+						<vbox width="50%" align="center">
+							<separator height="10px" />
+							<hbox width="100%" align="center">
+								<label
+									value="${c:l('eu.panelAdmin.tabAdmRoles.nomRol')} " /> 
+								<textbox id="txbx_rolBuscado"
+									width="300px" height="25px" />
+								<button id="btn_buscar"
+									label="${c:l('eu.adminSade.buscar')}" width="120px"
+									height="30px" image="/imagenes/find.png"
+									hoverImage="/imagenes/find.png" />
+							</hbox>
+						</vbox>
+					</west>
+				</borderlayout>
+			</center>
+
+			<south border="none" height="100%"
+				style="">
+				
+				<vlayout>
+					<div align="center">
+						<listbox
+							id="lstbx_roles"
+							width="50%"
+							mold="paging"
+							model="@{win_admRoles$AdmRolComposer.listaResultadoRoles}"
+							selectedItem="@{win_admRoles$AdmRolComposer.rol}"
+							itemRenderer="com.egoveris.edt.web.admin.pl.renderers.BusquedaRolItemRenderer"
+							pageSize="10" pagingPosition="top" >					
+							<custom-attributes visibilidad="activa"></custom-attributes>
+							<listhead sizable="false" style="background: #C4ECFF;">
+								<listheader id="rol" width="40%" label="${c:l('eu.panelAdmin.tabAdmRoles.rol')}" style="background-color: #C4ECFF;" />
+								<listheader id="vigente" width="20%" label="${c:l('eu.audRolesPermisos.listhead.vigente')}" style="background-color: #C4ECFF;" />
+								<listheader id="accion" label="${c:l('eu.admCargos.hbox.label.acciones')}" style="background-color: #C4ECFF;" />
+							</listhead>
+							
+							<listfoot>
+								<listfooter />
+								<listfooter label="${c:l('eu.historialCargos.listfooter.resultado')} "
+									style="color:#C4ECFF;float:right;" />
+								<listfooter
+									label="@{win_admRoles$AdmRolComposer.resultados}"
+									style="color:#C4ECFF;" />
+							</listfoot>
+						</listbox>
+					</div>
+				</vlayout>
+			</south>
+		</borderlayout>
+	</window>
+</zk>

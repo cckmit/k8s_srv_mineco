@@ -1,0 +1,35 @@
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+<?page title="Generar Solicitud" contentType="text/html;charset=UTF-8"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./panelUsuario"?>
+<zk>
+
+	<zscript><![CDATA[
+	import java.util.Comparator;
+	import com.egoveris.te.base.util.comparator.InboxComparator;
+	Comparator tareaAsc = new InboxComparator(true, 1);
+	Comparator tareaDsc = new InboxComparator(false, 1);
+	Comparator fechaAsc = new InboxComparator(true, 2);
+	Comparator fechaDsc = new InboxComparator(false, 2);
+	Comparator codigoExpedienteAsc = new InboxComparator(true, 3);
+	Comparator codigoExpedienteDsc = new InboxComparator(false, 3);
+	Comparator codigoTrataAsc = new InboxComparator(true, 4);
+	Comparator codigoTrataDsc = new InboxComparator(false, 4);
+	Comparator descripcionTrataAsc = new InboxComparator(true, 5);
+	Comparator descripcionTrataDsc = new InboxComparator(false, 5);
+	Comparator usuarioAnteriorAsc = new InboxComparator(true, 6);
+	Comparator usuarioAnteriorDsc = new InboxComparator(false, 6);
+	
+	
+]]></zscript>
+	
+
+	<window id="panelUsuario" title="" border="none" width="100%">
+		<hbox  width="100%">
+			<vbox>
+				<label id="sdasdasdas" value="Hola Mundo" style="padding-left: 10px; font: bold;" />
+			</vbox>
+		</hbox>
+
+	</window>
+</zk>

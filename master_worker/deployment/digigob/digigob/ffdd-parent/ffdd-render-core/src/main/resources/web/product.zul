@@ -1,0 +1,77 @@
+<zk>
+	<vlayout
+		apply="com.egoveris.ffdd.render.zk.comp.cc.ProductComposer">
+
+		<grid>
+			<columns>
+				<column></column>
+				<column></column>
+				<column></column>
+				<column></column>
+			</columns>
+			<rows>
+				<row>
+					<hbox>Product ID:</hbox>
+					<cell id="${arg.formComp.nombre}_productIdDiv" />
+					<hbox>Product Code:</hbox>
+					<cell id="${arg.formComp.nombre}_productCodeDiv" />
+				</row>
+				<row>
+					<hbox>Hs Code:</hbox>
+					<cell id="${arg.formComp.nombre}_hsCodeDiv" />
+					<hbox>SSPP:</hbox>
+					<cell id="${arg.formComp.nombre}_ssppEnumDiv" />
+				</row>
+				<row>
+					<hbox>Common Regular Name:</hbox>
+					<cell id="${arg.formComp.nombre}_commonRegNameDiv" />
+					<hbox>Common Regular Name (Spanish):</hbox>
+					<cell
+						id="${arg.formComp.nombre}_commonRegNameSpanishDiv" />
+				</row>
+				<row>
+					<hbox>Product Desc:</hbox>
+					<cell id="${arg.formComp.nombre}_prodDescDiv" />
+					<hbox>Product Desc (Spanish):</hbox>
+					<cell
+						id="${arg.formComp.nombre}_prodDescSpanishDiv" />
+				</row>
+				<row>
+					<hbox>Business Name:</hbox>
+					<cell id="${arg.formComp.nombre}_businessNameDiv" />
+					<hbox>Business Name (Spanish):</hbox>
+					<cell
+						id="${arg.formComp.nombre}_businessNameSpanishDiv" />
+				</row>
+				<row>
+					<hbox>Scientific Name:</hbox>
+					<cell id="${arg.formComp.nombre}_scientificNameDiv" />
+					<hbox>Product Code SSPP:</hbox>
+					<cell id="${arg.formComp.nombre}_prodCodeSSPPDiv" />
+				</row>
+				<row>
+					<hbox>Physical State:</hbox>
+					<cell id="${arg.formComp.nombre}_physicalStateDiv" />
+					<hbox>Status:</hbox>
+					<cell id="${arg.formComp.nombre}_statusDiv" />
+				</row>
+				<row>
+					<hbox>Alert Message:</hbox>
+					<cell id="${arg.formComp.nombre}_alertMessageDiv" />
+					<hbox>Destinacion:</hbox>
+					<cell
+						id="${arg.formComp.nombre}_destinacionEnumDiv" />
+				</row>
+				<row>
+					<hbox>Product Version:</hbox>
+					<cell id="${arg.formComp.nombre}_productVersionDiv" />
+				</row>
+				<row>
+					<cell colspan="4" id="${arg.formComp.nombre}_productAttributesDTODiv" />
+				</row>				
+			</rows>
+			
+		</grid>
+		
+	</vlayout>
+</zk>

@@ -1,0 +1,33 @@
+<?page title="new page title" contentType="text/html;charset=UTF-8"?>
+<zk>
+	<vlayout
+		apply="com.egoveris.ffdd.render.zk.comp.cc.ResumenOpDusComposer">
+		<grid>
+			<columns>
+				<column></column>
+			</columns>
+			<rows>
+				<row>
+					<vbox>
+						<hbox>
+						<cell 
+							id="${arg.formComp.nombre}_codOperacionDiv" />
+						
+							<cell 
+								id="${arg.formComp.nombre}_destinacionAduaneraDiv" />
+							
+						</hbox>
+						<hbox>
+						<cell 
+							id="${arg.formComp.nombre}_fechaCreacionDiv" />
+							
+						<cell 
+							id="${arg.formComp.nombre}_processingStatusDiv" />
+						
+						</hbox>
+					</vbox>
+				</row>
+			</rows>
+		</grid>
+	</vlayout>
+</zk>

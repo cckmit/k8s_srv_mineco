@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<complexComponent type="TRADE" name="Product Component"
+	description="Product Component" zul="productcomponent.zul"
+	composer="com.everis.tramelec.dynform.comp.ext.ProductComponenteComposer"
+	mappingDTO="com.egoveris.ccomplejos.base.model.ProductComponentDTO">
+
+	<field name="productComponentid" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.LongboxExt"/>
+		
+	<field name="codigo" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt"/>
+		
+	<field name="nombre" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt"  />
+		
+	<field name="descripcion" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt"/>
+		
+	<field name="principioActivo" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" />
+		
+	<field name="porcentajeConsituyente" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" />
+		
+	<field name="constituyentesUom" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" />
+		
+	<field name="tipoDocumento" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" />
+
+</complexComponent>

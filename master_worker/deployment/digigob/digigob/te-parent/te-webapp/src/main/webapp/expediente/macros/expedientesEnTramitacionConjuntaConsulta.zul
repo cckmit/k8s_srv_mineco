@@ -1,0 +1,49 @@
+<?page title="Tramitación Conjunta" contentType="text/html;charset=UTF-8"?>
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./expedienteEnTramitacionConjuntaConsultaWindow"?>
+<zk>
+	<window title="" border="none"
+		id="expedienteEnTramitacionConjuntaConsultaWindow"
+		
+		apply="com.egoveris.te.base.composer.GenericExpedienteEnTramitacionConjuntaConsultaComposer">
+		<groupbox>
+			<paging id="expedientesEnTramitacionConjuntaConsultaPaginator"
+				pageSize="10" width="800px" />
+			<listbox id="expedienteEnTramitacionConjuntaComponent"
+				maxlength="20" mold="paging" width="800px"
+				paginal="${expedientesEnTramitacionConjuntaConsultaPaginator}"
+				pagingPosition="top"
+				selectedItem="@{expedienteEnTramitacionConjuntaConsultaWindow$composer.selectedExpedienteEnTramitacionConjunta}"
+				itemRenderer="com.egoveris.te.base.rendered.GenericListaExpedienteEnTramitacionConjuntaConsultaItemRenderer">
+				<listhead>
+					<listheader label="${c:l('ee.expedienteAsociado.listheader.tDoc')}" width="50px"
+						align="center" />
+					<listheader label="${c:l('ee.asociardocumento.column.anio.value')}" width="50px" align="center" />
+					<listheader label="${c:l('ee.asociardocumento.column.numero.value')}" width="100px"
+						align="center" />
+					<listheader label="${c:l('ee.asociardocumento.column.reparticion.value')}" width="150px"
+						align="center" />
+					<listheader label="${c:l('ee.expedienteAsociado.listheader.tramite')}" width="150px"
+						align="center" />
+					<listheader label="${c:l('ee.caratulas.listheader.documento.accion.value')}" width="300px"
+						align="center" />
+				</listhead>
+
+				<listfoot
+					>
+					<listfooter />
+					<listfooter />
+					<listfooter
+						id="totalExpedientesEnTramitacionConjunta"
+						label="${c:l('ee.tramitacion.listfooter.expedientesEnTramitacionConjunta.value')}"
+						span="3"  />
+					<listfooter
+						label="@{expedienteEnTramitacionConjuntaConsultaWindow$composer.listaExpedienteEnTramitacionConjunta.size}"
+						span="1"  align="rigth" />
+				</listfoot>
+
+			</listbox>
+		</groupbox>
+	</window>
+</zk>

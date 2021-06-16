@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
+    http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+	<changeSet id="CAMPO_ES_PUBLICABLE_GEDO_TIPODOCUMENTO" author="Carlos Bellotti">
+		<addColumn tableName="GEDO_TIPODOCUMENTO">
+			<column name="ES_PUBLICABLE" type="CHAR(1)"></column>
+		</addColumn>
+	    <update tableName="GEDO_TIPODOCUMENTO">
+	        <column name="ES_PUBLICABLE" type="CHAR(1)" value="0"/>
+	        <where>ES_PUBLICABLE is NULL</where>
+	    </update>
+	</changeSet>
+	
+	<changeSet id="CAMPO_GEDO_FIRMANTES_MODIFICA_TIPO_ID" author="Hector Vergara">
+	    <modifyDataType 
+	            columnName="ID"
+	            newDataType="INT(11)"
+	            tableName="GEDO_FIRMANTES"
+	             />
+	</changeSet>
+
+	<changeSet id="CAMPO_GEDO_FIRMANTES_MODIFICA_TIPO_ID_AUTOINCREMENT" author="Hector Vergara">
+	    <addAutoIncrement
+            columnDataType="INT(11)"
+            columnName="ID"
+            incrementBy="1"
+            startWith="100"
+            tableName="GEDO_FIRMANTES"/>
+	</changeSet>
+
+	<changeSet id="CAMPO_GEDO_TIPODOCUMENTO_MODIFICA_TIPO_FAMILIA" author="Hector Vergara">
+	    <modifyDataType 
+	            columnName="FAMILIA"
+	            newDataType="INT(19)"
+	            tableName="GEDO_TIPODOCUMENTO"
+	             />
+	     <addDefaultValue
+            columnDataType="INT(19)"
+            columnName="FAMILIA"
+            defaultValue="null"
+            tableName="GEDO_TIPODOCUMENTO"/>
+	</changeSet>
+	
+	<changeSet id="GEDO_FORMATO_TAMANO_ARCHIVO_MODIFICA_TIPO_ID" author="Hector Vergara">
+	    <modifyDataType 
+	            columnName="ID"
+	            newDataType="INT(11)"
+	            tableName="GEDO_FORMATO_TAMANO_ARCHIVO"
+	             />
+	     <addAutoIncrement
+            columnDataType="INT(11)"
+            columnName="ID"
+            incrementBy="1"
+            startWith="100"
+            tableName="GEDO_FORMATO_TAMANO_ARCHIVO"/>
+    </changeSet>
+	<changeSet id="CAMPO_ES_DOBLEFACTOR_GEDO_TIPODOCUMENTO" author="Renzo Giacomino">
+		<addColumn tableName="GEDO_TIPODOCUMENTO">
+			<column name="ES_DOBLEFACTOR" type="CHAR(1)"></column>
+		</addColumn>
+	    <update tableName="GEDO_TIPODOCUMENTO">
+	        <column name="ES_DOBLEFACTOR" type="CHAR(1)" value="0"/>
+	        <where>ES_DOBLEFACTOR is NULL</where>
+	    </update>
+	</changeSet>
+	<changeSet id="GEDO_TIPODOCUMENTO_FAMILIA_AUD_ID" author="Carlos Hegnauer">
+	    <modifyDataType 
+	            columnName="ID"
+	            newDataType="INT(11)"
+	            tableName="GEDO_TIPODOCUMENTO_FAMILIA_AUD"
+	             />
+	     <addAutoIncrement
+            columnDataType="INT(11)"
+            columnName="ID"
+            incrementBy="1"
+            startWith="100"
+            tableName="GEDO_TIPODOCUMENTO_FAMILIA_AUD"/>
+    </changeSet>
+	
+</databaseChangeLog>

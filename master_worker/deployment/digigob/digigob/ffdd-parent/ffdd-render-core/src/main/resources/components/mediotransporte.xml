@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<complexComponent type="MACCS" name="Medio Transporte"
+	description="Medio Transporte" zul="medioTransporte.zul"
+	composer="com.everis.tramelec.dynform.comp.ext.MedioTransporteComposer"
+	mappingDTO="com.egoveris.ccomplejos.base.model.MedioTransporteDTO">
+	
+	<field name="fechaEstimadaLlegada" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.DateboxExt" />
+	<field name="ruta" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" />
+	<field name="patente" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" />
+	<field name="tipoMedioTranspote" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" />
+	
+</complexComponent>

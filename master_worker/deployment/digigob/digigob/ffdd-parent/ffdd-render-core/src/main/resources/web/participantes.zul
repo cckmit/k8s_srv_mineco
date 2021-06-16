@@ -1,0 +1,53 @@
+<zk>
+	<vlayout
+		apply="com.egoveris.ffdd.render.zk.comp.cc.ParticipantesComposer">
+		<grid>
+			<columns>
+				<column></column>
+			</columns>
+			<rows>
+				<row>
+					<vbox>
+						<hbox>
+							<cell
+								id="${arg.formComp.nombre}_participanteIdDiv" />
+							<cell
+								id="${arg.formComp.nombre}_dispatcherCodeDiv" />
+							<cell
+								id="${arg.formComp.nombre}_personaTypeEnumDiv" />
+						</hbox>
+						<hbox>
+							<cell
+								id="${arg.formComp.nombre}_docPersonaTypeDiv" />
+							<cell
+								id="${arg.formComp.nombre}_participanteTypeDiv" />
+							<cell
+								id="${arg.formComp.nombre}_participanteNombreDiv" />
+						</hbox>
+						<hbox>
+							<cell
+								id="${arg.formComp.nombre}_participanteApellidoDiv" />
+							<cell
+								id="${arg.formComp.nombre}_participantePorcentajeDiv" />
+							<cell
+								id="${arg.formComp.nombre}_docPersonaNumDiv" />
+						</hbox>
+						<hbox>
+							<cell
+								id="${arg.formComp.nombre}_participanteEmailDiv" />
+							<cell
+								id="${arg.formComp.nombre}_participanteNumeroTelefonoMovilDiv" />
+							<cell
+								id="${arg.formComp.nombre}_participanteNumeroTelefonoFijoDiv" />
+						</hbox>
+
+						<cell
+							id="${arg.formComp.nombre}_participanteAddressDiv" />
+						<cell id="${arg.formComp.nombre}_contactoDiv" />
+
+					</vbox>
+				</row>
+			</rows>
+		</grid>
+	</vlayout>
+</zk>

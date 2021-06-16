@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<complexComponent type="MACCS" name="Common EDC" zul="commonEDC.zul" description="Common for EDC"
+	composer="com.everis.tramelec.dynform.comp.ext.CommonEDCComposer"
+	 mappingDTO="com.everis.tramelec.dynform.trade.CommonEDCDto">
+	 
+	 <field name="jyo" factory="comboBoxFactory"
+		comboName="JYO" />
+</complexComponent>

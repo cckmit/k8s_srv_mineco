@@ -1,0 +1,82 @@
+<?page title="${c:l('tabReparticionesAdministradas.title')}" contentType="text/html;charset=UTF-8"?>
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./win_gestionReparticionAdministradas" ?>
+<zk>
+	<window id="win_gestionReparticionAdministradas"
+		apply="com.egoveris.edt.web.admin.pl.TabReparticionesAdministradasComposer">
+
+		<vbox style="background:#C4ECFF" width="100%" height="50px"
+			align="center" pack="center">
+			<label style="font-weight:bold"
+				value="${c:l('eu.gestionReparticiones.tab.tooltip.reparticionesAdministradas')}" />
+		</vbox>
+		<separator height="10px" />
+		<vbox align="center" width="100%">
+			<grid 
+				style="padding:0px; border:none; border-spacing:0px;">
+				<columns>
+					<column width="45%" align="left" />
+					<column width="25%" align="left" />
+					<column width="15%" align="left" />
+					<column align="left" />
+				</columns>
+				<rows>
+					<row style="padding:0px; border:none; border-spacing:0px;">
+						<hbox>
+							<include id="inc_reparticionSectorSelector" />
+						</hbox>
+						<button id="btn_agregarReparticion"
+							iconSclass="z-icon-cog"
+							label="${c:l('eu.gestionReparticiones.boton.agregarReparticones')}" />
+					</row>
+				</rows>
+			</grid>
+			<separator height="15px" />
+
+
+			<hbox align="left">
+				<label id="lbl_reparticionAsignada"
+					value="${c:l('eu.adminSade.reparticiones.administradas.label.reparticionAsignadaDelUsuario')}" />
+			</hbox>
+			<separator height="15px" />
+			<groupbox>
+				<caption>${c:l('eu.tabReparticionesAdm.caption.orgAdm')}</caption>
+				<separator height="10px" />
+				<vbox visible="true"  width="98%">
+					<paging id="Paginator" pageSize="15"
+						detailed="true" />
+
+					<listbox id="reparticionesAdministradasListbox"
+						mold="paging" style=""
+						paginal="${Paginator}"
+						model="@{win_gestionReparticionAdministradas$composer.reparticionesAdministradas}"
+						selectedItem="@{win_gestionReparticionAdministradas$composer.reparticionAdministradaSeleccionada}"
+						itemRenderer="com.egoveris.edt.web.admin.pl.renderers.ListadoReparticionAdministradasItemRenderer">
+						<listhead sizable="false"
+							style="background: #C4ECFF;">
+							<listheader align="center"
+								label="${c:l('eu.consulta.sindicatura.listhead.listheader.label.codigo')}"
+								width="110px" style="" />
+							<listheader align="center"
+								label="${c:l('eu.adminSade.Descripcion')}"
+								style="" width="70%" />
+							<listheader align="center"
+								label="${c:l('eu.escritorioUnico.misSistemas.accion')}"
+								style="" width="15%" />
+						</listhead>
+					</listbox>
+				</vbox>
+			</groupbox>
+			<separator height="20px" />
+			<hbox align="center">
+					<toolbarbutton id="btn_guardar"
+					iconSclass="z-icon-floppy-o"
+					label="${c:l('eu.adminSade.guardar')}"
+					zclass="z-button" style="padding:7px 10px;"
+					tooltiptext="${c:l('eu.adminSade.guardar')}" />
+			</hbox>
+			<separator height="20px" />
+		</vbox>
+	</window>
+</zk>

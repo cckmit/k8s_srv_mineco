@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<complexComponent type="MACCS" name="MSC Common" zul="msccommon.zul" description="MSC Common"
+	composer="com.everis.tramelec.dynform.comp.ext.MscComposer"
+	 mappingDTO="com.everis.tramelec.dynform.trade.MscDto">
+	<field name="tmp" width="90%" height="20px" class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" />
+	<field name="sno" width="90%" height="20px" class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" />
+	<field name="fileUpload" width="90%" height="20px" class="com.egoveris.ffdd.render.zk.comp.ext.FileUploadExt" />
+	<field name="fileLabel" width="90%" height="20px" class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" />
+</complexComponent>

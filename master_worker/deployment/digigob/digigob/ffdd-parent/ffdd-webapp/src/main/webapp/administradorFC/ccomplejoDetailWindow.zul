@@ -1,0 +1,120 @@
+<?page title="CComplejos" contentType="text/html;charset=UTF-8"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./ccomplejoDetail" ?>
+<zk>
+	<window title="${c:l('ccomplejosDetail.title')}" border="normal"
+		width="360px" id="ccomplejoDetail" closable="true"
+		apply="com.egoveris.ffdd.web.adm.CComplejoDetailComposer">
+		<vlayout width="100%">
+			<vbox align="center">
+				<hbox>
+					<label
+						value="${c:l('ccomplejosDetail.fieldName')}" />
+					<label id="fieldName" />
+				</hbox>
+				<hbox>
+					<label value="${c:l('ccomplejosDetail.type')}" />
+					<label id="factory" />
+				</hbox>
+				<tabbox>
+					<tabs>
+						<tab label="${c:l('ccomplejosDetail.config')}"></tab>
+						<tab label="${c:l('ccomplejosDetail.view')}"></tab>
+					</tabs>
+					<tabpanels>
+						<tabpanel height="225px">
+							<grid>
+								<columns>
+									<column width="135px"></column>
+									<column></column>
+								</columns>
+								<rows>
+									<row>
+										<label
+											value="${c:l('ccomplejosDetail.label')}" />
+										<textbox id="label" />
+									</row>
+									<row>
+										<label
+											value="${c:l('ccomplejosDetail.defaultValue')}" />
+										<hbox>
+											<textbox id="defaultValue"
+												disabled="true" />
+											<separator />
+											<button
+												iconSclass="z-icon-pencil" label=" "
+												tooltiptext="Modificar" id="btnChangeDefaultValue"
+												forward="onClick=onChangeDefaultValue" />
+										</hbox>
+									</row>
+									<row>
+										<label
+											value="${c:l('ccomplejosDetail.parent')}" />
+										<combobox id="parent" />
+									</row>
+									<row>
+										<label id="lblDependence"
+											value="${c:l('ccomplejosDetail.dependence')}" />
+										<combobox id="dependence" selectedItem="@{ccomplejoDetail$CComplejoDetailComposer.selectListComponents}" model="@{ccomplejoDetail$CComplejoDetailComposer.listComponentsClean}">
+											<template name="model">
+												<comboitem label="${each.name}"  />
+											</template>
+										</combobox>
+									</row>									
+									<row>
+										<label
+											value="${c:l('ccomplejosDetail.hidden')}" />
+										<checkbox id="hidden" />
+									</row>
+									<row>
+										<label
+											value="${c:l('ccomplejosDetail.required')}" />
+										<checkbox id="required" />
+									</row>
+									<row>
+										<label
+											value="${c:l('ccomplejosDetail.disabled')}" />
+										<checkbox id="disabled" />
+									</row>
+								</rows>
+							</grid>
+						</tabpanel>
+						<tabpanel height="225px">
+							<grid>
+								<columns>
+									<column width="135px"></column>
+									<column></column>
+								</columns>
+								<rows>
+									<row>
+										<label
+											value="${c:l('ccomplejosDetail.style')}" />
+										<textbox id="style" multiline="true"/>
+									</row>
+									<row>
+										<label
+											value="${c:l('ccomplejosDetail.width')}" />
+										<textbox id="width" style="text-transform: lowercase;"
+										constraint="/(\d+(px|PX|\%))?/: ${c:l('ccomplejoDetail.error.size')}"/>
+									</row>
+									<row>
+										<label
+											value="${c:l('ccomplejosDetail.height')}"/>
+										<textbox id="height"  style="text-transform: lowercase;"
+											constraint="/(\d+(px|PX|\%))?/: ${c:l('ccomplejoDetail.error.size')}"/>
+									</row>
+									<row>
+										<label
+											value="${c:l('ccomplejosDetail.tooltip')}" />
+										<textbox id="tooltip" multiline="true" />										
+									</row>
+								</rows>
+							</grid>
+						</tabpanel>
+					</tabpanels>
+				</tabbox>
+				<button label="${c:l('ccomplejosDetail.btnOK')}"
+					forward="onClick=onGuardar" style="margin:5px;"/>
+			</vbox>
+		</vlayout>
+	</window>
+</zk>

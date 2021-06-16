@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
+    http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+	<changeSet author="Carlos Bellotti" id="TAD_TERMINOS_CONDICIONES_CODIGO_CONTENIDO_TYPE">
+	    <modifyDataType   
+	            columnName="CODIGO_CONTENIDO"  
+	            newDataType="BLOB"  
+	            tableName="TAD_TERMINOS_CONDICIONES"/>  
+	</changeSet>  
+
+	<changeSet author="Carlos Bellotti" id="TAD_TERMINOS_CONDICIONES_CAMBIO_PK">
+		<addPrimaryKey 
+				tableName="TAD_TERMINOS_CONDICIONES" 
+				columnNames="ID"
+				constraintName="PK_TAD_TERMINOS_CONDICIONES"/>
+		<addAutoIncrement 
+				tableName="TAD_TERMINOS_CONDICIONES" 
+				columnName="ID"
+				columnDataType="INT"
+				incrementBy="1"/>
+	</changeSet>  
+</databaseChangeLog>

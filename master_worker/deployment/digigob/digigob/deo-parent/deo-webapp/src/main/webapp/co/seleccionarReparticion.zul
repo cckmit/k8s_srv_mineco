@@ -1,0 +1,62 @@
+<?page title="new page title" contentType="text/html;charset=UTF-8"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./seleccionarReparticionWindow" arg2="seleccionarReparticionBinder"?>
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c" ?>
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+<zk>
+	<window title="${c:l('ccoo.sectorMesa.seleccionarMesa.title')}"
+		border="normal" id="seleccionarReparticionWindow" height="380px"
+		width="650px" 
+		apply="com.egoveris.deo.web.satra.produccion.SeleccionarReparticionComposer">
+
+		<vbox>
+			<label
+				value="${c:l('ccoo.sectorMesa.seleccionarReparticion')}" />
+			<hbox>
+				<textbox id="busquedaReparticion" width="300px" />
+				<button width="150px"
+					label="${c:l('ccoo.sectorMesa.botonBuscar')}"
+					forward="onClick=onBuscar">
+				</button>
+			</hbox>
+			<div align="center">
+
+				<listbox fixedLayout="true" id="reparticiones"
+					mold="paging" pageSize="10" checkmark="true" multiple="false"
+					height="250px" 
+					model="@{seleccionarReparticionWindow$composer.reparticionesList}"
+					selectedItem="@{seleccionarReparticionWindow$composer.selectedReparticion}">
+
+					<listhead sizable="false"
+						style="background: #C4ECFF;">
+						<listheader  width="5%"
+							align="center" />
+						<listheader
+							label="${c:l('ccoo.sectorMesa.seleccionarReparticion.reparticion')}"
+							 width="25%" align="center" id="seleccionRep"/>
+						<listheader
+							label="${c:l('ccoo.sectorMesa.seleccionarRepartición.sector')}"
+							align="center"  width="25%" />
+						<listheader
+							label="${c:l('ccoo.sectorMesa.seleccionarRepartición.codigo')}"
+							align="center"  width="45%" />
+					</listhead>
+					<listitem self="@{each=reparticion}"
+						value="@{reparticion}">
+						<listcell></listcell>
+						<listcell label="@{reparticion.nombre}" />
+						<listcell label="@{reparticion.sectorInterno}" />
+						<listcell label="@{reparticion.codigo}" />
+					</listitem>
+				</listbox>
+
+				<separator height="10px"></separator>
+				<hbox>
+					<button id="aceptar" label="${c:l('gedo.token.cert.aceptar')}" width="100px" />
+					<separator width="25px" />
+					<button id="cancelar" label="${c:l('gedo.token.cert.cancelar')}"
+						width="100px" />
+				</hbox>
+			</div>
+		</vbox>
+	</window>
+</zk>

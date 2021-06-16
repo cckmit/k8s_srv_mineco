@@ -1,0 +1,151 @@
+<?page title="Enviar a" contentType="text/html;charset=UTF-8"?>
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./realizarPaseWindow" ?>
+<zk>
+	<window title="${c:l('title.pase')}" border="normal"
+	 width="450px"  id="realizarPaseWindow" closable="true">
+		<grid  id="gridEstadoPase" zclass="none">
+			<rows>
+				<row>
+					<label value="${c:l('general.label.estado')}" />
+					<combobox id="estado" width="200px" readonly="true" forward="onSelect=realizarPaseWindow$composer.onSelectEstado"></combobox>
+				</row>
+			</rows>
+		</grid>
+		<separator />
+		<grid  id="grillaDestinoPase"  >
+			<auxhead>
+				<auxheader colspan="2">
+					<label value="${c:l('general.destino')}" style="font:bold;" id="destino" />
+				</auxheader>
+				<!-- <label value="Destino" style="font:bold;" id="destino"/> -->
+			</auxhead>
+			<columns>
+				<column align="left" />
+				<column align="left" />
+			</columns>
+			<rows width="759px">
+				<row>
+					<radio label="${c:l('general.usuario')}" value="usuario" id="usuarioRadio" forward="onClick=realizarPaseWindow$composer.onUsuarioClick" />
+					<hbox>
+						<combobox width="200px" id="usuario" buttonVisible="false" autodrop="true" />
+					</hbox>
+				</row>
+				<row>
+					<radio label="${c:l('general.sector')}" value="sector" id="sectorRadio" forward="onClick=realizarPaseWindow$composer.onSectorClick" />
+					<box>
+						<label value="${c:l('general.label.reparticion')}" />
+						<bandbox id="sectorReparticionBusquedaSADE">
+							<bandpopup apply="com.egoveris.workflow.designer.module.helper.FindSectorReparticionesBusquedaSADEBandboxComposer"
+								id="sectorReparticionesComboBusquedaSADE" width="650px">
+								<groupbox mold="3d">
+									<caption>
+											Búsqueda de Repartición
+									</caption>
+									<separator></separator>
+									<vbox>
+										<hbox>
+											Buscar
+											<textbox id="textoSectorReparticionBusquedaSADE" />
+										</hbox>
+										<paging id="pagingSectorReparticionesDocsSADE" pageSize="10" />
+										<listbox mold="paging" width="600px" id="sectoresReparticionesBusquedaSADEListbox"
+											model="@{listaSectorReparticionSADESeleccionada}"
+											selectedItem="@{sectorReparticionSeleccionada}" paginal="${pagingSectorReparticionesDocsSADE}">
+											<listhead>
+												<listheader label="${c:l('general.codigo')}" width="30%" />
+												<listheader label="${c:l('general.nombre')}" height="70%" />
+											</listhead>
+											<listitem self="@{each=reparticion}">
+												<listcell label="@{reparticion.codigo}" />
+												<listcell label="@{reparticion.nombre}" />
+											</listitem>
+										</listbox>
+									</vbox>
+								</groupbox>
+							</bandpopup>
+						</bandbox>
+						<label value="${c:l('general.label.sector')}" />
+						<hbox>
+							<bandbox id="sectorBusquedaSADE">
+								<bandpopup apply="com.egoveris.te.base.composer.FindSectorBusquedaSADEBandboxComposer" id="sectorComboBusquedaSADE"
+									width="650px">
+									<groupbox mold="3d">
+										<caption>
+												Búsqueda de Sector por Repartición
+										</caption>
+										<separator></separator>
+										<vbox>
+											<hbox>
+												Buscar
+												<textbox id="textoSectorBusquedaSADE" />
+											</hbox>
+											<paging id="pagingSectorDocsSADE" pageSize="10" />
+											<listbox mold="paging" width="600px" id="sectoresBusquedaSADEListbox" model="@{listaSectorSADESeleccionado}"
+												selectedItem="@{sectorSeleccionado}" paginal="${pagingSectorDocsSADE}">
+												<listhead>
+													<listheader label="${c:l('general.codigo')}" width="30%" />
+													<listheader label="${c:l('general.nombre')}" height="70%" />
+												</listhead>
+												<listitem self="@{each=sector}">
+													<listcell label="@{sector.codigo}" />
+													<listcell label="@{sector.nombre}" />
+												</listitem>
+											</listbox>
+										</vbox>
+									</groupbox>
+								</bandpopup>
+							</bandbox>
+						</hbox>
+					</box>
+				</row>
+				<row>
+					<cell>
+						<radio label="${c:l('general.mesaOrganismo')}" value="reparticion" id="reparticionRadio"
+							forward="onClick=realizarPaseWindow$composer.onReparticionClick" />
+						</cell>
+					<cell>	
+						<hbox>
+							<bandbox id="reparticionBusquedaSADE">
+								<bandpopup apply="com.egoveris.te.base.composer.FindReparticionesBusquedaSADEBandboxComposer"
+									id="reparticionesComboBusquedaSADE" width="650px">
+									<groupbox mold="3d">
+										<caption>
+											Búsqueda de Repartición
+										</caption>
+										<separator></separator>
+										<vbox>
+											<hbox>
+												Buscar
+												<textbox id="textoReparticionBusquedaSADE" />
+											</hbox>
+											<paging id="pagingReparticionesDocsSADE" pageSize="10" />
+											<listbox mold="paging" width="600px" id="reparticionesBusquedaSADEListbox" model="@{listaReparticionSADESeleccionada}"
+												selectedItem="@{reparticionSeleccionada}" paginal="${pagingReparticionesDocsSADE}">
+												<listhead>
+													<listheader label="${c:l('general.codigo')}" width="30%" />
+													<listheader label="${c:l('general.nombre')}" height="70%" />
+												</listhead>
+												<listitem self="@{each=reparticion}">
+													<listcell label="@{reparticion.codigo}" />
+													<listcell label="@{reparticion.nombre}" />
+												</listitem>
+											</listbox>
+										</vbox>
+									</groupbox>
+								</bandpopup>
+							</bandbox>
+						</hbox>
+					</cell>
+				</row>
+				<row>	
+					<cell colspan="2" height="50px" align="center">
+						<button label="${c:l('general.aceptar')}" id="Aceptar" forward="onClick=realizarPaseWindow$composer.onAceptar(this)" />
+						<separator orient="vertical"/>
+						<button label="${c:l('general.cancelar')}" id="cancelar" forward="onClick=realizarPaseWindow$composer.onCancelar" />
+					</cell>
+				</row>
+			</rows>
+		</grid>
+	</window>
+</zk>

@@ -1,0 +1,54 @@
+<?page title="${c:l('audRepaAdm.title')}" contentType="text/html;charset=UTF-8"?>
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+<zk>
+	<window border="none" id="win_historialCargos" apply="com.egoveris.edt.web.admin.pl.HistorialCargoComposer" width="70%">
+		<hbox style="" align="center" width="100%">
+			<image src="/imagenes/egovIconOrange.png" width="40px" height="30px" style="padding-left: 10px;" />
+			<label value="${c:l('eu.audRolesPermisos.hbox.historialCargos') }" style=" font: bold;" />
+		</hbox>
+		
+		<separator />
+
+		<vlayout>
+			<div align="center">
+				<listbox
+					id="lstResultadoCargos"
+					width="90%"
+					mold="paging"
+					model="@{win_historialCargos$HistorialCargoComposer.listaResultadoCargos}"
+					itemRenderer="com.egoveris.edt.web.admin.pl.renderers.CargoHistorialItemRender"
+					pageSize="20" pagingPosition="top" 
+					>
+									
+					<custom-attributes visibilidad="detalleCarhoHistorico"></custom-attributes>
+					<listhead sizable="false" style="background: #C4ECFF;">
+						<listheader id="cargo" width="30%" label="${c:l('eu.altaUsuario.row.label.cargo')}" style="background-color: #C4ECFF;" />
+						<listheader id="tipo" width="10%" label="${c:l('eu.audDatosPersonales.label.tipo')}" style="background-color: #C4ECFF;" />
+						<listheader id="usuarioCreacion" width="15%" label="${c:l('eu.audRolesPermisos.listhead.usuarioCreacion')}" style="background-color: #C4ECFF;" />
+						<listheader id="fechaCreacion" width="5%" label="${c:l('eu.audRolesPermisos.listhead.fechaCreacion')}" style="background-color: #C4ECFF;" />
+						<listheader id="usuarioModificacion" width="15%" label="${c:l('eu.audRolesPermisos.listhead.usuarioModificacion')}" style="background-color: #C4ECFF;" />
+						<listheader id="fechaModificacion" width="5%" label="${c:l('eu.audRolesPermisos.listhead.fechaModificacion')}" style="background-color: #C4ECFF;" />
+						<listheader id="vigente" width="5%" label="${c:l('eu.audRolesPermisos.listhead.vigente')}" style="background-color: #C4ECFF;" />
+						<listheader id="tipo_operacion" width="15%" label="${c:l('eu.audRolesPermisos.listhead.tipoOperacion')}" style="background-color: #C4ECFF;" />
+					</listhead>					
+					<listfoot>
+								<listfooter />
+								<listfooter />
+								<listfooter label="${c:l('eu.historialCargos.listfooter.resultado')} "
+									style="color:#C4ECFF;float:right;" />
+								<listfooter
+									label="@{win_historialCargos$HistorialCargoComposer.resultados}"
+									style="color:#C4ECFF;" />
+					</listfoot>
+				</listbox>
+				<separator></separator>
+				<hbox id="hbox_botones" align="center">
+					<toolbarbutton id="btn_volver"
+						image="/imagenes/Cerrar.png"
+						tooltiptext="${c:l('eu.abmNovedades.acciones.volver')}"
+					/>
+				</hbox>
+			</div>
+		</vlayout>
+	</window>
+</zk>

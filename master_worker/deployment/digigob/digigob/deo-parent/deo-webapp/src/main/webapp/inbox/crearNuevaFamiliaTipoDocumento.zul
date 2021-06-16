@@ -1,0 +1,62 @@
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./nuevaFamiliaTipoDocumentoWindow" ?>
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+<?page title="${c:l('gedo.extensionesPermitidasTipDoc.wintitle.tipoDoc')}" contentType="text/html;charset=UTF-8"?>
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+<zk>
+<window title="${c:l('gedo.crearFamilia.wintitle.famCreadas')}" border="normal"  width="700px"
+		id="nuevaFamiliaTipoDocumentoWindow" 
+		apply="com.egoveris.deo.web.satra.produccion.NuevaFamiliaTipoDocumentoComposer">
+		<window id="editarFamiliaTipoDocumentoWindow"
+		visible="false"
+		forward="onClose=nuevaFamiliaTipoDocumentoWindow$composer.onEditarFamilia" />
+			<paging id="familiasDocumentosPaginator" pageSize="10"  detailed="true"/>	
+				<listbox id="familiasDocumentos"  fixedLayout="true"  	
+					model="@{nuevaFamiliaTipoDocumentoWindow$composer.listaFamilias}"
+					selectedItem="@{nuevaFamiliaTipoDocumentoWindow$composer.selectedFamilia}"
+				    mold="paging" paginal="${familiasDocumentosPaginator}">				    
+					<listhead sizable="false" style="background: #C4ECFF;" width="100%">
+						<listheader label="${c:l('ccoo.bandeja.nombreUsuario')}" 
+							 width="30%"/>
+						<listheader label="${c:l('gedo.inbox.alarmas.descripcion')}" 
+							align="center" width="45%"/>
+						<listheader label="${c:l('gedo.crearFamilia.label.docAsociados')}" 
+							align="center" width="50%"/>
+						<listheader label="${c:l('gedo.historial.documento.acciones')}" 
+							align="center" width="25%"/>
+					</listhead>
+				</listbox>	
+				<separator></separator>
+					<vlayout>
+					<groupbox width="100%" closable="false">
+						<caption label="${c:l('gedo.crearFamilia.label.crearFamilia')}"/>
+						<hbox>
+							<label value="${c:l('ccoo.bandeja.nombreUsuario')}"/> 
+							<textbox id="nfamilia" maxlength="35" />
+							<label value="${c:l('gedo.inbox.alarmas.descripcion')}"/> 
+							<textbox id="dfamilia" maxlength="255"/>
+							<button id="agregar"
+							tooltiptext="${c:l('gedo.datosPropiosDelTipoDocumento.hbox.tooltiptext.agregarCodigo')}"
+							image="/imagenes/control_add_blue.png" />
+						</hbox>
+					</groupbox>
+				</vlayout>
+		<grid align="center" style="border:0px">
+			<rows>
+				<row align="center">
+					<hbox>
+						<toolbar mold="panel" orient="horizontal"
+							width="100%" align="center"> 
+							<button id="guardar" class="btn-secondary"
+								iconSclass="z-icon-save" label="${c:l('gedo.detalleDocumentos.botonGuardar')}" height="42px"
+								left="10px" forward="onClick=onGuardar" />
+							<button id="cancelar" class="btn-secondary"
+								iconSclass="z-icon-times-circle" label="${c:l('gedo.firmaConjunta.botonCancelar')}" height="42px" left="10px"
+								forward="onClick=onCancelar" />
+						</toolbar>
+						</hbox>
+				</row>
+			</rows>
+		</grid>
+				<separator></separator>
+</window>
+</zk>

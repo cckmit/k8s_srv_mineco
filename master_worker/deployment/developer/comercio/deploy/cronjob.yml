@@ -1,0 +1,40 @@
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: supervisord
+  namespace: mineco-dev
+  labels:
+    run: supervisord
+spec:
+  concurrencyPolicy: Forbid
+  failedJobsHistoryLimit: 0
+  schedule: "*/1 * * * *"
+  jobTemplate:
+    spec:
+      ttlSecondsAfterFinished: 100
+      template:
+        spec:
+          dnsPolicy: "None"
+          dnsConfig:
+            nameservers:
+              - 128.5.8.26
+            searches:
+              - mineco-dev.svc.cluster.local
+              - svc.cluster.local 
+              - cluster.local
+          containers:
+          - name: supervisord
+            image: jjolon/comercio:latest
+            imagePullPolicy: IfNotPresent
+            volumeMounts:
+              - mountPath: "/var/www/html"
+                name: vol-documento
+            command:
+            - /bin/sh
+            - -c
+            - php artisan queue:work --sleep=3 --tries=3
+          restartPolicy: Never
+          volumes:
+          - name: vol-documento
+            persistentVolumeClaim:
+              claimName: dev-documentos

@@ -1,0 +1,286 @@
+<zk>
+	<vlayout
+		apply="com.egoveris.ffdd.render.zk.comp.cc.CommonEDAComposer">
+		<tabbox height="290px">
+			<tabs>
+				<tab label="${c:l('commonEDA.declaration')}" />
+				<tab label="${c:l('commonEDA.exporter')}" />
+				<tab label="${c:l('commonEDA.consignee')}" />
+				<tab label="${c:l('commonEDA.other')}" />
+				<tab label="${c:l('commonEDA.invoce')}" />
+			</tabs>
+			<tabpanels >
+				<tabpanel>
+					<grid>
+						<columns>
+							<column></column>
+							<column></column>
+							<column></column>
+							<column></column>
+							<column></column>
+							<column></column>
+						</columns>
+						<rows>
+							<row>
+								Declaration No:
+								<cell
+									id="${arg.formComp.nombre}_ecnDiv" />
+							</row>
+							<row>
+								<hbox>Type of export code:</hbox>
+								<cell
+									id="${arg.formComp.nombre}_ecbDiv" />
+								<hbox>Category of cargo code:</hbox>
+								<cell
+									id="${arg.formComp.nombre}_ic2Div" />
+								<hbox>Nature of transaction code:</hbox>
+								<cell
+									id="${arg.formComp.nombre}_ntcDiv" />
+							</row>
+							<row>
+								<hbox>Type of exporter</hbox>
+								<hbox>
+									<cell
+										id="${arg.formComp.nombre}_skbDiv" />
+								</hbox>
+								<hbox>Mode of transport:</hbox>
+								<hbox>
+									<cell
+										id="${arg.formComp.nombre}_mtcDiv" />
+								</hbox>
+							</row>
+							<row>
+								<hbox>Customs station code:</hbox>
+								<hbox>
+									<cell
+										id="${arg.formComp.nombre}_chDiv" />
+								</hbox>
+								<hbox>Authentication:</hbox>
+								<hbox>
+									<cell
+										id="${arg.formComp.nombre}_autDiv" />
+								</hbox>
+							</row>
+							<row>
+								<hbox>Customs warehouse code:</hbox>
+								<hbox>
+									<cell
+										id="${arg.formComp.nombre}_stDiv" />
+								</hbox>
+								<hbox>Planned declarant code:</hbox>
+								<hbox>
+									<cell
+										id="${arg.formComp.nombre}_eccDiv" />
+								</hbox>
+							</row>
+						</rows>
+					</grid>
+				</tabpanel>
+				<tabpanel>
+					<grid>
+						<columns>
+							<column></column>
+							<column></column>
+							<column></column>
+							<column></column>
+							<column></column>
+							<column></column>
+						</columns>
+						<rows>
+							<row>
+								<hbox>Exporter:</hbox>
+								<cell
+									id="${arg.formComp.nombre}_emcDiv" />
+								<cell id="${arg.formComp.nombre}_emnDiv"
+									colspan="4" />
+							</row>
+							<row>
+								<hbox>Address:</hbox>
+								<cell id="${arg.formComp.nombre}_emaDiv"
+									colspan="5" />
+							</row>
+
+							<row>
+								<hbox>Postcode:</hbox>
+								<hbox>
+									<cell
+										id="${arg.formComp.nombre}_emyDiv" />
+								</hbox>
+								<hbox>Telephone No.:</hbox>
+								<hbox>
+									<cell
+										id="${arg.formComp.nombre}_emtDiv" />
+								</hbox>
+							</row>
+						</rows>
+					</grid>
+				</tabpanel>
+
+				<tabpanel>
+					<grid>
+						<columns>
+							<column></column>
+							<column></column>
+							<column></column>
+							<column></column>
+							<column></column>
+							<column></column>
+						</columns>
+						<rows>
+							<row>
+								<hbox>Consignee:</hbox>
+								<hbox>
+									<cell
+										id="${arg.formComp.nombre}_cgnDiv" />
+								</hbox>
+							</row>
+							<row>
+								<hbox>Address:</hbox>
+								<cell id="${arg.formComp.nombre}_cgpDiv"
+									colspan="5" />
+
+							</row>
+							<row>
+								<hbox>Postcode:</hbox>
+								<hbox>
+									<cell
+										id="${arg.formComp.nombre}_cgaDiv" />
+								</hbox>
+								<hbox>Country:</hbox>
+								<hbox>
+									<cell
+										id="${arg.formComp.nombre}_cgkDiv" />
+								</hbox>
+							</row>
+
+						</rows>
+					</grid>
+				</tabpanel>
+				<tabpanel>
+					<grid>
+						<columns>
+							<column></column>
+							<column></column>
+							<column></column>
+							<column></column>
+							<column></column>
+							<column></column>
+						</columns>
+						<rows>
+							<row>
+								<hbox>AWB No.:</hbox>
+								<hbox>
+									<cell
+										id="${arg.formComp.nombre}_awbDiv" />
+								</hbox>
+								<hbox>Number of packages:</hbox>
+								<hbox>
+									<cell
+										id="${arg.formComp.nombre}_noDiv" />
+								</hbox>
+								<hbox>Gross weight:</hbox>
+								<hbox>
+									<cell
+										id="${arg.formComp.nombre}_gwDiv" />
+								</hbox>
+							</row>
+							<row>
+								<hbox>Conveyance name:</hbox>
+								<hbox>
+									<cell
+										id="${arg.formComp.nombre}_vsnDiv" />
+								</hbox>
+								<hbox>
+									Estimated date of departure:
+								</hbox>
+								<hbox>
+									<cell
+										id="${arg.formComp.nombre}_symDiv" />
+								</hbox>
+							</row>
+							<row>
+								<hbox>Final destination code:</hbox>
+								<hbox>
+									<cell
+										id="${arg.formComp.nombre}_dscDiv" />
+								</hbox>
+								<hbox>Invoice price type code:</hbox>
+								<hbox>
+									<cell
+										id="${arg.formComp.nombre}_ip1Div" />
+								</hbox>
+							</row>
+							<row>
+								<hbox>Incoterms:</hbox>
+								<hbox>
+									<cell
+										id="${arg.formComp.nombre}_ip2Div" />
+								</hbox>
+								<hbox>Invoice currency code:</hbox>
+								<hbox>
+									<cell
+										id="${arg.formComp.nombre}_ip3Div" />
+								</hbox>
+							</row>
+						</rows>
+					</grid>
+				</tabpanel>
+				<tabpanel>
+					<grid>
+						<columns>
+							<column></column>
+							<column></column>
+							<column></column>
+							<column></column>
+							<column></column>
+							<column></column>
+						</columns>
+						<rows>
+							<row>
+								<hbox>Total of invoice price:</hbox>
+								<hbox>
+									<cell
+										id="${arg.formComp.nombre}_ip4Div" />
+								</hbox>
+								<hbox>Loading location code:</hbox>
+								<hbox>
+									<cell
+										id="${arg.formComp.nombre}_pscDiv" />
+								</hbox>
+							</row>
+							<row>
+								<hbox>Other taxes/fees type code:</hbox>
+								<cell
+									id="${arg.formComp.nombre}_otcDiv" />
+							</row>
+							<row>
+								<hbox>Lc</hbox>
+								<hbox>
+									<cell
+										id="${arg.formComp.nombre}_lcDiv" />
+								</hbox>
+								<hbox>Lcn:</hbox>
+								<hbox>
+									<cell
+										id="${arg.formComp.nombre}_lcnDiv" />
+								</hbox>
+							</row>
+							<row>
+								<hbox>Lcd:</hbox>
+								<hbox>
+									<cell
+										id="${arg.formComp.nombre}_lcdDiv" />
+								</hbox>
+								<hbox>Ban:</hbox>
+								<hbox>
+									<cell
+										id="${arg.formComp.nombre}_banDiv" />
+								</hbox>
+							</row>
+						</rows>
+					</grid>
+				</tabpanel>
+			</tabpanels>
+		</tabbox>
+	</vlayout>
+</zk>

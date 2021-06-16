@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>com.egoveris</groupId>
+    <artifactId>egoveris-master-config</artifactId>
+    <version>2.0.3-SNAPSHOT</version>
+  </parent>
+  <artifactId>vuc-front</artifactId>
+  <packaging>pom</packaging>
+  <name>Application vuc-front</name>
+
+  <distributionManagement>
+    <repository>
+       <id>local-releases</id>
+       <name>Repositorio interno everis Argentina - RELEASES</name>
+       <url>https://steps.everis.com/nexus/repository/EGOVERISTE.Release/</url>
+    </repository>
+    <snapshotRepository>
+       <id>local-snapshots</id>
+       <name>Repositorio interno eGoveris - SNAPSHOTS</name>
+       <url>https://steps.everis.com/nexus/repository/EGOVERISTE.Snapshot/</url>
+    </snapshotRepository>
+  </distributionManagement>
+
+  <modules>
+    <module>vuc-front-webapp</module>
+    <module>vuc-front-env</module>
+    <module>vuc-front-base-common</module>
+    <module>vuc-front-base-core</module>
+    <module>vuc-front-base-web</module>
+    <module>vuc-front-ws-common</module>
+    <module>vuc-front-ws-web</module>
+    <module>vuc-front-model-common</module>
+  </modules>
+  <properties>
+    <appShortId>vucfront</appShortId>
+  </properties>
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>org.terasoluna.plus.framework</groupId>
+        <artifactId>terasoluna-plus-bom</artifactId>
+        <version>0.2.0.RELEASE</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+      <dependency>
+        <groupId>com.egoveris</groupId>
+        <artifactId>vuc-front-env</artifactId>
+        <version>${project.version}</version>
+        <scope>compile</scope>
+      </dependency>
+      <dependency>
+        <groupId>com.egoveris</groupId>
+        <artifactId>vuc-front-webapp</artifactId>
+        <version>${project.version}</version>
+        <scope>compile</scope>
+      </dependency>
+      <dependency>
+        <groupId>com.egoveris</groupId>
+        <artifactId>vuc-front-base-common</artifactId>
+        <version>${project.version}</version>
+        <scope>compile</scope>
+      </dependency>
+      <dependency>
+        <groupId>com.egoveris</groupId>
+        <artifactId>vuc-front-base-core</artifactId>
+        <version>${project.version}</version>
+        <scope>compile</scope>
+      </dependency>
+      <dependency>
+        <groupId>com.egoveris</groupId>
+        <artifactId>vuc-front-base-web</artifactId>
+        <version>${project.version}</version>
+        <scope>compile</scope>
+      </dependency>
+      <dependency>
+        <groupId>com.egoveris</groupId>
+        <artifactId>vuc-front-ws-common</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.egoveris</groupId>
+        <artifactId>vuc-front-ws-web</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.egoveris</groupId>
+        <artifactId>vuc-front-model-common</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
+</project>

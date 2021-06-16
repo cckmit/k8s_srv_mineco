@@ -1,0 +1,107 @@
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./tareasEnParaleloWindow" ?>
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+<?page title="Tareas en Paralelo" contentType="text/html;charset=UTF-8"?>
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+
+
+<zk>
+	<window id="tareasEnParaleloWindow" title="" border="none"  apply="com.egoveris.te.base.composer.TareasEnParaleloComposer"
+		width="100%">
+		<hbox  width="100%">
+			<vbox>
+				<separator></separator>
+				<label value="${c:l('ee.panelusuario.tab.tareasEnParalelo.value')}" style="padding-left: 10px; font: bold;" />
+				<separator></separator>
+			</vbox>
+		</hbox>
+		<hbox  align="center">
+			<image src="/imagenes/egovIconOrange.png" width="40px" height="30px" style="padding-left: 10px;" />
+			<label value="${c:l('ee.tareasEnParalelo.label.buzonTareasParalelo')}" style="font: bold;" />
+		</hbox>
+		<separator bar="true"  />
+		<separator />
+		<paging id="taskPaginator" pageSize="10" />
+
+		<listbox fixedLayout="true" id="tasksList" width="100%" 
+			selectedItem="@{tareasEnParaleloWindow$composer.tareaParaleloSelected}" maxlength="20" mold="paging" paginal="${taskPaginator}"
+			itemRenderer="com.egoveris.te.base.rendered.TareasEnParaleloItemRenderer">
+			
+<!-- 			model="@{tareasEnParaleloWindow$composer.listaTareas}" -->
+			<listhead sizable="false" >
+				<listheader id="estado" align="center" label="${c:l('ee.tramitacion.label.estado.value')}"  width="10%" />
+				<listheader id="expediente" align="center" width="20%" label="${c:l('ee.tareasEnParalelo.label.exp')}"  />
+				<listheader id="fecha" align="center" label="${c:l('ee.historialpases.listheader.fecha.value')}" width="10%"  />
+				<listheader id="motivo" width="30%" label="${c:l('ee.historialpases.listheader.motivo.value')}"  />
+				<listheader id="destino" width="15%" label="${c:l('ee.tareasEnParalelo.listhead.destinatario')}"  />
+				<listheader id="acciones" width="15%" align="center" label="${c:l('te.webapp.expediente.macros.documentofiltro.listbox.acciones')}"  />
+			</listhead>
+			<listfoot >
+				<listfooter />
+				<listfooter />
+				<listfooter />
+				<listfooter />
+				<listfooter id="totaltareapendiente" label="${c:l('ee.inbox.listfooter.totaltareapendiente.value')}" span="1"  />
+				<listfooter  span="1" align="left">
+					<label value ="@{tareasEnParaleloWindow$composer.listaTareas.size}"></label>
+				</listfooter>
+				
+			</listfoot>
+		</listbox>
+		
+		<separator height="20px"></separator>
+ 		
+		<hbox  width="100%">
+			<vbox>
+				<separator></separator>
+				<label value="${c:l('ee.tareasEnParalelo.label.tareasTramLibre')}" style="padding-left: 10px; font: bold;" />
+				<separator></separator>
+			</vbox>
+		</hbox>
+		<hbox  align="center">
+			<image src="/imagenes/egovIconOrange.png" width="40px" height="30px" style="padding-left: 10px;" />
+			<label value="${c:l('ee.tareasEnParalelo.label.buzonTareasTramitacion')}" style="font: bold;" />
+		</hbox>
+		<separator bar="true"  />
+		<separator />
+		<paging id="taskPaginatorTL" pageSize="10" />
+
+		<listbox fixedLayout="true" id="tasksListTL" width="100%" 
+			selectedItem="@{tareasEnParaleloWindow$composer.tareaTLSelected}" 
+			maxlength="20" mold="paging" paginal="${taskPaginatorTL}">
+
+			<listhead sizable="false" >
+				<listheader id="estadoTL" align="center" label="${c:l('ee.tramitacion.label.estado.value')}"  width="10%" />
+				<listheader id="expedienteTL" align="center" width="20%" label="${c:l('ee.tareasEnParalelo.label.exp')}"  />
+				<listheader id="fechaTL" align="center" label="${c:l('ee.historialpases.listheader.fecha.value')}" width="10%"  />
+				<listheader id="motivoTL" width="30%" label="${c:l('ee.historialpases.listheader.motivo.value')}"  />
+				<listheader id="destinoTL" width="15%" label="${c:l('ee.tareasEnParalelo.listhead.destinatario')}"  />
+				<listheader id="accionesTL" width="15%" align="center" label="${c:l('te.webapp.expediente.macros.documentofiltro.listbox.acciones')}"  />
+			</listhead>
+			
+			<listitem id="itemTL" self="@{each=TL}" value="@{TL}">
+				<listcell label="@{TL.ee.estado}"></listcell>
+				<listcell label="@{TL.ee.codigoCaratula}"></listcell>
+				<listcell label="@{TL.fechaPase}"></listcell>
+				<listcell label="@{TL.motivo}"></listcell>
+				<listcell label="@{TL.destino}"></listcell>
+				<listcell>
+					<hbox visible="@{TL.adquirible}">
+						<image src="/imagenes/avocarexpedientes.png" forward="onClick=tareasEnParaleloWindow$TareasEnParaleloComposer.onAdquirirTLTask()"></image>
+						<label value="${c:l('ee.inbox.adquirir')}" forward="onClick=tareasEnParaleloWindow$TareasEnParaleloComposer.onAdquirirTLTask()"></label>
+					</hbox>
+				</listcell>
+			</listitem>
+			
+			<listfoot >
+				<listfooter />
+				<listfooter />
+				<listfooter />
+				<listfooter />
+				<listfooter id="totaltareapendienteTL" label="${c:l('ee.inbox.listfooter.totaltareapendiente.value')}" span="1"  />
+				<listfooter  span="1" align="left">
+					<label value="@{tareasEnParaleloWindow$composer.listaTareasTL.size}"></label>
+				</listfooter>
+			</listfoot>
+		</listbox>
+</window>
+</zk>

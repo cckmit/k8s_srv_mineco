@@ -1,0 +1,8 @@
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+<?page contentType="text/html;charset=UTF-8"?>
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+<?init class="com.egoveris.deo.web.satra.InitPanelUsuario" ?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./winLect" ?>
+<zk>
+	<window id="winLect" apply="com.egoveris.deo.web.satra.LecturaDocumentoComposer" border="none" sclass="transparent" />
+</zk>

@@ -1,0 +1,29 @@
+<zk>
+	<vlayout apply="com.egoveris.ffdd.render.zk.comp.cc.VistaInsumosDATPADinComposer">
+		<grid>
+			<columns>
+				<column></column>
+			</columns>
+			<rows>
+				<row>
+					<vbox>
+						<hbox>
+							<cell
+								id="${arg.formComp.nombre}_numeroItemDiv" />
+							<cell
+								id="${arg.formComp.nombre}_numeroInsumoDiv" />
+							<cell
+								id="${arg.formComp.nombre}_descripcionInsumoDiv" />
+							<cell
+								id="${arg.formComp.nombre}_cantidadDeInsumoDiv" />
+							<cell
+								id="${arg.formComp.nombre}_codigoUnidadDeMedidaDiv" />
+							<cell
+								id="${arg.formComp.nombre}_valorCifUnitarioDiv" />
+						</hbox>
+					</vbox>
+				</row>
+			</rows>
+		</grid>
+	</vlayout>
+</zk>

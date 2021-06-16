@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<process key="nombramiento" name="workflow-nombramiento" version="33" xmlns="http://jbpm.org/4.3/jpdl">
+
+	<start g="533,-2,48,48" name="start1">
+      <transition g="-31,-15" name="Iniciacion" to="Iniciacion"/>
+	</start>
+
+	<task form="expediente/tramitacion.zul" g="368,20,123,52" name="Control de Datos">
+		<assignment-handler class="com.egoveris.te.base.service.AsignarTarea"/>
+		<transition g="467,115:20,-3" name="Control de Documentación e Incompatibilidades" to="Control de Documentación e Incompatibilidades"/>
+		<transition g="263,25:40,-5" name="Subsanacion" to="Subsanacion"/>
+		<transition g="74,32" name="forkEach" to="forkEach"/>
+	</task>
+
+	<task form="expediente/tramitacion.zul" g="279,162,299,52" name="Control de Documentación e Incompatibilidades">
+		<assignment-handler class="com.egoveris.te.base.service.AsignarTarea"/>
+		<transition g="396,116:-57,-28" name="Control de Datos" to="Control de Datos"/>
+		<transition g="477,254:6,-6" name="Designacion Transitoria" to="Designacion Transitoria"/>
+		<transition g="-36,-24" name="Guarda Temporal" to="Guarda Temporal"/>
+		<transition g="-29,-22" name="forkEach" to="forkEach"/>
+      <transition g="291,108:-61,-22" name="Subsanacion" to="Subsanacion"/>
+	</task>
+
+	<task form="expediente/tramitacion.zul" g="346,296,170,52" name="Designacion Transitoria">
+		<assignment-handler class="com.egoveris.te.base.service.AsignarTarea"/>
+		<transition g="392,254:-196,-17" name="Control de Documentación e Incompatibilidades" to="Control de Documentación e Incompatibilidades"/>
+		<transition g="-10,-25" name="forkEach" to="forkEach"/>
+      <transition g="341,442:-137,-26" name="Control y Actualizacion Transitoria en SIAL" to="Control y Actualizacion Transitoria en SIAL"/>
+	</task>
+
+	<task form="expediente/tramitacion.zul" g="287,539,319,52" name="Control y Actualizacion Transitoria en SIAL">
+		<assignment-handler class="com.egoveris.te.base.service.AsignarTarea"/>
+		<transition g="696,547:-56,-21" name="Informe Apto Médico" to="Informe Apto Médico"/>
+		<transition g="4,-42" name="forkEach" to="forkEach"/>
+        <transition g="525,444:-45,-27" name="Designacion Transitoria" to="Designacion Transitoria"/>
+      <transition g="279,506;279,299:-52,-82" name="Guarda Temporal" to="Guarda Temporal"/>
+	</task>
+
+	<task form="expediente/tramitacion.zul" g="733,537,165,52" name="Informe Apto Médico">
+		<transition g="-25,-26" name="forkEach" to="forkEach"/>
+		<transition g="880,641:7,-10" name="Confirmar Rechazo Designación" to="Confirmar Rechazo Designación"/>
+		<transition g="497,717:-90,2" name="Control Documentación" to="Control Documentación"/>
+        <transition g="447,622:-156,-18" name="Control y Actualizacion Transitoria en SIAL" to="Control y Actualizacion Transitoria en SIAL"/>
+		<assignment-handler class="com.egoveris.te.base.service.AsignarTarea"/>
+	</task>
+
+	<task form="expediente/tramitacion.zul" g="753,2,110,52" name="Iniciacion">
+		<assignment-handler class="com.egoveris.te.base.service.AsignarTarea"/>
+        <transition g="-44,-15" name="Control de Documentación e Incompatibilidades" to="Control de Documentación e Incompatibilidades"/>
+	</task>
+
+	<task form="expediente/tramitacion.zul" g="66,37,92,52" name="Subsanacion">
+		<assignment-handler class="com.egoveris.te.base.service.AsignarTarea"/>
+		<transition g="-59,14" name="Guarda Temporal" to="Guarda Temporal"/>
+      <transition g="230,139:-114,-21" name="Control de Documentación e Incompatibilidades" to="Control de Documentación e Incompatibilidades"/>
+	</task>
+
+	<task form="expediente/tramitacion.zul" g="41,190,128,52" name="Guarda Temporal">
+		<assignment-handler class="com.egoveris.te.base.service.AsignarTarea"/>
+		<transition g="16,550" name="Cierre" to="end1"/>
+	</task>
+
+	<foreach g="741,223,80,40" in="#{destinos}" name="forkEach" var="asignado">
+		<transition to="Paralelo"/>
+	</foreach>
+
+	<task form="expediente/tramitacion.zul" g="825,220,92,52" name="Paralelo">
+		<transition g="17,-15" name="to joinControlDatos" to="joinControlDatos"/>
+		<transition g="-87,-1" name="to joinControlIncompatibilidad" to="joinControlIncompatibilidad"/>
+		<transition g="-25,1" name="to joinDesignacionTransitoria" to="joinDesignacionTransitoria"/>
+		<transition g="981,418:-25,-10" name="to joinControlSIAL" to="joinControlSIAL"/>
+		<transition g="1030,289:-105,-20" name="to joinAptoMedico" to="joinAptoMedico"/>
+		<transition g="1062,210:-73,-19" name="to joinConfirmar Rechazo" to="joinConfirmar Rechazo Designación"/>
+		<transition g="1108,228:-45,-20" name="to joinResolucion Revocatoria" to="joinResolucion Revocatoria"/>
+		<transition g="225,462:-88,8" name="to joinControl Documentación" to="joinControl Documentación"/>
+		<transition g="1160,296:-58,8" name="to joinResolucion Designacion Definitiva" to="joinResolucion Designacion Definitiva"/>
+		<transition g="1212,260:-38,-26" name="to joinCarga en SIAL" to="joinCarga en SIAL"/>
+		<transition g="1264,414:-102,-20" name="to joinControl LUE" to="joinControl LUE"/>
+		<transition g="1308,390:-24,-22" name="to joinCierre del proceso" to="joinCierre del proceso"/>
+		<assignment-handler expr="#{tareaParalelo}"/>
+	</task>
+
+	<end g="94,1319,48,48" name="end1"/>
+
+
+	<join g="948,68,48,48" multiplicity="#{cant}" name="joinControlDatos">
+		<transition g="734,88:29,-18" name="to Control de Datos" to="Control de Datos"/>
+	</join>
+	<join g="869,107,48,48" multiplicity="#{cant}" name="joinControlIncompatibilidad">
+		<transition g="-134,-17" name="to Control de Documentación e Incompatibilidades" to="Control de Documentación e Incompatibilidades"/>
+	</join>
+	<join g="845,329,48,48" multiplicity="#{cant}" name="joinDesignacionTransitoria">
+		<transition g="34,-3" name="to Designacion Transitoria" to="Designacion Transitoria"/>
+	</join>
+	<join g="953,471,48,48" multiplicity="#{cant}" name="joinControlSIAL">
+		<transition g="-27,-20" name="to Control y Actualizacion Transitoria en SIAL" to="Control y Actualizacion Transitoria en SIAL"/>
+	</join>
+	<join g="1012,519,48,48" multiplicity="#{cant}" name="joinAptoMedico">
+		<transition g="-133,-20" name="to Informe Apto Médico" to="Informe Apto Médico"/>
+	</join>
+
+	<task form="expediente/tramitacion.zul" g="712,695,213,52" name="Confirmar Rechazo Designación">
+		<assignment-handler class="com.egoveris.te.base.service.AsignarTarea"/>
+		<transition g="775,636:-119,-4" name="Informe Apto Médico" to="Informe Apto Médico"/>
+		<transition g="686,718:-65,-20" name="forkEach" to="forkEach"/>
+		<transition g="866,774:5,-4" name="Resolucion Revocatoria" to="Resolucion Revocatoria"/>
+		<transition g="422,788:-26,-30" name="Control Documentación" to="Control Documentación"/>
+	</task>
+	<task form="expediente/tramitacion.zul" g="732,819,178,52" name="Resolucion Revocatoria">
+		<assignment-handler class="com.egoveris.te.base.service.AsignarTarea"/>	
+		<transition g="780,778:-170,-4" name="Confirmar Rechazo Designación" to="Confirmar Rechazo Designación"/>
+		<transition g="625,846:-65,-20" name="forkEach" to="forkEach"/>
+		<transition g="934,1032:2,-20" name="Cierre del proceso" to="Cierre del proceso"/>
+	</task>
+	<join g="1045,658,48,48" multiplicity="#{cant}" name="joinConfirmar Rechazo Designación">
+		<transition g="-67,9" name="to Confirmar Rechazo Designación" to="Confirmar Rechazo Designación"/>
+	</join>
+	<join g="1090,810,48,48" multiplicity="#{cant}" name="joinResolucion Revocatoria">
+		<transition g="-55,-15" name="to Resolucion Revocatoria" to="Resolucion Revocatoria"/>
+	</join>
+	<task form="expediente/tramitacion.zul" g="229,694,168,52" name="Control Documentación">
+		<assignment-handler class="com.egoveris.te.base.service.AsignarTarea"/>	
+		<transition g="493,686:-51,-19" name="Informe Apto Médico" to="Informe Apto Médico"/>
+		<transition g="420,820:-47,-19" name="Confirmar Rechazo Designación" to="Confirmar Rechazo Designación"/>
+		<transition g="558,638:-71,-11" name="forkEach" to="forkEach"/>
+		<transition g="360,860:-6,8" name="Resolución Designación Definitiva" to="Resolución Designación Definitiva"/>
+	</task>
+	<join g="169,539,48,48" multiplicity="#{cant}" name="joinControl Documentación">
+		<transition g="-122,-4" name="to Control Documentación" to="Control Documentación"/>
+	</join>
+	<task form="expediente/tramitacion.zul" g="210,922,216,52" name="Resolución Designación Definitiva">
+		<assignment-handler class="com.egoveris.te.base.service.AsignarTarea"/>	
+		<transition g="262,861:-82,-12" name="Control Documentación" to="Control Documentación"/>
+		<transition g="526,906:-65,-20" name="forkEach" to="forkEach"/>
+		<transition g="470,1000:-23,-18" name="Carga en SIAL" to="Carga en SIAL"/>
+	</task>
+	<join g="1145,872,48,48" multiplicity="#{cant}" name="joinResolucion Designacion Definitiva">
+		<transition g="-198,-20" name="to Resolución Designación Definitiva" to="Resolución Designación Definitiva"/>
+	</join>
+	<task form="expediente/tramitacion.zul" g="395,1048,161,52" name="Carga en SIAL">
+		<assignment-handler class="com.egoveris.te.base.service.AsignarTarea"/>	
+		<transition g="418,1021:-180,2" name="Resolución Designación Definitiva" to="Resolución Designación Definitiva"/>
+		<transition g="610,982:-65,-20" name="forkEach" to="forkEach"/>
+		<transition g="530,1138:6,-6" name="Control LUE" to="Control LUE"/>
+	</task>
+	<join g="1198,902,48,48" multiplicity="#{cant}" name="joinCarga en SIAL">
+		<transition g="138,-54" name="Carga en SIAL" to="Carga en SIAL"/>
+	</join>
+	<task form="expediente/tramitacion.zul" g="442,1180,92,52" name="Control LUE">
+		<assignment-handler class="com.egoveris.te.base.service.AsignarTarea"/>	
+		<transition g="448,1140:-78,-12" name="Carga en SIAL" to="Carga en SIAL"/>
+		<transition g="604,1092:-2,-28" name="forkEach" to="forkEach"/>
+		<transition g="652,1178:8,-14" name="Cierre del proceso" to="Cierre del proceso"/>
+	</task>
+	<join g="1244,942,48,48" multiplicity="#{cant}" name="joinControl LUE">
+		<transition g="180,-54" name="to Control LUE" to="Control LUE"/>
+	</join>
+	<task form="expediente/tramitacion.zul" g="752,1178,140,52" name="Cierre del proceso">
+		<assignment-handler class="com.egoveris.te.base.service.AsignarTarea"/>	
+		<transition g="648,1224:-30,-22" name="Control LUE" to="Control LUE"/>
+		<transition g="660,1008:8,-12" name="forkEach" to="forkEach"/>
+		<transition g="-88,18" name="Resolucion Revocatoria" to="Resolucion Revocatoria"/>
+      <transition g="822,1262;140,1266;169,260:62,-22" name="Guarda Temporal" to="Guarda Temporal"/>
+	</task>
+	<join g="1296,1104,48,48" multiplicity="#{cant}" name="joinCierre del proceso">
+		<transition g="-114,-20" name="to Cierre del proceso" to="Cierre del proceso"/>
+	</join>
+	|
+
+	<migrate-instances versions="*">
+		<activity-mapping new-name="Control de Datos" old-name="Tramitacion"/>
+	</migrate-instances>
+</process>

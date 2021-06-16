@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./consultaPorDomicilioWindow"  ?>
+<?page title="Datos de la consulta"?>
+<zk>
+	<window id="consultaPorDomicilioWindow" title="${c:l('ee.consultaDomicilio.title.consultaDomicilio')}"
+		border="normal" 
+		apply="com.egoveris.te.base.composer.ConsultaPorDomicilioComposer"
+		closable="true" >
+		<groupbox  width="475px">
+			<grid align="center" width="472px">
+				<rows>
+					<row>
+						<hbox align="center">
+							<label value="${c:l('ee.consultaGeneradosReparticion.hbox.fechaDesde')}" />
+							<separator width="18px" />
+							<datebox id="fechaDesde" />
+						</hbox>
+						<hbox align="center">
+							<label value="${c:l('ee.consultaGeneradosReparticion.hbox.fechaHasta')}" />
+							<separator width="18px" />
+							<datebox id="fechaHasta" />
+						</hbox>
+					</row>
+				</rows>
+			</grid>
+			<!-- LISTA DE ExpedienteMetadata  -->
+			<separator />
+			<groupbox>
+			 <caption label="${c:l('ee.nuevoexpediente.label.separadordomicilio.value')}"></caption>
+			 	<hbox align="center">
+			
+				<separator bar="true" />
+				<separator />
+				
+							<vlayout>
+							<label value="${c:l('ee.nuevoexpediente.label.callealtura.value')}" />
+							<textbox id="direccion" maxlength="100" cols="48">
+							</textbox>
+							<n:script xmlns:n="native">
+							 <![CDATA[
+							function loadScript(url, callback){
+								var script = document.createElement("script")
+								script.type = "text/javascript";
+					
+								if (script.readyState){ //IE
+									script.onreadystatechange = function(){
+										if (script.readyState == "loaded" || script.readyState == "complete") {
+											script.onreadystatechange = null;
+											callback();
+										}
+									};
+								} else { //Others
+									script.onload = function(){
+										callback();
+									};
+								}
+								script.src = url;
+								document.getElementsByTagName("head")[0].appendChild(script);
+							};
+							
+							loadScript("http://servicios.usig.buenosaires.gov.ar/usig-js/3.0/usig.AutoCompleterFull.min.js", function() { 
+								ac = new usig.AutoCompleter(jq("$direccion").attr("id"), { 
+									afterSelection: function(option) {
+										if (option instanceof usig.Direccion || option instanceof usig.inventario.Objeto) {
+			    	   						if (option.getCalle().codigo != null && option.getCalle().nombre != null && option.getAltura() != null ) {	
+							    	   			jq("$direccion").val(option.toString());
+							    	   			return;
+									        }
+										}
+						       		}
+						       	});
+							});
+							]]>
+							</n:script>
+							<hlayout>
+							<label value="${c:l('ee.nuevoexpediente.label.piso.value')}" />
+							<textbox id="piso" 
+								maxlength="3" cols="3">
+							</textbox>
+							<label value="${c:l('ee.nuevoexpediente.label.departamento.value')}" />
+							<textbox id="departamento" 
+								maxlength="3" cols="3">
+							</textbox>
+							<label value="${c:l('ee.nuevoexpediente.label.codigopostal.value')}" />
+							<textbox id="codigoPostal" 
+								maxlength="10" cols="10">
+							</textbox>
+							</hlayout>
+							</vlayout>
+				
+			 	</hbox>
+			 	
+				<separator />
+				<separator />
+			</groupbox>
+			<separator />
+			<separator />
+			<hbox>
+				<button autodisable="self" label="${c:l('ee.consultaGeneradosReparticion.button.buscar')}" id="buscar" />
+				<button autodisable="self" id="cerrar" label="${c:l('ee.consultaGeneradosReparticion.button.cancelar')}" />
+				<button autodisable="self" label="${c:l('ee.consultaGeneradosReparticion.button.blanquearDatos')}" id="blanquearDatos" />
+			</hbox>
+		</groupbox>
+		<script type="text/javascript"><![CDATA[
+				function esNumero(myfield, e) { 
+						var key; 
+						if (window.event) 
+							key = window.event.keyCode; 
+						else if (e) 
+							key = e.which; 
+						else 
+							this.$doKeyDown_(e); 
+						// teclas de control 
+						if ((key==null) || (key==0) || (key==8) || (key==9) || (key==13) || (key==27) ) 
+							this.$doKeyDown_(e); 
+						// numero 
+						else {
+							if ( !e.shiftKey && ((key>=48) && (key<58)) || ((key>=96) && (key<=105))) {
+								this.$doKeyDown_(e);
+							} else {
+								e.stop();
+								return;
+							}
+						}
+				}
+				]]></script>
+	</window>
+	
+</zk>

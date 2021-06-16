@@ -1,0 +1,200 @@
+<?page title="" contentType="text/html;charset=UTF-8"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" ?>
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c" ?>
+<zk>
+	<window id="consultaSindicaturaWindow" width="100%"
+		style="align=center; "
+		apply="com.egoveris.edt.web.pl.ConsultaSindicaturaComposer">
+		<div align="center">
+			<grid style="align=center"
+				width="90%" visible="true">
+				<rows>
+					<row style="background: #C4ECFF;" align="left">
+						<cell style="background: #C4ECFF;"
+							colspan="11">
+							<label value="${c:l('eu.consulta.sindicatura..grid.label.opcConsulta')}" 
+								style="">
+							</label>
+						</cell>
+					</row>
+					<row align="center">
+						<cell valign="middle" >
+							<label	value="${c:l('eu.consulta.sindicatura.row.label.tipoUAI')}" />
+						</cell>
+						<cell valign="middle"  colspan="2">
+							<combobox id="comboUAI" readonly="true" width="142px"
+							     model="@{consultaSindicaturaWindow$composer.listUAI}"
+								 selectedItem="@{consultaSindicaturaWindow$composer.selectedUAI}">
+							</combobox>
+						</cell>
+												<cell valign="middle" colspan="1" >
+							<label	value="${c:l('eu.consulta.sindicatura.hbox.label.fechaDesde')}" width="560px" />
+						</cell>
+						<cell valign="middle" colspan="2">
+							<datebox id="fechaDesde" width="100%"/>
+						</cell>
+												<cell valign="middle" colspan="1" >
+							<label	value="${c:l('eu.consulta.sindicatura.hbox.label.fechaHasta')}" />
+						</cell>
+						<cell valign="middle" colspan="2">
+							<datebox id="fechaHasta" width="100%" />
+						</cell>
+						
+			
+						<cell valign="middle" colspan="2">
+						<label	value="${c:l('eu.consulta.sindicatura.row.label.sector')}" width="560px"  />
+						</cell>
+						</row>
+						
+						<row align="center">
+						<cell valign="middle" >
+							<label	value="${c:l('eu.consulta.sindicatura.row.label.letraActuacion')}"  />
+						</cell>
+						<cell valign="middle" colspan="2">
+								<combobox id="letraActuacion" readonly="true" width="100%"	model="@{consultaSindicaturaWindow$composer.actuacionesSADE}"
+								selectedItem="@{consultaSindicaturaWindow$composer.selectedActuacionSADE}"/>							
+						</cell>
+												<cell valign="middle" >
+							<label	value="${c:l('eu.consulta.sindicatura.row.label.nroActuacion')}" />
+						</cell>
+						<cell valign="middle" colspan="2">
+							<intbox cols="10" maxlength="8"
+								id="numeroSADE" />
+						</cell>
+						
+						<cell valign="middle" >
+							<label	value="${c:l('eu.consulta.sindicatura.row.label.reparticion')}" width="560px"  />
+						</cell>
+						<cell valign="middle" colspan="2">							
+							<bandbox id="reparticion">
+								<bandpopup id="reparticionesComboImportarDocumentosSADE" width="620px" >
+									<groupbox mold="3d">
+										<caption>
+											<hbox>
+												<label value="${c:l('eu.consulta.sindicatura.hbox.label.busquedaDeReparticion')}" width="560px" />
+												<image	src="/imagenes/help.png" width="16px" height="16px"
+														tooltip="helpBusquedaReparticion" align="right" />
+											</hbox>
+										</caption>
+										<separator height="2px"></separator>
+										<vbox height="100px"	width="600px">
+											<hbox>
+												<label	value="${c:l('eu.consulta.sindicatura.buscar')}" />
+												<textbox	id="textoReparticionImportarDocumentoSADE" />
+											</hbox>
+											<paging	id="paginatorIncorporarSADE" pageSize="10" />
+											<listbox
+												id="reparticionesImportarDocumentoSADEListbox" mold="paging"
+												paginal="${paginatorIncorporarSADE}"
+												model="@{consultaSindicaturaWindow$composer.listaReparticionSeleccionada}"
+												selectedItem="@{consultaSindicaturaWindow$composer.reparticionSeleccionada}"
+												itemRenderer="com.egoveris.edt.web.pl.renderers.ConsultaSindicaturaItemRenderer">
+												<listhead>
+													<listheader	label="${c:l('eu.consulta.sindicatura.listhead.listheader.label.codigo')}" width="25%"  />
+													<listheader	label="${c:l('eu.consulta.sindicatura.listhead.listheader.label.nombre')}" width="75%" />
+												</listhead>	
+												<listfoot	style="">			
+													<listfooter id="Total"	label="${c:l('eu.tabMigracionReparticion.label.totOrg')}"	span="1" style="color:#C4ECFF" />
+													<listfooter id="conteoDocumentos" label="@{consultaSindicaturaWindow$composer.listaReparticionSeleccionada.size}" span="2"	style="color:#C4ECFF" />
+											</listfoot>											
+											</listbox>
+										</vbox>
+									</groupbox>
+								</bandpopup>
+							</bandbox>
+						</cell>
+						
+					
+						<cell valign="middle" colspan="2">							
+							<bandbox id="sector">
+								<bandpopup id="reparticionesComboImportarDocumentosSectorSADE" width="620px" >
+									<groupbox mold="3d">
+										<caption>
+											<hbox>
+												<label value="${c:l('eu.consulta.sindicatura.hbox.label.busquedaDeReparticionSector')}" width="560px" />
+												<image	src="/imagenes/help.png" width="16px" height="16px"
+														tooltip="helpBusquedaReparticion" align="right" />
+											</hbox>
+										</caption>
+										<separator height="2px"></separator>
+										<vbox height="100px"	width="600px">
+											<hbox>
+												<label	value="${c:l('eu.consulta.sindicatura.buscar')}" />
+												<textbox	id="textoReparticionImportarDocumentoSectorSADE" />
+											</hbox>
+											<paging	id="paginatorIncorporarSectorSADE" pageSize="10" />
+											<listbox
+												id="reparticionesImportarDocumentoSADEListboxSector" mold="paging"
+												paginal="${paginatorIncorporarSectorSADE}"
+												model="@{consultaSindicaturaWindow$composer.listaReparticionSectorSeleccionada}"
+												selectedItem="@{consultaSindicaturaWindow$composer.sectorReparticionSeleccionada}"
+												itemRenderer="com.egoveris.edt.web.pl.renderers.ConsultaSindicaturaItemRenderer">
+												<listhead>
+													<listheader	label="${c:l('eu.consulta.sindicatura.listhead.listheader.label.codigo')}" width="25%"  />
+													<listheader	label="${c:l('eu.consulta.sindicatura.listhead.listheader.label.nombre')}" width="75%" />
+												</listhead>	
+												<listfoot	style="">			
+													<listfooter id="TotalSector"	label="${c:l('eu.tabMigrarSector.label.totalSectores')}"	span="1" style="color:#C4ECFF" />
+													<listfooter id="conteoDocumentosSector" label="@{consultaSindicaturaWindow$composer.listaReparticionSectorSeleccionada.size}" span="2"	style="color:#C4ECFF" />
+											</listfoot>											
+											</listbox>
+										</vbox>
+									</groupbox>
+								</bandpopup>
+							</bandbox>
+						</cell>
+						
+
+					</row>
+					<row align="center">
+						
+
+
+					</row>
+				</rows>
+			</grid>
+			<separator height="20px"></separator>
+			<hbox style="align=center">
+				<button	label="${c:l('eu.consulta.sindicatura.buscar')}" id="buscar" />
+					<button	label="${c:l('eu.consulta.sindicatura..hbox.label.limpiar')}" id="limpiar" />
+			</hbox>
+			
+		</div>
+		
+										<paging	id="sindicaturaPaginator" pageSize="10" />
+											<listbox
+ 												id="actuacionesList" mold="paging" visible="true"
+												model="@{consultaSindicaturaWindow$composer.listaRespuesta}"
+												selectedItem="@{consultaSindicaturaWindow$composer.SindicaturaSeleccionada}"
+												itemRenderer="com.egoveris.edt.web.pl.renderers.ConsultaRespuestaSindicaturaItemRenderer">
+												<listhead>
+													<listheader	label="${c:l('eu.escritorioUnico.misTareas.sistema')}"   />
+													<listheader	label="${c:l('eu.escritorioUnico.tareasMisSupervisados.usuario')}"  />
+													<listheader	label="${c:l('eu.consulta.sindicatura.listbox.listheader.label.codActivacion=')}"   />
+													<listheader	label="${c:l('eu.consulta.sindicatura.listbox.listheader.label.anio')}"   />
+													<listheader	label="${c:l('eu.consulta.sindicatura.listbox.listheader.label.numero')}"   />
+													<listheader	label="${c:l('eu.consulta.sindicatura.listbox.listheader.label.secuencia')}"   />
+													<listheader	label="${c:l('eu.consulta.sindicatura.listbox.listheader.label.orgActuacion')}"   />
+													<listheader	label="${c:l('eu.consulta.sindicatura.listbox.listheader.label.orgUsuario')}"  />
+													<listheader	label="${c:l('eu.configuracionFeriados.listbox.fecha')}"   />
+													<listheader	label="${c:l('eu.configuracionNovedades.crearNovedad.estado')}"   />
+													<listheader	label="${c:l('eu.consulta.sindicatura.listbox.listheader.label.sectorInterno')}"   />
+												</listhead>
+																									
+												<listfoot	style="">	
+												<listfooter />
+												<listfooter />
+												<listfooter />
+												<listfooter />
+												<listfooter />
+												<listfooter />
+												<listfooter />		
+													<listfooter id="Total2"	label="${c:l('eu.escritorioUnico.misTareas.total')}"	span="2" style="color:#C4ECFF" />
+													<listfooter id="conteoDocumentosRespuesta" label="@{consultaSindicaturaWindow$composer.sindicaturaPaginator.totalSize}" span="2"	style="color:#C4ECFF" />
+											</listfoot>											
+											</listbox>
+											<hbox   width="100%" align="center">
+													<button	label="${c:l('eu.consulta.sindicatura.hbox.btn.label.descargar')}" id="descargar" disabled="true" />
+											</hbox>
+	</window>
+</zk>

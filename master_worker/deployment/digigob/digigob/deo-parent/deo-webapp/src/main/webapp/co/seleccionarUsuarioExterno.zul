@@ -1,0 +1,69 @@
+<?page title="${c:l('ccoo.sectorMesa.usuariosSade.title')}" contentType="text/html;charset=UTF-8"?>
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./seleccionarUsuarioExternoWindow" arg2="usuarioExternoBinder"?>
+<zk>
+	<window title="${c:l('ccoo.sectorMesa.usuariosSade.title')}" closable="false"
+		border="normal"
+		id="seleccionarUsuarioExternoWindow" width="600px" height="300px"
+		apply="com.egoveris.deo.web.satra.produccion.SeleccionarUsuarioExternoComposer">
+
+      <hbox>
+      <separator width="10px"></separator>
+		<vbox align="center">
+			<separator height="5px"></separator>
+			<hbox>			    
+				<label value="${c:l('ccoo.sectorMesa.usuario')}"
+					width="50px" />
+				<textbox id="nombreUsuario" width="150px" maxlength="50"/>
+				<separator width="10px"></separator>
+				<label value="${c:l('ccoo.sectorMesa.destino')}" />
+				<textbox id="destinoUsuario" width="150px" maxlength="50"/>
+				<separator width="20px"></separator>	
+				<button label="${c:l('gedo.selecUsuarioExterno.label.agregarLista')}" style="color: #0000CC;"
+					forward="onClick=onAgregarUsuario">
+				</button>			
+			</hbox>						
+			<separator height="20px"></separator>
+			<hbox>			
+			<listbox fixedLayout="true" id="usuariosExternos" width="550px"
+				 mold="paging" pageSize="4"
+				model="@{seleccionarUsuarioExternoWindow$composer.usuariosExternos}" height="120px"
+				selectedItem="@{seleccionarUsuarioExternoWindow$composer.selectedUsuario}">
+
+				<listhead sizable="false"
+					style="background: #C4ECFF;">
+					<listheader
+						label="${c:l('ccoo.sectorMesa.usuario')}" 
+						width="45%" align="center" />
+					<listheader
+						label="${c:l('ccoo.sectorMesa.destino')}" align="center"
+						 width="45%" />
+					<listheader width="10%" align="center"></listheader>
+				</listhead>
+				<listitem  self="@{each=itemUsuario}"
+					value="@{itemUsuario}" >
+					<listcell>
+						<label value="@{itemUsuario.nombre}" tooltiptext="@{itemUsuario.nombre}"></label>
+					</listcell>
+					<listcell>
+						<label value="@{itemUsuario.destino}" tooltiptext="@{itemUsuario.destino}"></label>
+					</listcell>
+					<listcell><image src="/imagenes/Eliminar.png" align="center"
+					forward="onClick=onEliminarUsuario" ></image>
+					</listcell>
+				</listitem>
+			</listbox>
+			</hbox>
+            <separator height="20px"></separator> 
+            <separator bar="true"></separator>
+			<div align="center">
+				<hbox>
+					<button id="aceptar" label="${c:l('gedo.token.cert.aceptar')}" width="100px" />
+					<separator width="25px" />
+					<button id="cancelar" label="${c:l('gedo.token.cert.cancelar')}" width="100px" />
+				</hbox>
+			</div>
+		</vbox>
+		</hbox>
+	</window>
+</zk>

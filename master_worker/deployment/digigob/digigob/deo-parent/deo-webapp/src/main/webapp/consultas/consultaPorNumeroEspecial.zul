@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./consultaPorNumeroEspecialWindow"  ?>
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+<?page title="${c:l('gedo.consultaSecNum.wintitle.datosConsulta')}"?>
+<zk>
+	<window id="consultaPorNumeroEspecialWindow"
+		title="${c:l('gedo.consultaPorNumeroEspecial.windows.title')}" border="normal" width="500px"
+		apply="com.egoveris.deo.web.satra.consulta.ConsultaPorNumeroEspecialComposer"
+		closable="true">
+		<grid align="center" width="500px"
+			id="gridConsultaDocumentos">
+			<rows>
+				<row >
+					<label value="${c:l('gedo.consultaDocumentos.tipoDocumento')}" />
+					<bandbox id="familiaEstructuraTree" width="65%"
+						height="auto">
+						<bandpopup id="Familia" width="600px"
+							height="auto"
+							apply="com.egoveris.deo.web.satra.InicioDocumentoFamiliaTipoDocumentoBandBoxComposer">
+							<groupbox mold="3d" height="auto"
+								closable="false" width="auto">
+								<caption>
+									<hbox>
+										<label
+											value="${c:l('gedo.busquedaTipoDocumento')}" />
+									</hbox>
+								</caption>
+								<separator></separator>
+								<vbox>
+									<hbox align="bottom">
+										<label value="${c:l('ccoo.sectorMesa.botonBuscar')}" />
+										<separator width="2px" />
+										<textbox
+											id="textoTipoDocumento" />
+										<separator width="100px" />
+									</hbox>
+									<separator width="25px" />
+									<tree id="familiaTipoTree"
+										width="600px" height="auto">
+										<treecols>
+											<treecol width="30%"
+												label="${c:l('gedo.agregarReparticiones.listhead.listheader.label.nombre')}" />
+											<treecol width="20%"
+												label="${c:l('gedo.abmTipoDocumento.acronimo')}" />
+											<treecol width="25%"
+												label="${c:l('gedo.inbox.alarmas.descripcion')}" />
+											<treecol width="25%"
+												label="${c:l('gedo.inbox.caracteristicas')}" />
+										</treecols>
+									</tree>
+								</vbox>
+							</groupbox>
+						</bandpopup>
+					</bandbox>
+				</row>
+				<row >
+					<label value="${c:l('gedo.consultaPorNumeroEspecial.row.label.año')}" />
+					<intbox cols="4" maxlength="4" id="anioDocEspecial" />
+				</row>
+				<row >
+					<label value="${c:l('gedo.consultaPorNumeroEspecial.row.label.numero')}"/>
+					<intbox maxlength="8" id="numeroEspecial" />
+				</row>
+<!-- 				<row > -->
+<!-- 					<label value="Ecosistema" /> -->
+<!-- 					<combobox id="comboEcosistemas" readonly="false" disabled="false"/>  -->
+<!-- 				</row> -->
+				<row >
+					<label value="${c:l('gedo.consultaPorNumeroEspecial.row.label.reparticion')}" />
+					<bandbox id="reparticionBusquedaEspeciales">
+						<bandpopup
+							apply="com.egoveris.deo.web.satra.consulta.FindReparticionesBusquedaEspecialesBandboxComposer"
+							id="reparticionBusquedaEspecialesPopup" width="650px">
+							<groupbox mold="3d">
+								<caption>
+									<hbox>
+									<label value="${c:l('gedo.consultaPorNumeroEspecial.hbox.label.busquedaReparticion')}"  />
+										
+										<image src="/imagenes/help.png"
+											width="16px" height="16px" tooltip="helpBusquedaReparticion"
+											align="right" />
+									</hbox>
+								</caption>
+								<separator></separator>
+								<vbox>
+									<hbox>
+									<label value="${c:l('gedo.consultaPorNumeroEspecial.hbox.label.buscar')}"  />
+										
+										<textbox
+											id="textoReparticionBusquedaEspeciales" />
+									</hbox>
+									<paging
+										id="pagingReparticionesDocsEspeciales" pageSize="10" />
+									<listbox mold="paging" width="600px"
+										id="reparticionesBusquedaEspecialesListbox"
+										model="@{listaReparticionSADESeleccionada}"
+										selectedItem="@{reparticionSeleccionada}"
+										paginal="${pagingReparticionesDocsEspeciales}">
+										<listhead>
+											<listheader label="${c:l('gedo.consultaPorNumeroEspecial.listhead.listheader.label.codigo')}" 
+												width="30%" />
+											<listheader label="${c:l('gedo.consultaPorNumeroEspecial.listhead.listheader.label.nombre')}"
+												height="70%" />
+										</listhead>
+										<listitem
+											self="@{each=reparticion}">
+											<listcell
+												label="@{reparticion.codigo}" />
+											<listcell
+												label="@{reparticion.nombre}" />
+										</listitem>
+									</listbox>
+								</vbox>
+							</groupbox>
+						</bandpopup>
+					</bandbox>
+				</row>
+			</rows>
+		</grid>
+		<separator></separator>
+		<separator></separator>
+		<hbox>
+			<button label="${c:l('gedo.consultaPorNumeroEspecial.hbox.button.label.buscar')}" id="buscar" />
+			<separator></separator>
+			<button label="${c:l('gedo.consultaPorNumeroEspecial.hbox.button.label.cerrar')}" id="cerrar" />
+		</hbox>
+		<separator></separator>
+
+	</window>
+</zk>

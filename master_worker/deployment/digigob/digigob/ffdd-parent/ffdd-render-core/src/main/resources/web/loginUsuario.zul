@@ -1,0 +1,49 @@
+<?page title="new page title" contentType="text/html;charset=UTF-8"?>
+<zk>
+	<vlayout
+		apply="com.egoveris.ffdd.render.zk.comp.cc.UsuarioLoginComposer">
+		<vbox>			
+			<hbox>
+				<cell id="${arg.formComp.nombre}_primerNombreDiv"/>
+			</hbox>
+			
+			<hbox>
+				<cell id="${arg.formComp.nombre}_segundoNombreDiv"/>
+			</hbox>
+			
+			<hbox>
+				<cell id="${arg.formComp.nombre}_tercerNombreDiv"/>
+			</hbox>
+
+			<hbox>
+				<cell id="${arg.formComp.nombre}_primerApellidoDiv"/>
+			</hbox>
+
+			<hbox>
+				<cell id="${arg.formComp.nombre}_segundoApellidoDiv"/>
+			</hbox>
+			
+			<hbox>
+				<cell id="${arg.formComp.nombre}_tercerApellidoDiv"/>
+			</hbox>
+			
+			<hbox>
+				<cell id="${arg.formComp.nombre}_identificadorDiv" />
+			</hbox>
+			<hbox>
+				<cell id="${arg.formComp.nombre}_reparticionDiv" />			
+			</hbox>
+			<hbox>
+				<cell id="${arg.formComp.nombre}_sectorDiv" />			
+			</hbox>
+			
+			<hbox>
+				<cell id="${arg.formComp.nombre}_cargoDiv" />			
+			</hbox>
+			
+			<hbox>
+				<cell id="${arg.formComp.nombre}_nombreSuperiorJerarquicoDiv" />			
+			</hbox>
+		</vbox>
+	</vlayout>
+</zk>

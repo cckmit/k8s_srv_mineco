@@ -1,0 +1,16 @@
+<?page title="new page title" contentType="text/html;charset=UTF-8"?>
+<zk>
+	<vlayout
+		apply="com.egoveris.ffdd.render.zk.comp.cc.MedioTransporteComposer">
+		<vbox>
+			<hbox>
+				<cell id="${arg.formComp.nombre}_fechaEstimadaLlegadaDiv" />
+				<cell id="${arg.formComp.nombre}_rutaDiv" />
+			</hbox>
+			<hbox>
+				<cell id="${arg.formComp.nombre}_patenteDiv" />
+				<cell id="${arg.formComp.nombre}_tipoMedioTranspoteDiv" />
+			</hbox>
+		</vbox>
+	</vlayout>
+</zk>

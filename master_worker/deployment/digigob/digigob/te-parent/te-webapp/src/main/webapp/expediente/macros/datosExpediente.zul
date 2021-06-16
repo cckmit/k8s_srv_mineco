@@ -1,0 +1,200 @@
+<?page title="" contentType="text/html;charset=UTF-8"?>
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./datosExpedienteWindow"?>
+<window title="" border="none" id="datosExpedienteWindow"
+	
+	apply="com.egoveris.te.base.composer.GenericDatosExpedienteComposer" closable="true">
+	<zk>
+			<separator  />
+				<grid id="gridMotivoExp"  hflex="max">
+					<rows >
+						<row>
+							<label id="labelMotivo" width="33%"
+								value="${c:l('ee.tramitacion.label.motivo.value')}" />
+							<textbox id="motivoExpediente"
+								readonly="true" maxlength="4001" cols="80" rows="3" hflex="1">
+							</textbox>
+						</row>
+					</rows>
+				</grid>
+			<separator />
+			<label id="datosExpediente"
+				value="${c:l('ee.tramitacion.label.datosexpediente.value')}"
+				style="font:bold;" />
+			<separator bar="true" />
+			<radiogroup>
+				<radio id="expedienteInterno"
+					label="${c:l('ee.tramitacion.label.interno.value')}"
+					disabled="true" />
+				<space />
+				<space />
+				<radio id="expedienteExterno"
+					label="${c:l('ee.tramitacion.label.externo.value')}"
+					disabled="true" />
+			</radiogroup>
+				<separator></separator>
+				<grid  hflex="max">
+					<rows>
+						<row >
+							<label
+								value="${c:l('ee.tramitacion.label.codigotrata.value')}" />
+							<combobox id="codigoTrata"
+								readonly="true" disabled="true">
+							</combobox>
+						</row>
+						<row>
+							<label
+								value="${c:l('ee.nuevoexpediente.label.datospropios.datospropios')}" />
+							<toolbarbutton autodisable="self" width="272px"
+								style="background: white;" image="/imagenes/play.png"
+								id="datosPropios"
+								label="${c:l('ee.tramitacion.toolbarbutton.datospropios.value')}" />
+						</row>
+						<row width="500px">
+							<label
+								value="${c:l('ee.tramitacion.label.descripcion.value')}" />
+							<textbox id="descripcion" maxlength="225"
+								cols="80" rows="3" readonly="true" hflex="1">
+							</textbox>
+						</row>
+						
+						<row visible="false">
+							
+								<label value="${c:l('ee.nuevoexpediente.label.cuitcuil.value')}" />
+							<hbox>
+								<longbox id="cuitCuilTipo" maxlength="2" cols="1" readonly="true"> </longbox>
+							
+								<longbox id="cuitCuilDocumento" maxlength="8" cols="8" readonly="true"> </longbox>
+							
+								<longbox id="cuitCuilVerificador" maxlength="1" cols="1" readonly="true"> </longbox>
+							</hbox>
+						</row>
+						
+						<row visible="false">
+							<label
+								value="${c:l('ee.tramitacion.label.tipodocumento.value')}" />
+							<combobox id="tipoDocumento" readonly="true"
+								disabled="true" >
+							</combobox>
+
+						</row>
+						<row>
+							<label 
+								value="${c:l('ee.tramitacion.label.numerodocumento.value')}" />
+							<!--
+							<longbox id="numeroDocumento" maxlength="11"
+								readonly="true">
+							</longbox>
+							-->
+							<textbox id="numeroDocumento"
+								maxlength="15" cols="50" readonly="true">
+							</textbox>
+						</row>
+						<row>
+							<label value="${c:l('ee.nuevoexpediente.label.primerapellido.value')}" />
+							<textbox id="apellido"
+								maxlength="30" cols="50" readonly="true">
+							</textbox>
+						</row>
+						
+						<row>
+							<label value="${c:l('ee.nuevoexpediente.label.segundoapellido.value')}" />
+							<textbox id="segundoApellido"
+								maxlength="30" cols="50" readonly="true">
+							</textbox>
+						</row>
+						
+						<row>
+							<label value="${c:l('ee.nuevoexpediente.label.tercerapellido.value')}" />
+							<textbox id="tercerApellido" 
+								maxlength="30" cols="50" readonly="true">
+							</textbox>
+						</row>
+						<row>
+							<label value="${c:l('ee.nuevoexpediente.label.primernombre.value')}" />
+							<textbox id="nombre"
+								maxlength="30" cols="50" readonly="true">
+							</textbox>
+						</row>
+						<row>
+							<label value="${c:l('ee.nuevoexpediente.label.segundonombre.value')}" />
+							<textbox id="segundoNombre"
+								maxlength="30" cols="50" readonly="true">
+							</textbox>
+						</row>
+						<row>
+							<label value="${c:l('ee.nuevoexpediente.label.tercernombre.value')}" />
+							<textbox id="tercerNombre"
+								maxlength="30" cols="50" readonly="true">
+							</textbox>
+						</row>
+						<row>
+							<label 
+								value="${c:l('ee.tramitacion.label.razonsocial.value')}" />
+							<textbox id="razonSocial" maxlength="225"
+								cols="50" readonly="true">
+							</textbox>
+						</row>
+						<row>
+							<label 
+								value="${c:l('ee.tramitacion.label.email.value')}" />
+							<textbox id="email" maxlength="225"
+								cols="50" readonly="true">
+							</textbox>
+						</row>
+						<row>
+							<label
+								value="${c:l('ee.tramitacion.label.telefono.value')}" />
+							<textbox id="telefono" maxlength="225"
+								cols="50" readonly="true">
+							</textbox>
+						</row>
+						<row>
+							<label 
+								value="${c:l('ee.tramitacion.label.estado.value')}" />
+							<textbox id="estado"
+								readonly="true">
+							</textbox>
+						</row>
+					</rows>
+				</grid>
+				<separator />
+			
+			<include src="/direccion/direccionCmp.zul" />
+			
+			<box orient="vertical" spacing="0" align="start"
+				width="100%" visible="false">
+				<label value="${c:l('ee.nuevoexpediente.label.separadordomicilio.value')}" style="font:bold;" />
+				<separator bar="true" />
+				<separator />
+				<grid >
+					<rows width="100%">
+						<row>
+							<label value="" />
+							<vlayout>
+							<label value="${c:l('ee.nuevoexpediente.label.callealtura.value')}" />
+							<textbox id="direccion" maxlength="100" cols="50" readonly="true">
+							</textbox>
+							<hlayout>
+							<label value="${c:l('ee.nuevoexpediente.label.piso.value')}" />
+							<textbox id="piso" 
+								maxlength="3" cols="3" readonly="true">
+							</textbox>
+							<label value="${c:l('ee.nuevoexpediente.label.departamento.value')}" />
+							<textbox id="departamento" 
+								maxlength="3" cols="3" readonly="true">
+							</textbox>
+							<label value="${c:l('ee.nuevoexpediente.label.codigopostal.value')}" />
+							<textbox id="codigoPostal" 
+								maxlength="10" cols="12" readonly="true">
+							</textbox>
+							</hlayout>
+							</vlayout>
+						</row>
+						
+					</rows>
+				</grid>
+			</box>
+	</zk>
+</window>

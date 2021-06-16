@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="3.0" xmlns="http://java.sun.com/xml/ns/javaee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
+	
+	<display-name>te web application</display-name>
+	
+	<!-- Initialize spring context -->
+	<listener>
+        <listener-class>
+        org.springframework.web.context.ContextLoaderListener
+        </listener-class>
+    </listener>
+    <!-- Enable webapp Scopes-->
+     <listener>
+        <listener-class>
+        org.springframework.web.context.request.RequestContextListener
+        </listener-class>
+    </listener>
+    <!-- REST CONFIG -->
+    <servlet>
+	 	<servlet-name>spring</servlet-name>
+	 	<servlet-class>
+	  		org.springframework.web.servlet.DispatcherServlet
+	 	</servlet-class>
+	 	<load-on-startup>1</load-on-startup>
+	 </servlet>
+	
+	 <servlet-mapping>
+	 	<servlet-name>spring</servlet-name>
+	 	<url-pattern>/</url-pattern>
+	 </servlet-mapping> 
+	
+	<welcome-file-list>
+		<welcome-file>/inbox/inbox.zul</welcome-file>
+	</welcome-file-list>
+
+	<!-- CAS SSOut -->
+	<filter>
+		<filter-name>CAS Single Sign Out Filter</filter-name>
+		<filter-class>org.jasig.cas.client.session.SingleSignOutFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>CAS Single Sign Out Filter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	<listener>
+		<listener-class>org.jasig.cas.client.session.SingleSignOutHttpSessionListener</listener-class>
+	</listener>
+	<filter-mapping>
+		<filter-name>CAS Single Sign Out Filter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
+	<!-- EXTERNAL SERVICES -->
+	<!-- GENERAR CARATULA -->
+	<servlet>
+		<servlet-name>generarCaratulaExternalService</servlet-name>
+		<servlet-class>org.springframework.web.context.support.HttpRequestHandlerServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>generarCaratulaExternalService</servlet-name>
+		<url-pattern>/remoting/generar-caratula</url-pattern>
+	</servlet-mapping>
+
+	<!-- Vincular Formulario -->
+	<servlet>
+		<servlet-name>vincularFormularioExternalService</servlet-name>
+		<servlet-class>org.springframework.web.context.support.HttpRequestHandlerServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>vincularFormularioExternalService</servlet-name>
+		<url-pattern>/remoting/vincular-formulario</url-pattern>
+	</servlet-mapping>
+
+	<!-- Rehabilitar Expedientes (Desarchivado de guarda Temporal) -->
+	<servlet>
+		<servlet-name>rehabilitarExpedienteExternalService</servlet-name>
+		<servlet-class>org.springframework.web.context.support.HttpRequestHandlerServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>rehabilitarExpedienteExternalService</servlet-name>
+		<url-pattern>/remoting/rehabilitar-expediente</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<display-name>fullImportSolrEe</display-name>
+		<servlet-name>fullImportSolrEe</servlet-name>
+		<servlet-class>com.egoveris.te.core.api.ee.services.external.impl.FullImportSolrCoreEE</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>fullImportSolrEe</servlet-name>
+		<url-pattern>/remoting/full-import-solr-ee</url-pattern>
+	</servlet-mapping>
+
+	<!-- CONSULTA DE EXPEDIENTES -->
+	<servlet>
+		<servlet-name>consultaExternalService</servlet-name>
+		<servlet-class>org.springframework.web.context.support.HttpRequestHandlerServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>consultaExternalService</servlet-name>
+		<url-pattern>/remoting/consulta</url-pattern>
+	</servlet-mapping>
+
+	<!-- ADMINISTRACION DE TRAMITES -->
+	<servlet>
+		<servlet-name>administracionTrataExternalService</servlet-name>
+		<servlet-class>org.springframework.web.context.support.HttpRequestHandlerServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>administracionTrataExternalService</servlet-name>
+		<url-pattern>/remoting/administracion-trata</url-pattern>
+	</servlet-mapping>
+
+	<!-- GENERAR PASE -->
+	<servlet>
+		<servlet-name>generarPaseExternalService</servlet-name>
+		<servlet-class>org.springframework.web.context.support.HttpRequestHandlerServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>generarPaseExternalService</servlet-name>
+		<url-pattern>/remoting/generar-pase</url-pattern>
+	</servlet-mapping>
+
+	<!-- GENERAR PASE Cambio de Sigla u otros -->
+	<servlet>
+		<servlet-name>generarPaseExternalServiceCsigla</servlet-name>
+		<servlet-class>org.springframework.web.context.support.HttpRequestHandlerServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>generarPaseExternalServiceCsigla</servlet-name>
+		<url-pattern>/remoting/generar-paseCSigla</url-pattern>
+	</servlet-mapping>
+
+	<!-- ACTIVIDADES -->
+	<servlet>
+		<servlet-name>actividadesExternalService</servlet-name>
+		<servlet-class>org.springframework.web.context.support.HttpRequestHandlerServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>actividadesExternalService</servlet-name>
+		<url-pattern>/remoting/actividades</url-pattern>
+	</servlet-mapping>
+
+	<!-- BLOQUEO DE EXPEDIENTES -->
+	<servlet>
+		<servlet-name>bloqueoExpedienteExternalService</servlet-name>
+		<servlet-class>org.springframework.web.context.support.HttpRequestHandlerServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>bloqueoExpedienteExternalService</servlet-name>
+		<url-pattern>/remoting/bloqueo-expediente</url-pattern>
+	</servlet-mapping>
+
+	<!-- ESTADOS DE PASES -->
+	<servlet>
+		<servlet-name>estadosPaseExternalService</servlet-name>
+		<servlet-class>org.springframework.web.context.support.HttpRequestHandlerServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>estadosPaseExternalService</servlet-name>
+		<url-pattern>/remoting/estados-pase</url-pattern>
+	</servlet-mapping>
+
+	<!-- DOCUMENTOS OFICIALES -->
+	<servlet>
+		<servlet-name>documentosOficialesExternalService</servlet-name>
+		<servlet-class>org.springframework.web.context.support.HttpRequestHandlerServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>documentosOficialesExternalService</servlet-name>
+		<url-pattern>/remoting/documentos-oficiales</url-pattern>
+	</servlet-mapping>
+
+	<!-- EXPEDIENTES ASOCIADOS -->
+	<servlet>
+		<servlet-name>expedientesAsociadosExternalService</servlet-name>
+		<servlet-class>org.springframework.web.context.support.HttpRequestHandlerServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>expedientesAsociadosExternalService</servlet-name>
+		<url-pattern>/remoting/expedientes-asociados</url-pattern>
+	</servlet-mapping>
+
+	<!-- DOCUMENTOS DE TRABAJO -->
+	<servlet>
+		<servlet-name>documentosTrabajoExternalService</servlet-name>
+		<servlet-class>org.springframework.web.context.support.HttpRequestHandlerServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>documentosTrabajoExternalService</servlet-name>
+		<url-pattern>/remoting/documentos-trabajo</url-pattern>
+	</servlet-mapping>
+
+	<!-- TOMA DE VISTA EN TAD -->
+	<servlet>
+		<servlet-name>tomavistaExternalService</servlet-name>
+		<servlet-class>org.springframework.web.context.support.HttpRequestHandlerServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>tomavistaExternalService</servlet-name>
+		<url-pattern>/remoting/tomavista</url-pattern>
+	</servlet-mapping>
+
+	<!-- TRATA ORGANISMO RESERVA -->
+	<servlet>
+		<servlet-name>trataPermisoService</servlet-name>
+		<servlet-class>org.springframework.web.context.support.HttpRequestHandlerServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>trataPermisoService</servlet-name>
+		<url-pattern>/remoting/trata-reparticion</url-pattern>
+	</servlet-mapping>
+	
+	<!-- HISTORIAL DE OPERACIONES (PASES) -->
+	<servlet>
+		<servlet-name>historialOperacionService</servlet-name>
+		<servlet-class>org.springframework.web.context.support.HttpRequestHandlerServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>historialOperacionService</servlet-name>
+		<url-pattern>/remoting/historialoperacion</url-pattern>
+	</servlet-mapping>
+	
+</web-app>

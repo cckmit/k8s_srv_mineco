@@ -1,0 +1,1 @@
+ldapadd -x -wsecret -D "cn=Manager,DC=egoveris,DC=com" -f egoveris.ldif

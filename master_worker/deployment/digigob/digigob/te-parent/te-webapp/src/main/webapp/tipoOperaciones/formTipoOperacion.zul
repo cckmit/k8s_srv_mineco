@@ -1,0 +1,105 @@
+<?page title="" contentType="text/html;charset=UTF-8"?>
+
+<zk>
+	<window id="formTipoOperacionWindow"
+		title="${vm.actionMode == 'NEW' ? c:l('ee.tipoOperacion.admTipoOperaciones.formulario.nuevo.title') : c:l('ee.tipoOperacion.admTipoOperaciones.formulario.editar.title')}"
+		width="650px" border="none" closable="true" position="center">
+		
+		<grid>
+			<columns>
+				<column label="${c:l('ee.tipoOperacion.admTipoOperaciones.formulario.header')}" />
+			</columns>
+			<rows>
+				<row>
+					<cell width="225px" valign="top">
+						<label value="${c:l('ee.tipoOperacion.admTipoOperaciones.formulario.label.codigo')}" />
+					</cell>
+					<cell>
+						<vbox>
+							<textbox value="@load(vm.tipoOperacion.codigoAux)" visible="false" />
+							<textbox value="@bind(vm.tipoOperacion.codigo)" maxlength="45" width="375px"
+									 sclass="@load(vmsgs['formTipoOperacion.codigo'] ne null ? 'z-textbox-invalid' : '')" />
+							<label value="@load(vmsgs['formTipoOperacion.codigo'])" sclass="error" />
+						</vbox>
+					</cell>
+				</row>
+				<row>
+					<cell  valign="top">
+						<label value="${c:l('ee.tipoOperacion.admTipoOperaciones.formulario.label.nombre')}" />
+					</cell>
+					<cell>
+						<vbox>
+							<textbox value="@bind(vm.tipoOperacion.nombre)" maxlength="250" width="375px"
+									 sclass="@load(vmsgs['formTipoOperacion.nombre'] ne null ? 'z-textbox-invalid' : '')" />
+							<label value="@load(vmsgs['formTipoOperacion.nombre'])" sclass="error" />
+						</vbox>
+					</cell>
+				</row>
+				<row>
+					<cell valign="top">
+						<label value="${c:l('ee.tipoOperacion.admTipoOperaciones.formulario.label.descripcion')}" />
+					</cell>
+					<cell>
+						<textbox value="@bind(vm.tipoOperacion.descripcion)" maxlength="2000" rows="6" width="375px" />
+					</cell>
+				</row>
+				<row>
+					<cell valign="top">
+						<label value="${c:l('ee.tipoOperacion.admTipoOperaciones.formulario.label.stateflow')}" />
+					</cell>
+					<cell>
+						<vbox>
+							<combobox readonly="true" model="@load(vm.listWorkflows)" selectedItem="@bind(vm.workflowSel)" width="375px"
+									  sclass="@load(vmsgs['formTipoOperacion.workflow'] ne null ? 'z-combobox-invalid' : '')">
+								<template name="model">
+									<comboitem label="${each.label}" value="${each.value}" />
+								</template>
+							</combobox>
+							<label value="@load(vmsgs['formTipoOperacion.workflow'])" sclass="error" />
+						</vbox>
+					</cell>
+				</row>
+				<row>
+					<cell colspan="2">
+						<tabbox>
+							<tabs>
+								<tab label="${c:l('ee.tipoOperacion.admTipoOperaciones.formulario.cabecera.header')}" />
+								<tab label="${c:l('ee.tipoOperacion.admTipoOperaciones.formulario.tipoDocs.header')}" />
+								<tab label="${c:l('ee.tipoOperacion.admTipoOperaciones.formulario.organismos.header')}" />
+							</tabs>
+							<tabpanels>
+								<tabpanel>
+									<include mode="auto" src="/tipoOperaciones/tabs/dynamicFormSelector.zul" />
+								</tabpanel>
+								<tabpanel>
+									<include tipoOperacion="${vm.tipoOperacion}" src="/tipoOperaciones/tabs/tiposDocumentoSelector.zul" />
+								</tabpanel>
+								<tabpanel>
+									<include tipoOperacion="${vm.tipoOperacion}" src="/tipoOperaciones/tabs/organismosSelector.zul" />
+								</tabpanel>
+							</tabpanels>
+						</tabbox>
+					</cell>
+				</row>
+				<row>
+					<cell colspan="2">
+						<vlayout>
+							<label value="@load(vmsgs['formTipoOperacion.cabecera'])" sclass="error" />
+							<label value="@load(vmsgs['formTipoOperacion.tipoDocs'])" sclass="error" />
+							<label value="@load(vmsgs['formTipoOperacion.organismos'])" sclass="error" />
+						</vlayout>
+					</cell>
+				</row>
+				<row>
+					<cell colspan="2">
+						<hlayout style="text-align: center;">
+							<button autodisable="self" label="${vm.actionMode == 'NEW' ? c:l('ee.tipoOperacion.admTipoOperaciones.formulario.button.guardar') : c:l('ee.tipoOperacion.admTipoOperaciones.formulario.button.editar')}" 
+									onClick="@command('saveTipoOperacion')" class="btn-info" iconSclass="z-icon-save" />
+							<button autodisable="self" label="${c:l('ee.tipoOperacion.admTipoOperaciones.formulario.button.cancelar')}" onClick="@command('closeTipoOperacion')" class="btn-info" iconSclass="z-icon-times-circle" />
+						</hlayout>
+					</cell>
+				</row>
+			</rows>
+		</grid>
+	</window>
+</zk>

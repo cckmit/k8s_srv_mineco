@@ -1,0 +1,54 @@
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+<zk>
+	<box apply="org.zkoss.bind.BindComposer"
+		viewModel="@id('vm') @init('com.egoveris.te.base.vm.SolicitanteDireccionVM')">
+		<grid>
+			<rows width="100%">
+				<row>
+					<label
+						value="${c:l('te.webapp.direccionCmp.label.domicilio')}" />
+					<vlayout>
+						<hlayout>
+							<label
+								value="${c:l('te.webapp.direccionCmp.label.provinciaAndPartida')}" />
+						</hlayout>
+						<hlayout>
+							<combobox id="provinciasCombo" width="152px"
+								model="@bind(vm.dataProvinciasList)"
+								selectedItem="@bind(vm.selectedProvincia)"
+								onChange="@command('onChangeProvincia')" readonly="true" disabled="@load(vm.readOnly)">
+								<template name="model">
+									<comboitem
+										label="@load(each.provinciaName)" />
+								</template>
+							</combobox>
+							<combobox id="partidasCombo" width="152px"
+								model="@bind(vm.dataPartidasList)"
+								selectedItem="@bind(vm.selectedPartida)"
+								onChange="@command('onChangePartida')" readonly="true" disabled="@load(vm.readOnly)">
+								<template name="model">
+									<comboitem
+										label="@load(each.partidaName)" />
+								</template>
+							</combobox>
+						</hlayout>
+						<label
+							value="${c:l('te.webapp.direccionCmp.label.localidad')}" />
+						<combobox id="localidadCombo" width="310px"
+							model="@bind(vm.dataLocalidadList)"
+							selectedItem="@bind(vm.selectedLocalidad)"
+							onChange="@command('onChangeLocalidad')" readonly="true" disabled="@load(vm.readOnly)">
+							<template name="model">
+								<comboitem
+									label="@load(each.localidadName)" />
+							</template>
+						</combobox>
+						<label
+							value="${c:l('te.webapp.direccionCmp.label.direccion')}" />
+						<textbox width="310px" maxlength="255" value="@bind(vm.direccion)" disabled="@load(vm.disabledDireccion || vm.readOnly)" />
+					</vlayout>
+				</row>
+			</rows>
+		</grid>
+	</box>
+</zk>

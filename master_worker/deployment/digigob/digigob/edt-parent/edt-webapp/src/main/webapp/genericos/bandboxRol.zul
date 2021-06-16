@@ -1,0 +1,37 @@
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./bandBoxRol" ?>
+<zk>
+	<bandbox id="bandBoxRol" height="31px" class="bandbox-rol"
+			apply="com.egoveris.edt.base.generico.BandBoxRolComposer"> 
+		<bandpopup id="bandpopupRol" width="430px" >
+			<groupbox mold="3d">
+				<caption>
+					<hbox>
+						<label
+							value="${c:l('edt.bandboxRol.label.busquedaDeRoles')}"
+							width="410px" />
+					</hbox>
+				</caption>
+				<separator height="2px"></separator>
+				<vbox height="100px" width="100%">
+					<paging id="paginatorIncorporarSADE" pageSize="5" />
+					<listbox width="100%" id="listBoxRoles"
+						mold="paging" paginal="${paginatorIncorporarSADE}"
+						model="@{bandBoxRol$composer.listaRolesSeleccionados}"
+						selectedItem="@{bandBoxRol$composer.rolSeleccionado}">
+						<listhead>
+							<listheader
+								label="${c:l('edt.bandboxRol.listheader.rol')}"
+								width="100%" />
+						</listhead>
+						<listfoot style="">
+							<listfooter id="totalRoles" span="1" 
+								style="color:#C4ECFF" />
+						</listfoot>
+					</listbox>
+				</vbox>
+			</groupbox>
+		</bandpopup>
+	</bandbox>
+</zk>

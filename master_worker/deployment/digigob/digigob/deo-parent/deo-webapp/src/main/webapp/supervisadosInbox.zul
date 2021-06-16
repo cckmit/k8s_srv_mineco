@@ -1,0 +1,82 @@
+<?page title="${('gedo.header.wintitle.inbox')}" contentType="text/html;charset=UTF-8"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./supervisadosWindow"?>
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c" ?>
+<zk>
+	<window id="supervisadosWindow" 
+		border="normal"
+		apply="com.egoveris.deo.web.satra.supervisados.SupervisadosInboxComposer"
+		use="com.egoveris.deo.web.satra.AskBeforeCloseWindow" closable="true"
+		width="65%"  >
+		<toolbar style="background: #EFEFEE" >
+			<toolbarbutton label="${c:l('gedo.supervisadosInbox.boton.Advocacion')}"
+				id="advocacionButton" image="imagenes/Avocar.png" />
+			<toolbarbutton label="${c:l('gedo.supervisadosInbox.boton.Resignacion')}"
+				id="reasignacionButton" image="imagenes/Reasignar.png"/>
+			<toolbarbutton label="${c:l('gedo.supervisadosInbox.boton.Terminar')}"
+				id="terminarButton" image="imagenes/Eliminar.png" />
+		</toolbar>
+		<paging id="taskPaginator" pageSize="10" />
+		<listbox id="tasksList"
+			
+			model="@{supervisadosWindow$composer.tasks}" multiple="true"
+			checkmark="true" maxlength="20" mold="paging"
+			paginal="${taskPaginator}"
+			itemRenderer="com.egoveris.deo.web.satra.renderers.SupervisadosInboxItemRenderer">
+			<listhead sizable="false" style="background: #C4ECFF;">
+				<listheader align="center" width="40px"
+					image="/imagenes/mail.png" style="background-color: #C4ECFF;" />
+				<listheader
+					label="${c:l('gedo.supervisadosInbox.listheader.NombreTarea')}" width="235px" />
+				<listheader
+					label="${c:l('gedo.inbox.fechaUltimaModificacion')}" width="135px" />
+				<listheader label="${c:l('gedo.inbox.enviadoPor')}" width="135px"/>
+				<listheader label="${c:l('gedo.inbox.derivadoPor')}" width="135px" />
+				<listheader label="${c:l('gedo.inbox.motivo')}"
+					width="135px" />
+				<listheader label="${c:l('gedo.inbox.tipoDocumento')}"
+					width="160px" />
+			</listhead>
+
+			<listfoot>
+				<listfooter span="4"/>
+				<listfooter
+					label="${c:l('gedo.inbox.totalTareasPendientes')}" span="2"
+					style="color:#C4ECFF; right:0px; align=center;" />
+				<listfooter
+					label="@{supervisadosWindow$composer.tasks.size}" span="1"
+					style="color:#C4ECFF" />
+			</listfoot>
+		</listbox>
+		<popup id="subordinadosListPopUp" width="450px">
+			<groupbox mold="3d">
+				<caption
+					label="${c:l('gedo.supervisadosInbox.groupbox.label')}"/>
+				<hbox>
+					<combobox id="usuarioDestino"
+						autodrop="true"
+						buttonVisible="false"
+						width="300px">
+					</combobox>
+					<separator></separator>
+					<separator></separator>
+					<button id="asignarTareas"
+						label="${c:l('gedo.general.asignar')}" />
+				</hbox>
+			</groupbox>
+		</popup>
+
+		<!--TOOLTIPS DE AYUDA-->
+
+		<popup id="helpCrearNuevoDocumento" width="150px">
+			<label multiline="true"
+				value="${c:l('gedo.iniciaDocumento.helpTipoDocumento')}" />
+			<!-- <image src="/imagenes/help/motivoDocumento.png" /> -->
+		</popup>
+			<grid>
+		<rows>
+			<row align="center" style=" "><button id="cerrar"  label="${c:l('gedo.general.volver')}" />
+			</row>
+		</rows>
+	</grid>
+	</window>
+</zk>

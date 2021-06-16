@@ -1,0 +1,250 @@
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+<?page title="Anular/Modificar Solicitud" contentType="text/html;charset=UTF-8"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./anularModificarSolicitudWindow" ?>
+<zk>
+	
+	<window id="anularModificarSolicitudWindow" title="${c:l('ee.anularmodificarsolicitud.title.value')}"
+		border="none" width="700px" 
+		apply="com.egoveris.te.base.composer.AnularModificarSolicitudComposer">
+		
+						<n:script xmlns:n="native">
+							 <![CDATA[
+							function loadScript(url, callback){
+								var script = document.createElement("script")
+								script.type = "text/javascript";
+					
+								if (script.readyState){ //IE
+									script.onreadystatechange = function(){
+										if (script.readyState == "loaded" || script.readyState == "complete") {
+											script.onreadystatechange = null;
+											callback();
+										}
+									};
+								} else { //Others
+									script.onload = function(){
+										callback();
+									};
+								}
+								script.src = url;
+								document.getElementsByTagName("head")[0].appendChild(script);
+							};
+							
+							loadScript("http://servicios.usig.buenosaires.gov.ar/usig-js/3.0/usig.AutoCompleterFull.min.js", function() { 
+								ac = new usig.AutoCompleter(jq("$direccion").attr("id"), { 
+									afterSelection: function(option) {
+										if (option instanceof usig.Direccion || option instanceof usig.inventario.Objeto) {
+			    	   						if (option.getCalle().codigo != null && option.getCalle().nombre != null && option.getAltura() != null ) {	
+							    	   			jq("$direccion").val(option.toString());
+							    	   			return;
+									        }
+										}
+						       		}
+						       	});
+							});
+							]]>
+							</n:script>
+		
+		<groupbox >
+			<separator />
+			<grid >
+				<rows width="100%">
+					<row>
+						<label id="ee.anularmodificarsolicitud.label.motivo" value="${c:l('ee.anularmodificarsolicitud.label.motivo.value')}" />
+						<textbox
+							id="motivoInterno"
+							maxlength="255" cols="40" rows="5">
+						</textbox>
+					</row>
+				</rows>
+			</grid>
+			<separator />
+			<box orient="vertical" spacing="0" align="start"
+				width="100%">
+				<separator bar="true" />
+				<radiogroup >
+					<radio id="expedienteInterno" label="${c:l('ee.anularmodificarsolicitud.label.interno.value')}"
+						checked="true"
+						forward="onClick=anularModificarSolicitudWindow$AnularModificarSolicitudComposer.onClickSolicitudInterna" />
+					<space />
+					<space />
+					<radio id="expedienteExterno" label="${c:l('ee.anularmodificarsolicitud.label.externo.value')}"
+						checked="false"
+						forward="onClick=anularModificarSolicitudWindow$AnularModificarSolicitudComposer.onClickSolicitudExterna" />
+				</radiogroup>
+				<separator />
+				<grid >
+					<rows width="100%">
+						<row visible="false">
+							
+								<label value="${c:l('ee.nuevoexpediente.label.cuitcuil.value')}" />
+							<hbox>
+								<longbox id="cuitCuilTipo" maxlength="2" cols="1"  > </longbox>
+							
+								<longbox id="cuitCuilDocumento" maxlength="8" cols="8"  > </longbox>
+							
+								<longbox id="cuitCuilVerificador" maxlength="1" cols="1" > </longbox>
+							
+								<checkbox id="noDeclaraNoPosee" label="${c:l('ee.nuevoexpediente.label.nodeclaranoposee.value')}" 
+									forward="onCheck=anularModificarSolicitudWindow$AnularModificarSolicitudComposer.onSelectCheck">	
+								 </checkbox>
+							</hbox>
+						</row>
+						
+						<row visible="false">
+							<label id="ee.anularmodificarsolicitud.label.tipodocumento" value="${c:l('ee.anularmodificarsolicitud.label.tipodocumento.value')}" />
+							<combobox id="tipoDocumento" 
+								width="200px" 
+								model="@{anularModificarSolicitudWindow$AnularModificarSolicitudComposer.tiposDocumentos}"
+								selectedItem="@{anularModificarSolicitudWindow$AnularModificarSolicitudComposer.selectedTiposDocumentos}"
+								forward="onChange=anularModificarSolicitudWindow$AnularModificarSolicitudComposer.onSelectDocumento"
+								>
+							</combobox>
+						</row>
+						
+						
+						<row>
+							<label id="ee.anularmodificarsolicitud.label.numerodocumento" value="${c:l('ee.anularmodificarsolicitud.label.numerodocumento.value')}" />
+							<!-- <longbox 
+								id="numeroDocumento"
+								maxlength="11">
+							</longbox> -->
+							<textbox id="numeroDocumento" maxlength="15" cols="40" />
+						</row>
+						<row>
+						<radiogroup >
+							<radio id="persona" label="${c:l('ee.anularmodificarsolicitud.label.persona.value')}"
+								forward="onClick=anularModificarSolicitudWindow$AnularModificarSolicitudComposer.onClickApellidoNombres" />
+								<space />
+								<space />
+								<radio id="empresa" label="${c:l('ee.anularmodificarsolicitud.label.empresa.value')}"
+								forward="onClick=anularModificarSolicitudWindow$AnularModificarSolicitudComposer.onClickEmpresa" />
+						</radiogroup>
+						</row>
+						<row>
+							<label value="${c:l('ee.nuevoexpediente.label.primerapellido.value')}" />
+							<textbox id="apellido" 
+								maxlength="225" cols="40">
+							</textbox>
+						</row>
+						<row>
+							<label value="${c:l('ee.nuevoexpediente.label.segundoapellido.value')}" />
+							<textbox id="segundoApellido" 
+								maxlength="225" cols="40">
+							</textbox>
+						</row>
+						
+						<row>
+							<label value="${c:l('ee.nuevoexpediente.label.tercerapellido.value')}" />
+							<textbox id="tercerApellido"  
+								maxlength="225" cols="40">
+							</textbox>
+						</row>
+						<row>
+							<label value="${c:l('ee.nuevoexpediente.label.primernombre.value')}" />
+							<textbox id="nombre" 
+								maxlength="225" cols="40">
+							</textbox>
+						</row>
+						<row>
+							<label value="${c:l('ee.nuevoexpediente.label.segundonombre.value')}" />
+							<textbox id="segundoNombre" 
+								maxlength="30" cols="40">
+							</textbox>
+						</row>
+						<row>
+							<label value="${c:l('ee.nuevoexpediente.label.tercernombre.value')}" />
+							<textbox id="tercerNombre" 
+								maxlength="30" cols="40">
+							</textbox>
+						</row>
+						<row>
+							<label id="ee.anularmodificarsolicitud.label.razonsocial" value="${c:l('ee.anularmodificarsolicitud.label.razonsocial.value')}" />
+							<textbox id="razonSocial"
+								maxlength="225" cols="40">
+							</textbox>
+						</row>
+						<row>
+							<label id="ee.anularmodificarsolicitud.label.email" value="${c:l('ee.anularmodificarsolicitud.label.email.value')}" />
+							<textbox id="email"
+								maxlength="225" cols="40">
+							</textbox>
+						</row>
+						<row>
+							<label id="ee.anularmodificarsolicitud.label.telefono" value="${c:l('ee.anularmodificarsolicitud.label.telefono.value')}" />
+							<textbox id="telefono" constraint="/[0-9]*/ : Debe ingresar un valor numérico."
+								maxlength="255" cols="40">
+							</textbox>
+						</row>
+						
+					</rows>
+				</grid>
+			</box>
+			
+			<include src="/direccion/direccionCmp.zul" />
+			
+			<box orient="vertical" spacing="0" align="start"
+				width="100%" visible="false">
+				<label value="${c:l('ee.nuevoexpediente.label.separadordomicilio.value')}" style="font:bold;" />
+				<separator bar="true" />
+				<separator />
+				<grid >
+					<rows width="100%">
+						<row>
+							<label value="${c:l('ee.nuevoexpediente.label.direccion.value')}" />
+							<vlayout>
+							<label value="${c:l('ee.nuevoexpediente.label.callealtura.value')}" />
+							<textbox id="direccion" maxlength="100" cols="48" >
+							</textbox>
+							
+							<hlayout>
+							<label value="${c:l('ee.nuevoexpediente.label.piso.value')}" />
+							<textbox id="piso" 
+								maxlength="3" cols="3" >
+							</textbox>
+							<label value="${c:l('ee.nuevoexpediente.label.departamento.value')}" />
+							<textbox id="departamento" 
+								maxlength="3" cols="3" >
+							</textbox>
+							<label value="${c:l('ee.nuevoexpediente.label.codigopostal.value')}" />
+							<textbox id="codigoPostal" 
+								maxlength="10" cols="10" >
+							</textbox>
+							</hlayout>
+<!-- 							<label value="${c:l('ee.nuevoexpediente.label.comuna.value')}" /> -->
+<!-- 							<textbox id="comuna" maxlength="100" cols="48"> -->
+<!-- 							</textbox> -->
+<!-- 							<label value="${c:l('ee.nuevoexpediente.label.barrio.value')}" /> -->
+<!-- 							<textbox id="barrio" maxlength="100" cols="48"> -->
+<!-- 							</textbox> -->
+							</vlayout>
+						</row>
+						
+					</rows>
+				</grid>
+			</box>
+
+			<separator></separator>
+
+			<grid align="center"
+				style="border:0px;">
+				<rows>
+					<row >
+						<hbox>
+						 
+						<button id="guardar" label="${c:l('ee.anularmodificarsolicitud.soliciar')}" iconSclass="z-icon-folder" height="42px"  left="10px" 
+							forward="onClick=onGuardarSolicitud" />	
+							 
+						<button id="anular" label="${c:l('ee.anularmodificarsolicitud.anular')}" iconSclass="z-icon-ban" height="42px"  left="10px" 
+							forward="onClick=onAnular" />		
+							
+						<button id="cancelar" class="btn-secondary" iconSclass="z-icon-times-circle" label="${c:l('ee.tramitacion.button.cancelarModificacion.value')}" height="42px" left="10px"
+							forward="onClick=onCancelar" /> 
+							 						
+						</hbox>
+					</row>
+				</rows>
+			</grid>
+		</groupbox>
+	</window>
+</zk>

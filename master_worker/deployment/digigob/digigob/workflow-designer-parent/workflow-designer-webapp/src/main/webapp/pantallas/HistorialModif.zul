@@ -1,0 +1,69 @@
+<?page title="Historial de Modificaciones" contentType="text/html;charset=UTF-8"?>
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./changeLogWin" ?>
+<zk>
+<window id="changeLogWin" title="${c:l('title.historial')}"
+	    border="normal" mode="modal" closable="true" width="600px">
+	<grid>
+		<columns>
+			<column width="20%"/>
+			<column width="80%"/>
+		</columns>
+        <rows>
+            <row>
+                <cell>Filtrar por versión:</cell>
+             	<cell>
+             		<hbox align="center" height="25px" width="100%">
+	               		<intbox id="versionInput" width="100px" ></intbox>
+					</hbox>
+				</cell>
+            </row>
+            <row>
+                <cell>Filtrar por usuario:</cell>
+             	<cell>
+             		<hbox align="center" height="25px" width="100%">
+	               		<textbox id="userInput" width="100px"></textbox>
+					</hbox>
+				</cell>
+            </row>
+            <row>
+                <cell>Fecha de la Modificación:</cell>
+                <cell>
+                	<hbox align="center" height="90%" width="100%">
+                		Desde: <datebox id="dateFromInput" format="dd/MM/yyyy" width="115px"/>
+                		Hasta: <datebox id="dateToInput" format="dd/MM/yyyy" width="115px"/> 
+                	</hbox>
+                </cell>
+        	</row>
+        	<row spans="2" align="center">
+                <hbox>
+                	<cell>
+                		<button id="filterButton" label="${c:l('general.filtrar')}"
+                		image="/imagenes/herramientas/toolbar/Filtro.png" 
+                		forward="onClick=changeLogWin$composer.onFilterData"></button>
+                	</cell>
+                </hbox>
+                
+        	</row>
+    	</rows>
+    </grid>
+	<separator></separator>
+	<separator></separator>
+	<grid id="changeLogGrid" mold="paging" pageSize="10">
+		<columns>
+			<column label="${c:l('general.version')}"    align="center" width="10%"/>
+			<column label="${c:l('general.autor')}"      align="center" width="20%"/>
+			<column label="${c:l('general.fecha')}"      align="center" width="35%"/>
+			<column label="${c:l('general.descripcion')}" align="center" width="36%"/>
+		</columns>
+		<rows id="changeLogRows">
+			<row self="@{each=item}" align="center">
+        	    <label value="@{item.version}"/>
+        	    <label value="@{item.user}"/>
+        	    <label value="@{item.date}"/>
+        	    <label value="@{item.description}"/>
+	        </row>
+		</rows>
+	</grid>
+</window>
+</zk>

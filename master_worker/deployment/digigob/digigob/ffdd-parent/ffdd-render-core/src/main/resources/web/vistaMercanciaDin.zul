@@ -1,0 +1,19 @@
+<?page title="new page title" contentType="text/html;charset=UTF-8"?>
+<zk>
+	<vlayout width="100%"
+		apply="com.egoveris.ffdd.render.zk.comp.cc.VistaMercanciaDinComposer">
+		<vbox>
+			<hbox>
+				<cell id="${arg.formComp.nombre}_totalBultosDiv" />
+				<cell id="${arg.formComp.nombre}_identificacionDeBultosDiv" />
+				<cell id="${arg.formComp.nombre}_totalPesoBrutoDiv" /> 
+			</hbox>
+		</vbox>
+		<vbox>
+			<hbox>
+				<cell id="${arg.formComp.nombre}_numeroTotalDeItemsDiv" />
+				<cell id="${arg.formComp.nombre}_itemDiv" /> 
+			</hbox>
+		</vbox>
+	</vlayout>
+</zk>

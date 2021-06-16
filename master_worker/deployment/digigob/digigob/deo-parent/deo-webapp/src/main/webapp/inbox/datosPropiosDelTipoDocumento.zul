@@ -1,0 +1,59 @@
+<?page title="${c:l('gedo.datosPropios.windows.title')}" contentType="text/html;charset=UTF-8"?>
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./datosPropiosTipoDocumentoWindow" ?>
+<zk>
+	<window title="${c:l('gedo.datosPropiosDelTipoDocumento.windows.title')}"  border="normal"
+		id="datosPropiosTipoDocumentoWindow" width="480px"
+		apply="com.egoveris.deo.web.satra.produccion.DatosPropiosTipoDocumentoComposer">
+
+		<paging id="datosPaginator" pageSize="5" />
+		<grid id="grillaDatos" mold="paging"
+			paginal="${datosPaginator}"
+			model = "@{datosPropiosTipoDocumentoWindow$composer.listDatosVariables}"
+			rowRenderer="com.egoveris.deo.web.satra.renderers.DatosTipoDocumentoRenderer">
+			<columns>
+				<column label="${c:l('gedo.datosPropiosDelTipoDocumento.columns.column.label.nombre')}"  />
+				<column label="${c:l('gedo.datosPropiosDelTipoDocumento.columns.column.label.obligatoriedad')}" />
+				<column label= "${c:l('gedo.datosPropiosDelTipoDocumento.columns.column.label.accion')}"/> 
+				
+				<!--<column label="Acción" />-->
+			</columns>
+		</grid>
+		<grid id="grillaOpciones">
+			<rows id="filasOpciones">
+				<row>
+					<hbox align="center">
+						<separator orient="vertical" width="16px" />
+						<label value="${c:l('gedo.datosPropiosDelTipoDocumento.hbox.label.agregar')}" />
+						<separator orient="vertical" width="16px" />
+						<textbox id="nuevo_nombre" maxlength="255" />
+						<separator orient="vertical" width="16px" />
+						<button id="agregar"
+							tooltiptext="${c:l('gedo.datosPropiosDelTipoDocumento.hbox.tooltiptext.agregarCodigo')}"
+							image="/imagenes/control_add_blue.png" />
+					</hbox>
+				</row>
+			</rows>
+		</grid>
+		
+		
+		<grid align="center" style="border:0px">
+			<rows>
+				<row>
+					<toolbar mold="panel" orient="horizontal"
+						width="100%" align="center">
+						<toolbarbutton id="guardar"
+									   image="/imagenes/Guardar.png" 
+									   >
+						</toolbarbutton>
+						<toolbarbutton id="cancelar"
+								       image="/imagenes/Cancelar.png" 
+								       >
+						</toolbarbutton>
+					</toolbar>
+				</row>
+			</rows>
+		</grid>
+	</window>
+</zk>

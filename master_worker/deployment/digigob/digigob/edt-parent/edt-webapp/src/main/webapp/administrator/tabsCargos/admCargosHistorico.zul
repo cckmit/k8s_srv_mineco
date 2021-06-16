@@ -1,0 +1,37 @@
+<?page title="${c:l('admCargos.title')}" contentType="text/html;charset=UTF-8"?>
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./win_admHistorialCargos" ?>
+<zk>
+	<window border="none" id="win_admHistorialCargos"
+		apply="com.egoveris.edt.web.admin.pl.AdminCargosHistComposer"
+		width="100%">
+			
+			<hbox style="" align="center" width="100%">
+			<image src="/imagenes/egovIconOrange.png" width="40px" height="30px" style="padding-left: 10px;" />
+			<label value="${c:l('eu.audRolesPermisos.hbox.historialCargos') }" style=" font: bold;" />
+		</hbox>
+			
+			<separator />
+			
+			<div align="center">
+				<listbox
+					id="lst_CargosHistorial"
+					width="70%"
+					mold="paging"
+					model="@{win_admHistorialCargos$AdminCargosHistComposer.listaResultadoCargos}"
+					selectedItem="@{win_admHistorialCargos$AdminCargosHistComposer.cargoHistorico}"
+					itemRenderer="com.egoveris.edt.web.admin.pl.renderers.CargosHistItemRender"
+					pageSize="20" pagingPosition="top" >					
+					<custom-attributes visibilidad="activa"></custom-attributes>
+					<listhead sizable="false" style="background: #C4ECFF;">
+						<listheader id="cargo" width="40%" label="${c:l('eu.altaUsuario.row.label.cargo')}" style="background-color: #C4ECFF;" />
+						<listheader id="tipo" width="20%" label="${c:l('eu.audDatosPersonales.label.tipo')}" style="background-color: #C4ECFF;" />
+						<listheader id="vigente" width="20%" label="${c:l('eu.audRolesPermisos.listhead.vigente')}" style="background-color: #C4ECFF;" />
+						<listheader id="accion" width="20%" label="${c:l('eu.admCargos.hbox.label.acciones')}" style="background-color: #C4ECFF;" />
+					</listhead>
+				</listbox>
+			</div>
+	</window>
+</zk>
+

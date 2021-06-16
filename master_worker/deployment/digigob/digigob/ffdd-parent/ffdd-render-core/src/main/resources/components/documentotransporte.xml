@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<complexComponent type="TRADE" name="Documento Transporte"
+	description="Transport Document Information" zul="documentoTransporte.zul"
+	composer="com.everis.tramelec.dynform.comp.ext.DocumentoTransporteComposer"
+	mappingDTO="com.egoveris.ccomplejos.base.model.DocumentoTransporteDTO">
+
+	<field name="idDocumentoTransporte" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.LongboxExt" />
+	<field name="secuencialDocTransporte" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.LongboxExt" />
+	<field name="numeroDocTransporte" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.LongboxExt" />
+	<field name="fechaDocTransporte"  height="20px"  width="90%"
+		class="com.egoveris.ffdd.render.zk.comp.ext.DateboxExt"
+		tooltip="Fecha Documento" />
+	<field name="tipoDocTransporte" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" />
+	<field name="nombreNave" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" />
+	<field name="numeroViaje" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.LongboxExt" />
+	<field name="numeroManifiesto" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" />
+	<field name="idNave" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" />
+	
+
+</complexComponent>

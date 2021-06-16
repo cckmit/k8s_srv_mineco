@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
+    http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+	<changeSet id="TABLA_GEDO_DOC_PUBLICABLE" author="Carlos Bellotti" >
+        <createTable tableName="GEDO_DOC_PUBLICABLE">
+            <column autoIncrement="true" name="ID" type="INT">
+                <constraints primaryKey="true" />
+            </column>
+            <column name="NOMBRE_ARCH_TEMP" type="varchar(255)"/>
+            <column name="ID_PUBLICABLE" type="varchar(36)"/>
+        </createTable>
+        
+        <createIndex tableName="GEDO_DOC_PUBLICABLE" indexName="IDX_DOC_PUB_ARCH_TMP">
+        	<column name="NOMBRE_ARCH_TEMP" ></column>
+        </createIndex>
+    </changeSet>
+	
+</databaseChangeLog>

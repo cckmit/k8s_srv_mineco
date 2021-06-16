@@ -1,0 +1,17 @@
+<zk>
+	<div id="sidebar"
+		sclass="${dbvm.properties['menuCollapsed'] eq 'true' ? 'sidebar sidebar-min' : 'sidebar'}"
+		apply="com.egoveris.dashboard.web.composer.DashboardComposer">
+<!-- 		<include id="shortcuts" -->
+<!-- 			src="~./db_layout/menuLateral/shortcuts.zul" -->
+<!-- 			if="${dbvm.properties['showShortcuts'] eq 'true'}" /> -->
+		<include id="navegacion"
+			src="~./db_layout/menuLateral/navegacion.zul" />
+
+		<!-- Toggler -->
+		<div sclass="sidebar-collapse">
+			<a id="toggler"
+				iconSclass="${dbvm.properties['menuCollapsed'] eq 'true' ? 'z-icon-angle-double-right' : 'z-icon-angle-double-left'}" />
+		</div>
+	</div>
+</zk>

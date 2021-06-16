@@ -1,0 +1,23 @@
+<zk>
+	<vlayout apply="com.egoveris.ffdd.render.zk.comp.cc.VistaOTRDinComposer">
+		<grid>
+			<columns>
+				<column></column>
+			</columns>
+			<rows>
+				<row>
+					<vbox>
+						<hbox>
+							<cell
+								id="${arg.formComp.nombre}_secuencialCuentaDiv" />
+							<cell
+								id="${arg.formComp.nombre}_codigoCuentaOTRDiv" />
+							<cell
+								id="${arg.formComp.nombre}_montoCuentaOTRDiv" />
+						</hbox>
+					</vbox>
+				</row>
+			</rows>
+		</grid>
+	</vlayout>
+</zk>

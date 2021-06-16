@@ -1,0 +1,57 @@
+<?page title="${c:l('digigob.Title')}" contentType="text/html;charset=UTF-8"?>
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+<?init class="org.zkoss.zk.ui.util.Composition" arg0="~./db_template.zul"?>
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./consultaConsolidacionWindow"?>
+<zk>
+	<window title="" border="none" width="100%"
+		id="consultaConsolidacionWindow"
+		apply="com.egoveris.te.base.composer.ConsultaConsolidacionComposer"
+		self="@{define(egovBody)}">
+		<window id="parametrosConsultaWindow" visible="false" />
+	
+			<div sclass="page-header">
+				<label
+				value="${c:l('ee.consulta.consolidacion.header.value')}" />
+			</div>
+			
+		<menubar>
+			
+			<menuitem image="/imagenes/page_white_text.png"
+				label="${c:l('ee.consulta.consolidacion.menu.value')}" 
+				id="buscarConsolidacionPorFecha" />
+			
+			<menuitem iconSclass="z-icon-file-excel-o" 
+			label="${c:l('ee.consutla.consolidacion.menu.descargaCSV')}"
+			id="descargarCSV" disabled="true"/>
+			
+		</menubar>
+		<paging id="consultaPaginator" detailed="true" pageSize="10" />
+		<listbox id="consultaConsolidacionList"
+			paginal="${consultaPaginator }" mold="paging"
+			model="@{consultaConsolidacionWindow$composer.listaConsolidacion}"
+			itemRenderer="com.egoveris.te.base.rendered.ConsolidacionRenderer">
+			<listhead>
+				<listheader label="${c:l('ee.consulta.consolidacion.listheader.codigoTrata')}" align="center" />
+				<listheader label="${c:l('ee.consulta.consolidacion.listheader.descripcionTrata')}" align="center"  />
+				<listheader label="${c:l('ee.consulta.consolidacion.listheader.nroExpediente')}" align="center" />
+				<listheader label="${c:l('ee.consulta.consolidacion.listheader.nroTransaccionTad')}" align="center"/>
+				<listheader label="${c:l('ee.consulta.consolidacion.listheader.fechaPago')}" align="center" />
+
+				<listheader label="${c:l('ee.consulta.consolidacion.listheader.nroAutorizacion')}" align="center" />
+				<listheader label="${c:l('ee.consulta.consolidacion.listheader.nroReferencia')}" align="center" />
+
+				<listheader label="${c:l('ee.consulta.consolidacion.listheader.apiKey')}" align="center" />
+				<listheader label="${c:l('ee.consulta.consolidacion.listheader.monto')}" align="center" />
+				<listheader label="${c:l('ee.consulta.consolidacion.listheader.titularTarjeta')}" align="center" />
+				<listheader label="${c:l('ee.consulta.consolidacion.listheader.nroDUI')}" align="center" />
+				<listheader label="${c:l('ee.consulta.consolidacion.listheader.organismoIniciador')}" align="center" />
+				
+				
+			</listhead>
+		</listbox>
+		
+	
+	
+	</window>
+</zk>

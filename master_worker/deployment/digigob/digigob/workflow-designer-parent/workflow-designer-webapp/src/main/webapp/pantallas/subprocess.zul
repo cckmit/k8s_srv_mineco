@@ -1,0 +1,171 @@
+<?page title="Workflow Designer" id="tramitacion" contentType="text/html;charset=UTF-8"?>
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./subProcess" ?>
+
+<zk xmlns:x="xhtml" xmlns:zk="zk" xmlns:w="http://www.zkoss.org/2005/zk/client">
+	<window id="subProcess" title="${c:l('general.subprocesos')}" apply="org.zkoss.bind.BindComposer" 
+        viewModel="@id('vm') @init('com.egoveris.workflow.designer.module.controller.mv.SubProcessVM')"
+		xmlns:w="http://www.zkoss.org/2005/zk/client" 
+		border="normal" mode="modal" 
+		width="950px" height="600" closable="true">
+		
+		<groupbox id="groupBox">
+			<caption></caption>
+			<grid>
+				<rows>
+					<row>
+						<cell width="50%" valign="top">
+							<grid>		
+								<rows>
+									<row>
+										<cell colspan="2">
+											<label value="${c:l('general.datos')}" style="font-weight: bold;" />
+											<label value="${c:l('subprocess.obligatorios')}" />
+										</cell>
+									</row>
+									<row>
+										<cell width="175px">
+											<vbox>
+												<label value="${c:l('general.tramite')}" />
+											</vbox>
+										</cell>
+										<cell>
+											 <combobox id="cbxProcedure" width="150px"
+							                    model="@bind(vm.procedures)" selectedItem="@bind(vm.procedureSelected)" readonly="true">
+							                    <template name="model" >
+							                        <comboitem label="@bind(each.codigoTrata)" />
+							                    </template>
+							                </combobox>		
+										</cell>
+									</row>
+									<row>
+										<cell width="175px">
+											<vbox>
+												<label value="${c:l('subprocess.tipoBloqueo')}" />						
+											</vbox>
+										</cell>
+										<cell>
+											 <combobox id="cbxLockType" width="150px"
+							                    model="@bind(vm.lockTypes)" selectedItem="@bind(vm.lockTypeSelected)" readonly="true">
+							                    <template name="model">
+							                        <comboitem label="@bind(each)"/>
+							                    </template>
+							                </combobox>				
+										</cell>
+									</row>
+									<row>
+										<cell width="175px">
+											<vbox>
+												<label value="${c:l('subprocess.tipoInicio')}" />						
+											</vbox>
+										</cell>
+										<cell>
+											 <combobox id="cbxStartType" width="150px"
+							                    model="@bind(vm.startTypes)" selectedItem="@bind(vm.startTypeSelected)" readonly="true">
+							                    <template name="model">
+							                        <comboitem label="@bind(each)"/>
+							                    </template>
+							                </combobox>				
+										</cell>
+									</row>
+								</rows>
+							</grid>	
+						</cell>
+						<cell valign="top">
+							<grid>
+								<rows>
+									<row>
+										<cell colspan="2">
+											<label value="Scripts" style="font-weight: bold;" />
+											<label value="${c:l('subprocess.scripts')}" />
+										</cell>
+									</row>
+									<row>
+										<cell width="175px">
+											<vbox>
+												<label value="${c:l('estado.iniciacion')}" />
+											</vbox>
+										</cell>
+										<cell>
+											<textbox
+												id="stateStartSubprocess" multiline="false" cols="25"
+												value="@bind(vm.scriptStart)"
+												w:onDoubleClick="editScriptStartSubprocess('Script Inicialización', this)" />
+										</cell>
+									</row>
+									<row>
+										<cell width="175px">
+											<vbox>
+												<label value="${c:l('estado.finalizacion')}" />
+											</vbox>
+										</cell>
+										<cell>
+											<textbox
+												id="stateEndSubprocess" multiline="false" cols="25"
+												value="@bind(vm.scriptEnd)"
+												w:onDoubleClick="editScriptEndSubprocess('Script Finalización',this)" />
+										</cell>
+									</row>
+								</rows>
+							</grid>
+						</cell>
+					</row>
+					<row>
+						<cell width="100%" colspan="2">
+							<hbox>
+								<button id="btnAddSubprocess" label="${c:l('general.agregar')}" onClick="@command('addSubProcess')"/>
+								<button id="btnEditSubprocess" label="${c:l('general.guardar')}" onClick="@command('updateSubProcess')" visible="false"/>
+								<button id="btnCancelEditSubprocess" label="${c:l('general.cancelar')}" onClick="@command('cancelEditSubProcess')" visible="false"/>				
+							</hbox>
+						</cell>
+					</row>
+				</rows>
+			</grid>
+		</groupbox>
+		
+		<separator/>
+		
+		<label>SubProcesos</label>
+		<listbox id="listSubprocess" model="@bind(vm.subprocess)" 
+	             height="auto" width="auto">
+	        <listhead>
+	             <listheader label="ID"/>
+	             <listheader label="StateFlow"/>
+	             <listheader label="${c:l('general.estado')}"/>
+	             <listheader label="${c:l('general.subproceso')}"/>
+	             <listheader label="${c:l('general.bloqueo')}"/>
+	             <listheader label="${c:l('general.inicio')}"/>
+	             <listheader label="${c:l('general.opciones')}" />
+	        </listhead>
+	       	<template name="model" var="item" >
+       			<listitem>
+       				  <listcell>
+       				  	<label value="@bind(item.id)"/>
+       				  </listcell>
+       				  <listcell>
+       				  	<label value="@bind(item.stateFlow)"/>
+       				  </listcell>
+       				  <listcell>
+       				  	<label value="@bind(item.stateName)"/>
+       				  </listcell>
+       				  <listcell>
+       				  	<label value="@bind(item.procedureName)"/>
+       				  </listcell>
+       				  <listcell>
+       				  	<label value="@bind(item.lockType)"/>
+       				  </listcell>
+       				  <listcell>
+       				  	<label value="@bind(item.startType)"/>
+       				  </listcell>
+       				  <listcell> 
+       				  	<hbox>
+	       				   	<button label="${c:l('general.editar')}" onClick="@command('editSubProcess', subprocess=item)"/>
+	       				   	<separator width="5px"/>
+	       				   	<button label="${c:l('general.borrar')}" onClick="@command('deleteSubProcess', subprocess=item)"/>
+       				   	</hbox>
+       				  </listcell> 
+       			</listitem>
+	       	</template>
+	   </listbox>
+	</window>
+</zk>

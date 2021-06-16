@@ -1,0 +1,143 @@
+<?page title="${c:l('digigob.Title')}" contentType="text/html;charset=UTF-8"?>
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+<?init class="org.zkoss.zk.ui.util.Composition" arg0="~./db_template.zul"?>
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./abmTrataWindow"?>
+<zk>
+	<window id="abmTrataWindow" title="" border="none" width="100%"
+		apply="com.egoveris.te.base.composer.ABMTrataComposer" self="@{define(egovBody)}">
+		
+		<window id="hiddenView" visible="false"
+			forward="onClose=abmTrataWindow$composer.onNuevaTrataCreada" />
+		
+		<div sclass="page-header">
+			<label value="${c:l('ee.abmTrata.label.admTramites')}" />
+		</div>
+					
+		<toolbar width="100%">
+			<hbox align="center" >
+			<toolbarbutton autodisable="self" style=" valing: middle;"
+				image="/imagenes/page_white_text.png" label="${c:l('ee.abmTrata.label.crearNuevoTramite')}"
+				forward="onClick=abmTrataWindow$composer.onCreateNuevaTrata" />
+			<separator orient="horizontal"  width="100px"></separator>	
+			
+			<label  value="${c:l('ee.abmTrata.label.busquedaTramite')}"/>                      
+			<combobox id="busquedaTrataComboBox" buttonVisible="false" autodrop="true"></combobox>
+			<toolbarbutton autodisable="self" id="buscarPorCodigoTrataButton"  
+						   image="/imagenes/edit-find.png" 
+						   label="${c:l('ee.abmTrata.label.buscarCodigo')}"
+						   forward="onClick=abmTrataWindow$composer.onBuscarPorCodigo"/>
+			<toolbarbutton autodisable="self" id="buscarPorDescripcionTrataButton" 
+						    
+						   image="/imagenes/edit-find.png" 
+						   label="${c:l('ee.abmTrata.toolbarbutton.buscarDescrip')}"
+						   forward="onClick=abmTrataWindow$composer.onBuscarPorDescripcion"/>
+			<toolbarbutton autodisable="self" id="borrarBusquedaButton" 
+						    
+						   image="/imagenes/delete-process.png" 
+						   label="${c:l('ee.abmTrata.toolbarbutton.limpiarBusqueda')}"
+						   forward="onClick=abmTrataWindow$composer.onLimpiarBusqueda"/>
+						   
+			</hbox>
+		</toolbar>
+		
+		<paging id="trataPaginator" pageSize="5" />
+		
+		<listbox id="trataLb"
+			model="@{abmTrataWindow$composer.tratas}"
+			selectedItem="@{abmTrataWindow$composer.selectedTrata}" mold="paging"
+			paginal="${trataPaginator}">
+			
+			<listhead sizable="false"  width="100%">
+				<listheader label="${c:l('te.webapp.abmTrata.listbox.header.codigo')}"
+					align="center" width="20%"/>
+				<listheader label="${c:l('te.webapp.abmTrata.listbox.header.descripcion')}"
+					align="center" width="20%"/>
+				<listheader label="${c:l('te.webapp.abmTrata.listbox.header.tipoTramite')}"
+					align="center" width="20%"/>
+				<listheader label="${c:l('te.webapp.abmTrata.listbox.header.reservaParcial')}"
+					align="center" width="10%"/>
+				<listheader label="${c:l('te.webapp.abmTrata.listbox.header.reservaTotal')}"
+					align="center" width="10%"/>		
+				<listheader label="${c:l('te.webapp.abmTrata.listbox.header.interno')}"
+					align="center" width="8%"/>
+				<listheader label="${c:l('te.webapp.abmTrata.listbox.header.externo')}"
+					align="center" width="8%"/>
+				<listheader label="${c:l('te.webapp.abmTrata.listbox.header.habilitado')}"
+					align="center" width="10%"/>
+				<listheader label="${c:l('te.webapp.abmTrata.listbox.header.acciones')}"
+					align="center" width="30%"/>
+			</listhead>
+			<listfoot>
+				<!--				<listfooter label="${c:l('gedo.inbox.pieDeTabla')}" span="3" />	-->
+				<listfooter label="" span="3" />
+			</listfoot>
+		</listbox>
+		
+		<separator height="20px"/>
+		
+		<!--
+		<hbox align="center">
+			<image src="/imagenes/egovIconOrange.png" width="40px"
+				height="30px" style="padding-left: 10px;" />
+			<label value="Administración de Documentos"
+				style="font: bold;" />
+		</hbox>
+		
+		<separator height="20px" />
+		-->
+		
+		<div sclass="page-header">
+			<label value="${c:l('te.webapp.abmTrata.header.admDocumentos')}" />
+		</div>
+		
+		<grid align="center"
+			style="border:0px; ">
+			<rows >
+				<row >
+					<groupbox mold="3d" width="1000px">
+						<caption
+							label="${c:l('te.webapp.abmTrata.label.seleccione')}" />
+						<hbox spacing="15px" align="center">
+							<label value="${c:l('te.webapp.abmTrata.label.caratula')}"
+								tooltiptext="${c:l('ee.abmTrata.tooltip.ingreseAcronimo')}"
+								style="padding-right:65px ;font: bold;font-size:13px;font-family: Arial;text-decoration: none;" />
+							<combobox id="tipoDocumentoDeEECaratula"
+								disabled="false" readonly="true" width="200px"
+								model="@{abmTrataWindow$ABMTrataComposer.listaTiposDocumentosDeEECaratula}"
+								selectedItem="@{abmTrataWindow$ABMTrataComposer.selectedTipoDocumentoEECaratula}"
+								forward="onSelect=abmTrataWindow$ABMTrataComposer.onSelectTipoDocumentoEECaratula">
+							</combobox>
+							<separator />
+							<separator />
+							<button autodisable="self" id="guardarButton"
+								label="${c:l('te.webapp.abmTrata.button.guardar')}" disabled="true"
+								class="btn-info" iconSclass="z-icon-save" height="25px"
+								forward="onClick=abmTrataWindow$ABMTrataComposer.onGuardarDocumentoCaratula" />
+						</hbox>
+						<separator />
+						<separator />
+						<hbox spacing="15px" align="center">
+							<label value="${c:l('te.webapp.abmTrata.label.caratulaReservada')}"
+								tooltiptext="${c:l('ee.abmTrata.tooltip.ingreseAcronmDoc')}"
+								style="font: bold;font-size:13px;font-family: Arial;text-decoration: none;" />
+							<combobox id="tipoDocumentoDeEECaratulaReservada"
+								disabled="false" readonly="true" width="200px"
+								model="@{abmTrataWindow$ABMTrataComposer.listaTiposDocumentosDeEECaratulaReservada}"
+								selectedItem="@{abmTrataWindow$ABMTrataComposer.selectedTipoDocumentoEECaratulaReservada}"
+								forward="onSelect=abmTrataWindow$ABMTrataComposer.onSelectTipoDocumentoEECaratulaReservada">
+							</combobox>
+							<separator />
+							<separator />
+<!-- 							<button autodisable="self" id="guardarButton" -->
+<!-- 								label="Guardar Cambio" disabled="true" -->
+<!-- 								forward="onClick=abmTrataWindow$ABMTrataComposer.onGuardarDocumentoCaratula" /> -->
+						</hbox>
+						<separator />
+						<separator />
+					</groupbox>
+				</row>
+			</rows>
+		</grid>
+	</window>
+</zk>

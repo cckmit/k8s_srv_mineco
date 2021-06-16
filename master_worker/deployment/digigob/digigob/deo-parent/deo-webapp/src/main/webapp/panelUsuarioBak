@@ -1,0 +1,57 @@
+<?page title="eGoveris" contentType="text/html;charset=UTF-8"?>
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+<?link rel="shortcut icon" type="image/x-icon" href="${favicon}"?>
+<?link rel="icon" type="image/x-icon" href="${favicon}"?>
+<?init class="org.zkoss.zk.ui.util.Composition" arg0="~./db_template.zul"?>
+<?init class="com.egoveris.deo.web.satra.InitPanelUsuario" ?>
+
+<window id="panelUsuario" width="100%" height="89%"
+	style="align=center; background-color:#EFEFEF;" self="@{define(egovBody)}">
+	
+	<tabbox tabscroll="false" width="100%" id="gedoTabs" height="100%"
+		style="background-color: #EFEFEE"
+		apply="com.egoveris.deo.web.satra.PanelUsuarioComposer">
+		<tabs >
+			<tab label="${c:l('gedo.panelUsuario.tabInbox')}"
+				tooltiptext="${c:l('gedo.panelUsuario.tabInbox.help')}"
+				style="background-color: #EFEFEE" id="inBoxTab" />
+			<tab label="${c:l('gedo.panelUsuario.tabMisSupervisados')}"
+				tooltiptext="${c:l('gedo.panelUsuario.tabMisSupervisados.help')}"
+				style="background-color: #EFEFEE" id="supervisadosTab" />
+			<!--
+			<tab label="${c:l('gedo.panelUsuario.abmTiposDocumentos')}"
+				tooltiptext="${c:l('gedo.panelUsuario.abmTiposDocumentos.help')}"
+				id="abmTipoDocumentoTab" style="background-color: #EFEFEE" />
+			-->
+			<tab label="${c:l('gedo.panelUsuario.consultarDocumentos')}"
+				tooltiptext="${c:l('gedo.panelUsuario.consultarDocumentos.help')}"
+				style="background-color: #EFEFEE" id="consultarDocumentosTab" />
+			<tab image="/imagenes/engranaje.png"
+				label="${c:l('gedo.panelUsuario.perfil')}"
+				tooltiptext="${c:l('gedo.panelUsuario.perfil.help')}"
+				style="background-color: #EFEFEE" id="perfilTab" />
+		</tabs>
+		<tabpanels style="background-color: #EFEFEE">
+
+			<tabpanel id="inbox" style="overflow:auto">
+				<include src="/inbox.zul"></include>
+			</tabpanel>
+			<tabpanel fulfill="supervisadosTab.onClick">
+				<include src="/misSupervisados.zul"></include>
+			</tabpanel>
+			<!-- Se comenta porque esta externalizada en el menu esta pantalla
+			<tabpanel fulfill="abmTipoDocumentoTab.onClick">
+				<include src="/inbox/abmTipoDocumento.zul"></include>
+			</tabpanel>
+			-->
+			<tabpanel fulfill="consultarDocumentosTab.onClick"
+				style="overflow:auto">
+				<include src="/consultas/consultaDocumentos.zul"></include>
+			</tabpanel>
+			<tabpanel fulfill="perfilTab.onClick"
+				style="overflow:auto">
+				<include src="/inbox/perfil.zul"></include>
+			</tabpanel>
+		</tabpanels>
+	</tabbox>
+</window>

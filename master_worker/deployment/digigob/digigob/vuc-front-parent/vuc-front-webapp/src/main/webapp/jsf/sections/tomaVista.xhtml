@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:egov="http://java.sun.com/jsf/composite/egov">
+
+<ui:composition template="/WEB-INF/faces/layout/mainLayout.xhtml">
+	<ui:define name="body">
+		<p:remoteCommand name="historialPasesErrorDialogJS"
+			actionListener="#{tomaVistaMb.showHistorialDePasesException}" />
+		<h:form id="tomaVistaForm">
+			<div class="ui-g">
+				<div class="ui-g-12">
+					<h2>#{msg.stepsTramite}
+						#{tomaVistaMb.expediente.tipoTramite.nombre}</h2>
+				</div>
+				<div class="ui-g-12">
+					<p:tabView id="tabViewMain" dynamic="false" cache="true">
+						<p:ajax event="tabChange" listener="#{tomaVistaMb.onTabChange}"
+							oncomplete="historialPasesErrorDialogJS()" update="tabViewMain"
+							process="tabViewMain" />
+
+						<p:tab id="tabDatosSoliciante"
+							title="#{msg.step3DatosSolicitante}">
+							<egov:datosSolicitante value="#{tomaVistaMb.expediente.persona}" />
+						</p:tab>
+						<p:tab id="tabDocumentos" title="#{msg.step3Documentos}">
+							<p:fieldset legend="#{msg.step3Documentos}"
+								style="margin-bottom:20px;width:100%;">
+								<p:dataTable id="tblDocumentos" var="documento"
+									value="#{tomaVistaMb.documentosExpedienteList()}"
+									style="text-align: center;" rows="10" paginator="true"
+									paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+									currentPageReportTemplate="{currentPage} #{msg.sectionDe} {totalPages} #{msg.sectionPaginas}"
+									rowsPerPageTemplate="5,10,15" paginatorPosition="bottom"
+									emptyMessage="#{msg.step3SinDocumentos}">
+									<p:column headerText="#{msg.tomaVistaReferencia}">
+										<p:outputLabel value="#{documento.referencia}" />
+									</p:column>
+									<p:column headerText="#{msg.tomaVistaFecha}">
+										<p:outputLabel value="#{documento.formattedFechaCreacion}" />
+									</p:column>
+									<p:column headerText="#{msg.step3NombreArchivo}"
+										rendered="true" priority="4">
+										<p:outputLabel value="#{documento.nombreOriginal}" />
+									</p:column>
+									<p:column headerText="#{msg.step3Ver}" width="13%"
+										style="text-align: center;">
+										<!-- PREVIEW BUTTON  -->
+										<!-- DOCUMENTOS REGULARES -->
+									<p:commandButton icon="fa fa-download" ajax="false">
+									<p:fileDownload
+										value="#{tomaVistaMb.cmdDownloadDocument(documento)}" />
+									</p:commandButton>
+									</p:column>
+								</p:dataTable>
+							</p:fieldset>
+						</p:tab>
+						<p:tab id="tabHistorialPases" title="#{msg.step3HistorialPases}">
+							<p:fieldset legend="Pases" style="margin-bottom:20px;width:100%;">
+								<p:dataTable id="tblPases" value="#{tomaVistaMb.pases}" var="pase"
+									rowIndexVar="rowIndex" emptyMessage="#{msg.step3SinPases}"
+									style="text-align: center;" rows="10" paginator="true"
+									paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+									currentPageReportTemplate="{currentPage} #{msg.step3De} {totalPages} #{msg.step3Paginas}"
+									rowsPerPageTemplate="5,10,15" paginatorPosition="bottom">
+									<p:column headerText="#" width="5%">
+										<p:outputLabel value="#{rowIndex+1}" />
+									</p:column>
+									<p:column headerText="#{msg.step3Fecha}">
+										<p:outputLabel value="#{pase.formattedDate}" />
+									</p:column>
+									<p:column headerText="#{msg.step3Organismo}">
+										<p:outputLabel value="#{pase.organismoDestino}" />
+									</p:column>
+								</p:dataTable>
+							</p:fieldset>
+						</p:tab>
+					</p:tabView>
+				</div>
+
+				<!-- BACK BUTTON -->
+				<div class="ui-g-12" style="margin-top: 20px; text-align: center;">
+					<p:commandButton value="#{msg.stepsAtras}"
+						actionListener="#{tomaVistaMb.cmdCancel()}" class="buttonSpace" />
+				</div>
+			</div>
+
+			<!-- DIALOGS -->
+			<p:dialog id="archivoView" widgetVar="archivoView" modal="true"
+				style="position:absolute" width="60%" fitViewport="true"
+				global="true" header="#{msg.step3Documento}" resizable="false">
+				<object type="application/pdf"
+					data="#{request.contextPath.concat(step2Mb.pdfViewUrl)}"
+					height="500px" width="100%"> </object>
+			</p:dialog>
+
+			<!-- DIALOG FFDD -->
+			<p:dialog id="ffddDialog" widgetVar="ffddDialog" width="60%"
+				style="position:absolute" modal="true"
+				header="#{msg.step3Formulario}" responsive="true">
+				<p:ajax event="close" listener="#{step2Mb.closeEventFfddDialog()}"
+					global="false" />
+				<div class="ui-g">
+					<div class="ui-g-12">
+						<iframe
+							src="#{request.contextPath}/zul/formularioDinamico.zul?idTipoDoc=#{step2Mb.tipoDocumentoSeleccionado.id}&amp;idExp=#{tomaVistaMb.expediente.id}&amp;view=true"
+							width="100%" style="border: none;" />
+					</div>
+				</div>
+			</p:dialog>
+		</h:form>
+
+	</ui:define>
+</ui:composition>
+</html>

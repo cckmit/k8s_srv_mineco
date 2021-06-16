@@ -1,0 +1,40 @@
+<?page title="new page title" contentType="text/html;charset=UTF-8"?>
+<zk>
+	 <vlayout width="100%"
+		apply="com.egoveris.ffdd.render.zk.comp.cc.VistaParticipantesDAComposer">
+					<vbox >
+						<hbox>
+								<cell id="${arg.formComp.nombre}_nombreParticipanteDiv" />
+								<cell id="${arg.formComp.nombre}_codigoDespachoDiv"  />
+								<cell id="${arg.formComp.nombre}_despachadorCodigoDiv"/>
+						</hbox>
+					</vbox>
+					<vbox>
+						<hbox>
+							<cell id="${arg.formComp.nombre}_indicaTipoDocumentoIdentificacionDiv" />
+							<cell id="${arg.formComp.nombre}_rutDiv" />
+							<cell id="${arg.formComp.nombre}_porcentajeDiv" />
+						</hbox>
+					</vbox>
+					<vbox>
+						<hbox>
+							<cell id="${arg.formComp.nombre}_emailDiv" />
+							<cell id="${arg.formComp.nombre}_direccionDiv" />	
+							<cell id="${arg.formComp.nombre}_comunaDiv" />
+						</hbox>
+					</vbox>
+					<vbox>
+						<hbox>
+<!-- 							<cell id="${arg.formComp.nombre}_participanteDiv"/> -->
+							<cell id="${arg.formComp.nombre}_regionDiv"/>
+							<cell id="${arg.formComp.nombre}_numeroTelefonoFijoDiv" />
+						</hbox>
+					</vbox>
+					<vbox>
+						<hbox>
+							<cell id="${arg.formComp.nombre}_numeroTelefonoMovilDiv"/>
+							<cell id="${arg.formComp.nombre}_paisDiv" />
+						</hbox>
+					</vbox>
+	</vlayout>
+</zk>

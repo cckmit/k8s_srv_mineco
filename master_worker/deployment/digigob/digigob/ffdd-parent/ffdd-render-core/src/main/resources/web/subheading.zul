@@ -1,0 +1,51 @@
+<zk>
+	<vlayout
+		apply="com.egoveris.ffdd.render.zk.comp.cc.SubHeadingComposer">
+
+		<grid>
+			<columns>
+				<column></column>
+				<column></column>
+				<column></column>
+				<column></column>
+			</columns>
+			<rows>
+				<row>
+					<hbox>SubHeading ID:</hbox>
+					<cell id="${arg.formComp.nombre}_subheadingIdDiv" />
+					<hbox>Heading ID:</hbox>
+					<cell id="${arg.formComp.nombre}_headingIdDiv" />
+				</row>
+				<row>
+					<hbox>Heading:</hbox>
+					<cell colspan="2" id="${arg.formComp.nombre}_headingDTODiv" />
+				</row>
+				<row>
+					<hbox>SubHeading Code:</hbox>
+					<cell
+						id="${arg.formComp.nombre}_subheadingCodeDiv" />
+					<hbox>SubHeading Description:</hbox>
+					<cell
+						id="${arg.formComp.nombre}_subheadingDescDiv" />
+				</row>
+				<row>
+					<hbox>SubHeading Description SP:</hbox>
+					<cell
+						id="${arg.formComp.nombre}_subheadingdescSPDiv" />
+					<hbox>SubHeading Status:</hbox>
+					<cell
+						id="${arg.formComp.nombre}_subheadingStatusDiv" />
+				</row>
+				<row>
+					<hbox>SubHeading Text:</hbox>
+					<cell
+						id="${arg.formComp.nombre}_subheadingTextDiv" />
+					<hbox>Year:</hbox>
+					<cell
+						id="${arg.formComp.nombre}_yearDiv" />
+				</row>
+			</rows>
+		</grid>
+
+	</vlayout>
+</zk>

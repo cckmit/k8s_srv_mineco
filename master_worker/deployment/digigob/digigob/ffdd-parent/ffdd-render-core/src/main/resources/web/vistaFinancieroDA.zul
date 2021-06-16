@@ -1,0 +1,50 @@
+<zk>
+	<vlayout
+		apply="com.egoveris.ffdd.render.zk.comp.cc.VistaFinancieroDAComposer">
+
+		<vbox>
+			<hbox>
+				<cell id="${arg.formComp.nombre}_descuentoDiv" />
+				<cell id="${arg.formComp.nombre}_clausulaVentaTransaccionDiv" />
+			</hbox>
+			<hbox>
+				<cell id="${arg.formComp.nombre}_comisionesAlExteriorDiv" />
+				<cell id="${arg.formComp.nombre}_otrosGastosDiv" />
+			</hbox>
+			<hbox>
+				<cell id="${arg.formComp.nombre}_modalidadVentaTransaccionDiv" />
+				<cell id="${arg.formComp.nombre}_numeroFacturaDiv" />
+			</hbox>
+			<hbox>
+				<cell
+					id="${arg.formComp.nombre}_formaPagoTransaccionDiv" />
+				<cell id="${arg.formComp.nombre}_tipoMonedaTransaccionDiv" />
+			</hbox>
+			<hbox>
+				<cell
+					id="${arg.formComp.nombre}_indicaFacturaComercialDefinitivaDiv" />
+				<cell id="${arg.formComp.nombre}_codigoPaisAdquisicionDiv" />
+			</hbox>
+			<hbox>
+				<cell
+					id="${arg.formComp.nombre}_tasaSeguroDiv" />
+				<cell id="${arg.formComp.nombre}_numeroCuotasPagoDiferidoDiv" />
+			</hbox>
+			<hbox>
+				<cell
+					id="${arg.formComp.nombre}_fechaEmisionDiv" />
+				<cell id="${arg.formComp.nombre}_montoTotalFacturaDiv" />
+			</hbox>
+			<hbox>
+				<cell
+					id="${arg.formComp.nombre}_montoTotalCIFDiv" />
+				<cell id="${arg.formComp.nombre}_valorLiquidoRetornoDiv" />
+			</hbox>
+			<hbox>
+				<cell
+					id="${arg.formComp.nombre}_valorFleteDiv" />
+			</hbox>
+		</vbox>
+
+	</vlayout>
+</zk>

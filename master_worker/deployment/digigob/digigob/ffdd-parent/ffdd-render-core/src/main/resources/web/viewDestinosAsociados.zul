@@ -1,0 +1,19 @@
+<?page title="new page title" contentType="text/html;charset=UTF-8"?>
+<zk>
+	<vlayout
+		apply="com.egoveris.ffdd.render.zk.comp.cc.ViewDestinosAsociadosComposer">
+		<vbox>
+			<hbox>
+				<cell id="${arg.formComp.nombre}_codigoProductoDiv" />
+				<cell id="${arg.formComp.nombre}_usoPrevistoDiv" />
+			</hbox>
+			<hbox>
+				<cell id="${arg.formComp.nombre}_nombreInstalacionDiv" />
+				<cell id="${arg.formComp.nombre}_cantidadDiv" />
+			</hbox>
+			<hbox>
+				<cell id="${arg.formComp.nombre}_nombreProductoDiv" />
+			</hbox>
+		</vbox>
+	</vlayout>
+</zk>

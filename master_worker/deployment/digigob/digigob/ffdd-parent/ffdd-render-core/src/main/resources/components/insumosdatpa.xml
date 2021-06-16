@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<complexComponent type="MACCS" name="View Destinos Asociados"
+	description="View Destinos Asociados" zul="insumosDATPA.zul"
+	mappingDTO="com.egoveris.ccomplejos.base.model.InsumosDATPADTO">
+
+	<field name="numeroInsumo" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" />
+	<field name="descripcionInsumo" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" />
+	<field name="cantidadInsumo" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.LongboxExt" />
+	<field name="unidadMedidaCantidad" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" />
+	<field name="numeroHoja" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.LongboxExt" />
+	<field name="numeroItem" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.LongboxExt" />
+	<field name="valorCIFUnitario" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" />
+	<field name="unidadMedidaCIF" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" />
+
+
+
+</complexComponent>

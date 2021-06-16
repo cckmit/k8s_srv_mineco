@@ -1,0 +1,126 @@
+<?page title="" contentType="text/html;charset=UTF-8"?>
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c" ?>
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./detalleCoWindow" arg2="detalleCoBinder"?>
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c" ?>
+<zk>
+	<window title=" " border="normal" id="detalleCoWindow" height="80%" width="1100px" closable="true" forward="onClose=onCloseWindow"
+		apply="com.egoveris.deo.web.satra.DetalleCOComposer"
+		contentStyle="overflow:auto;">
+		<separator height="5px"></separator>
+		<hlayout>
+			<image src="/imagenes/egovIconOrange.png" width="40px"
+				height="30px" style="padding-left: 10px;" />
+			<label value="${c:l('ccoo.detalle.titulo')}" />
+		</hlayout>
+		<separator bar="true" width="100%"></separator>
+		<div>
+			<separator height="25px"></separator>
+			<hbox align="start">
+				<separator width="10px"></separator>
+				
+				<grid oddRowSclass="non-odd" width="550px" style="border-color:#EFEFEE;" >
+					<columns>
+						<column></column>
+						<column></column>												
+					</columns>
+					<rows style="border-color:#EFEFEE;">
+						<row style="border-color:#EFEFEE;"><label value="${c:l('ccoo.detalle.numCounicacion')}"></label>
+						    	<label id="nroCo" ></label>
+						</row>
+						<row style="border-color:#EFEFEE;"><label value="${c:l('ccoo.detalle.emisor')}"></label>
+						    <label id="usuarioEmisor"></label>
+						</row>		
+						<row style="border-color:#EFEFEE;"><label value="${c:l('ccoo.detalle.receptor')}"></label>
+						    <label id="usuarioDestino" ></label>
+						</row>
+						<row style="border-color:#EFEFEE;"><label value="${c:l('ccoo.detalle.receptorCopia')}"></label>
+						    <label id="usuarioCopia" ></label>
+						</row>
+						<row style="border-color:#EFEFEE;">	<label value="${c:l('ccoo.detalle.receptorCopiaOculta')}"></label>
+						    <label id="usuarioCopiaOculta" ></label>
+						</row>
+						<row style="border-color:#EFEFEE;"><label value="${c:l('ccoo.detalle.receptorPapel')}"></label>
+						    <label id="usuarioPapel" ></label>
+						</row>
+						<row style="border-color:#EFEFEE;"><label value="${c:l('ccoo.detalle.fecha')}"></label>
+						    <label id="fecha"></label>
+						</row>
+						<row style="border-color:#EFEFEE;"><label value="${c:l('ccoo.detalle.referencia')}"></label>
+						    <label id="referencia" ></label>
+						</row>
+						<row style="border-color:#EFEFEE;"><label value="${c:l('ccoo.detalle.respuesta')}"></label>
+						    	<label id="respondeA" ></label>
+						</row>															
+					</rows>
+				</grid>
+				<vbox>
+					<label value="${c:l('ccoo.definirDestinatario.mensaje')}"></label>
+					<textbox id="mensajeADestinatario" height="70px"
+						width="448px" rows="3" readonly="true" >
+					</textbox>
+					<separator height="5px"></separator>		
+					<listbox fixedLayout="true" id="archivosList"
+						mold="paging" pageSize="3" height="101px" width="450px"
+						
+						model="@{detalleCoWindow$DetalleCOComposer.listaArchivosAdjuntos}"
+						selectedItem="@{detalleCoWindow$composer.selectedArchivoAdjunto}"						
+ 						itemRenderer="com.egoveris.deo.web.satra.renderers.ArchivosAdjuntosItemRenderer">					 
+						<listhead sizable="false"
+							style="background: #C4ECFF;">
+							<listheader
+								label="${c:l('ccoo.detalle.archivosAdjuntosNotaYMemo')}"
+								 width="85%" align="center"/>
+							<listheader
+								label="${c:l('ccoo.detalle.operacion')}" align="center"
+								 width="15%" />
+						</listhead>
+					</listbox>
+				</vbox>
+			</hbox>
+		
+		</div>
+		<separator height="10px"></separator>
+		<separator bar="true" width="100%"></separator>
+		<space spacing="10px"></space>
+		<div align="center" >
+			<button id="volver" style="position:bottom" label="${c:l('ccoo.bandeja.boton.volver')}"
+				width="200px" image="/imagenes/volverABandeja.png">
+			</button>
+		</div>
+		<separator height="20px"></separator>
+		<div >
+			<label value="${c:l('gedo.detDocCo.label.coAsociados')}"></label>
+			<separator height="10px" />
+			<listbox fixedLayout="true" id="comunicationsList"
+				mold="paging" pageSize="3"
+				
+				model="@{detalleCoWindow$DetalleCOComposer.comunications}"
+				selectedItem="@{detalleCoWindow$composer.selectedComunication}">
+
+				<listhead sizable="false"
+					style="background: #C4ECFF;">
+					<listheader label="${c:l('ccoo.bandeja.nroCo')}"
+						 width="19%" />
+					<listheader label="${c:l('ccoo.bandeja.tipoCo')}"
+						align="center"  width="7%" />
+					<listheader
+						label="${c:l('ccoo.bandeja.respuestaA')}" 
+						width="20%" />
+					<listheader
+						label="${c:l('ccoo.bandeja.nombreUsuario')}"
+						 width="15%" />
+					<listheader label="${c:l('ccoo.bandeja.fecha')}"
+						 width="15%" />
+					<listheader
+						label="${c:l('ccoo.bandeja.referencia')}" 
+						width="20%" />
+					<listheader label="${c:l('ccoo.bandeja.accion')}"
+						align="center"  width="8%" />
+				</listhead>
+			</listbox>
+			<separator height="5px" />
+		</div>
+
+	</window>
+</zk>

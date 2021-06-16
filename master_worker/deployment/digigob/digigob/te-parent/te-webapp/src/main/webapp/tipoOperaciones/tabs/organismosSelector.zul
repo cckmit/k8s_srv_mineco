@@ -1,0 +1,54 @@
+<zk>
+	<grid apply="org.zkoss.bind.BindComposer" viewModel="@id('torgsVm') @init('com.egoveris.te.base.vm.TipoOperacionOrganismosVM')">
+		<rows>
+			<row>
+				<cell width="225px">
+					<vbox>
+						<label value="${c:l('ee.tipoOperacion.admTipoOperaciones.formulario.organismos.label.busqueda')}" />
+					</vbox>
+				</cell>
+				<cell>
+					<hbox>
+						<textbox value="@bind(torgsVm.inputBusqueda)" />
+						
+						<toolbarbutton autodisable="self"
+							image="/imagenes/edit-find.png" label="${c:l('ee.tipoOperacion.admTipoOperaciones.formulario.organismos.button.buscar')}"
+							onClick="@command('onBusquedaOrganismos')" />
+
+						<toolbarbutton autodisable="self"
+							image="/imagenes/delete-process.png" label="${c:l('ee.tipoOperacion.admTipoOperaciones.formulario.organismos.button.limpiar')}" 
+							onClick="@command('onLimpiarBusqueda')" />
+					</hbox>
+				</cell>
+			</row>
+			<row>
+				<cell colspan="2">
+					<vbox>
+						<grid>
+							<columns>
+								<column label="${c:l('ee.tipoOperacion.admTipoOperaciones.formulario.organismos.column.codigo')}" width="150px" />
+								<column label="${c:l('ee.tipoOperacion.admTipoOperaciones.formulario.organismos.column.nombre')}" width="250px" />
+								<column label="${c:l('ee.tipoOperacion.admTipoOperaciones.formulario.organismos.column.vigenteHasta')}" />
+							</columns>
+						</grid>
+						<listbox width="100%" multiple="true" checkmark="true" mold="paging" pageSize="5" 
+								 model="@load(torgsVm.organismos)" selectedItems="@bind(torgsVm.organismosSel)" onSelect="@command('updateOrganismosSeleccionados')">
+							<listhead>
+								<listheader width="150px" />
+								<listheader width="250px" />
+								<listheader />
+							</listhead>
+							<template name="model" var="item">
+								<listitem>
+									<listcell label="${item.reparticion.codigoReparticion}" />
+									<listcell label="${item.reparticion.nombreReparticion}" />
+									<listcell label="@load(item.reparticion.vigenciaHasta) @converter('formatedDate', format='dd/MM/yyyy')" />
+								</listitem>
+							</template>
+						</listbox>
+					</vbox>
+				</cell>
+			</row>
+		</rows>
+	</grid>
+</zk>

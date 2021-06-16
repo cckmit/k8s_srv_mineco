@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+           http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+           http://www.springframework.org/schema/context
+           http://www.springframework.org/schema/context/spring-context-2.5.xsd
+           http://www.springframework.org/schema/tx
+           http://www.springframework.org/schema/tx/spring-tx-3.0.xsd">
+	
+	<bean name="decisionUsoPortaFirmaService" id="decisionUsoPortaFirmaService" class="com.egoveris.deo.base.decision.DecisionUsoPortaFirmaService">
+	</bean>
+	<bean name="decisionFirmaPendiente" id="decisionFirmaPendiente" class="com.egoveris.deo.base.decision.DecisionFirmaPendiente">
+	</bean>
+	<bean name="decisionRevisionFirmaConjunta" id="decisionRevisionFirmaConjunta" class="com.egoveris.deo.base.decision.DecisionRevisionFirmaConjunta">
+	</bean>
+	<bean name="decisionReintentoCierre" id="decisionReintentoCierre" class="com.egoveris.deo.base.decision.DecisionReintentoCierre">
+	</bean>
+	<bean name="asignarTareaConfeccion" class="com.egoveris.deo.base.asignacion.AsignarTareaProduccion">
+	 	<property name="usuarioService" ref="usuarioServiceImpl"></property>
+	 	<property name="notificacionMailService" ref="notificacionMailServiceImpl"></property>
+	 	<property name="tipoDocumentoService" ref="tipoDocumentoServiceImpl"></property>
+	 	<property name="appName" value="${app.name}" />	 	
+	</bean>
+	<bean name="asignarTareaRevision" class="com.egoveris.deo.base.asignacion.AsignarTareaRevision">
+	 	<property name="usuarioService" ref="usuarioServiceImpl"></property>
+	 	<property name="notificacionMailService" ref="notificacionMailServiceImpl"></property> 
+	 	<property name="tipoDocumentoService" ref="tipoDocumentoServiceImpl"></property>
+	 	<property name="appName" value="${app.name}" />
+	</bean>
+	<bean name="asignarTareaFirma" class="com.egoveris.deo.base.asignacion.AsignarTareaFirma">
+	 	<property name="usuarioService" ref="usuarioServiceImpl"></property>
+	 	<property name="notificacionMailService" ref="notificacionMailServiceImpl"></property>
+	 	<property name="tipoDocumentoService" ref="tipoDocumentoServiceImpl"></property>
+	 	<property name="appName" value="${app.name}" />
+	</bean>
+	<bean name="RechazoFirma" class="com.egoveris.deo.base.asignacion.RechazoFirma">
+	 	<property name="usuarioService" ref="usuarioServiceImpl"></property>
+	 	<property name="notificacionMailService" ref="notificacionMailServiceImpl"></property>
+	 	<property name="tipoDocumentoService" ref="tipoDocumentoServiceImpl"></property>
+	 	<property name="appName" value="${app.name}" />
+	</bean>
+	<bean name="asignarTareaVerificacion" class="com.egoveris.deo.base.asignacion.AsignarTareaVerificacion">
+		<property name="usuarioService" ref="usuarioServiceImpl"></property>
+	 	<property name="notificacionMailService" ref="notificacionMailServiceImpl"></property>
+	 	<property name="tipoDocumentoService" ref="tipoDocumentoServiceImpl"></property>
+	 	<property name="appName" value="${app.name}" />
+	</bean>
+</beans>

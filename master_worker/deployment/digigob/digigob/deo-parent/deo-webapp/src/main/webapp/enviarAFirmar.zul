@@ -1,0 +1,35 @@
+<?page title="${c:l('gedo.producirDocumento.enviarFirmar')}" contentType="text/html;charset=UTF-8"?>
+<zk>
+	<window title="${c:l('gedo.producirDocumento.enviarFirmar')}" border="normal"
+		id="enviarAFirmar" width="450px" height="115px"
+		 mode="modal"
+		apply="com.egoveris.deo.web.satra.produccion.EnviarAFirmarComposer">
+
+		<borderlayout width="100%" height="100%"
+			>
+			<center border="none" >
+				<div align="center">
+					<vbox>
+						<separator height="10px" />
+						<hbox align="end">
+							<label
+								value="${c:l('gedo.revisarDocumento.label.usuarioFirmante')}" />
+							<separator width="5px" />
+							<combobox width="300px" id="usuarioFirmante"
+								buttonVisible="false" autodrop="true" />
+						</hbox>
+					</vbox>
+				</div>
+			</center>
+			<south >
+				<div align="center">
+					<hbox>
+						<button id="aceptar" label="${c:l('gedo.token.cert.aceptar')}" width="70px"  />
+						<separator width="25px" />
+						<button id="cancelar" label="${c:l('gedo.token.cert.cancelar')}" width="70px" />
+					</hbox>
+				</div>
+			</south>
+		</borderlayout>
+	</window>
+</zk>

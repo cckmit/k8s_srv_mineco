@@ -1,0 +1,32 @@
+<zk>
+	<window id="cambiarIdiomaWindow" width="400px" title="${c:l('dbweb.index.cambiarIdioma.title')}" closable="true">
+		<grid>
+			<columns>
+				<column width="150px" />
+				<column />
+			</columns>
+			<rows>
+				<row>
+					<label value="${c:l('dbweb.index.cambiarIdioma.label.idioma')}" />						
+					<hlayout>
+						<combobox readonly="true" width="225px" model="@load(uservm.idiomas)" selectedItem="@bind(uservm.idiomaSel)">
+							<template name="model" var="item">
+								<comboitem label="${item.label}" value="${item.value}" />
+							</template>
+						</combobox>
+					</hlayout>
+				</row>
+				<row>
+					<cell colspan="2" align="center">
+						<space />
+						<button
+							label="${c:l('dbweb.index.cambiarIdioma.button.aceptar')}"
+							autodisable="self" class="btn-info"
+							iconSclass="z-icon-check-circle-o"
+							onClick="@command('cambiarIdioma')" />
+					</cell>
+				</row>
+			</rows>
+		</grid>
+	</window>
+</zk>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<complexComponent type="TRADE" name="Vista Bulto DA"
+	description="Vista Bulto DA" zul="vistaBultoDA.zul"
+	composer="com.everis.tramelec.dynform.comp.ext.VistaBultoDAComposer"
+	mappingDTO="com.egoveris.ccomplejos.base.model.VistaBultoDADTO">
+
+	<field name="cantidadEnvase" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.IntboxExt" />
+		
+	<field name="cantidadBultos" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.IntboxExt" />
+		
+	<field name="tipoEnvase" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" />
+		
+	<field name="tipoBulto" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" />
+		
+	<field name="tipoSubcontinente" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" />
+				
+	<field name="secuencialBulto" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.IntboxExt" />
+				
+	<field name="identificacionBulto" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" />
+		
+</complexComponent>

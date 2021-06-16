@@ -1,0 +1,222 @@
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./consultarCoWindow" arg2="consultarCoBinder"?>
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c" ?>
+<zk>
+	<window id="consultarCoWindow" title="" border="none"
+		
+		apply="com.egoveris.deo.web.satra.consulta.ConsultaComunicacionesComposer">
+
+		<window id="detalleComunicacionView" visible="false" />
+		<window id="historialCoWindowView" visible="false"/>
+		<window id="consultaTareaCOWindow" visible="false"></window>
+		<window id="taskView" visible="false" />
+		<separator width="10px"></separator>
+		<hlayout>
+			<image src="/imagenes/egovIconOrange.png" width="40px"
+				height="30px" style="padding-left: 10px;" />
+			<label value="${c:l('ccoo.panelUsuario.tabConsultaCO.help')}"
+				style="font: bold;" />
+		</hlayout>
+		<separator bar="true"  />
+		<separator />
+
+		<toolbar>
+			<toolbarbutton id="buscarPorCaratula"
+				label="${c:l('ccoo.consultaCo.buscarCaratula')}">
+			</toolbarbutton>
+			<toolbarbutton id="buscarPorFecha"
+				label="${c:l('ccoo.consultaCo.buscarFecha')}">
+			</toolbarbutton>
+			<toolbarbutton id="buscarPorRereferncia"
+				label="${c:l('ccoo.consultaCo.buscarReferencia')}">
+			</toolbarbutton>
+			<toolbarbutton id="buscarPorDestinatario"
+				label="${c:l('ccoo.busqueda.porDestinatario')}"
+				tooltiptext="${c:l('ccoo.busqueda.destinatario.toolTipText')}">
+			</toolbarbutton>
+			<toolbarbutton id="buscarTareas"
+				label="${c:l('ccoo.consultaCo.buscarTareas')}"
+				tooltiptext="${c:l('ccoo.busqueda.tareas.toolTipText')}">
+			</toolbarbutton>
+			<toolbarbutton
+				label="${c:l('gedo.consultaDocumentos.consultaTareas.listarTareas')}"
+				id="listaTodasTareas" visible="false"/>
+		</toolbar>
+		<separator height="20px"></separator>
+		<div id="resultadoBusqueda" visible="false">
+			<hlayout>
+				<label value="${c:l('ccoo.bandeja.recibidos')}"
+					style="font: bold;" />
+			</hlayout>
+			<listbox fixedLayout="true"
+				id="comunicationsReceivedListBox"
+				
+				model="@{consultarCoWindow$composer.comunicationsReceived}"
+				itemRenderer="com.egoveris.deo.web.satra.renderers.ConsultaCoRecibidosRender"
+				selectedItem="@{consultarCoWindow$composer.selectedComunicationReceieved}">
+
+				<listhead sizable="false"
+					style="background: #C4ECFF;">
+					<listheader label="${c:l('ccoo.bandeja.leido')}"
+						align="center"  width="7%" />
+					<listheader label="${c:l('ccoo.bandeja.nroCo')}"
+						 width="14%" />
+					<listheader label="${c:l('ccoo.bandeja.tipoCo')}"
+						align="center"  width="7%" />
+					<listheader
+						label="${c:l('ccoo.bandeja.respuestaA')}" 
+						width="16%" />
+					<listheader
+						label="${c:l('ccoo.bandeja.nombreUsuario')}"
+						 width="14%" />
+					<listheader label="${c:l('ccoo.consulta.fechaTitle')}"
+						 width="14%" />
+					<listheader
+						label="${c:l('ccoo.bandeja.referencia')}" 
+						width="15%" />
+					<listheader label="${c:l('ccoo.bandeja.accion')}"
+						align="center"  width="14%" />
+				</listhead>
+			</listbox>
+			<paging id="coRecibidasPaginator" pageSize="6"
+				detailed="true" />
+			<separator height="10px" />
+
+			<hlayout>
+				<label value="${c:l('ccoo.bandeja.enviados')}"
+					style="font: bold;" />
+			</hlayout>
+			<separator />
+
+			<listbox fixedLayout="true" id="comunicationSendListBox"
+				
+				model="@{consultarCoWindow$composer.comunicationsSend}"
+				itemRenderer="com.egoveris.deo.web.satra.renderers.consultasCoEnviadosRenderer"
+				selectedItem="@{consultarCoWindow$composer.selectedComunicationSend}">
+				<listhead sizable="false"
+					style="background: #C4ECFF;">
+					<listheader label="${c:l('ccoo.bandeja.leido')}"
+						align="center"  width="8%" />
+					<listheader label="${c:l('ccoo.bandeja.nroCo')}"
+						 width="14%" />
+					<listheader label="${c:l('ccoo.bandeja.tipoCo')}"
+						align="center"  width="8%" />
+					<listheader
+						label="${c:l('ccoo.bandeja.respuestaA')}" 
+						width="14%" />
+					<listheader
+						label="${c:l('ccoo.bandeja.nombreUsuario')}"
+						 width="14%" />
+					<listheader label="${c:l('ccoo.consulta.fechaTitle')}"
+						 width="14%" />
+					<listheader
+						label="${c:l('ccoo.bandeja.referencia')}" 
+						width="15%" />
+					<listheader label="${c:l('ccoo.bandeja.accion')}"
+						align="center"  width="14%" />
+
+				</listhead>
+			</listbox>
+			<paging id="coEnviadasPaginator" pageSize="6"
+				detailed="true" />
+		</div>
+		<div id="divCaratula" visible="false">
+			<separator spacing="5px"></separator>
+			<listbox fixedLayout="true" id="listaCaratula"
+				
+				model="@{consultarCoWindow$composer.comunicacionCaratula}"
+				itemRenderer="com.egoveris.deo.web.satra.renderers.ConsultaCaratulaRender"
+				selectedItem="@{consultarCoWindow$composer.selectedComunicationSend}">
+				<listhead sizable="false"
+					style="background: #C4ECFF;">
+					<listheader label="${c:l('ccoo.bandeja.nroCo')}"
+						 width="14%" />
+					<listheader label="${c:l('ccoo.bandeja.tipoCo')}"
+						align="center"  width="8%" />
+					<listheader
+						label="${c:l('ccoo.bandeja.respuestaA')}" 
+						width="14%" />
+					<listheader
+						label="${c:l('ccoo.bandeja.nombreUsuario')}"
+						 width="16%" />
+					<listheader label="${c:l('ccoo.consulta.fechaTitle')}"
+						 width="16%" />
+					<listheader
+						label="${c:l('ccoo.bandeja.referencia')}" 
+						width="17%" />
+					<listheader label="${c:l('ccoo.bandeja.accion')}"
+						align="center"  width="16%" />
+				</listhead>
+			</listbox>
+		</div>
+		<div id="divDestinatarios" visible="false" align="center" style="overflow:auto;">
+			<listbox fixedLayout="true" id="comunicacionesDestinatario"
+				
+				width="95%" 
+				model="@{consultarCoWindow$composer.comunicationsSend}"
+				itemRenderer="com.egoveris.deo.web.satra.renderers.consultasCoEnviadosRenderer"
+				selectedItem="@{consultarCoWindow$composer.selectedComunicationSend}">
+				<listhead sizable="false"
+					style="background: #C4ECFF;">
+					<listheader label="${c:l('ccoo.bandeja.leido')}"
+						align="center"   width="6%"/>
+					<listheader label="${c:l('ccoo.bandeja.nroCo')}"
+						 width="16%"/>
+					<listheader label="${c:l('ccoo.bandeja.tipoCo')}"
+						align="center"  width="5%"/>
+					<listheader
+						label="${c:l('ccoo.bandeja.respuestaA')}" 
+						width="15%" />
+					<listheader
+						label="${c:l('ccoo.bandeja.nombreUsuario')}"
+						 width="14%" />
+					<listheader label="${c:l('ccoo.consulta.fechaTitle')}"
+						  />
+					<listheader
+						label="${c:l('ccoo.bandeja.referencia')}" 
+						width="15%" />
+					<listheader label="${c:l('ccoo.bandeja.accion')}"
+						align="center"  width="14%" />
+
+				</listhead>
+			</listbox>
+			<paging id="coDestinatarioPaginator" pageSize="15"
+				detailed="true" width="95%"/>
+		</div>
+		
+		<!--TAREAS-->
+		<div id="divListadoTareas" visible="false">
+		<listbox id="consultaTareasList" selectedItem="@{consultarCoWindow$composer.tareaSeleccionada}"
+			model="@{consultarCoWindow$composer.tareas}"
+			itemRenderer="com.egoveris.deo.web.satra.renderers.ConsultaTareasItemRender"
+			>
+			<listhead sizable="false" style="background: #C4ECFF;">
+				<listheader id="usuarioIniciador" sort="auto"
+					label="${c:l('gedo.consultaTareas.resultadoUsuario.iniciador')}"
+					align="left" width="15%"  />
+				<listheader id="fechaAlta" sort="auto"
+					label="${c:l('gedo.consultaTareas.resultadoFecha.creacion')}"
+					align="left" width="15%"  />
+				<listheader id="tipoDocumento" sort="auto"
+					label="${c:l('gedo.consultaTareas.resultadoTipo.documento')}"
+					align="left" width="10%"  />
+				<listheader id="referencia" sort="auto"
+					label="${c:l('gedo.consultaTareas.resultadoMotivo')}"
+					align="left" width="25%"  />
+				<listheader id="tipoTarea" sort="auto"
+					label="${c:l('gedo.consultaTareas.resultadoTipo.tarea')}"
+					align="left" width="20%"  />
+				<listheader id="usuarioDestino" sort="auto"
+					label="${c:l('gedo.consultaTareas.resultadoUsuario.asignado')}"
+					align="left" width="15%"   />
+				<listheader id="accion" sort="auto"
+					label="Accion"
+					align="left" width="15%"   />
+			</listhead>								
+		</listbox>	
+		<paging id="consultaTareasPaginator" pageSize="15"
+				detailed="true" />
+		</div>				
+	</window>
+
+</zk>

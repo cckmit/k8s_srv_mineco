@@ -1,0 +1,63 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>com.egoveris</groupId>
+		<artifactId>commons-project</artifactId>
+		<version>2.0.3-SNAPSHOT</version>
+	</parent>
+	
+	<artifactId>wd-rest-script-api</artifactId>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-jdbc</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.egoveris.commons.databaseConfiguration</groupId>
+			<artifactId>database-configuration-lib</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>io.swagger</groupId>
+			<artifactId>swagger-parser</artifactId>
+			<version>1.0.31</version>
+		</dependency>
+		<dependency>
+		    <groupId>org.springframework.data</groupId>
+			<artifactId>spring-data-rest-core</artifactId>
+		</dependency>
+		<!-- Logging -->
+		 <dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+		</dependency>
+		<dependency>
+	       <groupId>org.slf4j</groupId>
+	       <artifactId>slf4j-simple</artifactId>
+	   </dependency>
+		<!-- Test -->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.egoveris.plugins</groupId>
+			<artifactId>plugin-manager</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+		 	<groupId>com.egoveris</groupId>
+		 	<artifactId>trade-rest-common</artifactId>
+		 	<version>${project.version}</version>
+		 	<scope>test</scope>
+		 </dependency>
+	</dependencies>
+</project>

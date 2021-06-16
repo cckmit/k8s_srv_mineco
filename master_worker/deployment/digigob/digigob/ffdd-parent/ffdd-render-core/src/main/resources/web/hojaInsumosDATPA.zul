@@ -1,0 +1,15 @@
+<zk>
+	<vlayout
+		apply="com.egoveris.ffdd.render.zk.comp.cc.HojaInsumosDATPAComposer">
+		<vbox>
+			<hbox>
+				<cell id="${arg.formComp.nombre}_aduanaDiv" />
+				<cell id="${arg.formComp.nombre}_codigoDespachadorDiv" />
+			</hbox>
+			<hbox>
+				<cell id="${arg.formComp.nombre}_consignatarioDiv" />
+				<cell id="${arg.formComp.nombre}_rutImportadorDiv" />
+			</hbox>
+		</vbox>
+	</vlayout>
+</zk>

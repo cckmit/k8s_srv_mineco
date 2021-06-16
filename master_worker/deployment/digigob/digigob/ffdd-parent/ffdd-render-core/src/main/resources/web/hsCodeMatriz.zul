@@ -1,0 +1,19 @@
+<?page title="new page title" contentType="text/html;charset=UTF-8"?>
+<zk>
+	<vlayout
+		apply="com.egoveris.ffdd.render.zk.comp.cc.HsCodeMatrizComposer">
+		<vbox>
+			<hbox>
+				<cell 
+					id="${arg.formComp.nombre}_idHSCodeMatrizDiv" />
+					
+				<cell 
+					id="${arg.formComp.nombre}_idMatrizVBDiv" />
+			</hbox>
+			<hbox>
+				<cell
+					 id="${arg.formComp.nombre}_idHSCodeDiv" />
+			</hbox>
+		</vbox>
+	</vlayout>
+</zk>

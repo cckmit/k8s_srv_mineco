@@ -1,0 +1,48 @@
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+<zk xmlns:n="native">
+	<!-- CSS  -->
+	<style src="http://fonts.googleapis.com/css?family=Open+Sans:300,400" />
+	<style src="~./db_theme/ace/bootstrap/css/bootstrap.css" />
+	<style src="~./db_theme/ace/less/index.css.dsp" />
+	<style src="~./db_theme/egoveris.css" />
+	<style>
+		color: #8a8a8a;
+		font-weight: 400;
+	</style> 
+	
+	
+	<div id="dashboard" apply="org.zkoss.bind.BindComposer"
+		viewModel="@id('dbvm') @init('com.egoveris.dashboard.web.vm.DashboardVM')">
+		
+		<style id="navCss" if="${dbvm.properties['menuCollapsed'] eq 'true'}">
+			.z-nav-open.z-nav-selected > ul {
+				display: none !important;
+			}
+		</style>
+	
+		<include id="header" src="~./db_layout/header.zul" />
+		
+		<hlayout id="main" spacing="0" width="100%">
+			<include id="menuLateral" src="~./db_layout/menuLateral.zul" />
+			
+			<vlayout spacing="0" hflex="1">
+				<include id="rastroMigas" src="~./db_layout/rastroMigas.zul"  />
+				<div id="contenido" self="@{insert(egovBody)}" sclass="main_content" />
+			</vlayout>
+		</hlayout>
+		
+		<script type="text/javascript">
+			<![CDATA[
+				window.onload = function() {
+				  zAu.cmd1.resizeWgt(zk.Widget.$('$main'));
+				  
+				  if (menuCollapsed) {
+				    $('#' + navbarUuid + ' .z-nav-open.z-nav-selected').hover(function() {
+						$('#' + cssUuid).remove();
+					});
+				  }
+				};
+			]]>
+		</script>
+	</div>
+</zk>

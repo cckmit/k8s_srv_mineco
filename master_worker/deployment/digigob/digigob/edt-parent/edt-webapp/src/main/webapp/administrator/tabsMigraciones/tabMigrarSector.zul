@@ -1,0 +1,274 @@
+<?page contentType="text/html;charset=UTF-8"?>
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+<zk>
+	<window id="win_migrarSector" border="none" width="100%"		
+		apply="com.egoveris.edt.web.admin.pl.MigrarSectorComposer">
+
+
+		<separator height="10px" />
+		<vbox align="center" width="100%">
+			<hbox style="align=center;">
+				<label
+					value="${c:l('eu.panelAdmin.tabMigraciones.instruccionComboOperaciones')}" />
+				<combobox id="cmbBox_operaciones" readonly="true">
+					
+					<comboitem
+						label="${c:l('eu.panelAdmin.tabMigraciones.comboBox.operacionBaja')}" />
+					<comboitem
+						label="${c:l('eu.panelAdmin.tabMigraciones.comboBox.operacionTraspaso')}" />
+					<comboitem
+						label="${c:l('eu.panelAdmin.tabMigraciones.comboBox.operacionCombiaSigla')}" />
+				</combobox>
+			</hbox>
+			<separator height="20px" />
+			<grid
+				style="padding:0px; border:none; border-spacing:0px;">
+				<columns>
+					<column width="15%" align="right" />
+					<column width="10%" align="left" />
+					<column width="15%" align="right" />
+					<column width="15%" align="left" />
+				</columns>
+				<rows>
+					<row style="border:none;" >
+						<cell valign="middle" align="right">
+							<label
+								value="${c:l('eu.panelAdmin.tabMigraciones.migrarReparticion.reparticionOrigenLabel')}"
+								width="560px" />
+						</cell>
+						<cell valign="middle" colspan="2">
+							<bandbox id="bandBoxReparticionOrigen">
+								<bandpopup width="460px">
+									<groupbox mold="3d">
+										<caption>
+											<hbox>
+												<label
+													value="${c:l('eu.consulta.sindicatura.hbox.label.busquedaDeReparticion')}"
+													width="560px" />
+												<image
+													src="/imagenes/help.png" width="16px" height="16px"
+													tooltip="helpBusquedaReparticion" align="right" />
+											</hbox>
+										</caption>
+										<separator height="2px"></separator>
+										<vbox height="100px"
+											width="440px">
+											<paging
+												id="paginatorReparticionesOrigen" pageSize="10" />
+											<listbox
+												id="listBoxReparticionesOrigen" mold="paging"
+												paginal="${paginatorReparticionesOrigen}"
+												model="@{win_migrarSector$composer.listaReparticionSeleccionadaOrigen}"
+												selectedItem="@{win_migrarSector$composer.reparticionSeleccionadaOrigen}"
+												itemRenderer="com.egoveris.edt.web.pl.renderers.ReparticionBeanItemRenderer">
+												<listhead>
+													<listheader
+														label="${c:l('eu.consulta.sindicatura.listhead.listheader.label.codigo')}"
+														width="35%" />
+													<listheader
+														label="${c:l('eu.consulta.sindicatura.listhead.listheader.label.nombre')}"
+														width="65%" />
+												</listhead>
+												<listfoot
+													style="">
+													<listfooter
+														id="TotalRepOrigen" label="${c:l('eu.tabMigrarSector.label.totalSectores') }" span="1"
+														style="color:#C4ECFF" />
+													<listfooter
+														id="conteoRepOrigen"
+														label="@{win_migrarSector$composer.listaReparticionSeleccionadaOrigen.size}"
+														span="2" style="color:#C4ECFF" />
+												</listfoot>
+											</listbox>
+										</vbox>
+									</groupbox>
+								</bandpopup>
+							</bandbox>
+						</cell>
+						<cell valign="middle">
+							<label
+								value="${c:l('eu.panelAdmin.tabMigraciones.reparticionDestinoLabel')}"
+								width="560px" />
+						</cell>
+						<cell valign="middle" colspan="2" id="celReparticionDestino">
+							<bandbox id="bandBoxReparticionDestino">
+								<bandpopup width="460px">
+									<groupbox mold="3d">
+										<caption>
+											<hbox>
+												<label
+													value="${c:l('eu.consulta.sindicatura.hbox.label.busquedaDeReparticion')}"
+													width="560px" />
+												<image
+													src="/imagenes/help.png" width="16px" height="16px"
+													tooltip="helpBusquedaReparticion" align="right" />
+											</hbox>
+										</caption>
+										<separator height="2px"></separator>
+										<vbox height="100px"
+											width="440px">
+											<paging
+												id="paginatorReparticionesDestino" pageSize="10" />
+											<listbox
+												id="listBoxReparticionesDestino" mold="paging"
+												paginal="${paginatorReparticionesDestino}"
+												model="@{win_migrarSector$composer.listaReparticionSeleccionadaDestino}"
+												selectedItem="@{win_migrarSector$composer.reparticionSeleccionadaDestino}"
+												itemRenderer="com.egoveris.edt.web.pl.renderers.ReparticionBeanItemRenderer">
+												<listhead>
+													<listheader
+														label="${c:l('eu.consulta.sindicatura.listhead.listheader.label.codigo')}"
+														width="35%" />
+													<listheader
+														label="${c:l('eu.consulta.sindicatura.listhead.listheader.label.nombre')}"
+														width="65%" />
+												</listhead>
+												<listfoot
+													style="">
+													<listfooter
+														id="TotalReparticionesDestino" label="${c:l('eu.tabMigrarSector.label.totalOrganismos')}"
+														span="1" style="color:#C4ECFF" />
+													<listfooter
+														id="conteoDocumentosDeReparticionesDestino"
+														label="@{win_migrarSector$composer.listaReparticionSeleccionadaDestino.size}"
+														span="2" style="color:#C4ECFF" />
+												</listfoot>
+											</listbox>
+										</vbox>
+									</groupbox>
+								</bandpopup>
+							</bandbox>
+						</cell>
+						<cell valign="middle" colspan="2" id="celReparticionDestinoEliminacion">
+							<textbox id="txtReparticionDestino" width="65%" maxlength="100" />
+						</cell>
+						
+					</row>
+					<row style="border:none;">
+						<cell valign="middle" align="right">
+							<label
+								value="${c:l('eu.panelAdmin.tabMigraciones.sectorOrigenLabel')}"
+								width="560px" />
+						</cell>
+						<cell valign="middle" colspan="2">
+							<bandbox id="bandBoxSectorOrigen">
+								<bandpopup width="460px">
+									<groupbox mold="3d">
+										<caption>
+											<hbox>
+												<label
+													value="${c:l('eu.altaUsuario.hbox.label.busquedaDeSector')}"
+													width="560px" />
+												<image
+													src="/imagenes/help.png" width="16px" height="16px"
+													tooltip="helpBusquedaSector" align="right" />
+											</hbox>
+										</caption>
+										<separator height="2px"></separator>
+										<vbox height="100px"
+											width="440px">
+											<paging
+												id="paginatorSectoresOrigen" pageSize="10" />
+											<listbox
+												id="listBoxSectoresOrigen" mold="paging"
+												paginal="${paginatorSectoresOrigen}"
+												model="@{win_migrarSector$composer.listaSectorSeleccionadaOrigen}"
+												selectedItem="@{win_migrarSector$composer.sectorSeleccionadoOrigen}"
+												itemRenderer="com.egoveris.edt.web.pl.renderers.SectorBeanItemRenderer">
+												<listhead>
+													<listheader
+														label="${c:l('eu.consulta.sindicatura.listhead.listheader.label.codigo')}"
+														width="35%" />
+													<listheader
+														label="${c:l('eu.consulta.sindicatura.listhead.listheader.label.nombre')}"
+														width="65%" />
+												</listhead>
+												<listfoot
+													style="">
+													<listfooter
+														id="Total" label="${c:l('eu.tabMigrarSector.label.totalSectores')}" span="1"
+														style="color:#C4ECFF" />
+													<listfooter
+														id="conteoDocumentos"
+														label="@{win_migrarSector$composer.listaSectorSeleccionadaOrigen.size}"
+														span="2" style="color:#C4ECFF" />
+												</listfoot>
+											</listbox>
+										</vbox>
+									</groupbox>
+								</bandpopup>
+							</bandbox>
+						</cell>
+						<cell valign="middle">
+							<label
+								value="${c:l('eu.panelAdmin.tabMigraciones.sectorDestinoLabel')}"
+								width="560px" />
+						</cell>
+						<cell valign="middle" colspan="2" id="celSectorDestino">
+							<bandbox id="bandBoxSectorDestino">
+								<bandpopup width="460px">
+									<groupbox mold="3d">
+										<caption>
+											<hbox>
+												<label
+													value="${c:l('eu.altaUsuario.hbox.label.busquedaDeSector')}"
+													width="560px" />
+												<image
+													src="/imagenes/help.png" width="16px" height="16px"
+													tooltip="helpBusquedaSector" align="right" />
+											</hbox>
+										</caption>
+										<separator height="2px"></separator>
+										<vbox height="100px"
+											width="440px">
+											<paging
+												id="paginatorSectoresDestino" pageSize="10" />
+											<listbox
+												id="listBoxSectoresDestino" mold="paging"
+												paginal="${paginatorSectorDestino}"
+												model="@{win_migrarSector$composer.listaSectorSeleccionadaDestino}"
+												selectedItem="@{win_migrarSector$composer.sectorSeleccionadoDestino}"
+												itemRenderer="com.egoveris.edt.web.pl.renderers.SectorBeanItemRenderer">
+												<listhead>
+													<listheader
+														label="${c:l('eu.consulta.sindicatura.listhead.listheader.label.codigo')}"
+														width="35%" />
+													<listheader
+														label="${c:l('eu.consulta.sindicatura.listhead.listheader.label.nombre')}"
+														width="65%" />
+												</listhead>
+												<listfoot
+													style="">
+													<listfooter
+														id="TotalSectoresDestino" label="${c:l('eu.tabMigrarSector.label.totalSectores') }" span="1"
+														style="color:#C4ECFF" />
+													<listfooter
+														id="conteoDocumentosDeSectoresDestino"
+														label="@{win_migrarSector$composer.listaSectorSeleccionadaDestino.size}"
+														span="2" style="color:#C4ECFF" />
+												</listfoot>
+											</listbox>
+										</vbox>
+									</groupbox>
+								</bandpopup>
+							</bandbox>
+						</cell>
+						<cell valign="middle" colspan="2" id="celSectorDestinoEliminacion">
+							<textbox id="txtSectorDestino" width="40%" maxlength="70" />
+						</cell>
+					</row>
+				</rows>
+			</grid>
+
+			<separator height="30px" />
+			<hbox align="center">
+				<button id="crearTarea"
+					label="${c:l('eu.panelAdmin.tabMigraciones.botonCrearTarea')}"
+					width="120px" height="30px" image="/imagenes/house.png" />
+			</hbox>
+			
+			<separator height="20px" />
+		</vbox>
+	</window>
+
+</zk>

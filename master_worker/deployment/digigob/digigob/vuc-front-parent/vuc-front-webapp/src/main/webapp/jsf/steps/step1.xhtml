@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+	<h:head>
+		<link rel="icon" type="image/png" href="#" />
+		<link rel="stylesheet" href="#" media="all" />
+		<h:outputStylesheet library="application" name="vuc.css" />
+		<h:outputStylesheet library="webjars"
+			name="font-awesome/4.7.0/css/font-awesome-jsf.css" />
+		<h:outputStylesheet library="webjars"
+			name="bootstrap/3.3.7-1/css/bootstrap-jsf.css" />
+		<h:outputScript library="webjars"
+			name="bootstrap/3.3.7-1/js/bootstrap.min.js" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+	</h:head>
+	<h:body>
+		<ui:composition template="/WEB-INF/faces/layout/mainLayout.xhtml">
+			<ui:define name="body">
+		
+				<h:form>
+					<div class="ui-g">
+						<div class="ui-g-12">
+							<h2>#{msg.stepsTramite}
+								#{step1Mb.expediente.tipoTramite.nombre}</h2>
+						</div>
+						<div class="ui-g-12">
+							<h3>#{msg.step1InfoSolicitante}</h3>
+						</div>
+						<div class="col-md-12 col-sm-6 col-xs-12 boxTarea">
+							<div class="col-md-12 boxTareaStatus">
+								<h2>#{step1Mb.persona.nombre1} #{step1Mb.persona.apellido1} #{step1Mb.persona.apellido2}</h2>
+								<div class="col-md-8 rut">
+									<label class="atributo">#{msg.infoRut}</label>
+									<label class="valor">#{step1Mb.persona.cuit}</label>
+								</div>
+								<div class="col-md-4 sexo">
+									<label class="atributo">#{msg.infoSexo}</label>
+									<label class="valor">#{step1Mb.persona.sexo}</label>
+								</div>
+								<div class="col-md-8 telefono">
+									<label class="atributo">#{msg.infoNumero}</label>
+									<label class="valor">#{step1Mb.persona.telefonoContacto}</label>		
+								</div>
+								<div class="col-md-4 email">
+									<label class="atributo">#{msg.infoMail}</label>
+									<label class="valor">#{step1Mb.persona.email}</label>
+								</div>
+							</div>
+						</div>
+						<div class="ui-g-12">
+							<h3>#{msg.step1DetalleSolicitud}</h3>
+						</div>
+						<div class="col-md-12" style="margin-top: 10px; text-align: center; ">
+							<p:panelGrid columns="1" class="col-md-12">
+								<p:inputTextarea value="#{step1Mb.expediente.detalleSolicitud}"
+									maxlength="255" style="width: 500px;" counter="display"
+									rows="9" counterTemplate="{0} #{msg.step1Restantes}" />
+								<h:outputText id="display" />
+							</p:panelGrid>
+						</div>
+		
+						<!-- BACK, CANCEL, SAVE AND NEXT BUTTONS -->
+						<div class="col-md-12" style="margin-top: 10px; text-align: center;">
+<!-- 							<p:commandButton value="#{msg.stepsAtras}" -->
+<!-- 								actionListener="#{step1Mb.cmdBack()}" class="btnPrincipal" /> -->
+							<p:commandButton value="#{msg.stepsCancelar}" class="btnPrincipal"
+								actionListener="#{step1Mb.cmdCancel()}" />
+							<p:commandButton value="#{msg.stepsGuardar}" class="btnPrincipal"
+								disabled="#{not step1Mb.borrador}"
+								actionListener="#{step1Mb.cmdSave()}" />
+							<p:commandButton value="#{msg.stepsContinuar}" class="btnPrincipal"
+								actionListener="#{step1Mb.cmdNext()}" />
+						</div>
+					</div>
+				</h:form>
+		
+			</ui:define>
+		</ui:composition>
+	</h:body>
+</html>

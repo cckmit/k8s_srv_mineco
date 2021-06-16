@@ -1,0 +1,36 @@
+<?page title="new page title" contentType="text/html;charset=UTF-8"?>
+<zk>
+	<vlayout  apply="com.egoveris.ffdd.render.zk.comp.cc.ChapterComposer">
+		<grid>
+		<columns>
+			<column></column>
+			<column></column>
+			<column></column>
+		</columns>
+		<rows>
+			<row>
+				<hbox>
+					 <cell id="${arg.formComp.nombre}_chapterIdDiv"/>
+				</hbox>
+				<hbox>
+					 <cell id="${arg.formComp.nombre}_chapterCodeDiv"/>
+				</hbox>
+				<hbox>
+					 <cell id="${arg.formComp.nombre}_chapterDescDiv"/>
+				</hbox>
+			</row>
+			<row>
+				<hbox>
+					 <cell id="${arg.formComp.nombre}_chapterDescSPDiv"/>
+				</hbox>
+				<hbox>
+					 <cell id="${arg.formComp.nombre}_chapterStatusDiv"/>
+				</hbox>
+				<hbox>
+					 <cell id="${arg.formComp.nombre}_yearDiv"/>
+				</hbox>
+			</row>
+		</rows>		
+	</grid>
+ </vlayout>
+</zk>

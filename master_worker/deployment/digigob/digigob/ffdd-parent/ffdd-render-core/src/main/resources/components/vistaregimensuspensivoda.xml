@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<complexComponent type="TRADE" name="vista Regimen Suspensivo DA"
+	description="vista Regimen Suspensivo DA" zul="vistaRegSuspensivoDA.zul"
+	mappingDTO="com.egoveris.ccomplejos.base.model.VistaRegimenSuspensivoCDADTO">
+
+	<field name="tipoReingreso" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" disabled="true"/>
+	<field name="razonReingreso" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" disabled="true"/>
+
+</complexComponent>

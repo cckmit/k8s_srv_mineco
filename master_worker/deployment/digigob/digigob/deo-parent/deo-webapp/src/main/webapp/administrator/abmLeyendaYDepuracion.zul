@@ -1,0 +1,67 @@
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+<?page title="${c:l('fedo.abmLeyendaDepuComp.wintitle.proGedo')}" contentType="text/html;charset=UTF-8"?>
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" ?>
+<zk>
+
+	<window id="abmLeyendaYDepuracionWindow" height="100%"
+		border="normal" mode="embedded"
+		apply="com.egoveris.deo.web.satra.ABMLeyendaYDepuracionComposer"
+		position="center" closable="false" 
+		title="${c:l('gedo.abmLeyendaDepu.wintitle.actulPropiedades')}"
+		>		
+		<borderlayout height="400px">
+
+			<north title="${c:l('gedo.abmLeyendaDepu.wintitle.leyenda')}" height="200px"
+				>
+				<box visible="true" id="previsualizacionLeyenda"
+					width="100%" align="center">
+					<toolbar mold="panel" orient="horizontal"
+						width="100%" align="center">
+						<label id="Leyenda" value="${c:l('gedo.abmLeyendaDepu.label.leyenda')} " />
+						<textbox id="datoLeyenda" width="570px"
+							height="20px" maxlength="1024" constraint="no empty"/>
+					</toolbar>
+
+					<toolbar mold="panel" orient="horizontal"
+						width="100%" align="center">
+						<toolbarbutton id="crearleyenda"
+							image="/imagenes/Modificar.png" />
+						<toolbarbutton id="limpiarLeyenda"
+							image="/imagenes/Cancelar.png" />
+					</toolbar>
+				</box>
+			</north>
+
+
+			<south title="${c:l('gedo.abmLeyendaDepu.wintitle.depEnDias')}"
+				 height="200px">
+				<box visible="true" id="previsualizacionDepuracion"
+					width="100%" align="center">
+					<toolbar mold="panel" orient="horizontal"
+						width="100%" align="center">
+						<label id="DepuracionCronAvisoMail"
+							value="${c:l('gedo.abmLeyendaDepu.label.depAvisoMail')} " />
+						<separator width="8px"></separator>
+						<datebox id="fechaDepuracionAvisoMail" format="dd/MM/yyyy HH:mm:ss" timeZone="GMT-3"
+						timeZonesReadonly="false" constraint="no past,no empty" width="150px" />
+					</toolbar>
+					<toolbar mold="panel" orient="horizontal"
+						width="100%" align="center">
+						<label id="DepuracionCronProcesoLimpieza"
+							value="${c:l('gedo.abmLeyendaDepu.label.depProLimp')} " />
+							<datebox id="fechaDepuracionLimpieza" format="dd/MM/yyyy HH:mm:ss" timeZone="GMT-3"
+						timeZonesReadonly="false" constraint="no past,no empty" width="150px" />
+					</toolbar>
+					<toolbar mold="panel" orient="horizontal"
+						width="100%" align="center">
+						<toolbarbutton id="creardepuracion"
+							image="/imagenes/Modificar.png" />
+						<toolbarbutton id="limpiarDepuracion"
+							image="/imagenes/Cancelar.png" />
+					</toolbar>
+				</box>
+			</south>
+		</borderlayout>
+	</window>
+</zk>

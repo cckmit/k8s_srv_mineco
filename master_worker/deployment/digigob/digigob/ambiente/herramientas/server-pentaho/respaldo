@@ -1,0 +1,27 @@
+http://localhost:8081/SIROTE/content/operaciones/operaciones-modificacionTipoSeleccionVER.xhtml
+
+
+cd /home/pentaho/server/pentaho-server
+
+	./import-export.sh --backup --url=http://localhost:10000/pentaho --username=admin --password=password --file-path=/home/pentaho/respaldoEgoveris/backup.zip --logfile=/home/pentaho/respaldoEgoveris/logfile.log
+	
+	
+	./import-export.sh --backup --url=http://localhost:8080/pentaho --username=admin --password=password --file-path=/backup.zip --logfile=/logfile.log
+	
+	./import-export.sh --restore --url=http://docker-host.egoveris.com:8090/pentaho --username=admin --password=password --file-path=/backup.zip --overwrite=true --logfile=/logfile.log
+	
+	docker cp backup.zip pentaho-egoveris-desa:/
+	
+	
+	docker cp pentaho-egoveris-desa:/backup.zip /
+
+1195
+EXT-016147-00015
+
+Centros: 1241
+Cliente: 1241
+
+
+1241-1195
+
+-46

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<complexComponent type="TRADE" name="ParticipanteSecundario"
+	description="Participante Secundario Information" zul="participanteSecundario.zul"
+	composer="com.everis.tramelec.dynform.comp.ext.ParticipanteSecundarioComposer"
+	mappingDTO="com.egoveris.ccomplejos.base.model.ParticipanteSecundarioDTO">
+	
+	<field name="participanteID" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" />
+	<field name="personaTypeEnum" width="90%" height="20px"
+		factory="comboBoxFactory" comboName="CPerT" />
+	<field name="docPersonaType" width="90%" height="20px"
+		factory="comboBoxFactory" comboName="CDPT" />
+	<field name="docPersonaNum" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" />
+	<field name="participanteNombre" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" />
+	<field name="participanteAddress" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.SeparatorComplex" xmlFile="address.xml" />
+	<field name="participanteEmail" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" />
+	<field name="participanteNumeroTelefonoFijo" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" />
+	<field name="participanteNumeroTelefonoMovil" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" />
+		
+</complexComponent>

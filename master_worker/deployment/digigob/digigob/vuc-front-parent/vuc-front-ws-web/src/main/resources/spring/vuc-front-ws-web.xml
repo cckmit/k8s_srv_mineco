@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+	<!-- Scan for Spring beans declared via annotations. -->
+	<context:component-scan base-package="com.egoveris.vucfront.ws.service" />
+
+	<mvc:annotation-driven />
+   <context:component-scan base-package = "com.egoveris.vucfront.base.controller,com.egoveris.vucfront.ws.controller" />
+   
+	<bean name="externalDocumentoService"
+		class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+		<property name="service" ref="externalDocumentoServiceImpl" />
+		<property name="serviceInterface">
+			<value>com.egoveris.vucfront.ws.service.ExternalDocumentoService
+			</value>
+		</property>
+	</bean>
+	<bean name="externalNotificacionService"
+		class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+		<property name="service" ref="externalNotificacionServiceImpl" />
+		<property name="serviceInterface">
+			<value>com.egoveris.vucfront.ws.service.ExternalNotificacionService
+			</value>
+		</property>
+	</bean>
+	<bean name="externalTareaService"
+		class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+		<property name="service" ref="externalTareaServiceImpl" />
+		<property name="serviceInterface">
+			<value>com.egoveris.vucfront.ws.service.ExternalTareaService
+			</value>
+		</property>
+	</bean>
+	
+	
+	<bean name="externalConsolidacionService"
+		class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+		<property name="service" ref="externalConsolidacionServiceImpl" />
+		<property name="serviceInterface">
+			<value>com.egoveris.vucfront.ws.service.ExternalConsolidacionService
+			</value>
+		</property>
+	</bean>
+	
+</beans>

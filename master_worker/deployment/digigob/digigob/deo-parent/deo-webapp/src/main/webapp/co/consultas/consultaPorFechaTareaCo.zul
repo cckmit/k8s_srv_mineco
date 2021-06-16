@@ -1,0 +1,80 @@
+<?page title="new page title" contentType="text/html;charset=UTF-8"?>
+<zk>
+	<window title="${c:l('ccoo.consultaCo.buscarTareas')}" border="normal" closable="true"
+	apply="com.egoveris.deo.web.satra.consulta.ConsultaPorFechaCOTareaComposer"
+	id="consultaPorFechaTareaWindow">
+		<groupbox>
+			<separator height="20px"></separator>
+			<hbox>
+				<label value="${c:l('gedo.consultaTareas.fechaDesde')}" />
+				<separator width="29px"></separator>
+				<datebox id="fechaDesde" width="150px"/>
+				<separator width="20px"></separator>
+				<label value="${c:l('gedo.consultaTareas.fechaHasta')}" />
+				<datebox id="fechaHasta" width="150px"/>
+			</hbox>
+			<separator height="20px"></separator>
+			<hbox>
+				<label value="${c:l('gedo.general.tipoDocumento')}"/>
+				<bandbox id="familiaEstructuraTree" width="150px"
+							height="auto">
+							<bandpopup id="Familia" width="600px"
+								height="auto"
+								apply="com.egoveris.deo.web.satra.InicioDocumentoFamiliaTipoDocumentoBandBoxComposer">
+								<groupbox mold="3d" height="auto" closable="false"
+									width="auto">
+									<caption >
+										<hbox>
+											<label
+												value="${c:l('gedo.busquedaTipoDocumento')}" />
+										</hbox>
+									</caption>
+									<separator></separator>
+									<vbox>
+										<hbox align="bottom">
+											<label value="${c:l('ccoo.consulta.botonBuscar')}" />
+											<separator width="2px" />
+											<textbox
+												id="textoTipoDocumento" />
+											<separator width="100px" />
+											<!-- COMENTADO HASTA QUE SE HABILITE LA FUNCIONALIDAD
+											<toolbar mold="panel"  style="  position: relative;  bottom: -10px;">
+												<toolbarbutton
+													popup="top" image="/imagenes/Estrella.png"
+													label="Los más usados" />
+											</toolbar>
+											-->
+										</hbox>
+										<separator width="25px" />
+										<tree id="familiaTipoTree"
+											width="600px" height="auto">
+											<treecols>
+												<treecol width="30%"	label="${c:l('gedo.agregarReparticiones.listhead.listheader.label.nombre')}" />
+												<treecol width="20%"	label="${c:l('gedo.abmTipoDocumento.acronimo')}" />
+												<treecol width="25%"	label="${c:l('gedo.inbox.alarmas.descripcion')}" />
+  												<treecol width="25%"    label="${c:l('gedo.inbox.caracteristicas')}" />  											
+											</treecols>
+										</tree>
+									</vbox>
+								</groupbox>
+							</bandpopup>
+						</bandbox>
+				<separator width="15px"/>
+				<label value="${c:l('gedo.consultaTareas.label.tipoTarea')}"/>
+				<combobox id="taskBusqueda" readonly="true" width="150px"/>
+			</hbox>
+			<separator height="20px"></separator>
+			<hbox>
+			<label value="${c:l('gedo.consultaTareas.resultadoUsuario.asignado')}"/>
+			<separator width="17px"/>
+			<combobox id="usuarioDestBusqueda" buttonVisible="false"
+				autodrop="true" width="150px"/>
+			</hbox>
+			<separator height="20px"></separator>
+			<div align="center">
+				<button label="${c:l('gedo.consultaTareas.botonBuscar')}"
+					id="buscar" />
+			</div>
+		</groupbox>
+	</window>
+</zk>

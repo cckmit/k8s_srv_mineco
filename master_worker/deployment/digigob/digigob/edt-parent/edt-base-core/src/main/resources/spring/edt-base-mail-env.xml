@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="javaMailStoragePolicy" class="org.terasoluna.plus.core.async.impl.MemoryStoragePolicy" />
+
+	<bean class="org.springframework.mail.javamail.JavaMailSenderImpl">
+		<property name="username" ref="mailUser" />
+		<property name="password" ref="mailPasswordauth" />
+		<property name="host" value="${mail.server:localhost}" />
+		<property name="port" value="${mail.port:25}" />
+		<property name="javaMailProperties">
+			<props>
+				<prop key="mail.smtp.auth">false</prop>
+				<prop key="mail.smtp.starttls.enable">false</prop>
+			</props>
+		</property>
+	</bean>
+
+	<bean id="mailPasswordauth" class="java.lang.String">
+		<constructor-arg type="java.lang.String" value="${app.eu.mail.password}" />
+	</bean>
+
+	<bean id="mailUser" class="java.lang.String">
+		<constructor-arg type="java.lang.String" value="${app.eu.mail.user}" />
+	</bean>
+
+	<bean id="iMailGenericService"
+		class="com.egoveris.edt.base.service.impl.mail.MailGenericServiceImpl">
+		<property name="appProperty" ref="dBProperty" />
+	</bean>
+	
+	<bean id="iMailService" class="com.egoveris.edt.base.service.impl.mail.MailServiceImpl">
+		<property name="appProperty" ref="dBProperty" />
+	</bean>
+
+</beans>

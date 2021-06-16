@@ -1,0 +1,176 @@
+<?page title="Historial de Pases Electr�nicos" contentType="text/html;charset=UTF-8"?>
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./historialPasesWindows" ?>
+<zk>
+	<window id="historialPasesWindows"
+		
+		title="${c:l('ee.historialpases.windows.label.value')}" border="none"
+		apply="com.egoveris.te.base.composer.BuscarHistorialPaseComposer">
+		<window id="detalleView" visible="false" />
+		<groupbox>
+			<grid style="border:0px" width="100%">
+				<rows>
+					<row align="left"
+						>
+						<hbox align="center" spacing="0">
+							<grid align="center" width="540px"
+								id="gridConsultaDocumentos">
+								<columns>
+									<column
+										width="100px"
+										id="ee.historialpases.column.tipo"
+										label="${c:l('ee.historialpases.column.tipo.value')}"
+										align="center" />
+									<column width="100px"
+										id="ee.historialpases.column.anio"
+										label="${c:l('ee.historialpases.column.anio.value')}"
+										align="center" />
+									<column width="100px"
+										id="ee.historialpases.column.numero"
+										label="${c:l('ee.historialpases.column.numero.value')}"
+										align="center" />
+									<column width="100px"
+										id="ee.historialpases.column.reparticion"
+										label="${c:l('ee.historialpases.column.reparticion.value')}"
+										align="center" />
+										<column width="140px"
+										id="ee.historialpases.column.reparticionUsuario"
+										label="${c:l('ee.historialpases.column.reparticionUsuario.value')}"
+										align="center" />
+
+								</columns>
+								<rows>
+									<row id="camposSADE"
+										>
+										<combobox width="80px"
+											id="tipoExpediente" disabled="true">
+										</combobox>
+										<intbox cols="4" maxlength="4" width="80px"
+											id="anioSADE" />
+										<intbox maxlength="8" width="80px"
+											id="numeroSADE" />
+											<textbox maxlength="8" width="80px"
+													id="reparticionActuacion"
+													readonly="true" />
+										<bandbox
+											id="reparticionBusquedaSADE" width="130px">
+											<bandpopup
+												apply="com.egoveris.te.base.composer.FindReparticionesBusquedaSADEBandboxComposer"
+												id="reparticionesComboBusquedaSADE" width="650px">
+												<groupbox mold="3d">
+													<caption>
+														<hbox>
+															Búsqueda de
+															Organismo
+															<image
+																src="/imagenes/help.png" width="16px" height="16px"
+																tooltip="helpBusquedaReparticion" align="right" />
+														</hbox>
+													</caption>
+													<separator></separator>
+													<vbox>
+														<hbox>
+															Buscar
+															<textbox
+																id="textoReparticionBusquedaSADE" />
+														</hbox>
+														<paging
+															id="pagingReparticionesDocsSADE" pageSize="10" />
+														<listbox
+															mold="paging" width="600px"
+															id="reparticionesBusquedaSADEListbox"
+															model="@{listaReparticionSADESeleccionada}"
+															selectedItem="@{reparticionSeleccionada}"
+															paginal="${pagingReparticionesDocsSADE}">
+															<listhead>
+																<listheader
+																	label="${c:l('te.webapp.expediente.macros.documentofiltro.lbl.codigo')}" width="30%" />
+																<listheader
+																	label="${c:l('ee.nuevoDocumento.nombre')}" height="70%" />
+															</listhead>
+															<listitem
+																self="@{each=reparticion}">
+																<listcell
+																	label="@{reparticion.codigo}" />
+																<listcell
+																	label="@{reparticion.nombre}" />
+															</listitem>
+														</listbox>
+													</vbox>
+												</groupbox>
+											</bandpopup>
+										</bandbox>
+										<!--  <combobox id="reparticionSADE"
+											disabled="true"
+											use="com.egoveris.te.base.util.FindReparticionesCombobox"
+											selectedItem="@{desarchivarWindow$DesarchivarComposer.selectedReparticionSADE}">
+											</combobox>-->
+									</row>
+								</rows>
+							</grid>
+							<space></space>
+							<button autodisable="self" id="buscarPorNumeroSadeButton"
+								label="${c:l('ee.historialPases.button.buscarPases')}"
+								image="/imagenes/edit-find.png"
+								forward="onClick=historialPasesWindows$BuscarHistorialPaseComposer.onBuscarHistorial">
+							</button>
+							<space></space>
+							<button autodisable="self" id="limpiarFormularioButton"
+								label="${c:l('ee.historialPases.button.LimpiarDatos')}"
+								forward="onClick=historialPasesWindows$BuscarHistorialPaseComposer.onLimpiarDatos">
+							</button>
+							<space></space>
+						</hbox>
+					</row>
+				</rows>
+			</grid>
+			<separator height="16px"></separator>
+			<listbox id="consultaPasesList" hflex="1"
+				model="@{historialPasesWindows$composer.pases}" 
+				selectedItem="@{historialPasesWindows$composer.selectedPase}"
+				maxlength="20">
+				<listhead>
+					<listheader id="ee.historialpases.listheader.fecha"
+						label="${c:l('ee.historialpases.listheader.fecha.value')}"
+						width="130px" />
+					<listheader id="ee.historialpases.listheader.emisor"
+						label="${c:l('ee.historialpases.listheader.emisor.value')}"
+						width="130px" />
+					<listheader
+						id="ee.historialpases.listheader.destino"
+						label="${c:l('ee.historialpases.listheader.destino.value')}"
+						width="130px" />
+					<listheader id="ee.historialpases.listheader.estado"
+						label="${c:l('ee.historialpases.listheader.estado.value')}"
+						width="100px" />
+					<listheader id="ee.historialpases.listheader.motivo"
+						label="${c:l('ee.historialpases.listheader.motivo.value')}"
+						/>
+					<listheader id="ee.inbox.alarmasAcciones"
+						label="${c:l('ee.inbox.alarmasAcciones')}"
+						width="100px" />
+
+				</listhead>
+				<listitem self="@{each='pase'}" value="@{event}">
+					<listcell label="@{pase.fechaOperacion}" />
+					<listcell label="@{pase.usuario}" />
+					<listcell label="@{pase.destinatario}" />
+					<listcell label="@{pase.estado}" />
+					<listcell label="@{pase.motivo}" />
+					<listcell>
+						<hbox align="center">
+							<image src="/imagenes/page_text.png"
+								tooltiptext="${c:l('ee.historialPases.image.tooltip.detalleExp')}"
+								forward="onClick=abmTrataWindow$ABMTrataComposer.onMostrarDetalle" />
+							<label value="${c:l('ee.historialpases.label.detalle.value')}"
+								tooltiptext="${c:l('ee.historialPases.image.tooltip.detalleExp')}"
+								forward="onClick=abmTrataWindow$ABMTrataComposer.onMostrarDetalle"
+								style="font-size:11px;font-family: Arial;text-decoration: none;" />
+						</hbox>
+					</listcell>
+				</listitem>
+			</listbox>
+		</groupbox>
+	</window>
+</zk>

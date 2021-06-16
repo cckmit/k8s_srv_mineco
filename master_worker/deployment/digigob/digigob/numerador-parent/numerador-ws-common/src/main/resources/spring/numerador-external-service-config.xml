@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" 
+"http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+	
+	<!-- La importación de este archivo es opcional. Se trata de una especificación de referencia del bean
+que la aplicación cliente debe declarar para invocar al numerador -->
+	<bean id="numeradorService" 
+        class="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean">
+   		  <property name="serviceUrl" value="${app.numerador.url}/remoting/numerar" />
+          <property name="serviceInterface">
+            <value>com.egoveris.numerador.ws.service.ExternalNumeroService</value>
+          </property>
+    </bean>	
+</beans>

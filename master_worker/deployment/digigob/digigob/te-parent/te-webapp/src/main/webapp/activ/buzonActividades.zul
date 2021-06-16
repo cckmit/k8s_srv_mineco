@@ -1,0 +1,67 @@
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./actividadesWindow" ?>
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+<?page title="Trata" contentType="text/html;charset=UTF-8"?>
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+<zk>
+	<window id="actividadesWindow" title="" border="none" width="100%"
+		
+		apply="com.egoveris.te.base.composer.BuzonActivComposer">
+		<hbox  width="100%">
+			<vbox>
+				<separator />
+				<label value="${c:l('ee.inbox.titulo.value')}"
+					style="padding-left: 10px; font: bold;" />
+				<separator />
+			</vbox>
+		</hbox>
+		<hbox  align="center">
+			<image src="/imagenes/egovIconOrange.png" width="40px"
+				height="30px" style="padding-left: 10px;" />
+			<label
+				value="${c:l('ee.act.titulo.buzon.value')}"
+				style="font: bold;" />
+		</hbox>
+		<separator bar="true"  />
+		<separator />
+		
+		<hlayout>		
+				<label value="${c:l('ee.aprobacion.label.estActividades')}"/>
+				<combobox id="estados" width="200px" readonly="true" >
+				</combobox>
+				<separator></separator>
+				<button autodisable="self" width="100px" label="${c:l('ee.aprobacion.label.filtrar')}" id="filtrar" image="/imagenes/filtro.png"/>
+				<button autodisable="self" width="100px" label="${c:l('ee.aprobacion.label.quitarFiltro')}" id="quitarFiltro" image="/imagenes/quitar-filtro.png"/>
+			</hlayout>
+		
+		<separator bar="true" height="10px"  />
+		<separator />
+
+		<paging id="pagingActiv" pageSize="10" />
+		<listbox id="actividadesListbox" mold="paging"
+			itemRenderer="com.egoveris.te.base.rendered.ActivExpItemRender"
+			paginal="${pagingActiv}">
+			<listhead>
+				<listheader label="${c:l('ee.act.label.exp.value')}" width="25%" sort="auto(nroExpediente)"/>
+				<listheader label="${c:l('ee.act.label.actividad.value')}" width="25%" sort="auto(tipoActividadDecrip)"/>
+				<listheader label="${c:l('ee.act.label.fecha.value')}" width="10%" sort="auto(fechaAlta)"/>
+				<listheader label="${c:l('ee.act.label.vigencia.value')}" width="10%" sort="auto(fechaAlta)"/>
+				<listheader label="${c:l('ee.act.label.estado.value')}" width="10%" sort="auto(estado)"/>
+				<listheader label="${c:l('ee.act.label.estado.trata.value')}" width="10%"/>
+				<listheader label="${c:l('ee.act.label.acciones.value')}" width="10%"/>
+			</listhead>
+			<listfoot
+				>
+				<listfooter />
+				<listfooter />
+				<listfooter
+					label="${c:l('ee.act.listfooter.totalActPend.value')}"
+					span="2"  />
+				<listfooter
+				    label="@{pagingActiv.totalSize}" id="lisTotalSize"
+					 />
+			</listfoot>
+		</listbox>
+		<label id="listaVacia" value="${c:l('ee.act.msg.buzon.sinActividades')}" />
+		<separator />
+	</window>
+</zk>

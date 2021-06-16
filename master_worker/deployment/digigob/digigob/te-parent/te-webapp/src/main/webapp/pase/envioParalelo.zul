@@ -1,0 +1,238 @@
+<?page title="Enviar a" contentType="text/html;charset=UTF-8"?>
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./envioWindow" ?>
+<zk>
+	<window title="${c:l('ee.envio.titulo')}" border="normal" width="60%"
+		 id="envioWindow"
+		apply="com.egoveris.te.base.composer.EnvioParaleloComposer">
+		<grid >
+			<rows width="799px">
+				<row>
+					<hlayout id="hlay" style="margin-left:5px;margin-right:5px">
+						<label value="${c:l('ee.anularmodificarsolicitud.label.motivo.value')}" />
+						<separator/>
+						<fckeditor customConfigurationsPath="/js/fckconfig.js"  toolbarSet="Basico" id="motivoExpediente" width="670px" height="250px" visible="true" />
+					</hlayout>
+				</row>
+			</rows>
+		</grid>
+			<grid >
+				<columns>
+					<column width="15%"></column>
+					<column width="85%"></column>
+				</columns>
+				<rows>
+					
+					<row>
+						<label value="${c:l('ee.tramitacion.label.estado.value')}" />
+						<textbox id="estado" width="50%"
+							readonly="true"	>
+						</textbox>
+					</row>
+				</rows>
+			</grid>
+			<separator />
+			<label value="${c:l('ee.historialpases.listheader.destino.value')}" style="font:bold;" id="destino"/>
+			<grid  id="grillaDestino" >
+			<columns>
+				<column width="15%"></column>
+				<column width="85%"></column>
+			</columns>
+			<rows>
+				<row id="rowUser">
+					<label value="${c:l('ee.envioParalelo.label.usuarios')}" />
+					<vbox>
+						<paging id="userPaginator" pageSize="4" width="99%"/>
+						<listbox width="99%" 
+						    id="UsuariosListbox"
+						    model="@{envioParaleloWindow$composer.usuariosDestinatarios}"
+							mold="paging"
+							paginal="${userPaginator}"
+							selectedItem="@{envioWindow$EnvioParaleloComposer.usuariosAgregadoSelected}"
+							itemRenderer="com.egoveris.te.base.rendered.UsuariosAgregadosRenderer">
+							<listhead>
+								<listheader label="${c:l('te.bandbox.listheader.usuario')}" width="50%"/>
+								<listheader label="${c:l('ee.envioParalelo.listheader.motivoPase')}" width="35%"/>
+								<listheader label="${c:l('ee.caratulas.listheader.documento.accion.value')}" width="15%"/>
+							</listhead>
+						</listbox>
+
+						
+						
+						<separator></separator>
+
+						<hbox id="addUser">
+							<label value="${c:l('ee.solicitudArchivo.label.usuario.value')}" />
+							<separator></separator>
+						    <include id="inclBandboxUsuario"/>
+<!-- 							<combobox width="400px" id="usuario" -->
+<!-- 								buttonVisible="false" autodrop="true"  -->
+<!-- 								tooltiptext="Ingrese el nombre del usuario al que desea agregar para enviarle un pase múltiple." ></combobox> -->
+							<separator width="34px"></separator>
+							<button autodisable="self" id="agregarUsuario"
+								label="Agregar" tooltiptext="${c:l('ee.envioParalelo.tooltip.agregarUsuario')}" >
+							</button>
+						</hbox>
+						<separator></separator>
+					</vbox>
+				</row>
+				<row id="rowSector">
+					<label value="${c:l('ee.envioParalelo.label.sectores')}" />
+					<vbox>
+					<paging id="reparticionesPaginator" pageSize="4" width="99%"/>
+					<listbox width="99%"
+							mold="paging"
+							paginal="${reparticionesPaginator}"
+							id="sectorReparticionListbox"
+							model="@{envioParaleloWindow$composer.reparticionesDestinatarios,load-after='refrescarListaReparticiones.onClick'}"
+							selectedItem="@{envioParaleloWindow$EnvioParaleloComposer.reparticionesAgregadasSelected}"
+							itemRenderer="com.egoveris.te.base.rendered.SectorReparticionAgregadoRenderer">
+			<!-- SE ELIMINA EL ITEM SELECTED PARA QUE FUNCIONE CORRECTAMENTE EL POPUP DE AGREGAR MOTIVOS PROPIOS A CADA Organismo-->
+							<listhead>
+								<listheader
+									label="${c:l('ee.envioParalelo.listheader.organismoSec')}" width="50%"/>
+								<listheader
+									label="${c:l('ee.envioParalelo.listheader.motivoPase')}" width="35%"/>
+								<listheader label="${c:l('ee.caratulas.listheader.documento.accion.value')}" width="15%"/>
+							</listhead>
+						</listbox>
+
+						<separator></separator>
+						<hbox id="addSector">
+							<label value="${c:l('ee.tramitacion.expediente.txtFiltro.reparticion')}" />
+							<bandbox
+								id="sectorReparticionBusquedaSADE" tooltiptext="${c:l('ee.envioParalelo.tooltip.ingreseNombreOrg')}" >
+								
+								<bandpopup
+									apply="com.egoveris.te.base.composer.FindSectorReparticionesBusquedaSADEBandboxComposer"
+									id="sectorReparticionesComboBusquedaSADE" width="650px">
+									<groupbox mold="3d">
+										<caption>
+											<hbox>
+												Búsqueda de Organismo
+												<image
+													src="/imagenes/help.png" width="16px" height="16px"
+													tooltip="helpBusquedaReparticion" align="right" />
+											</hbox>
+										</caption>
+										<separator></separator>
+										<vbox>
+											<hbox>
+												Buscar
+												<textbox
+													id="textoSectorReparticionBusquedaSADE" />
+											</hbox>
+											<paging
+												id="pagingSectorReparticionesDocsSADE" pageSize="10" />
+											<listbox mold="paging"
+												width="600px" id="sectoresReparticionesBusquedaSADEListbox"
+												model="@{listaSectorReparticionSADESeleccionada}"
+												selectedItem="@{sectorReparticionSeleccionada}"
+												paginal="${pagingSectorReparticionesDocsSADE}">
+												<listhead>
+													<listheader
+														label="${c:l('te.webapp.expediente.macros.documentofiltro.lbl.codigo')}" width="30%" />
+													<listheader
+														label="${c:l('te.webapp.expediente.macros.documentofiltro.lbl.nombre')}" height="70%" />
+												</listhead>
+												<listitem
+													self="@{each=reparticion}">
+													<listcell
+														label="@{reparticion.codigo}" />
+													<listcell
+														label="@{reparticion.nombre}" />
+												</listitem>
+											</listbox>
+										</vbox>
+									</groupbox>
+								</bandpopup>
+							</bandbox>
+							<separator></separator>
+							<label value="${c:l('ee.motivo.label.sector')}" />
+							<bandbox id="sectorBusquedaSADE" tooltiptext="${c:l('ee.envioParalelo.tooltip.ingreseNombreSector')}" >
+								<bandpopup
+									apply="com.egoveris.te.base.composer.FindSectorBusquedaSADEBandboxComposer"
+									id="sectorComboBusquedaSADE" width="650px">
+									<groupbox mold="3d">
+										<caption>
+											<hbox>
+												Búsqueda de Sector por
+												Organismo
+												<image
+													src="/imagenes/help.png" width="16px" height="16px"
+													tooltip="helpBusquedaSector" align="right" />
+											</hbox>
+										</caption>
+										<separator></separator>
+										<vbox>
+											<hbox>
+												Buscar
+												<textbox
+													id="textoSectorBusquedaSADE" />
+											</hbox>
+											<paging
+												id="pagingSectorDocsSADE" pageSize="10" />
+											<listbox mold="paging"
+												width="600px" id="sectoresBusquedaSADEListbox"
+												model="@{listaSectorSADESeleccionado}"
+												selectedItem="@{sectorSeleccionado}"
+												paginal="${pagingSectorDocsSADE}">
+												<listhead>
+													<listheader
+														label="${c:l('te.webapp.expediente.macros.documentofiltro.lbl.codigo')}" width="30%" />
+													<listheader
+														label="${c:l('te.webapp.expediente.macros.documentofiltro.lbl.nombre')}" height="70%" />
+												</listhead>
+												<listitem
+													self="@{each=sector}">
+													<listcell
+														label="@{sector.codigo}" />
+													<listcell
+														label="@{sector.nombre}" />
+												</listitem>
+											</listbox>
+										</vbox>
+									</groupbox>
+								</bandpopup>
+							</bandbox>
+							<separator width="68px"></separator>
+							<button autodisable="self" id="agregarSectorReparticion"
+								label="${c:l('ee.consultaGeneradosReparticion.button.agregar')}"
+								tooltiptext="${c:l('ee.envioParalelo.tooltip.ingreseOrgSector')}">
+							</button>
+						</hbox>
+						<separator></separator>
+					</vbox>
+				</row>
+			</rows>
+			</grid>
+			<separator></separator>
+			
+<!-- 			<button autodisable="self" id="refrescarListaUsuarios" visible="false" /> -->
+			<button autodisable="self" id="refrescarListaReparticiones" visible="false" />   
+			
+			<!--
+			<toolbarbutton autodisable="self" id="enviar" image="/imagenes/RealizarPaseMultiple.png"
+				forward="onClick=envioWindow$EnvioParaleloComposer.onEnviar"
+				tooltiptext="Enviar el Expediente a los múltiples destinos seleccionados."/>		
+			<toolbarbutton autodisable="self" id="cancelar" image="/imagenes/BotonCancelar.png"
+				forward="onClick=envioWindow$EnvioParaleloComposer.onCancelar"
+				tooltiptext="Cancelar la tarea."/>
+			-->
+			
+			<button autodisable="self" id="enviar" label="${c:l('te.webapp.expediente.tramitacion.lbl.realizarpasemultiple')}"
+				forward="onClick=envioWindow$EnvioParaleloComposer.onEnviar"
+				tooltiptext="${c:l('ee.envioParalelo.tooltip.enviarExp')}"/>		
+			<button autodisable="self" id="cancelar" label="${c:l('te.webapp.expediente.tramitacion.lbl.cancelar')}"
+				forward="onClick=envioWindow$EnvioParaleloComposer.onCancelar"
+				tooltiptext="${c:l('ee.envioParalelo.tooltip.cancelar')}"/>
+			
+			<separator></separator>
+
+			<!--TOOLTIPS DE AYUDA-->
+		<popup id="helpUsuario" width="150px">
+			<label multiline="true"
+				value="${c:l('ee.envioParalelo.tooltip.agregarDestino')}" />
+		</popup>
+	</window>
+</zk>

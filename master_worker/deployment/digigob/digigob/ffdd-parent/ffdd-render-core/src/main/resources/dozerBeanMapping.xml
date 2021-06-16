@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mappings xmlns="http://dozer.sourceforge.net" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://dozer.sourceforge.net
+          http://dozer.sourceforge.net/schema/beanmapping.xsd">
+
+	<configuration>
+		<stop-on-errors>true</stop-on-errors>
+		<date-format>dd/MM/yyyy HH:mm</date-format>
+		<wildcard>false</wildcard>
+	</configuration>	
+	
+	<mapping>
+		<class-a>com.egoveris.ffdd.model.model.ComponenteDTO</class-a>
+		<class-b>org.zkoss.zk.ui.AbstractComponent</class-b>
+		<field>
+			<a>atributos</a>
+			<b>visible</b>
+		</field>
+	</mapping>
+	
+	<mapping>
+		<class-a>com.egoveris.ffdd.model.model.ComponenteDTO</class-a>
+		<class-b>org.zkoss.zk.ui.HtmlBasedComponent</class-b>
+		<field>
+			<a>atributos</a>
+			<b>style</b>
+		</field>
+		<field>
+			<a>atributos</a>
+			<b>width</b>
+		</field>
+		<field>
+			<a>atributos</a>
+			<b>height</b>
+		</field>
+		<field>
+			<a>atributos</a>
+			<b>tooltiptext</b>
+		</field>
+	</mapping>
+	
+	<mapping>
+		<class-a>com.egoveris.ffdd.model.model.ComponenteDTO</class-a>
+		<class-b>org.zkoss.zul.impl.InputElement</class-b>
+		<field>
+			<a>atributos</a>
+			<b>disabled</b>
+		</field>
+		<field>
+			<a>atributos</a>
+			<b>maxlength</b>
+		</field>
+		<field>
+			<a>atributos</a>
+			<b>readonly</b>
+		</field>
+		<field>
+			<a>atributos</a>
+			<b>cols</b>
+		</field>
+	</mapping>
+	
+	<mapping>
+		<class-a>com.egoveris.ffdd.model.model.ComponenteDTO</class-a>
+		<class-b>org.zkoss.zul.impl.FormatInputElement</class-b>
+		<field>
+			<a>atributos</a>
+			<b>format</b>
+		</field>
+	</mapping>
+	
+	<mapping>
+		<class-a>com.egoveris.ffdd.model.model.ComponenteDTO</class-a>
+		<class-b>org.zkoss.zul.Textbox</class-b>
+		<field>
+			<a>atributos</a>
+			<b>rows</b>
+		</field>
+	</mapping>
+
+	<mapping>
+		<class-a>com.egoveris.ffdd.model.model.ComponenteDTO</class-a>
+		<class-b>com.egoveris.ffdd.render.zk.comp.ext.ConstrInputComponent</class-b>
+		<field>
+			<a key="serviceConstraint">atributos</a>
+			<b>multiConstrData.serviceConstraint</b>
+		</field>
+		<field>
+			<a key="constraint">atributos</a>
+			<b>multiConstrData.constraintEL</b>
+		</field>
+	</mapping>
+	
+	<mapping>
+		<class-a>com.egoveris.ffdd.model.model.ComponenteDTO</class-a>
+		<class-b>com.egoveris.ffdd.render.zk.comp.ext.BandboxExt</class-b>
+		<field>
+			<a>atributos</a>
+			<b>serviceEndpoint</b>
+		</field>
+	</mapping>
+	
+	<mapping>
+		<class-a>com.egoveris.ffdd.model.model.ComponenteDTO</class-a>
+		<class-b>org.zkoss.zul.Checkbox</class-b>
+		<field>
+			<a>atributos</a>
+			<b>disabled</b>
+		</field>
+	</mapping>
+	
+</mappings>  

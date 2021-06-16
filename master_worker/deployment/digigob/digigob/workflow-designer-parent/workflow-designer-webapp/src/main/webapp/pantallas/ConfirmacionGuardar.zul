@@ -1,0 +1,16 @@
+<?page title="Workflow Designer" id="tramitacion" contentType="text/html;charset=UTF-8"?>
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+
+<zk xmlns:x="xhtml" xmlns:zk="zk" xmlns:w="http://www.zkoss.org/2005/zk/client">
+<window  title="${c:l('title.confirmacion')}"
+		xmlns:w="http://www.zkoss.org/2005/zk/client" border="normal" mode="modal" closable="true" visible="false" width="390px">
+	<div id="mensaje" width="100%" >
+		Se generará un nuevo proyecto ¿Desea guardar el proyecto actual?
+	</div>
+	<separator></separator>
+	<div width="100%" align="center">
+		<button id="btnGuardar" label="${c:l('general.guardar')}"/>
+		<button id="btnCancelar" label="${c:l('general.cancelar')}"/>
+	</div>
+</window>
+</zk>

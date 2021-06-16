@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.egoveris</groupId>
+		<artifactId>te</artifactId>
+		<version>2.0.3-SNAPSHOT</version>
+	</parent>
+	<artifactId>te-webapp</artifactId>
+	<packaging>war</packaging>
+	<name>te web application (WAR) aggregator project</name>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.jbpm.jbpm4</groupId>
+			<artifactId>jbpm-jpdl</artifactId>
+			<exclusions>
+				<exclusion>
+					<artifactId>slf4j-jdk14</artifactId>
+					<groupId>org.slf4j</groupId>
+				</exclusion>
+				<!-- Se excluye juel al no ser compatible con ZK8 -->
+				<exclusion>
+					<groupId>juel</groupId>
+					<artifactId>*</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<!-- == BEGIN EGOVERIS == -->
+		<dependency>
+			<groupId>com.egoveris</groupId>
+			<artifactId>te-base-common</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.egoveris</groupId>
+			<artifactId>te-base-core</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.egoveris</groupId>
+			<artifactId>te-base-web</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.egoveris</groupId>
+			<artifactId>te-env</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.egoveris</groupId>
+			<artifactId>te-model-common</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.egoveris</groupId>
+			<artifactId>te-scheduler-core</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.egoveris</groupId>
+			<artifactId>te-ws-common</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.egoveris</groupId>
+			<artifactId>te-ws-web</artifactId>
+		</dependency>
+		<!-- == END EGOVERIS == -->
+		<dependency>
+			<groupId>org.terasoluna.plus.framework</groupId>
+			<artifactId>terasoluna-plus-webapp-conf</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.terasoluna.plus.security</groupId>
+			<artifactId>terasoluna-plus-app-security-conf</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>javax</groupId>
+			<artifactId>javaee-api</artifactId>
+			<scope>provided</scope>
+		</dependency>
+	</dependencies>
+	<profiles>
+		<profile>
+			<id>tomcat</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<dependencies>
+				<dependency>
+					<groupId>javax.servlet</groupId>
+					<artifactId>jstl</artifactId>
+				</dependency>
+			</dependencies>
+		</profile>
+	</profiles>
+	<build>
+		<finalName>te-web</finalName>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-deploy-plugin</artifactId>
+				<configuration>
+					<skip>true</skip>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+</project>

@@ -1,0 +1,28 @@
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./codigoDobleFactorWindow"  ?>
+<?page title="new page title" contentType="text/html;charset=UTF-8"?>
+<zk>
+	<window id="codigoDobleFactorWindow" visible="false" position="center"
+		apply="com.egoveris.deo.web.satra.firma.CodigoDobleFactorComposer"
+		width="340px" height="240px"
+		style="border-width: 1px; border-style: solid;"
+		title="${c:l('gedo.revisarDocumento.label.codigo.title')}">
+
+		<separator></separator>
+		<label value="${c:l('gedo.leyenda.dobleFactor')}" />
+		<separator></separator>
+		<label value="${c:l('gedo.info.dobleFactor')}" style="font-size:10px; font-style: italic;"/>
+		<groupbox>
+			<toolbar width="100%" align="start">
+				<label value="${c:l('gedo.revisarDocumento.label.codigo.dobleFactor')}" />
+				<textbox id="codigoText" maxlength="5" width="100px" />
+			</toolbar>
+			<separator></separator>
+			<button id="validarCodigo" class="btn-secondary"
+				label="${c:l('gedo.token.cert.aceptar')}" />
+			<space></space>
+			<button id="reenviarMail" class="btn-secondary"
+				label="${c:l('gedo.mail.dobleFactor')}" />
+		</groupbox>
+
+	</window>
+</zk>

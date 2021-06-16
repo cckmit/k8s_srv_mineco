@@ -1,0 +1,207 @@
+<?page title="Enviar Solicitud a" contentType="text/html;charset=UTF-8"?>
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./envioSolicitudWindow" ?>
+<zk>
+	<window title="${c:l('ee.nuevasolicitud.enviarSolicitudA')}"
+		border="normal" width="500px" id="envioSolicitudWindow"
+		apply="com.egoveris.te.base.composer.EnvioSolicitudComposer">
+		<groupbox height="350px">
+			<grid>
+				<rows width="498px">
+					<row>
+						<label value="${c:l('ee.track.detalle.label.motivo')}" />
+						<textbox id="motivoSolicitud" maxlength="255"
+							cols="50" rows="5">
+						</textbox>
+					</row>
+				</rows>
+			</grid>
+			<separator />
+			<label value="${c:l('ee.track.detalle.column.label.destino')}" style="font:bold;" />
+			<grid id="grillaDestinoSolicitud">
+				<rows width="498px">
+					<row>
+						<radio label="${c:l('ee.pases.auditoria.label.usuario')}" value="usuario"
+							id="usuarioRadio"
+							forward="onClick=envioSolicitudWindow$EnvioSolicitudComposer.onUsuarioClick" />
+						<hbox>
+						<include id="inclBandboxUsuario"/>
+<!-- 							<combobox width="200px" id="usuario" -->
+<!-- 								buttonVisible="false" autodrop="true" /> -->
+							<!-- 							<image src="/imagenes/help.png" -->
+							<!-- 								width="16px" height="16px" tooltip="helpUsuario" /> -->
+						</hbox>
+					</row>
+					<row>
+						<radio label="${c:l('ee.envioAdministracion.radio.sector')}" value="sector"
+							id="sectorRadio"
+							forward="onClick=envioSolicitudWindow$EnvioSolicitudComposer.onSectorClick" />
+						<box>
+							<label value="${c:l('ee.tramitacion.expediente.txtFiltro.reparticion')}" />
+							<bandbox
+								id="sectorReparticionBusquedaSADE">
+								<bandpopup
+									apply="com.egoveris.te.base.composer.FindSectorReparticionesBusquedaSADEBandboxComposer"
+									id="sectorReparticionesComboBusquedaSADE" width="650px">
+									<groupbox mold="3d">
+										<caption>
+											<hbox>
+												Búsqueda de Organismo
+											</hbox>
+										</caption>
+										<separator></separator>
+										<vbox>
+											<hbox>
+												Buscar
+												<textbox
+													id="textoSectorReparticionBusquedaSADE" />
+											</hbox>
+											<paging
+												id="pagingSectorReparticionesDocsSADE" pageSize="10" />
+											<listbox width="100%"
+												id="sectoresReparticionesBusquedaSADEListbox"
+												model="@{listaSectorReparticionSADESeleccionada}"
+												selectedItem="@{sectorReparticionSeleccionada}"
+												mold="paging"
+												paginal="${pagingSectorReparticionesDocsSADE}">
+												<listhead>
+													<listheader
+														label="${c:l('te.webapp.expediente.macros.documentofiltro.lbl.codigo')}" width="30%" />
+													<listheader
+														label="${c:l('te.webapp.expediente.macros.documentofiltro.lbl.nombre')}" height="70%" />
+												</listhead>
+												<listitem
+													self="@{each=reparticion}">
+													<listcell
+														label="@{reparticion.codigo}" />
+													<listcell
+														label="@{reparticion.nombre}" />
+												</listitem>
+											</listbox>
+										</vbox>
+									</groupbox>
+								</bandpopup>
+							</bandbox>
+							<label value="${c:l('ee.motivo.label.sector')}" />
+							<hbox>
+								<bandbox id="sectorBusquedaSADE">
+									<bandpopup
+										apply="com.egoveris.te.base.composer.FindSectorMesaBusquedaSADEBandboxComposer"
+										id="sectorComboBusquedaSADE" width="650px">
+										<groupbox mold="3d">
+											<caption>
+												<hbox>
+													Búsqueda de Sector
+													Mesa por Organismo
+												</hbox>
+											</caption>
+											<separator></separator>
+											<vbox>
+												<hbox>
+													Buscar
+													<textbox
+														id="textoSectorBusquedaSADE" />
+												</hbox>
+												<paging
+													id="pagingSectorDocsSADE" pageSize="10" />
+												<listbox mold="paging"
+													width="600px" id="sectoresBusquedaSADEListbox"
+													model="@{listaSectorSADESeleccionado}"
+													selectedItem="@{sectorSeleccionado}"
+													paginal="${pagingSectorDocsSADE}">
+													<listhead>
+														<listheader
+															label="${c:l('te.webapp.expediente.macros.documentofiltro.lbl.codigo')}" width="30%" />
+														<listheader
+															label="${c:l('te.webapp.expediente.macros.documentofiltro.lbl.nombre')}" height="70%" />
+													</listhead>
+													<listitem
+														self="@{each=sector}">
+														<listcell
+															label="@{sector.codigo}" />
+														<listcell
+															label="@{sector.nombre}" />
+													</listitem>
+												</listbox>
+											</vbox>
+										</groupbox>
+									</bandpopup>
+								</bandbox>
+								<separator width="45px"></separator>
+							</hbox>
+
+						</box>
+
+					</row>
+					<row visible="false">
+						<radio label="${c:l('te.webapp.inbox.reparticionestrata.lbl.organismo')}" value="reparticion"
+							id="reparticionRadio"
+							forward="onClick=envioSolicitudWindow$EnvioSolicitudComposer.onReparticionClick" />
+						<bandbox id="reparticionBusquedaSADE">
+							<bandpopup
+								apply="com.egoveris.te.base.composer.FindReparticionesBusquedaSADEBandboxComposer"
+								id="reparticionesComboBusquedaSADE" width="650px">
+								<groupbox mold="3d">
+									<caption>
+										<hbox>
+											Búsqueda de Organismo
+										</hbox>
+									</caption>
+									<separator></separator>
+									<vbox>
+										<hbox>
+											Buscar
+											<textbox
+												id="textoReparticionBusquedaSADE" />
+										</hbox>
+										<paging
+											id="pagingReparticionesDocsSADE" pageSize="10" />
+										<listbox mold="paging"
+											width="600px" id="reparticionesBusquedaSADEListbox"
+											model="@{listaReparticionSADESeleccionada}"
+											selectedItem="@{reparticionSeleccionada}"
+											paginal="${pagingReparticionesDocsSADE}">
+											<listhead>
+													<listheader
+														label="${c:l('te.webapp.expediente.macros.documentofiltro.lbl.codigo')}" width="30%" />
+													<listheader
+														label="${c:l('te.webapp.expediente.macros.documentofiltro.lbl.nombre')}" height="70%" />
+											</listhead>
+											<listitem
+												self="@{each=reparticion}">
+												<listcell
+													label="@{reparticion.codigo}" />
+												<listcell
+													label="@{reparticion.nombre}" />
+											</listitem>
+										</listbox>
+									</vbox>
+								</groupbox>
+							</bandpopup>
+						</bandbox>
+					</row>
+				</rows>
+			</grid>
+			<separator></separator>
+			<div style="margin-top: 15px;"> 
+				<button id="guardar" class="btn-secondary"
+						iconSclass="z-icon-save" label="${c:l('te.webapp.inbox.tipoDocs.btn.guardar')}" height="42px"
+						left="10px" forward="onClick=onEnviar" />
+					<button id="cancelar" class="btn-secondary"
+						iconSclass="z-icon-times-circle" label="${c:l('te.webapp.inbox.tipoDocs.btn.cacelar')}" height="42px" left="10px"
+						forward="onClick=onCancelar" />
+			</div>
+		</groupbox>
+
+		<!--TOOLTIPS DE AYUDA-->
+		<popup id="helpUsuario" width="150px">
+			<label multiline="true"
+				value="${c:l('ee.consultaDocumentos.helpUsuario')}" />
+		</popup>
+		<popup id="helpSector" width="150px">
+			<label multiline="true"
+				value="${c:l('ee.consultaDocumentos.helpOrganismo')}" />
+		</popup>
+
+	</window>
+</zk>

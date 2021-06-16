@@ -1,0 +1,54 @@
+<?page title="${c:l('digigob.Title')}" contentType="text/html;charset=UTF-8"?>
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+<?init class="org.zkoss.zk.ui.util.Composition" arg0="~./db_template.zul"?>
+<zk>
+	<window id="misSupervisadosWindow" title="" border="none"
+		apply="com.egoveris.deo.web.satra.supervisados.SupervisadosComposer"
+		self="@{define(egovBody)}">
+		
+		<window id="taskView" visible="false" />
+		<space></space>
+		<hbox align="center">
+<!-- 			<image src="/imagenes/egovIconOrange.png" width="40px" -->
+<!-- 				height="30px" style="padding-left: 10px;" /> -->
+			<label value="${c:l('gedo.inbox.tituloBuzonDeTareas')}"
+				style="font: bold;" />
+		</hbox>
+		<separator bar="true" />
+		<separator />
+		<window id="supervisadosView" />
+		<paging id="supervisadosPaginator" pageSize="20" />
+		<listbox fixedLayout="true" id="tasksBriefingList"
+			model="@{misSupervisadosWindow$composer.tareasSupervisados}"
+			checkmark="true"
+			selectedItem="@{misSupervisadosWindow$composer.selectedSupervisado}"
+			maxlength="20" mold="paging" paginal="${supervisadosPaginator}">
+			<listhead sizable="false" style="background: #C4ECFF;">
+				<listheader align="center" width="40px"
+					image="/imagenes/mail.png" style="background-color: #C4ECFF;" />
+				<listheader
+					label="${c:l('gedo.misSupervisados.listhead.nomSuperv')}" />
+				<listheader
+					label="${c:l('gedo.misSupervisados.listhead.tareasPend')}" />
+				<listheader
+					label="${c:l('gedo.inbox.accionARealizar')}" />
+			</listhead>
+			<listitem self="@{each=tareasUsuario}">
+				<listcell />
+				<listcell
+					label="@{tareasUsuario.datosUsuario.nombreYApellido}" />
+				<listcell label="@{tareasUsuario.tareasPendientes}" />
+				<listcell>
+					<label
+						value="${c:l('gedo.misSupervisados.listhead.verTareas')}"
+						id="verTareasClick"
+						visible="@{tareasUsuario.tareasPendientes.size>0}" />
+				</listcell>
+			</listitem>
+		</listbox>
+		<label id="labelPersonalACargo"
+			value="${c:l('gedo.misSupervisados.label.noPersonalCargo')}"
+			visible="false">
+		</label>
+	</window>
+</zk>

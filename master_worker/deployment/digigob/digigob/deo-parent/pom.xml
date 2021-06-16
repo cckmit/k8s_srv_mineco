@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>com.egoveris</groupId>
+    <artifactId>egoveris-master-config</artifactId>
+    <version>2.0.3-SNAPSHOT</version>
+  </parent>
+  <artifactId>deo</artifactId>
+  <packaging>pom</packaging>
+  <name>Application deo</name>
+
+  <distributionManagement>
+    <repository>
+       <id>local-releases</id>
+       <name>Repositorio interno everis Argentina - RELEASES</name>
+       <url>https://steps.everis.com/nexus/repository/EGOVERISTE.Release/</url>
+    </repository>
+    <snapshotRepository>
+       <id>local-snapshots</id>
+       <name>Repositorio interno eGoveris - SNAPSHOTS</name>
+       <url>https://steps.everis.com/nexus/repository/EGOVERISTE.Snapshot/</url>
+    </snapshotRepository>
+  </distributionManagement>
+
+  <modules>
+    <module>deo-webapp</module>
+    <module>deo-env</module>
+    <module>deo-base-common</module>
+    <module>deo-base-core</module>
+    <module>deo-base-web</module>
+    <module>deo-ws-common</module>
+    <module>deo-ws-web</module>
+    <module>deo-model-common</module>
+  </modules>
+  <properties>
+	<appShortId>deo</appShortId>
+  </properties>
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>org.terasoluna.plus.framework</groupId>
+        <artifactId>terasoluna-plus-bom</artifactId>
+        <version>0.2.0.RELEASE</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+      <dependency>
+        <groupId>com.egoveris</groupId>
+        <artifactId>deo-env</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.egoveris</groupId>
+        <artifactId>deo-webapp</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.egoveris</groupId>
+        <artifactId>deo-base-common</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.egoveris</groupId>
+        <artifactId>deo-base-core</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.egoveris</groupId>
+        <artifactId>deo-base-web</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.egoveris</groupId>
+        <artifactId>deo-ws-common</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.egoveris</groupId>
+        <artifactId>deo-ws-web</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.egoveris</groupId>
+        <artifactId>deo-model-common</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
+</project>

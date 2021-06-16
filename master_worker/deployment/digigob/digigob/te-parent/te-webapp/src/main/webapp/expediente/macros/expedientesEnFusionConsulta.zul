@@ -1,0 +1,49 @@
+<?page title="Fusión" contentType="text/html;charset=UTF-8"?>
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./expedienteEnFusionConsultaWindow"?>
+<zk>
+	<window title="" border="none"
+		id="expedienteEnFusionConsultaWindow"
+		
+		apply="com.egoveris.te.base.composer.GenericExpedienteEnFusionConsultaComposer">
+		<groupbox>
+			<paging id="expedientesEnFusionConsultaPaginator"
+				pageSize="10" width="800px" />
+			<listbox id="expedienteEnFusionComponent"
+				maxlength="20" mold="paging" width="800px"
+				paginal="${expedientesEnFusionConsultaPaginator}"
+				pagingPosition="top"
+				selectedItem="@{expedienteEnFusionConsultaWindow$composer.selectedExpedienteEnFusion}"
+				itemRenderer="com.egoveris.te.base.rendered.ExpedienteConsultaFusionItemRenderer">
+				<listhead>
+					<listheader label="${c:l('ee.expedienteAsociado.listheader.tDoc')}" width="50px"
+						align="center" />
+					<listheader label="${c:l('ee.historialpases.column.anio.value')}" width="50px" align="center" />
+					<listheader label="${c:l('ee.historialpases.column.numero.value')}" width="100px"
+						align="center" />
+					<listheader label="${c:l('ee.historialpases.column.reparticion.value')}" width="150px"
+						align="center" />
+					<listheader label="${c:l('ee.expedienteAsociado.listheader.tramite')}" width="150px"
+						align="center" />
+					<listheader label="${c:l('ee.expediente.subsanaciondocumentos.lbl.accion')}" width="300px"
+						align="center" />
+				</listhead>
+
+				<listfoot
+					>
+					<listfooter />
+					<listfooter />
+					<listfooter
+						id="totalExpedientesEnFusion"
+						label="${c:l('ee.tramitacion.listfooter.expedientesEnFusion.value')}"
+						span="3"  />
+					<listfooter
+						label="@{expedienteEnFusionConsultaWindow$composer.listaExpedienteEnFusion.size}"
+						span="1"  align="rigth" />
+				</listfoot>
+
+			</listbox>
+		</groupbox>
+	</window>
+</zk>

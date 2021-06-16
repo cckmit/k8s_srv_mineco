@@ -1,0 +1,135 @@
+<?page title="Detalle Expediente" contentType="text/html;charset=UTF-8"?>
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+<zk>
+	<window id="detalleExpedienteWindow" title="${c:l('ee.detalleExp.title.detalleCaratula')}"
+		border="normal" width="950px" closable="true"
+		apply="com.egoveris.te.base.composer.DetalleExpedienteComposer">
+
+		<div>
+			<groupbox>
+				<separator />
+				<grid style="border:0px" width="900px">
+					<rows>
+						<row width="800px">
+							<label width="100px"
+								id="ee.tramitacion.label.motivo"
+								value="${c:l('ee.tramitacion.label.motivo.value')}" />
+							<textbox id="motivoExpediente"
+								maxlength="4001" readonly="true" cols="80" rows="3">
+							</textbox>
+						</row>
+					</rows>
+				</grid>
+				<separator />
+				<label id="ee.tramitacion.label.datosexpediente"
+					value="${c:l('ee.tramitacion.label.datosexpediente.value')}"
+					style="font:bold;" />
+				<separator bar="true" />
+				<radiogroup>
+					<radio id="expedienteInterno"
+						label="${c:l('ee.tramitacion.label.interno.value')}"
+						checked="false"
+						forward="onClick=tramitacionWindow$TramitacionComposer.onClickExpedienteInterno" />
+					<space />
+					<space />
+					<radio id="expedienteExterno"
+						label="${c:l('ee.tramitacion.label.externo.value')}"
+						checked="false"
+						forward="onClick=tramitacionWindow$TramitacionComposer.onClickExpedienteExterno" />
+				</radiogroup>
+				<hbox align="start" spacing="0" width="100%">
+
+					<separator></separator>
+					<grid  width="900px">
+						<rows>
+							<row width="500px">
+								<label width="80px"
+									id="ee.tramitacion.label.codigotrata"
+									value="${c:l('ee.tramitacion.label.codigotrata.value')}" />
+								
+								<combobox id="codigoTrata"
+									readonly="true" width="423px" />
+							</row>
+							<row>
+								<label
+									value="${c:l('ee.nuevoexpediente.label.datospropios.datospropios')}" />
+									<toolbarbutton autodisable="self" width="277px"
+										style="background-color: white;" image="/imagenes/play.png"
+										id="datosPropios"
+										label="${c:l('ee.tramitacion.toolbarbutton.datospropios.value')}" />
+							</row>
+							<row width="500px">
+								<label width="100px"
+									id="ee.tramitacion.label.descripcion"
+									value="${c:l('ee.tramitacion.label.descripcion.value')}" />
+								<textbox id="descripcion"
+									readonly="true" maxlength="225" cols="80" rows="3">
+								</textbox>
+							</row>
+							<row>
+								<label width="80px"
+									id="ee.tramitacion.label.tipodocumento"
+									value="${c:l('ee.tramitacion.label.tipodocumento.value')}" />
+								<combobox id="tipoDocumento"
+									readonly="true" width="200px" />
+							</row>
+							<row>
+								<label width="112px"
+									id="ee.tramitacion.label.numerodocumento"
+									value="${c:l('ee.tramitacion.label.numerodocumento.value')}" />
+								<longbox id="numeroDocumento"
+									readonly="true" maxlength="11">
+								</longbox>
+							</row>
+							<row>
+								<label width="100px"
+									value="${c:l('ee.tramitacion.label.apellido.value')}" />
+								<textbox id="apellido" maxlength="225"
+									readonly="true" cols="50">
+								</textbox>
+							</row>
+							<row>
+								<label width="100px"
+									value="${c:l('ee.tramitacion.label.nombre.value')}" />
+								<textbox id="nombre" maxlength="225"
+									readonly="true" cols="50">
+								</textbox>
+							</row>
+							<row>
+								<label width="100px"
+									value="${c:l('ee.tramitacion.label.razonsocial.value')}" />
+								<textbox id="razonSocial"
+									readonly="true" maxlength="225" cols="50">
+								</textbox>
+							</row>
+							<row>
+								<label width="100px"
+									value="${c:l('ee.tramitacion.label.email.value')}" />
+								<textbox id="email" maxlength="225"
+									readonly="true" cols="50">
+								</textbox>
+							</row>
+							<row>
+								<label width="100px"
+									value="${c:l('ee.tramitacion.label.telefono.value')}" />
+								<textbox id="telefono" maxlength="255"
+									readonly="true" cols="50">
+								</textbox>
+							</row>
+							<row>
+								<label width="100px"
+									id="ee.tramitacion.label.estado"
+									value="${c:l('ee.tramitacion.label.estado.value')}" />
+								<textbox id="estado" cols="50"
+									readonly="true"
+									forward="onSelect=tramitacionWindow$TramitacionComposer.onSelectEstado">
+								</textbox>
+							</row>
+						</rows>
+					</grid>
+				</hbox>
+			</groupbox>
+
+		</div>
+	</window>
+</zk>

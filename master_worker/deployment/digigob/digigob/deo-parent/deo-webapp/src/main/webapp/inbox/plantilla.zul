@@ -1,0 +1,61 @@
+<?page title="${c:l('gedo.plantillas.titulo')}" contentType="text/html;charset=UTF-8"?>
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver" ?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit"  arg0="./plantillaWindow" ?>
+<zk>
+	<window id="plantillaWindow"
+		title="${c:l('gedo.plantillas.titulo')}" border="normal" width="70%"
+		closable="true"
+		apply="com.egoveris.deo.web.satra.plantillas.PlantillaComposer"
+		use="com.egoveris.deo.web.satra.AskBeforeCloseWindow">
+		<div height="100%" width="100%" align="center">
+			<grid style="border:none; " width="90%">
+				<columns>
+					<column width="15%" />
+					<column width="86%" />
+				</columns>
+				<rows>
+					<row style=" border: none;">
+						<label
+							value="${c:l('gedo.datosPropios.columns.colum.label.nombre')}" />
+						<textbox id="txtNombrePlantilla"
+							value="@{plantillaWindow$PlantillaComposer.plantilla.nombre}"
+							maxlength="45" width="90%" constraint="no empty" />
+					</row>
+					<row style=" border: none;">
+						<label
+							value="${c:l('gedo.historial.documento.descripcion')}" />
+						<textbox id="txtDescripcionPlantilla"
+							value="@{plantillaWindow$PlantillaComposer.plantilla.descripcion}"
+							maxlength="255" width="90%" />
+					</row>
+				</rows>
+			</grid>
+			<separator />
+			<ckeditor id="cKeditor"
+				customConfigurationsPath="/js/ckeditor.js" width="90%"
+				height="170px" />
+			<separator />
+			<toolbar mold="panel" orient="horizontal" width="100%"
+				align="center">
+				<toolbarbutton id="guardar"
+					style="height: auto; padding:7px 10px;"
+					iconSclass="z-icon-floppy-o"
+					label="${c:l('deo.webapp.inbox.plantilla.btn.guardar')}"
+					zclass="z-button" disabled="false">
+				</toolbarbutton>
+				<toolbarbutton id="cancelar"
+					style="height: auto; padding:7px 10px;"
+					iconSclass="z-icon-times"
+					label="${c:l('deo.webapp.inbox.plantilla.btn.cancelar')}"
+					zclass="z-button"
+					disabled="false">
+				</toolbarbutton>
+			</toolbar>
+		</div>
+		<style>
+			.z-errbox.z-popup{ position:absolute; left:540px !important;
+			}
+		</style>
+	</window>
+</zk>

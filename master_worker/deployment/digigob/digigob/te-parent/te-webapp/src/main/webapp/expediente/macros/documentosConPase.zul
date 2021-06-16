@@ -1,0 +1,53 @@
+<?page title="" contentType="text/html;charset=UTF-8"?>
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./documentosConPaseWindow" ?>
+<zk>
+	<window border="none" id="documentosConPaseWindow"
+		style=" overflow:auto"
+		apply="com.egoveris.te.base.composer.DocumentosConPaseComposer">
+		<hbox>
+			<paging id="pagingDocumento" pageSize="5" autohide="true" />
+			<label id="labelPagina"
+                   value="${c:l('ee.tramitacion.paginado.masDeUnaPagina.value')}"
+				   visible="false" style="color:red; font-style: italic;"/>
+		</hbox>
+		<listbox id="listboxDocumentos" mold="paging"
+				 maxlength="25"
+				 model="@{documentosConPaseWindow$DocumentosConPaseComposer.listaDocumentosConPase}"
+				 selectedItem="@{documentosConPaseWindow$DocumentosConPaseComposer.selectedDocumento}"
+				 itemRenderer="com.egoveris.te.base.rendered.DocumentosItemRenderer"
+				 paginal="${pagingDocumento}">
+	    	<listhead>
+				<listheader label="${c:l('ee.historialpases.listheader.orden.value')}" align="center" hflex="min" />
+				<listheader label="${c:l('ee.documentViewer.listhead.tipoDocumento')}" align="center" hflex="min" />
+				<listheader label="${c:l('ee.documentViewer.listhead.numDocumento')}" align="center" hflex="max" />
+				<listheader label="${c:l('ee.documentViewer.listhead.referencia')}" align="center" width="320px" />
+				<listheader label="${c:l('ee.caratulas.listheader.documento.fechaAsociacion.value')}" align="center" hflex="min" />
+				<listheader label="${c:l('ee.documentViewer.listhead.fechaCreacion')}" align="center" hflex="min" />
+				<listheader label="${c:l('te.webapp.abmTrata.listbox.header.acciones')}" align="center" width="80px" />
+			</listhead>
+			<listfoot >
+				 <listfooter />
+				 <listfooter />
+				 <listfooter />
+				 <listfooter />
+				 <listfooter />
+				 <listfooter id="totalDocumentos" 
+				 			 label="${c:l('ee.tramitacion.listfooter.documentos.value')}"
+							 span="1" 
+							  />
+		 		 <listfooter id="footerSize"
+							 span="1" 
+							  
+							 align="left" />
+		 	 </listfoot>
+		</listbox>
+		<vbox width="100%" align="end">
+			<button autodisable="self" id="descargarTodos"
+				image="/imagenes/Descargar.png"
+				label="${c:l('ee.expediente.subsanaciondocumentos.lbl.descargar')}"
+				forward="onClick=documentosSinPaseWindow$DocumentosConPaseComposer.onDescargarTodos" />
+		</vbox>		
+	</window>
+</zk>

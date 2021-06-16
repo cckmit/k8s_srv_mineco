@@ -1,0 +1,155 @@
+<?page title="Trata Integracion" contentType="text/html;charset=UTF-8"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./trataIntegracionWindow" ?>
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+<zk>
+<window id="trataIntegracionWindow" title="${c:l('ee.trataInt.title.intSisExt')}"  position="center" border="normal"
+closable="true" width="30%" apply="com.egoveris.te.base.composer.TrataIntegracionComposer">
+
+
+<listbox>
+	<listhead>
+		<listheader width="30%"/>
+		<listheader width="70%"/>
+	</listhead>
+	<listitem>
+		<listcell>
+			<label value="${c:l('te.webapp.inbox.detalletrata.lbl.codigo')}"/>	
+		</listcell>
+		<listcell>
+			<textbox maxlength="7" id="codigoTextbox" width="98%"/>	
+		</listcell>
+	</listitem>
+	<listitem>
+		<listcell>
+			<label value="${c:l('ee.trataInt.listcell.url')}"/>	
+		</listcell>
+		<listcell>
+			<textbox maxlength="500" id="urlTextbox" width="98%"/>	
+		</listcell>
+	</listitem>
+</listbox>
+<separator spacing="10px"/>
+<div align="center">
+<listbox fixedLayout="true" id="reparticionesTrataListBox"	mold="paging" pageSize="10"	
+		model="@{trataIntegracionWindow$composer.model.reparticionesIntegracion}" 
+		 
+		rows="10" width="80%" >
+		<listhead>
+			<listheader label="${c:l('ee.trataInt.listheader.codOrg')}" align="left"/>
+			<listheader label="${c:l('ee.trataInt.listheader.int')}"/>
+		</listhead>
+</listbox>
+</div>
+<separator spacing="10px"/>
+<grid>
+			<rows>
+				<row spans="65%, 35%" align="center">
+					<hbox align="center">
+						<separator orient="vertical" width="16px" />
+						<label value="${c:l('te.webapp.inbox.reparticionestrata.lbl.agregar')}" />
+						<bandbox id="reparticionImportarDocumentoSADE"
+							width="70%" height="auto">							
+							<bandpopup
+								id="reparticionesComboImportarDocumentosSADE" width="610px"
+								height="auto"
+								apply="com.egoveris.te.base.composer.FindReparticionesBusquedaHabilitadasBandboxComposer ">
+								<groupbox mold="3d" height="auto"
+									width="auto">
+									<caption>
+										<hbox>
+											<label value="${c:l('ee.trataInt.label.busOrg')}" />
+										</hbox>
+									</caption>
+									<separator></separator>
+									<vbox>
+										<hbox align="bottom">
+											<label
+												value="${c:l('ee.asociardocumento.column.buscar.value')}" />
+											<separator width="2px" />
+											<textbox
+												id="textoReparticionImportarDocumentoSADE" />
+											<separator width="100px" />
+											<radiogroup
+												id="busquedaRadioGroup" orient="vertical">
+												<radio
+													id="busquedaPorNombreRadioButton" checked="true"
+													label="${c:l('te.webapp.inbox.reparticionestrata.lbl.pornombre')}" />
+												<radio
+													id="busquedaPorEstructuraRadioButton" checked="false"
+													label="${c:l('te.webapp.inbox.reparticionestrata.lbl.porestructura')}" />
+											</radiogroup>
+										</hbox>
+										<paging
+											id="paginatorIncorporarSADE" pageSize="5" visible="true" />
+										<listbox
+											id="reparticionesImportarDocumentoSADEListbox" mold="paging"
+											paginal="${paginatorIncorporarSADE}"
+											model="@{listaReparticionSADESeleccionada}"
+											selectedItem="@{reparticionSeleccionada}" width="590px"
+											visible="true">
+											<listhead>
+												<listheader width="15%"
+													label="${c:l('ee.agregarReparticiones.listhead.listheader.label.codigo')}" />
+												<listheader width="85%"
+													label="${c:l('ee.agregarReparticiones.listhead.listheader.label.descripcion')}" />
+											</listhead>
+											<listitem
+												self="@{each=reparticion}">
+												<listcell
+													label="@{reparticion.codigo}" />
+												<listcell
+													label="@{reparticion.nombre}" />
+											</listitem>
+										</listbox>
+										<tree
+											id="reparticionesImportarDocumentoSADEPorEstructuraTree"
+											width="590px" visible="false" height="auto">
+											<treecols>
+												<treecol width="40%"
+													label="${c:l('ee.agregarReparticiones.listhead.listheader.label.codigo')}" />
+												<treecol width="60%"
+													label="${c:l('ee.agregarReparticiones.listhead.listheader.label.descripcion')}" />
+											</treecols>
+										</tree>
+									</vbox>
+								</groupbox>
+							</bandpopup>
+						</bandbox>
+						<separator orient="vertical" width="16px" />
+						<button autodisable="self" id="agregarReparticionSade"
+							tooltiptext="${c:l('ee.trata.integracion.organismo.tooltiptext')}"
+							image="/imagenes/control_add_blue.png"
+							forward="onClick=trataIntegracionWindow$composer.onAgregarReparticionSade" />
+					</hbox>
+				</row>
+			</rows>
+		</grid>
+
+
+<grid align="center" style="border:0px">
+	<rows>
+		<row>
+			<toolbar mold="panel" orient="horizontal"
+				width="100%" align="center">
+				<!-- 
+				<toolbarbutton autodisable="self" id="guardar"
+					image="/imagenes/Guardar.png" disabled="false"
+					forward="onClick=onGuardarTrataCambios">
+				</toolbarbutton>
+				<toolbarbutton autodisable="self" id="cancelar"
+					image="/imagenes/Cancelar.png" disabled="false">
+				</toolbarbutton>
+				-->
+				<button autodisable="self" id="guardar"
+					label="${c:l('te.webapp.inbox.tipoDocs.btn.guardar')}" disabled="false"
+					forward="onClick=onGuardarTrataCambios">
+				</button>
+				<button autodisable="self" id="cancelar"
+					label="${c:l('te.webapp.inbox.tipoDocs.btn.cacelar')}" disabled="false">
+				</button>
+			</toolbar>
+		</row>
+	</rows>
+</grid>
+</window>
+</zk>

@@ -1,0 +1,29 @@
+<?page title="new page title" contentType="text/html;charset=UTF-8"?>
+<zk>
+	<vlayout  apply="com.egoveris.ffdd.render.zk.comp.cc.ListaProductosDIComposer">
+		<grid>
+		<columns>
+			<column></column>
+			<column></column>
+		</columns>
+		<rows>
+			<row>
+				<hbox>
+					<cell id="${arg.formComp.nombre}_codigoProductoDiv" />
+				</hbox>
+				<hbox>
+					<cell id="${arg.formComp.nombre}_descripcionProductoDiv" />
+				</hbox>
+			</row>
+			<row>
+				<hbox>
+					<cell id="${arg.formComp.nombre}_cantidadTotalDiv" />
+				</hbox>
+				<hbox>
+					<cell id="${arg.formComp.nombre}_cantidadUOMDiv" />
+				</hbox>
+			</row>
+		</rows>		
+	</grid>
+ </vlayout>
+</zk>

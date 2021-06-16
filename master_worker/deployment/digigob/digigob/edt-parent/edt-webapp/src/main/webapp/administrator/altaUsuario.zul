@@ -1,0 +1,221 @@
+<?page title="${c:l('altaUsuario.title')}" contentType="text/html;charset=UTF-8"?>
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./win_altaUsuario" ?>
+<zk>
+
+	<window id="win_altaUsuario" border="normal"
+		title="${c:l('eu.adminSade.altaUsuario')}"
+		apply="com.egoveris.edt.web.admin.pl.AltaUsuarioComposer"
+		width="550px" position="center" mode="modal" closable="true">
+
+	<style>
+	.z-include .bandbox-rol{
+		margin-left: 3px !important;
+	} 
+	</style>
+
+		<vbox style="background:#C4ECFF" width="100%" height="50px"
+			align="center" pack="center">
+			<label style="font-weight:bold"
+				value="${c:l('eu.adminSade.altaUsuario')}" />
+		</vbox>
+		<vbox align="center" width="100%">
+			<grid id="gr_altaUsuario" width="500px"
+				style="padding:0px; border:none; border-spacing:0px;">
+				<rows>
+<!-- 					<row style="border:none;" spans="30%,70%"> -->
+<!-- 						<cell align="right"> -->
+<!-- 							<label -->
+<!-- 								value="${c:l('eu.adminSade.usuario.nombre')}" /> -->
+<!-- 						</cell> -->
+<!-- 						<cell align="left"> -->
+<!-- 							<textbox id="txbx_nombre" width="270px" -->
+<!-- 								value="@{win_altaUsuario$composer.usuario.nombre}" -->
+<!-- 								maxlength="255" /> -->
+<!-- 						</cell> -->
+<!-- 					</row> -->
+					<row style="border:none;" spans="30%,70%">
+						<cell align="right">
+							<label
+								value="${c:l('eu.adminSade.usuario.primer.nombre')}" />
+						</cell>
+						<cell align="left">
+							<textbox id="txbx_primer_nombre" width="270px"
+								
+								value="@{win_altaUsuario$composer.datosUsuario.primerNombre}"
+								maxlength="255" />
+						</cell>
+					</row>
+					<row style="border:none;" spans="30%,70%">
+						<cell align="right">
+							<label
+								value="${c:l('eu.adminSade.usuario.segundo.nombre')}" />
+						</cell>
+						<cell align="left">
+							<textbox id="txbx_segundo_nombre" width="270px"
+								
+								value="@{win_altaUsuario$composer.datosUsuario.segundoNombre}"
+								maxlength="255" />
+						</cell>
+					</row>
+					<row style="border:none;" spans="30%,70%">
+						<cell align="right">
+							<label
+								value="${c:l('eu.adminSade.usuario.tercer.nombre')}" />
+						</cell>
+						<cell align="left">
+							<textbox id="txbx_tercer_nombre" width="270px"
+								
+								value="@{win_altaUsuario$composer.datosUsuario.tercerNombre}"
+								maxlength="255" />
+						</cell>
+					</row>
+					<row style="border:none;" spans="30%,70%">
+						<cell align="right">
+							<label
+								value="${c:l('eu.adminSade.usuario.primer.apellido')}" />
+						</cell>
+						<cell align="left">
+							<textbox id="txbx_primer_apellido" width="270px"
+								
+								value="@{win_altaUsuario$composer.datosUsuario.primerApellido}"
+								maxlength="255" />
+						</cell>
+					</row>
+					<row style="border:none;" spans="30%,70%">
+						<cell align="right">
+							<label
+								value="${c:l('eu.adminSade.usuario.segundo.apellido')}" />
+						</cell>
+						<cell align="left">
+							<textbox id="txbx_segundo_apellido" width="270px"
+								
+								value="@{win_altaUsuario$composer.datosUsuario.segundoApellido}"
+								maxlength="255" />
+						</cell>
+					</row>
+					<row style="border:none;" spans="30%,70%">
+						<cell align="right">
+							<label
+								value="${c:l('eu.adminSade.usuario.tercer.apellido')}" />
+						</cell>
+						<cell align="left">
+							<textbox id="txbx_tercer_apellido" width="270px"
+								
+								value="@{win_altaUsuario$composer.datosUsuario.tercerApellido}"
+								maxlength="255" />
+						</cell>
+					</row>
+
+					
+					<row style="border:none;" spans="30%,70%">
+						<cell align="right">
+							<label
+								value="${c:l('eu.adminSade.usuario.nombreUsuario')}" />
+						</cell>
+						<cell align="left">
+							<textbox id="txbx_uid" width="150px"
+								value="@{win_altaUsuario$composer.usuario.uid}" maxlength="255" />
+						</cell>
+					</row>
+					<row style="border:none;" spans="30%,70%" visible="false">
+						<cell align="right">
+							<label
+								value="${c:l('eu.adminSade.usuario.passwordNueva')}" />
+						</cell>
+						<cell align="left">
+							<textbox id="txbx_password" width="150px"
+								type="password"
+								value="@{win_altaUsuario$composer.usuario.password}"
+								maxlength="20" />
+						</cell>
+					</row>
+					<row style="border:none;" spans="30%,70%" visible="false">
+						<cell align="right">
+							<label
+								value="${c:l('eu.adminSade.usuario.passwordRepetirNueva')}" />
+						</cell>
+						<cell align="left">
+							<textbox id="txbx_confirmPassword"
+								type="password" width="150px" maxlength="20" />
+						</cell>
+					</row>
+					<row style="border:none;" spans="30%,70%">
+						<cell align="right">
+							<label
+								value="${c:l('eu.adminSade.usuario.mail')}" />
+						</cell>
+						<cell align="left">
+							<textbox id="txbx_mail" width="270px" maxlength="255" />
+						</cell>
+					</row>
+					<row style="border:none;" spans="30%,70%" visible="false">
+						<cell align="right">
+							<label
+								value="${c:l('eu.adminSade.usuario.carpetaPersonal')}" />
+						</cell>
+						<cell align="left">
+							<textbox id="txbx_legajo" width="270px"
+								maxlength="255" />
+						</cell>
+					</row>
+					<row style="border:none;" spans="100%">
+						<vbox>
+							<include id="inc_reparticionSectorSelector" />
+						</vbox>
+					</row>
+					<row style="border:none;" spans="30%, 70%">
+						<cell align="right">
+							<label value="${c:l('edt.webapp.altausuario.label.rol')}"/>					
+						</cell>
+						<cell align="left">
+							<include id="incRol"/>					
+						</cell>
+					</row>
+				</rows>
+			</grid>
+
+			<separator height="10px" />
+			<groupbox id="groupboxRoles">
+				<caption>
+					${c:l('edt.webapp.altausuario.label.roles')}
+				</caption>
+				<separator height="10px" />
+				<vbox id="vbox_permisosPersonales" visible="true"
+					width="500px">
+					<paging id="Paginator" pageSize="5"
+						detailed="true" />
+					<listbox id="lstbx_rolesAsignados" style=""
+						emptyMessage="${c:l('edt.webapp.altausuario.rolesAsignados.vacio')}"
+						model="@{win_altaUsuario$composer.listaRolAsignados}" mold="paging"
+						paginal="${Paginator}">
+						<listhead sizable="false"
+							style="background: #C4ECFF;">
+							<listheader align="center"
+								label="${c:l('edt.webapp.altausuario.listheader.rol')}" style=""
+								width="80%" />
+							<listheader align="center"
+								label="${c:l('edt.webapp.altausuario.listheader.accion')}" style=""
+								width="20%" />
+						</listhead>
+					</listbox>
+				</vbox>
+			</groupbox>
+			<separator height="20px" />
+			<hbox align="center">
+				<toolbarbutton id="btn_altaUsuario"
+					iconSclass="z-icon-floppy-o"
+					label="${c:l('edt.webapp.altausuario.btn.guardar')}"
+					zclass="z-button" style="padding:7px 10px;"
+					tooltiptext="${c:l('eu.adminSade.guardar')}" />
+				<toolbarbutton id="btn_cancelar"
+					iconSclass="z-icon-times"
+					label="${c:l('edt.webapp.altausuario.btn.cancelar')}"
+					zclass="z-button" style="padding:7px 10px;"
+					tooltiptext="${c:l('eu.adminSade.cancelar')}" />
+			</hbox>
+			<separator height="20px" />
+		</vbox>
+	</window>
+</zk>

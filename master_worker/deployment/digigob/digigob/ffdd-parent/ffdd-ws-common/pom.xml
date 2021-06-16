@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	
+	<parent>
+		<groupId>com.egoveris</groupId>
+		<artifactId>ffdd</artifactId>
+		<version>2.0.3-SNAPSHOT</version>
+	</parent>
+	
+	<artifactId>ffdd-ws-common</artifactId>
+	<name>ffdd ws common project</name>
+
+	<dependencies>
+	
+		<!-- == Begin Egoveris == -->
+		<dependency>
+			<groupId>com.egoveris</groupId>
+			<artifactId>ffdd-model-common</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.egoveris</groupId>
+			<artifactId>ccomplejos-base-common</artifactId>
+		</dependency>
+		<!-- == End Egoveris == -->
+		
+		<!-- == Begin TSF+ framework == -->
+		<dependency>
+			<groupId>org.terasoluna.plus.framework</groupId>
+			<artifactId>terasoluna-plus-common</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<!-- == End TSF+ framework == -->
+		
+	</dependencies>
+
+</project>

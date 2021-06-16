@@ -1,0 +1,42 @@
+<zk>
+	<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+	<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./agregarRevisorFirmaConjuntaWindow" ?>
+	<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+	
+	<window width="320px" id="agregarRevisorFirmaConjuntaWindow"
+		border="normal" closable="true"
+		title="${c:l('gedo.firmaConjunta.revisor.titulo')}"
+		apply="com.egoveris.deo.web.satra.produccion.AgregarRevisorFirmaConjuntaComposer"
+		position="center" contentStyle="background:white; align:left;">
+
+		<separator height="5px"/>
+
+		<!-- Carga de usuarios necesarios para revisar el documento de firma conjunta -->
+		<grid>
+			<rows>
+				<row spans="20%,70%,20%" align="left">
+					<label
+						value="${c:l('gedo.firmaConjunta.usuarioFirmaConjunta')}" />
+					<combobox width="99%" id="usuarioRevisorCombo" buttonVisible="false" autodrop="true" />
+				</row>
+			</rows>
+		</grid>
+		<separator height="5px"/>
+		<grid>
+			<rows>
+				<row spans="100%" align="center">
+					<hbox align="center">
+						<button id="finAgregarRevisorFirmaConjunta"
+							label="${c:l('gedo.firmaConjunta.botonGuardar')}"
+							forward="onClick=agregarRevisorFirmaConjuntaWindow$composer.onFinalizarAgregacion" />
+						<button id="cancelarAgregarUsuarioFirmaConjunta"
+							label="${c:l('gedo.firmaConjunta.botonCancelar')}"
+							forward="onClick=agregarRevisorFirmaConjuntaWindow$composer.onCancelarAgregacion" />
+					</hbox>	
+				</row>
+			</rows>
+		</grid>
+	</window>
+	
+</zk>
+

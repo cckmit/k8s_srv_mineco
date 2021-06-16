@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<complexComponent 
+		type="TRADE" name="heading" description="heading Information"
+		zul="heading.zul" composer="com.egoveris.ffdd.render.zk.comp.ext.HeadingComposer"
+		mappingDTO="com.egoveris.ccomplejos.base.model.HeadingDTO">
+		
+		<field name="headingId" class="com.egoveris.ffdd.render.zk.comp.ext.LongboxExt" height="20px" width="90%"/>
+		<field name="chapterDTO" class="com.egoveris.ffdd.render.zk.comp.ext.SeparatorComplex" height="20px" width="90%" xmlFile="chapter.xml" />	
+		<field name="chapterId" class="com.egoveris.ffdd.render.zk.comp.ext.LongboxExt" height="20px"  width="90%"/>
+		<field name="headingCode" class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" height="20px"  width="90%"/>
+		<field name="headingDesc" class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" height="20px"  width="90%"/>
+		<field name="headingdescSP" class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" height="20px"  width="90%"/>
+		<field name="headingStatus" class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" height="20px"  width="90%"/>
+</complexComponent>

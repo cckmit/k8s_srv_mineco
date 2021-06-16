@@ -1,0 +1,21 @@
+<?page title="" contentType="text/html;charset=UTF-8"?>
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./documentoDeTrabajoWindow"?>
+<window title="" border="none" id="documentoDeTrabajoWindow"
+	
+	apply="com.egoveris.te.base.composer.GenericDocumentoTrabajoComposer">
+	<zk>
+		<paging id="pagingArchivoTrabajo" pageSize="10" />
+		<listbox id="documentoTrabajoComponent" mold="paging"
+			selectedItem="@{documentoDeTrabajoWindow$composer.selectedArchivoDeTrabajo}"
+			itemRenderer="com.egoveris.te.base.rendered.GenericListaDocumentoTrabajoItemRenderer"
+			paginal="${pagingArchivoTrabajo}">
+			<listhead>
+				<listheader label="${c:l('ee.documentViewer.listhead.orden')}" width="60px" align="center" />
+				<listheader label="${c:l('ee.docTrabajoExpediente.listhead.archivo')}" align="center" />
+				<listheader label="${c:l('ee.caratulas.listheader.documento.accion.value')}" width="300px" align="center" />
+			</listhead>
+		</listbox>
+	</zk>
+</window>

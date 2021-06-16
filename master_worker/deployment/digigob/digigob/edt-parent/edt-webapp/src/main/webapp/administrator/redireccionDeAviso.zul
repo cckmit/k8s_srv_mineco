@@ -1,0 +1,81 @@
+<?page title="${c:l('redireccionAvisos.title')}" contentType="text/html;charset=UTF-8"?>
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./win_redireccion_alerta_aviso"?>
+
+<zk>
+	<window id="win_redireccion_alerta_aviso" width="100%"
+		style="align=center; " position="center"
+		border="normal"
+		apply="com.egoveris.edt.web.pl.RedireccionDeAvisoComposer">
+
+		<hbox style="" align="center">
+			<image src="/imagenes/egovIconOrange.png" width="40px"
+				height="30px" style="padding-left: 10px;" />
+			<label value="${c:l('eu.avisosalertas.labelDeInicio')}" style="font: bold;" />
+		</hbox>
+		<separator bar="true" style="" />
+		<grid>
+			<columns>
+				<column width="320px" />
+				<column />
+			</columns>
+			<rows>			
+				<row width="100%">
+					<label
+						value="${c:l('eu.avisosalertas.label.buscadorUsuario')}" />
+					<hbox vflex="true" align="center">
+						<bandbox id="bandBoxUsuarios" height="31px">
+							<bandpopup width="380px">
+								<groupbox mold="3d">
+									<caption>
+										<hbox>
+											<label
+												value="${c:l('eu.datosPersonales.hbox.bandBoxUsuarios.label.busquedaDeUsuarios')}"
+												width="560px" />
+											<image
+												src="/imagenes/help.png" width="16px" height="16px"
+												tooltip="helpBusquedaUsuarios" align="right" />
+										</hbox>
+									</caption>
+									<separator height="2px"></separator>
+									<vbox height="100px" width="100%">
+										<paging
+											id="paginatorIncorporarSADE" pageSize="10" />
+										<listbox width="100%"
+											id="usuarioListbox" mold="paging"
+											paginal="${paginatorIncorporarSADE}"
+											model="@{win_redireccion_alerta_aviso$composer.listaUsuariosSeleccionados}"
+											selectedItem="@{win_redireccion_alerta_aviso$composer.usuarioSeleccionado}"
+											itemRenderer="com.egoveris.edt.web.pl.renderers.UsuarioBandBoxDatosPersonalesItemRenderer">
+											<listhead>
+												<listheader
+													label="${c:l('eu.escritorioUnico.tareasMisSupervisados.usuario')}"
+													width="40%" />
+												<listheader
+													label="${c:l('eu.busquedausuario.listhead.label.nombApell') }"
+													width="60%" />
+											</listhead>
+											<listfoot
+												style="">
+												<listfooter
+													id="totalUsuarios" span="1" style="color:#C4ECFF" />
+											</listfoot>
+										</listbox>
+									</vbox>
+								</groupbox>
+							</bandpopup>
+						</bandbox>
+					</hbox>
+				</row>
+			</rows>
+		</grid>
+		<separator height="10px" />
+		<div align="center">
+			<button id="btn_guardar" image="/imagenes/save_24px.png" width="150px"
+				label="${c:l('eu.datosPersonales.periodoLicencia.tab.guardar')}" />
+		</div>
+	</window>
+
+
+</zk>

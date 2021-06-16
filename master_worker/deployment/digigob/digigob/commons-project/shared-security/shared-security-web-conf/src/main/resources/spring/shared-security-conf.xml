@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns:sec="http://www.springframework.org/schema/security"
+	xmlns="http://www.springframework.org/schema/beans" xmlns:zksp="http://www.zkoss.org/2008/zkspring/security"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:ldap="http://www.springframework.org/schema/ldap"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+						http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd
+                        http://www.zkoss.org/2008/zkspring/security http://www.zkoss.org/2008/zkspring/security/zkspring-security.xsd
+     					http://www.springframework.org/schema/ldap http://www.springframework.org/schema/ldap/spring-ldap.xsd
+       					http://www.springframework.org/schema/context
+						http://www.springframework.org/schema/context/spring-context.xsd
+       					http://www.springframework.org/schema/ldap http://www.springframework.org/schema/ldap/spring-ldap.xsd">
+
+
+	<!-- <sec:global-method-security -->
+	<!-- pre-post-annotations="disabled" /> -->
+
+	<sec:authentication-manager alias="authenticationManager">
+		<sec:authentication-provider ref="casAuthenticationProvider" />
+	</sec:authentication-manager>
+
+	<bean id="casAuthenticationFilter"
+		class="org.springframework.security.cas.web.CasAuthenticationFilter">
+		<property name="authenticationManager" ref="authenticationManager" />
+		<property name="filterProcessesUrl" value="/auth_check" />
+	</bean>
+
+	<bean id="casProcessingFilterEntryPoint"
+		class="org.springframework.security.cas.web.CasAuthenticationEntryPoint">
+		<property name="loginUrl" value="${cas.url}/cas/login" />
+		<property name="serviceProperties" ref="serviceProperties" />
+	</bean>
+
+
+	<bean id="casAuthenticationProvider"
+		class="org.springframework.security.cas.authentication.CasAuthenticationProvider">
+		<property name="userDetailsService" ref="usuarioService" />
+		<property name="serviceProperties" ref="serviceProperties" />
+		<property name="ticketValidator">
+			<bean class="org.jasig.cas.client.validation.Cas20ServiceTicketValidator">
+				<constructor-arg index="0" value="${cas.url}/cas" />
+			</bean>
+		</property>
+		<property name="key" value="an_id_for_this_auth_provider_only" />
+	</bean>
+
+
+	<bean id="serviceProperties" class="org.springframework.security.cas.ServiceProperties">
+		<property name="service" value="${app.url}/auth_check" />
+		<property name="sendRenew" value="false" />
+	</bean>
+
+	<!-- SE INCLUYE AQUI LA DEFINICION DEL LDAP POR SER UN ATRIBUTO DE LA SEGURIDAD 
+		DE LA APLICACION -->
+
+
+	<ldap:context-source url="${ldap.url}" base="${ldap.base}"
+		username="${ldap.admin.user}" password="${ldap.admin.password}" />
+
+	<ldap:ldap-template id="ldapTemplate" />
+
+
+	<bean id="ldapContextSource" class="org.springframework.ldap.core.support.LdapContextSource">
+		<property name="url" value="${ldap.url}" />
+		<property name="base" value="${ldap.base}" />
+		<property name="userDn" value="${ldap.admin.user}" />
+		<property name="password" value="${ldap.admin.password}" />
+		<property name="pooled" value="false" />
+	</bean>
+
+
+	<bean id="userSearch"
+		class="org.springframework.security.ldap.search.FilterBasedLdapUserSearch">
+		<constructor-arg index="0" value="" />
+		<constructor-arg index="1" value="(cn={0})" />
+		<constructor-arg index="2" ref="ldapContextSource" />
+	</bean>
+
+	<bean id="authoritiesPopulator"
+		class="com.egoveris.sharedsecurity.conf.service.CustomAuthoritiesPopulator">
+		<property name="rolePrefix" value="" />
+		<property name="groupAttr" value="employeeType" />
+		<property name="groupSimpleAttr" value="ou" />
+	</bean>
+
+	<bean name="usuarioDAO" class="com.egoveris.sharedsecurity.base.repository.impl.UsuarioDaoJdbc">
+		<property name="dataSource" ref="dataSourceUsuarios" />
+	</bean>
+
+	<bean id="tiempoRefresco" class="java.lang.String">
+		<constructor-arg type="java.lang.String"
+			value="${security.usuarios.refrescoMinutos}" />
+	</bean>
+
+
+	<context:annotation-config />
+	<context:component-scan
+		base-package="com.egoveris.sharedsecurity.base,
+	com.egoveris.sharedsecurity.conf.service" />
+
+	<bean id="userConverterMapper" class="org.dozer.DozerBeanMapper" />
+
+	<bean id="solrServerUSUARIOS" class="org.apache.solr.client.solrj.impl.HttpSolrServer">
+		<constructor-arg>
+			<value>${solr.usr.url}</value>
+		</constructor-arg>
+		<property name="connectionTimeout" value="10000" />
+		<property name="defaultMaxConnectionsPerHost" value="100" />
+		<property name="maxTotalConnections" value="100" />
+	</bean>
+
+
+</beans>

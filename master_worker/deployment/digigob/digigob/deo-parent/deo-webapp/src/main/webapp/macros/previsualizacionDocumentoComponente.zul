@@ -1,0 +1,38 @@
+<?page title="new page title" contentType="text/html;charset=UTF-8"?>
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+
+<zk>
+	<div align="center">
+		<groupbox height="${arg.height}" width="${arg.width}">
+			<toolbar mold="panel" orient="horizontal" width="100%"
+				align="center">
+
+				<toolbarbutton id="descargarArchivo"
+					iconSclass="z-icon-download"
+					label="${c:l('deo.webapp.macros.previsualizaciondocumento.btn.descargardocumento')}"
+					style="padding:7px 10px;" zclass="z-button"
+					tooltiptext="${c:l('gedo.previsualizar.helpDescargarDocumento')}" />
+					
+				<toolbarbutton id="volver" iconSclass="z-icon-reply"
+					label="${c:l('deo.webapp.macros.previsualizaciondocumento.btn.volveraldocumento')}"
+					style="padding:7px 10px;" zclass="z-button"
+					tooltiptext="${c:l('gedo.previsualizar.helpVolver')}" />
+			</toolbar>
+			<hbox width="99%" align="start" pack="start">
+				<label id="leyendaPrevisualizacion"
+					value="${c:l('gedo.firmarDocumento.leyendaPrevisualizacion')}"
+					style="font-weight: bold;" visible="true" />
+			</hbox>
+			<grid align="center" height="600px" width="740px">
+				<rows>
+					<row align="center">
+						<iframe id="imagePreviewer" height="390px"
+							width="100%">
+						</iframe>
+					</row>
+				</rows>
+			</grid>
+		</groupbox>
+	</div>
+</zk>

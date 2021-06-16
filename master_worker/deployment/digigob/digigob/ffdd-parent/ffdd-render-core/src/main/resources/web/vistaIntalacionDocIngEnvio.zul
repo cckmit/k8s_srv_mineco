@@ -1,0 +1,55 @@
+<?page title="new page title" contentType="text/html;charset=UTF-8"?>
+<zk>
+	<vlayout width="100%"
+		apply="com.egoveris.ffdd.render.zk.comp.cc.VistaIntalacionDocIngEnvioComposer">
+		<vbox>
+			<hbox>
+				<cell
+					id="${arg.formComp.nombre}_nombreContactoEstablecimientoDiv" />
+				<cell
+					id="${arg.formComp.nombre}_nombreDirectorTecnicoDiv" />
+				<cell
+					id="${arg.formComp.nombre}_tipoEstablecimientoDiv" />
+
+			</hbox>
+		</vbox>
+		<vbox>
+			<hbox>
+				<cell
+					id="${arg.formComp.nombre}_codigoEstablecimientoDiv" />
+				<cell
+					id="${arg.formComp.nombre}_nombreEstablecimientoDiv" />
+				<cell
+					id="${arg.formComp.nombre}_establecimientoAutorizadoDiv" />
+
+			</hbox>
+		</vbox>
+		<vbox>
+			<hbox>
+				<cell
+					id="${arg.formComp.nombre}_razonSocialEstablecimientoDiv" />
+				<cell
+					id="${arg.formComp.nombre}_numeroResolucionAutorizacionDiv" />
+				<cell
+					id="${arg.formComp.nombre}_fechaEmisionResolucionDiv" />
+			</hbox>
+		</vbox>
+		<vbox>
+			<hbox>
+				<cell id="${arg.formComp.nombre}_entidadEmisoraDiv" />
+				<cell
+					id="${arg.formComp.nombre}_telefonoInstalacionDiv" />
+				<cell
+					id="${arg.formComp.nombre}_direccionEstablecimientoDiv" />
+
+			</hbox>
+		</vbox>
+		<vbox>
+			<hbox>
+				<cell id="${arg.formComp.nombre}_regionInstalacionDiv" />
+				<cell id="${arg.formComp.nombre}_comunaInstalacionDiv" />
+
+			</hbox>
+		</vbox>
+	</vlayout>
+</zk>

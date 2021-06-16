@@ -1,0 +1,91 @@
+<?page title="Subsanar" contentType="text/html;charset=UTF-8"?>
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./subsanarWindow" ?>
+<zk>
+	<window id="subsanarWindow" border="normal" closable="true"
+		mode="modal"
+		title="${c:l('ee.subsanacion.radio.subsanacion')} - ${c:l('ee.subsanacion.radio.pedidoInf')}"
+		width="400px" 
+		apply="com.egoveris.te.base.composer.SubsanacionExpedienteComposer">
+		<radiogroup id="tipoSub" />
+		<grid>
+			<columns>
+				<column width="100px" />
+				<column />
+			</columns>
+			<rows>
+				<row>
+					<label value="${c:l('ee.subsanacion.label.motivo')}"
+						style="padding-left: 5px;" />
+					<textbox id="motivoTextBox" maxlength="250" rows="6"
+						cols="38" style="resize: none;" />
+				</row>
+				<row>
+					<label value="${c:l('ee.subsanacion.label.datos')}"
+						style="padding-left: 5px;" />
+					<vlayout>
+						<separator />
+						<checkbox id="check1" visible="false"
+							label="${c:l('ee.subsanacion.check.formulario')}" />
+						<hlayout>
+							<checkbox id="check2" 
+								label="${c:l('ee.subsanacion.check.subsanacion')}" />
+							<separator />
+							<toolbarbutton autodisable="self" id="subsaDocs"
+								image="/imagenes/ArchivosDeTrabajoConsulta.png" width="20px"
+								tooltiptext="${c:l('ee.subsanacion.tooltip.subsanacion')}" />
+						</hlayout>
+						<hlayout>
+							<checkbox id="check3"
+								label="${c:l('ee.subsanacion.check.agregarDoc')}" />
+							<separator />
+							<toolbarbutton autodisable="self" id="agregarDocs"
+								image="/imagenes/ArchivosDeTrabajoConsulta.png" width="20px"
+								tooltiptext="${c:l('ee.subsanacion.tooltip.agregarDoc')}" />
+						</hlayout>
+						<hlayout visible="false">
+							<checkbox id="check4"
+								label="${c:l('ee.subsanacion.check.subsanacionForms')}" />
+							<separator />
+							<button autodisable="self" id="subsaForms"
+								image="/imagenes/ArchivosDeTrabajoConsulta.png" width="16px" 
+								tooltiptext="${c:l('ee.subsanacion.tooltip.subsanacion')}" />
+						</hlayout>
+						<separator />
+					</vlayout>
+				</row>
+				<row>
+					<label
+						value="${c:l('ee.subsanacion.label.destino')}"
+						style="padding-left: 5px;" />
+					<vlayout>
+						<separator />
+						<!-- 						  <combobox id="tipoDestinoComboBox" width="200px" readonly="true" -->
+						<!-- 								model="@{subsanarWindow$SubsanacionExpedienteComposer.tiposDestino}" -->
+						<!-- 								selectedItem="@{subsanarWindow$SubsanacionExpedienteComposer.selectedTipoDestino}"> -->
+						<!-- 							</combobox> -->
+						<hlayout>
+							<combobox id="tipoDestinoComboBox"
+								width="200px" readonly="true">
+							</combobox>
+						</hlayout>
+					</vlayout>
+				</row>
+			</rows>
+		</grid>
+		<separator />
+		<div align="center" style="margin-top: 20px;">
+			<button autodisable="self" id="guardar"
+				label="${c:l('ee.subsanacion.button.enviar')}"
+				image="/imagenes/email.png" width="100px" height="30px" />
+			<button autodisable="self" id="salir"
+				label="${c:l('ee.subsanacion.button.cerrar')}"
+				image="/imagenes/eliminar.png" width="100px" height="30px" />
+			<button autodisable="self" id="cancelarActividad"
+				label="${c:l('ee.subsanacion.button.cancelarActividad')}"
+				image="/imagenes/CancelacionDeActividad.png" width="150px"
+				height="30px" />
+		</div>
+		<separator />
+	</window>
+</zk>

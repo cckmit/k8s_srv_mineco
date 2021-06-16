@@ -1,0 +1,36 @@
+<zk>
+	<vlayout
+		apply="com.egoveris.ffdd.render.zk.comp.cc.DocumentoComposer">
+		<grid>
+			<columns>
+				<column></column>
+			</columns>
+			<rows>
+				<row>
+					<vbox>
+						<hbox>
+							<cell
+								id="${arg.formComp.nombre}_idDocumentoDiv" />
+							<cell
+								id="${arg.formComp.nombre}_codigoDocumentoDiv" />
+							<cell
+								id="${arg.formComp.nombre}_nombreDocumentoDiv" />
+						</hbox>
+						<hbox>
+							<cell
+								id="${arg.formComp.nombre}_tipoDocumentoDiv" />
+							<cell
+								id="${arg.formComp.nombre}_paisDocumentoDiv" />
+							<cell
+								id="${arg.formComp.nombre}_fechaDocumentoDiv" />
+						</hbox>
+						<hbox>
+							<cell
+								id="${arg.formComp.nombre}_participanteDiv" />
+						</hbox>
+					</vbox>
+				</row>
+			</rows>
+		</grid>
+	</vlayout>
+</zk>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>com.egoveris</groupId>
+    <artifactId>commons-project</artifactId>
+    <version>2.0.3-SNAPSHOT</version>
+  </parent>
+
+  <artifactId>ccomplejos</artifactId>
+  <packaging>pom</packaging>
+  <name>Componentes complejos</name>
+
+  <modules>
+    <module>ccomplejos-env</module>
+    <module>ccomplejos-base-common</module>
+    <module>ccomplejos-base-core</module>
+  </modules>
+
+  <properties>
+    <appShortId>ccomplejos</appShortId>
+  </properties>
+
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>org.terasoluna.plus.framework</groupId>
+        <artifactId>terasoluna-plus-bom</artifactId>
+        <version>0.2.0.RELEASE</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+      <dependency>
+        <groupId>com.egoveris</groupId>
+        <artifactId>ccomplejos-env</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.egoveris</groupId>
+        <artifactId>ccomplejos-base-common</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.egoveris</groupId>
+        <artifactId>ccomplejos-base-core</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
+</project>

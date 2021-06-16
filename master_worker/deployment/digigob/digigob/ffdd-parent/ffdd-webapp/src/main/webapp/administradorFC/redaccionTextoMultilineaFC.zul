@@ -1,0 +1,27 @@
+<?page title="${c:l('digigob.Title')}" contentType="text/html;charset=UTF-8"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./agregarTextoMultilineaWindow" ?>
+<zk>
+	<window id="agregarTextoMultilineaWindow" border="normal"
+		height="390px" width="600px" 
+		apply="com.egoveris.ffdd.web.adm.RedaccionTextoMultilineaComposer">
+
+		<grid>
+			<rows> 
+			    <row><label value="${c:l('redaccionTextoMultilinea.ingresarTexto.msg')}"></label>
+			    </row>
+				<row align="center">
+					<textbox id="texto" 
+					height="300px" width="95%" rows="3"/>
+				</row>
+				<row align="center">
+					<cell>
+						<button width="30%" label="${c:l('redaccionTextoMultilinea.aceptar')}" 
+						forward="onClick=onAceptar"/>
+						<button width="30%" label="${c:l('fc.export.cancelar')}" 
+						forward="onClick=onCancelar"/>
+					</cell>
+				</row>
+			</rows>
+		</grid>
+	</window>
+</zk>

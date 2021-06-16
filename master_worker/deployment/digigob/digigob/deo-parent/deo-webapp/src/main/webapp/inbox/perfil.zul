@@ -1,0 +1,31 @@
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+<?page title="${c:l('gedo.panelUsuario.perfil')}" contentType="text/html;charset=UTF-8"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./perfilWindow" ?>
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+<zk>
+	<window id="perfilWindow" title="" border="none" width="100%" height="530px"
+		
+		apply="com.egoveris.deo.web.satra.perfil.PerfilComposer" self="@{define(egovBody)}">
+		<tabbox tabscroll="false" width="100%" id="gedoTabs"
+			height="100%" style="">
+			<tabs >
+<!-- 				<tab label="${c:l('gedo.panelUsuario.portafirma')}" -->
+<!-- 					tooltiptext="${c:l('gedo.panelUsuario.portafirma.help')}" -->
+<!-- 					style="" /> -->
+				<tab label="${c:l('gedo.plantillas')}"
+					tooltiptext="${c:l('gedo.panelUsuario.plantillas.help')}"
+					style="" id="plantillas" />
+			</tabs>
+			<tabpanels style="">
+				<tabpanel>
+					<include src="/inbox/plantillas.zul" />
+				</tabpanel>
+<!-- 				<tabpanel fulfill="plantillas.onClick" -->
+<!-- 					style="overflow:auto"> -->
+<!-- 					<include src="/inbox/plantillas.zul" /> -->
+<!-- 				</tabpanel> -->
+			</tabpanels>
+		</tabbox>
+	</window>
+</zk>
+

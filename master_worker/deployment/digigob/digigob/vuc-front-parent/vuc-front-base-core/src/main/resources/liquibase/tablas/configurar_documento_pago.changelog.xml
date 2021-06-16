@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
+    http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+	<changeSet author="Carlos Marin" id="TAD_ADD_DOCUMENTO_PAGO">
+		<validCheckSum>7:645bfe2528b91b1b6d8de2c046dd46db</validCheckSum>
+		<comment>insert tipo documento de pago</comment>
+	     
+	    <sql dbms="h2, mysql" 
+	                splitStatements="true"
+	                stripComments="true">         
+					insert into property_configuration (CLAVE , VALOR , CONFIGURACION )
+					values ('acronimo.pago.documento', 'CP', 'SISTEMA');
+	    </sql> 
+	    
+	   	<sql dbms="h2, mysql" 
+	                splitStatements="true"
+	                stripComments="true">         
+
+					insert into tad_tipo_documento 
+					(ACRONIMO_GEDO , ACRONIMO_TAD , NOMBRE, DESCRIPCION ,  ESTADO, INCLUIDO_EN_SUPERTRATA, ID_TIPADO_DOCUMENTO )
+					values
+					((select VALOR from property_configuration pc where CLAVE = 'acronimo.pago.documento'), 
+					(select VALOR from property_configuration pc where CLAVE = 'acronimo.pago.documento'), 
+					'Comprobante de pago', 'Comprobante del pago para los tramites', 1, 1, 
+					(select ID from tad_tipado_documento ttd where ttd.TIPADO = 'LIBRE'));
+	    </sql> 
+		  
+	</changeSet>  	
+	<changeSet author="Carlos Marin" id="URL_COMPROBANTE">
+		<comment>url comprobante</comment>
+	     
+	    <sql dbms="h2, mysql" 
+	                splitStatements="true"
+	                stripComments="true">         
+					insert into property_configuration (CLAVE , VALOR , CONFIGURACION )
+					values ('comprobante.url', 'https://www.gob.sv', 'SISTEMA');
+	    </sql> 
+	    		  
+	</changeSet>  
+
+
+	<changeSet author="Carlos Marin" id="ADD_PROPERTIES_MAIL">
+		<comment>Configuracion de mail</comment>
+	     
+	    <sql dbms="h2, mysql" 
+	                splitStatements="true"
+	                stripComments="true">      
+	                   
+					insert into property_configuration (CLAVE , VALOR , CONFIGURACION )
+					values ('app.fromEmail', 'egoverisUser@gmail.com', 'SISTEMA');
+					
+					insert into property_configuration (CLAVE , VALOR , CONFIGURACION )
+					values ('app.mail.password', 'Marzo2020', 'SISTEMA');
+					
+					insert into property_configuration (CLAVE , VALOR , CONFIGURACION )
+					values ('mail.smtp.host', 'smtp.gmail.com', 'SISTEMA');
+					
+					insert into property_configuration (CLAVE , VALOR , CONFIGURACION )
+					values ('mail.smtp.port', '587', 'SISTEMA');
+					
+					insert into property_configuration (CLAVE , VALOR , CONFIGURACION )
+					values ('mail.smtp.starttls.enable', 'true', 'SISTEMA');
+					
+					insert into property_configuration (CLAVE , VALOR , CONFIGURACION )
+					values ('mail.smtp.ssl.trust', 'smtp.gmail.com', 'SISTEMA');
+	    </sql> 
+	    		  
+	</changeSet>
+
+
+	<changeSet author="Carlos Marin" id="NOMBRE_ENTORNO">
+		<comment>Configuracion de mail</comment>
+
+		<sql dbms="h2, mysql" splitStatements="true" stripComments="true">
+
+			insert into property_configuration (CLAVE , VALOR , CONFIGURACION )
+			values ('nombre.entorno', 'egoeveris', 'SISTEMA');
+
+		</sql>
+
+	</changeSet>
+
+
+	<changeSet author="Carlos Marin" id="AGREGAR_AUTH_MAIL">
+		<comment>Configuracion de mail</comment>
+
+		<sql dbms="h2, mysql" splitStatements="true" stripComments="true">
+
+			insert into property_configuration (CLAVE , VALOR , CONFIGURACION )
+			values ('mail.smtp.auth', 'true', 'SISTEMA');
+
+		</sql>
+
+	</changeSet>
+
+
+</databaseChangeLog>

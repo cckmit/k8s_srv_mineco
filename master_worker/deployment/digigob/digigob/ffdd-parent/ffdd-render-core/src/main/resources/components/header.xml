@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<complexComponent type="TRADE" name="Header"
+	description="Header Information" zul="header.zul"
+	composer="com.everis.tramelec.dynform.comp.ext.HeaderComposer"
+	mappingDTO="com.egoveris.ccomplejos.base.model.HeaderDTO">
+
+	<field name="idHeader" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.LongboxExt" />
+		
+	<field name="destinacionAduanera" width="90%" height="20px"
+		factory="comboBoxFactory"  />
+		
+	<field name="tipoOperacion" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" />
+		
+	<field name="tipoTramite" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" />
+		
+	<field name="aduanaTramitacion" width="90%" height="20px"
+		factory="comboBoxFactory" />
+		
+	<field name="numeroInternoDespacho" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" />
+		
+	<field name="comentario" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" />
+		
+	<field name="tipoIngreso" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" />
+		
+
+</complexComponent>

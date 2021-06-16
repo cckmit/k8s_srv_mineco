@@ -1,0 +1,58 @@
+<?page title="${c:l('gedo.digitalizarDocumento.titulo')}" contentType="text/html;charset=UTF-8"?>
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./firmaExternaWindow" ?>
+<zk>
+<window title="${c:l('gedo.digitalizarDocumento.titulo')}" border="normal" id="firmaExternaWindow"
+        apply="com.egoveris.deo.web.satra.firma.FirmaExternaDocumentoComposer"
+        closable="false" position="center" contentStyle="background:#EFEFEE"
+		sizable="false" height="540px" width="900px">
+		<div align="center" style="font-weight: bold;">
+		<Label value="${c:l('gedo.importarFirmaExterna.div.verfiqueDocumento')}"></Label>
+		</div>
+		<box visible="true" id="previsualizacion" width="100%" align ="center">
+			<toolbar mold="panel" orient="horizontal" width="100%" align ="center">
+			    <toolbarbutton 
+								id="importar" image="/imagenes/ImportarDocumento.png" 
+								disabled="false"/>
+				<toolbarbutton id="exportPDF"
+					image="/imagenes/DescargarDocumento.png" 
+					tooltiptext="${c:l('gedo.firmarDocumento.helpDescargarDocumento')}"/>
+			</toolbar>
+			<hbox width="740px" align="start" pack="start">
+				<label id="leyendaPrevisualizacion" value="${c:l('gedo.firmarDocumento.leyendaPrevisualizacion')}" 
+				 style="font-weight: bold;"/>
+			</hbox>
+			<grid height="260px" width="740px">
+				<rows>
+					<row>
+						<image id="imagePreviewer" src="" width="700px"
+							height="800px" />
+					</row>
+				</rows>
+			</grid>
+			<toolbar mold="panel" orient="horizontal" width="100%"  align="center">
+				<button id="previousPage"
+					image="/imagenes/go-previous.png" visible="true" />
+				<button id="nextPage" image="/imagenes/go-next.png" />
+			</toolbar>	
+		</box>
+		<div align="center">
+		<grid  width="740px" align="left">
+		        <columns>
+					<column width="100%"></column>
+				</columns>
+				<rows>
+					<row align="center">
+						<vbox>
+							<toolbarbutton id="closeWindow"
+								image="/imagenes/Cancelar.png"
+								autodisable="self,firmarConCertificado,selfRevision,
+								closeWindow,revisarButton,nextPage,previousPage,exportPDF" />
+						</vbox>
+					</row>
+				</rows>
+		</grid>
+		</div>
+</window>
+</zk>

@@ -1,0 +1,74 @@
+<?page title="${c:l('digigob.Title')}" contentType="text/html;charset=UTF-8"?>
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+<?init class="org.zkoss.zk.ui.util.Composition" arg0="~./db_template.zul"?>
+<zk>
+	<window id="tipoOperacionesWindow"
+		apply="org.zkoss.bind.BindComposer"
+		viewModel="@id('vm') @init('com.egoveris.te.base.vm.TipoOperacionesVM')"
+		form="@id('fx') @load(vm) @save(vm, before='saveTipoOperacion') @validator('com.egoveris.te.base.validator.TipoOperacionesValidator')"
+		validationMessages="@id('vmsgs')" border="none" self="@{define(egovBody)}">
+		
+		<toolbar width="100%">
+			<hbox align="center">
+				<toolbarbutton autodisable="self"
+					image="/imagenes/page_white_text.png"
+					label="${c:l('ee.tipoOperacion.admTipoOperaciones.button.nuevo')}"
+					onClick="@command('newTipoOperacionWindow')" />
+				<separator orient="horizontal" width="100px" />
+				
+				<label value="${c:l('ee.tipoOperacion.admTipoOperaciones.label.busqueda')}" />
+				<combobox buttonVisible="false" autodrop="true"
+					model="@load(vm.foundBusquedaGrid)"
+					value="@bind(vm.inputBusquedaGrid)">
+					
+					<template name="model">
+						<comboitem label="${each}" value="${each}" />
+					</template>
+				</combobox>
+
+				<toolbarbutton autodisable="self"
+					image="/imagenes/edit-find.png" label="${c:l('ee.tipoOperacion.admTipoOperaciones.button.buscar.codigo')}" onClick="@command('busquedaGrid', tipoBusqueda='codigo')" />
+				
+				<toolbarbutton autodisable="self"
+					image="/imagenes/edit-find.png" label="${c:l('ee.tipoOperacion.admTipoOperaciones.button.buscar.descripcion')}" onClick="@command('busquedaGrid', tipoBusqueda='desc')" />
+				
+				<toolbarbutton autodisable="self"
+					image="/imagenes/delete-process.png" label="${c:l('ee.tipoOperacion.admTipoOperaciones.button.buscar.limpiar')}" onClick="@command('limpiarBusquedaGrid')" />
+			</hbox>
+		</toolbar>
+
+		<listbox mold="paging" pageSize="10" model="@load(vm.tipoOperaciones)" width="100%">
+			<listhead>
+				<listheader label="${c:l('ee.tipoOperacion.admTipoOperaciones.column.label.codigo')}" align="center" width="180px" sort="auto(LOWER(codigo))" />
+				<listheader label="${c:l('ee.tipoOperacion.admTipoOperaciones.column.label.nombre')}" align="center" sort="auto(LOWER(nombre))" />
+				<listheader label="${c:l('ee.tipoOperacion.admTipoOperaciones.column.label.descripcion')}" align="center" sort="auto(LOWER(descripcion))" />
+				<listheader label="${c:l('ee.tipoOperacion.admTipoOperaciones.column.label.stateflow')}" align="center" />
+				<listheader label="${c:l('ee.tipoOperacion.admTipoOperaciones.column.label.habilitado')}" align="center" />
+				<listheader label="${c:l('ee.tipoOperacion.admTipoOperaciones.column.label.acciones')}" align="center" width="210px" />
+			</listhead>
+			<template name="model" var="item">
+				<listitem>
+					<listcell label="${item.codigo}" />
+					<listcell label="${item.nombre}" />
+					<listcell label="${c:substring(item.descripcion, 0, 97)}..." if="${c:length(item.descripcion) gt 100}" />
+					<listcell label="${item.descripcion}" if="${c:length(item.descripcion) le 100}" />
+					<listcell label="@load(vm.getWorkflowLabel(item.workflow))" />
+					<listcell>
+						<checkbox checked="${item.estado}" onCheck="@command('onCheckHabilitar', tipoOperacion=item, checked=self.checked)" />
+					</listcell>
+					<listcell>
+						<hbox>
+							<toolbarbutton autodisable="self"
+								image="/imagenes/edit-find.png" label="${c:l('ee.tipoOperacion.admTipoOperaciones.column.actions.editar')}"
+								onClick="@command('editTipoOperacionWindow', tipoOperacion=item)" />
+								
+							<toolbarbutton autodisable="self"
+								image="/imagenes/delete-process.png" label="${c:l('ee.tipoOperacion.admTipoOperaciones.column.actions.eliminar')}" 
+								onClick="@command('deleteTipoOperacion', tipoOperacion=item)" />
+						</hbox>
+					</listcell>
+				</listitem>
+			</template>
+		</listbox>
+	</window>
+</zk>

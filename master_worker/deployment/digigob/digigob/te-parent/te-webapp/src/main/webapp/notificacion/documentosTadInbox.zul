@@ -1,0 +1,110 @@
+<?page title="INBOX" contentType="text/html;charset=UTF-8"?>
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./comunicarTadWindow"?>
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c" ?>
+<zk>
+
+	<zscript><![CDATA[
+		import java.util.Comparator;
+	    import com.egoveris.te.base.util.comparator.InboxComparator;
+    	Comparator tareaAsc = new InboxComparator(true, 1);
+    	Comparator tareaDsc = new InboxComparator(false, 1);
+    	Comparator fechaAsc = new InboxComparator(true, 2);
+    	Comparator fechaDsc = new InboxComparator(false, 2);
+    	Comparator codigoExpedienteAsc = new InboxComparator(true, 3);
+    	Comparator codigoExpedienteDsc = new InboxComparator(false, 3);
+    	Comparator codigoTrataAsc = new InboxComparator(true, 4);
+    	Comparator codigoTrataDsc = new InboxComparator(false, 4);
+    	Comparator descripcionTrataAsc = new InboxComparator(true, 5);
+    	Comparator descripcionTrataDsc = new InboxComparator(false, 5);
+    	Comparator usuarioAnteriorAsc = new InboxComparator(true, 6);
+    	Comparator usuarioAnteriorDsc = new InboxComparator(false, 6);
+    	Comparator motivoAsc = new InboxComparator(true, 7);
+    	Comparator motivoDsc = new InboxComparator(false, 7);
+    	Comparator accionAsc = new InboxComparator(true, 8);
+    	Comparator accionDsc = new InboxComparator(false, 8);
+	]]></zscript>
+
+	<window id="comunicarTadWindow" title="${c:l('te.webapp.expediente.tramitacion.lbl.notificatad')}"
+		border="normal" 
+		apply="com.egoveris.te.base.composer.DocumentosTadInboxComposer" closable="true"
+		width="80%">
+		<hbox>
+			<paging id="pagingDocumento" pageSize="10" />
+			<label id="labelPagina"
+                   value="${c:l('ee.tramitacion.paginado.masDeUnaPagina.value')}"
+				   visible="false" style="color:red; font-style: italic;"/>
+		</hbox>
+		
+		
+		<listbox id="listboxDocumentos" mold="paging"
+			style=" overflow:auto"
+			model="@{comunicarTadWindow$DocumentosTadInboxComposer.documentos}" multiple="true"
+			checkmark="true" maxlength="20"			
+			selectedItem="@{notificacionWindow$DocumentosTadInboxComposer.selectedDocumento}" 
+			itemRenderer="com.egoveris.te.base.rendered.DocumentosTadInboxItemRenderer"
+			 paginal="${pagingDocumento}" >
+			<listhead sizable="false">
+				<listheader align="center" width="40px"
+					image="/imagenes/mail.png" />
+				<listheader label="${c:l('ee.caratulas.listheader.numero.value')}" align="center" hflex="max" />
+				<listheader label="${c:l('ee.caratulas.listheader.documento.referencia.value')}" align="center" />
+				<listheader label="${c:l('ee.caratulas.listheader.documento.fechaCreacion.value')}" align="center" />
+			</listhead>
+
+			<listfoot
+				>
+				<listfooter />
+				<listfooter />
+				<listfooter />
+				<listfooter />
+				<listfooter />
+				<listfooter />
+			</listfoot>
+		</listbox>
+		
+		<grid >
+			<columns>
+				<column width="80px"/>
+				<column/>
+			</columns>
+			<rows width="600px">
+				<row>
+					<label value="${c:l('ee.notificable.listheader.motivo')}"/>                                                                                                                                                      
+					<textbox maxlength="500"  id="motivoNotificacion"  rows="6" cols="146" style="resize: none;"/>
+				</row>
+			</rows>
+		</grid>
+		
+		<!-- 
+		<toolbarbutton autodisable="self" id="notificar" image="/imagenes/notificar.png" height="42px"
+			forward="onClick=comunicarTadWindow$DocumentosTadInboxComposer.onNotificar" />
+			
+		<toolbarbutton autodisable="self" id="cancelar" 
+			image="/imagenes/BotonCancelar.png" height="42px"
+			forward="onClick=comunicarTadWindow$DocumentosTadInboxComposer.onCancelar"/>
+		-->
+		<button autodisable="self" id="notificar" label="${c:l('ee.notificable.listheader.notificar')}"
+			forward="onClick=comunicarTadWindow$DocumentosTadInboxComposer.onNotificar" />
+			
+		<button autodisable="self" id="cancelar" 
+			label="${c:l('te.webapp.expediente.tramitacion.lbl.cancelar')}"
+			forward="onClick=comunicarTadWindow$DocumentosTadInboxComposer.onCancelar"/>
+			
+		<popup id="subordinadosListPopUp" width="auto" >
+			<groupbox id="idgroupbox" mold="3d">
+				<caption
+					label="${c:l('ee.inboxGrupal.caption.usurioAsignaranTareas')}" style="font-size: 1.2em" />
+				<hbox>
+					<combobox id="usuarioDestino" autodrop="true"
+						buttonVisible="false" width="300px">
+					</combobox>
+					<separator></separator>
+					<separator></separator>
+					<button autodisable="self" id="asignarTareas"
+						label="${c:l('ee.general.asignar')}" />
+				</hbox>
+			</groupbox>
+		</popup>
+	</window>
+</zk>

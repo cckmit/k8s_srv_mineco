@@ -1,0 +1,4 @@
+<zk>
+	<navbar id="navbar" sclass="nav-list" orient="vertical" children="@load(dbvm.menuNavegacion) @template('itemTemplate')" collapsed="${dbvm.properties['menuCollapsed']}" />
+	<template name="itemTemplate" var="item" src="~./db_layout/menuLateral/menuElement.zul" />
+</zk>

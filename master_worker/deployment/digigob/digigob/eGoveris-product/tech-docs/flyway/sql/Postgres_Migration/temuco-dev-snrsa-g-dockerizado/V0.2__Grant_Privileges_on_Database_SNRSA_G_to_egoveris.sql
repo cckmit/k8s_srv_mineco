@@ -1,0 +1,1 @@
+﻿GRANT ALL ON DATABASE SNRSA_G TO egoveris;

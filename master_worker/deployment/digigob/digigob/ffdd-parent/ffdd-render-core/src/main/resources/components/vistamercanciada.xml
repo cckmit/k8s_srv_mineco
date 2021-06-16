@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<complexComponent type="TRADE" name="vistamercanciada"
+	description="vista mercancia" zul="vistaMercanciaDA.zul"
+	mappingDTO="com.egoveris.ccomplejos.base.model.VistaMercanciaDADTO">
+
+		
+	<field name="items" width="90%" height="20px"  repetidor="true" class="com.egoveris.ffdd.render.zk.comp.ext.SeparatorComplex" disabled="true" xmlFile="viewitem.xml" />
+		
+
+</complexComponent>

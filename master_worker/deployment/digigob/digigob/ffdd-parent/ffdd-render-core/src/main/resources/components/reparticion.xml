@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<complexComponent type="TRADE" name="reparticion"
+	description="Organismo Information" zul="reparticion.zul"
+	composer="com.egoveris.ffdd.render.zk.comp.cc.ReparticionComposer"
+	mappingDTO="com.egoveris.ccomplejos.base.model.ReparticionDTO">
+
+	<field id="organismo" name="organismo" class="com.egoveris.ffdd.render.zk.comp.ext.BandboxExt"
+		height="20px" width="90%" label="Organismo" tooltip="Organismo"  />
+</complexComponent>

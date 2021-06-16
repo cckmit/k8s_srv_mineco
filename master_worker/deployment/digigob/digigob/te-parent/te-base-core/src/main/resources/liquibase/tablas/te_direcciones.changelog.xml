@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
+    http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+	<changeSet id="CREA_TABLAS_DIRECCION" author="Gustavo Aguilera">
+	    <comment>create tables</comment>
+	    <sql dbms="h2, mysql" 
+	                splitStatements="true"
+	                stripComments="true">         
+			CREATE TABLE data_provincia (
+				id INTEGER auto_increment NOT NULL,
+				provincia_name varchar(255) NOT NULL,
+				CONSTRAINT data_provincia_pk PRIMARY KEY (id)
+			)
+			ENGINE=InnoDB
+			DEFAULT CHARSET=utf8
+			COLLATE=utf8_general_ci
+			COMMENT='Datos Provincia';
+			
+			CREATE TABLE data_partida (
+				id INTEGER auto_increment NOT NULL,
+				partida_name varchar(255) NOT NULL,
+				id_provincia INTEGER NOT NULL,
+				CONSTRAINT data_partida_pk PRIMARY KEY (id)
+			)
+			ENGINE=InnoDB
+			DEFAULT CHARSET=utf8
+			COLLATE=utf8_general_ci
+			COMMENT='Datos Partida';
+			
+			CREATE TABLE data_localidad (
+				id INTEGER auto_increment NOT NULL,
+				localidad_name varchar(255) NOT NULL,
+				id_partida INTEGER NOT NULL,
+				CONSTRAINT data_localidad_pk PRIMARY KEY (id)
+			)
+			ENGINE=InnoDB
+			DEFAULT CHARSET=utf8
+			COLLATE=utf8_general_ci
+			COMMENT='Datos Localidad';
+			
+			CREATE TABLE solicitante_direccion (
+				id_solicitante INT NOT NULL,
+				id_provincia INT NOT NULL,
+				id_partida INT NOT NULL,
+				id_localidad INT NOT NULL,
+				direccion varchar(255) NULL,
+				CONSTRAINT solicitante_direccion_pk PRIMARY KEY (id_solicitante)
+			)
+			ENGINE=InnoDB
+			DEFAULT CHARSET=utf8
+			COLLATE=utf8_general_ci;
+	    </sql> 
+	</changeSet>
+	
+	<changeSet id="ALTER_TABLAS_DIRECCION" author="Gustavo Aguilera">
+	    <comment>alter tables</comment>
+	    <sql dbms="h2, mysql" 
+	                splitStatements="true"
+	                stripComments="true">         
+
+			ALTER TABLE data_partida ADD CONSTRAINT data_partida_fk FOREIGN KEY (id_provincia) REFERENCES data_provincia(id);
+			ALTER TABLE data_localidad ADD CONSTRAINT data_localidad_fk FOREIGN KEY (id_partida) REFERENCES data_partida(id);
+			
+			ALTER TABLE solicitante_direccion ADD CONSTRAINT direccion_provincia_fk FOREIGN KEY (id_provincia) REFERENCES data_provincia(id);
+			ALTER TABLE solicitante_direccion ADD CONSTRAINT direccion_partida_fk FOREIGN KEY (id_partida) REFERENCES data_partida(id);
+			ALTER TABLE solicitante_direccion ADD CONSTRAINT direccion_localidad_fk FOREIGN KEY (id_localidad) REFERENCES data_localidad(id);
+
+	    </sql> 
+	</changeSet>
+	
+		<changeSet id="INSERT_TABLAS_DIRECCION" author="Gustavo Aguilera">
+	    <comment>alter tables</comment>
+	    <sql dbms="h2, mysql" 
+	                splitStatements="true"
+	                stripComments="true">         
+
+				INSERT INTO data_provincia
+				(provincia_name)
+				VALUES('Provincia 1');
+				
+				INSERT INTO data_provincia
+				(provincia_name)
+				VALUES('Provincia 2');
+
+				INSERT INTO data_partida
+				(partida_name, id_provincia)
+				VALUES('Partida 1', (SELECT id FROM data_provincia WHERE provincia_name = 'Provincia 1'));
+				
+				INSERT INTO data_partida
+				(partida_name, id_provincia)
+				VALUES('Partida 2', (SELECT id FROM data_provincia WHERE provincia_name = 'Provincia 1'));
+				
+				INSERT INTO data_partida
+				(partida_name, id_provincia)
+				VALUES('Partida 3', (SELECT id FROM data_provincia WHERE provincia_name = 'Provincia 2'));
+				
+				INSERT INTO data_partida
+				(partida_name, id_provincia)
+				VALUES('Partida 4', (SELECT id FROM data_provincia WHERE provincia_name = 'Provincia 2'));
+				
+				INSERT INTO data_localidad
+				(localidad_name, id_partida)
+				VALUES('Localidad 1', (SELECT id FROM data_partida WHERE partida_name = 'Partida 1'));
+				
+				INSERT INTO data_localidad
+				(localidad_name, id_partida)
+				VALUES('Localidad 2', (SELECT id FROM data_partida WHERE partida_name = 'Partida 1'));
+				
+				INSERT INTO data_localidad
+				(localidad_name, id_partida)
+				VALUES('Localidad 3', (SELECT id FROM data_partida WHERE partida_name = 'Partida 2'));
+				
+				INSERT INTO data_localidad
+				(localidad_name, id_partida)
+				VALUES('Localidad 4', (SELECT id FROM data_partida WHERE partida_name = 'Partida 2'));
+				
+				INSERT INTO data_localidad
+				(localidad_name, id_partida)
+				VALUES('Localidad 5', (SELECT id FROM data_partida WHERE partida_name = 'Partida 3'));
+				
+				INSERT INTO data_localidad
+				(localidad_name, id_partida)
+				VALUES('Localidad 6', (SELECT id FROM data_partida WHERE partida_name = 'Partida 3'));
+				
+				INSERT INTO data_localidad
+				(localidad_name, id_partida)
+				VALUES('Localidad 7', (SELECT id FROM data_partida WHERE partida_name = 'Partida 4'));
+				
+				INSERT INTO data_localidad
+				(localidad_name, id_partida)
+				VALUES('Localidad 8', (SELECT id FROM data_partida WHERE partida_name = 'Partida 4'));
+
+	    </sql> 
+	</changeSet>
+	
+		<changeSet id="ALTER_TABLA_SOLICITANTE_DIRECCION" author="Gustavo Aguilera">
+	    <comment>alter tables</comment>
+	    <sql dbms="h2, mysql" 
+	                splitStatements="true"
+	                stripComments="true">         
+			ALTER TABLE solicitante_direccion MODIFY COLUMN id_provincia int(11) NULL;
+			ALTER TABLE solicitante_direccion MODIFY COLUMN id_partida int(11) NULL;
+			ALTER TABLE solicitante_direccion MODIFY COLUMN id_localidad int(11) NULL;
+	    </sql> 
+	</changeSet>
+	
+</databaseChangeLog>

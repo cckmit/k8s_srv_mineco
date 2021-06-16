@@ -1,0 +1,39 @@
+<?page title="" contentType="text/html;charset=UTF-8"?>
+
+<zk>
+	<window id="formResultTypeWindow"
+		title="${vm.actionMode eq 'NEW' ? c:l('ee.tipoResultados.form.title.new') : c:l('ee.tipoResultados.form.title.edit')}"
+		width="450px" border="none" closable="true" position="center">
+		
+		<separator height="10px" />
+		
+		<grid>
+			<rows>
+				<row>
+					<cell width="175px" valign="top">
+						<label value="${c:l('ee.tipoResultados.form.value.label')}" />
+					</cell>
+					<cell>
+						<textbox width="225px"
+							value="@bind(vm.currentProperty.valor)"
+							sclass="@load(vmsgs['invalidField.valor'] ne null ? 'z-textbox-invalid' : '')" />
+						<label value="@load(vmsgs['invalidField.valor'])" sclass="error" />
+					</cell>
+				</row>
+				<row>
+					<cell colspan="2" align="center">
+						<button sclass="btn-info"
+							iconSclass="z-icon-check" label="${c:l('ee.tipoResultados.form.button.new')}"
+							onClick="@command('savePropertyForm')"
+							visible="${vm.actionMode eq 'NEW'}" />
+							
+						<button sclass="btn-info"
+							iconSclass="z-icon-pencil" label="${c:l('ee.tipoResultados.form.button.edit')}"
+							onClick="@command('savePropertyForm')"
+							visible="${vm.actionMode ne 'NEW'}" />
+					</cell>
+				</row>
+			</rows>
+		</grid>
+	</window>
+</zk>

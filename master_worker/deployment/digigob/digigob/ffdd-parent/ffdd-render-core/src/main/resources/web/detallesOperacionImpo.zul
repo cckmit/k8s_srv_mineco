@@ -1,0 +1,20 @@
+<zk>
+	<vlayout
+		apply="com.egoveris.ffdd.render.zk.comp.cc.DetallesOperacionImpoComposer">
+		<vbox>
+			<hbox>
+			<hbox>
+				<cell id="${arg.formComp.nombre}_estadoOpDiv" />
+				<cell id="${arg.formComp.nombre}_numeroOpDiv" />
+			</hbox>
+			</hbox>
+			<hbox>
+				<cell id="${arg.formComp.nombre}_fechaCreacionDiv" />
+				<cell id="${arg.formComp.nombre}_tipoOperacionDiv" />
+			</hbox>
+			<hbox>
+				<cell id="${arg.formComp.nombre}_tipoIngresoDiv" />
+			</hbox>
+		</vbox>
+	</vlayout>
+</zk>

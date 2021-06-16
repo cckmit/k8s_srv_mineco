@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: laravel-inventario
+  namespace: mineco
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      run: laravel-inventario
+  template:
+    metadata:
+      labels:
+        run: laravel-inventario
+    spec:
+      containers:
+      - name: laravel-inventario
+        image: jjolon/inventario:latest
+        imagePullPolicy: IfNotPresent
+        ports:
+          # - containerPort: 80
+          #   protocol: TCP 
+          - containerPort: 443
+            protocol: TCP
+        volumeMounts:
+            - mountPath: "/var/www/html"
+              name: vol-inventario
+      volumes:
+        - name: vol-inventario
+          persistentVolumeClaim:
+            claimName: inventario-mineco

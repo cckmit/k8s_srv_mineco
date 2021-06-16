@@ -1,0 +1,26 @@
+<zk>
+	<vlayout apply="com.egoveris.ffdd.render.zk.comp.cc.VistaHojaAnexaDinComposer">
+		<grid>
+			<columns>
+				<column></column>
+			</columns>
+			<rows>
+				<row>
+					<vbox>
+						<hbox>
+						<cell id="${arg.formComp.nombre}_numeroDeSecuenciaDiv" />
+						<cell id="${arg.formComp.nombre}_numeroDeInsumoDiv" />
+						<cell id="${arg.formComp.nombre}_nombreInsumoDiv" />
+						<cell id="${arg.formComp.nombre}_numeroDeItemAbonaDiv" />
+						<cell id="${arg.formComp.nombre}_nombreDeLaMercanciaDiv" />
+						<cell id="${arg.formComp.nombre}_cantidadDiv" />
+						<cell id="${arg.formComp.nombre}_codigoUnidadDeMedidaAbonaDiv" />
+						<cell id="${arg.formComp.nombre}_factorDeConsumoDiv" />
+						<cell id="${arg.formComp.nombre}_insumosUtilizadosDiv" /> 
+						</hbox>
+					</vbox>
+				</row>
+			</rows>
+		</grid>
+	</vlayout>
+</zk>

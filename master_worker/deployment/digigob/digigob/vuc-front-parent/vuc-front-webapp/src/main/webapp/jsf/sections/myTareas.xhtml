@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/WEB-INF/faces/layout/mainLayout.xhtml">
+	<ui:define name="body">
+
+		<h:form id="myTareasForm">
+		
+			<div class="ui-g">
+				<div class="ui-g-12">
+					<h2>#{msg.sectionTareas}</h2>
+				</div>
+			</div>
+			<div class="ui-g">
+				<div class="ui-g-12">
+					<p:dataTable id="tblExpedienteTarea" var="expedienteTarea"
+						value="#{myTareasMb.mapaExpedienteListaTareas.entrySet()}"
+						emptyMessage="#{msg.sectionSinTareasNuevas}" style="text-align: center;"
+						rows="10" paginator="true"
+						paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+						currentPageReportTemplate="{currentPage} #{msg.sectionDe} {totalPages} #{msg.sectionPaginas}"
+						rowsPerPageTemplate="5,10,15" paginatorPosition="bottom">
+						<p:column headerText="#{msg.sectionCodigoExpediente}">
+							<p:outputLabel value="#{expedienteTarea.getKey().codigoSade}" />
+						</p:column>
+						<p:column headerText="#{msg.Tramite}">
+							<p:outputLabel
+								value="#{expedienteTarea.getValue().get(0).expedienteBase.tipoTramite.nombre}" />
+						</p:column>
+						<p:column headerText="#{msg.sectionFechaUltimaTarea}" width="100">
+							<p:outputLabel
+								value="#{expedienteTarea.getValue().get(0).formattedDate}" />
+						</p:column>
+						<p:column headerText="#{msg.sectionVer}" width="50">
+							<p:commandButton icon="fa fa-search"
+								style="height: 2em; width: 2em;"
+								oncomplete="PF('tareasDialog').show()"
+								update="tblExpedienteTarea mainLayout:tareasDialogForm"
+								>
+								<p:ajax event="click" listener="#{myTareasMb.cmdViewTarea(expedienteTarea)}" />
+							</p:commandButton>
+						</p:column>
+						<p:column headerText="#{msg.sectionEstado}" width="60">
+							<p:outputLabel
+								rendered="#{not myTareasMb.hasExpedienteAnyUnseenTarea(expedienteTarea)}"
+								styleClass="fa fa-envelope-open" />
+							<p:outputLabel
+								rendered="#{myTareasMb.hasExpedienteAnyUnseenTarea(expedienteTarea)}"
+								styleClass="fa fa-envelope" />
+						</p:column>
+					</p:dataTable>
+				</div>
+			</div>
+		</h:form>
+
+		<!-- DIALOGS -->
+		<p:dialog id="tareasDialog" widgetVar="tareasDialog" width="60%" height="60%"
+			modal="true" style="margin-left: -15%;" resizable="false" 
+			header="Tareas #{myTareasMb.selectedExpedienteMap.getKey().codigoSade}" >
+			<h:form id="tareasDialogForm">
+				<div class="ui-g">
+					<div class="ui-g-12">
+						<p:panelGrid
+							style="text-align: center; font-size:1.1em; width: 100%;">
+							<f:facet name="header">
+								<p:row>
+									<p:column width="12%">
+										<p:outputLabel value="#{msg.sectionFechaDeCreacion}" />
+									</p:column>
+									<p:column width="15%">
+										<p:outputLabel value="#{msg.sectionTipoTarea}" />
+									</p:column>
+									<p:column width="20%">
+										<p:outputLabel value="#{msg.sectionTipoDocumento}" />
+									</p:column>
+									<p:column width="10%">
+										<p:outputLabel value="#{msg.sectionMotivo}" />
+									</p:column>
+									<p:column>
+										<p:outputLabel value="#{msg.sectionAccion}" />
+									</p:column>
+								</p:row>
+							</f:facet>
+
+							<ui:repeat value="#{myTareasMb.selectedExpedienteMap.getValue()}"
+								var="tarea">
+								<ui:repeat value="#{tarea.tipoDocumentos}" var="tipoDocumento">
+									<p:row>
+										<p:column>
+											<p:outputLabel value="#{tarea.formattedDate}" />
+										</p:column>
+										<p:column>
+											<p:outputLabel value="#{tarea.tipo}" />
+										</p:column>
+										<p:column>
+											<p:outputLabel value="#{tipoDocumento.descripcion}" />
+										</p:column>
+										<p:column>
+											<p:outputLabel value="#{tarea.motivo}" />
+										</p:column>
+										<p:column>
+<!-- 											<p:commandButton icon="fa fa-upload" -->
+<!-- 												actionListener="#{myTareasMb.setUploadFileData(myTareasMb.selectedExpedienteMap.getKey(), tipoDocumento)}" -->
+<!-- 												oncomplete="PF('cargaDocumentosSubsanacion').show()" > -->
+<!-- 												<p:ajax event="click" listener="#{myTareasMb.setUploadFileData(myTareasMb.selectedExpedienteMap.getKey(), tipoDocumento)}" /> -->
+<!-- 											</p:commandButton> -->
+											<!-- DOCUMENTOS REGULARES -->
+											<p:commandButton icon="fa fa-upload"
+												rendered="#{ not myTareasMb.isTipoDocumentoFfdd(tipoDocumento, tarea.expedienteBase)}"
+												actionListener="#{myTareasMb.setUploadFileData(myTareasMb.selectedExpedienteMap.getKey(), tipoDocumento)}"
+												oncomplete="PF('cargaDocumentosSubsanacion').show()" >
+												<p:ajax event="click" listener="#{myTareasMb.setUploadFileData(myTareasMb.selectedExpedienteMap.getKey(), tipoDocumento)}" />
+											</p:commandButton>
+											<!-- FFDD -->
+											<p:commandButton icon="fa fa-file-o"
+												rendered="#{ myTareasMb.isTipoDocumentoFfdd(tipoDocumento, tarea.expedienteBase)}"
+												actionListener="#{myTareasMb.setUploadFileData(myTareasMb.selectedExpedienteMap.getKey(), tipoDocumento)}"
+												oncomplete="PF('ffddDialog').show()">
+<!-- 												update="mainLayout:tareasDialogForm:ffddDialog" /> -->
+												<p:ajax event="click" listener="#{myTareasMb.setUploadFileData(myTareasMb.selectedExpedienteMap.getKey(), tipoDocumento)}" />
+											</p:commandButton>	
+										</p:column>
+									</p:row>
+								</ui:repeat>
+							</ui:repeat>
+						</p:panelGrid>
+
+					</div>
+					<div class="ui-g-12" style="text-align: center;">
+						<p:commandButton id="cmdFinalizarTarea" value="#{msg.sectionFinalizarTarea}"
+							disabled="#{not myTareasMb.finalizarTareaEnabled}"
+							actionListener="#{myTareasMb.cmdFinalizarTarea()}"
+							oncomplete="PF('tareasDialog').hide()"
+							update="mainLayout:myTareasForm:tblExpedienteTarea">
+							<p:ajax event="click" listener="#{myTareasMb.cmdFinalizarTarea()}" />
+							</p:commandButton>
+					</div>
+				</div>
+				<!-- DIALOG FFDD -->
+				<p:dialog id="ffddDialog" widgetVar="ffddDialog" width="60%"
+					height="500px" position="50,50" modal="false" resizable="false"
+					header="#{msg.step2Formulario}" class="disable-scroll">
+					<p:ajax event="close" listener="#{myTareasMb.closeEventFfddDialog()}" global="false" />
+					<div class="ui-g">
+						<div class="ui-g-12">
+							<iframe
+								src="#{request.contextPath}/zul/formularioDinamico.zul?idTipoDoc=#{myTareasMb.tipoDocumentoUploadedFile.id}&amp;idExp=#{myTareasMb.expedienteUploadedFile.id}&amp;view=#{myTareasMb.viewFfdd}&amp;subsanar=#{myTareasMb.subsanarView}"
+								width="100%" style="border: none;" />
+						</div>
+					</div>
+				</p:dialog>
+			</h:form>
+		</p:dialog>
+		
+		
+		
+		
+
+		<p:dialog id="cargaDocumentosSubsanacion"
+			widgetVar="cargaDocumentosSubsanacion" width="60%" modal="true"
+			header="#{msg.sectionCargarDocumento}" responsive="true">
+			<h:form id="cargaDocumentosSubsanacionForm">
+				<div class="ui-g">
+					<div class="ui-g-12">
+						<p:fileUpload id="fileUploadContentSubsanacion" label="#{msg.sectionMiPC}"
+							fileUploadListener="#{myTareasMb.handleFileUpload}" auto="true"
+							mode="advanced" dragDropSupport="false"
+							update="@this messagesCdS" sizeLimit="5000000" fileLimit="1"
+							allowTypes="/(\.|\/)(pdf)$/"
+							invalidFileMessage="#{msg.sectionArchivoNoPermitido}"
+							invalidSizeMessage="#{msg.sectionTamañoExcedeMaximo}"
+							fileLimitMessage="#{msg.sectionSoloUnArchivo}" />
+						<p:messages id="messagesCdS" showDetail="true" />
+					</div>
+				</div>
+				<p:commandButton value="#{msg.sectionAceptar}"
+					actionListener="#{myTareasMb.upload()}" >
+					<p:ajax event="click" listener="#{myTareasMb.upload()}" />
+					</p:commandButton>
+				<p:commandButton value="#{msg.sectionCancelar}"
+					onclick="PF('cargaDocumentosSubsanacion').hide()" />
+			</h:form>
+		</p:dialog>
+		
+		
+		
+	</ui:define>
+</ui:composition>
+</html>

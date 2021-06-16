@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<complexComponent type="TRADE" name="Documento Apoyo"
+	description="Documento Apoyo" zul="documentoapoyo.zul"
+	composer="com.everis.tramelec.dynform.comp.ext.DocumentoApoyoComposer"
+	mappingDTO="com.egoveris.ccomplejos.base.model.DocumentoApoyoDTO">
+
+	<field name="documentoApoyoId" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.LongboxExt"/>
+		
+	<field name="secuenciaNro" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.LongboxExt"/>
+		
+	<field name="idDocumento" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt"  />
+		
+	<field name="fechaDocumento" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.DateboxExt"/>
+		
+	<field name="comentarios" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" />
+		
+	<field name="adjunto" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.FileUploadExt" />
+		
+	<field name="numeroDocumento" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" />
+		
+	<field name="tipoDocumento" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" />
+		
+	<field name="emisorDocumento" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" />
+
+</complexComponent>

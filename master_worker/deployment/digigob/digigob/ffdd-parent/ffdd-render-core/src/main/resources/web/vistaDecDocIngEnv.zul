@@ -1,0 +1,17 @@
+<zk>
+	<vlayout
+		apply="com.egoveris.ffdd.render.zk.comp.cc.VistaDecDocIngEnvComposer">
+
+		<vbox>
+			<hbox>
+				<cell id="${arg.formComp.nombre}_codigoAduanaDiv" />
+				<cell id="${arg.formComp.nombre}_codigoTipoOperacionDiv" />
+			</hbox>
+			<hbox>
+				<cell id="${arg.formComp.nombre}_tipoDestinacionDiv" />
+				<cell id="${arg.formComp.nombre}_regionIngresoDiv" />
+			</hbox>
+		</vbox>
+
+	</vlayout>
+</zk>

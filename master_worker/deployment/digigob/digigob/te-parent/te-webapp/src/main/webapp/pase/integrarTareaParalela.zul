@@ -1,0 +1,74 @@
+<?page title="Enviar a" contentType="text/html;charset=UTF-8"?>
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./envioWindow" ?>
+<zk>
+	<window title="${c:l('ee.envio.titulo')}" border="normal" width="800px"
+		 id="envioWindow"
+		apply="com.egoveris.te.base.composer.IntegrarTareaParalelaComposer">
+		<grid >
+			<rows width="799px">
+				<row>
+					<hlayout id="hlay" style="margin-left:5px;margin-right:5px">
+						<label value="${c:l('ee.anularmodificarsolicitud.label.motivo.value')}" />
+						<separator/>
+						<fckeditor customConfigurationsPath="/js/fckconfig.js"  toolbarSet="Basico" id="motivoExpediente" width="670px" height="250px"  />
+					</hlayout>
+				</row>
+			</rows>
+		</grid>
+		<grid >
+				<columns>
+					<column width="30%"></column>
+					<column width="70%"></column>
+				</columns>
+				<rows width="498px">
+					<row>
+						<label value="${c:l('ee.tramitacion.label.estado.value')}" />
+						<hbox>
+						<textbox width="200px" id="estado" readonly="true"/>
+						<image src="/imagenes/help.png"
+								width="16px" height="16px" tooltip="helpEstado" />
+						</hbox>
+					</row>
+				</rows>
+			</grid>
+			<separator />
+			<label value="${c:l('ee.historialpases.listheader.destino.value')}" style="font:bold;" id="destino"/>
+			<grid  id="grillaDestino">
+				<columns>
+					<column width="30%"></column>
+					<column width="70%"></column>
+				</columns>
+				<rows width="498px">
+					<row>
+						<label value="${c:l('ee.solicitudArchivo.label.usuario.value')}" id="usuarioLabel"/>
+						<hbox>
+							<textbox width="200px" id="usuario" />
+							<image src="/imagenes/help.png"
+								width="16px" height="16px" tooltip="helpUsuario" />
+						</hbox>
+
+					</row>
+
+				</rows>
+			</grid>
+			<separator></separator>
+			<button autodisable="self" id="enviar" label="${c:l('ee.subsanacion.button.enviar')}"
+				forward="onClick=integrarTareaParalelaWindow$IntegrarTareaParalelaComposer.onEnviar">
+			</button>
+			<button autodisable="self" id="cancelar" label="${c:l('ee.nuevasolicitud.button.cancelar.value')}"
+				forward="onClick=integrarTareaParalelaWindow$IntegrarTareaParalelaComposer.onCancelar">
+			</button>
+			<separator></separator>
+
+			<!--TOOLTIPS DE AYUDA-->
+		<popup id="helpUsuario" width="150px">
+			<label multiline="true"
+				value="${c:l('ee.tareasEnParalelo.label.tramitador')}" />
+		</popup>
+		<popup id="helpEstado" width="150px">
+			<label multiline="true"
+				value="${c:l('ee.tareasEnParalelo.label.tramitadorEstado')}" />
+		</popup>
+	</window>
+</zk>

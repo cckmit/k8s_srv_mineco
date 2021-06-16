@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<complexComponent type="TRADE" name="acknowledge"
+	description="Vista Producto Atributos Doc Ingreso Envio" zul="vistaProdAttrDocIngEnv.zul"
+	mappingDTO="com.egoveris.ccomplejos.base.model.VistaProdAttrDocIngEnvDTO">
+
+	<field name="secuenciaAtributo" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.IntboxExt" />
+	<field name="nombreAtributo" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" />
+	<field name="valorAtributo" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" />
+	<field name="esFijo" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" />
+
+
+</complexComponent>

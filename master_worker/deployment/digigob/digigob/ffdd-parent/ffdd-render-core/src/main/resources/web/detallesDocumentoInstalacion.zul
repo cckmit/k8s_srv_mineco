@@ -1,0 +1,40 @@
+<?page title="new page title" contentType="text/html;charset=UTF-8"?>
+<zk>
+	<vlayout
+		apply="com.egoveris.ffdd.render.zk.comp.cc.DetallesDocumentoInstalacionComposer">
+		<grid>
+			<columns>
+				<column></column>
+			</columns>
+			<rows>
+				<row>
+					<vbox>
+						<hbox>
+							<cell 
+								id="${arg.formComp.nombre}_nombreSSPPDiv" />
+				
+							<cell 
+								id="${arg.formComp.nombre}_codigoDocumentoDiv" />
+								
+							<cell 
+								id="${arg.formComp.nombre}_nombreDocumentoDiv" />
+					
+							<cell 
+								id="${arg.formComp.nombre}_idSolicitudDiv" />
+						</hbox>
+						<hbox>
+							<cell 
+								id="${arg.formComp.nombre}_nombreInstalacionDiv" />
+				
+							<cell 
+								id="${arg.formComp.nombre}_regionInstalacionDiv" />
+			
+							<cell 
+								id="${arg.formComp.nombre}_comunaInstalacionDiv" />
+						</hbox>
+					</vbox>
+				</row>
+			</rows>
+		</grid>
+	</vlayout>
+</zk>

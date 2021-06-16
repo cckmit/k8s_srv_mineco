@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" 
+"http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+	<bean id="externalFormularioService" 
+        class="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean">
+   		  <property name="serviceUrl" value="${app.ffdd.url}/remoting/formulario" />
+          <property name="serviceInterface">
+            <value>com.egoveris.ffdd.ws.service.ExternalFormularioService</value>
+          </property>
+    </bean>	
+    <bean id="externalTransaccionService" 
+        class="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean">
+   		  <property name="serviceUrl" value="${app.ffdd.url}/remoting/transaccion" />
+          <property name="serviceInterface">
+            <value>com.egoveris.ffdd.ws.service.ExternalTransaccionService</value>
+          </property>
+    </bean>	    
+    <bean id="externalCComplejosService" 
+        class="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean">
+   		  <property name="serviceUrl" value="${app.ffdd.url}/remoting/ccomplejo" />
+          <property name="serviceInterface">
+            <value>com.egoveris.ffdd.ws.service.ExternalCComplejosService</value>
+          </property>
+    </bean>	
+    
+    <bean id="externalComponentService" 
+        class="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean">
+   		  <property name="serviceUrl" value="${app.ffdd.url}/remoting/component" />
+          <property name="serviceInterface">
+            <value>com.egoveris.ffdd.ws.service.ExternalComponentService</value>
+          </property>
+    </bean>	
+    
+     <bean id="externalItemService" 
+        class="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean">
+   		  <property name="serviceUrl" value="${app.ffdd.url}/remoting/itemcomponent" />
+          <property name="serviceInterface">
+            <value>com.egoveris.ffdd.ws.service.ExternalItemService</value>
+          </property>
+    </bean>	
+</beans>

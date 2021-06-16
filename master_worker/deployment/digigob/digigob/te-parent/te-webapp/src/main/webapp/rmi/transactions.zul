@@ -1,0 +1,41 @@
+<?page title="${c:l('digigob.Title')}" contentType="text/html;charset=UTF-8"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./transactionsTemp" ?>
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+
+<zk>
+	<window id="transactionsTemp"
+		apply="org.zkoss.bind.BindComposer"
+		viewModel="@id('vm') @init('com.egoveris.te.base.vm.TransactionsVM')" 
+		border="none" width="80%" style="margin:auto;">
+		<div sclass="page-header">
+			<label value="${c:l('ee.transactions.realizadas')}" />
+		</div>
+		<listbox mold="paging" pageSize="5" model="@load(vm.transactions)" emptyMessage="-">
+			<listhead>
+				<listheader label="${c:l('ee.transactions.transaccion')}" />
+				<listheader label="${c:l('te.webapp.inbox.detalletrata.tipotramite.lbl.expediente')}" />
+				<listheader label="${c:l('ee.transactions.codigoESB')}" />
+				<listheader label="${c:l('ee.transactions.mensajeESB')}" />
+				<listheader label="${c:l('ee.misOperaciones.label.operacion')}" />
+				<listheader label="${c:l('ee.caratulas.listheader.documento.accion.value')}" />
+			</listhead>
+			<template name="model" var="item">
+	            <listitem>
+	            	<listcell label="${item.idTransaction}" />
+	                <listcell label="${item.expedient.getCodigoCaratula()}" />
+	                <listcell label="${item.code}" />
+	                <listcell label="${item.message}" />
+	                <listcell if="${item.idOperation != null}" label="${item.operation.numOficial}"  />
+	                <listcell if="${item.idOperation == null}" label="-"  />
+					<listcell>
+						<button if="${item.code == 'COD01'}" class="btn-info" 
+							iconSclass="z-icon-play" label="${c:l('ee.resumenOperacion.caption.iniSub')}" onClick="@command('onInitSubprocess', transaction=item)" />
+						<button if="${item.code != 'COD01'}" class="btn-info" iconSclass="z-icon-play" label="${c:l('ee.detalleOperacion.label.confirmar')}" onClick="@command('onConfirmOperation', transaction=item)" />
+						
+					</listcell>
+	            </listitem>
+	        </template>
+		</listbox>
+		<button class="btn-info" iconSclass="z-icon-refresh" label="${c:l('ee.transactions.refrescar')}" onClick="@command('onRefresh')" />
+	</window>
+</zk>

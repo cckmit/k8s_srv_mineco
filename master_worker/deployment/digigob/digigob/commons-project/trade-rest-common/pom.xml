@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<modelVersion>4.0.0</modelVersion>
+	
+	<parent>
+		<groupId>com.egoveris</groupId>
+		<artifactId>commons-project</artifactId>
+		<version>2.0.3-SNAPSHOT</version>
+	</parent>
+
+	<artifactId>trade-rest-common</artifactId>
+	<name>Model Rest Trade</name>
+	<packaging>jar</packaging>
+	
+<!-- This is now inherited from pom-master-config.xml  
+	<distributionManagement>
+		<repository>
+			<id>local-releases</id>
+			<name>Repositorio interno Egoveris - RELEASES</name>
+			<url>https://steps.everis.com/nexus/content/repositories/EGOVERISTE.Release</url>
+		</repository>
+		<snapshotRepository>
+			<id>local-snapshots</id>
+			<name>Repositorio interno Egoveris - SNAPSHOTS</name>
+			<url>https://steps.everis.com/nexus/content/repositories/EGOVERISTE.Snapshot</url>
+		</snapshotRepository>
+	</distributionManagement>
+ -->
+
+	<dependencies>
+	    <dependency>
+	        <groupId>com.egoveris</groupId>
+	        <artifactId>ffdd-model-common</artifactId>
+	        <version>${project.version}</version>
+      	</dependency>
+	</dependencies>
+
+</project>

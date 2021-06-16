@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
+    http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+	<changeSet author="Carlos Bellotti" id="TAD_PERSONA_APROBACIONES_AUD">
+		<createTable tableName="TAD_PERSONA_APROBACIONES_AUD">
+			<column name="ID" type="INT" autoIncrement="true">
+				<constraints primaryKey="true"/>
+			</column>
+			<column name="USUARIO" type="VARCHAR(20)">
+				<constraints nullable="false"/>
+			</column>
+			<column name="USUARIO_APROBADOR" type="VARCHAR(20)">
+				<constraints nullable="false"/>
+			</column>
+			<column name="FECHA" type="TIMESTAMP" defaultValueComputed="CURRENT_TIMESTAMP">
+				<constraints nullable="false"/>
+			</column>
+			<column name="ACCION" type="VARCHAR(20)">
+				<constraints nullable="false"/>
+			</column>
+			<column name="OBSERVACIONES" type="VARCHAR(255)">
+			</column>
+		</createTable>
+	</changeSet>  
+
+</databaseChangeLog>

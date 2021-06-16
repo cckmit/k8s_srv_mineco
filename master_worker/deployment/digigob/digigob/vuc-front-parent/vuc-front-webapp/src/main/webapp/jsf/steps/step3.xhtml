@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:egov="http://java.sun.com/jsf/composite/egov">
+
+
+<h:head>
+		<link href="https://test.serfinsacheckout.com:8087/Assets/css/BtnGoesStyle.css" rel="stylesheet" />
+</h:head>
+
+<ui:composition template="/WEB-INF/faces/layout/mainLayout.xhtml">
+
+<!--  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
+<!--  <script src="https://test.serfinsacheckout.com:8080/Scripts/Serfinsa.Pay.js"></script> -->
+ 
+ 
+
+	<ui:define name="body">
+	
+		<p:remoteCommand name="historialPasesErrorDialogJS"
+			actionListener="#{step3Mb.showHistorialDePasesException}" />
+		<h:form id="step3Form">
+			<div class="ui-g">
+				<div class="ui-g-12">
+					<h2>#{msg.stepsTramite}
+						#{step3Mb.expediente.tipoTramite.nombre}</h2>
+				</div>
+				<div class="ui-g-12">
+					<p:tabView id="tabViewMain" dynamic="false" cache="true">
+						<p:ajax event="tabChange" listener="#{step3Mb.onTabChange}"
+							oncomplete="historialPasesErrorDialogJS()" update="tabViewMain"
+							process="tabViewMain" />
+
+						<p:tab id="tabDatosSoliciante"
+							title="#{msg.step3DatosSolicitante}">
+							<egov:datosSolicitante value="#{step3Mb.expediente.persona}" />
+						</p:tab>
+						<p:tab id="tabDocumentos" title="#{msg.step3Documentos}">
+							<p:fieldset legend="#{msg.step3Documentos}"
+								style="margin-bottom:20px;width:100%;">
+								<p:dataTable id="tblDocumentos" var="documento"
+									value="#{step3Mb.documentosExpedienteList()}"
+									emptyMessage="#{msg.step3SinDocumentos}">
+									<p:column headerText="#{msg.step3Nombre}">
+										<p:outputLabel value="#{documento.tipoDocumento.nombre}" />
+									</p:column>
+									<p:column headerText="#{msg.step3Requerido}" priority="5">
+										<p:outputLabel
+											value="#{step3Mb.isRequired(documento) ? msg.step3Si : msg.step3No}" />
+									</p:column>
+									<p:column headerText="#{msg.step3NombreArchivo}"
+										rendered="true" priority="4">
+										<p:outputLabel value="#{documento.nombreOriginal}" />
+									</p:column>
+									<p:column headerText="#{msg.step3Ver}" width="13%"
+										style="text-align: center;">
+										<!-- PREVIEW BUTTON  -->
+										<!-- DOCUMENTOS REGULARES -->
+										<p:commandButton icon="fa fa-file-o"
+											rendered="#{not step2Mb.isTipoDocumentoFfdd(documento.tipoDocumento)}"
+											actionListener="#{step2Mb.viewDocument(documento)}"
+											oncomplete="PF('archivoView').show()"
+											update="mainLayout:step3Form:archivoView" />
+										<!-- FFDD -->
+										<p:commandButton icon="fa fa-file-o"
+											rendered="#{step2Mb.isTipoDocumentoFfdd(documento.tipoDocumento)}"
+											actionListener="#{step2Mb.viewDocument(documento)}"
+											oncomplete="PF('ffddDialog').show()"
+											update="mainLayout:step3Form:ffddDialog" />
+									</p:column>
+								</p:dataTable>
+							</p:fieldset>
+						</p:tab>
+					</p:tabView>
+				</div>
+
+				<!-- BACK, CANCEL, SAVE AND NEXT BUTTONS -->
+				<div class="ui-g-12" style="margin-top: 20px; text-align: center;">
+					<p:commandButton value="#{msg.stepsAtras}"
+						actionListener="#{step3Mb.cmdBack()}" class="buttonSpace" />
+					<p:commandButton value="#{msg.stepsCancelar}"
+						actionListener="#{step3Mb.cmdCancel()}" class="buttonSpace" />
+						
+					<c:if test="#{step3Mb.expediente.tipoTramite.pago}">
+					
+						<a href="#" id="btPagar" class="form-control btnGoes btnGoes-dark btnGoes-medium buttonSpace"
+						style="display: inline-block; margin: -20px 0px;">
+						 </a>
+					
+						<input type="hidden" id="TokenSerfinsa" value="#{step3Mb.expediente.tipoTramite.apiKey}">
+						 </input>
+						 <input type="hidden" id="IdTransaccion" value="#{step3Mb.idExpediente}">
+						 </input>
+						 <input type="hidden" id="MontroTransaccion" value="#{step3Mb.expediente.tipoTramite.monto}">
+						</input>
+						<input type="hidden" id="ConceptoPago" value="#{step3Mb.expediente.tipoTramite.nombre}">
+						</input>
+						
+						<h:inputHidden id="transaccionPago" value="#{step3Mb.expediente.transaccionPago}"/>
+						<h:inputHidden id="numeroAutorizacion" value="#{step3Mb.expediente.numeroAutorizacion}"/>
+						<h:inputHidden id="fechaPago" value="#{step3Mb.expediente.fechaPagoTime}"/>
+						<h:inputHidden id="cardHolder" value="#{step3Mb.titularTarjeta}"/>
+						<h:inputHidden id="maskPan" value="#{step3Mb.nroTarjeta}"/>
+					
+<!-- 						<button class="form-control btnGoes btnGoes-dark btnGoes-medium" -->
+<!-- 							id="btPagar"></button> -->
+												
+					</c:if>
+					
+					<p:commandButton 
+						style="display: #{(step3Mb.expediente.tipoTramite.pago)?'none': 'inline-block'}" 
+						id="cmdFinalizar" value="#{msg.step3Finalizar}"
+						class="buttonSpace cmdFinalizar" disabled="#{not step3Mb.borrador}"
+						actionListener="#{step3Mb.cmdFinalizar()}"
+						update="mainLayout:step3Form:cmdFinalizar mainLayout:step3Form:OkMessage" />
+				</div>
+			</div>
+
+			<!-- DIALOGS -->
+			<p:dialog id="archivoView" widgetVar="archivoView" modal="true"
+				style="position:absolute" width="60%" fitViewport="true"
+				global="true" header="Tramite: " resizable="false">
+				<object type="application/pdf"
+					data="#{request.contextPath.concat(step2Mb.pdfViewUrl)}"
+					height="500px" width="100%"> </object>
+			</p:dialog>
+
+			<p:dialog id="OkMessage" widgetVar="OkMessage" modal="true"
+				style="position:absolute" width="45%"  fitViewport="true"
+				global="true" header="#{msg.stepsTramite} #{step3Mb.expediente.tipoTramite.nombre}" resizable="false" closable="false" >
+				<div class="ui-g">
+					<div class="ui-g-12">
+						<p:outputLabel value="#{msg.step3SolicitudCodigo} #{step3Mb.expediente.codigoSade}" />
+						<p:outputLabel value="#{msg.step3SolcitudCompletada}" />
+					</div>
+				</div>
+				
+				<div class="ui-g-12" style="margin-top: 10px; text-align: center;">
+					<p:commandButton id="cmdOk" value="Ok"
+						class="buttonSpace" actionListener="#{step3Mb.cmdInicio()}"  onclick="PF('OkMessage').hide()"
+						update="@this" />
+				</div>
+			</p:dialog>
+
+			<!-- DIALOG FFDD -->
+			<p:dialog id="ffddDialog" widgetVar="ffddDialog" width="60%"
+				style="position:absolute" modal="true"
+				header="#{msg.step3Formulario}" responsive="true">
+				<p:ajax event="close" listener="#{step2Mb.closeEventFfddDialog()}"
+					global="false" />
+				<div class="ui-g">
+					<div class="ui-g-12">
+						<iframe
+							src="#{request.contextPath}/zul/formularioDinamico.zul?idTipoDoc=#{step2Mb.tipoDocumentoSeleccionado.id}&amp;idExp=#{step3Mb.expediente.id}&amp;view=true"
+							width="100%" style="border: none;" />
+					</div>
+				</div>
+			</p:dialog>
+		</h:form>
+
+<!-- 		<script src="https://test.serfinsacheckout.com:8087/Scripts/Serfinsa.PayV2.js"></script>  -->
+		
+		<script>
+		
+		function CallBackPopUp(datos) {
+			 window.open(datos.url, datos.titulo, datos.paramsPopUp);
+			 window.focus();
+		}
+		
+		function PayResult(resultado) {
+		}
+			 
+		function PayResultJson(message) {
+			var data = JSON.parse(message);
+			debugger;
+			document.getElementById('mainLayout:step3Form:transaccionPago').value = data['NumeroReferencia'];
+			document.getElementById('mainLayout:step3Form:numeroAutorizacion').value = data['NumeroAutorizacion'];
+			document.getElementById('mainLayout:step3Form:fechaPago').value = new Date(data['Fecha']).getTime();
+	
+			document.getElementById('mainLayout:step3Form:cardHolder').value = data['CardHolder'];
+			document.getElementById('mainLayout:step3Form:maskPan').value =  data['MaskPan'].replace(/.(?=.{4,}$)/g, '#');
+	
+			
+			document.querySelector('.cmdFinalizar').click();
+		}
+			 
+		function CallBackErrorCliente(e) {
+			 console.log(e);
+		}
+			 
+		function paymentSerfinsa1() {
+			 
+		}
+		</script>
+	</ui:define>
+</ui:composition>
+</html>

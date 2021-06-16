@@ -1,0 +1,50 @@
+<?page title="${c:l('digigob.Title')}" contentType="text/html;charset=UTF-8"?>
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+<?init class="org.zkoss.zk.ui.util.Composition" arg0="~./db_template.zul"?>
+
+<zk>
+	<window border="none" id="win_busquedaUsuario"
+		apply="com.egoveris.edt.web.admin.pl.AdminCalendarioComposer"
+		width="100%"  self="@{define(egovBody)}">
+		
+			
+		<div sclass="page-header">
+			<label value="${c:l('eu.admCalendario.label.admFeriados')}" />
+		</div>
+		
+		<panel style="" border="none">
+			<panelchildren style="">
+				<toolbarbutton id="crearFeriado"
+					label="${c:l('eu.configuracionFeriados.crearFeriado')}" style=""
+					image="/imagenes/logoCalendario.png" />
+			</panelchildren>
+		</panel>
+
+		<vlayout height="100%">
+			<div align="center">
+				<paging id="Paginator" pageSize="20" detailed="true"
+					width="700px" />
+				<listbox id="feriadosId" fixedLayout="true"
+					width="700px" mold="paging" paginal="${Paginator}">
+					<listhead sizable="false"
+						style="background: #C4ECFF;">
+						<listheader id="motivo"
+							label="${c:l('eu.configuracionFeriados.listbox.motivo')}"
+							style="background-color: #C4ECFF;" />
+						<listheader id="fecha"
+							label="${c:l('eu.configuracionFeriados.listbox.fecha')}"
+							style="background-color: #C4ECFF;" />
+						<listheader id="accion"
+							label="${c:l('eu.configuracionFeriados.listbox.accion')}"
+							style="background-color: #C4ECFF;" />
+					</listhead>
+				</listbox>
+			</div>
+		</vlayout>
+	</window>
+
+	<popup id="helpFeriados" width="200px">
+		<label multiline="true"
+			value="${c:l('eu.configuracionFeriados.helpFeriados')}" />
+	</popup>
+</zk>

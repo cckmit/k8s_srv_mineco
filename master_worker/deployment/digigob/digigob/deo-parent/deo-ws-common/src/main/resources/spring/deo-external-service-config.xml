@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+	<!-- Scan for Spring beans declared via annotations. -->
+	<context:component-scan base-package="com.egoveris.deo.ws.service" />
+
+	<bean id="generarDocumentoService"
+		class="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean">
+		<property name="serviceUrl" value="${app.deo.url}/remoting/generarDocumento" />
+		<property name="serviceInterface">
+			<value>com.egoveris.deo.ws.service.IExternalGenerarDocumentoService
+			</value>
+		</property>
+	</bean>
+	
+	<bean id="generarDocumentoNombramientoService"
+		class="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean">
+		<property name="serviceUrl" value="${app.deo.url}/remoting/generarDocumentoNombramiento" />
+		<property name="serviceInterface">
+			<value>com.egoveris.deo.ws.service.IExternalGenerarDocumentoNombramientoService
+			</value>
+		</property>
+	</bean>
+
+	<bean id="actualizarVisualizacionService"
+		class="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean">
+		<property name="serviceUrl" value="${app.deo.url}/remoting/actualizarVisualizacion" />
+		<property name="serviceInterface">
+			<value>com.egoveris.deo.ws.service.IExternalActualizarVisualizacionService
+			</value>
+		</property>
+	</bean>
+
+	<bean id="generarTareaService"
+		class="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean">
+		<property name="serviceUrl" value="${app.deo.url}/remoting/generarTarea" />
+		<property name="serviceInterface">
+			<value>com.egoveris.deo.ws.service.IExternalGenerarTareaService
+			</value>
+		</property>
+	</bean>
+
+	<bean id="generarTareaConRectificacionService"
+		class="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean">
+		<property name="serviceUrl" value="${app.deo.url}/remoting/generarTareaConRectificacion" />
+		<property name="serviceInterface">
+			<value>com.egoveris.deo.ws.service.IExternalGenerarTareaConRectificacionService
+			</value>
+		</property>
+	</bean>
+
+	<bean id="cancelarTareaService"
+		class="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean">
+		<property name="serviceUrl" value="${app.deo.url}/remoting/cancelarTarea" />
+		<property name="serviceInterface">
+			<value>com.egoveris.deo.ws.service.IExternalCancelarTareaService
+			</value>
+		</property>
+	</bean>
+
+	<bean id="bloquearTareaService"
+		class="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean">
+		<property name="serviceUrl" value="${app.deo.url}/remoting/bloquearTarea" />
+		<property name="serviceInterface">
+			<value>com.egoveris.deo.ws.service.IExternalBloquearTareaService
+			</value>
+		</property>
+	</bean>
+
+	<bean id="depuracionDocumentoService"
+		class="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean">
+		<property name="serviceUrl" value="${app.deo.url}/remoting/depuracionDocumento" />
+		<property name="serviceInterface">
+			<value>com.egoveris.deo.ws.service.IExternalDepuracionDocumentoService
+			</value>
+		</property>
+	</bean>
+
+	<bean id="tipoDocumentoService"
+		class="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean">
+		<property name="serviceUrl" value="${app.deo.url}/remoting/tipoDocumento" />
+		<property name="serviceInterface">
+			<value>com.egoveris.deo.ws.service.IExternalTipoDocumentoService
+			</value>
+		</property>
+	</bean>
+
+	<bean id="tipoReservaService"
+		class="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean">
+		<property name="serviceUrl" value="${app.deo.url}/remoting/tipoReserva" />
+		<property name="serviceInterface">
+			<value>com.egoveris.deo.ws.service.IExternalTipoReservaService
+			</value>
+		</property>
+	</bean>
+
+	<bean id="consultaDocumentoServiceExt"
+		class="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean">
+		<property name="serviceUrl" value="${app.deo.url}/remoting/consultaDocumento" />
+		<property name="serviceInterface">
+			<value>com.egoveris.deo.ws.service.IExternalConsultaDocumentoServiceExt
+			</value>
+		</property>
+	</bean>
+
+	<bean id="consultaDocumento2Service"
+		class="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean">
+		<property name="serviceUrl" value="${app.deo.url}/remoting/consultaDocumento2" />
+		<property name="serviceInterface">
+			<value>com.egoveris.deo.ws.service.IExternalConsultaDocumento2Service
+			</value>
+		</property>
+	</bean>
+
+	<bean id="consultaDocumento3Service"
+		class="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean">
+		<property name="serviceUrl" value="${app.deo.url}/remoting/consultaDocumento3" />
+		<property name="serviceInterface">
+			<value>com.egoveris.deo.ws.service.IExternalConsultaDocumentoService
+			</value>
+		</property>
+	</bean>
+
+	<bean id="buscarDocumentoService"
+		class="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean">
+		<property name="serviceUrl" value="${app.deo.url}/remoting/buscarDocumento" />
+		<property name="serviceInterface">
+			<value>com.egoveris.deo.ws.service.IExternalBuscarDocumentoService
+			</value>
+		</property>
+	</bean>
+
+</beans>

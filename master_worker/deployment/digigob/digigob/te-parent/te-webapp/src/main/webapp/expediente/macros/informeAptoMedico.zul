@@ -1,0 +1,80 @@
+<?page title="" contentType="text/html;charset=UTF-8"?>
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./informeAptoMedicoWindow" ?>
+
+<?component name="viewDocument" class="com.egoveris.te.base.component.DocumentViewerComponent" macroURI="/common/componentes/documents/documentViewer.zul"?>
+
+<zk>
+	<window border="normal" id="informeAptoMedicoWindow" 
+		apply="com.egoveris.te.base.composer.GenericDocumentoComposer" visible="true">
+
+		<div align="center">
+			<hlayout style="align:center">
+				<grid width="480px" align="center" >
+					<columns>
+						<column align="left" width="220px" />
+						<column align="left" />
+					</columns>
+					<rows>
+						<row align="left" >
+							<label value="${c:l('ee.informeAptoMedico.label.informeAptoMedico')}"></label>
+							<combobox id="informeAptoMedico" value="" width="100px">
+								<comboitem label="" value="" />
+								<comboitem label="${c:l('ee.informeAptoMedico.label.aprobado')}" value="Aprobado" />
+								<comboitem label="${c:l('ee.informeAptoMedico.label.rechazado')}" value="Rechazado" />
+								<comboitem label="${c:l('ee.informeAptoMedico.label.anulado')}" value="Anulado" />
+								<comboitem label="${c:l('ee.informeAptoMedico.label.preAnulado')}" value="Pre-Anulado" />
+							</combobox>
+						</row>
+						<row align="left" >
+							<label value="${c:l('ee.informeAptoMedico.label.fechaExamen')}"></label>
+							<vlayout>
+								<datebox id="fechaExamen" cols="12" format="dd/MM/yyyy"/>
+							</vlayout>
+						</row>
+						<row align="center" >
+							<label value="${c:l('ee.informeAptoMedico.label.UsuarioLUE')}"/>
+							<hbox>
+								<combobox width="200px" id="usuario"
+									buttonVisible="false" autodrop="true" />
+							</hbox>
+						</row>						
+						<row align="left" >
+							<label value="${c:l('ee.informeAptoMedico.label.altaLegajo')}"></label>
+							<vlayout>
+								<button autodisable="self" id="generarLUEBtn" label="${c:l('ee.informeAptoMedico.label.generarLUE')}" width="120px"/>
+								<checkbox id="luePreexistente" label="${c:l('ee.informeAptoMedico.label.luePreexistente')}"></checkbox>
+							</vlayout>
+						</row>
+						<row align="left" >
+							<label value="${c:l('ee.informeAptoMedico.label.numLE')}"></label>
+							<vlayout>
+								<textbox id="numeroLegajo" width="150px" readonly="true"></textbox>
+							</vlayout>
+						</row>
+						<row align="center" >
+							<label value="${c:l('ee.informeAptoMedico.label.numPreexistente')}"/>
+							<textbox width="120px" id="nroFicha" />
+						</row>
+												
+						
+						<!--  
+						<row align="left" >
+							<label value="Notificaciones realizadas"></label>
+							<vlayout id="notificaciones">
+								<checkbox id="dgpcg" label="DGPCG Notificado" value="DGPCG"></checkbox>
+							</vlayout>
+						</row>
+						-->
+					</rows>
+				</grid>
+			</hlayout>
+		</div>
+
+		<separator height="16px"></separator>
+
+		<viewDocument  id="docAsociado" title="${c:l('ee.cierreProceso.checkbox.docTramitadorAsoc')}" loadMethod="loadLinkedExpedient"/>
+
+	</window>
+</zk>

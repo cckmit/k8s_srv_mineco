@@ -1,0 +1,50 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rgm-inventario
+  namespace: mineco
+  labels:
+    run: rgm-inventario
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      run: rgm-inventario
+  template:
+    metadata:
+      labels:
+        run: rgm-inventario
+    spec:
+      containers:
+      - name: rgm-inventario
+        image: jjolon/rug:latest 
+        imagePullPolicy: IfNotPresent
+        ports:
+          # - containerPort: 8080
+          #   protocol: TCP
+          - containerPort: 8181
+            protocol: TCP
+          - containerPort: 8282
+            protocol: TCP
+          - containerPort: 4848
+            protocol: TCP
+          - containerPort: 80
+            protocol: TCP
+        volumeMounts:
+            # - mountPath: "/glassfish5/glassfish/domains/domain1"
+            # - mountPath: "/opt/payara/appserver/glassfish/domains/domain1/config/domain.xml"
+            #   name: vol-rgm
+            - mountPath: "/opt/payara/appserver/glassfish/domains/domain1/autodeploy"
+              name: vol-deploy
+            - mountPath: "/opt/firma"
+              name: vol-signature
+      volumes:
+        # - name: vol-rgm
+        #   persistentVolumeClaim:
+        #     claimName: rgm
+        - name: vol-deploy
+          persistentVolumeClaim:
+            claimName: rgm-deploy
+        - name: vol-signature
+          persistentVolumeClaim:
+            claimName: rgm-signature

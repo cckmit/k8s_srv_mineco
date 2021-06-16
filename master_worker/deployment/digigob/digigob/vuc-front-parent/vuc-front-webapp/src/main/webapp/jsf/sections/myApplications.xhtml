@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/WEB-INF/faces/layout/mainLayout.xhtml">
+	<ui:define name="body">
+
+		<h:form id="myApplications">
+			<div class="ui-g">
+				<div class="ui-g-12">
+					<h2>#{msg.sectionExpedientes}</h2>
+				</div>
+			</div>
+			<div class="ui-g">
+				<div class="ui-g-12">
+					<p:dataTable id="tblApplications" var="expedienteBase"
+						value="#{myApplicationsMb.expedientesList}"
+						emptyMessage="#{msg.sectionSinExpedientes}"
+						style="text-align: center;" rows="10" paginator="true"
+						paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+						currentPageReportTemplate="{currentPage} #{msg.sectionDe} {totalPages} #{msg.sectionPaginas}"
+						rowsPerPageTemplate="5,10,15" paginatorPosition="bottom">
+						<p:column headerText="#{msg.sectionCodigoExpediente}">
+							<p:outputLabel value="#{expedienteBase.codigoSade}" />
+						</p:column>
+						<p:column headerText="#{msg.sectionTramite}">
+							<p:outputLabel value="#{expedienteBase.tipoTramite.nombre}" />
+						</p:column>
+						<p:column headerText="#{msg.sectionFechaDeCreacion}">
+							<p:outputLabel value="#{expedienteBase.formattedFechaCreacion}" />
+						</p:column>
+						<p:column headerText="#{msg.sectionVer}" width="60">
+							<p:commandButton icon="fa fa-search"
+								style="height: 2em; width: 2em;"
+								actionListener="#{myApplicationsMb.cmdViewExpediente(expedienteBase)}">
+							</p:commandButton>
+						</p:column>
+						<p:column headerText="#{msg.sectionEstado}" width="80">
+							<p:outputLabel
+								value="#{expedienteBase.estadoTramite.descripcion}" />
+						</p:column>
+					</p:dataTable>
+				</div>
+			</div>
+		</h:form>
+
+	</ui:define>
+</ui:composition>
+</html>

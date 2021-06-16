@@ -1,0 +1,198 @@
+version: '3.1'
+networks: 
+  digigob-network: 
+    external: 
+      name: digigob-network
+
+volumes:
+  db-capahn-volume:
+    external : false
+
+services:
+  db-capahn:
+    image: mariadb:10.3
+    command: --lower_case_table_names=1
+    environment:
+      MYSQL_ROOT_PASSWORD: digigob
+      MYSQL_DATABASE: digigob
+      MYSQL_USER: digigob
+      MYSQL_PASSWORD: digigob      
+    ports:
+      - 3306:3306
+    networks:
+      - digigob-network
+    volumes:
+      - db-capahn-volume:/var/lib/mysql
+      - ./capahn:/docker-entrypoint-initdb.d
+  numerador-capahn:
+    image: numerador-egoveris:latest
+    environment:
+      DB_HOST: db-capahn
+      DB_PORT: 3306
+      DB_NAME_SUFIX: _DIGIGOB
+      DB_USER: digigob
+      DB_PASS: Egoveris052020*
+      NOMBRE_NODO: CJB
+      CERTIFICADOS: apache-selfsigned.crt
+    ports:
+      - 8180:8080
+    networks:
+      - digigob-network
+    volumes:
+      - /home/javier/proyectos/egoveris/ambientes/certificados/docker:/etc/certs
+    extra_hosts:
+      - "docker-host.digigob.com:40.87.103.121"
+      - "docker1-host.digigob.com:40.71.27.78"
+      - "db.digigob.com:192.168.1.61"
+      - "webdav.digigob.com:40.71.27.78"
+    links:
+      - db-capahn
+  edt-capahn:
+    image: edt-egoveris:latest
+    environment:
+      DB_HOST: docker1-host.egoveris.com
+      DB_PORT: 3306
+      DB_NAME_SUFIX: _DIGIGOB
+      DB_USER: digigob
+      DB_PASS: Egoveris052020*
+      NOMBRE_NODO: CJB
+      CERTIFICADOS: apache-selfsigned.crt
+      DEBUG_PORT: 9011
+    ports:
+      - 8181:8080
+      - 9011:9011
+    networks:
+      - digigob-network
+    volumes:
+      - /home/javier/proyectos/egoveris/ambientes/certificados/capahn:/etc/certs
+    extra_hosts:
+      - "docker-host.egoveris.com:40.87.103.121"
+      - "docker1-host.egoveris.com:104.215.86.30"
+      - "solr-host.egoveris.com:40.71.27.78"
+      - "demo.gobiernodigital.gob.hn:104.210.209.73"
+        #    links:
+        #- db-capahn
+  deo-capahn:
+    image: deo-egoveris:latest
+    environment:
+      DB_HOST: db-capahn
+      DB_PORT: 3306
+      DB_NAME_PREFIX: QA_
+      DB_NAME_SUFIX: _TRADE
+      DB_USER: temuco
+      DB_PASS: temuco
+      NOMBRE_NODO: CJB
+      CERTIFICADOS: apache-selfsigned.crt
+      DEBUG_PORT: 9011
+    ports:
+      - 8182:8080
+      - 9011:9011
+    networks:
+      - digigob-network
+    volumes:
+      - /home/javier/proyectos/egoveris/ambientes/certificados/docker:/etc/certs
+    extra_hosts:
+      - "docker-host.digigob.com:40.87.103.121"
+      - "docker1-host.digigob.com:40.71.27.78"
+      - "db.digigob.com:192.168.1.61"
+      - "webdav.digigob.com:40.71.27.78"
+    links:
+      - db-capahn
+  ffdd-capahn:
+    image: ffdd-egoveris:latest
+    environment:
+      DB_HOST: db-capahn
+      DB_PORT: 3306
+      DB_NAME_PREFIX: QA_
+      DB_NAME_SUFIX: _TRADE
+      DB_USER: temuco
+      DB_PASS: temuco
+      NOMBRE_NODO: CJB
+      CERTIFICADOS: apache-selfsigned.crt
+    ports:
+      - 8183:8080
+    networks:
+      - digigob-network
+    volumes:
+      - /home/javier/proyectos/egoveris/ambientes/certificados/docker:/etc/certs
+    extra_hosts:
+      - "docker-host.digigob.com:40.87.103.121"
+      - "docker1-host.digigob.com:40.71.27.78"
+      - "db.digigob.com:192.168.1.61"
+      - "webdav.digigob.com:40.71.27.78"
+    links:
+      - db-capahn
+  te-capahn:
+    image: te-egoveris:latest
+    environment:
+      DB_HOST: db-capahn
+      DB_PORT: 3306
+      DB_NAME_PREFIX: QA_
+      DB_NAME_SUFIX: _TRADE
+      DB_USER: temuco
+      DB_PASS: temuco
+      NOMBRE_NODO: CJB
+      CERTIFICADOS: apache-selfsigned.crt
+    ports:
+      - 8184:8080
+    networks:
+      - digigob-network
+    volumes:
+      - /home/javier/proyectos/egoveris/ambientes/certificados/docker:/etc/certs
+    extra_hosts:
+      - "docker-host.digigob.com:40.87.103.121"
+      - "docker1-host.digigob.com:40.71.27.78"
+      - "webdav.digigob.com:40.71.27.78"
+    links:
+      - db-capahn
+  tica-capahn:
+    image: tica-egoveris:latest
+    environment:
+      DB_HOST: db-capahn
+      DB_PORT: 3306
+      DB_NAME_PREFIX: QA_
+      DB_NAME_SUFIX: _TRADE
+      DB_USER: temuco
+      DB_PASS: temuco
+      NOMBRE_NODO: CJB
+      CERTIFICADOS: apache-selfsigned.crt
+    ports:
+      - 8185:8080
+    networks:
+      - digigob-network
+    volumes:
+      - /home/javier/proyectos/egoveris/ambientes/certificados/docker:/etc/certs
+    extra_hosts:
+      - "docker-host.digigob.com:40.87.103.121"
+      - "docker1-host.digigob.com:40.71.27.78"
+      - "db.digigob.com:192.168.1.61"
+      - "webdav.digigob.com:40.71.27.78"
+    links:
+      - db-capahn
+  vuc-capahn:
+    image: vuc-egoveris:latest
+    environment:
+      DB_HOST: db-capahn
+      DB_PORT: 3306
+      DB_NAME_PREFIX: QA_
+      DB_NAME_SUFIX: _TRADE
+      DB_USER: temuco
+      DB_PASS: temuco
+      NOMBRE_NODO: CJB
+      CERTIFICADOS: apache-selfsigned.crt
+      KEYCLOAK_REALM: everis
+      KEYCLOAK_CLIENT_ID: local
+      KEYCLOAK_URL: https://docker-host.digigob.com/auth
+    ports:
+      - 8099:8080
+    networks:
+      - digigob-network
+    volumes:
+      - /home/javier/proyectos/egoveris/ambientes/certificados/docker:/etc/certs
+    extra_hosts:
+      - "docker-host.digigob.com:40.87.103.121"
+      - "docker1-host.digigob.com:40.71.27.78"
+      - "db.digigob.com:192.168.1.61"
+      - "webdav.digigob.com:40.71.27.78"
+    links:
+      - db-capahn

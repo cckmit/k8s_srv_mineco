@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+	PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<h:head>
+	<title>#{msg.layoutTitle}</title>
+	<link rel="icon" type="image/png" />
+	<link rel="stylesheet" media="all" />
+	<h:outputStylesheet library="application" name="vuc.css" />
+	<h:outputStylesheet library="webjars" name="font-awesome/4.7.0/css/font-awesome-jsf.css" />
+	<h:outputStylesheet library="webjars" name="bootstrap/3.3.7-1/css/bootstrap-jsf.css" />
+	<h:outputScript library="webjars" name="bootstrap/3.3.7-1/js/bootstrap.min.js" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<style>
+		.formulario-container {
+			display: flex;
+			width: 100%;
+			justify-content: center;
+		}
+
+		.ui-outputlabel {
+			font-weight: bold !important;
+		}
+	</style>
+</h:head>
+
+<h:body>
+	<h:form id="formularioYTerminos">
+		<div class="container-fluid">
+			<ui:include src="/WEB-INF/faces/layout/ajaxStatus.xhtml" />
+			<ui:include src="/WEB-INF/faces/layout/mainHeader.xhtml" />
+			<div class="ui-g">
+				<div class="ui-g-12">
+					<h2>#{msg.completarDatos}</h2>
+				</div>
+			</div>
+			<div class="ui-fluid formulario-container">
+				<div class="ui-g-6">
+					<p:panelGrid columns="2" layout="grid" styleClass="ui-panelgrid-blank"
+						columnClasses="ui-g-3,ui-g-9">
+
+						<p:outputLabel for="direccion" value="#{msg.direccion}" />
+						<p:inputText id="direccion" value="#{formularioYTerminosMb.direccion}" required="true">
+							<p:ajax event="change" listener="#{formularioYTerminosMb.validar()}"/>
+						</p:inputText>
+
+						<p:outputLabel for="piso" value="#{msg.piso}" />
+						<p:inputText id="piso" value="#{formularioYTerminosMb.piso}">
+							<p:ajax event="change" listener="#{formularioYTerminosMb.validar()}"/>
+						</p:inputText>
+
+						<p:outputLabel for="dpto" value="#{msg.departamento}" />
+						<p:inputText id="dpto" value="#{formularioYTerminosMb.dpto}">
+							<p:ajax event="change" listener="#{formularioYTerminosMb.validar()}"/>
+						</p:inputText>
+
+						<p:outputLabel for="provincia" value="#{msg.provincia}" />
+						<p:selectOneMenu id="provincia" value="#{formularioYTerminosMb.provincia}"  required="true">
+							<p:ajax event="change" listener="#{formularioYTerminosMb.selectProvincia()}" update="partido localidad"/>
+							<f:selectItem itemLabel="Seleccione provincia..." noSelectionOption="true" itemValue="" />							
+							<f:selectItems value="#{formularioYTerminosMb.provincias}"></f:selectItems>
+						</p:selectOneMenu>
+
+						<p:outputLabel for="partido" value="#{msg.partido}" />
+						<p:selectOneMenu id="partido" value="#{formularioYTerminosMb.partido}"  required="true">
+							<p:ajax event="change" listener="#{formularioYTerminosMb.selectPartido()}" update="localidad"/>
+							<f:selectItem itemLabel="#{msg.tYCSeleccionePartido}" noSelectionOption="true" itemValue="" />							
+							<f:selectItems value="#{formularioYTerminosMb.partidos}"></f:selectItems>
+						</p:selectOneMenu>
+
+						<p:outputLabel for="localidad" value="#{msg.localidad}" />
+						<p:selectOneMenu id="localidad" value="#{formularioYTerminosMb.localidad}"  required="true">
+							<p:ajax event="change" listener="#{formularioYTerminosMb.validar()}"/>
+							<f:selectItem itemLabel="#{msg.tYCSeleccioneLocalidad}" noSelectionOption="true" itemValue="" />							
+							<f:selectItems value="#{formularioYTerminosMb.localidades}"></f:selectItems>
+						</p:selectOneMenu>
+
+						<p:outputLabel for="codigoPostal" value="#{msg.codigoPostal}" />
+						<p:inputText id="codigoPostal" value="#{formularioYTerminosMb.codigoPostal}" required="true">
+							<p:ajax event="change" listener="#{formularioYTerminosMb.validar()}"/>
+						</p:inputText>
+						
+						<p:outputLabel for="telefono" value="#{msg.telefono}" />
+						<p:inputText id="telefono" value="#{formularioYTerminosMb.telefono}" required="true">
+							<p:ajax event="change" listener="#{formularioYTerminosMb.validar()}"/>
+						</p:inputText>
+
+						<p:outputLabel for="terminos" value="#{msg.terminosYCondiciones}"  required="true"/>
+						<p:inputTextarea id="terminos" rows="5" value="#{formularioYTerminosMb.terminos}" readonly="true">
+						</p:inputTextarea>
+
+						<p:outputLabel></p:outputLabel>
+						<p:selectBooleanCheckbox itemLabel="#{msg.aceptoTerminosYCondiciones}"
+							value="#{formularioYTerminosMb.terminosOk}"  required="true">
+							<p:ajax event="change" listener="#{formularioYTerminosMb.validar()}"/>
+						</p:selectBooleanCheckbox>
+
+					</p:panelGrid>
+					<div style="width: 100%; display : flex; justify-content: center;">
+						<p:commandButton icon="fa fa-check" value="#{msg.stepsContinuar}" style="width : 25%" process="@this" actionListener="#{formularioYTerminosMb.confirmar}"/>
+					</div>
+				</div>
+			</div>
+		</div>
+	</h:form>
+</h:body>
+
+</html>

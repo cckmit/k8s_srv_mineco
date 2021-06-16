@@ -1,0 +1,33 @@
+<?page title="Workflow Designer" id="tramitacion" contentType="text/html;charset=UTF-8"?>
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+<zk xmlns:x="xhtml" xmlns:zk="zk" xmlns:w="http://www.zkoss.org/2005/zk/client">
+	<window id="nuevoProyecto" title="${c:l('title.nuevoProyecto')}"
+		xmlns:w="http://www.zkoss.org/2005/zk/client" 
+		border="normal" mode="modal" 
+		width="350px">
+		<grid width="100%">
+			<columns>
+				<column width="30%"></column>
+				<column width="100%"></column>
+			</columns>
+			<rows>
+				<row>
+					<label value="${c:l('general.nombre')}"/>
+					<textbox id="nombre" cols="35" maxlength="200"></textbox>
+				</row>
+				<row>
+					<label value="${c:l('general.autor')}"/>
+					<textbox id="autor" cols="35" readonly="true" disabled="true" maxlength="200"></textbox>
+				</row>
+				<row>
+					<label value="${c:l('general.descripcion')}"/>
+					<textbox id="descripcion" multiline="true" rows="10" cols="35" maxlength="4000"></textbox>
+				</row>				
+			</rows>
+		</grid>
+		<div width="100%" align="center">
+			<button id="btnAceptar" label="${c:l('general.aceptar')}" class="btn-info"/>
+			<button id="btnCancelar" label="${c:l('general.cancelar')}" class="btn-info"/>
+		</div>
+	</window>
+</zk>

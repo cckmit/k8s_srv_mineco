@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<complexComponent type="TRADE" name="intalaciondocingenvio"
+	description="Vista Intalacio nDoc IngEnvio" zul="vistaIntalacionDocIngEnvio.zul"
+	mappingDTO="com.egoveris.ccomplejos.base.model.VistaIntalacionDocIngEnvioDTO">
+
+ 
+	<field name="nombreContactoEstablecimiento" width="90%" height="20px" class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" disabled="true"/>
+	<field name="nombreDirectorTecnico" width="90%" height="20px" class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt"  disabled="true"/>
+	<field name="tipoEstablecimiento" width="90%" height="20px" class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt"  disabled="true"/>
+	<field name="codigoEstablecimiento" width="90%" height="20px" class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt"  disabled="true"/>
+	<field name="nombreEstablecimiento" width="90%" height="20px" class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt"  disabled="true"/>
+	<field name="establecimientoAutorizado" width="90%" height="20px" class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt"  disabled="true"/>
+	<field name="razonSocialEstablecimiento" width="90%" height="20px" class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt"  disabled="true"/>
+	<field name="numeroResolucionAutorizacion" width="90%" height="20px" class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt"  disabled="true"/>
+	<field name="fechaEmisionResolucion" width="90%" height="20px" class="com.egoveris.ffdd.render.zk.comp.ext.DateboxExt"  disabled="true"/>
+	<field name="entidadEmisora" width="90%" height="20px" class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt"  disabled="true"/>
+	<field name="telefonoInstalacion" width="90%" height="20px" class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt"  disabled="true"/>
+	<field name="direccionEstablecimiento" width="90%" height="20px" class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt"  disabled="true"/>
+	<field name="regionInstalacion" width="90%" height="20px" class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt"  disabled="true"/>
+	<field name="comunaInstalacion" width="90%" height="20px" class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt"  disabled="true"/>
+
+
+</complexComponent>

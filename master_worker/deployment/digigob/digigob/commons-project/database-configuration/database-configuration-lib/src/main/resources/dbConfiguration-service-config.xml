@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+		http://www.springframework.org/schema/context
+		http://www.springframework.org/schema/context/spring-context-2.5.xsd">
+
+	<bean id="masterKeyEncription" class="java.lang.String">
+<!-- This is causing initialization context problems so we are going to use a patch solution
+		<constructor-arg type="java.lang.String" value="${master.key}" /> -->
+		<constructor-arg type="java.lang.String" value="123456789012345678901234567890" />
+	</bean>
+
+	<bean id="passwordBasedEncriptionService" 
+		class="com.egoveris.commons.databaseconfiguration.encription.impl.PasswordBasedEncriptionImpl" init-method="initCiphers">
+		<property name="masterKey" ref="masterKeyEncription"/>
+	</bean>
+</beans>

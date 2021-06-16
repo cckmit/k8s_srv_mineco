@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc.xsd">
+
+	<!-- In-memory example database -->
+	<!-- <jdbc:embedded-database id="dataSourceTest"> <jdbc:script location="classpath*:scripts/schema-jpa-env.sql" 
+		/> <jdbc:script location="classpath*:scripts/data-jpa-env.sql" /> </jdbc:embedded-database> -->
+
+	<!-- Provides the required "jpaDataSource" bean -->	
+	<alias name="dataSourceUsuarios" alias="dataSourceEdt" />
+	<alias name="jpaDataSource" alias="dataSource" />
+
+	<bean id="jpaDataSource"
+			class="org.springframework.jndi.JndiObjectFactoryBean">
+			<property name="jndiName" value="jdbc/gedoDS" />
+			<property name="resourceRef" value="true" />
+			<property name="cache" value="true" />
+			<property name="proxyInterface" value="javax.sql.DataSource" />
+	</bean>
+		
+	<bean id="edtDataSource"
+		class="org.springframework.jndi.JndiObjectFactoryBean">
+		<property name="jndiName" value="jdbc/edtDS" />
+		<property name="resourceRef" value="true" />
+		<property name="cache" value="true" />
+		<property name="proxyInterface" value="javax.sql.DataSource" />
+	</bean>	
+
+	<bean id="entityManagerFactory"
+		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean" depends-on="liquibase">
+		<property name="dataSource" ref="jpaDataSource" />
+		<property name="jpaVendorAdapter" ref="jpaVendorAdapter" />
+		<!-- Set JPA properties -->
+		<property name="jpaProperties">
+			<props>
+				<prop key="hibernate.dialect">org.hibernate.dialect.MySQL5InnoDBDialect</prop>
+				<prop key="javax.persistence.schema-generation.database.action">none</prop>
+			</props>
+		</property>
+		<!-- Set base package of your entities -->
+		<property name="packagesToScan" value="com.egoveris.deo.base.model" />
+		<!-- Set share cache mode -->
+		<property name="sharedCacheMode" value="ENABLE_SELECTIVE" />
+		<!-- Set validation mode -->
+		<property name="validationMode" value="NONE" />
+	</bean>
+	
+	<bean id="dataSourceUsuarios" class="org.springframework.jndi.JndiObjectFactoryBean">
+		<property name="jndiName" value="jdbc/edtDS" />
+ 		<property name="resourceRef" value="true" />
+ 		<property name="cache" value="true" />
+ 	</bean>
+
+</beans>

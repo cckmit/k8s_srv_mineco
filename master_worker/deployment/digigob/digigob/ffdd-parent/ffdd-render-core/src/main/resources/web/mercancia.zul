@@ -1,0 +1,28 @@
+<zk>
+	<vlayout
+		apply="com.egoveris.ffdd.render.zk.comp.cc.MercanciaComposer">
+		<vbox>
+			<hbox>
+				<hbox>
+					<cell id="${arg.formComp.nombre}_idMercanciaDiv" />
+					<cell id="${arg.formComp.nombre}_mercanciaNacionalizadaDiv" /> 
+				</hbox>
+			</hbox>
+			<hbox>
+				<cell id="${arg.formComp.nombre}_regionOrigenDiv" />
+				<cell id="${arg.formComp.nombre}_propiosMediosDiv" />
+
+			</hbox>
+			<hbox>
+				<cell id="${arg.formComp.nombre}_mercanciaZonaPrimariaDiv" />
+				<cell id="${arg.formComp.nombre}_adquiridasCIFDiv" />
+
+			</hbox>
+			<hbox>
+				<cell id="${arg.formComp.nombre}_origenCIFDiv" />
+				<cell id="${arg.formComp.nombre}_paisOrigenDiv" />
+				<cell id="${arg.formComp.nombre}_paisAdquisicionDiv" /> 
+			</hbox> 
+		</vbox>
+	</vlayout>
+</zk>

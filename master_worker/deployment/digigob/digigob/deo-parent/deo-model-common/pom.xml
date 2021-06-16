@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>com.egoveris</groupId>
+		<artifactId>deo</artifactId>
+		<version>2.0.3-SNAPSHOT</version>
+	</parent>
+
+	<artifactId>deo-model-common</artifactId>
+	<name>deo model common project</name>
+
+	<dependencies>
+
+		<!-- == Begin TSF+ framework == -->
+		<dependency>
+			<groupId>org.terasoluna.plus.framework</groupId>
+			<artifactId>terasoluna-plus-common</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<!-- == End TSF+ framework == -->
+
+		<!-- == Begin Egoveris == -->
+		<dependency>
+			<groupId>com.egoveris</groupId>
+			<artifactId>shared-security-base-common</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.egoveris</groupId>
+			<artifactId>shared-organismo-base-common</artifactId>
+		</dependency>
+		<!-- == End Egoveris == -->
+
+		<!-- == SOLR == -->
+		<dependency>
+		    <groupId>org.springframework.data</groupId>
+		    <artifactId>spring-data-solr</artifactId>
+		    <exclusions>
+				<exclusion>
+					<groupId>org.apache.solr</groupId>
+					<artifactId>solr-solrj</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+		<!-- == JBPM == -->
+		<dependency>
+			<!-- Task usado en TaskViewDTO -->
+			<groupId>org.jbpm.jbpm4</groupId>
+			<artifactId>jbpm-api</artifactId>
+			<scope>provided</scope>
+		</dependency>
+	</dependencies>
+
+</project>

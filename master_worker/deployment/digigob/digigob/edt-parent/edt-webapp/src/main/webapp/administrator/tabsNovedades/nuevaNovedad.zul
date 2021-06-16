@@ -1,0 +1,77 @@
+<?page title="${c:l('nuevaNovedad.title')}" contentType="text/html;charset=UTF-8"?>
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c" ?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./win_novedadNueva"?>
+<zk>
+	<window id="win_novedadNueva"
+		title="${c:l('eu.configuracionNovedades.crearNovedad.titulo')}"
+		border="normal" width="600px"
+		apply="com.egoveris.edt.web.pl.NuevaNovedadComposer">
+		
+		<vbox align="center" width="100%">
+			<grid>
+				<columns>
+					<column />
+					<column />
+				</columns>
+				<rows>
+					<row spans="40% , 60%">
+						<label
+							value="${c:l('eu.configuracionNovedades.crearNovedad.nombre')}" />
+						<textbox style="resize:none;" id="nombreTextbox"
+							maxlength="550"  width="300px" />
+					</row>
+					<row spans="40% , 60%">
+						<label
+							value="${c:l('eu.configuracionNovedades.crearNovedad.categoria')}" />
+						<hbox vflex="true" align="center">
+							<combobox id="cbx_categoria" width="200px"
+								height="31px" model="@{win_novedadNueva$composer.categorias}"
+								selectedItem="@{win_novedadNueva$composer.categoria}"
+								value="@{win_novedadNueva$composer.categoria.categoriaNombre}"
+								itemRenderer="com.egoveris.edt.web.admin.pl.renderers.CategoriasComboBoxItemRenderer">
+							</combobox>
+						</hbox>
+					</row>
+	
+					<row spans="40% , 60%">
+						<label
+							value="${c:l('eu.configuracionNovedades.crearNovedad.modulo')}" />
+						<hbox vflex="true" align="center">
+							<listbox id="cbx_aplicacion" width="200px"
+								model="@{win_novedadNueva$composer.aplicacionesLayout}"
+								selectedItems="@{win_novedadNueva$composer.selectedItems}"
+								value="@{win_novedadNueva$composer.aplicacionLayOut.nombreAplicacion}"
+								itemRenderer="com.egoveris.edt.web.admin.pl.renderers.AplicacionItemRender"
+								multiple="true" checkmark="true">
+							</listbox>
+						</hbox>
+					</row>
+	
+					<row spans="40% , 60%">
+						<label
+							value="${c:l('eu.configuracionNovedades.crearNovedad.fechaInicio')}" />
+						<datebox id="fechaInicioDatebox" format="dd/MM/yyyy" />
+					</row>
+	
+					<row spans="40% , 60%">
+						<label
+							value="${c:l('eu.configuracionNovedades.crearNovedad.fechaFin')}" />
+						<datebox id="fechaFinDatebox" format="dd/MM/yyyy" />
+					</row>
+				</rows>
+			</grid>
+			<separator spacing="20px" />
+		
+			<hbox id="hbox_botones" align="center">
+				<button id="guardar" iconSclass="z-icon-floppy-o"
+					label="${c:l('edt.standar.guardar')}" zclass="z-button"
+					style="padding:7px 10px;"
+					tooltiptext="${c:l('eu.adminSade.guardar')}" />
+				<button id="cancelar" iconSclass="z-icon-times"
+					label="${c:l('edt.standar.cancelar')}" zclass="z-button"
+					style="padding:7px 10px;"
+					tooltiptext="${c:l('eu.adminSade.cancelar')}" />
+			</hbox>
+		</vbox>
+	</window>
+</zk>

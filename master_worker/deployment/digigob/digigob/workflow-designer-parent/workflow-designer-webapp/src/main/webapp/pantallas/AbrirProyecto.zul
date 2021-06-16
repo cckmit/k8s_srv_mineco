@@ -1,0 +1,41 @@
+<?page title="Workflow Designer" id="tramitacion" contentType="text/html;charset=UTF-8"?>
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./abrirProyecto" ?>
+
+<zk xmlns:x="xhtml" xmlns:zk="zk" xmlns:w="http://www.zkoss.org/2005/zk/client">
+	<window id="abrirProyecto" title="${c:l('title.abrirProyecto')}"
+		xmlns:w="http://www.zkoss.org/2005/zk/client" 
+		border="normal" mode="modal" 
+		width="350px">
+		
+		<grid width="100%">
+			<columns>
+				<column width="30%"></column>
+				<column width="100%"></column>
+			</columns>
+			<rows>
+				<row>
+					<label value="${c:l('general.proyecto')}"/>
+					<listbox id="lstProject" rows="1" mold="select" width="230px">
+						<listitem self="@{each=wkf}" value="@{wkf}">
+							<listcell label="@{wkf.name}"/>
+						</listitem>
+					</listbox>
+				</row>
+				<row>
+					<label value="${c:l('general.autor')}"/>
+					<textbox id="autor" cols="35" readonly="true" disabled="true" width="230px"></textbox>
+				</row>
+				<row>
+					<label value="${c:l('general.descripcion')}"/>
+					<textbox id="descripcion" multiline="true" rows="10" cols="35" disabled="true" width="230px"></textbox>
+				</row>				
+			</rows>
+		</grid>
+				
+		<div width="100%" align="center">
+			<button id="btnAceptar" label="${c:l('general.abrir')}" class="btn-info"/>
+			<button id="btnCancelar" label="${c:l('general.cancelar')}" class="btn-info"/>
+		</div>
+	</window>
+</zk>

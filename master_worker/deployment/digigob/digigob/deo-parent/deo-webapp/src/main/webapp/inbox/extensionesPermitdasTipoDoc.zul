@@ -1,0 +1,72 @@
+<?page title="${c:l('gedo.extensionesPermitidas.wintitle.extPermitidas')}" contentType="text/html;charset=UTF-8"?>
+<!-- <?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./extensionesPermitidasWindow" ?> -->
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+<zk>
+	<window id="extensionesArchivosWindow" title="${c:l('gedo.extensionesPermitidas.wintitle.extPermitidas')}" 
+		border="normal" width="700px"  position="center" closable="true" 
+		
+		apply = "com.egoveris.deo.web.satra.tipos.ExtensionesPermitidasTipoDocComposer" >
+		<div>
+			<paging id="ExtensionesPaginator" pageSize="5" />
+			<grid id="grillaExtensiones" mold="paging"
+				paginal="${ExtensionesPaginator}"
+				model="@{extensionesArchivosWindow$ExtensionesPermitidasTipoDocComposer.listaExtensionesPermitidas}"
+				rowRenderer="com.egoveris.deo.web.satra.renderers.ExtensionTipoDocRowRenderer">
+				<columns>
+					<column label="${c:l('gedo.extensionesPermitidas.window.extension')}" width="15%"
+						align="center" />
+					<column label="${c:l('gedo.extensionesPermitidas.window.descripcion')}" width="55%"
+						align="center" />
+					<column label="${c:l('gedo.extensionesPermitidas.window.tamanio')}" width="15%"
+						align="center" />
+					<column label="${c:l('gedo.extensionesPermitidas.window.obligatoriedad')}" width="15%"
+						align="center" />
+					<column label="${c:l('gedo.extensionesPermitidas.window.accion')}" width="15%" 
+						align="center" />
+				</columns>
+			</grid>
+			<separator orient = "horizontal" width = "15px"/>
+		</div>
+		
+		<div>
+			<grid>
+				<rows>
+					<row align = "center">
+						<hbox align = "center">
+							<separator orient = "vertical" width = "16px" />
+							<label value = "${c:l('gedo.extensionesPermitidasTipDoc.label.extencion')}"  />
+							<separator orient = "vertical" width = "16px" />
+							<combobox id = "comboExtensiones"
+								readonly = "true" width = "100px" 
+								model = "@{extensionesArchivosWindow$ExtensionesPermitidasTipoDocComposer.listaExtensiones}"
+								selectedItem = "@{extensionesArchivosWindow$ExtensionesPermitidasTipoDocComposer.selectedExtension}"
+								itemRenderer = "com.egoveris.deo.web.satra.renderers.ComboBoxExtensionesArchivosRenderer">
+							</combobox>
+							<separator orient = "vertical" width = "400px"/>
+						</hbox>
+					</row>
+					<row align = "center">
+						<hbox>
+							<separator orient = "vertical" width = "16px" />
+							<label value = "${c:l('gedo.historial.documento.ver.formDescripcion.title')}" height = "50px"/>
+							<separator orient = "vertical" width = "16px" />
+							<textbox id = "descripcionTB" width = "450px" />
+							<separator orient = "vertical" width = "16px" />
+							<button id = "agregarExt"
+								image = "/imagenes/control_add_blue.png">
+							</button>
+						</hbox>
+					</row>
+					<row align = "center">
+						<toolbar align = "center">
+							<button id="btnGuardar" class="btn-secondary"
+								iconSclass="z-icon-save" label="${c:l('gedo.nuevoDocumento.botonGuardar')}" height="42px"
+								left="10px" />
+						</toolbar>
+					</row>
+				</rows>
+			</grid>
+		</div>
+	</window>
+</zk>

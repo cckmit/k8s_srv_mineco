@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./secuenciaNumerosWindow"  ?>
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+<?page title="Datos de la consulta"?>
+<zk>
+	<window id="secuenciaNumerosWindow"
+		title="${c:l('gedo.consultaSecuenciaNum.title')}"
+		border="normal" width="500px"
+		apply="com.egoveris.deo.web.satra.consulta.ConsultaSecuenciaNumerosComposer"
+		closable="true">
+		<separator></separator>
+		<groupbox>
+			<separator></separator>
+			<separator></separator>
+			<separator></separator>
+			<hbox>
+				<separator></separator>
+				<separator></separator>
+				<label value="${c:l('gedo.consultaSecuenciaNum.hbox.label.fechaDesde')}" />
+				<datebox id="fechaDesde" />
+				<separator></separator>
+				<separator></separator>
+				<separator></separator>
+				<separator></separator>
+				<separator></separator>
+				<separator></separator>
+				<label value="${c:l('gedo.consultaSecuenciaNum.hbox.label.fechahasta')}" />
+				<datebox id="fechaHasta" />
+			</hbox>
+			<separator></separator>
+			<separator></separator>
+			<separator></separator>
+			<separator></separator>
+			<separator></separator>
+			<separator></separator>
+			<hbox>
+				<button label="${c:l('gedo.consultaSecuenciaNum.hbox.button.label.buscar')}"  id="buscar" />
+				<separator></separator>
+				<button label="${c:l('gedo.consultaSecuenciaNum.hbox.button.label.cerrar')}" id="cerrar" />
+			</hbox>
+		</groupbox>
+	</window>
+</zk>

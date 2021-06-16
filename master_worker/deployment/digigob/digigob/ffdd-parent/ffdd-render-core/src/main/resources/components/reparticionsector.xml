@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<complexComponent type="TRADE" name="reparticionsector"
+	description="Organismo Sector Information" zul="reparticionSector.zul"
+	composer="com.egoveris.ffdd.render.zk.comp.cc.ReparticionSectorComposer"
+	mappingDTO="com.egoveris.ccomplejos.base.model.ReparticionSectorDTO">
+
+	<field id="organismo" name="organismo" class="com.egoveris.ffdd.render.zk.comp.ext.BandboxExt"
+		height="20px" width="90%" label="Organismo" tooltip="Organismo" />
+	<field id="sector" name="sector" class="com.egoveris.ffdd.render.zk.comp.ext.BandboxExt"
+		height="20px" width="90%" label="Sector" tooltip="Sector" />
+</complexComponent>

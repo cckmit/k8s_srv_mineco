@@ -1,0 +1,39 @@
+<?page title="Subsanar" contentType="text/html;charset=UTF-8"?>
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./listaDocsTadWindow" ?>
+<zk>
+	<window id="listaDocsTadWindow" title="${c:l('ee.tramitacion.tab.documentos.value')}" width="55%"
+		border="normal"  apply="com.egoveris.te.base.composer.ListaDocsTadComposer">
+			<separator />
+			<label
+				value="${c:l('ee.consultaGeneradosReparticion.button.buscar')}">
+			</label>
+			<textbox id="busquedaTipoDocumento" 
+					width="680px" tooltip="id, start_before"></textbox>
+			<separator />
+		<paging id="pagingTipoDoc" pageSize="10" />
+		<listbox id="tipoDocListbox" mold="paging"
+			itemRenderer="com.egoveris.te.base.rendered.TipoDocVucItemRenderer"
+			paginal="${pagingTipoDoc}">
+			<listhead>
+				<listheader label="${c:l('ee.act.label.exp.value')}"/>
+				<listheader label="${c:l('ee.act.label.actividad.value')}"/>
+				<listheader label="${c:l('ee.expediente.subsanaciondocumentos.lbl.accion')}" align="center" />
+			</listhead>
+			<listfoot>
+				<listfooter/>
+				<listfooter/>
+				<listfooter
+					label="${c:l('ee.act.listfooter.totalActPend.value')}" />
+				<listfooter label="@{pagingTipoDoc.totalSize}"
+					id="lisTotalSize" />
+			</listfoot>
+		</listbox>
+		<separator />
+		<div align="center">
+			<button autodisable="self" id="guardar" label="${c:l('ee.subsanacion.button.guardar')}" image="/imagenes/saveFile.png" width="100px" height="30px"/>
+			<button autodisable="self" id="salir" label="${c:l('ee.subsanacion.button.cerrar')}" image="/imagenes/eliminar.png" width="100px" height="30px"/>
+		</div>
+		<separator />
+    </window>
+</zk>

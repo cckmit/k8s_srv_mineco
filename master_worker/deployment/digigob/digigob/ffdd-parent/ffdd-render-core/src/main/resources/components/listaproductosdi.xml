@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<complexComponent type="TRADE" name="listaproductosdi"
+	description="Lista Productos DI" zul="listaProductosDI.zul"
+	mappingDTO="com.egoveris.ccomplejos.base.model.ListaProductosDiDTO">
+
+	<field name="codigoProducto" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" disabled="true" />
+	<field name="descripcionProducto" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" disabled="true" />
+	<field name="cantidadTotal" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" disabled="true" />
+	<field name="cantidadUOM" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" disabled="true" />
+
+
+</complexComponent>

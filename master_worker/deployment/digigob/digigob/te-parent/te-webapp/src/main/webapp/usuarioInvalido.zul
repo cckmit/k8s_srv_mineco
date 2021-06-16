@@ -1,0 +1,32 @@
+<?page title="Acceso al Sistema Expedientes"?>
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./usuarioInvalido"?>
+<zk>
+	<window id="usuarioInvalido" width="100%" height="100%"
+		style="align=center; "
+		apply="com.egoveris.te.base.composer.UsuarioInvalidoComposer">
+		<separator height="10px"></separator>
+		<separator height="100px"></separator>
+		<vbox width="100%" align="center">
+			<vbox width="100%" height="99%" align="center"
+				style="border: 2px solid gray; background-">
+				<separator height="25px"></separator>
+				<image src="/imagenes/logoGCBA.jpg" />
+				<label value="${c:l('te.usuarioInvalido.expediente')}"
+					style="font-size:24px;font-weight:bold" />
+				<separator height="10px"></separator>
+				<label id="uiLablMessage"
+					style="padding:20px; color: blue;font-family: Verdana;font-size: 12px;font-style: italic;font-weight: bold;" />
+
+				<vbox align="center">
+
+					<separator />
+
+					<button autodisable="self" id="logout" label="${c:l('ee.header.label.salir.value')}"
+						forward="onClick=onLogout" />
+				</vbox>
+				<separator height="10px"></separator>
+			</vbox>
+		</vbox>
+	</window>
+</zk>

@@ -1,0 +1,133 @@
+<?page title="" contentType="text/html;charset=UTF-8"?>
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./documentosFiltroWindow" ?>
+<zk>
+	<window border="none" id="documentosFiltroWindow"
+		style="  overflow:auto"
+		apply="com.egoveris.te.base.composer.DocumentosFiltroComposer">
+		<hbox align="center">
+			<label value="${c:l('ee.caratulas.listheader.expediente.reparticionUsuario.value')}"/>
+			<bandbox id="reparticionBusquedaDocumento" width="100px">
+				<bandpopup
+					apply="com.egoveris.te.base.composer.FindReparticionesBusquedaDocumentoBandboxComposer"
+					id="reparticionesComboBusquedaDocumento" width="650px">
+					<groupbox mold="3d">
+						<caption>
+							<hbox>
+								Búsqueda de Organismo
+								<image src="/imagenes/help.png"
+									width="16px" height="16px" tooltip="helpBusquedaReparticion"
+									align="right" />
+							</hbox>
+						</caption>
+						<separator></separator>
+						<vbox>
+							<hbox>
+								Buscar
+								<textbox
+									id="textoReparticionBusquedaDocumento" />
+							</hbox>
+							<paging
+								id="pagingReparticionesDocumento" pageSize="5" />
+							<listbox mold="paging" width="600px"
+								id="reparticionesBusquedaDocumentoListbox"
+								model="@{listaReparticionSADEDocumentoSeleccionada}"
+								selectedItem="@{reparticionSeleccionadaDocumento}"
+								paginal="${pagingReparticionesDocumento}">
+								<listhead>
+									<listheader
+										label="${c:l('te.webapp.expediente.macros.documentofiltro.lbl.codigo')}" width="30%" />
+									<listheader
+										label="${c:l('te.webapp.expediente.macros.documentofiltro.lbl.nombre')}" height="70%" />
+								</listhead>
+								<listitem
+									self="@{each=reparticion}">
+									<listcell
+										label="@{reparticion.codigo}" />
+									<listcell
+										label="@{reparticion.nombre}" />
+								</listitem>
+							</listbox>
+						</vbox>
+					</groupbox>
+				</bandpopup>
+			</bandbox>
+      		<space bar="true" spacing="5px" />
+			<label value="${c:l('ee.caratulas.listheader.anio.value')}" />
+			<intbox cols="4" maxlength="4" id="anio" />
+      		<space bar="true" spacing="5px" />
+			<label value="${c:l('ee.documentosFiltros.label.fechaAsociacion')}"/>
+			<label value="${c:l('ee.documentosFiltros.label.desde')}" />
+			<datebox id="fechaDesde" width="90px" />
+			<label value="${c:l('ee.documentosFiltros.label.hasta')}" />
+			<datebox id="fechaHasta" width="90px" />
+			<space bar="true" spacing="5px" />
+			<label
+				value="${c:l('ee.abmTipoDocumento.tituloTipoDocumento')}">
+			</label>
+			<combobox id="busquedaTipoDocumentoComboBox" buttonVisible="false" autodrop="true" width="80px"></combobox>
+			<space bar="true" spacing="5px" />
+			<label  value="${c:l('ee.documentViewer.listhead.referencia')}"/>		
+			<combobox id="busquedaReferenciaComboBox" buttonVisible="false" autodrop="true" width="80px"></combobox>
+			<button autodisable="self" width="100px" id="aplicarFiltro"
+				label="${c:l('ee.aprobacion.label.filtrar')}" image="/imagenes/filtro.png"
+				forward="onClick=documentosFiltroWindow$DocumentosFiltroComposer.onAplicarFiltro">
+			</button>
+			<separator></separator>
+			<button autodisable="self" width="100px" id="cancelarFiltro"
+				label="${c:l('ee.aprobacion.label.quitarFiltro')}" image="/imagenes/quitar-filtro.png"
+				forward="onClick=documentosFiltroWindow$DocumentosFiltroComposer.onCancelarFiltro">
+			</button>
+		</hbox>
+		<hbox>
+			<paging id="pagingDocumentoFiltro" pageSize="10" autohide="true"/>
+			<label id="labelPaginaFiltro"
+				value="${c:l('ee.tramitacion.paginado.masDeUnaPagina.value')}"
+				visible="false" style="color:red; font-style: italic;">
+			</label>
+		</hbox>
+		<separator></separator>
+		<listbox id="listboxDocumentosFiltro" mold="paging"
+			maxlength="20"
+			model="@{documentosFiltroWindow$DocumentosFiltroComposer.documentosFiltradosFiltro}"
+			selectedItem="@{documentosFiltroWindow$DocumentosFiltroComposer.selectedDocumento}"
+			itemRenderer="com.egoveris.te.base.rendered.DocumentosItemRenderer"
+			paginal="${pagingDocumentoFiltro}">
+			<listhead>
+				<listheader label="${c:l('ee.documentViewer.listhead.orden')}" align="center" hflex="min" />
+				<listheader label="${c:l('ee.documentViewer.listhead.tipoDocumento')}" align="center"
+					hflex="min" />
+				<listheader label="${c:l('ee.documentViewer.listhead.numDocumento')}" align="center"
+					hflex="max" />
+				<listheader label="${c:l('ee.documentViewer.listhead.referencia')}" align="center" />
+				<listheader label="${c:l('ee.caratulas.listheader.documento.fechaAsociacion.value')}" align="center"
+					hflex="min" />
+				<listheader label="${c:l('ee.documentViewer.listhead.fechaCreacion')}" align="center"
+					width="123px" />
+
+				<listheader label="${c:l('te.webapp.expediente.macros.documentofiltro.listbox.acciones')}" align="center" width="80px" />
+
+			</listhead>
+			<listfoot
+				>
+				<listfooter />
+				<listfooter />
+				<listfooter />
+				<listfooter />
+				<listfooter />
+				<listfooter id="totalDocumentosFiltro"
+					label="${c:l('ee.tramitacion.listfooter.documentos.value')}"
+					span="1"  />
+				<listfooter id="listFooter"
+					span="1"  align="left" />
+			</listfoot>
+		</listbox>
+		<vbox width="100%" align="end">
+			<button autodisable="self" id="descargarTodos" 
+				image="/imagenes/Descargar.png"
+				label="${c:l('te.webapp.expediente.macros.documentofiltro.descargatodosdocumentos')}"
+				forward="onClick=documentosFiltroWindow$DocumentosFiltroComposer.onDescargarTodos" />
+		</vbox>
+	</window>
+</zk>

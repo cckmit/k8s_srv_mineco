@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<complexComponent type="TRADE" name="Vista Insumos"
+	description="Vista Insumos" zul="vistainsumosdatpadin.zul" 
+	mappingDTO="com.egoveris.ccomplejos.base.model.VistaInsumosDATPADinDTO">
+	
+	<field name="numeroItem" width="90%" height="20px" class="com.egoveris.ffdd.render.zk.comp.ext.IntboxExt" disabled="true"/>
+	<field name="numeroInsumo" width="90%" height="20px" class="com.egoveris.ffdd.render.zk.comp.ext.IntboxExt"  disabled="true"/>
+	<field name="descripcionInsumo" width="90%" height="20px" class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt"  disabled="true"/>
+	<field name="cantidadDeInsumo" width="90%" height="20px" class="com.egoveris.ffdd.render.zk.comp.ext.IntboxExt"  disabled="true"/>
+	<field name="codigoUnidadDeMedida" width="90%" height="20px" class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt"  disabled="true"/>
+	<field name="valorCifUnitario" width="90%" height="20px" class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt"  disabled="true"/>
+
+	
+	
+</complexComponent>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<complexComponent type="TRADE" name="Bulto"
+	description="Bulto Information" zul="bulto.zul"
+	composer="com.everis.tramelec.dynform.comp.ext.BultoComposer"
+	mappingDTO="com.egoveris.ccomplejos.base.model.BultoDTO">
+
+	<field name="idBulto" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.LongboxExt" />
+	<field name="secuencialBulto" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.LongboxExt" />
+	<field name="tipoBulto" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" />
+	<field name="cantidadPaquetes" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.LongboxExt" />
+	<field name="identificadorBulto" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" />
+	<field name="subContinente" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" />
+	<field name="listaItemsDTO" width="90%" height="20px"  class="com.egoveris.ffdd.render.zk.comp.ext.SeparatorComplex" xmlFile="item.xml" />
+
+</complexComponent>

@@ -1,0 +1,76 @@
+version: 1
+
+dn: dc=egoveris,dc=com
+objectClass: organization
+objectClass: top
+objectClass: dcObject
+dc: egoveris
+o: gob
+
+dn: ou=funcionarios,dc=egoveris,dc=com
+objectClass: top
+objectClass: organizationalUnit
+ou: funcionarios
+
+dn: cn=ADMINEGOV,ou=funcionarios,dc=egoveris,dc=com
+objectClass: organizationalPerson
+objectClass: inetOrgPerson
+objectClass: person
+cn: ADMINEGOV
+sn: ADMINEGOV
+employeeNumber: Carpeta 1
+employeeType: public
+employeeType: ou=admin.central,ou=grupos,dc=gob,dc=ar
+employeeType: ou=admin.reparticion,ou=grupos,dc=gob,dc=ar
+employeeType: ou=admin.sector,ou=grupos,dc=gob,dc=ar
+employeeType: ou=sade.admin,ou=grupos,dc=gob,dc=ar
+employeeType: ou=sade.baja,ou=grupos,dc=gob,dc=ar
+employeeType: ou=sade.caratulacion2,ou=grupos,dc=gob,dc=ar
+employeeType: ou=sade.control,ou=grupos,dc=gob,dc=ar
+employeeType: ou=sade.correccion,ou=grupos,dc=gob,dc=ar
+employeeType: ou=sade.creacion,ou=grupos,dc=gob,dc=ar
+employeeType: ou=sade.expedientes,ou=grupos,dc=gob,dc=ar
+employeeType: ou=sade.externos,ou=grupos,dc=gob,dc=ar
+employeeType: ou=sade.impresion,ou=grupos,dc=gob,dc=ar
+employeeType: ou=sade.internos,ou=grupos,dc=gob,dc=ar
+employeeType: ou=sade.modificacion,ou=grupos,dc=gob,dc=ar
+employeeType: ou=sade.otrasactuaciones,ou=grupos,dc=gob,dc=ar
+employeeType: ou=sade.pases,ou=grupos,dc=gob,dc=ar
+employeeType: ou=sade.remitos,ou=grupos,dc=gob,dc=ar
+employeeType: ou=ee.administrador.pases,ou=grupos,dc=gob,dc=ar
+employeeType: admin.ffcc
+employeeType: ou=ee.herramientas,ou=grupos,dc=gob,dc=ar
+employeeType: ou=ee.confidencial.sector,ou=grupos,dc=gob,dc=ar
+employeeType: ou=ee.confidencial.reparticion,ou=grupos,dc=gob,dc=ar
+employeeType: ou=te.adm.tipooper,ou=grupos,dc=egoveris,dc=com
+employeeType: ou=proyect.lider.eu,ou=grupos,dc=gob,dc=ar
+employeeType: ou=ee.confidencial.reserva,ou=grupos,dc=gob,dc=ar
+employeeType: ou=DEO.TAREAS.MISTAREAS,ou=grupos,dc=egoveris,dc=com
+employeeType: ou=ee.asignador,ou=grupos,dc=gob,dc=ar
+employeeType: ou=ee.desarchivar,ou=grupos,dc=gob,dc=ar
+employeeType: ou=ee.fusionador,ou=grupos,dc=gob,dc=ar
+employeeType: ou=gedo.confidencial,ou=grupos,dc=gob,dc=ar
+employeeType: ou=te.adm.tramites,ou=grupos,dc=egoveris,dc=com
+employeeType: ou=te.operaciones,ou=grupos,dc=egoveris,dc=com
+employeeType: ou=te.tareas.mistareas,ou=grupos,dc=egoveris,dc=com
+employeeType: ou=te.tareas.buzongrupal,ou=grupos,dc=egoveris,dc=com
+employeeType: ou=te.tareas.supervisados,ou=grupos,dc=egoveris,dc=com
+employeeType: ou=te.consultas,ou=grupos,dc=egoveris,dc=com
+employeeType: ou=te.rehabilitar,ou=grupos,dc=egoveris,dc=com
+employeeType: ou=DEO.TAREAS.SUPERVISADAS,ou=grupos,dc=egoveris,dc=com
+employeeType: ou=edt,ou=grupos,dc=gob,dc=ar
+employeeType: ou=DEO.CONSULTAS,ou=grupos,dc=egoveris,dc=com
+employeeType: ou=DEO.MIS.PLANTILLAS,ou=grupos,dc=egoveris,dc=com
+employeeType: ou=wd.stateflow,ou=grupos,dc=egoveris,dc=com
+employeeType: ou=WD.TASKFLOW,ou=grupos,dc=egoveris,dc=com
+employeeType: ou=deo.admin.documentos,ou=grupos,dc=egoveris,dc=com
+employeeType: ffdd
+employeeType: ou=edt.adminUsuarioPerfil
+employeeType: ou=edt.administracionOrganizacion
+employeeType: ou=edt.administracionMantenedores
+employeeType: ou=edt.administracionFeriados
+employeeType: ou=edt.administracionNovedades
+mail: adminegov@everis.com
+uid: ADMIN EGOV
+userPassword: {MD5}4QrcOUm6Wau+VuBX8g+IPg==
+

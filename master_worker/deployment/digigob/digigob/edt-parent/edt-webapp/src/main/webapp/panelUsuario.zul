@@ -1,0 +1,39 @@
+<?page title="eGoveris" contentType="text/html;charset=UTF-8"?>
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+<?init class="org.zkoss.zk.ui.util.Composition" arg0="~./db_template.zul"?>
+<?init class="com.egoveris.edt.web.pl.InitPanelUsuario" ?>
+
+<window id="panelUsuarioWindow" width="100%"
+	style="align=center;" self="@{define(egovBody)}">
+	
+	<tabbox tabscroll="false" width="100%" id="euTabs"
+		 apply="com.egoveris.edt.web.pl.PanelUsuarioComposer">
+		<tabs style="">
+			<!--  Tab Inicio  -->
+			<tab id="escritorioTab" label="${c:l('eu.panelUsuario.tabEscritorio')}"
+				tooltiptext="${c:l('eu.panelUsuario.tabEscritorio.help')}"
+				 />
+			<!--  Tab Perfil  -->
+			<tab id ="datosPersonalesTab" label="${c:l('eu.panelAdmin.tabPerfil')}" 
+				/>	
+			<!--  Tab Configuración  -->
+			<tab id="abmTab" label="${c:l('eu.panelUsuario.tabABM')}"
+				tooltiptext="${c:l('eu.panelUsuario.tabABM.help')}"
+				 visible="false"/>
+		</tabs>
+		<tabpanels >
+			<tabpanel id="tp_escritorio" >
+				<include src="/escritorioUnico.zul"></include>
+			</tabpanel>
+			<tabpanel id="tp_perfilUsuario" >
+				<include src="/datosPersonales/perfilUsuario.zul"></include>
+			</tabpanel>
+			<tabpanel id="abm">
+				<include src="/abmMisSistemas/abmEscritorio.zul"></include>
+			</tabpanel>
+			<tabpanel id="avisos">
+				<include src="/administrator/avisos.zul"/>
+			</tabpanel>
+		</tabpanels>
+	</tabbox>
+</window>

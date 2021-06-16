@@ -1,0 +1,14 @@
+<?page title="" contentType="text/html;charset=UTF-8"?>
+<zk>
+<window id="win_datosPersonalesTab" apply="com.egoveris.edt.web.admin.pl.DatosPersonalesTabComposer" title="" border="none" width="100%">
+	<hbox style="" align="center">
+		<image src="/imagenes/egovIconOrange.png" width="40px"
+			height="30px" style="padding-left: 10px;" />
+
+		<label value="${c:l('eu.adminSade.datosPersonales')}" style="font: bold;" />
+	</hbox>
+	<separator bar="true" style="" />
+	<separator />
+	<include src="/administrator/datosPersonales.zul"/>
+</window>
+</zk>

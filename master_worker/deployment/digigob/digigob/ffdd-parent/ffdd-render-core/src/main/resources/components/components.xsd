@@ -1,0 +1,29 @@
+<xs:schema version="1.0" targetNamespace="http://egoveris.com"
+	xmlns:tns="http://egoveris.com" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:element name="complexComponent" type="tns:complexComponent" />
+	<xs:complexType name="complexComponent">
+		<xs:sequence>
+			<xs:element name="field" type="tns:complexField"
+				minOccurs="0" maxOccurs="unbounded" />
+		</xs:sequence>
+		<xs:attribute name="composer" type="xs:string"></xs:attribute>
+		<xs:attribute name="description" type="xs:string"></xs:attribute>
+		<xs:attribute name="mappingDTO" type="xs:string"></xs:attribute>
+		<xs:attribute name="name" type="xs:string"></xs:attribute>
+		<xs:attribute name="type" type="xs:string"></xs:attribute>
+		<xs:attribute name="zul" type="xs:string"></xs:attribute>
+	</xs:complexType>
+
+	<xs:complexType name="complexField">
+		<xs:attribute name="class" type="xs:string"></xs:attribute>
+		<xs:attribute name="comboName" type="xs:string"></xs:attribute>
+		<xs:attribute name="height" type="xs:string"></xs:attribute>
+		<xs:attribute name="multiline" type="xs:boolean"></xs:attribute>
+		<xs:attribute name="name" type="xs:string"></xs:attribute>
+		<xs:attribute name="required" type="xs:boolean"></xs:attribute>
+		<xs:attribute name="style" type="xs:string"></xs:attribute>
+		<xs:attribute name="width" type="xs:string"></xs:attribute>
+	</xs:complexType>
+</xs:schema>
+  
+  

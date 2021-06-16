@@ -1,0 +1,26 @@
+<zk>
+	<div apply="org.zkoss.bind.BindComposer"
+		viewModel="@id('docsOpVm') @init('com.egoveris.te.base.vm.OperacionDocumentosVM')">
+
+		<include obligatorios="true"
+			documentos="${docsOpVm.documentosObligatorios}"
+			soloLectura="${arg.soloLectura}"
+			src="/operaciones/tabs/documentosOperGrid.zul" />
+
+		<separator height="20px" />
+
+		<include obligatorios="false"
+			documentos="${docsOpVm.documentosOpcionales}"
+			soloLectura="${arg.soloLectura}"
+			src="/operaciones/tabs/documentosOperGrid.zul" />
+		
+		<hbox if="${!docsOpVm.opTieneDocumentos}">
+			<html>
+				<![CDATA[ <i class="z-icon-exclamation-circle"
+				style="color: orange;" /> ]]>
+			</html>
+			<label
+				value="${c:l('ee.operacion.documentosOperacion.label.sinDocumentos')}" />
+		</hbox>
+	</div>
+</zk>

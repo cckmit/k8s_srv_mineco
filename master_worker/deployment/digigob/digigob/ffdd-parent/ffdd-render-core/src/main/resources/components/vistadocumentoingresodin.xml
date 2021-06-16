@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<complexComponent type="TRADE" name="DocumentoIngreso" description="Vista Documento Ingreso"
+	zul="lote.zul" composer="com.everis.tramelec.dynform.comp.ext.VistaDocumentoIngresoDinComposer"
+	mappingDTO="com.egoveris.ccomplejos.base.model.VistaDocumentoIngresoDinDTO">
+
+	<field name="numeroDocumento" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" disabled="true"/>
+	<field name="fechaResolucion" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.DateboxExt" disabled="true"/>
+	<field name="numeroItem" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" disabled="true"/>
+
+</complexComponent>

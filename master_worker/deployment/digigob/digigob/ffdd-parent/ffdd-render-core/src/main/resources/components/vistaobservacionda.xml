@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<complexComponent type="TRADE" name="Vista Observacion DA"
+	description="Vista Observacion DA" zul="vistaObservacionDA.zul"
+	composer="com.everis.tramelec.dynform.comp.ext.VistaObservacionDAComposer"
+	mappingDTO="com.egoveris.ccomplejos.base.model.VistaObservacionDADTO">
+
+	<field name="valorObservacion" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" disabled="true"/>
+		
+	<field name="codigoObservacion" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" disabled="true"/>
+		
+	<field name="glosaObservacion" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" disabled="true"/>
+		
+		
+</complexComponent>

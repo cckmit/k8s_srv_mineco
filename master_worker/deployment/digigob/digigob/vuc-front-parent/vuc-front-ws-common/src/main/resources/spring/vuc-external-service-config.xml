@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" 
+"http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+
+	<bean id="notificacionesClientImpl" class="com.egoveris.vucfront.ws.service.impl.NotificacionesClientImpl">
+		<property name="url" value="${app.vuc.url}/api/notificaciones"/>
+	</bean>
+	
+	<bean id="documentosClientImpl" class="com.egoveris.vucfront.ws.service.impl.DocumentosClientImpl">
+		<property name="url" value="${app.vuc.url}/api/documentos/"/>
+	</bean>
+	
+	<bean id="tareasClientImpl" class="com.egoveris.vucfront.ws.service.impl.TareasClientImpl">
+		<property name="url" value="${app.vuc.url}/api/tareas"/>
+	</bean>
+	
+	<bean id="tipoDocumentosClientImpl" class="com.egoveris.vucfront.ws.service.impl.TipoDocumentosClientImpl">
+		<property name="url" value="${app.vuc.url}/api/tipoDocumentos"/>
+	</bean>
+	
+	<bean id="externalDocumentoService"
+		class="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean">
+		<property name="serviceUrl" value="${app.vuc.url}/remoting/documentos" />
+		<property name="serviceInterface">
+			<value>com.egoveris.vucfront.ws.service.ExternalDocumentoService</value>
+		</property>
+	</bean>
+	<bean id="externalNotificacionService"
+		class="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean">
+		<property name="serviceUrl" value="${app.vuc.url}/remoting/notificar" />
+		<property name="serviceInterface">
+			<value>com.egoveris.vucfront.ws.service.ExternalNotificacionService</value>
+		</property>
+	</bean>
+	<bean id="externalTareaService"
+		class="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean">
+		<property name="serviceUrl" value="${app.vuc.url}/remoting/tarea" />
+		<property name="serviceInterface">
+			<value>com.egoveris.vucfront.ws.service.ExternalTareaService</value>
+		</property>
+	</bean>
+	
+	<bean id="externalConsolidacionService"
+		class="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean">
+		<property name="serviceUrl" value="${app.vuc.url}/remoting/consolidacion" />
+		<property name="serviceInterface">
+			<value>com.egoveris.vucfront.ws.service.ExternalConsolidacionService</value>
+		</property>
+	</bean>
+	
+</beans>

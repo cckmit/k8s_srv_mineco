@@ -1,0 +1,162 @@
+<?page title="${c:l('gedo.incorporarSade.wintitle.incorporarSade')}" contentType="text/html;charset=UTF-8"?>
+<zk>
+	<window title="${c:l('gedo.incorporarSade.wintitle.incorporarSade')}" border="normal" id="incorporarSade"
+		apply="com.egoveris.deo.web.satra.IncorporarSadeComposer"
+		width="650px" height="220px" 
+		mode="modal">
+
+		<separator height="5px" />
+		<grid  width="640px"
+			visible="true">
+			<rows>
+				<row align="left" spans="100%">
+					<label id="incorporar"
+						value="${c:l('gedo.general.seleccioneDocumentoSADE')}"
+						style="font-weight: bold;" width="250px" />
+					<separator height="25px" />
+				</row>
+				<row align="center" spans="22%,10%,15%,20%,20%,13%">
+
+					<label
+						value="${c:l('gedo.importarDocumento.row.label.tipo')}" />
+					<label
+						value="${c:l('gedo.importarDocumento.row.label.año')}" />
+					<label
+						value="${c:l('gedo.importarDocumento.row.label.numero')}" />
+					<label
+						value="${c:l('gedo.importarDocumento.row.label.reparticion')}" />
+					<label
+						value="${c:l('gedo.consultaPorNumeroSADE.row.label.reparticionUsuario')}" />
+					<label value="" />
+				</row>
+				<row align="center" spans="22%,10%,15%,20%,20%,13%">
+					<combobox id="actuacionSADE" readonly="true"
+						width="120px" model="@{incorporarSade$composer.actuacionesSADE}"
+						selectedItem="@{incorporarSade$composer.selectedActuacionSADE}">
+					</combobox>
+					<intbox cols="4" maxlength="4" id="anioSADE" />
+					<intbox maxlength="9" id="numeroSADE" width="75px" />
+					<bandbox id="reparticionImportarDocumentoSADE"
+						width="105px">
+						<bandpopup
+							apply="com.egoveris.deo.web.satra.FindReparticionesImportarDocumentoSADEBandboxComposer"
+							id="reparticionesComboImportarDocumentosSADE" width="650px">
+							<groupbox mold="3d">
+								<caption>
+									<hbox>
+										<label
+											value="${c:l('gedo.importarDocumento.hbox.label.busquedaDeReparticion')}" />
+
+										<image src="/imagenes/help.png"
+											width="16px" height="16px" tooltip="helpBusquedaReparticion"
+											align="right" />
+									</hbox>
+								</caption>
+								<separator height="2px"></separator>
+								<vbox height="100%" width="100%">
+									<hbox>
+										<label
+											value="${c:l('gedo.importarDocumento.hbox.label.buscar')}" />
+
+										<textbox
+											id="textoReparticionImportarDocumentoSADE" />
+									</hbox>
+									<paging id="paginatorIncorporarSADE"
+										pageSize="10" />
+									<listbox
+										id="reparticionesImportarDocumentoSADEListbox" mold="paging"
+										paginal="${paginatorIncorporarSADE}"
+										model="@{listaReparticionSADESeleccionada}"
+										selectedItem="@{reparticionSeleccionada}">
+										<listhead>
+											<listheader
+												label="${c:l('gedo.importarDocumento.listhead.listheader.label.codigo')}" />
+											<listheader
+												label="${c:l('gedo.importarDocumento.listhead.listheader.label.nombre')}" />
+										</listhead>
+										<listitem
+											self="@{each=reparticion}">
+											<listcell
+												label="@{reparticion.codigo}" />
+											<listcell
+												label="@{reparticion.nombre}" />
+										</listitem>
+									</listbox>
+								</vbox>
+							</groupbox>
+						</bandpopup>
+					</bandbox>
+					<bandbox
+						id="reparticionUsuarioImportarDocumentoSADE" width="105px">
+						<bandpopup
+							id="reparticionesUsuarioComboImportarDocumentosSADE"
+							width="650px"
+							apply="com.egoveris.deo.web.satra.FindReparticionesUsuarioImportarDocumentoSADEBandboxComposer">
+							<groupbox mold="3d">
+								<caption>
+									<hbox>
+										<label
+											value="${c:l('gedo.importarDocumento.hbox.label.busquedaDeReparticion')}" />
+
+										<image src="/imagenes/help.png"
+											width="16px" height="16px" tooltip="helpBusquedaReparticion"
+											align="right" />
+									</hbox>
+								</caption>
+								<separator height="2px"></separator>
+								<vbox height="100%" width="100%">
+									<hbox>
+										<label
+											value="${c:l('gedo.importarDocumento.hbox.label.buscar')}" />
+										<textbox
+											id="textoReparticionUsuarioImportarDocumentoSADE" />
+									</hbox>
+									<paging
+										id="paginatorIncorporarUsuarioSADE" pageSize="10" />
+									<listbox
+										id="reparticionesUsuarioImportarDocumentoSADEListbox"
+										mold="paging" paginal="${paginatorIncorporarSADE}"
+										model="@{listaReparticionUsuarioSADESeleccionada}"
+										selectedItem="@{reparticionUsuarioSeleccionada}">
+										<listhead>
+											<listheader
+												label="${c:l('gedo.importarDocumento.listhead.listheader.label.codigo')}" />
+											<listheader
+												label="${c:l('gedo.importarDocumento.listhead.listheader.label.nombre')}" />
+										</listhead>
+										<listitem
+											self="@{each=reparticion}">
+											<listcell
+												label="@{reparticion.codigo}" />
+											<listcell
+												label="@{reparticion.nombre}" />
+										</listitem>
+									</listbox>
+								</vbox>
+							</groupbox>
+						</bandpopup>
+					</bandbox>
+					<button id="buscarCaratulaButton"
+						label="${c:l('gedo.importarDocumento.button.label')}">
+					</button>
+				</row>
+				<row align="left" spans="22%,78%">
+					<label
+						value="${c:l('gedo.importarDocumento.descripcionTrata')}" />
+					<textbox id="trataExpediente" rows="2"
+						maxlength="1024" cols="120" multiline="true" width="97%"
+						readonly="true" style="resize:none;" />
+				</row>
+				<row align="center" spans="100%">
+					<hbox>
+						<button id="aceptar" label="${c:l('gedo.token.cert.aceptar')}" onClick=""
+							width="100px" />
+						<separator width="10px" />
+						<button id="cancelar" label="${c:l('gedo.token.cert.cancelar')}"
+							onClick="" width="100px" />
+					</hbox>
+				</row>
+			</rows>
+		</grid>
+	</window>
+</zk>

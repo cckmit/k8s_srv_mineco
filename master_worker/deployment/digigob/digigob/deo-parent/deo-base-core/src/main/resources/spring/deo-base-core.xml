@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<!-- Scan for Spring beans declared via annotations -->
+	<context:component-scan
+		base-package="com.egoveris.deo.base,com.egoveris.deo.base.service,com.egoveris.deo.base.dao,com.egoveris.deo.base.solr,com.egoveris.deo.base.decision" />
+
+	<bean name="deoCoreMapper" class="org.dozer.DozerBeanMapper">
+		<property name="mappingFiles" value="classpath:deo_base_core_mapper.xml" />
+	</bean>
+	
+	<bean name="descargaAutoFirmaLink" class="java.lang.String">
+		<constructor-arg type="java.lang.String" 
+		value="${url.autofirma.link:https://estaticos.redsara.es/comunes/autofirma/currentversion/AutoFirma64.zip}"/>
+	</bean>
+	
+	<import resource="classpath:spring/numerador-external-service-config.xml" />
+	<import resource="classpath:spring/ticapdf-external-service-config.xml" />
+</beans>

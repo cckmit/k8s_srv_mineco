@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
+    http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+<changeSet author="Renzo Giacomino" id="INSERTA_NUEVO_COMPONENTE_TIMEBOX">  
+	    <comment>insert queries</comment>
+	    <sql dbms="h2, mysql" 
+	                splitStatements="true"
+	                stripComments="true">         
+			INSERT INTO df_component_type (ID, NAME, DESCRIPTION, FACTORY) VALUES (22,'TIMEBOX',NULL,'timeFactory');
+			INSERT INTO df_component (ID, NAME, DESCRIPTION, ID_COMPONENT_TYPE, CREATION_DATE, CREATOR_USER, MODIFICATION_DATE, 
+			MODIFYING_USER, MASCARA, MENSAJE, ABM_COMPONENT, TIPO_VISIBLE, NOMBREXML) VALUES ((SELECT MAX(df.id) FROM df_component df) 
+			+1, 'TimeBox - Generico', 'Timebox con caracteristicas genericas.', 22, NULL, NULL, NULL, NULL, NULL, NULL, '0', NULL, NULL);			
+	    </sql>    
+	</changeSet>  
+</databaseChangeLog>

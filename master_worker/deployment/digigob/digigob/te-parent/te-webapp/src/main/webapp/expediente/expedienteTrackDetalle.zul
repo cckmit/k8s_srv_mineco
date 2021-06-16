@@ -1,0 +1,297 @@
+<zk>
+<?page title="Detalle Expediente Track" contentType="text/html;charset=UTF-8"?> 
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./detalleExpedienteTrackWindow" ?>
+<window title="${c:l('ee.detalleExpTrack.title.detallExpTrack')}" border="normal" id="detalleExpedienteTrackWindow"
+		sclass="background-default" width="100%" position="center,top" closable="true"
+ 		apply="com.egoveris.te.base.composer.DetalleExpedienteTrackComposer">  
+	
+	<div sclass="background-default">
+		<label value="${c:l('ee.track.detalle.label.identificacion.actuacion')}" style="font-weight: bold; front-size:10px"/>
+		<separator bar="true" spacing="20px"/>
+	</div>
+	<hbox sclass="background-default">
+		<label value="${c:l('ee.track.detalle.label.letra')}"/>
+		<space/>
+		<textbox id="ex" readonly="true" width="50px"/>
+		<space/>
+		<label value="${c:l('ee.track.detalle.label.anio')}"/>
+		<space/>
+		<longbox id="anio" readonly="true" width="70px"/>
+		<space/>
+		<label value="${c:l('ee.track.detalle.label.fecha')}"/>
+		<space/>
+		<textbox id="fecha" width="70px" readonly="true"/>
+		<label value="${c:l('ee.track.detalle.label.numero')}"/>
+		<space/>
+		<longbox id="numero" readonly="true" width="150px"/>
+		<space/>
+		<label value="${c:l('ee.track.detalle.label.reparticion')}"/>
+		<textbox id="codigoReparticion" readonly="true" width="60px"/>
+		<space/>
+		<label value="${c:l('ee.track.detalle.label.reparticion.usuario')}"/>
+		<space/>
+		<textbox id="codigoRepUsuario" readonly="true" width="60px"/>
+	    <space/>
+	    <label value="${c:l('ee.track.detalle.label.sec')}"/>
+	    <textbox id="sec" readonly="true"/>	
+	</hbox>
+	<separator spacing="20px" sclass="background-default" />
+	<hbox sclass="background-default" width="100%">
+		<label id="lblCodExpDigit" value="${c:l('ee.track.detalle.label.numero.expediente.digitalizado')}" style="font-weight: bold;"/>
+		<label id="codigoExpedienteDigitalizado" sclass="background-default" />
+	</hbox>
+	<separator spacing="20px" sclass="background-default"/>
+	<grid align="center" width="100%" zclass="none" sclass="background-default">
+		<columns>
+			<column label="${c:l('ee.track.detalle.column.label.iniciador.externo')}" style="font-weight: bold;" />
+			<column label="${c:l('ee.track.detalle.column.label.iniciador.justicia')}" style="font-weight: bold;"/>
+			<column label="${c:l('ee.track.detalle.column.label.datos.sigaf')}" style="font-weight: bold;"/>
+		</columns>
+		<rows>
+		<row height="10px"/>		
+			<row zclass="none">
+				<hbox>
+					<vbox>
+						<label value="${c:l('ee.track.detalle.label.tipo.y.numero.documento')}"/>
+						<separator spacing="3px"/>
+						<label value="${c:l('ee.track.detalle.label.apellido.nombre.razon.social')}"/>			
+					</vbox>
+					<vbox>
+						<hbox>
+							<textbox id="r1tipo" readonly="true" width="50px"/>
+							<space/>
+							<textbox id="r1numero" readonly="true" width="120px"/>				
+						</hbox>
+						<textbox id="r2razon" readonly="true"/>					
+					</vbox>
+				</hbox>
+				<hbox>
+					<vbox>
+						<radio id="r1radio" label="${c:l('ee.track.detalle.radio.label.just.nac.y.provincia')}" disabled="true"/>
+						<radio id="r2radio" label="${c:l('ee.track.detalle.radio.label.just.caba')}" disabled="true"/>		
+					</vbox>
+					<vbox>
+						<textbox id="r1Just" readonly="true"/>
+						<textbox id="r2CABA" readonly="true"/>
+					</vbox>
+				</hbox>
+				<hbox>
+					<vbox>
+						<label value="${c:l('ee.track.detalle.label.anio')}"/>
+						<label value="${c:l('ee.track.detalle.label.n')}"/>
+					</vbox>
+					<vbox>
+						<longbox id="r1anio" readonly="true"/>
+						<longbox id="r2numero" readonly="true"/>
+					</vbox>
+				</hbox>
+			</row>
+		</rows>
+	</grid>
+	<div sclass="background-default">
+		<separator spacing="20px"/>
+		<label value="${c:l('ee.track.detalle.label.inicia.actuacion')}" style="font-weight: bold;"/>
+		<separator spacing="10px"/>
+	</div>
+	<grid align="center" width="100%" sclass="background-default" zclass="none">
+		<columns>
+			<column/>
+			<column/>
+			<column/>
+			<column/>
+		</columns>
+		<rows>
+			<row zclass="none">
+				<hbox>
+					<vbox>
+						<label value="${c:l('ee.track.detalle.label.letra')}"/>
+						<separator spacing="2px"/>
+						<label value="${c:l('ee.track.detalle.label.rep')}"/>
+					</vbox>
+					<vbox>
+						<textbox id="IAletra" readonly="true"/>
+						<textbox id="IARep" readonly="true"/>
+					</vbox>
+				</hbox>
+				<hbox>
+					<vbox>
+						<label value="${c:l('ee.track.detalle.label.anio')}"/>
+						<separator spacing="2px"/>
+						<label value="${c:l('ee.track.detalle.label.sec')}"/>
+					</vbox>
+					<vbox>
+						<longbox id="IAanio" readonly="true"/>
+						<textbox id="IASec" readonly="true"/>
+					</vbox>
+				</hbox>
+				<hbox>
+					<vbox>
+						<label value="${c:l('ee.track.detalle.label.numero')}"/>
+						<separator spacing="2px"/>
+						<label value="${c:l('ee.track.detalle.label.rep.solicitante')}"/>
+					</vbox>
+					<vbox>
+						<longbox id="IAnumero" readonly="true"/>
+						<textbox id="IARepSolicitante" readonly="true"/>
+					</vbox>
+				</hbox>
+				<hbox>
+					<vbox>
+						<label value="${c:l('ee.track.detalle.label.actuacion.extra.ejecutiva')}"/>
+						<label value="${c:l('ee.track.detalle.label.cuerpos.anexos')}"/>
+					</vbox>
+					<vbox>
+						<textbox id="IAactuacionExtraEjecutiva" readonly="true"/>
+						<separator spacing="2px"/>
+						<textbox id="IAcuerpoAnexo" readonly="true"/>
+					</vbox>
+				</hbox>
+			</row>
+		</rows>
+	</grid>
+	<separator spacing="20px" sclass="background-default" />
+	<grid align="center" width="100%" sclass="background-default" zclass="none">
+		<columns>
+			<column label="${c:l('ee.track.detalle.column.label.trata')}"/>
+			<column label="${c:l('ee.track.detalle.column.label.otros.datos')}"/>
+			<column label="${c:l('ee.track.detalle.column.label.destino')}"/>
+			<column/>
+		</columns>
+		<rows>
+			<row height="10px"/>
+			<row zclass="none">
+				<vbox>
+					<hbox>
+						<label value="${c:l('ee.track.detalle.label.codigo')}"/><textbox id="codigoTrata" readonly="true"/>
+					</hbox>
+					<hbox>
+						<label value="${c:l('ee.track.detalle.label.motivo')}"/><textbox id="motivo" readonly="true" rows="4" width="220px"/>
+					</hbox>
+				</vbox>
+				<vbox>
+					<hbox>
+						<vbox>
+							<label value="${c:l('ee.track.detalle.label.issib')}"/>
+							<separator spacing="2px"/>
+							<label value="${c:l('ee.track.detalle.label.dominio')}"/>
+							<separator spacing="2px"/>
+							<label value="${c:l('ee.track.detalle.label.numero.denuncia')}"/>
+						</vbox>
+						<vbox>
+							<textbox id="issibTextbox" readonly="true"/>
+							<textbox id="dominio" readonly="true"/>
+							<longbox id="numeroDenuncia" readonly="true"/>
+						</vbox>
+					</hbox>
+				</vbox>
+				<hbox>
+					<vbox>
+						<radio id="radioExterno" label="${c:l('ee.track.detalle.radio.label.externo')}" disabled="true"/>
+						<radio id="radioInterno" label="${c:l('ee.track.detalle.radio.label.interno')}" disabled="true"/>
+					</vbox>
+					<vbox>
+						<textbox id="reparticion" readonly="true"/>
+						<textbox id="sector" readonly="true"/>
+					</vbox>
+				</hbox>
+				<hbox>
+					<label value="${c:l('ee.track.detalle.label.fojas')}"/><longbox id="fojas" readonly="true"/>
+				</hbox>
+			</row>
+		</rows>
+	</grid>
+	<div sclass="background-default">
+		<separator spacing="20px"/>
+		<label value="${c:l('ee.track.detalle.label.domicilio.objeto')}" style="font-weight: bold;"/>
+		<separator spacing="10px"/>
+	</div>
+	<grid zclass="none" sclass="background-default">
+		<columns>
+			<column width="300px"/>
+			<column width="300px"/>
+			<column/>
+			<column/>
+			<column/>
+		</columns>
+		<rows>
+			<row zclass="none">
+				<hbox>
+					<vbox>
+						<label value="${c:l('ee.track.detalle.label.calle')}"/>
+						<separator spacing="2px"/>			
+						<label value="${c:l('ee.track.detalle.label.entre.calle')}"/>
+						<separator spacing="2px"/>
+						<label value="${c:l('ee.track.detalle.label.y.calle')}"/>
+						<separator spacing="2px"/>
+						<label value="${c:l('ee.track.detalle.label.esquina')}"/>
+					</vbox>
+					<vbox>
+						<textbox id="calle" readonly="true" />
+						<textbox id="entreCalle" readonly="true"/>
+						<textbox id="yCalle" readonly="true"/>
+						<textbox id="esquina" readonly="true" />
+					</vbox>
+				</hbox>
+				<hbox>
+					<vbox>
+						<label value="${c:l('ee.track.detalle.label.numero')}"/>
+						<separator spacing="2px"/>
+						<label value="${c:l('ee.track.detalle.label.altura')}"/>
+						<separator spacing="2px"/>
+						<label value="${c:l('ee.track.detalle.label.partida.abl')}"/>
+						<separator spacing="2px"/>
+						<label value="${c:l('ee.track.detalle.label.numero.catrastal')}"/>
+					</vbox>
+					<vbox>
+						<textbox id="calleNumero" readonly="true"/>
+						<longbox id="altura" readonly="true"/>
+						<textbox id="partidaABL" readonly="true"/>
+						<textbox id="numeroCatrastal" readonly="true"/>
+					</vbox>
+				</hbox>
+				<hbox>
+					<vbox>
+						<label value="${c:l('ee.track.detalle.label.piso')}"/>
+						<separator spacing="2px"/>
+						<label value="${c:l('ee.track.detalle.label.edificio')}"/>  
+					</vbox>
+					<vbox>
+						<longbox id="pisoNumero" readonly="true" /> 
+						<longbox id="edificio" readonly="true"/>
+					</vbox>
+				</hbox>
+				<hbox>
+					<vbox>
+						<label value="${c:l('ee.track.detalle.label.dpto')}"/>
+						<label value="${c:l('ee.track.detalle.label.u.func')}"/>
+					</vbox>
+					<vbox>
+						<longbox id="dptoNumero" readonly="true"/> 
+						<textbox id="uFunc" readonly="true" width="130px"/>
+					</vbox>
+				</hbox>
+				<hbox>
+					<label value="${c:l('ee.track.detalle.label.local')}"/><longbox id="local" readonly="true"/>
+				</hbox>
+			</row>	
+		</rows>
+	</grid>
+	<separator spacing="30px" sclass="background-default"/>
+	<hbox sclass="background-default">
+		<label value="${c:l('ee.track.detalle.label.comentarios')}"  style="font-weight: bold;"/>
+		<textbox id="comentarios"  width="1050px" readonly="true"/>
+	</hbox>
+	<separator spacing="30px" sclass="background-default"/>
+	<style>     
+        .background-default{
+        			
+        }
+    </style>
+	<div align="center" sclass="background-default">
+    	<button autodisable="self" label="${c:l('ee.track.detalle.button.label.volver')}" id="volver"/>
+	</div>
+	<separator spacing="20px" sclass="background-default"/>
+</window>
+</zk>

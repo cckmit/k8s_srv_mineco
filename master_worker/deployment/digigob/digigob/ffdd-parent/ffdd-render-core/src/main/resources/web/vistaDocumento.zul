@@ -1,0 +1,22 @@
+<zk>
+	<vlayout
+		apply="com.egoveris.ffdd.render.zk.comp.cc.VistaDocumentoComposer">
+
+		<vbox>
+			<hbox>
+				<cell
+					id="${arg.formComp.nombre}_emisorDocumentoComercialDiv" />
+				<cell id="${arg.formComp.nombre}_numeroDocumentoComercialDiv" />
+			</hbox>
+			<hbox>
+				<cell id="${arg.formComp.nombre}_codigoPaisEmisorDocumentoComercialDiv" />
+				<cell id="${arg.formComp.nombre}_tipoDocumentoComercialDiv" />
+			</hbox>
+			<hbox>
+				<cell id="${arg.formComp.nombre}_fechaDocumentoComercialDiv" />
+			</hbox>
+
+		</vbox>
+
+	</vlayout>
+</zk>

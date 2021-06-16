@@ -1,0 +1,22 @@
+<zk>
+	<script type="text/javascript" src="../pentaho/plugin/pentaho-cdf/api/cdf-embed.js?userid=visor&amp;password=123456"></script>
+	
+	<window id="pentahoDashboard" apply="org.zkoss.bind.BindComposer"
+		viewModel="@id('vm') @init('com.egoveris.edt.web.vm.PentahoDashboardVM')">
+		<div id="cdeDashboard"></div>
+	</window>
+	
+	<script type="text/javascript">
+		function drawPentahoDashboard(cdeDashboardUuid, parameters) {
+			require(["dash!/public/eGOVeris/EDT-Task-Tray.wcdf"], function(dashboard) {
+				var dashboard = new dashboard(cdeDashboardUuid);
+				dashboard.setParam('paramUser', parameters['username']);
+				dashboard.setParam('paramOrganism', parameters['organism']);
+				dashboard.setParam('paramSector', parameters['sector']);
+				dashboard.setParam('paramUrlBaseTE', parameters['urlBaseTE']);
+				dashboard.render();
+				window.dashboard = dashboard;
+			});
+		}
+	</script>
+</zk>

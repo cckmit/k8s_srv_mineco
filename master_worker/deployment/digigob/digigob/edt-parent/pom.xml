@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>com.egoveris</groupId>
+    <artifactId>egoveris-master-config</artifactId>
+    <version>2.0.3-SNAPSHOT</version>
+  </parent>
+  <artifactId>edt</artifactId>
+  <packaging>pom</packaging>
+  <name>Application edt</name>
+
+  <distributionManagement>
+    <repository>
+       <id>local-releases</id>
+       <name>Repositorio interno everis Argentina - RELEASES</name>
+       <url>https://steps.everis.com/nexus/repository/EGOVERISTE.Release/</url>
+    </repository>
+    <snapshotRepository>
+       <id>local-snapshots</id>
+       <name>Repositorio interno eGoveris - SNAPSHOTS</name>
+       <url>https://steps.everis.com/nexus/repository/EGOVERISTE.Snapshot/</url>
+    </snapshotRepository>
+  </distributionManagement>
+
+  <modules>
+    <module>edt-webapp</module>
+    <module>edt-env</module>
+    <module>edt-base-common</module>
+    <module>edt-base-core</module>
+    <module>edt-base-web</module>
+    <module>edt-scheduler-core</module>
+    <module>edt-ws-common</module>
+    <module>edt-ws-web</module>
+    <module>edt-model-common</module>
+  </modules>
+  <properties>
+    <appShortId>edt</appShortId>
+  </properties>
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>org.terasoluna.plus.framework</groupId>
+        <artifactId>terasoluna-plus-bom</artifactId>
+        <version>0.2.0.RELEASE</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+      <dependency>
+        <groupId>com.egoveris</groupId>
+        <artifactId>edt-env</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.egoveris</groupId>
+        <artifactId>edt-webapp</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.egoveris</groupId>
+        <artifactId>edt-base-common</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.egoveris</groupId>
+        <artifactId>edt-base-core</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.egoveris</groupId>
+        <artifactId>edt-base-web</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.egoveris</groupId>
+        <artifactId>edt-scheduler-core</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.egoveris</groupId>
+        <artifactId>edt-ws-common</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.egoveris</groupId>
+        <artifactId>edt-ws-web</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.egoveris</groupId>
+        <artifactId>edt-model-common</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
+</project>

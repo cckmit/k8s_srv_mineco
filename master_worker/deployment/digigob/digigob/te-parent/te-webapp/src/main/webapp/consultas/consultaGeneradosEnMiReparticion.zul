@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./creadosPorMiReparticionWindow"  ?>
+<?page title="Datos de la consulta"?>
+<zk>
+	<window id="creadosPorMiReparticionWindow"
+		title="${c:l('ee.consultaGeneradosReparticion.title.documentosGeneradosOrganismos')}" border="normal" apply="com.egoveris.te.base.composer.ConsultaGeneradosEnMiReparticionComposer"
+		closable="true" >
+		<groupbox  width="475px">
+			<grid align="center" width="472px" >
+				<rows>
+					<row>
+						<hbox align="center">
+							<label value="${c:l('ee.consultaGeneradosReparticion.hbox.fechaDesde')}" />
+							<separator width="18px" />
+							<datebox id="fechaDesde" />
+						</hbox>
+						<hbox align="center">
+							<label value="${c:l('ee.consultaGeneradosReparticion.hbox.fechaHasta')}" />
+							<separator width="18px" />
+							<datebox id="fechaHasta" />
+						</hbox>
+					</row>
+					<row spans="2">
+						<!-- LISTA DE TRATAS -->
+						<hbox>
+							<label value="${c:l('ee.nuevoexpediente.label.codigotrata.value')}" />
+							<separator width="20px" />
+								<bandbox id="codigoTrata" autodrop="true"   >
+								<bandpopup  width="620px" >
+									<groupbox mold="3d">
+										<caption>
+											<hbox>
+												<label value="${c:l('ee.consultaGeneradosReparticion.hbox.tipoTramite')}" width="560px" />
+												<image	src="/imagenes/help.png" width="16px" height="16px"
+														 align="right" />
+											</hbox>
+										</caption>
+										<separator height="2px"></separator>
+											<paging	id="paginatorIncorporarSADE" pageSize="10" />
+											<listbox
+												id="trata" mold="paging"
+												paginal="${paginatorIncorporarSADE}"
+												model="@{creadosPorMiReparticionWindow$composer.tratasSeleccionadas}"
+												selectedItem="@{creadosPorMiReparticionWindow$composer.selectedTrata}"
+												itemRenderer="com.egoveris.te.base.rendered.TrataListBoxItemRenderer">
+												<listhead>
+													<listheader	label="${c:l('ee.consultaGeneradosReparticion.listheader.tramites')}"/>
+												</listhead>	
+												<listfoot	>			
+													<listfooter id="Total"	label="${c:l('ee.consultaGeneradosReparticion.listfooter.totalTramites')}"	span="1"  />
+													<listfooter id="conteoDocumentos" label="@{creadosPorMiReparticionWindow$composer.tratasSeleccionadas.size}" span="2"	 />
+											</listfoot>											
+											</listbox>
+										</groupbox>
+								</bandpopup>
+							</bandbox>
+							</hbox>
+					</row>
+					<!-- hg - Indexación en Solr - un solo textbox de busqueda - BEGIN -->
+					<row spans="2">
+						<hbox align="center">	
+							<label value="${c:l('ee.consultaGeneradosReparticion.hbox.datoPropio')}" />
+							<separator width="27px" /> 
+							<combobox id="datosVariable"  disabled="true" model="@{creadosPorMiReparticionWindow$composer.datosVariables}"
+							selectedItem="@{creadosPorMiReparticionWindow$composer.selectedDato }"/>
+							<textbox id="datoVariabletbx" disabled="true" />
+							<datebox id="fechaDato" visible="false"></datebox>  
+							<button autodisable="self" label="${c:l('ee.consultaGeneradosReparticion.button.agregar')}" id="agregarCampo" disabled="true" />
+						</hbox>
+					</row>
+					<row spans="2">
+						<hbox align="center">
+							<listbox id="listboxDatosDeBusqueda" model="@{creadosPorMiReparticionWindow$composer.datosDeBusqueda }"
+							selectedItem="@{creadosPorMiReparticionWindow$composer.selectedDatoDeBusqueda}" visible="false">
+								<listhead>
+									<listheader label="${c:l('ee.consultaGeneradosReparticion.listheader.campo')}" hflex="4" align="center"/>
+									<listheader label="${c:l('ee.consultaGeneradosReparticion.listheader.valor')}" hflex="4" align="center"/>
+									<listheader label="${c:l('ee.consultaGeneradosReparticion.listheader.accion')}" hflex="1" align="center"/>
+								</listhead>
+								<listitem self="@{each=datoDeBusqueda}">
+									<listcell label="@{datoDeBusqueda.campo}"/>
+									<listcell label="@{datoDeBusqueda.valor}"/>
+									<listcell image="/imagenes/decline.png" forward="onClick=creadosPorMiReparticionWindow$composer.onEliminarSeleccionado"/>
+								</listitem>
+							</listbox>
+						</hbox>
+					</row>
+					<!-- hg - Indexación en Solr - un solo textbox de busqueda - END -->
+				</rows>
+			</grid>
+			<separator />
+			<!-- LISTA DE ExpedienteMetadata  -->
+			<grid visible="false" id="grillaValoresAgregados"
+				width="300px" style="margin-left: auto; margin-right: auto;"
+				model="@{creadosPorMiReparticionWindow$composer.listaExpMetadata}"
+				rowRenderer="com.egoveris.te.base.rendered.ValoresMetadatosRenderer">
+				<columns>
+					<column align="center" label="${c:l('ee.nuevoDocumento.nombre')}" />
+					<column align="center" label="${c:l('ee.consultaGeneradosReparticion.listheader.valor')}" />
+				</columns>
+			</grid>
+			<separator />
+			<groupbox>
+			 <caption  >Datos de la solicitud</caption>
+			 	<hbox align="center">
+			
+							
+								<label value="${c:l('ee.nuevoexpediente.label.cuitcuil.value')}" />
+							<hbox>
+								<longbox id="cuitCuilTipo" maxlength="2" cols="1"> </longbox>
+							
+								<longbox id="cuitCuilDocumento" maxlength="8" cols="8"> </longbox>
+							
+								<longbox id="cuitCuilVerificador" maxlength="1" cols="1"> </longbox>
+							</hbox>
+				
+			 	</hbox>
+			 	
+			 	<separator />
+			 	
+			 	<hbox align="center">
+				 	<label value="${c:l('ee.tramitacion.listheader.tipodocumento.value')}"/>
+				 	<combobox id="tiposDocumentoscbb" readonly="true"
+							 	model="@{creadosPorMiReparticionWindow$composer.tiposDocumentos}"	
+							 	selectedItem="@{creadosPorMiReparticionWindow$composer.tipoDocumento}"/>
+				 	<label value="${c:l('ee.tramitacion.listheader.numero.value')}"/>
+				 	<textbox id="numeroDocumentotbx"  maxlength="11" xmlns:w="client" >
+								  <attribute w:name="doKeyDown_"><![CDATA[
+									function (evt) {
+										esNumero(this, evt);
+										return;
+									}
+							]]></attribute>
+					    </textbox>
+			 	</hbox>
+			</groupbox>
+			<separator />
+			<separator />
+			<hbox>
+				<button autodisable="self" label="${c:l('ee.consultaGeneradosReparticion.button.buscar')}" id="buscar" />
+				<button autodisable="self" id="cancelar" label="${c:l('ee.consultaGeneradosReparticion.button.cancelar')}" />
+				<button autodisable="self" label="${c:l('ee.consultaGeneradosReparticion.button.blanquearDatos')}" id="blanquearDatos" />
+			</hbox>
+		</groupbox>
+<script type="text/javascript"><![CDATA[
+				function esNumero(myfield, e) { 
+						var key; 
+						if (window.event) 
+							key = window.event.keyCode; 
+						else if (e) 
+							key = e.which; 
+						else 
+							this.$doKeyDown_(e); 
+						// teclas de control 
+						if ((key==null) || (key==0) || (key==8) || (key==9) || (key==13) || (key==27) ) 
+							this.$doKeyDown_(e); 
+						// numero 
+						else {
+							if ( !e.shiftKey && ((key>=48) && (key<58)) || ((key>=96) && (key<=105))) {
+								this.$doKeyDown_(e);
+							} else {
+								e.stop();
+								return;
+							}
+						}
+				}
+				]]></script>
+	</window>
+	
+</zk>

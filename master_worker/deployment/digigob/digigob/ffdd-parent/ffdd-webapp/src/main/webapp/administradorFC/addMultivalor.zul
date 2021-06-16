@@ -1,0 +1,47 @@
+<zk>
+	<window title="${c:l('addMultivalores.lbl.title')}" border="normal" width="400px"
+		position="center" id="previsualizarMultivaloresWindow"
+		apply="org.zkoss.bind.BindComposer"
+		viewModel="@id('vm') @init('com.egoveris.ffdd.web.adm.AddMultivaloresVM')"
+		closable="true">
+		
+		<label value="${c:l('addMultivalores.lbl.combos')}" />
+
+		<combobox width="100%" readonly="true" id="comboListaComponentes"
+			model="@load(vm.listaTipoComponente)"
+			selectedItem="@bind(vm.selectedComboComponente)"
+			onSelect="@command('onMostrar')" disabled="@load(vm.modoLectura)">
+			<template name="model">
+				<comboitem label="${each.nombre}" />
+			</template>
+		</combobox>
+		
+		<separator />
+		<separator />
+		
+		<listbox width="100%" mold="paging" multiple="true"
+			checkmark="true"
+			model="@load(vm.listaItemsMultivalue)"
+			height="338px" style="padding:2px;"
+			selectedItems="@bind(vm.selectedlistaItemsMultivalue)">
+			
+			<listhead>
+				<listheader width="15%"/>
+				<listheader label="${c:l('addMultivalores.lbl.multivalues')}" width="85%" />
+			</listhead>
+			
+			<template name="model">
+				<listitem>
+					<listcell />
+					<listcell label="${each.valor}" />
+				</listitem>
+			</template>
+		</listbox>
+
+		<separator />
+		<div style="text-align: center;">
+		<button id="modificar" label="${c:l('addMultivalores.btn.agregar')}" 
+			onClick="@command('onInsertar')" style="padding:13px 40px;" />
+			</div>
+	</window>
+</zk>

@@ -1,0 +1,54 @@
+<?page title="${c:l('digigob.Title')}" contentType="text/html;charset=UTF-8"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./previsualizacionCombo" ?>
+<zk>
+	<window id="previsualizacionCombo"
+		title="${c:l('abmCombobox.prev.title')}" border="normal"
+		height="120px" width="600px"
+		apply="com.egoveris.ffdd.web.adm.PrevisualizacionComboComposer">
+
+		<grid>
+			<columns>
+				<column width="45%" align="center" />
+				<column width="55%" align="center" />
+			</columns>
+			<rows>
+				<row>
+					<cell height="40px" align="center">
+						<label id="nombreCombo" maxlength="35" />
+					</cell>
+					<cell height="40px">
+						<combobox id="combobox"
+							model="@{previsualizacionCombo$PrevisualizacionComboComposer.listaItemsDescripciones}"
+							autodrop="true" readonly="true" width="300px">
+							<comboitem self="@{each=descripcion}"
+								label="@{descripcion}" />
+						</combobox>
+						<bandbox id="bandbox"
+							width="300px" visible="false">
+							<bandpopup>
+								<vbox>
+									<hbox>
+										<label value="${c:l('abmCombobox.previsualizar.buscar')}" />
+										<textbox id="filtrar" />
+									</hbox>
+									<listbox width="300px"
+										model="@{previsualizacionCombo$PrevisualizacionComboComposer.listaItemsDescripciones}">
+									</listbox>
+
+								</vbox>
+							</bandpopup>
+						</bandbox>
+					</cell>
+				</row>
+				<row>
+					<cell colspan="2">
+						<button id="volver"
+							label="${c:l('prev.volver')}" disabled="false"
+							forward="onClick=onClose" width="100%"
+							image="/imagenes/Cancelar_mini.png" />
+					</cell>
+				</row>
+			</rows>
+		</grid>
+	</window>
+</zk>

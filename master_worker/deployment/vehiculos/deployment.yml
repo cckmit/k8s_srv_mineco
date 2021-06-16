@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: laravel-vehiculos
+  namespace: mineco
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      run: laravel-vehiculos
+  template:
+    metadata:
+      labels:
+        run: laravel-vehiculos
+    spec:
+      containers:
+      - name: laravel-vehiculos
+        image: jjolon/vehiculo:latest
+        imagePullPolicy: IfNotPresent
+        ports:
+          - containerPort: 80
+            protocol: TCP
+          - containerPort: 443
+            protocol: TCP
+        volumeMounts:
+            - mountPath: "/var/www/html"
+              name: vol-vehiculos
+      volumes:
+        - name: vol-vehiculos
+          persistentVolumeClaim:
+            claimName: vehiculos-mineco

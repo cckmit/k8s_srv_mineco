@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<process key="solicitud" name="workflow-expedienteElectronico" version="8" xmlns="http://jbpm.org/4.3/jpdl">
+
+	<start g="159,35,48,48" name="start1">
+		<transition g="-68,-18" name="to exclusive1" to="exclusive1"/>
+	</start>
+	<task form="expediente/nuevoExpediente.zul" g="325,116,170,52" name="Iniciar Expediente">
+		<assignment-handler class="com.egoveris.te.base.service.AsignarTarea"/>
+		<transition g="-138,-18" name="Anular/Modificar Solicitud" to="Anular/Modificar Solicitud"/>
+		<transition g="-11,-40" name="Iniciacion" to="Iniciacion"/>
+	</task>
+	<task assignee="#{usuarioSolicitante}" form="solicitud/anularModificarSolicitud.zul" g="128,264,196,52" name="Anular/Modificar Solicitud">
+		<transition g="-54,-18" name="cancelar" to="cancel1"/>
+		<transition g="364,230:10,-9" name="Iniciar Expediente" to="Iniciar Expediente"/>
+	</task>
+	<task    form="expediente/tramitacion.zul" g="600,360,110,52" name="Iniciacion">
+	<assignment-handler class="com.egoveris.te.base.service.AsignarTarea"/>
+		<transition g="600,360,110,52" name="Iniciacion" to="Iniciacion"/>
+		<transition g="-73,-18" name="Tramitacion" to="Tramitacion"/>
+		<transition g="-53,2" name="Subsanacion" to="Subsanacion"/>
+		<transition g="1020,386;1022,700:-24,-17" name="Guarda Temporal" to="Guarda Temporal"/>
+	</task>
+	<task form="expediente/tramitacion.zul" g="512,469,120,52" name="Tramitacion">
+		<assignment-handler class="com.egoveris.te.base.service.AsignarTarea"/>
+		<transition g="-78,-18" name="Subsanacion" to="Subsanacion"/>
+		<transition g="-44,-19" name="Comunicacion" to="Comunicacion"/>
+		<transition g="-54,-18" name="Guarda Temporal" to="Guarda Temporal"/>
+		<transition g="512,469,120,52" name="Tramitacion" to="Tramitacion"/>
+		<transition g="79,-26" name="forkEach" to="forkEach"/>
+	</task>
+	<task form="expediente/tramitacion.zul" g="853,468,125,52" name="Subsanacion">
+		<assignment-handler class="com.egoveris.te.base.service.AsignarTarea"/>
+		<transition g="853,468,125,52" name="Subsanacion" to="Subsanacion"/>
+		<transition g="917,322;664,322;569,323:-73,-18" name="Tramitacion" to="Tramitacion"/>
+		<transition g="79,-26" name="Guarda Temporal" to="Guarda Temporal"/>
+		<transition name="Ejecucion" to="Ejecucion"/>
+	</task>
+	<task form="expediente/tramitacionEspecial.zul" g="279,381,124,52" name="Comunicacion">
+		<assignment-handler class="com.egoveris.te.base.service.AsignarTarea"/>
+		<transition g="279,381,124,52" name="Comunicacion" to="Comunicacion"/>
+		<transition g="-63,-18" name="Ejecucion" to="Ejecucion"/>
+		<transition g="-54,-18" name="Guarda Temporal" to="Guarda Temporal"/>
+	</task>
+	<task form="expediente/tramitacion.zul" g="236,675,127,52" name="Ejecucion">
+		<assignment-handler class="com.egoveris.te.base.service.AsignarTarea"/>
+		<transition g="236,675,127,52" name="Ejecucion" to="Ejecucion"/>
+		<transition g="-54,-18" name="Guarda Temporal" to="Guarda Temporal"/>
+		<transition name="Subsanacion" to="Subsanacion"/>
+		<transition g="79,-26" name="forkEach" to="forkEach"/>
+	</task>
+	<task form="expediente/tramitacionEspecial.zul" g="438,676,134,52" name="Guarda Temporal">
+		<assignment-handler class="com.egoveris.te.base.service.AsignarTarea"/>
+		<transition g="-40,-8" name="Cierre" to="end1"/>
+	</task>
+	<end g="480,772,48,48" name="end1"/>
+	<end-cancel g="110,452,48,48" name="cancel1"/>
+	<decision expr="#{inicio}" g="403,37,48,48" name="exclusive1">
+		<transition g="-104,-18" name="Iniciar Expediente" to="Iniciar Expediente"/>
+		<transition g="608,158:12,4" name="Caratular" to="Iniciacion"/>
+		<transition g="548,163:-73,-18" name="to Tramitacion" to="Tramitacion"/>
+		<transition g="759,172:-63,-18" name="to Ejecucion" to="Ejecucion"/>
+	</decision>
+
+
+	<foreach in="#{destinos}" name="forkEach" var="asignado">
+		<transition g="-44,-18" to="Paralelo"/>
+	</foreach>
+
+	<task form="expediente/tramitacion.zul" g="73,535,92,52" name="Paralelo">
+		<assignment-handler expr="#{tareaParalelo}"/>
+		<transition g="-41,-18" name="to joinTramitacion" to="joinTramitacion"/>
+		<transition g="59,629:-41,-18" name="to joinEjecucion" to="joinEjecucion"/>
+	</task>
+
+	<join g="143,624,48,48" multiplicity="#{cant}" name="joinTramitacion">
+		<transition g="300,582:-73,-18" name="to Tramitacion" to="Tramitacion"/>
+	</join>
+	<join g="40,683,48,48" multiplicity="#{cant}" name="joinEjecucion">
+		<transition g="139,771:-63,-18" name="to Ejecucion" to="Ejecucion"/>
+	</join>
+
+	<migrate-instances versions="*">
+	</migrate-instances>
+	
+
+</process>

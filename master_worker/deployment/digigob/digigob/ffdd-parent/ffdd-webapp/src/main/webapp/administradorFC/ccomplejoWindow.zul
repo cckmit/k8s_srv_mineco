@@ -1,0 +1,154 @@
+<?page title="CComplejos" contentType="text/html;charset=UTF-8"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./ccomplejo" ?>
+<zk>
+	<window title="${c:l('ccomplejos.title')}" border="normal"
+		width="1000px" id="ccomplejo"
+		apply="com.egoveris.ffdd.web.adm.CComplejoComposer">
+		<window id="componentTypeWindow" visible="false" />
+		<window id="previsualizarWindow" visible="false" />
+		<window id="ccomplejoDetailWindow" visible="false" />
+		<hbox>
+			<vbox align="center" width="150px">
+
+				<button label="${c:l('ccomplejos.botonGuardar')}"
+					width="125px" forward="onClick=onGuardar" />
+				<button label="${c:l('ccomplejos.botonPrevisualizar')}"
+					width="125px" forward="onClick=onPrevisualizar" />
+				<button label="${c:l('ccomplejos.botonVerTipos')}"
+					width="125px" forward="onClick=onShowTypes" />
+				<button label="${c:l('ccomplejos.botonVerExistentes')}"
+					width="125px" forward="onClick=onShowExistentes" />
+				<button label="${c:l('ccomplejos.botonLimpiar')}"
+					width="125px" forward="onClick=onClearFields" />
+				<space height="10px"></space>
+				<vbox id="vboxComponents" align="center"
+					visible="false">
+					<bandbox id="componentes" mold="rounded"
+						readonly="true" width="130px">
+						<bandpopup>
+							<listbox id="listboxComponentes"
+								height="250px" width="400px" mold="paging"
+								forward="onSelect=onSelectComponente" multiple="false"
+								checkmark="true" pageSize="6"
+								model="@{ccomplejo$CComplejoComposer.listComponents}"
+								selectedItem="@{ccomplejo$CComplejoComposer.selectedComponent}">
+								<listhead>
+									<listheader
+										label="${c:l('ccomplejos.componentes')}" />
+								</listhead>
+								<listitem self="@{each=component}"
+									value="@{component}" draggable="true">
+									<listcell
+										label="@{component.nombre}" />
+								</listitem>
+							</listbox>
+						</bandpopup>
+					</bandbox>
+					<button label="${c:l('ccomplejos.botonModificar')}"
+						width="125px" forward="onClick=onModificar" />
+					<button label="${c:l('ccomplejos.botonClonar')}"
+						width="125px" forward="onClick=onClonar" />
+					<button id="btnEliminar" disabled="true"
+						label="${c:l('ccomplejos.botonEliminar') }" width="125px"
+						forward="onClick=onEliminar" />
+				</vbox>
+
+			</vbox>
+			<vbox align="center" droppable="true"
+				forward="onDrop=onDropComponent">
+				<grid oddRowSclass="noodd">
+					<columns>
+						<column width="15%"></column>
+						<column></column>
+						<column width="15%"></column>
+						<column></column>
+					</columns>
+					<rows>
+						<row>
+							<label value="${c:l('ccomplejos.type')}" />
+							<combobox id="type" constraint="no empty"
+								readonly="true"
+								placeholder="${c:l('ccomplejos.type.placeholder')}" />
+						</row>
+						<row>
+							<label value="${c:l('ccomplejos.entity')}" />
+							<combobox id="entity" constraint="no empty"
+								placeholder="${c:l('ccomplejos.parent.placeholder')}"
+								forward="onSelect=onSelectEntidad,onChange=onSelectEntidad" />
+							<cell rowspan="2">
+								<label
+									value="${c:l('ccomplejos.description')}" />
+							</cell>
+							<cell rowspan="2">
+								<textbox id="description"
+									maxlength="255" multiline="true" width="100%">
+								</textbox>
+							</cell>
+						</row>
+						<row>
+							<label
+								value="${c:l('ccomplejos.componentName')}" />
+							<textbox id="componentName"
+								constraint="no empty" maxlength="245"
+								placeholder="${c:l('ccomplejos.componentName.placeholder')}" />
+						</row>
+					</rows>
+				</grid>
+
+				<label value="${c:l(ccomplejos.fieldList)}" />
+				<listbox id="listboxDynamicComponentFields" width="100%"
+					mold="paging" pageSize="1000"
+					model="@{ccomplejo$CComplejoComposer.listDynamicComponentFields}"
+					height="400px" style="padding:2px;" droppable="true"
+					forward="onDrop=onDropComponent">
+					<listhead sizable="true">
+						<listheader width="auto"
+							label="${c:l('ccomplejos.field.name')}"  />
+						<listheader width="auto"
+							label="${c:l('ccomplejos.field.type')}" />
+						<listheader
+							label="${c:l('ccomplejos.field.label')}" />
+						<listheader width="7%"
+							label="${c:l('ccomplejos.field.hidden')}" />
+						<listheader width="10%"
+							label="${c:l('ccomplejos.field.required')}" />
+						<listheader width="12%"
+							label="${c:l('ccomplejos.field.disabled')}" />
+						<listheader width="50px" />
+					</listhead>
+					<listitem self="@{each=dynamicComponentField}"
+						value="@{dynamicComponentField}" droppable="true"
+						forward="onDrop=onDropComponent">
+						<listcell label="@{dynamicComponentField.name}" />
+						<listcell label="@{dynamicComponentField.type}" />
+						<listcell>
+							<textbox width="100%"
+								value="@{dynamicComponentField.label}" maxlength="255" />
+						</listcell>
+						<listcell>
+							<checkbox
+								value="@{dynamicComponentField.hidden}"
+								checked="@{dynamicComponentField.hidden}" />
+						</listcell>
+						<listcell>
+							<checkbox
+								disabled="@{dynamicComponentField.disableRequired}"
+								value="@{dynamicComponentField.required}"
+								checked="@{dynamicComponentField.required}" />
+						</listcell>
+						<listcell>
+							<checkbox disabled="@{ccomplejo$CComplejoComposer.disabledEdition}"
+								value="@{dynamicComponentField.disabled}"
+								checked="@{dynamicComponentField.disabled}" />
+						</listcell>
+						<listcell>
+							<button iconSclass="z-icon-pencil-square-o" width="40px"
+								tooltiptext="${c:l('ccomplejos.botonDetalle')}"
+								forward="onClick=onShowDetails" />
+						</listcell>
+					</listitem>
+				</listbox>
+			</vbox>
+		</hbox>
+	</window>
+</zk>

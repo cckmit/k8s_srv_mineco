@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<complexComponent type="TRADE" name="Vista Participante Secundario"
+	description="Vista Participante Secundario" zul="vistaParticipanteSecundario.zul"
+	mappingDTO="com.egoveris.ccomplejos.base.model.VistaParticipanteSecundarioDTO">
+
+	<field name="nombreContacto" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" disabled="true"/>
+	<field name="emailContacto" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" disabled="true"/>
+
+</complexComponent>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<complexComponent type="FILEUPLOAD" name="File Upload" zul="file.zul" description="File Upload Component"
+	composer="com.everis.tramelec.dynform.comp.ext.FileUploadComposer">
+	<field name="fileUpload" width="90%" height="20px" class="com.egoveris.ffdd.render.zk.comp.ext.FileUploadExt" />
+	<field name="fileLabel" width="90%" height="20px" class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" />
+</complexComponent>

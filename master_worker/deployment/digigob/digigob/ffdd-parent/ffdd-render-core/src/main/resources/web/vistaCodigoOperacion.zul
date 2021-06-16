@@ -1,0 +1,12 @@
+<zk>
+	<vlayout
+		apply="com.egoveris.ffdd.render.zk.comp.cc.VistaCodigoOperacionComposer">
+
+		<vbox>
+			<hbox>
+				<cell id="${arg.formComp.nombre}_codigoOperacionDiv" />
+			</hbox>
+		</vbox>
+
+	</vlayout>
+</zk>

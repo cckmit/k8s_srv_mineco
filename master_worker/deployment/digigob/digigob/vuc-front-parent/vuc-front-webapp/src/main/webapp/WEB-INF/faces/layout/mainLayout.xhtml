@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>#{msg.layoutTitle}</title>
+	<link rel="icon" type="image/png" />
+	<link rel="stylesheet" media="all" />
+	<h:outputStylesheet library="application" name="vuc.css" />
+	<h:outputStylesheet library="webjars"
+		name="font-awesome/4.7.0/css/font-awesome-jsf.css" />
+	<h:outputStylesheet library="webjars"
+		name="bootstrap/3.3.7-1/css/bootstrap-jsf.css" />
+	<h:outputScript library="webjars"
+		name="bootstrap/3.3.7-1/js/bootstrap.min.js" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+		
+	<link href="#{props['url.css.pago']}" rel="stylesheet" />
+	
+	<script src="#{props['url.javascript.pago']}" ></script> 
+	
+	<style>
+		.custom-dialog {
+			top : 0px !important;
+		}		
+	</style>
+	
+</h:head>
+
+<h:body>
+	<h:form id="mainLayout">
+		<div class="container-fluid">
+			<ui:include src="/WEB-INF/faces/layout/ajaxStatus.xhtml" />
+			<ui:include src="/WEB-INF/faces/layout/mainHeader.xhtml" />
+
+			<div class="row">
+				<div class="col-md-8  col-xs-12">
+					<div class="col-md-12">
+						<br />
+						<div class="row">
+							<a href="#{request.contextPath}/index" type="button"
+								style="text-decoration: none" class="btnPrincipal">#{msg.layoutInicio}</a>
+							<a href="#{request.contextPath}/newApplication" type="button"
+								style="text-decoration: none" class="btnPrincipal">#{msg.indxIniciarTramite}</a>
+							<a href="#{request.contextPath}/myApplications" type="button"
+								style="text-decoration: none" class="btnPrincipal">#{msg.indxMisSolicitudes}</a>
+							<a href="#{request.contextPath}/myTareas" type="button"
+								style="text-decoration: none" class="btnPrincipal">#{msg.indxMisTareas}</a>
+							<a href="#{request.contextPath}/myNotifications" type="button"
+								style="text-decoration: none" class="btnPrincipal">#{msg.indxMisNotificaciones}</a>
+							<a href="#{request.contextPath}/myDocuments" type="button"
+								style="text-decoration: none" class="btnPrincipal">#{msg.indxMisDocumentos}</a>
+						</div>
+						<br />
+						<div class="row">
+							<div class="col-lg-11 col-md-9 col-sm-8 col-xs-12">
+								<ui:insert name="body" />
+							</div>
+						</div>
+					</div>
+					<div class="row"></div>
+				</div>
+				<div class="col-md-4 col-xs-12 sidebarRight">
+					<div class="row">
+						<div class="col-md-12">
+							<span class="titulo">#{msg.step1InfoSolicitante}</span>
+						</div>
+						<div class="col-md-12 col-sm-6 col-xs-12 boxTarea">
+							<div class="col-md-12 boxTareaStatus">
+								<h2>#{sessionScope.persona.nombre1}
+									#{sessionScope.persona.apellido1}
+									#{sessionScope.persona.apellido2}</h2>
+								<div class="col-md-8 rut">
+									<label class="atributo">#{msg.infoRut}</label> <label
+										class="valor">#{sessionScope.persona.cuit}</label>
+								</div>
+								<div class="col-md-4 sexo">
+									<label class="atributo">#{msg.infoSexo}</label> <label
+										class="valor">#{sessionScope.persona.sexo}</label>
+								</div>
+								<div class="col-md-8 telefono">
+									<label class="atributo">#{msg.infoNumero}</label> <label
+										class="valor">#{sessionScope.persona.telefonoContacto}</label>
+								</div>
+								<div class="col-md-4 email">
+									<label class="atributo">#{msg.infoMail}</label> <label
+										class="valor">#{sessionScope.persona.email}</label>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-12">
+							<span class="titulo">#{msg.sectionNotificaciones}</span>
+						</div>
+						<div class="col-md-12 col-sm-6 col-xs-12 boxTarea">
+							<p:dataTable id="tblNotificationes" var="expedienteNotificacion"
+								value="#{sessionScope.mapaExpedienteListaNotificaciones.entrySet()}"
+								emptyMessage="#{msg.sectionSinNotificacionesNuevas}">
+								<p:column>
+									<div class="col-md-12 boxTareaStatus">
+										<h2>#{msg.sectionCodigoExpediente} :
+											#{expedienteNotificacion.getKey()}</h2>
+										<div class="col-md-8 codigo">
+											<label class="atributo">#{msg.sectionTramite}</label> <label
+												class="valor">#{expedienteNotificacion.getValue().get(0).expediente.tipoTramite.nombre}</label>
+										</div>
+										<div class="col-md-4 fecha">
+											<label class="atributo">#{msg.sectionFechaUltimaTarea}</label>
+											<label class="valor">#{expedienteNotificacion.getValue().get(0).formattedDate}</label>
+										</div>
+										<div class="col-md-8 documentos">
+											<label class="atributo">#{msg.sectionVer}</label>
+											<p:commandButton icon="fa fa-search"
+												style="height: 2em; width: 2em;"
+												actionListener="#{myNotificationsMb.cmdViewNotification(expedienteNotificacion)}"
+												oncomplete="PF('notificacionesDialog').show()"
+												update="tblNotificationes mainLayout:notificacionesDialog">
+											</p:commandButton>
+										</div>
+										<div class="col-md-4 documentos">
+											<label class="atributo">#{msg.sectionEstado}</label>
+											<p:outputLabel
+												rendered="#{not (myNotificationsMb.hasExpedienteAnyUnseenNotificacion(expedienteNotificacion))}"
+												styleClass="fa fa-envelope-open" />
+											<p:outputLabel
+												rendered="#{myNotificationsMb.hasExpedienteAnyUnseenNotificacion(expedienteNotificacion)}"
+												styleClass="fa fa-envelope" />
+										</div>
+									</div>
+								</p:column>
+							</p:dataTable>
+						</div>
+					</div>
+				</div>
+				<!-- DIALOGS -->
+				<p:dialog id="notificacionesDialog" widgetVar="notificacionesDialog"
+					width="900" height="400" top="5%" modal="true" blockScroll="true"
+					header="#{msg.sectionNotificaciones} #{myNotificationsMb.selectedExpedienteMap.getKey()}">
+					<div class="ui-g">
+						<div class="ui-g-12">
+							<p:dataTable id="tblNotificaciones" var="notificacion"
+								value="#{myNotificationsMb.selectedExpedienteMap.getValue()}"
+								style="text-align: center; font-size:1.1em;">
+								<p:column headerText="#{msg.sectionCodigoDocumento}" width="30%">
+									<p:outputLabel value="#{notificacion.codSade}" />
+								</p:column>
+								<p:column headerText="#{msg.sectionFecha}" width="13%">
+									<p:outputLabel value="#{notificacion.formattedDate}" />
+								</p:column>
+								<p:column headerText="#{msg.sectionMotivo}">
+									<p:outputLabel value="#{notificacion.motivo}" />
+								</p:column>
+								<p:column headerText="#{msg.sectionDescargar}" width="12%">
+<!-- 									<i class="fa fa-download" /> -->
+									<p:commandButton id="downloadDocument" icon="fa fa-download"  ajax="false">
+											<p:fileDownload
+												value="#{myNotificationsMb.cmdDownloadNotificacion(notificacion)}" />
+									</p:commandButton>
+								</p:column>
+							</p:dataTable>
+						</div>
+					</div>
+				</p:dialog>
+			</div>
+		</div>
+	</h:form>
+</h:body>
+</html>
+

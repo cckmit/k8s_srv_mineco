@@ -1,0 +1,37 @@
+<zk>
+	<vlayout apply="com.egoveris.ffdd.render.zk.comp.cc.VistaItemDAComposer">
+		<grid>
+			<columns>
+				<column></column>
+			</columns>
+			<rows>
+				<row>
+					<vbox>
+						<hbox>
+						<cell id="${arg.formComp.nombre}_pesoBrutoItemDiv" />
+						<cell id="${arg.formComp.nombre}_codigoArancelProdDiv" />
+						<cell id="${arg.formComp.nombre}_unidadMedidaArancelProdDiv" />
+						<cell id="${arg.formComp.nombre}_secuencialItemDiv" />
+						<cell id="${arg.formComp.nombre}_montoFOBItemDiv" />
+						<cell id="${arg.formComp.nombre}_valorMercanciaItemDiv" />
+						<cell id="${arg.formComp.nombre}_numeroDeItemDiv" />
+						<cell id="${arg.formComp.nombre}_fobUnitarioDiv" />
+						<cell id="${arg.formComp.nombre}_fobUSDDiv" />
+						<cell id="${arg.formComp.nombre}_cantidadKilosNetoProdDiv" />
+						<cell id="${arg.formComp.nombre}_cantidadKilosBrutosProdDiv" />
+						<cell id="${arg.formComp.nombre}_estadoItemDiv" />
+						<cell id="${arg.formComp.nombre}_cantidadItemProductoDiv" />
+						<cell id="${arg.formComp.nombre}_unidadDeMedidaDiv" />
+						<cell id="${arg.formComp.nombre}_cantidadDeMercanciaDiv" />
+						<cell id="${arg.formComp.nombre}_productoDiv" />
+						<cell id="${arg.formComp.nombre}_numeroSolicitudAutorizacionDiv" />
+<!-- 						<cell id="${arg.formComp.nombre}_codigoLoteDiv" /> -->
+						<cell id="${arg.formComp.nombre}_documentosRelacionadosDiv" />
+						<cell id="${arg.formComp.nombre}_observacionesDiv" /> 
+						</hbox>
+					</vbox>
+				</row>
+			</rows>
+		</grid>
+	</vlayout>
+</zk>

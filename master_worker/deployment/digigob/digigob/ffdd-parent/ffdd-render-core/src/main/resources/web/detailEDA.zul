@@ -1,0 +1,55 @@
+<zk>
+	<vlayout
+		apply="com.egoveris.ffdd.render.zk.comp.cc.DetailEDAComposer">
+		<grid>
+			<columns>
+				<column></column>
+				<column></column>
+				<column></column>
+				<column></column>
+				<column></column>
+				<column></column>
+			</columns>
+			<rows>
+				<row>
+					<hbox>HS code:</hbox>
+					<cell id="${arg.formComp.nombre}_cmdDiv" />
+					<hbox>MACCS item code:</hbox>
+					<cell id="${arg.formComp.nombre}_cm2Div" />
+					<hbox>Item name:</hbox>
+					<cell id="${arg.formComp.nombre}_cmnDiv" />
+					<hbox>Country of origin code:</hbox>
+					<cell id="${arg.formComp.nombre}_orDiv" />
+				</row>
+				<row>
+					<hbox>Quantity (1):</hbox>
+					<cell id="${arg.formComp.nombre}_qn1Div" />
+					<hbox>Quantity unit code (1):</hbox>
+					<cell id="${arg.formComp.nombre}_qt1Div" />
+					<hbox>Quantity (2):</hbox>
+					<cell id="${arg.formComp.nombre}_qn2Div" />
+					<hbox>Quantity unit code (2):</hbox>
+					<cell id="${arg.formComp.nombre}_qt2Div" />
+				</row>
+				<row>
+					<hbox>cmp:</hbox>
+					<cell id="${arg.formComp.nombre}_cmpDiv" />
+					<hbox>Basic price currency code:</hbox>
+					<cell id="${arg.formComp.nombre}_bpcDiv" />
+					<hbox>Basic price:</hbox>
+					<cell id="${arg.formComp.nombre}_bpkDiv" />
+					<hbox>
+						Exemption/Reduction code of Commercial tax:
+					</hbox>
+					<cell id="${arg.formComp.nombre}_ectDiv" />
+				</row>
+				<row>
+					<cell colspan="2">
+						Reduction amount of Commercial tax:
+					</cell>
+					<cell id="${arg.formComp.nombre}_eacDiv" />
+				</row>
+			</rows>
+		</grid>
+	</vlayout>
+</zk>

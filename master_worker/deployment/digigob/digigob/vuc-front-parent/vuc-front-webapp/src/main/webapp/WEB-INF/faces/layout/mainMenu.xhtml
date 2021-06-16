@@ -1,0 +1,34 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition>
+	<h:form id="mainMenu">
+		<div class="sidebar-nav">
+			<div class="navbar navbar-default" role="navigation">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle" data-toggle="collapse"
+						data-target=".sidebar-navbar-collapse">
+						<span class="sr-only">#{msg.layoutCambiarNavegacion}</span> <span
+							class="icon-bar"></span> <span class="icon-bar"></span> <span
+							class="icon-bar"></span>
+					</button>
+				</div>
+				<div class="navbar-collapse collapse sidebar-navbar-collapse">
+					<ul class="nav navbar-nav">
+						<li class="active"><a href="#{request.contextPath}/index">#{msg.layoutInicio}</a></li>
+						<li><a href="#{request.contextPath}/newApplication">#{msg.layoutIniciarTramite}</a></li>
+						<li><a href="#{request.contextPath}/myApplications">#{msg.layoutMisSolicitudes}</a></li>
+						<li><a href="#{request.contextPath}/myTareas">#{msg.layoutMisTareas}<span class="badge">#{menuMb.unseenTareas}</span></a></li>
+						<li><a href="#{request.contextPath}/myNotifications">#{msg.layoutMisNotificaciones}<span class="badge">#{menuMb.unseenNotifications}</span></a></li>
+						<li><a href="#{request.contextPath}/myDocuments">#{msg.layoutMisDocumentos}</a></li>
+					</ul>
+				</div>
+				<!--/.nav-collapse -->
+			</div>
+		</div>
+	</h:form>
+</ui:composition>
+</html>

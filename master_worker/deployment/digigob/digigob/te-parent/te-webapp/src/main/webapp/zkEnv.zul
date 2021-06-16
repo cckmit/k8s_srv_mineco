@@ -1,0 +1,10 @@
+<?page title="ZK Enviroment" contentType="text/html;charset=UTF-8"?>
+<zk>
+	<window title="ZK Enviroment" border="normal">
+		<vbox>
+			<label value="ZK Version: ${desktop.webApp.version}" />
+			<label value="Demo ZK 8 Component" />
+			<tbeditor id="tb" value="this is a demo for &lt;b&gt;trumbowy&lt;/b&gt; editor!!" />
+		</vbox>
+	</window>
+</zk>

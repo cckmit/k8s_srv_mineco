@@ -1,0 +1,40 @@
+<zk>
+	<vlayout
+		apply="com.egoveris.ffdd.render.zk.comp.cc.ProductAttributesOperationComposer">
+		<grid>
+			<columns>
+				<column></column>
+			</columns>
+			<rows>
+				<row>
+					<vbox>
+						<hbox>
+							<cell
+								id="${arg.formComp.nombre}_productoOperacionIdDiv" />
+							<cell
+								id="${arg.formComp.nombre}_productIdDiv" />
+						</hbox>
+						<hbox>
+							<cell
+								id="${arg.formComp.nombre}_attributeSeqDiv" />
+							<cell
+								id="${arg.formComp.nombre}_attributeValueDiv" />
+						</hbox>
+						<hbox>
+							<cell
+								id="${arg.formComp.nombre}_productAttributeOperacionIdDiv" />
+							<cell
+								id="${arg.formComp.nombre}_productAttributeIdDiv" />
+						</hbox>
+						<hbox>
+							<cell
+								id="${arg.formComp.nombre}_productCodeDiv" />
+							<cell
+								id="${arg.formComp.nombre}_attributeCodeNameDiv" />
+						</hbox>
+					</vbox>
+				</row>
+			</rows>
+		</grid>
+	</vlayout>
+</zk>

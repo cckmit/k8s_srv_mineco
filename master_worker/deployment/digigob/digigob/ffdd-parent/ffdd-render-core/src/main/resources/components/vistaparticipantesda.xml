@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<complexComponent 
+		type="TRADE" name="vistaparticipantesda" description="Vista Participantes DA"
+		zul="vistaParticipantesDA.zul" 
+		mappingDTO="com.egoveris.ccomplejos.base.model.VistaParticipantesDaDTO">
+		
+		<field name="nombreParticipante" width="90%" height="20px" class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" disabled="true"/>
+		<field name="codigoDespacho" width="90%" height="20px" class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" disabled="true"/>
+		<field name="despachadorCodigo" width="90%" height="20px" class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" disabled="true"/>
+		<field name="indicaTipoDocumentoIdentificacion" width="90%" height="20px" class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" disabled="true"/>
+		<field name="rut" width="90%" height="20px" class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" disabled="true"/>
+		<field name="porcentaje" width="90%" height="20px" class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" disabled="true"/>
+		<field name="email" width="90%" height="20px" class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" disabled="true"/>
+		<field name="direccion" width="90%" height="20px" class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" disabled="true"/>
+		<field name="comuna" width="90%" height="20px" class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" disabled="true"/>
+<!-- 		<field name="participante" width="90%" height="20px" class="com.egoveris.ffdd.render.zk.comp.ext.SeparatorComplex" xmlFile="participantes.xml" disabled="true"/> -->
+		<field name="region" width="90%" height="20px" class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" disabled="true"/>
+		<field name="numeroTelefonoFijo" width="90%" height="20px" class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" disabled="true"/>
+		<field name="numeroTelefonoMovil" width="90%" height="20px" class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" disabled="true"/>
+		<field name="pais" width="90%" height="20px" class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" disabled="true"/>
+	
+</complexComponent>

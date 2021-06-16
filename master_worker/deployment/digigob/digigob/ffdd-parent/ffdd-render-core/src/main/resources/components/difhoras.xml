@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<complexComponent type="TRADE" name="difHoras"
+	description="Dif Dates Information" zul="difHoras.zul"
+	composer="com.egoveris.ffdd.render.zk.comp.cc.DifHorasComposer"
+	mappingDTO="com.egoveris.ccomplejos.base.model.DifHorasDTO">
+
+	<field id="horaInicio" name="horaInicio" class="com.egoveris.ffdd.render.zk.comp.ext.TimeboxExt"
+		height="20px" width="90%" label="Hora Inicio" tooltip="Hora Inicio"  />
+	<field id="horaFin" name="horaFin" class="com.egoveris.ffdd.render.zk.comp.ext.TimeboxExt"
+		height="20px" width="90%" label="Hora Fin" tooltip="Hora Fin" />
+	<field id="diferencia" name="diferencia" class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt"
+		height="20px" width="90%" label="Diferencia" tooltip="Diferencia" />
+</complexComponent>

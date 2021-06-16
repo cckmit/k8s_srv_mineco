@@ -1,0 +1,83 @@
+<?page title="${c:l('detalleAlerta.title')}" contentType="text/html;charset=UTF-8"?>
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./win_seleccionUsuarioJefeGobierno"?>
+
+<zk>
+	<window id="win_seleccionUsuarioJefeGobierno" width="100%"
+		style="align=center; " position="center"
+		border="normal"
+		apply="com.egoveris.edt.web.admin.pl.SeleccionUsuarioJefeGobiernoComposer">
+		<label
+			value="${c:l('eu.datosPersonales.datosUsuario.tab.elminiarJefeGobierno.titulo')}" />
+		<grid>
+			<columns>
+				<column width="25%" />
+				<column />
+			</columns>
+			<rows>
+				<row width="25%">
+
+				</row>
+				<row width="25%">
+					<label
+						value="${c:l('eu.datosPersonales.datosUsuario.tab.elminiarJefeGobierno.labelEliminacion')}" />
+					<hbox vflex="true" align="center">
+						<bandbox id="bandBoxEliminarJefeGobierno"
+							height="31px">
+							<bandpopup width="380px">
+								<groupbox mold="3d">
+									<caption>
+										<hbox>
+											<label
+												value="${c:l('eu.datosPersonales.hbox.bandBoxUsuarios.label.busquedaDeUsuarios')}"
+												width="560px" />
+											<image
+												src="/imagenes/help.png" width="16px" height="16px"
+												tooltip="helpBusquedaUsuarios" align="right" />
+										</hbox>
+									</caption>
+									<separator height="2px"></separator>
+									<vbox height="100px" width="100%">
+										<paging
+											id="paginatorJefeGobierno" pageSize="10" />
+										<listbox width="100%"
+											id="listBoxJefeGobierno" mold="paging"
+											paginal="${paginatorJefeGobierno}"
+											model="@{win_seleccionUsuarioJefeGobierno$composer.listaUsuarios}"
+											selectedItem="@{win_seleccionUsuarioJefeGobierno$composer.usuario}"
+											itemRenderer="com.egoveris.edt.web.pl.renderers.JefeGobiernoItemRenderer">
+											<listhead>
+												<listheader
+													label="${c:l('eu.escritorioUnico.tareasMisSupervisados.usuario')}" width="40%" />
+												<listheader
+													label="${c:l('eu.busquedausuario.listhead.label.nombApell') }" width="60%" />
+											</listhead>
+											<listfoot
+												style="">
+												<listfooter
+													id="totalJefesGobierno" span="1" style="color:#C4ECFF" />
+											</listfoot>
+										</listbox>
+									</vbox>
+								</groupbox>
+							</bandpopup>
+						</bandbox>
+						<!-- 							<label -->
+						<!-- 								value="${c:l('eu.datosPersonales.datosUsuario.tab.secretario.info.label')}" /> -->
+					</hbox>
+				</row>
+			</rows>
+		</grid>
+
+
+		<div align="center">
+			<button id="btn_guardar" image="/imagenes/save_24px.png"
+				width="150px"
+				label="${c:l('eu.datosPersonales.periodoLicencia.tab.guardar')}" />
+		</div>
+
+	</window>
+
+
+</zk>

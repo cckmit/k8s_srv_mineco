@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
+    http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+	<changeSet author="Carlos Bellotti" id="EDT_TEMPLATE">
+		<createTable tableName="EDT_TEMPLATE">
+			<column name="ID" type="INT" autoIncrement="true">
+				<constraints primaryKey="true"/>
+			</column>
+			<column name="CODIGO" type="CHAR(50)">
+				<constraints nullable="false"/>				
+			</column>
+			<column name="VERSION" type="CHAR(20)">
+				<constraints nullable="false"/>				
+			</column>
+			<column name="TIPO" type="CHAR(20)">
+				<constraints nullable="false"/>				
+			</column>			
+			<column name="DESCRIPCION" type="VARCHAR(255)">
+				<constraints nullable="false"/>				
+			</column>			
+			<column name="TEMPLATE" type="BLOB">
+				<constraints nullable="false"/>
+			</column>
+		</createTable>
+		
+		<addUniqueConstraint columnNames="CODIGO, VERSION" tableName="EDT_TEMPLATE" constraintName="UNQ_EDT_TEMP_COD_VER"/>
+						
+	</changeSet>  
+	
+	<changeSet id="EDT_TEMPLATE_MAILS" author="Carlos Bellotti">
+		<insert tableName="EDT_TEMPLATE">
+			<column name="CODIGO" value="resetearPassword"/>
+			<column name="VERSION" value="1"/>
+			<column name="TIPO" value="MAIL"/>
+			<column name="DESCRIPCION" value="Template mail reseteo de password"/>
+			<column name="TEMPLATE">
+				   <![CDATA[
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="content-type">
+    <title>Aviso de alta de usuario eGoveris</title>
+  </head>
+  <body>
+    <table	style="text-align: left; width: 966px; height: 85px; font-family: Arial;"
+    		border="0"
+    		cellpadding="2"
+    		cellspacing="2">
+      <tbody>
+        <tr>
+          <td style="text-align: center;">
+            <img style="width: 200px; height: 79px;" alt="Logo TSJ" title="Logo TSJ" src="cid:image">
+          </td>
+          <td style="background-color: #313945; text-align: center;">
+            <span style="font-size: 24px; color:white;">
+              <b>EgobSV</b> - Administraci&oacute;n de Usuarios
+            </span>
+          </td>
+        </tr>
+
+        <tr>
+          <td style="text-align: justify;" colspan="2">
+<br><br>
+			<b>Se&ntilde;or/a ${usuarioNombre},</b>
+
+            <br>
+            <br>
+            Por este medio se le notifica que se le ha reseteado la contrase&ntilde;a para los sistemas EgobSV:
+            <br>
+
+            <UL type="square" >
+              <LI> ID: <b>${usuarioID}</b>
+			  <LI> Contrase&ntilde;a: <b>${usuarioPassword}</b>
+            </UL>
+
+      			Recuerde que la contrase&ntilde;a brindada tiene el car&aacute;cter de temporal y deber&aacute; modificarla al iniciar sesi&oacute;n en el Sistema. Para realizar esto, debe ir al sistema ESCRITORIO &Uacute;NICO y en la pesta&ntilde;a DATOS PERSONALES modificar la contrase&ntilde;a.
+			<br>
+            <br>
+            Saludos cordiales.
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+
+            <span style="font-size: 12px;">
+            <b><u>Atenci&oacute;n</u></b>:
+            El presente es un mensaje generado autom&aacute;ticamente por el <b>Sistema de EgobSV del Gobierno de El Salvador</b> y no debe ser respondido.
+            <br>
+            </span>
+
+          </td>
+        </tr>
+        <tr>
+          <td style="text-align: center;">
+            <img style="width: 200px; height: 79px;" alt="Logo TSJ" title="Logo TSJ" src="cid:image">
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <br>
+
+  </body>
+</html>
+				   ]]> 
+			</column>
+		</insert>
+
+		<insert tableName="EDT_TEMPLATE">
+			<column name="CODIGO" value="usuarioAlta"/>
+			<column name="VERSION" value="1"/>
+			<column name="TIPO" value="MAIL"/>
+			<column name="DESCRIPCION" value="Template mail alta de usuario"/>
+			<column name="TEMPLATE">
+				   <![CDATA[
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="content-type">
+    <title>Aviso de alta de usuario EgobSV
+    </title>
+  </head>
+  <body>
+
+    <table	style="text-align: left; width: 966px; height: 85px; font-family: Arial;"
+    		border="0"
+    		cellpadding="2"
+    		cellspacing="2">
+      <tbody>
+
+        <tr>
+          <td style="text-align: center;">
+            <img style="width: 200px; height: 79px;" alt="Logo TSJ" title="Logo TSJ" src="cid:image">
+          </td>
+          <td style="background-color: #313945; text-align: center;">
+            <span style="font-size: 24px; color:white;">
+              <b>EgobSV</b> - Administraci&oacute;n de Usuarios
+            </span>
+          </td>
+        </tr>
+
+        <tr>
+          <td style="text-align: justify;" colspan="2">
+<br><br>
+			<b>Se&ntilde;or/a ${usuarioNombre},</b>
+
+            <br>
+            <br>
+            Por este medio se le notifica que se ha dado de alta su usuario para los sistemas EgobSV:
+            <br>
+
+            <UL type="square" >
+              <LI> ID: <b>${usuarioID}</b>
+			  <LI> Contrase&ntilde;a: <b>${usuarioPassword}</b>
+            </UL>
+
+      			Recuerde que la contrase&ntilde;a brindada tiene el car&aacute;cter de temporal y deber&aacute; modificarla al iniciar sesi&oacute;n en el Sistema. Para realizar esto, debe ingresar a EgobSV luego dirigirse a la pesta&ntilde;a DATOS PERSONALES modificar la contrase&ntilde;a.
+			<br>
+            <br>
+            Saludos cordiales.
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+
+            <span style="font-size: 12px;">
+            <b><u>Atenci&oacute;n</u></b>:
+            El presente es un mensaje generado autom&aacute;ticamente por el
+            <b>Sistema de EgobSV</b>
+            del
+            <b>Gobierno de El Salvador</b> y no debe ser respondido.
+
+            <br>
+            </span>
+
+          </td>
+        </tr>
+
+        <tr>
+          <td style="text-align: center;">
+            <img style="width: 200px; height: 79px;" alt="Logo TSJ" title="Logo TSJ" src="cid:image">
+          </td>
+      </tbody>
+    </table>
+    <br>
+
+  </body>
+</html>
+				   ]]> 
+			</column>
+		</insert>
+
+	</changeSet>
+	
+	<changeSet id="EDT_TEMPLATE_CAMPO_FORMATO" author="Carlos Bellotti">
+		<addColumn tableName="EDT_TEMPLATE">
+			<column name="FORMATO" type="CHAR(20)"/>
+		</addColumn>
+		<update tableName="EDT_TEMPLATE">
+			<column name="FORMATO" value="FREEMAKER" />
+			<where>CODIGO in ('usuarioAlta','resetearPassword')</where>
+		</update>
+		<update tableName="EDT_TEMPLATE">
+			<column name="FORMATO" value="NORMAL" />
+			<where>CODIGO not in ('usuarioAlta','resetearPassword')</where>
+		</update>
+	</changeSet>
+</databaseChangeLog>

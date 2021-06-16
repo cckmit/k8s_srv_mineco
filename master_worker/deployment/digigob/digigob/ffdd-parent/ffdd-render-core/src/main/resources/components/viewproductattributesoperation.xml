@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<complexComponent type="TRADE" name="Product Attributes Operation"
+	description="Product Attributes Operation Information" zul="productattributesoperation.zul"
+	composer="com.everis.tramelec.dynform.comp.ext.ProductAttributesOperationComposer"
+	mappingDTO="com.egoveris.ccomplejos.base.model.ProductAttributesOperationDTO">
+
+	<field name="productoOperacionId" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.LongboxExt" disabled="true"/>
+		
+	<field name="productId" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.LongboxExt" disabled="true"/>
+		
+	<field name="attributeSeq" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.IntboxExt" disabled="true"/>
+		
+	<field name="attributeValue" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" disabled="true"/>
+		
+	<field name="productAttributeOperacionId" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.LongboxExt" disabled="true"/>
+		
+	<field name="productAttributeId" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.LongboxExt" disabled="true"/>
+		
+	<field name="productCode" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" disabled="true"/>
+		
+	<field name="attributeCodeName" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" disabled="true"/>
+
+</complexComponent>

@@ -1,0 +1,88 @@
+<zk xmlns:c="client">
+	<grid apply="org.zkoss.bind.BindComposer" viewModel="@id('tdocsVm') @init('com.egoveris.te.base.vm.TipoOperacionDocsVM')">
+		<rows>
+			<row>
+				<cell width="225px">
+					<vbox>
+						<label value="${c:l('ee.tipoOperacion.admTipoOperaciones.formulario.tipoDocs.label.busqueda')}" />
+					</vbox>
+				</cell>
+				<cell>
+					<hbox>
+						<textbox value="@bind(tdocsVm.inputBusqueda)" />
+						
+						<toolbarbutton autodisable="self"
+							image="/imagenes/edit-find.png" label="${c:l('ee.tipoOperacion.admTipoOperaciones.formulario.tipoDocs.button.buscar')}"
+							onClick="@command('onBusquedaTipoDocumentos')" />
+
+						<toolbarbutton autodisable="self"
+							image="/imagenes/delete-process.png" label="${c:l('ee.tipoOperacion.admTipoOperaciones.formulario.tipoDocs.button.limpiar')}"
+							onClick="@command('onLimpiarBusqueda')" />
+					</hbox>
+				</cell>
+			</row>
+			<row>
+				<cell colspan="2">
+					<vbox>
+						<grid>
+							<columns>
+								<column label="${c:l('ee.tipoOperacion.admTipoOperaciones.formulario.tipoDocs.column.nombre')}" width="225px" />
+								<column label="${c:l('ee.tipoOperacion.admTipoOperaciones.formulario.tipoDocs.column.acronimo')}" width="100px" />
+								<column label="${c:l('ee.tipoOperacion.admTipoOperaciones.formulario.tipoDocs.column.caracter')}" />
+							</columns>
+						</grid>
+						<listbox id="listboxTiposDocs" width="100%" multiple="true" checkmark="true" mold="paging" pageSize="5" 
+								 model="@load(tdocsVm.tiposDocumentos)" selectedItems="@bind(tdocsVm.tiposDocumentosSel)" onSelect="@command('updateTipoDocsSeleccionados')">
+							<listhead>
+								<listheader width="225px" />
+								<listheader width="100px" />
+								<listheader />
+							</listhead>
+							<template name="model" var="item">
+								<listitem c:onClick="actualizaHabilitacionRadios(this);">
+									<listcell label="${item.tipoDocumentoGedo.nombre}" />
+									<listcell label="${item.tipoDocumentoGedo.acronimo}" />
+									<listcell>
+										<!-- id -->
+										<variables id="${item.tipoDocumentoGedo.id}" />
+										<!-- xradio group -->
+										<radiogroup id="rg_${id}" />
+										<!-- 1: Opcional | 2: Obligatorio -->
+										<radio label="${c:l('ee.tipoOperacion.admTipoOperaciones.formulario.tipoDocs.radio.opcional')}"
+											   id="rOpc_${id}" radiogroup="rg_${id}" value="1" 
+											   onCheck="@command('checkRadioOpcObligatorio', tipoDocOper=item, valor=self.value)" 
+											   checked="${item.opcional}"
+											   disabled="@load(!tdocsVm.isTipoDocSeleccionado(item))" />
+										<radio label="${c:l('ee.tipoOperacion.admTipoOperaciones.formulario.tipoDocs.radio.obligatorio')}" 
+											   id="rObg_${id}" radiogroup="rg_${id}" value="2"
+											   onCheck="@command('checkRadioOpcObligatorio', tipoDocOper=item, valor=self.value)" 
+											   checked="${item.obligatorio}"
+											   disabled="@load(!tdocsVm.isTipoDocSeleccionado(item))" />
+									</listcell>
+								</listitem>
+							</template>
+						</listbox>
+					</vbox>
+				</cell>
+			</row>
+		</rows>
+	</grid>
+	<script type="text/javascript">
+		<![CDATA[
+			function actualizaHabilitacionRadios(element) {
+				if (element != null) {
+					var seleccionado = $(element).hasClass('z-listitem-selected');
+					
+					$(element).find('input[type=radio]').each(function() {
+						if (seleccionado) {
+							$(this).removeAttr('disabled');
+						}
+						else {
+							$(this).attr('disabled', 'disabled');
+						}
+					});
+				}
+			}
+		]]>
+	</script>
+</zk>

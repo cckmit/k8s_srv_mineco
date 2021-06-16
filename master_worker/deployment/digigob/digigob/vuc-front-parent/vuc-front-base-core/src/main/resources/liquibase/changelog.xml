@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
+    http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+	<include file="liquibase/tablas/tad_documento_estados.changelog.xml"/>
+	<include file="liquibase/tablas/tad_persona.changelog.xml"/>
+	<include file="liquibase/tablas/tad_persona_aprobaciones_aud.changelog.xml"/>
+	<include file="liquibase/tablas/tad_provincia.changelog.xml"/>
+	<include file="liquibase/tablas/tad_partido.changelog.xml"/>
+	<include file="liquibase/tablas/tad_localidad.changelog.xml"/>
+	<include file="liquibase/tablas/tad_domicilio.changelog.xml"/>
+	<include file="liquibase/tablas/tad_terminos_condiciones.changelog.xml"/>
+	<include file="liquibase/tablas/tad_templates.changelog.xml"/>
+	<include file="liquibase/tablas/tad_tipo_tramite_pago.changelog.xml"/>
+	<include file="liquibase/tablas/tad_transaccion_pago.changelog.xml"/>
+	<include file="liquibase/tablas/tad_transaccion_pago_autorizacion.changelog.xml"/>
+	<include file="liquibase/tablas/configurar_documento_pago.changelog.xml"/>
+	<include file="liquibase/tablas/tad_add_monto_expediente_base.changelog.xml"/>
+	<include file="liquibase/tablas/tad_estilos.changelog.xml"/>	
+	<include file="liquibase/tablas/tad_documento.changelog.xml"/>	
+	<include file="liquibase/tablas/tad_expediente_base.changelog.xml"/>	
+	<include file="liquibase/tablas/tad_expediente_fam_solicitud.changelog.xml"/>
+	<include file="liquibase/tablas/property_configuration.changelog.xml"/>
+		
+</databaseChangeLog>

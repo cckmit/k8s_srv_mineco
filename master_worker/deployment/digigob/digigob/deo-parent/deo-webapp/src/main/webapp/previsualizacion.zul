@@ -1,0 +1,13 @@
+<?page title="new page title" contentType="text/html;charset=UTF-8"?>
+<?component name="previsualizacion" macroURI="/macros/previsualizacionDocumentoComponente.zul"
+ class="com.egoveris.deo.web.satra.macros.PrevisualizacionDocumentoComponente"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./previsualizarWindow" ?>
+<zk>
+	<window width="800px" height="600px" id="previsualizarWindow"
+		mode="embedded" border="none" closable="false"
+		title="${c:l('gedo.previsualizar.titulo')}">
+		<style src="~./style/style.css" />
+		<previsualizacion id="previsualizacion"
+			mostrarLeyenda="${arg.mostrarLeyenda}" width="750px" height="540px" />
+	</window>
+</zk>

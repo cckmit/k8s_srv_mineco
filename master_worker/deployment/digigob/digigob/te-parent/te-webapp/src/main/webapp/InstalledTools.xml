@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<tools>
+	<tool name="designer" tooltip="Diseñador Workflows" image="/imagenes/herramientas/Pencil-App-256.png"></tool>
+	<tool name="hola" tooltip="PluginManager" image="/imagenes/GenerarDocumento.png"></tool>
+</tools>

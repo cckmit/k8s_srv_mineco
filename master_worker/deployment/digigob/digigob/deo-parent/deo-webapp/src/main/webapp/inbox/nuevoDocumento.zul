@@ -1,0 +1,227 @@
+<?page title="new page title" contentType="text/html;charset=UTF-8"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./crearDocumentoWindow" ?>
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+<zk>
+	<window id="crearDocumentoWindow"
+		title="${c:l('gedo.nuevoDocumento.titulo')}" border="normal"
+		width="90%" position="center"
+		apply="com.egoveris.deo.web.satra.tipos.CrearTipoDocumentoComposer"
+	    mode="modal" >
+		<!-- 		<separator spacing="5px"></separator> -->
+		<groupbox>
+			<grid align="center" width="97%">
+				<columns>
+					<column width="30%" />
+					<column width="70%" />
+				</columns>
+				<rows>
+					<row>
+						<label
+							value="${c:l('gedo.nuevoDocumento.nombre')}" />
+						<textbox width="60%"
+							value="@{crearDocumentoWindow$CrearTipoDocumentoComposer.tipoDocumento.nombre}"
+							maxlength="50" constraint="no empty">
+						</textbox>
+					</row>
+					<row>
+						<label
+							value="${c:l('gedo.nuevoDocumento.acronimo')}" />
+						<textbox
+							value="@{crearDocumentoWindow$CrearTipoDocumentoComposer.tipoDocumento.acronimo}"
+							cols="5" maxlength="5" constraint="no empty">
+						</textbox>
+					</row>
+					<row>
+						<label
+							value="${c:l('gedo.nuevoDocumento.version')}" />
+						<textbox
+							value="1.0"
+							cols="5" maxlength="5" constraint="no empty" readonly="true">
+						</textbox>
+					</row>					
+					<row>
+						<label
+							value="${c:l('gedo.nuevoDocumento.descripcion')}" />
+						<textbox
+							value="@{crearDocumentoWindow$CrearTipoDocumentoComposer.tipoDocumento.descripcion}"
+							maxlength="225" width="98%" rows="4" constraint="no empty">
+						</textbox>
+					</row>
+					<row>
+						<label value="${c:l('gedo.nuevoDocumento.produccion')}"/>
+						<hbox>
+							<radiogroup>
+								<radio id="libre"
+									label="${c:l('gedo.nuevoDocumento.radiogroup.radio.produccion.libre')}"
+									checked="true"
+									tooltiptext="${c:l('gedo.nuevoDocumento.tooltiptext.produccion.libre')}">
+								</radio>
+								<radio id="importado"
+									label="${c:l('gedo.nuevoDocumento.radiogroup.radio.produccion.importado')}"
+									checked="false"
+									tooltiptext="${c:l('gedo.nuevoDocumento.tooltiptext.produccion.importado')}">
+								</radio>
+								<radio id="template"
+									label="${c:l('gedo.nuevoDocumento.radiogroup.radio.produccion.template')}"
+									checked="false"
+									tooltiptext="${c:l('gedo.nuevoDocumento.tooltiptext.produccion.template')}">
+								</radio>
+								<radio id = "importadoTemplate" 
+									label = "${c:l('gedo.nuevoDocumento.radiogroup.radio.produccion.importadoTemplate')}"
+									checked = "false"
+									tooltiptext = "${c:l('gedo.nuevoDocumento.tooltiptext.produccion.importadoTemplate')}">
+								</radio>
+							</radiogroup>
+						</hbox>
+					</row>
+					<row visible="false" id="filaTamanio">
+						<label value="${c:l('gedo.detalleDocumento.label.tamArchivo')}"/>
+						<div>
+							<intbox id="tamanioMax" value="1"></intbox>
+							<label value="${c:l('gedo.detalleDocumento.label.mb')}"></label>
+						</div>
+					</row>
+					<row>
+						<label
+							value="${c:l('gedo.nuevoDocumento.check')}" />
+						<vbox>
+							<hbox>
+								<checkbox
+									checked="@{crearDocumentoWindow$CrearTipoDocumentoComposer.tipoDocumento.esEspecial}"
+									label="${c:l('gedo.nuevoDocumento.especial')}" />
+								<separator width="5px" />
+								<checkbox id="tieneToken"
+									checked="@{crearDocumentoWindow$CrearTipoDocumentoComposer.tipoDocumento.tieneToken}"
+									label="${c:l('gedo.nuevoDocumento.firmaConToken')}" />
+								<separator width="5px" />
+								<checkbox id="esDobleFactor"
+									checked="@{crearDocumentoWindow$CrearTipoDocumentoComposer.tipoDocumento.esDobleFactor}"
+									label="${c:l('gedo.detalleDocumento.checkbox.label.firmaConDobleFactor')}" />
+								<separator width="5px" />
+								<checkbox id="esFirmaConjunta"
+									checked="@{crearDocumentoWindow$CrearTipoDocumentoComposer.tipoDocumento.esFirmaConjunta}"
+									label="${c:l('gedo.nuevoDocumento.firmaConjunta')}" />
+								<separator width="5px" />
+								<checkbox id="esFirmaExterna"
+									checked="@{crearDocumentoWindow$CrearTipoDocumentoComposer.tipoDocumento.esFirmaExterna}"
+									label="${c:l('gedo.nuevoDocumento.firmaExterna')}" />
+							</hbox>
+							<hbox>
+								<checkbox id="esConfidencial" visible="false"
+									checked="@{crearDocumentoWindow$CrearTipoDocumentoComposer.tipoDocumento.esConfidencial}"
+									label="${c:l('gedo.nuevoDocumento.esConfidencial')}" />
+								<!--  <separator width="5px" />  --> 
+								<checkbox id="tieneAviso"
+									checked="@{crearDocumentoWindow$CrearTipoDocumentoComposer.tipoDocumento.tieneAviso}"
+									label="${c:l('gedo.nuevoDocumento.tieneAviso')}" />
+								<separator width="5px" />
+								<checkbox id="permiteEmbebidos"
+									checked="@{crearDocumentoWindow$CrearTipoDocumentoComposer.tipoDocumento.permiteEmbebidos}"
+									label="${c:l('gedo.nuevoDocumento.permiteEmbebidos')}" />
+								<separator width="5px" />
+								<checkbox id="esOculto"
+									checked="@{crearDocumentoWindow$CrearTipoDocumentoComposer.tipoDocumento.esOculto}"
+									label="${c:l('gedo.nuevoDocumento.esVisible')}" />
+								<checkbox id="esPublicable"
+									checked="@{crearDocumentoWindow$CrearTipoDocumentoComposer.tipoDocumento.esPublicable}"
+									label="${c:l('gedo.nuevoDocumento.documentoPublicable')}" />
+							</hbox>
+							<hbox>
+								<checkbox id="esNotificable"
+									checked="@{crearDocumentoWindow$CrearTipoDocumentoComposer.tipoDocumento.esNotificable}"
+									label="${c:l('gedo.nuevoDocumento.esNotificable')}" />
+								<separator width="5px" />
+								<checkbox id="esComunicable" visible="false"
+									checked="@{crearDocumentoWindow$CrearTipoDocumentoComposer.tipoDocumento.esComunicable}"
+									label="${c:l('gedo.nuevoDocumento.esComunicable')}" />
+								<!--  <separator width="5px" />  --> 
+								<checkbox
+									id="esFirmaExternaConEncabezado"
+									checked="@{crearDocumentoWindow$CrearTipoDocumentoComposer.tipoDocumento.esFirmaExternaConEncabezado}"
+									label="${c:l('gedo.nuevoDocumento.firmaExternaConEncabezado')}" />
+								<separator width="5px" />
+								<checkbox id="resultado"
+									checked="@{crearDocumentoWindow$CrearTipoDocumentoComposer.tipoDocumento.resultado}"
+									label="${c:l('gedo.nuevoDocumento.resultado')}" />
+							</hbox>
+						</vbox>
+					</row>
+					<row>
+						<label
+							value="${c:l('gedo.nuevoDocumento.row.label.generacion')}" />
+						<hbox>
+							<radiogroup>
+								<radio id="automatica"
+									label="${c:l('gedo.nuevoDocumento.radiogroup.radio.automatica')}"
+									checked="false">
+								</radio>
+								<radio id="manual"
+									label="${c:l('gedo.nuevoDocumento.radiogroup.radio.manual')}"
+									checked="false">
+								</radio>
+								<radio id="ambos"
+									label="${c:l('gedo.nuevoDocumento.radiogroup.radio.ambos')}"
+									checked="true">
+								</radio>
+							</radiogroup>
+						</hbox>
+					</row>
+					<row>
+						<label
+							value="${c:l('gedo.nuevoDocumento.row.label.actuacionSadeCorrespondiente')}" />
+						<hbox>
+							<combobox id="actuacionSADE" readonly="true"
+								width="250px"
+								model="@{crearDocumentoWindow$CrearTipoDocumentoComposer.actuacionesSADE}"
+								selectedItem="@{crearDocumentoWindow$CrearTipoDocumentoComposer.selectedActuacionSADE}">
+							</combobox>
+
+						</hbox>
+					</row>
+					<row>
+						<label
+							value="${c:l('gedo.nuevoDocumento.label.familiTipoDocumento')}" />
+						<hbox>
+							<combobox id="familia"
+								readonly="true" width="250px"
+								model="@{crearDocumentoWindow$CrearTipoDocumentoComposer.listafamilias}"
+								selectedItem="@{crearDocumentoWindow$CrearTipoDocumentoComposer.selectedNombreFamilia}"
+								itemRenderer="com.egoveris.deo.web.satra.renderers.ComboBoxFamiliaTipoRenderer">
+							</combobox>
+							
+						</hbox>
+					</row>
+				</rows>
+			</grid>
+		</groupbox>
+		<!-- 		<separator spacing="1px"></separator> -->
+		<grid align="center" style="border:0px">
+			<rows>
+				<row align="center">
+					<div align="left">
+						<button id="tiposDeArchivo"
+							class="btn-secondary" iconSclass="z-icon-hand-o-left"
+							label="${c:l('gedo.detalleDocumento.tipoArchivo')}" height="42px" />
+						<button id="cargarTemplate"
+							forward="onClick=onCargarTemplate" class="btn-secondary"
+							iconSclass="z-icon-file-o" label="${c:l('gedo.nuevoDocumento.cargarTemplate')}" height="42px" />
+					</div>
+					<div align = "right">
+					<hbox>
+						<toolbar mold="panel" orient="horizontal"
+							width="20%" align="center">
+							<button id="guardar" class="btn-secondary"
+								iconSclass="z-icon-save" label="${c:l('gedo.nuevoDocumento.botonGuardar')}" height="42px"
+								left="10px" forward="onClick=onGuardarTipoDocumento" />
+							<button id="cancelar" class="btn-secondary"
+								iconSclass="z-icon-times-circle" label="${c:l('gedo.nuevoDocumento.botonCancelar')}" height="42px" left="10px"
+								forward="onClick=onCancelar" />
+						</toolbar>
+					</hbox>
+				</div>		
+				</row>
+			</rows>
+		</grid>
+	</window>
+</zk>

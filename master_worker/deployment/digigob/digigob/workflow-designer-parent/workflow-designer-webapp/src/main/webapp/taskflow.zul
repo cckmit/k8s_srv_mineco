@@ -1,0 +1,419 @@
+<?page title="Diseñador de Estados" id="tramitacion" contentType="text/html;charset=UTF-8"?>
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./info" ?>
+<?init class="org.zkoss.zk.ui.util.Composition" arg0="~./db_template.zul"?>
+<zk xmlns:x="xhtml" xmlns:zk="zk"
+	xmlns:w="http://www.zkoss.org/2005/zk/client"
+	xmlns:xlink="http://www.w3.org/1999/xlink">
+	<?link rel="stylesheet" type="text/css" href="css/joint.css" ?>
+	<?link rel="stylesheet" type="text/css" href="css/joint.ui.halo.css" ?>
+	<?link rel="stylesheet" type="text/css" href="css/joint.ui.selectionView.css" ?>
+	<?link rel="stylesheet" type="text/css" href="css/joint.ui.paperScroller.css" ?>
+	<?link rel="stylesheet" type="text/css" href="css/jquery.contextmenu.css" ?>
+	<?link rel="stylesheet" type="text/css" href="css/codemirror.css"?>
+	<?link rel="stylesheet" type="text/css" href="css/docs.css"?>
+	<?link rel="stylesheet" type="text/css" href="css/show-hint.css"?>
+	<?link rel="stylesheet" type="text/css" href="css/fullscreen.css"?>
+	<?link rel="stylesheet" type="text/css" href="css/dialog.css"?>
+	<?link rel="stylesheet" type="text/css" href="css/matchesonscrollbar.css"?>
+	<?link rel="stylesheet" type="text/css" href="css/workflow.css"?>
+	<?link rel="stylesheet" type="text/css" href="css/font-awesome.min.css"?>
+
+	<script src="js/lastChanges.js"></script>
+	<script src="js/projectModel.js"></script>
+	<script src="js/validator.js"></script>
+	<script src="js/codeChecker.js"></script>
+	<script src="js/apiValidations.js"></script>
+	<script src="js/layout_functions.js"></script>
+	<script src="js/layout.js"></script>
+	<script src="js/changeLog.js"></script>
+	<script src="http://cdn.ckeditor.com/4.5.3/full/ckeditor.js"></script>
+	<script src="js/codemirror.js"></script>
+	<script src="js/javascript-hint.js"></script>
+	<script src="js/show-hint.js"></script>
+	<script src="js/fullscreen.js"></script>
+	<script src="js/annotatescrollbar.js"></script>
+	<script src="js/dialog.js"></script>
+	<script src="js/javascript.js"></script>
+	<script src="js/xml.js"></script>
+	<script src="js/searchcursor.js"></script>
+	<script src="js/matchesonscrollbar.js"></script>
+	<script src="js/search.js"></script>
+	<script src="js/joint.js"></script>
+	<script src="js/joint-all.js"></script>
+	<script src="js/joint.shapes.fsa.js"></script>
+	<script src="js/joint.ui.halo.js"></script>
+	<script src="js/joint.ui.selectionView.js"></script>
+	<script src="js/joint.ui.clipboard.js"></script>
+	<script src="js/joint.ui.paperScroller.js"></script>
+	<script src="js/designer.js"></script>
+	<script src="js/lastChanges.js"></script>
+	<script src="js/projectModel.js"></script>
+	<script src="js/validator.js"></script>
+	<script src="js/jquery.contextmenu.js"></script>
+	<script src="js/formularioCondicion.js"></script>
+	<script src="js/lz-string.js"></script>
+	<script src="js/herramientas.js"></script>
+	
+	
+	<style>
+	 .windowStyle .z-window-embedded-cnt, 
+	              .z-window-embedded-body, 
+	              .z-window-overlapped-body, 
+	              .z-window-popup-body, 
+	              .z-window-highlighted-body,  
+		      .z-window-content{
+			overflow-x:scroll;
+			overflow-y:hide;
+	 }
+	</style>
+	
+	
+	<window id="info" title=""  self="@{define(egovBody)}"
+		xmlns:w="http://www.zkoss.org/2005/zk/client"
+		apply="com.egoveris.workflow.designer.module.controller.TaskFlowComposer"
+		width="100%" height="100%" closable="false" border="normal">
+		<vbox id="bigPanel" width="100%" height="100%">
+			<hbox>
+				<div width="300px">
+					<hbox id="panelAcciones" style="color:green;">
+					 	<a iconSclass="z-icon-file-o fa-2x"   w:onClick="newProject()" tooltiptext="${c:l('title.nuevoProyecto')}"/>
+		                <a iconSclass="z-icon-folder-open-o fa-2x"  w:onClick="openProject()" tooltiptext="${c:l('title.abrirProyecto')}"/>
+		                <a iconSclass="z-icon-floppy-o fa-2x"  w:onClick="saveModel()" tooltiptext="${c:l('stateflow.guardar')}" />
+		                <a iconSclass="z-icon-floppy-o fa-2x" w:onClick="saveAsModel()" tooltiptext="${c:l('stateflow.guardarComo')}" >
+		                	<label sclass="z-icon-pencil fa-1x" style="margin-left: 2px; display: flex;margin-top: -29px;font-size: 22px;"/>
+		                </a>
+		                <a  iconSclass="z-icon-upload fa-2x"  tooltiptext="${c:l('stateflow.importar')}"/>
+		                <a iconSclass="z-icon-download fa-2x" w:onClick="exportJSON();" tooltiptext="${c:l('stateflow.exportar')}"/>
+						<a iconSclass="z-icon-play fa-2x" w:onClick="makePackageModel('', 'TASK')" tooltiptext="${c:l('stateflow.instalar')}"/>
+						<a iconSclass="z-icon-th-large fa-2x" w:onClick="makePackageModel('local', 'TASK')" tooltiptext="${c:l('stateflow.descargar')}"/>
+						<a iconSclass="z-icon-undo fa-2x"  w:onClick="undo()" tooltiptext="${c:l('stateflow.deshacer')}"/>
+						<a iconSclass="z-icon-repeat fa-2x"   w:onClick="redo()"  tooltiptext="${c:l('stateflow.rehacer')}"/>
+					</hbox>
+				</div>
+				<div  id="dataInfoProject">
+					<grid style="background-color: #E6E9EB">
+						<columns>
+							<column width="20%" />
+							<column />
+							<column />
+							<column />
+						</columns>
+						<rows>
+							<row style="background-color: #E6E9EB">
+								<cell>
+									<label value="${c:l('general.label.proyecto')}" class="bold"></label>
+									<label id="nombreProyecto"></label>
+								</cell>
+								<cell>
+									<label value="${c:l('general.label.autor')}" class="bold"></label>
+									<label id="autorProyecto"></label>
+								</cell> 
+								<cell>
+									<label value="${c:l('general.label.version')}" class="bold"></label>
+									<label id="versionProyecto"></label>
+								</cell>
+								<cell>
+									<label value="${c:l('general.label.descripcion')}" class="bold"></label>
+									<label id="descripcionProyecto"></label>
+								</cell>
+							</row>
+						</rows>
+					</grid>
+				</div>
+			
+			</hbox>
+			<borderlayout id="panelLayout" vflex="min" hflex="1" height="770px" >
+				<west id="panelControles" flex="true" splittable="true"
+					collapsible="true" width="300px">
+					<div>
+						<borderlayout height="100%">
+							<north id="panelComponentes"
+								title="${c:l('title.componentes')}" splittable="true" collapsible="true"
+								height="200px">
+								<div>
+									<div>
+										<vbox align="center"
+											width="100%">
+											<box id="panelElements"
+												align="center" width="100%">
+												<svg
+													xmlns="native:http://www.w3.org/2000/svg" width="100%"
+													height="540" version="1.1">
+
+													<svg id="start" x="12%" y="-50" width="100%" height="480">
+				 										<g onclick="onClickStart('start')" onmouseover="this.style.cursor='pointer'">
+															  <circle fill="#000000" stroke="#000000" stroke-width="0" stroke-linejoin="null" stroke-linecap="null" cx="68.58877" cy="72.87253" r="10.40976" id="svg_44"/>
+															  <text id="svg_42" fill="#000000" stroke="#000000" stroke-width="0" stroke-linejoin="null" stroke-linecap="null" x="69.58042" y="95.43399" font-size="12" font-family="serif" text-anchor="middle" xml:space="preserve" font-weight="bold">Inicio</text>
+				 										</g>
+													</svg>
+		
+													<svg id="end" x="12%" y="10" width="100%" height="480">
+														<g onclick="onClickEnd('end')" onmouseover="this.style.cursor='pointer'">
+															  <circle fill="#000000" stroke="#000000" stroke-width="0" stroke-linejoin="null" stroke-linecap="null" cx="68.98797" cy="66.0861" r="10.40976" id="svg_44"/>
+															  <circle id="svg_46" r="13.4982" cy="66.26747" cx="69.16168" stroke="#000000" fill="none"/>
+															  <text font-weight="bold" xml:space="preserve" text-anchor="middle" font-family="serif" font-size="12" y="92.24038" x="69.18122" stroke-linecap="null" stroke-linejoin="null" stroke-width="0" stroke="#000000" fill="#000000" id="svg_42">Cierre</text>
+				 										</g>
+													</svg>
+		
+													<svg x="25%" y="110"  width="100%" height="180">
+				 										<g id="state" onclick="onClickState('state')" onmouseover="this.style.cursor='pointer'">
+														  <circle fill="#ffffaa" stroke="#000000" stroke-width="3" cx="37.5" cy="39.5" r="27.2036" id="svg_34"/>
+														   <text fill="#000000" stroke="#000000" stroke-width="0" stroke-linejoin="null" stroke-linecap="null" x="36.5" y="36" id="svg_40" font-size="12" font-family="serif" text-anchor="middle" xml:space="preserve" font-weight="bold">Nuevo</text>
+														   <text fill="#000000" stroke="#000000" stroke-width="0" stroke-linejoin="null" stroke-linecap="null" x="36.5" y="49" font-size="12" font-family="serif" text-anchor="middle" xml:space="preserve" font-weight="bold" id="svg_41">Estado</text>
+														</g>
+													</svg>
+													<!-- TEMP -->
+													<svg  x="25%" y="180"  width="100%" height="180">
+													  <g id="state" onclick="onClickState('stateTemp')" onmouseover="this.style.cursor='pointer'">
+														  <circle fill="white" stroke="#000000" stroke-width="3" cx="37.5" cy="39.5" r="27.2036" id="svg_90"/>
+														   <text fill="#000000" stroke="#000000" stroke-width="0" stroke-linejoin="null" stroke-linecap="null" x="36.5" y="36" id="svg_40" font-size="12" font-family="serif" text-anchor="middle" xml:space="preserve" font-weight="bold">Estado</text>
+														   <text fill="#000000" stroke="#000000" stroke-width="0" stroke-linejoin="null" stroke-linecap="null" x="36.5" y="49" font-size="12" font-family="serif" text-anchor="middle" xml:space="preserve" font-weight="bold" id="svg_41">Temp</text>
+														   <image x="46" y="50"  xlink:href="imagenes/clock.png"></image>
+													  </g>
+													</svg>
+													<!-- ./TEMP -->
+													<svg  id="tlibre" x="25%" y="250"  width="100%" height="180">
+				 										<g  onclick="onClickState('tlibre')" onmouseover="this.style.cursor='pointer'">
+														  <circle fill="#aacfff" stroke="#000000" stroke-width="3" cx="37.5" cy="39.5" r="27.2036" id="svg_34"/>
+														   <text fill="#000000" stroke="#000000" stroke-width="0" stroke-linejoin="null" stroke-linecap="null" x="36.5" y="36" id="svg_40" font-size="10" font-family="serif" text-anchor="middle" xml:space="preserve" font-weight="bold">Tramitación</text>
+														   <text fill="#000000" stroke="#000000" stroke-width="0" stroke-linejoin="null" stroke-linecap="null" x="36.5" y="49" font-size="12" font-family="serif" text-anchor="middle" xml:space="preserve" font-weight="bold" id="svg_41">Libre</text>
+														</g>
+													</svg>
+		
+													<svg id="gtemporal" x="25%" y="320"  width="100%" height="180">
+				 										<g  onclick="onClickState('gtemporal')" onmouseover="this.style.cursor='pointer'">
+														  <circle fill="#ed5353" stroke="#000000" stroke-width="3" cx="37.5" cy="39.5" r="27.2036" id="svg_34"/>
+														   <text fill="#000000" stroke="#000000" stroke-width="0" stroke-linejoin="null" stroke-linecap="null" x="36.5" y="36" id="svg_40" font-size="11" font-family="serif" text-anchor="middle" xml:space="preserve" font-weight="bold">Guarda</text>
+														   <text fill="#000000" stroke="#000000" stroke-width="0" stroke-linejoin="null" stroke-linecap="null" x="36.5" y="49" font-size="11" font-family="serif" text-anchor="middle" xml:space="preserve" font-weight="bold" id="svg_41">Temporal</text>
+														</g>
+													</svg>
+													
+													<svg id="fork" x="-10%" y="390" width="100%" height="180">
+				 										<g onclick="onClickForkOrJoin('fork')" onmouseover="this.style.cursor='pointer'">
+															<rect transform="matrix(0.23958375467964793,0.21741678561942873,-0.2395837546796479,0.2174167856194288,95.79822494102358,-17.32176808032982) " id="svg_1" height="83.30994" width="83.77164" y="31.36356" x="112.45256" stroke-width="3" stroke="#000000" fill="none"/>
+															<path id="svg_8" d="m106.45336,29.61599l6.0117,0l0,-5.45553l5.65916,0l0,5.45553l6.01168,0l0,5.13553l-6.01168,0l0,5.45555l-5.65916,0l0,-5.45555l-6.0117,0l0,-5.13553z" stroke-linecap="null" stroke-linejoin="null" stroke-width="5" stroke="#000000" fill="#000000"/>															
+															<text id="forkText" font-weight="bold" xml:space="preserve" text-anchor="middle" font-family="serif" font-size="12" y="63.38385" x="115.55553" stroke-linecap="null" stroke-linejoin="null" stroke-width="0" stroke="#000000" fill="#000000">Abrir Paralelo</text>
+				 										</g>
+													</svg>
+													
+													<svg id="join" x="-10%" y="460" width="100%" height="180">
+				 										<g onclick="onClickForkOrJoin('join')" onmouseover="this.style.cursor='pointer'">
+															<rect transform="matrix(0.23958375467964793,0.21741678561942873,-0.2395837546796479,0.2174167856194288,95.79822494102358,-17.32176808032982) " id="svg_1" height="83.30994" width="83.77164" y="31.36356" x="112.45256" stroke-width="3" stroke="#000000" fill="none"/>
+															<path id="svg_8" d="m106.45336,29.61599l6.0117,0l0,-5.45553l5.65916,0l0,5.45553l6.01168,0l0,5.13553l-6.01168,0l0,5.45555l-5.65916,0l0,-5.45555l-6.0117,0l0,-5.13553z" stroke-linecap="null" stroke-linejoin="null" stroke-width="5" stroke="#000000" fill="#000000"/>															
+															<text id="joinText" font-weight="bold" xml:space="preserve" text-anchor="middle" font-family="serif" font-size="12" y="63.38385" x="115.55553" stroke-linecap="null" stroke-linejoin="null" stroke-width="0" stroke="#000000" fill="#000000">Cerrar Paralelo</text>
+				 										</g>
+													</svg>
+												</svg>
+											</box>
+										</vbox>
+									</div>
+									<div zindex="100"
+										id="shadowPanelElements"
+										style="position:absolute; left: 0px; top: 0px; visibility:visible"
+										width="100%" height="100%" sclass="transbox">
+										Debe generar un nuevo proyecto
+										para que se habilite la pizarra
+										de diseño
+									</div>
+								</div>
+							</north>
+							<center id="panelPropiedades" 
+								title="${c:l('title.propiedades')}">
+								<div>
+									<div>
+										<grid>
+											<columns>
+												<column width="50%"></column>
+												<column width="100%"></column>
+											</columns>
+											<rows>
+												<row>
+													<label
+														value="${c:l('general.nombre')}" />
+													<textbox
+														id="stateName" cols="15" constraint="no empty"
+														w:onChanging="propertiesChange()" />
+												</row>
+												<row>
+													<label
+														value="${c:l('general.previo')}" />
+													<combobox
+														id="statePrevio" readonly="true"
+														w:onSelect="propertiesChange(this)" width="117px" />
+												</row>
+												<row>
+													<cell>
+														<label
+															value="${c:l('general.tipoDoc')}" />
+													</cell>
+													<cell>
+														<hlayout
+															sclass="z-valign-midlle">
+															<combobox
+																id="stateTipoDocumentoFFCC" width="80px" cols="5"
+																forward="onOpen=info$composer.onOpenCombo"
+																w:onSelect="propertiesChange(this)"
+																w:onBlur="cargarCamposFFCC();" readonly="true" />
+															<button
+																id="previsualizarButton"
+																image="/imagenes/herramientas/preview.png" height="16x"
+																width="16px" />
+														</hlayout>
+													</cell>
+												</row>
+												<row spans="2"
+													style="background-color:backlightskyblue">
+													<div align="center"
+														style="height:27px; background-color: lightskyblue">
+														<label
+															value="SCRIPTS"
+															style="font-size: 11px;margin-top:10px;font-weight:bolder;" />
+													</div>
+												</row>
+												<row>
+													<label
+														value="${c:l('estado.iniciacion')}" />
+													<textbox
+														id="stateStart" multiline="true" cols="15" rows="1"
+														disabled="true"
+														w:onDoubleClick="editScriptStart('Script Inicialización',this)" />
+												</row>
+												<row
+													sclass="no-show-task-temp">
+													<label
+														value="${c:l('estado.ejecucion')}" />
+													<textbox
+														id="stateInitialize" multiline="true" cols="15" rows="1"
+														disabled="true"
+														w:onDoubleClick="editScriptInitialize('Script Ejecución',this)" />
+												</row>
+												<row>
+													<label
+														value="${c:l('estado.validacion')}" />
+													<textbox
+														id="stateForwardValidation" multiline="true" cols="15"
+														rows="1" disabled="true"
+														w:onDoubleClick="editScriptValidation('Script Validación',this)" />
+												</row>
+												<row>
+													<label
+														value="${c:l('estado.decision')}" />
+													<textbox
+														id="stateForwardDesicion" multiline="true" cols="15"
+														rows="1" disabled="true"
+														w:onDoubleClick="editScriptDesicion('Script Decisión',this)" />
+												</row>
+												<row spans="2"
+													style="background-color:backlightskyblue">
+													<div align="center"
+														style="height:27px; background-color: lightskyblue">
+														<label
+															value="SCRIPTS REMOTE RESPONSE"
+															style="font-size: 11px;margin-top:10px;font-weight:bolder;" />
+													</div>
+												</row>
+												<row>
+													<label
+														value="Script FUSE Tarea" />
+													<textbox
+														id="scriptFuseTask" multiline="true" cols="15" rows="1"
+														disabled="true"
+														w:onDoubleClick="editScriptFuseTask('Script Validacion',this)" />
+												</row>
+												<row
+													sclass="no-show-task-temp">
+													<label
+														value="Script FUSE Generico" />
+													<textbox
+														id="scriptFuseGeneric" multiline="true" cols="15" rows="1"
+														disabled="true"
+														w:onDoubleClick="editScriptFuseGeneric('Script Desicion',this)" />
+												</row>
+												<row spans="2"
+													style="background-color:backlightskyblue">
+													<div align="center"
+														style="height:27px; background-color: lightskyblue">
+														<label
+															value="${c:l('general.label.opciones')}"
+															style="font-size: 11px;margin-top:10px;font-weight:bolder;" />
+													</div>
+												</row>
+												<row
+													sclass="no-show-task-temp">
+													<label
+														value="${c:l('general.ayuda')}" />
+													<textbox id="ayuda"
+														multiline="false" cols="15"
+														w:onDoubleClick="helpEditor('Ayuda Workflow', this,selectedState)" />
+												</row>
+												<row spans="2"
+													sclass="no-show-task-temp">
+													<checkbox
+														id="stateAcceptReject" label="${c:l('general.rechazos')}"
+														w:onClick="propertiesChange()"
+														w:onCheck="propertiesChange()" />
+												</row>
+												<row spans="2"
+													sclass="no-show-task-temp">
+													<checkbox
+														id="stateAcceptFreeTransaction"
+														label="${c:l('general.tramitacionLibre')}"
+														w:onClick="propertiesChange()"
+														w:onCheck="propertiesChange()" />
+												</row>
+												<row spans="2"
+													sclass="no-show-task-temp">
+													<checkbox
+														id="stateAcceptShowPassInfo"
+														label="${c:l('general.pantallaPase')}"
+														w:onClick="propertiesChange()"
+														w:onCheck="propertiesChange()" />
+												</row>
+											</rows>
+										</grid>
+									</div>
+									<div zindex="100" id="shadowPanel"
+										style="position:absolute; left: 0px; top: 0px; visibility:visible"
+										width="100%" height="100%" sclass="transbox">
+										Debe generar un nuevo proyecto para que se habilite la pizarra de diseño 
+									</div>
+									<div zindex="90" id="shadowEstado"
+										style="position:absolute; left: 0px; top: 0px; visibility:visible"
+										width="100%" height="100%" sclass="transbox">
+										Haga clic sobre un estado para que se muestren sus propiedades  
+									</div>
+								</div>
+							</center>
+						</borderlayout>
+					</div>
+				</west>
+				<center id="drawBoard" style="width:'100%'">
+					<html>
+						<![CDATA[ <body> <div z-index="-1" id="paper"
+						witdh="100%" height="100%"
+						onclick="onClickPaper();"> </div>
+
+						<div z-index="100" id="shadow"
+						style="position:absolute; left: 0px; top: 0px;
+						visibility:visible" id="nopaper" witdh="100%"
+						height="100%" class="transbox" align="center">
+						<p>Debe generar un nuevo proyecto para que se
+						habilite la pizarra de diseño</p> </div>
+
+						<div id="z_messages" style="position: absolute;
+						left: 0px; top: 8.5px; z-index: 1800;"
+						class="z-window z-window-modal"> </div> </body>
+						]]>
+					</html>
+				</center>
+			</borderlayout>
+		</vbox>
+		<zscript language="Java">
+			public void drawRender(){
+				Clients.evalJavaScript("inicializar();");
+			}
+			drawRender();
+		</zscript>	
+    </window>
+</zk>

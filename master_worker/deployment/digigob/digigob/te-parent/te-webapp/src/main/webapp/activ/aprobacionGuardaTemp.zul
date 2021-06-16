@@ -1,0 +1,44 @@
+<?page title="Visualizacion Actividades" contentType="text/html;charset=UTF-8"?>
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./guardaTempWindow" ?>
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+<zk>
+	<window id="guardaTempWindow"
+		border="normal" width="33%" 
+		apply="com.egoveris.te.base.composer.AprobacionGuardaTempComposer"
+		closable="true" position="center" mode="modal">
+		<div  width="100%">
+		
+		<vbox  width="100%" >
+			<separator />
+			<hbox align="center">
+				<label value="${c:l('ee.act.label.exp')}" style="padding-left:10px; "/>
+				<separator />					
+				<label id="expLabel"  />
+				<separator spacing="15px" />
+				<toolbarbutton autodisable="self" id="ver_exp" image="/imagenes/ver_expediente.png" 
+					tooltiptext="${c:l('ee.act.label.visualizar.tooltip')}"
+					forward="onClick=guardaTempWindow$composer.onVerExpediente" 
+					label ="${c:l('ee.act.label.visualizar')}" style="color:#FFFFFF"/>
+			</hbox>
+			<separator />
+		</vbox>
+		
+		<separator />
+		<separator />	
+		<label value="${c:l('ee.act.label.apruebeGDoc')}" style="font:bold;padding-left: 10px;" />
+		<separator bar="true" />
+		<separator />
+		<textbox id="motivoTextBox" rows="6" cols="80" disabled="true" />
+		<separator />
+		<div align="center">
+			<hbox id="hboxExterior" />
+		</div>
+		<separator />
+		<div align="center">
+			<button autodisable="self" id="cerrar" label="${c:l('ee.subsanacion.button.cerrar')}" image="/imagenes/eliminar.png" width="100px" height="30px"/>
+		</div>
+		<separator />
+		</div>
+	</window>
+</zk>

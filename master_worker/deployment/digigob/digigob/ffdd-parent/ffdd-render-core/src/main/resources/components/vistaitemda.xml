@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<complexComponent type="TRADE" name="vistaItemDA"
+	description="Vista Item" zul="vistaItemDA.zul"
+	mappingDTO="com.egoveris.ccomplejos.base.model.VistaItemDADTO">
+ 
+	<field name="pesoBrutoItem" width="90%" height="20px" class="com.egoveris.ffdd.render.zk.comp.ext.DecimalboxExt" disabled="true"/>
+	<field name="codigoArancelProd" width="90%" height="20px" class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt"  disabled="true"/>
+	<field name="unidadMedidaArancelProd" width="90%" height="20px" class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt"  disabled="true"/>
+	<field name="secuencialItem" width="90%" height="20px" class="com.egoveris.ffdd.render.zk.comp.ext.IntboxExt"  disabled="true"/>
+	<field name="montoFOBItem" width="90%" height="20px" class="com.egoveris.ffdd.render.zk.comp.ext.DecimalboxExt"  disabled="true"/>
+	<field name="valorMercanciaItem" width="90%" height="20px" class="com.egoveris.ffdd.render.zk.comp.ext.DecimalboxExt"  disabled="true"/>
+	<field name="numeroDeItem" width="90%" height="20px" class="com.egoveris.ffdd.render.zk.comp.ext.IntboxExt"  disabled="true"/>
+	<field name="fobUnitario" width="90%" height="20px" class="com.egoveris.ffdd.render.zk.comp.ext.DecimalboxExt"  disabled="true"/>
+	<field name="fobUSD" width="90%" height="20px" class="com.egoveris.ffdd.render.zk.comp.ext.DecimalboxExt"  disabled="true"/>
+	<field name="cantidadKilosNetoProd" width="90%" height="20px" class="com.egoveris.ffdd.render.zk.comp.ext.DecimalboxExt"  disabled="true"/>
+	<field name="cantidadKilosBrutosProd" width="90%" height="20px" class="com.egoveris.ffdd.render.zk.comp.ext.DecimalboxExt"  disabled="true"/>
+	<field name="estadoItem" width="90%" height="20px" class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt"  disabled="true"/>
+	<field name="cantidadItemProducto" width="90%" height="20px" class="com.egoveris.ffdd.render.zk.comp.ext.IntboxExt"  disabled="true"/>
+	<field name="unidadDeMedida" width="90%" height="20px" class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt"  disabled="true"/>
+	<field name="cantidadDeMercancia" width="90%" height="20px" class="com.egoveris.ffdd.render.zk.comp.ext.IntboxExt"  disabled="true"/>
+	<field name="producto" width="90%" height="20px" class="com.egoveris.ffdd.render.zk.comp.ext.SeparatorComplex" xmlFile="vistaproductda.xml" disabled="true"/>
+	<field name="numeroSolicitudAutorizacion" width="90%" height="20px" class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt"  disabled="true"/>
+<!-- 	<field name="codigoLote" width="90%" height="20px" class="com.egoveris.ffdd.render.zk.comp.ext.SeparatorComplex"  disabled="true"/> -->
+	<field name="documentosRelacionados" width="90%" height="20px" class="com.egoveris.ffdd.render.zk.comp.ext.SeparatorComplex"  xmlFile="vistadocumentoapoyoda.xml" disabled="true"/>
+	<field name="observaciones" width="90%" height="20px" class="com.egoveris.ffdd.render.zk.comp.ext.SeparatorComplex" xmlFile="vistaobservacionda.xml" disabled="true"/>
+
+
+</complexComponent>

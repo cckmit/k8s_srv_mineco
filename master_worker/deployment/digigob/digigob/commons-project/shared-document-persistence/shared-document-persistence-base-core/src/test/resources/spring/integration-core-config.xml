@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+	<context:annotation-config />
+
+	<!-- Scan for Spring beans declared via annotations. -->
+	<context:component-scan base-package="com.egoveris.shareddocument.base"  />
+	
+		<!-- SERVICIO DE WEB_DAV ALFRESCO -->
+	<bean name="hostConfiguration" class="org.apache.commons.httpclient.HostConfiguration" />
+	<bean name="httpConnectionManagerParams"
+		class="org.apache.commons.httpclient.params.HttpConnectionManagerParams" />
+<!-- 	<bean name="connectionManager" -->
+<!-- 		class="org.apache.commons.httpclient.MultiThreadedHttpConnectionManager" /> -->
+	
+	<!-- <bean name="webDavService"
+		class="com.egoveris.shareddocument.base.service.impl.WebDavApacheServiceImpl"> -->
+	<bean name="webDavService"
+		class="com.egoveris.shareddocument.base.service.impl.AlfrescoCMISServiceImpl">
+		<property name="hostConfiguration" ref="hostConfiguration" />
+		<property name="httpConnectionManagerParams" ref="httpConnectionManagerParams" />
+<!-- 		<property name="connectionManager" ref="connectionManager" /> -->
+		<property name="hostname" value="desa.egoveris.com" />
+		<property name="port" value="80" />
+		<property name="documentRoot" value="guarda-documental" />
+		<property name="defaultUsername" value="admin" />
+		<property name="defaultPassword" value="admin" />
+		<property name="defaultConnectionTimeout" value="15000" />
+	</bean>
+	
+</beans>

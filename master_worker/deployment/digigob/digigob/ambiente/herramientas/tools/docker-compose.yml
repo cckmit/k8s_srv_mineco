@@ -1,0 +1,55 @@
+version: "3"
+networks: 
+  egoveris-network: 
+    external: 
+      name: egoveris-network
+volumes:
+  broker-volume:
+    external: false
+  keycloak-db-volume:
+    external: false
+
+services: 
+
+  mariadb:
+    image: mariadb
+    volumes:
+      - keycloak-db-volume:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: Root@1234
+      MYSQL_DATABASE: keycloak
+      MYSQL_USER: keycloak
+      MYSQL_PASSWORD: keycloak
+    networks:
+      - egoveris-network
+  broker:
+    build:
+      context: ./broker
+    volumes:
+      - broker-volume:/var/lib/artemis/data
+    environment:
+      ARTEMIS_USERNAME: admin
+      ARTEMIS_PASSWORD: admin
+    ports:
+      - 8161:8161
+      - 61616:61616
+    networks:
+      - egoveris-network
+  keycloak:
+    build:
+      context: ./keycloak
+    volumes:
+      - "./keycloak/https:/etc/x509/https"
+      - "./keycloak/security:/usr/lib/jvm/java-11-openjdk-11.0.7.10-1.el8_1.x86_64/lib/security"
+    environment:
+      X509_CA_BUNDLE: "/etc/x509/https/pruebas.miempresaenlinea504.org.crt /etc/x509/https/docker-host.egoveris.com.crt"
+    extra_hosts:
+      - "docker-host.egoveris.com:40.87.103.121"
+      - "docker1-host.egoveris.com:40.71.27.78"
+    links:
+      - mariadb
+      - broker
+    networks: 
+      - egoveris-network
+    ports:
+      - 8443:8443

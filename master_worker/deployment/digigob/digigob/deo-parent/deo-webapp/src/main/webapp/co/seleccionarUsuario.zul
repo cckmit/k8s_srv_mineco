@@ -1,0 +1,19 @@
+<?page title="new page title" contentType="text/html;charset=UTF-8"?>
+<zk>
+<window title="${c:l('ccoo.bandeja.seleccionarUsuario.title')}" border="normal" id="seleccionarUsuario"
+apply="com.egoveris.deo.web.satra.produccion.SeleccionarUsuariosComposer">
+
+	<vbox>
+		<label value="${c:l('ccoo.definirDestinatario.seleccionarUsuario')}" />
+		<combobox id="usuario" width="300px"
+			buttonVisible="false" autodrop="true" />
+			<div align="center">
+		<hbox>
+			<button id="aceptar" label="${c:l('gedo.token.cert.aceptar')}" width="70px" />
+			<separator width="25px" />
+			<button id="cancelar" label="${c:l('gedo.token.cert.cancelar')}" width="70px" />
+		</hbox>
+	</div>
+	</vbox>
+</window>
+</zk>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<complexComponent type="TRADE" name="Transport"
+	description="Transport Information" zul="transport.zul"
+	composer="com.everis.tramelec.dynform.comp.ext.TransportComposer"
+	mappingDTO="com.egoveris.ccomplejos.base.model.TransportDTO">
+
+	<field name="idDeclaracion" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.LongboxExt" />
+	<field name="idTransporte" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.IntboxExt" />
+	<field name="medioDeTransporte" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" />
+
+	<field name="mercancia" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.SeparatorComplex" xmlFile="mercancia.xml" />
+	<field name="emisordocumentotransporte" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.SeparatorComplex" xmlFile="participantes.xml" />
+	<field name="transportista" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.SeparatorComplex" xmlFile="participantes.xml" />
+	<field name="agenciaTransportista" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.SeparatorComplex" xmlFile="participantes.xml" />
+	<field name="reserva" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.SeparatorComplex" xmlFile="reserva.xml" />
+
+	<field name="documento" width="90%" height="20px"
+		class="com.egoveris.ffdd.render.zk.comp.ext.SeparatorComplex" xmlFile="documentotransporte.xml" />
+
+</complexComponent>

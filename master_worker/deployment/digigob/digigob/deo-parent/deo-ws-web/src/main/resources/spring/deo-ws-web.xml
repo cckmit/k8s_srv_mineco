@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+	<!-- Scan for Spring beans declared via annotations. -->
+	<context:component-scan base-package="com.egoveris.deo.ws.service" />
+	
+	<bean name="GenerarDocumentoServlet"
+		class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+		<property name="service" ref="externalGenerarDocumentoServiceImpl" />
+		<property name="serviceInterface"
+			value="com.egoveris.deo.ws.service.IExternalGenerarDocumentoService" />
+	</bean>
+	
+	<bean name="GenerarDocumentoNombramientoServlet"
+		class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+		<property name="service" ref="externalGenerarDocumentoNombramientoImpl" />
+		<property name="serviceInterface"
+			value="com.egoveris.deo.ws.service.IExternalGenerarDocumentoNombramientoService" />
+	</bean>
+
+	<bean name="ActualizarVisualizacionServlet"
+		class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+		<property name="service" ref="externalActualizarVisualizacionServiceImpl" />
+		<property name="serviceInterface"
+			value="com.egoveris.deo.ws.service.IExternalActualizarVisualizacionService" />
+	</bean>
+
+	<bean name="GenerarTareaServlet"
+		class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+		<property name="service" ref="externalGenerarTareaServiceImpl" />
+		<property name="serviceInterface"
+			value="com.egoveris.deo.ws.service.IExternalGenerarTareaService" />
+	</bean>
+
+	<bean name="GenerarTareaConRectificacionServlet"
+		class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+		<property name="service"
+			ref="externalGenerarTareaConRectificacionServiceImpl" />
+		<property name="serviceInterface"
+			value="com.egoveris.deo.ws.service.IExternalGenerarTareaConRectificacionService" />
+	</bean>
+
+	<bean name="CancelarTareaServlet"
+		class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+		<property name="service" ref="externalCancelarTareaServiceImpl" />
+		<property name="serviceInterface"
+			value="com.egoveris.deo.ws.service.IExternalCancelarTareaService" />
+	</bean>
+
+	<bean name="BloquearTareaServlet"
+		class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+		<property name="service" ref="externalBloquearTareaServiceImpl" />
+		<property name="serviceInterface"
+			value="com.egoveris.deo.ws.service.IExternalBloquearTareaService" />
+	</bean>
+
+	<bean name="DepuracionDocumentoServlet"
+		class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+		<property name="service" ref="externalDepuracionDocumentoServiceImpl" />
+		<property name="serviceInterface"
+			value="com.egoveris.deo.ws.service.IExternalDepuracionDocumentoService" />
+	</bean>
+
+	<bean name="TipoDocumentoServlet"
+		class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+		<property name="service" ref="externalTipoDocumentoServiceImpl" />
+		<property name="serviceInterface"
+			value="com.egoveris.deo.ws.service.IExternalTipoDocumentoService" />
+	</bean>
+	
+	<bean name="TipoReservaServlet"
+		class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+		<property name="service" ref="externalTipoReservaServiceImpl" />
+		<property name="serviceInterface"
+			value="com.egoveris.deo.ws.service.IExternalTipoReservaService" />
+	</bean>
+
+	<bean name="ConsultaDocumentoServlet"
+		class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+		<property name="service" ref="externalConsultaDocumentoServiceImpl" />
+		<property name="serviceInterface"
+			value="com.egoveris.deo.ws.service.IExternalConsultaDocumentoServiceExt" />
+	</bean>
+
+	<bean name="ConsultaDocumento3Servlet"
+		class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+		<property name="service" ref="externalConsultaDocumentoServiceImpl" />
+		<property name="serviceInterface"
+			value="com.egoveris.deo.ws.service.IExternalConsultaDocumentoService" />
+	</bean>
+
+	<bean name="ConsultaDocumento2Servlet"
+		class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+		<property name="service" ref="externalConsultaDocumentoServiceImpl" />
+		<property name="serviceInterface"
+			value="com.egoveris.deo.ws.service.IExternalConsultaDocumento2Service" />
+	</bean>
+
+	<bean name="BuscarDocumentoServlet"
+		class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+		<property name="service" ref="externalBuscarDocumentosServiceImpl" />
+		<property name="serviceInterface"
+			value="com.egoveris.deo.ws.service.IExternalBuscarDocumentoService" />
+	</bean>
+
+</beans>

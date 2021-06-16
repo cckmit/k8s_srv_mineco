@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
+    http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+	<include file="liquibase/tablas/adminsade_permisos.changelog.xml"/>
+	<include file="liquibase/tablas/eu_grupo_permisos.changelog.xml"/>
+	<include file="liquibase/tablas/property_configuration.changelog.xml"/>
+	<include file="liquibase/tablas/edtUsuariosRol.changelog.xml"/>
+	<include file="liquibase/tablas/cambiar_tamnio_identificacion.changelog.xml"/>
+	<include file="liquibase/tablas/agregar_nombres_y_apellidos.changelog.xml"/>
+	<include file="liquibase/tablas/add_permiso_consolidacion.changelog.xml"/>
+	<include file="liquibase/tablas/edt_estilos.changelog.xml"/>
+	<include file="liquibase/tablas/edt_template.changelog.xml"/>
+	
+</databaseChangeLog>

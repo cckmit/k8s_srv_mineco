@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+	<!-- Scan for Spring beans declared via annotations. -->
+	<context:component-scan base-package="com.egoveris.te.ws.service" />
+
+	<bean name="generarCaratulaExternalService"
+		class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+		<property name="service" ref="externalGenerarExpedienteServiceImpl" />
+		<property name="serviceInterface">
+			<value>com.egoveris.te.ws.service.IGenerarExpedienteService
+			</value>
+		</property>
+	</bean>
+
+	<bean name="vincularFormularioExternalService"
+		class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+		<property name="service" ref="externalVincularFormularioServiceImpl" />
+		<property name="serviceInterface">
+			<value>com.egoveris.te.ws.service.IVincularFormularioService
+			</value>
+		</property>
+	</bean>
+
+	<bean name="rehabilitarExpedienteExternalService"
+		class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+		<property name="service" ref="externalRehabilitarExpedienteServiceImpl" />
+		<property name="serviceInterface">
+			<value>com.egoveris.te.ws.service.IRehabilitarExpedienteService
+			</value>
+		</property>
+	</bean>
+
+	<bean name="fullImportSolrEe"
+		class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+		<property name="service" ref="externalFullImportSolrCoreEE" />
+		<property name="serviceInterface">
+			<value>com.egoveris.te.ws.service.IFullImportSolr
+			</value>
+		</property>
+	</bean>
+
+	<bean name="consultaExternalService"
+		class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+		<property name="service" ref="externalConsultaExpedienteServiceImpl" />
+		<property name="serviceInterface">
+			<value>com.egoveris.te.ws.service.IConsultaExpedienteService
+			</value>
+		</property>
+	</bean>
+
+	<bean name="administracionTrataExternalService"
+		class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+		<property name="service" ref="externalAdministracionTrataServiceImpl" />
+		<property name="serviceInterface">
+			<value>com.egoveris.te.ws.service.IAdministracionTrataService
+			</value>
+		</property>
+	</bean>
+
+	<bean name="generarPaseExternalService"
+		class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+		<property name="service" ref="externalGenerarPaseExpedienteServiceImpl" />
+		<property name="serviceInterface">
+			<value>com.egoveris.te.ws.service.IGenerarPaseExpedienteService
+			</value>
+		</property>
+	</bean>
+
+	<bean name="generarPaseExternalServiceCsigla"
+		class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+		<property name="service"
+			ref="externalGenerarPaseCSiglaExpedienteServiceImpl" />
+		<property name="serviceInterface">
+			<value>com.egoveris.te.ws.service.IGenerarPaseEECSiglaOMigracion
+			</value>
+		</property>
+	</bean>
+
+	<bean name="actividadesExternalService"
+		class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+		<property name="service" ref="externalActividadExternalServiceImpl" />
+		<property name="serviceInterface">
+			<value>com.egoveris.te.ws.service.IActividadExternalService
+			</value>
+		</property>
+	</bean>
+
+	<bean name="bloqueoExpedienteExternalService"
+		class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+		<property name="service" ref="externalBloqueoExpedienteServiceImpl" />
+		<property name="serviceInterface">
+			<value>com.egoveris.te.ws.service.IBloqueoExpedienteService
+			</value>
+		</property>
+	</bean>
+
+	<bean name="estadosPaseExternalService"
+		class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+		<property name="service" ref="externalConsultaEstadosPaseServiceImpl" />
+		<property name="serviceInterface">
+			<value>com.egoveris.te.ws.service.IConsultaEstadosPaseService
+			</value>
+		</property>
+	</bean>
+
+	<bean name="documentosOficialesExternalService"
+		class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+		<property name="service"
+			ref="externalAdministracionDeDocumentosOficialesServiceImpl" />
+		<property name="serviceInterface">
+			<value>com.egoveris.te.ws.service.IAdministracionDeDocumentosOficialesService
+			</value>
+		</property>
+	</bean>
+
+	<bean name="expedientesAsociadosExternalService"
+		class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+		<property name="service"
+			ref="externalAdministracionDeExpedientesAsociadosServiceImpl" />
+		<property name="serviceInterface">
+			<value>com.egoveris.te.ws.service.IAdministracionDeExpedientesAsociadosService
+			</value>
+		</property>
+	</bean>
+
+	<bean name="documentosTrabajoExternalService"
+		class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+		<property name="service"
+			ref="externalAdministracionDocumentosDeTrabajoServiceImpl" />
+		<property name="serviceInterface">
+			<value>com.egoveris.te.ws.service.IAdministracionDocumentosDeTrabajoService
+			</value>
+		</property>
+	</bean>
+
+	<bean name="tomavistaExternalService"
+		class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+		<property name="service" ref="externalTomaVistaExternalServiceImpl" />
+		<property name="serviceInterface">
+			<value>com.egoveris.te.ws.service.ITomaVistaExternalService
+			</value>
+		</property>
+	</bean>
+
+	<bean name="trataPermisoService"
+		class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+		<property name="service" ref="externalTrataReservaReparticionServiceImpl" />
+		<property name="serviceInterface">
+			<value>com.egoveris.te.ws.service.ITrataReservaReparticionService
+			</value>
+		</property>
+	</bean>
+
+	<bean name="historialOperacionService"
+		class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+		<property name="service" ref="externalHistorialOperacionServiceImpl" />
+		<property name="serviceInterface">
+			<value>com.egoveris.te.ws.service.ExternalHistorialOperacionService
+			</value>
+		</property>
+	</bean>
+
+</beans>

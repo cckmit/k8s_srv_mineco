@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
+    http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+	<changeSet author="Carlos Bellotti" id="TAD_LOCALIDAD">
+		<createTable tableName="TAD_LOCALIDAD">
+			<column name="ID" type="INT">
+				<constraints primaryKey="true"/>
+			</column>
+			<column name="NOMBRE" type="VARCHAR(255)">
+				<constraints nullable="false"/>				
+			</column>
+			<column name="PARTIDO_ID" type="INT">
+				<constraints nullable="false"/>
+			</column>
+		</createTable>
+		
+		<addForeignKeyConstraint 
+				constraintName="FK_LOCALIDAD_PARTIDO" 
+				referencedTableName="TAD_PARTIDO" 
+				referencedColumnNames="ID"
+				baseColumnNames="PARTIDO_ID"
+				baseTableName="TAD_LOCALIDAD" />
+				
+	</changeSet>  
+
+</databaseChangeLog>

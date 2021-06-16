@@ -1,0 +1,26 @@
+<?page title="new page title" contentType="text/html;charset=UTF-8"?>
+<zk>
+	 <vlayout width="100%"
+		apply="com.egoveris.ffdd.render.zk.comp.cc.VistaDestinoDocIngEnvioComposer">
+					<vbox >
+						<hbox>
+							<cell id="${arg.formComp.nombre}_patenteDiv" />
+							<cell id="${arg.formComp.nombre}_rutaDiv" />
+							<cell id="${arg.formComp.nombre}_tipoMedioTransporteDiv" />
+						</hbox>
+					</vbox>
+					<vbox>
+						<hbox>
+							<cell id="${arg.formComp.nombre}_fechaEstimadaLlegadaDiv" />
+							<cell id="${arg.formComp.nombre}_nombreTransportistaDiv" />
+							<cell id="${arg.formComp.nombre}_tipoNombreDiv" />
+						</hbox>
+					</vbox>
+					<vbox>
+						<hbox>
+							<cell id="${arg.formComp.nombre}_rutTransportistaDiv" />
+							<cell id="${arg.formComp.nombre}_pasaporteDiv" />	
+						</hbox>
+					</vbox>
+	</vlayout>
+</zk>	

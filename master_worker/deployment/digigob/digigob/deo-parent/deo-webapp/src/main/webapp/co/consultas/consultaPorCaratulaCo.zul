@@ -1,0 +1,127 @@
+<?page title="" contentType="text/html;charset=UTF-8"?>
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./consultaPorCaratulaWindow"  ?>
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+<zk>
+	<window title="${c:l('ccoo.busqueda.porCaratula')}" border="normal"
+		width="500px" closable="true" id="consultaPorCaratulaWindow"
+		apply="com.egoveris.deo.web.satra.consulta.consultaPorCaratulaCoComposer">
+
+		<grid align="center" width="500px"
+			id="gridConsultaDocumentos">
+			<rows>
+				<row >
+					<label
+						value="${c:l('ccoo.consultaCaratula.tipoDocumento')}" />
+					<bandbox id="familiaEstructuraTree" width="65%"
+						height="auto">
+						<bandpopup id="Familia" width="600px"
+							height="auto"
+							apply="com.egoveris.deo.web.satra.InicioDocumentoFamiliaTipoDocumentoBandBoxComposer">
+							<groupbox mold="3d" height="auto"
+								closable="false" width="auto">
+								<caption>
+									<hbox>
+										<label value="${c:l('ccoo.consultaCaratula.busquedaDocumento')}" />
+									</hbox>
+								</caption>
+								<separator></separator>
+								<vbox>
+									<hbox align="bottom">
+										<label value="${c:l('ccoo.consulta.botonBuscar')}" />
+										<separator width="2px" />
+										<textbox
+											id="textoTipoDocumento" />
+										<separator width="100px" />
+									</hbox>
+									<separator width="25px" />
+									<tree id="familiaTipoTree"
+										width="600px" height="auto">
+										<treecols>
+											<treecol width="30%"
+												label="${c:l('ccoo.consultaCaratula.listHeader.nombre')}" />
+											<treecol width="20%"
+												label="${c:l('ccoo.consultaCaratula.listHeader.acronimo')}" />
+											<treecol width="25%"
+												label="${c:l('ccoo.consultaCaratula.listHeader.descripcion')}" />
+											<treecol width="25%"
+												label="${c:l('ccoo.consultaCaratula.listHeader.caracteristicas')}" />
+										</treecols>
+									</tree>
+								</vbox>
+							</groupbox>
+						</bandpopup>
+					</bandbox>
+				</row>
+				<row >
+					<label
+						value="${c:l('ccoo.consultaCaratula.anio')}" />
+					<intbox cols="4" maxlength="4" id="anioCo" />
+				</row>
+				<row >
+					<label
+						value="${c:l('ccoo.consultaCaratula.numero')}" />
+					<intbox maxlength="8" id="numeroCo" />
+				</row>
+				<row >
+					<label
+						value="${c:l('ccoo.consultaCaratula.reparticion')}" />
+					<bandbox id="reparticionBusquedaSADE">
+						<bandpopup
+							apply="com.egoveris.deo.web.satra.consulta.FindReparticionesBusquedaSADEBandboxComposer"
+							id="reparticionesComboBusquedaSADE" width="650px">
+							<groupbox mold="3d">
+								<caption>
+									<hbox>
+										<label
+											value="${c:l('gedo.consultaPorNumeroSADE.hbox.label.busquedaDeReparticion')}" />
+
+										<image src="/imagenes/help.png"
+											width="16px" height="16px" tooltip="helpBusquedaReparticion"
+											align="right" />
+									</hbox>
+								</caption>
+								<separator></separator>
+								<vbox>
+									<hbox>
+										<label
+											value="${c:l('gedo.consultaPorNumeroSADE.hbox.label.buscar')}" />
+										<textbox
+											id="textoReparticionBusquedaSADE" />
+									</hbox>
+									<paging
+										id="pagingReparticionesDocsSADE" pageSize="10" />
+									<listbox mold="paging" width="600px"
+										id="reparticionesBusquedaSADEListbox"
+										model="@{listaReparticionSADESeleccionada}"
+										selectedItem="@{reparticionSeleccionada}"
+										paginal="${pagingReparticionesDocsSADE}">
+										<listhead>
+											<listheader
+												label="${c:l('ccoo.consultaCaratula.busquedaReparticion.codigo')}"
+												width="30%" />
+											<listheader
+												label="${c:l('ccoo.consultaCaratula.busquedaReparticion.nombre')}"
+												height="70%" />
+										</listhead>
+										<listitem
+											self="@{each=reparticion}">
+											<listcell
+												label="@{reparticion.codigo}" />
+											<listcell
+												label="@{reparticion.nombre}" />
+										</listitem>
+									</listbox>
+								</vbox>
+							</groupbox>
+						</bandpopup>
+					</bandbox>
+				</row>
+			</rows>
+		</grid>
+		<div align="center">
+			<button label="${c:l('ccoo.consulta.botonBuscar')}" id="buscar" />
+		</div>
+
+	</window>
+</zk>

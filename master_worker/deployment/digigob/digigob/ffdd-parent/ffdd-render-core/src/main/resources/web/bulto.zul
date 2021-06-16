@@ -1,0 +1,38 @@
+<zk>
+	<vlayout
+		apply="com.egoveris.ffdd.render.zk.comp.cc.BultoComposer">
+		<grid>
+			<columns>
+				<column></column>
+			</columns>
+			<rows>
+				<row>
+					<vbox>
+						<hbox>
+							<cell
+								id="${arg.formComp.nombre}_idBultoDiv" />
+							<cell
+								id="${arg.formComp.nombre}_secuencialBultoDiv" />
+						</hbox>
+						<hbox>
+							<cell
+								id="${arg.formComp.nombre}_tipoBultoDiv" />
+							<cell
+								id="${arg.formComp.nombre}_cantidadPaquetesDiv" />
+						</hbox>
+						<hbox>
+							<cell
+								id="${arg.formComp.nombre}_identificadorBultoDiv" />
+							<cell
+								id="${arg.formComp.nombre}_subContinenteDiv" />
+						</hbox>
+						<hbox>
+							<cell
+								id="${arg.formComp.nombre}_listaItemsDTODiv" />
+						</hbox>
+					</vbox>
+				</row>
+			</rows>
+		</grid>
+	</vlayout>
+</zk>

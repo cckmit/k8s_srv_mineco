@@ -1,0 +1,17 @@
+.z-button .z-button-cl, 
+.z-button .z-button-tl, 
+.z-button .z-button-tm 
+{
+    background-color:#026290; 
+    color:white;    
+}
+.z-button .z-button-tr,
+.z-button .z-button-bl, 
+.z-button .z-button-br,
+.z-button .z-button-bm,
+.z-button .z-button-cr, 
+.z-button .z-button-cm 
+{
+    background-color:#026290; 
+    color:white;    
+}

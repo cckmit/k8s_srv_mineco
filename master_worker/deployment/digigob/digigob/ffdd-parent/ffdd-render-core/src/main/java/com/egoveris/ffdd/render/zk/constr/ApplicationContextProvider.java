@@ -1,0 +1,13 @@
+package com.egoveris.ffdd.render.zk.constr;
+
+import org.springframework.beans.BeansException;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.ApplicationContextAware;
+
+public class ApplicationContextProvider implements ApplicationContextAware {
+
+	@Override
+	public void setApplicationContext(ApplicationContext ac) throws BeansException {
+		AppliContext.setApplicationContext(ac);
+	}
+}

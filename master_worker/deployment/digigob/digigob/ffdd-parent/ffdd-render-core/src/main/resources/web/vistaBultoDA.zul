@@ -1,0 +1,25 @@
+<zk>
+	<vlayout
+		apply="com.egoveris.ffdd.render.zk.comp.cc.VistaBultoDAComposer">
+
+		<vbox>
+			<hbox>
+				<cell
+					id="${arg.formComp.nombre}_cantidadEnvaseDiv" />
+				<cell id="${arg.formComp.nombre}_cantidadBultosDiv" />
+			</hbox>
+			<hbox>
+				<cell id="${arg.formComp.nombre}_tipoEnvaseDiv" />
+				<cell id="${arg.formComp.nombre}_tipoBultoDiv" />
+			</hbox>
+			<hbox>
+				<cell id="${arg.formComp.nombre}_tipoSubcontinenteDiv" />
+				<cell id="${arg.formComp.nombre}_secuencialBultoDiv" />
+			</hbox>
+			<hbox>
+				<cell id="${arg.formComp.nombre}_identificacionBultoDiv" />
+			</hbox>
+		</vbox>
+
+	</vlayout>
+</zk>

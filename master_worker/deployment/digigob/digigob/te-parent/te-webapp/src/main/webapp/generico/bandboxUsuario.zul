@@ -1,0 +1,41 @@
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./bandBoxUsuario" ?>
+
+<zk>
+	<bandbox id="bandBoxUsuario" height="31px"
+			apply="com.egoveris.te.base.composer.genrico.BandBoxUsuarioComposer"> 
+		<bandpopup id="bandpopupUsuario" width="400px" >
+			<groupbox mold="3d">
+				<caption>
+					<hbox>
+						<label
+							value="${c:l('te.bandbox.label.busquedaDeUsuarios')}"
+							 />
+					</hbox>
+				</caption>
+				<separator height="2px"></separator>
+				<vbox height="100px" width="100%">
+					<paging id="paginatorIncorporarSADE" pageSize="5" />
+					<listbox width="100%" id="listBoxUsuario"
+						mold="paging" paginal="${paginatorIncorporarSADE}"
+						model="@{bandBoxUsuario$composer.listaUsuariosSeleccionados}"
+						selectedItem="@{bandBoxUsuario$composer.usuarioSeleccionado}">
+						<listhead>
+							<listheader
+								label="${c:l('te.bandbox.listheader.usuario')}"
+								width="40%" />
+							<listheader
+								label="${c:l('te.bandbox.listheader.nombApell')}"
+								width="60%" />
+						</listhead>
+						<listfoot style="">
+							<listfooter id="totalUsuarios" span="1" 
+								style="color:#C4ECFF" />
+						</listfoot>
+					</listbox>
+				</vbox>
+			</groupbox>
+		</bandpopup>
+	</bandbox>
+</zk>

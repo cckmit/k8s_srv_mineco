@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<complexComponent type="TRADE" name="observaciondocingresoenvio"
+	description="Vista Observacion DocIngreso Envio	" zul="vistaObservacionDocIngresoEnvio.zul"
+	mappingDTO="com.egoveris.ccomplejos.base.model.VistaObservacionDocIngresoEnvioDTO">
+
+	
+	<field name="secuencialObservacion" width="90%" height="20px" class="com.egoveris.ffdd.render.zk.comp.ext.IntboxExt" disabled="true"/>
+	<field name="codigoObservacion" width="90%" height="20px" class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" disabled="true"/>
+	<field name="descripcionObservacion" width="90%" height="20px" class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" disabled="true"/>
+	
+	
+</complexComponent>

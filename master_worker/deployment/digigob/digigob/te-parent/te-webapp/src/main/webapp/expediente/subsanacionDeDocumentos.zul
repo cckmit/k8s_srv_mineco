@@ -1,0 +1,73 @@
+<?page title="" contentType="text/html;charset=UTF-8"?>
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./subsanacionDeDocumentosWindow" ?>
+<zk>
+	<window id="subsanacionDeDocumentosWindow"
+		style=" overflow:auto"
+		apply="com.egoveris.te.base.composer.SubsanacionDeDocumentosComposer"
+		title="${c:l('ee.expediente.subsanaciondocumentos.lbl.title')}"
+		border="normal" closable="true" position="center" sizable="false"
+		maximizable="false" maximized="false"
+		width="99%">
+		<hbox>
+			<paging id="pagingDocumento" pageSize="10" />
+			<label id="labelPagina"
+                   value="${c:l('ee.tramitacion.paginado.masDeUnaPagina.value')}"
+				   visible="false" style="color:red; font-style: italic;"/>
+		</hbox>
+		
+		<listbox id="listboxDocumentos" mold="paging"
+				 maxlength="20"
+				 model="@{subsanacionDeDocumentosWindow$SubsanacionDeDocumentosComposer.listaDocumentosConPase}"
+				 selectedItem="@{subsanacionDeDocumentosWindow$SubsanacionDeDocumentosComposer.selectedDocumento}"
+				 paginal="${pagingDocumento}">
+	    	<listhead>
+				<listheader label="${c:l('ee.expediente.subsanaciondocumentos.lbl.orden')}" align="center" hflex="min" />
+				<listheader label="${c:l('ee.expediente.subsanaciondocumentos.lbl.tipodocumento')}" align="center" hflex="min" />
+				<listheader label="${c:l('ee.expediente.subsanaciondocumentos.lbl.numerodocumento')}" align="center" hflex="max" />
+				<listheader label="${c:l('ee.expediente.subsanaciondocumentos.lbl.fechadeasociacion')}" align="center" hflex="min" />
+				<listheader label="${c:l('ee.expediente.subsanaciondocumentos.lbl.rerferencia')}" align="center" />
+				<listheader label="${c:l('ee.expediente.subsanaciondocumentos.lbl.fechacreacion')}" align="center" width="123px" />
+				<listheader label="${c:l('ee.expediente.subsanaciondocumentos.lbl.subsanar')}" align="center" hflex="min" />
+				<listheader label="${c:l('ee.expediente.subsanaciondocumentos.lbl.accion')}" align="center" width="250px" />
+			</listhead>
+			
+			<listfoot >
+				 <listfooter />
+				 <listfooter />
+				 <listfooter />
+				 <listfooter />
+				 <listfooter />
+				 <listfooter id="totalDocumentos" 
+				 			 label="${c:l('ee.tramitacion.listfooter.documentos.value')}"
+							 span="1" 
+							  />
+		 		 <listfooter id="footerSize"
+							 span="1" 
+							  
+							 align="right" />
+		 	 </listfoot>
+		</listbox>
+		<vbox width="100%" align="end">
+			<button autodisable="self" id="descargarTodos" 
+				image="/imagenes/Descargar.png"
+				label="${c:l('ee.expediente.subsanaciondocumentos.lbl.descargar')}"
+				forward="onClick=subsanacionDeDocumentosWindow$SubsanacionDeDocumentosComposer.onDescargarTodos" />
+		</vbox>
+		<separator></separator>
+		<hlayout>
+			<button autodisable="self" id="aceptar"
+				iconSclass="z-icon-check"
+				label="${c:l('ee.expediente.subsanaciondocumentos.lbl.aceptar')}"
+				zclass="z-button" style="padding:7px 10px"
+				forward="onClick=subsanacionDeDocumentosWindow$SubsanacionDeDocumentosComposer.onAceptar" />
+				
+			<button autodisable="self" id="cancelar" 
+			iconSclass="z-icon-times"
+				label="${c:l('ee.expediente.subsanaciondocumentos.lbl.cancelar')}"
+				zclass="z-button" style="padding:7px 10px"
+			forward="onClick=subsanacionDeDocumentosWindow$SubsanacionDeDocumentosComposer.onCancelar"/>
+		</hlayout>		
+	</window>
+</zk>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<complexComponent type="LOGIN_USUARIO" name="loginUsuario"
+	description="user login Information" zul="loginUsuario.zul"
+	composer="com.egoveris.ffdd.render.zk.comp.cc.UsuarioLoginComposer"
+	mappingDTO="com.egoveris.ccomplejos.base.model.UsuarioLoginDTO">
+
+<!-- 	<field name="usuario" class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" -->
+<!-- 		height="20px" width="90%" label="Usuario" tooltip="Usuario" /> -->
+
+	<field name="primerNombre" class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt"
+		height="20px" width="90%" label="Primer nombre" tooltip="Primer nombre" />
+
+	<field name="segundoNombre" class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt"
+		height="20px" width="90%" label="Segundo nombre" tooltip="Segundo nombre" />
+
+	<field name="tercerNombre" class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt"
+		height="20px" width="90%" label="Tercer nombre" tooltip="Tercer nombre" />
+
+
+	<field name="primerApellido" class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt"
+		height="20px" width="90%" label="Primer apellido" tooltip="Primer apellido" />
+
+	<field name="segundoApellido" class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt"
+		height="20px" width="90%" label="Segundo apellido" tooltip="Segundo apellido" />
+
+	<field name="tercerApellido" class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt"
+		height="20px" width="90%" label="Tercer apellido" tooltip="Tercer apellido" />
+
+	<field name="identificador" class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt"
+		height="20px" width="90%" label="N° Identificación" tooltip="Número de identificación" />
+
+	<field name="reparticion" class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt"
+		height="20px" width="90%" label="Organismo" tooltip="Organismo" />
+
+	<field name="sector" class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt"
+		height="20px" width="90%" label="Sector" tooltip="Sector" />
+	
+	<field name="cargo" class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt"
+		height="20px" width="90%" label="Cargo" tooltip="Cargo" />
+
+	<field name="nombreSuperiorJerarquico" class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt"
+		height="20px" width="90%" label="Superior jerárquico" tooltip="Superior jerárquico" />	
+	
+	<field name="flagDisabled" 
+	label="Solo se usa como valor logico para deshabilitar la edición">
+	</field>
+		
+<!-- 	<field name="comuna" factory="comboBoxFactory"  -->
+<!-- 		height="20px" width="90%" label="Comuna" tooltip="Comuna" /> -->
+<!-- 	<field name="pais" factory="comboBoxFactory"  -->
+<!-- 		height="20px" width="90%" label="País" tooltip="País" /> -->
+<!-- 	<field name="region" factory="comboBoxFactory"  -->
+<!-- 		height="20px" width="90%" label="Región" tooltip="Región" /> -->
+</complexComponent>

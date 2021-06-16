@@ -1,0 +1,16 @@
+<zk>
+	<vlayout
+		apply="com.egoveris.ffdd.render.zk.comp.cc.VistaDetallesPuertoDAComposer">
+
+		<vbox> 
+			<hbox>
+				<cell id="${arg.formComp.nombre}_regionDiv" />
+				<cell id="${arg.formComp.nombre}_codigoPaisDiv" />
+			</hbox>
+			<hbox>
+				<cell id="${arg.formComp.nombre}_fechaDiv" />
+				<cell id="${arg.formComp.nombre}_secuencialDiv" />
+			</hbox> 
+		</vbox> 
+	</vlayout>
+</zk>

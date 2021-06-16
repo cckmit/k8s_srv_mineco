@@ -1,0 +1,42 @@
+<?page title="${c:l('audDatosPersonlaes.title')}" contentType="text/html;charset=UTF-8"?>
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+<zk>
+	<window border="none" id="win_auditoriaDatosPersonales" apply="com.egoveris.edt.web.admin.pl.auditoria.HistorialDatosPersonalesComposer" width="100%">
+		<hbox style="" align="center" width="100%">
+			<image src="/imagenes/egovIconOrange.png" width="40px" height="30px" style="padding-left: 10px;" />
+			<label value="${c:l('eu.audDatosPersonales.lbl.historial')}" style=" font: bold;" />
+		</hbox>
+		
+		<separator />
+
+		<vlayout>
+			<div align="center">
+				<listbox
+					id="lstResultado"
+					width="99%"
+					mold="paging"
+					model="@{win_auditoriaDatosPersonales$HistorialDatosPersonalesComposer.listaResultado}"
+					itemRenderer="com.egoveris.edt.web.admin.pl.renderers.AudDatosPersonalesItemRender"
+					pageSize="20" pagingPosition="top">					
+					<custom-attributes visibilidad="detalleDatosHistorico"></custom-attributes>
+					<listhead sizable="false" style="background: #C4ECFF;">
+						<listheader id="correo" width="20%" label="${c:l('eu.adminSade.usuario.mail')}" style="background-color: #C4ECFF;" />
+						<listheader id="cuit_cuil" width="8%" label="${c:l('eu.audDatosPersonales.lbl.cuitCuil')}" style="background-color: #C4ECFF;" />
+						<listheader id="jerarquia_superior" width="12%" label="${c:l('eu.audDatosPersonales.label.jerarquiaSuperior')}" style="background-color: #C4ECFF;" />
+						<listheader id="usuario_asesor" width="10%" label="${c:l('eu.audDatosPersonales.label.usarioAsesor')}" style="background-color: #C4ECFF;" />
+						<listheader id="usuario_secretaria" width="12%" label="${c:l('eu.audDatosPersonales.label.usuarioSecretaria')}" style="background-color: #C4ECFF;" />
+						<listheader id="codigo_sector_mesa" width="10%" label="${c:l('eu.audDatosPersonales.label.sectorMesa')}" style="background-color: #C4ECFF;" />
+						<listheader id="cargo" width="10%" label="${c:l('eu.altaUsuario.row.label.cargo')}" style="background-color: #C4ECFF;" />
+						<listheader id="fecha_revision" width="10%" label="${c:l('eu.audDatosPersonales.label.fechaRevision')}" style="background-color: #C4ECFF;" />
+						<listheader id="tipo" width="8%" label="${c:l('eu.audDatosPersonales.label.tipo')}" style="background-color: #C4ECFF;" />
+					</listhead>
+					
+				</listbox>
+			</div>
+		</vlayout>
+		
+    	<button image="/imagenes/excel.png" label="${c:l('eu.audDatosPersonales.btn.exportar') }" id="btn_exportar" />
+    	
+	</window>
+</zk>

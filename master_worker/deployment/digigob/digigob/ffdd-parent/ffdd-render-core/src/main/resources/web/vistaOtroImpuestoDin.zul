@@ -1,0 +1,31 @@
+<?page title="new page title" contentType="text/html;charset=UTF-8"?>
+<zk>
+	<vlayout
+		apply="com.egoveris.ffdd.render.zk.comp.cc.VistaOtroImpuestoDinComposer">
+		<grid>
+			<columns>
+				<column></column>
+			</columns>
+			<rows>
+				<row>
+					<vbox>
+						<hbox>
+							<cell
+								id="${arg.formComp.nombre}_secuencialOtroImpuestoDiv" />
+							<cell
+								id="${arg.formComp.nombre}_porcentajeDiv" />
+							<cell
+								id="${arg.formComp.nombre}_codigoCuentaDiv" />
+						</hbox>
+						<hbox>
+							<cell
+								id="${arg.formComp.nombre}_signoCuentaDiv" />
+							<cell
+								id="${arg.formComp.nombre}_montoImpuestoDiv" />
+						</hbox>	
+					</vbox>
+				</row>
+			</rows>
+		</grid>
+	</vlayout>
+</zk>

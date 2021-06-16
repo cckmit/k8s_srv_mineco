@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<complexComponent type="TRADE" name="vistaotroimpuestodin"
+	description="vista impuesto information " zul="vistaOtroImpuestoDin.zul"
+	mappingDTO="com.egoveris.ccomplejos.base.model.VistaOtroImpuestoDinDTO">
+
+	<field name="secuencialOtroImpuesto" width="90%" height="20px" class="com.egoveris.ffdd.render.zk.comp.ext.LongboxExt" disabled="true"/>
+	<field name="porcentaje" width="90%" height="20px" class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" disabled="true"/>
+	<field name="codigoCuenta" width="90%" height="20px" class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" disabled="true"/>
+	<field name="signoCuenta" width="90%" height="20px" class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" disabled="true"/>
+	<field name="montoImpuesto" width="90%" height="20px" class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" disabled="true"/>
+	
+</complexComponent>

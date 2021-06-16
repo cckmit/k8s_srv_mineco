@@ -1,0 +1,37 @@
+<zk>
+	<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+	<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./activarPortafirmaWindow" ?>
+	<window title="" border="none" width="100%"
+		id="activarPortafirmaWindow" 
+		apply="com.egoveris.deo.web.satra.consulta.ActivarPortafirmaComposer">
+		<hbox style="background: #C4ECFF;font: bold;" width="100%">
+			<vbox>
+				<separator></separator>
+				<label
+					value="${c:l('gedo.activarPortafirma.vbox.label')}"
+					style="padding-left: 10px; font: bold;" />
+				<separator></separator>
+			</vbox>
+		</hbox>
+		<hbox  align="center">
+			<image src="/imagenes/egovIconOrange.png" width="40px"
+				height="30px" style="padding-left: 10px;" />
+			<label value="${c:l('gedo.activarPortafirma.hbox.label')}"
+				style="font: bold;" />
+		</hbox>
+		<separator></separator>
+		<vlayout width="100%">
+			<div>
+				<checkbox id="portafirmaCheckBox"
+					label="${c:l('gedo.activarPortafirma.activar')}" checked="false" />
+			</div>
+			<label style="font-weight: bold;"
+				value="${c:l('gedo.activarPortafirma.mensajeAdvertencia')}" />
+			<div align="center">
+				<button label="${c:l('gedo.activarPortafirma.boton')}"
+					id="guardarPortaFirma"
+					tooltip="${c:l('gedo.activarPortafirma.boton.tooltip')}" />
+			</div>
+		</vlayout>
+	</window>
+</zk>

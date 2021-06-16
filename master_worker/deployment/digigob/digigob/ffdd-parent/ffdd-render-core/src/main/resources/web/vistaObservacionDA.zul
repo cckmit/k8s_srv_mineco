@@ -1,0 +1,16 @@
+<zk>
+	<vlayout
+		apply="com.egoveris.ffdd.render.zk.comp.cc.VistaObservacionDAComposer">
+
+		<vbox>
+			<hbox>
+				<cell id="${arg.formComp.nombre}_valorObservacionDiv" />
+				<cell id="${arg.formComp.nombre}_codigoObservacionDiv" />
+			</hbox>
+			<hbox>
+				<cell id="${arg.formComp.nombre}_glosaObservacionDiv" />
+			</hbox>
+		</vbox>
+
+	</vlayout>
+</zk>

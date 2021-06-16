@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	
+	<parent>
+		<groupId>com.egoveris</groupId>
+		<artifactId>numerador</artifactId>
+		<version>2.0.3-SNAPSHOT</version>
+	</parent>
+	
+	<artifactId>numerador-ws-common</artifactId>
+	<name>numerador ws common project</name>
+
+	<dependencies>
+	
+		<!-- Begin Egoveris -->
+		<dependency>
+		<groupId>com.egoveris</groupId>
+		<artifactId>numerador-model-common</artifactId>
+		</dependency>
+		<!-- End Egoveris -->
+		
+		<!-- == Begin TSF+ framework == -->
+		<dependency>
+			<groupId>org.terasoluna.plus.framework</groupId>
+			<artifactId>terasoluna-plus-common</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<!-- == End TSF+ framework == -->
+		
+	</dependencies>
+
+</project>

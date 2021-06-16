@@ -1,0 +1,1122 @@
+<?page title="" id="tramitacion" contentType="text/html;charset=UTF-8"?>
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./tramitacionWindow" ?>
+<?component name="expedienteEnTramitacionConjunta" inline="true" macroURI="./macros/expedientesEnTramitacionConjunta.zul"?>
+<?component name="expedienteEnFusion" inline="true" macroURI="./macros/expedientesEnFusion.zul"?>
+<?component name="acordeonDocumentos"  inline="true" macroURI="./macros/vistaDocumentos.zul"?>
+<?component name="acordeonFormularios"  inline="true" macroURI="./macros/vistaFormularios.zul"?>
+<?component name="controlNombramientoPanel" inline="true" macroURI="./macros/controlNombramiento.zul"?>
+<?component name="historialDePases" inline="true" macroURI="./macros/historialDePases.zul"?>
+
+<zk>	
+	<window border="normal" id="tramitacionWindow"
+		
+		apply="com.egoveris.te.base.composer.TramitacionComposer" width="99%"
+		forward="onClose=tramitacionWindow$TramitacionComposer.onCerrarVentana">
+		
+		<n:script xmlns:n="native">
+		 <![CDATA[
+			function loadScript(url, callback){
+				var script = document.createElement("script")
+				script.type = "text/javascript";
+	
+				if (script.readyState){ //IE
+					script.onreadystatechange = function(){
+						if (script.readyState == "loaded" || script.readyState == "complete") {
+							script.onreadystatechange = null;
+							callback();
+						}
+					};
+				} else { //Others
+					script.onload = function(){
+						callback();
+					};
+				}
+				script.src = url;
+				document.getElementsByTagName("head")[0].appendChild(script);
+			};
+			
+			]]>
+		</n:script>
+
+		<vlayout width="100%">
+			<separator />
+			<vbox>
+				<hbox>
+					<cell width="90px">
+						<label style="padding-left: 10px;" value="${c:l('ee.tramitacion.header.label.expediente')}" />
+					</cell>
+					<cell>
+						<label id="titulo" style="font-weight: bold;" />
+					</cell>
+				</hbox>
+				<hbox id="hboxResult" visible="false">
+					<cell width="90px">
+						<label style="padding-left: 10px;" value="${c:l('ee.tramitacion.header.label.resultado')}" />
+					</cell>
+					<cell>
+						<label id="lblResult" style="font-weight: bold;" />
+					</cell>
+				</hbox>
+			</vbox>
+			<separator />
+		</vlayout>
+
+		<tabbox id="tabbox"  width="100%">
+			<tabs  id="tramitacionConjuntaTabs">
+				<tab id="controlNombramiento" visible="false"
+					label="${c:l('ee.tramitacion.designacion')}"
+					style="font:bold;"/>
+
+				<tab id="documentosTab"
+					label="${c:l('ee.tramitacion.tab.documentos.value')}"
+					style="font:bold;" selected="true"/>
+				<tab id="formularios"
+					label="${c:l('ee.tramitacion.tab.formularios.value')}"
+					style="font:bold;" visible="false" />
+				<tab id="documentosdetrabajo"
+					label="${c:l('ee.tramitacion.tab.documentosdetrabajo.value')}"
+					style="font:bold;" visible="false" />
+				<tab id="asociarexpediente"
+					label="${c:l('ee.tramitacion.tab.asociarexpediente.value')}"
+					style="font:bold;" />
+				<tab id="expedienteTramitacionConjunta"
+					label="${c:l('ee.tramitacion.tab.tramitacionConjunta.value')}"
+					style="font:bold;" />
+				<tab id="expedienteFusion"
+					label="${c:l('ee.tramitacion.tab.fusion.value')}"
+					style="font:bold;" visible="false" />
+				<tab id="historialDePases"
+					label="${c:l('ee.tramitacion.tab.historialdepases.value')}"
+					style="font:bold;" />
+				<tab id="datosdelacaratula"
+					label="${c:l('ee.tramitacion.tab.datosdelacaratula.value')}"
+					style="font:bold;" />
+				<tab id="buzonAct" 
+					label="${c:l('ee.tramitacion.tab.act.value')}"
+					style="font:bold;" />
+			</tabs>
+
+			<tabpanels
+				style="align:center;">
+				<tabpanel id="winNombramientoPanel">
+					<include id="incStatesNombramiento" src=""></include>		
+				</tabpanel>	
+				<tabpanel
+					style="align:center">
+					
+					<acordeonDocumentos id="acordeon" />
+					
+					<separator height="16px"></separator>
+					
+<!--  					
+					<div align="center" style="margin-bottom : 6px">
+						<hlayout style="align:center">
+							<vbox>
+								<hbox>
+									<grid width="740px" align="center"
+										id="gridConsultaDocumentos">
+										<columns>
+											<column width="180px"
+												id="ee.asociardocumento.column.tipo1"
+												label="${c:l('ee.asociardocumento.column.buscar.value')}"
+												align="center" />
+											<column width="180px"
+												id="ee.asociardocumento.column.tipo"
+												label="${c:l('ee.asociardocumento.column.tipo.value')}"
+												align="center" />
+											<column width="100px"
+												id="ee.asociardocumento.column.anio"
+												label="${c:l('ee.asociardocumento.column.anio.value')}"
+												align="center" />
+											<column width="100px"
+												id="ee.asociardocumento.column.numero"
+												label="${c:l('ee.asociardocumento.column.numero.value')}"
+												align="center" />
+											<column width="180px"
+												id="ee.asociardocumento.column.reparticion"
+												label="${c:l('ee.asociardocumento.column.reparticion.value')}"
+												align="center" />
+										</columns>
+										<rows>
+											<row id="camposDocumento"
+												style="background-color: #EFEFEE;">
+												<label
+													value="Número ${nombreEcosistema}">
+												</label>
+
+										<bandbox id="tiposDocumentoBandbox" width="70%"
+											height="auto">
+											<bandpopup id="tiposDocumentoFamilia" width="600px"
+												height="auto"
+												apply="com.egoveris.te.base.composer.TipoDocumentoExpedienteVincularDocumentoBandboxComposer">
+												<groupbox mold="3d" height="auto" closable="false"
+													width="auto">
+													<caption >
+														<hbox>
+															<label
+																value="${c:l('ee.busquedaTipoDocumento')}" />
+														</hbox>
+													</caption>
+													<separator></separator>
+													<vbox>
+														<hbox align="bottom">
+															<label value="Buscar" />
+															<separator width="2px" />
+															<textbox
+																id="tipoDocumentoTexto" />
+															<separator width="100px" />
+														</hbox>
+														<separator width="25px" />
+														<tree id="tipoDocumentoFamiliaTree"
+															width="600px" height="auto"  
+															>
+															<treecols>
+																<treecol width="30%"	label="${c:l('ee.nuevoDocumento.nombre')}" />
+																<treecol width="20%"	label="${c:l('ee.nuevoDocumento.acronimo')}" />
+																<treecol width="25%"	label="${c:l('ee.nuevoDocumento.descripcion')}" />
+				  												<treecol width="25%"    label="${c:l('ee.iniciarDocumento.caracteristicas')}" />  											
+															</treecols>
+														</tree>
+													</vbox>
+												</groupbox>
+											</bandpopup>
+										</bandbox>
+
+												<intbox cols="4"
+													maxlength="4" id="anioSADEDocumento" tabindex="2" />
+												<intbox maxlength="9"
+													id="numeroSADEDocumento" tabindex="3" width="89px"/>
+
+
+												<bandbox
+													id="reparticionBusquedaDocumento" tabindex="4" width="169px">
+													<bandpopup
+														apply="com.egoveris.te.base.composer.FindReparticionesBusquedaDocumentoBandboxComposer"
+														id="reparticionesComboBusquedaDocumento" width="650px">
+														<groupbox
+															mold="3d">
+															<caption>
+																<hbox>
+																	Búsqueda
+																	de
+																	Repartición
+																	<image
+																		src="./imagenes/help.png" width="16px" height="16px"
+																		tooltip="helpBusquedaReparticion" align="right" />
+																</hbox>
+															</caption>
+															<separator></separator>
+															<vbox>
+																<hbox>
+																	Buscar
+																	<textbox
+																		id="textoReparticionBusquedaDocumento" />
+																</hbox>
+																<paging
+																	id="pagingReparticionesDocumento" pageSize="10" />
+																<listbox
+																	mold="paging" width="600px"
+																	id="reparticionesBusquedaDocumentoListbox"
+																	model="@{listaReparticionSADEDocumentoSeleccionada}"
+																	selectedItem="@{reparticionSeleccionadaDocumento}"
+																	paginal="${pagingReparticionesDocumento}">
+																	<listhead>
+																		<listheader
+																			label="Código" width="30%" />
+																		<listheader
+																			label="Nombre" height="70%" />
+																	</listhead>
+																	<listitem
+																		self="@{each=reparticion}">
+																		<listcell
+																			label="@{reparticion.codigo}" />
+																		<listcell
+																			label="@{reparticion.nombre}" />
+																	</listitem>
+																</listbox>
+															</vbox>
+														</groupbox>
+													</bandpopup>
+												</bandbox>
+											</row>
+											<row
+												id="camposDocumentoNumeroEspecial"
+												style="background-color: #EFEFEE;">
+												<label
+													value="${c:l('ee.asociardocumento.column.buscarPorNumeroEspecial.value')}">
+												</label>
+
+												<bandbox
+													id="tiposDocumentoEspecialBandbox" width="130px"
+													tabindex="5" height="auto">
+													<bandpopup
+														id="tipoDocumentoEspecialCombo" width="350px"
+														height="auto"
+														apply="com.egoveris.te.base.composer.TipoDocumentoEspecialExpedienteBandboxComposer">
+														<groupbox
+															mold="3d" height="auto" width="auto">
+															<caption>
+																<label
+																	value="Búsqueda Tipos Documento Especial" />
+															</caption>
+															<separator />
+															<vbox>
+																<hbox
+																	align="bottom">
+																	<label
+																		value="Buscar" />
+																	<separator
+																		width="2px" />
+																	<textbox
+																		id="textoTipoDocumentoEspcial" />
+																	<separator
+																		width="100px" />
+																</hbox>
+																<tree
+																	id="specialDocumentTypeTree" width="330px"
+																	height="auto">
+																	<treecols>
+																		<treecol
+																			width="72%" label="Descripción" />
+																		<treecol
+																			width="28%" label="Acrónimo" />
+																	</treecols>
+																</tree>
+															</vbox>
+														</groupbox>
+													</bandpopup>
+												</bandbox>
+
+												<intbox cols="4"
+													tabindex="6" maxlength="4"
+													id="anioSADEDocumentoNumeroEspecial" />
+												<intbox maxlength="8"
+													tabindex="7" id="numeroSADEDocumentoNumeroEspecial" 
+													width="89px"/>
+
+
+												<bandbox
+													id="reparticionBusquedaDocumentoNumeroEspecial"
+													tabindex="8" width="169px">
+													<bandpopup
+														apply="com.egoveris.te.base.composer.FindReparticionesBusquedaBandboxNumeroEspecial"
+														id="reparticionesComboBusquedaDocumentoNumeroEspecial"
+														width="650px">
+														<groupbox
+															mold="3d">
+															<caption>
+																<hbox>
+																	Búsqueda
+																	de
+																	Repartición
+																	<image
+																		src="./imagenes/help.png" width="16px" height="16px"
+																		tooltip="helpBusquedaReparticion" align="right" />
+																</hbox>
+															</caption>
+															<separator></separator>
+															<vbox>
+																<hbox>
+																	Buscar
+																	<textbox
+																		id="textoReparticionBusquedaDocumentoNumeroEspecial" />
+																</hbox>
+																<paging
+																	id="pagingReparticionesDocumentoNumeroEspecial"
+																	pageSize="10" />
+																<listbox
+																	mold="paging" width="600px"
+																	id="reparticionesBusquedaDocumentoListboxNumeroEspecial"
+																	model="@{listaReparticionSADEDocumentoSeleccionadaNumeroEspecial}"
+																	selectedItem="@{reparticionSeleccionadaDocumentoNumeroEspecial}"
+																	paginal="${pagingReparticionesDocumentoNumeroEspecial}">
+																	<listhead>
+																		<listheader
+																			label="Código" width="30%" />
+																		<listheader
+																			label="Nombre" height="70%" />
+																	</listhead>
+																	<listitem
+																		self="@{each=reparticion}">
+																		<listcell
+																			label="@{reparticion.codigo}" />
+																		<listcell
+																			label="@{reparticion.nombre}" />
+																	</listitem>
+																</listbox>
+															</vbox>
+														</groupbox>
+													</bandpopup>
+												</bandbox>
+											</row>
+										</rows>
+									</grid>
+								</hbox>
+
+							</vbox>
+							<vbox>
+								<hbox>
+									<button id="buscarDocumentoButton" visible="true" 
+										label="Vincular documentos"
+										style="cursor: hand; cursor: pointer; padding:7px 10px; margin-left: 10px; margin-top : 55px" 
+										forward="onClick=tramitacionWindow$TramitacionComposer.onBuscarDocumentoValidar"
+										iconSclass="z-icon-link"
+										tabindex="9"/>
+								</hbox>
+
+
+							</vbox>
+						</hlayout>
+					</div>
+-->
+<!-- botonera abajo -->
+					<separator height="20px"></separator>
+					<div align="center">
+						<hlayout style="align:center">
+						<vbox>							
+
+
+
+							</vbox>
+							<vbox>
+								<hbox align="center">
+									
+									<button autodisable="self" visible="false"
+									id="subsanarButton"
+									iconSclass="z-icon-exclamation-triangle" label="${c:l('te.webapp.expediente.tramitacion.lbl.subsanarerrores')}" 
+									zclass="z-button" style="padding:13px 10px; text-align: center"	
+									forward="onClick=tramitacionWindow$TramitacionComposer.onSubsanarDocumento"
+									width="" left="50px" height="42px" tabindex="11" />
+
+
+<!-- 								<bandbox id="familiaEstructuraTree" width="70%" -->
+<!-- 											height="auto"> -->
+<!-- 											<bandpopup id="Familia" width="600px" -->
+<!-- 												height="auto" -->
+<!-- 												apply="com.egoveris.te.base.composer.InicioDocumentoFamiliaTipoDocumentoBandBoxComposer"> -->
+<!-- 												<groupbox mold="3d" height="auto" closable="false" -->
+<!-- 													width="auto"> -->
+<!-- 													<caption > -->
+<!-- 														<hbox> -->
+<!-- 															<label -->
+<!-- 																value="${c:l('ee.busquedaTipoDocumento')}" /> -->
+<!-- 														</hbox> -->
+<!-- 													</caption> -->
+<!-- 													<separator></separator> -->
+<!-- 													<vbox> -->
+<!-- 														<hbox align="bottom"> -->
+<!-- 															<label value="Buscar" /> -->
+<!-- 															<separator width="2px" /> -->
+<!-- 															<textbox -->
+<!-- 																id="textoTipoDocumento" /> -->
+<!-- 															<separator width="100px" /> -->
+<!-- 														</hbox> -->
+<!-- 														<separator width="25px" /> -->
+<!-- 														<tree id="familiaTipoTree" -->
+<!-- 															width="600px" height="auto"   -->
+<!-- 															> -->
+<!-- 															<treecols> -->
+<!-- 																<treecol width="30%"	label="${c:l('ee.nuevoDocumento.nombre')}" /> -->
+<!-- 																<treecol width="20%"	label="${c:l('ee.nuevoDocumento.acronimo')}" /> -->
+<!-- 																<treecol width="25%"	label="${c:l('ee.nuevoDocumento.descripcion')}" /> -->
+<!-- 				  												<treecol width="25%"    label="${c:l('ee.iniciarDocumento.caracteristicas')}" />  											 -->
+<!-- 															</treecols> -->
+<!-- 														</tree> -->
+<!-- 													</vbox> -->
+<!-- 												</groupbox> -->
+<!-- 											</bandpopup> -->
+<!-- 										</bandbox> -->
+
+
+
+<!-- 									<button autodisable="self" upload="true,maxsize=-1" id="inciarDocumentoButtond" visible="true"  -->
+<!-- 									label="Subir Documento Libre" -->
+<!-- 									style="padding:13px 10px; text-align: center"  -->
+<!-- 									iconSclass="z-icon-upload" zclass="z-button" -->
+<!-- 									width="" left="50px" height="42px" tabindex="11"/> -->
+
+									<button autodisable="self"
+									id="vincularDocumento"
+									iconSclass="z-icon-link" label="${c:l('te.webapp.expediente.tramitacion.lbl.vinculardoc')}" 
+									zclass="z-button" style="padding:13px 10px; text-align: center"	
+									forward="onClick=tramitacionWindow$TramitacionComposer.onVincularDocumento"
+									width="" left="50px" height="42px" tabindex="11" />
+									
+
+									<button autodisable="self"
+									id="subirDocumentoImportado"
+									iconSclass="z-icon-upload" label="${c:l('ee.tramitacion.tab.lbl.importarDoc')}" 
+									zclass="z-button" style="padding:13px 10px; text-align: center"	
+									forward="onClick=tramitacionWindow$TramitacionComposer.onSubirDocumentoImportado"
+									width="" left="50px" height="42px" tabindex="11" />
+									
+									<button autodisable="self"
+									id="inciarDocumentoButton"
+									iconSclass="z-icon-play" label="${c:l('te.webapp.expediente.tramitacion.lbl.iniciardocgedo')}" 
+									zclass="z-button" style="padding:13px 10px; text-align: center"	
+									forward="onClick=tramitacionWindow$TramitacionComposer.onIniciarDocumento"
+									width="" left="50px" height="42px" tabindex="11" />
+					
+									<button autodisable="self"
+									id="comunicarTadButton"
+									iconSclass="z-icon-play" label="${c:l('te.webapp.expediente.tramitacion.lbl.notificatad')}" 
+									zclass="z-button" style="padding:13px 10px; text-align: center"	
+									forward="onClick=tramitacionWindow$TramitacionComposer.onNotificarTad"
+									width="" left="50px" height="42px" tabindex="12"/>
+									
+									<!--
+									<toolbarbutton autodisable="self" id="vinculacionDefinitiva" 
+									disabled="false" left="50px" tabindex="13"
+									 image="/imagenes/VincularDocumentoDefinitivo.png"
+									forward="onClick=tramitacionWindow$TramitacionComposer.onVinculacionDefinitiva" />
+									-->
+									<button autodisable="self" id="vinculacionDefinitiva" 
+									disabled="false" left="50px" tabindex="13"
+									label="${c:l('ee.tramitacion.vinculacionDef')}" 
+									forward="onClick=tramitacionWindow$TramitacionComposer.onVinculacionDefinitiva" />
+								
+									<button autodisable="self" 
+									id="subsanar" left="50px"
+									style="padding:13px 10px; text-align: center"
+					 				iconSclass="z-icon-info" 
+					 				label="${c:l('te.webapp.expediente.tramitacion.lbl.susbsanarinfoadicio')}" 
+					 				zclass="z-button"
+									tabindex="13"  height="42px"
+									forward="onClick=tramitacionWindow$TramitacionComposer.onSubsanar" />
+								
+								
+								</hbox>	
+							</vbox>
+								</hlayout>
+					</div>
+
+				</tabpanel>
+				<tabpanel
+				style="align:center">
+					<div align="center" apply="com.egoveris.te.base.composer.SearchFormComposer">
+						<label value="${c:l('ee.tramitacion.label.buscarForm')}"  />
+						<bandbox
+							id="tipoFormBandbox" width="260px"
+							tabindex="5"
+							height="auto">
+						<bandpopup
+								id="tipoFormCombo" width="260px" height="auto"
+								apply="com.egoveris.te.base.composer.SearchFormComposer">
+								<groupbox
+									height="auto" width="260px">
+									<caption>
+										<label
+											value="${c:l('ee.documentoDetalle.title.arramitacion.label.busquedaDeForm')}" />
+									</caption>
+									<separator />
+									<vbox>
+									<hbox
+											align="bottom">
+											<label
+												value="${c:l('te.webapp.expediente.macros.documentofiltro.lbl.buscar')}" />
+											<separator
+												width="2px" />
+											<textbox
+												id="textTypeForm" />
+											<separator
+												width="100px" />
+										</hbox>
+										<tree
+											id="formTypeTree" width="260px"
+											height="auto">
+											<treecols>
+												<treecol
+													width="100%" label="${c:l('ee.tramitacion.label.nomForm')}" />
+											</treecols>
+										</tree>
+									</vbox>
+								</groupbox>
+							</bandpopup>
+							</bandbox>
+							<button autodisable="self" 
+										id="searchFormButton"
+										iconSclass="z-icon-external-link" label="${c:l('ee.expediente.tramitacion.lbl.vinculaformilario')}" 
+										zclass="z-button" style="padding:7px 10px"
+										forward="onClick=tramitacionWindow$SearchFormComposer.onSearchForm"
+										width="" left="50px" height="42px" tabindex="9" />
+										
+										
+										
+					</div>
+					<div align="center">
+					<groupbox style="align:center;border:0px;">
+					<separator height="16px"></separator>
+						<paging id="pagingForms" pageSize="10" width="800px" />
+						<hbox>
+							<listbox id="formsLb"
+								width="1800px" mold="paging"
+								model="@{tramitacionWindow$TramitacionComposer.expedientFormsList}"	
+								selectedItem="@{tramitacionWindow$TramitacionComposer.selectedExpedientForm}"
+								itemRenderer="com.egoveris.te.base.rendered.FormsRenderer"							
+								paginal="${pagingForms}">
+								<listhead>
+									<listheader label="${c:l('ee.documentViewer.listhead.orden')}"
+										width="auto" align="center" />
+									<listheader label="${c:l('ee.tramitacion.label.nombreForm')}"
+										width="auto" align="center" />
+									<listheader label="${c:l('ee.formTab.listheader.frchaCreacion')}"
+										width="auto" align="center" />
+									<listheader label="${c:l('ee.tramitacion.listheader.usuCreador')}"
+										width="auto" align="center" />
+									<listheader label="${c:l('ee.caratulas.listheader.documento.accion.value')}"
+										width="auto" align="center" />
+								</listhead>
+								<listfoot
+									>
+									<listfooter />
+									<listfooter
+										id="totalFormularios"
+										label="${c:l('te.tramitacion.listfooter.formularios.value')}"
+										span="2"  align="right"/>
+									<listfooter
+										label="@{tramitacionWindow$TramitacionComposer.expedientFormsList.size}"
+										span="2"   />
+								</listfoot>
+							</listbox>
+						</hbox>
+						</groupbox>
+						</div>
+				</tabpanel>
+				<tabpanel>
+					<groupbox >
+
+						<separator  />
+						<paging id="pagingArchivoTrabajo" pageSize="10"
+							width="800px" />
+						<hbox>
+
+							<listbox id="documentoTrabajoLb"
+								width="800px" mold="paging"
+								model="@{tramitacionWindow$TramitacionComposer.archivosDeTrabajoFiltrados}"
+								selectedItem="@{tramitacionWindow$TramitacionComposer.selectedArchivoDeTrabajo}"
+								itemRenderer="com.egoveris.te.base.rendered.ArchivosDeTrabajoItemRenderer"
+								paginal="${pagingArchivoTrabajo}">
+								<listhead>
+									<listheader label="${c:l('ee.documentoDetalle.label.orden')}"
+										width="60px" align="center" />
+									<listheader label="${c:l('ee.docTrabajoExpediente.listhead.archivo')}"
+										width="300px" align="center" />
+									<listheader label="${c:l('ee.consultaDocumentos.numSADEtipo')}"
+										width="100px" align="center" />
+									<listheader label="${c:l('ee.caratulas.listheader.documento.accion.value')}"
+										width="350px" align="center" />
+								</listhead>
+								<listfoot
+									>
+									<listfooter />
+
+									<listfooter
+										id="totalDocumentosDeTrabajo"
+										label="${c:l('ee.tramitacion.listfooter.archivosDeTrabajo.value')}"
+										span="2"  />
+									<listfooter
+										label="@{tramitacionWindow$TramitacionComposer.archivosDeTrabajoFiltrados.size}"
+										span="2"  align="rigth" />
+								</listfoot>
+							</listbox>
+
+							<separator  />
+							<toolbar width="170px" mold="panel">
+								<fileupload id="uploadArchivoDeTrabajo"
+									iconSclass="z-icon-file"
+									label="${c:l('ee.expediente.tramitacion.lbl.archivotrabajo')}"
+									zclass="z-button" style="padding:7px 10px; height: 42px;"
+									upload="true, maxsize=51200" />
+							</toolbar>
+						</hbox>
+					</groupbox>
+				</tabpanel>
+				<tabpanel >
+					<groupbox>
+						<grid style="border:0px" width="100%">
+							<rows>
+								<row align="center"
+									>
+									<hbox align="center" spacing="0">
+										<grid align="center"
+											width="620px" id="gridConsultaExpedientes">
+											<columns>
+												<column width="120px"
+													id="ee.asociarexpediente.column.tipo"
+													label="${c:l('ee.asociarexpediente.column.tipo.value')}"
+													align="center" />
+												<column width="80px"
+													id="ee.asociarexpediente.column.anio"
+													label="${c:l('ee.asociarexpediente.column.anio.value')}"
+													align="center" />
+												<column width="100px"
+													id="ee.asociarexpediente.column.numero"
+													label="${c:l('ee.asociarexpediente.column.numero.value')}"
+													align="center" />
+												<column width="140px"
+													id="ee.asociarexpediente.column.reparticion"
+													label="${c:l('ee.asociarexpediente.column.reparticion.value')}"
+													align="center" />
+												<column width="180px"
+													id="ee.asociarexpediente.column.reparticionUsuario"
+													label="${c:l('ee.asociarexpediente.column.reparticionUsuario.value')}"
+													align="center" />
+											</columns>
+											<rows>
+												<row id="camposSADE"
+													>
+													<combobox
+														id="comboActuacion" readonly="true" cols="5">
+													</combobox>
+													<intbox cols="4"
+														maxlength="4" id="anioSADE" />
+													<intbox
+														maxlength="8" id="numeroSADE" />
+													<textbox
+														id="reparticionActuacion" readonly="true"
+														cols="15">
+													</textbox>
+
+													<bandbox
+														id="reparticionBusquedaUsuario">
+														<bandpopup
+															apply="com.egoveris.te.base.util.FindReparticionesConsulta"
+															id="reparticionesComboBusquedaUsuario" width="650px">
+															<groupbox
+																mold="3d">
+																<caption>
+																	<hbox>
+																		Búsqueda
+																		de
+																		Organismo
+																		<image
+																			src="/imagenes/help.png" width="16px" height="16px"
+																			tooltip="helpBusquedaReparticion" align="right" />
+																	</hbox>
+																</caption>
+																<separator></separator>
+																<vbox>
+																	<hbox>
+																		Buscar
+																		<textbox
+																			id="textoReparticionBusquedaUsuario" />
+																	</hbox>
+																	<paging
+																		id="pagingReparticionesUsuario" pageSize="10" />
+																	<listbox
+																		mold="paging" width="600px"
+																		id="reparticionesBusquedaUsuarioListbox"
+																		model="@{listaReparticionSADESeleccionada}"
+																		selectedItem="@{reparticionSeleccionada}"
+																		paginal="${pagingReparticionesUsuario}">
+																		<listhead>
+																			<listheader
+																				label="${c:l('te.webapp.expediente.macros.documentofiltro.lbl.codigo')}" width="30%" />
+																			<listheader
+																				label="${c:l('te.webapp.expediente.macros.documentofiltro.lbl.nombre')}" height="70%" />
+																		</listhead>
+																		<listitem
+																			self="@{each=reparticion}">
+																			<listcell
+																				label="@{reparticion.codigo}" />
+																			<listcell
+																				label="@{reparticion.nombre}" />
+																		</listitem>
+																	</listbox>
+																</vbox>
+															</groupbox>
+														</bandpopup>
+													</bandbox>
+												</row>
+
+											</rows>
+										</grid>
+										<space></space>
+										<toolbarbutton
+											autodisable="self" 
+											id="buscarPorNumeroSadeButton"
+											iconSclass="z-icon-search"
+											label="${c:l('ee.expediente.tramitacion.lbl.buscarexpediente')}"
+											zclass="z-button" style="padding:10px 10px"
+											forward="onClick=tramitacionWindow$TramitacionComposer.onBuscarExpediente" />
+									</hbox>
+								</row>
+							</rows>
+						</grid>
+						<separator height="16px"></separator>
+						<paging id="expedientesAsociadosPaginator"
+							pageSize="5" width="900px" />
+						<listbox id="listboxExpedientes" width="900px"
+							maxlength="20" mold="paging"
+							paginal="${expedientesAsociadosPaginator}" pagingPosition="top"
+							model="@{tramitacionWindow$TramitacionComposer.expedientesAsociadosFiltrados}"
+							selectedItem="@{tramitacionWindow$composer.selectedExpedienteAsociado}"
+							itemRenderer="com.egoveris.te.base.rendered.ExpedientesAsociadosItemRenderer">
+							<listhead>
+								<listheader label="${c:l('ee.expedienteAsociado.listheader.tDoc')}" width="50px"
+									align="center" />
+								<listheader label="${c:l('ee.tramitacion.listheader.anio.value')}" width="50px"
+									align="center" />
+								<listheader label="${c:l('ee.tramitacion.listheader.numero.value')}" width="100px"
+									align="center" />
+								<listheader label="${c:l('ee.tramitacion.listheader.reparticion.value')}"
+									width="150px" align="center" />
+								<listheader label="${c:l('ee.resumenOperacion.listheader.codTipoTramite')}"
+									width="150px" align="center" />
+								<listheader label="${c:l('ee.expedienteAsociado.listheader.exp')}" width="50px"
+									align="center" />
+								<listheader label="${c:l('ee.inbox.listheader.estado.value')}" width="150px"
+									align="center" />
+								<listheader label="${c:l('ee.caratulas.listheader.documento.accion.value')}" width="200px"
+									align="center" />
+							</listhead>
+
+							<listfoot
+								>
+								<listfooter />
+								<listfooter />
+								<listfooter />
+								<listfooter />
+								<listfooter />
+								<listfooter
+									id="totalExpedientesAdjuntos"
+									label="${c:l('ee.tramitacion.listfooter.expedientesAdjuntos.value')}"
+									span="2"  />
+								<listfooter
+									label="@{tramitacionWindow$TramitacionComposer.expedientesAsociadosFiltrados.size}"
+									span="1"  align="rigth" />
+							</listfoot>
+
+						</listbox>
+					</groupbox>
+				</tabpanel>
+
+				<tabpanel
+					fulfill="expedienteTramitacionConjunta.onClick">
+					<expedienteEnTramitacionConjunta />
+				</tabpanel>
+			
+				<tabpanel fulfill="expedienteFusion.onClick">
+					<expedienteEnFusion />
+				</tabpanel>
+				
+				<tabpanel fulfill="historialDePases.onClick">
+					<historialDePases />
+				</tabpanel>
+				<tabpanel >
+					<groupbox>
+						<separator />
+						<grid width="900px">
+							<rows>
+								<row width="800px">
+									<label width="100px" id="ee.tramitacion.label.motivo"
+										value="${c:l('ee.tramitacion.label.motivo.value')}" />
+									<textbox id="motivoExpediente" constraint="no empty" cols="50"
+										rows="3">
+									</textbox>
+								</row>
+							</rows>
+						</grid>
+						<separator />
+						<label id="ee.tramitacion.label.datosexpediente"
+							value="${c:l('ee.tramitacion.label.datosexpediente.value')}" style="font:bold;" />
+						<separator bar="true" />
+						<radiogroup>
+							<radio id="expedienteInterno" label="${c:l('ee.tramitacion.label.interno.value')}"
+								checked="false"
+								forward="onClick=tramitacionWindow$TramitacionComposer.onClickExpedienteInterno" />
+							<space />
+							<space />
+							<radio id="expedienteExterno" label="${c:l('ee.tramitacion.label.externo.value')}"
+								checked="false"
+								forward="onClick=tramitacionWindow$TramitacionComposer.onClickExpedienteExterno" />
+						</radiogroup>
+						<hbox align="start" spacing="0" width="100%">
+			
+							<separator></separator>
+							<grid  width="900px" id="gridDatosCaratula">
+								<rows>
+									<row width="500px">
+										<label width="80px" id="ee.tramitacion.label.codigotrata"
+											value="${c:l('ee.tramitacion.label.codigotrata.value')}" />
+			
+										<combobox id="codigoTrata" width="380px"
+											forward="onSelect=tramitacionWindow$TramitacionComposer.onSelectTrata">
+											<comboitem id="trata1" label="ACER00001" />
+											<comboitem id="trata2" label="ACER00002" />
+											<comboitem id="trata3" label="ACER00003" />
+											<comboitem id="trata4" label="ACER00004" />
+											<comboitem id="trata5" label="ACTO00001" />
+											<comboitem id="trata6" label="ACTO00002" />
+											<comboitem id="trata7" label="ANTM00001" />
+											<comboitem id="trata8" label="ANTM00002" />
+											<comboitem id="trata9" label="CULT00002" />
+											<comboitem id="trata10" label="CULT00008" />
+											<comboitem id="trata11" label="HABI00004" />
+											<comboitem id="trata12" label="HABI00009" />
+											<comboitem id="trata13" label="OBRA00033" />
+											<comboitem id="trata14" label="RNOT00001" />
+											<comboitem id="trata15" label="VIAP00006" />
+											<comboitem id="trata16" label="TRAN00000" />
+										</combobox>
+									</row>
+									<row width="500px">
+										<label width="100px" id="ee.tramitacion.label.descripcion"
+											value="${c:l('ee.tramitacion.label.descripcion.value')}" />
+										<textbox id="descripcion" maxlength="225" cols="50" rows="3">
+										</textbox>
+									</row>
+						
+									<row visible="false">
+										<label width="80px" id="ee.tramitacion.label.tipodocumento"
+											value="${c:l('ee.tramitacion.label.tipodocumento.value')}" />
+										<combobox id="tipoDocumento" width="200px"
+											model="@{tramitacionWindow$TramitacionComposer.tiposDocBox}"
+											selectedItem="@{tramitacionWindow$TramitacionComposer.selectedTiposDocumentos}"
+											forward="onSelect=tramitacionWindow$TramitacionComposer.onSelectDocumento">
+										</combobox>
+			
+									</row>
+									<row >
+										<label width="112px" id="ee.tramitacion.label.numerodocumento"
+											value="${c:l('ee.tramitacion.label.numerodocumento.value')}" />
+										<textbox id="numeroDocumento" />
+									</row>
+									<row visible="false">
+										<label value="${c:l('ee.nuevoexpediente.label.primerapellido.value')}" />
+										<textbox id="apellido"
+											maxlength="225" cols="50">
+										</textbox>
+									</row>
+									
+									<row visible="false">
+										<label value="${c:l('ee.nuevoexpediente.label.segundoapellido.value')}" />
+										<textbox id="segundoApellido"
+											maxlength="225" cols="50">
+										</textbox>
+									</row>
+									
+									<row visible="false">
+										<label value="${c:l('ee.nuevoexpediente.label.tercerapellido.value')}" />
+										<textbox id="tercerApellido" 
+											maxlength="225" cols="50">
+										</textbox>
+									</row>
+									<row visible="false">
+										<label value="${c:l('ee.nuevoexpediente.label.primernombre.value')}" />
+										<textbox id="nombre"
+											maxlength="225" cols="50">
+										</textbox>
+									</row>
+									<row visible="false">
+										<label value="${c:l('ee.nuevoexpediente.label.segundonombre.value')}" />
+										<textbox id="segundoNombre"
+											maxlength="225" cols="50">
+										</textbox>
+									</row>
+									<row visible="false">
+										<label value="${c:l('ee.nuevoexpediente.label.tercernombre.value')}" />
+										<textbox id="tercerNombre"
+											maxlength="225" cols="50">
+										</textbox>
+									</row>
+									<row>
+										<label width="100px"
+											value="${c:l('ee.tramitacion.label.razonsocial.value')}" />
+										<textbox id="razonSocial" maxlength="225" cols="50">
+										</textbox>
+									</row>
+									<row>
+										<label width="100px" value="${c:l('ee.tramitacion.label.email.value')}" />
+										<textbox id="email" maxlength="225" cols="50">
+										</textbox>
+									</row>
+									<row>
+										<label width="100px"
+											value="${c:l('ee.tramitacion.label.telefono.value')}" />
+										<textbox id="telefono" constraint="/[0-9]*/ : Debe ingresar un valor numérico."
+											maxlength="255" cols="50">
+										</textbox>
+			
+									</row>
+									<row>
+										<label width="100px" id="ee.tramitacion.label.estado"
+											value="${c:l('ee.tramitacion.label.estado.value')}" />
+										<textbox id="estado" width="175px">
+										</textbox>
+									</row>
+									
+									<row>
+										<cell colspan="2" zclass="none">
+											<include src="/direccion/direccionCmp.zul" />
+										</cell>
+									</row>
+									
+									<row visible="false">
+											<label value="${c:l('ee.nuevoexpediente.label.direccion.value')}" />
+											<vlayout>
+											<label value="${c:l('ee.nuevoexpediente.label.callealtura.value')}" />
+											<textbox id="direccion" maxlength="100" cols="48">
+											</textbox>
+											<hlayout>
+											<label value="${c:l('ee.nuevoexpediente.label.piso.value')}" />
+											<textbox id="piso" 
+												maxlength="3" cols="3">
+											</textbox>
+											<label value="${c:l('ee.nuevoexpediente.label.departamento.value')}" />
+											<textbox id="departamento" 
+												maxlength="3" cols="3">
+											</textbox>
+											<label value="${c:l('ee.nuevoexpediente.label.codigopostal.value')}" />
+											<textbox id="codigoPostal" 
+												maxlength="10" cols="12">
+											</textbox>
+											</hlayout>
+										</vlayout>
+									</row>
+									
+								</rows>
+							</grid>
+							
+						</hbox>
+			
+						<div>
+							<separator></separator>
+							<hbox>
+								<toolbarbutton autodisable="self"
+									id="modificar" iconSclass="z-icon-pencil-square-o"
+									label="${c:l('ee.expediente.tramitacion.lbl.modificar')}"
+									zclass="z-button" style="padding:7px 10px"
+									forward="onClick=tramitacionWindow$TramitacionComposer.onModificar" />
+
+								<toolbarbutton autodisable="self"
+									id="guardarModificacion" 
+									disabled="true"
+									iconSclass="z-icon-floppy-o"
+									label="${c:l('ee.expediente.tramitacion.lbl.guardar')}"
+									zclass="z-button" style="padding:7px 10px"
+									forward="onClick=tramitacionWindow$TramitacionComposer.onGuardarModificacion" />
+									
+								<toolbarbutton autodisable="self"
+									id="cancelarModificacion" 
+									disabled="true"
+									iconSclass="z-icon-times"
+									label="${c:l('ee.expediente.tramitacion.lbl.cancelar')}"
+									zclass="z-button" style="padding:7px 10px"
+									forward="onClick=tramitacionWindow$TramitacionComposer.onCancelarModificacion" />
+									
+								<toolbarbutton autodisable="self"
+									disabled="true" 
+									iconSclass="z-icon-level-down"
+									label="${c:l('ee.expediente.tramitacion.lbl.datospropiosexpediente')}"
+									zclass="z-button" style="padding:7px 10px"
+									id="datosPropios" 
+									height="42px" />
+									
+							</hbox>
+							<separator></separator>
+						</div>
+					</groupbox>
+				</tabpanel>
+			
+				<tabpanel fulfill="buzonAct.onClick" >
+					<include id="actividadHistorico" src="/activ/historicoActividades.zul" modificacion="true" ></include>
+				</tabpanel>
+				
+			</tabpanels>
+		</tabbox>
+
+		<separator  />
+ 
+		<hbox id="pie"  
+			width="100%">
+			
+				<toolbarbutton autodisable="self" id="guardar"  visible="false"
+					iconSclass="z-icon-inbox" label="${c:l('te.webapp.expediente.tramitacion.lbl.salirsinpase')}"
+					tabindex="10" style="padding:7px 10px;" zclass="z-button" 
+					forward="onClick=tramitacionWindow$TramitacionComposer.onGuardarTramitacion" />
+	
+				
+				<toolbarbutton autodisable="self" id="enviar" disabled="false"
+					tabindex="11" height="42px"
+					iconSclass="z-icon-long-arrow-right" label="${c:l('te.webapp.expediente.tramitacion.lbl.realizarpase')}" zclass="z-button" style="padding:7px 10px;"
+					forward="onClick=tramitacionWindow$TramitacionComposer.onEnviarTramitacion" />
+	
+				<toolbarbutton autodisable="self" id="tramitacionParalelo" disabled="true" visible="false"
+					tabindex="12" 
+					iconSclass="z-icon-random" label="${c:l('te.webapp.expediente.tramitacion.lbl.realizarpasemultiple')}" zclass="z-button" style="padding:7px 10px;"
+					forward="onClick=tramitacionWindow$TramitacionComposer.onEnviarTramitacionParalelo" />
+	
+				<toolbarbutton autodisable="self" id="reservar" disabled="true" visible="false"
+					tabindex="13" height="42px"
+					label="${c:l('ee.reparticionTrata.listheader.reservar')}"
+					forward="onClick=tramitacionWindow$TramitacionComposer.onReservarExpediente" />
+				<!-- image="/imagenes/reservar.png" -->
+					
+				<toolbarbutton autodisable="self" id="quitarReserva" visible="false"
+					tabindex="14"
+					label="${c:l('ee.reparticionTrata.listheader.quitarReserva')}"
+					forward="onClick=tramitacionWindow$TramitacionComposer.onQuitarReservaExpediente" />
+				<!-- image="/imagenes/quitar-reserva.png" -->
+				
+				<toolbarbutton autodisable="self" id="crearPaquete" disabled="false" visible="false"
+					tabindex="15"
+					iconSclass="z-icon-clipboard" label="${c:l('te.webapp.expediente.tramitacion.lbl.generacopia')}" zclass="z-button" style="padding:7px 10px;"
+					tooltiptext="${c:l('ee.tramitacion.boton.tooltip.value')}"
+					forward="onClick=tramitacionWindow$TramitacionComposer.onConfirmarPaquete" />
+					
+				<toolbarbutton autodisable="self" id="notificarExpedienteTad" disabled="true"
+					tabindex="13" height="42px"
+					label="${c:l('ee.notificable.title.notificExped')}"
+					forward="onClick=tramitacionWindow$TramitacionComposer.onNotificarExpedienteTad" />
+				<!-- image="/imagenes/NotificarExpedienteTAD.png" -->
+	
+				<toolbarbutton autodisable="self" id="cancelar" 
+					iconSclass="z-icon-times" label="${c:l('te.webapp.expediente.tramitacion.lbl.cancelar')}" zclass="z-button" style="padding:7px 10px;"
+					tabindex="16" height="42px"
+					forward="onClick=tramitacionWindow$TramitacionComposer.onCancelar" />
+					
+<!-- 				<toolbarbutton autodisable="self" id="subsanar"  -->
+<!-- 					 iconSclass="z-icon-info" label="${c:l('te.webapp.expediente.tramitacion.lbl.susbsanarinfoadicio')}" zclass="z-button" style="padding:7px 10px;" -->
+<!-- 					tabindex="17"  -->
+<!-- 					forward="onClick=tramitacionWindow$TramitacionComposer.onSubsanar" /> -->
+					
+				 <label id="leyendaLabel" value="${c:l('ee.subsanacion.actividades.pendientes')}" visible="false"
+	                   style="color: red"/>
+	
+				<toolbarbutton autodisable="self" id="rechazarBtn" visible="false"
+				iconSclass="z-icon-ban" label="${c:l('te.webapp.expediente.tramitacion.lbl.rechazar')}" zclass="z-button" style="padding:7px 10px;"
+					tabindex="18" 
+					forward="onClick=tramitacionWindow$TramitacionComposer.onRechazar" />
+			
+			
+				<!-- <button id="sistemaExternobtn" image="/imagenes/nuevo.png" style="padding:2px;" height="38px" width="121px"
+									tabindex="19" visible="false"/>-->
+				<button id="sistemaExternobtn" label="${c:l('ee.tramitacion.nuevo')}" style="padding:2px;" tabindex="19" visible="false"/>
+				
+		</hbox>  
+		
+		<popup id="clavePopUp" width="300px" height="auto">
+			<groupbox id="idgroupbox" mold="3d">
+				<caption label="${c:l('te.webapp.expediente.tramitacion.clavepopup.caption..lbl.ingreseclavetad')}"/>
+				<separator></separator>
+				<separator></separator>
+				<hbox>
+					<label value="${c:l('ee.nuevoexpediente.label.clavetad.value')}"/>
+					<longbox id="cuilNotTipo" maxlength="2" cols="1"> </longbox>	
+					<longbox id="cuilNotDocumento" maxlength="8" cols="8"> </longbox>
+					<longbox id="cuilNotVerificador" maxlength="1" cols="1"> </longbox>
+					<separator></separator>
+				</hbox>
+				<hbox>
+					<separator></separator>
+					<separator></separator>
+					<button autodisable="self" id="asignarCuil"
+							label="${c:l('ee.general.asignar')}" />					
+				</hbox>
+			</groupbox>
+		</popup>	   
+	</window>
+</zk>

@@ -1,0 +1,43 @@
+<?page title="${c:l('admNovedades.title')}" contentType="text/html;charset=UTF-8"?>
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+<zk>
+	<window border="none" id="win_adminnovedades" apply="com.egoveris.edt.web.admin.pl.AdminNovedadesComposer" width="100%">
+		
+		<div sclass="page-header">
+			<label value="${c:l('eu.admNovedades.label.admNovedades')}" />
+		</div>
+		
+		<panel style="" border="none">
+			<panelchildren style="">
+				<toolbarbutton id="crearNovedad" label="${c:l('eu.configuracionNovedades.crearNovedad')}"
+					style="" image="/imagenes/pencil.png" />
+			</panelchildren>
+		</panel>
+
+		<separator />
+
+		<vlayout>
+			<div align="center">
+				<listbox
+					id="listBoxNovedades"
+					width="90%"
+					mold="paging"
+					model="@{win_adminnovedades$AdminNovedadesComposer.novedades}"
+					selectedItem="@{win_adminnovedades$AdminNovedadesComposer.novedad}"
+					itemRenderer="com.egoveris.edt.web.admin.pl.renderers.NovedadesItemRender"
+					pageSize="20" pagingPosition="top" >					
+					<custom-attributes visibilidad="activa"></custom-attributes>
+					<listhead sizable="false" style="background: #C4ECFF;">
+						<listheader id="motivo" width="30%" label="${c:l('eu.abmNovedades.listbox.motivo')}" style="background-color: #C4ECFF;" />
+						<listheader id="modulo" width="11%" label="${c:l('eu.abmNovedades.listbox.modulo')}" style="background-color: #C4ECFF;" />
+						<listheader id="categoria" width="14%" label="${c:l('eu.abmNovedades.listbox.categoria')}" style="background-color: #C4ECFF;" />
+						<listheader id="fechaInicio" width="10%" label="${c:l('eu.abmNovedades.listbox.fechaInicio')}" style="background-color: #C4ECFF;" />
+						<listheader id="fechaFin" width="10%" label="${c:l('eu.abmNovedades.listbox.fechaFin')}" style="background-color: #C4ECFF;" />
+						<listheader id="estado" width="10%" label="${c:l('eu.configuracionNovedades.crearNovedad.estado')}" style="background-color: #C4ECFF;" />
+						<listheader id="accion" width="18%" label="${c:l('eu.admCargos.hbox.label.acciones')}" style="background-color: #C4ECFF;" />
+					</listhead>
+				</listbox>
+			</div>
+		</vlayout>
+	</window>
+</zk>

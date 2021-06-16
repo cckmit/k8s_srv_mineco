@@ -1,0 +1,318 @@
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+<?page title="Nueva Solicitud" contentType="text/html;charset=UTF-8"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./nuevaSolicitudWindow" ?>
+<zk>
+	
+	<window id="nuevaSolicitudWindow"
+		title="${c:l('ee.nuevasolicitud.title.value')}" border="none"
+		width="700px" 
+		apply="com.egoveris.te.base.composer.GenerarNuevaSolicitudComposer">
+		<n:script xmlns:n="native">
+			 <![CDATA[
+			function loadScript(url, callback){
+				var script = document.createElement("script")
+				script.type = "text/javascript";
+		
+				if (script.readyState){ //IE
+					script.onreadystatechange = function(){
+						if (script.readyState == "loaded" || script.readyState == "complete") {
+							script.onreadystatechange = null;
+							callback();
+						}
+					};
+				} else { //Others
+					script.onload = function(){
+						callback();
+					};
+				}
+				script.src = url;
+				document.getElementsByTagName("head")[0].appendChild(script);
+			};
+			
+			/*
+			loadScript("http://servicios.usig.buenosaires.gov.ar/usig-js/3.0/usig.AutoCompleterFull.min.js", function() { 
+				ac = new usig.AutoCompleter(jq("$direccion").attr("id"), { 
+					afterSelection: function(option) {
+						if (option instanceof usig.Direccion || option instanceof usig.inventario.Objeto) {
+		 	   						if (option.getCalle().codigo != null && option.getCalle().nombre != null && option.getAltura() != null ) {	
+			    	   			jq("$direccion").val(option.toString());
+			    	   			return;
+					        }
+						}
+		       		}
+		       	});
+			});
+			*/
+			]]>
+		</n:script>
+		
+		<groupbox >
+			<separator />
+			<grid >
+				<rows width="100%">
+					<row>
+						<label value="${c:l('ee.nuevasolicitud.label.motivoInterno.value')}" />
+						<textbox id="motivoInterno" maxlength="255" cols="40"
+							rows="5">
+						</textbox>
+					</row>
+					<row>
+						<label value="${c:l('ee.nuevasolicitud.label.motivoExterno.value')}" />
+						<textbox id="motivoExterno" 
+							tooltiptext="${c:l('ee.nuevoexpediente.label.popupMotivoExterno.value')}"
+							maxlength="255" cols="40" rows="5">
+						</textbox>
+					</row>
+				</rows>
+			</grid>
+			<separator />
+			<box orient="vertical" spacing="0" align="start"
+				width="100%">
+				<separator bar="true" />
+				<radiogroup>
+					<radio id="expedienteInterno"
+						label="${c:l('ee.nuevasolicitud.label.interno.value')}"
+						checked="true"
+						forward="onClick=nuevaSolicitudWindow$GenerarNuevaSolicitudComposer.onClickSolicitudInterna" />
+					<space />
+					<space />
+					<radio id="expedienteExterno"
+						label="${c:l('ee.nuevasolicitud.label.externo.value')}"
+						checked="false"
+						forward="onClick=nuevaSolicitudWindow$GenerarNuevaSolicitudComposer.onClickSolicitudExterna" />
+				</radiogroup>
+				<separator />
+				<grid >
+					<rows width="100%">
+						<row>
+							<hbox>
+								<label value="${c:l('ee.nuevoexpediente.label.codigotrataSugerida.value')}" />
+							</hbox>
+							<hbox>
+								<bandbox id="codigoTrata" autodrop="true" width="200px">
+								<bandpopup  width="620px" >
+									<groupbox mold="3d">
+										<caption>
+											<hbox>
+												<label value="${c:l('ee.consultaGeneradosReparticion.listheader.tramites')}" width="560px" />
+												<image	src="/imagenes/help.png" width="16px" height="16px"
+														 align="right" />
+											</hbox>
+										</caption>
+										<separator height="2px"></separator>
+											<paging	id="paginatorIncorporarSADE" pageSize="10" />
+											<listbox
+												id="trata" mold="paging"
+												paginal="${paginatorIncorporarSADE}"
+												model="@{nuevaSolicitudWindow$composer.tratasSeleccionadas}"
+												selectedItem="@{nuevaSolicitudWindow$composer.selectedTrata}"
+												itemRenderer="com.egoveris.te.base.rendered.TrataListBoxItemRenderer">
+												<listhead>
+													<listheader	label="${c:l('ee.consultaGeneradosReparticion.listheader.tramites')}"/>
+												</listhead>	
+												<listfoot	>			
+													<listfooter id="Total"	label="${c:l('ee.consultaGeneradosReparticion.listfooter.totalTramites')}"	span="1"  />
+													<listfooter id="conteoDocumentos" label="@{nuevaSolicitudWindow$composer.tratasSeleccionadas.size}" span="2"	 />
+											</listfoot>											
+											</listbox>
+										</groupbox>
+								</bandpopup>
+							</bandbox>
+							</hbox>
+
+
+						</row>
+						<!-- Borrar este row si esta mal-->
+						<row>
+							<radiogroup>
+								<radio id="persona"
+									label="${c:l('ee.nuevasolicitud.label.persona.value')}"
+									checked="true" disabled="true"
+									forward="onClick=nuevaSolicitudWindow$GenerarNuevaSolicitudComposer.onClickApellidoNombres" />
+								<space />
+								<space />
+								<radio id="empresa"
+									label="${c:l('ee.nuevasolicitud.label.empresa.value')}"
+									checked="false" disabled="true"
+									forward="onClick=nuevaSolicitudWindow$GenerarNuevaSolicitudComposer.onClickEmpresa" />
+							</radiogroup>
+						</row>
+						<!--  Hasta aca -->
+						
+						<!-- Se ocultan ID / Tipo de documento -->
+						<!--
+						<row>
+							
+							<label value="${c:l('ee.nuevoexpediente.label.cuitcuil.value')}" />
+							<hbox>
+								<longbox id="cuitCuilTipo" maxlength="2" cols="1" disabled="true" > </longbox>
+							
+								<longbox id="cuitCuilDocumento" maxlength="8" cols="8" disabled="true" > </longbox>
+							
+								<longbox id="cuitCuilVerificador" maxlength="1" cols="1" disabled="true"> </longbox>
+							
+								<checkbox id="noDeclaraNoPosee" label="${c:l('ee.nuevoexpediente.label.nodeclaranoposee.value')}" disabled="true"
+									forward="onCheck=nuevaSolicitudWindow$GenerarNuevaSolicitudComposer.onSelectCheck">	
+								 </checkbox>
+							</hbox>
+						</row>
+						
+						<row>
+							<label value="${c:l('ee.nuevasolicitud.label.tipodocumento.value')}" />
+							<combobox id="tipoDocumento" disabled="true"
+								readonly="true" width="200px"
+								model="@{nuevaSolicitudWindow$GenerarNuevaSolicitudComposer.tiposDocumentos}"
+ 								forward="onChange=nuevaSolicitudWindow$GenerarNuevaSolicitudComposer.onSelectDocumento"
+								selectedItem="@{nuevaSolicitudWindow$GenerarNuevaSolicitudComposer.selectedTiposDocumentos}">
+							</combobox>
+						</row>
+						-->
+						
+						<row>
+							<label
+								value="${c:l('ee.nuevasolicitud.label.numerodocumento.value')}" />
+							<!--
+							<longbox disabled="true"
+								id="numeroDocumento" maxlength="15">
+							</longbox>
+							-->
+							<textbox id="numeroDocumento"
+								maxlength="15" cols="40">
+							</textbox>
+						</row>
+						<!--  ACA VA EL RADIOBOX -->
+						<row>
+							<label value="${c:l('ee.nuevoexpediente.label.primerapellido.value')}" />
+							<textbox id="apellido" disabled="true"
+								maxlength="225" cols="40">
+							</textbox>
+						</row>
+						<row>
+							<label value="${c:l('ee.nuevoexpediente.label.segundoapellido.value')}" />
+							<textbox id="segundoApellido" disabled="true"
+								maxlength="225" cols="40">
+							</textbox>
+						</row>
+						
+						<row>
+							<label value="${c:l('ee.nuevoexpediente.label.tercerapellido.value')}" />
+							<textbox id="tercerApellido"  disabled="true"
+								maxlength="225" cols="40">
+							</textbox>
+						</row>
+						<row>
+							<label value="${c:l('ee.nuevoexpediente.label.primernombre.value')}" />
+							<textbox id="nombre" disabled="true"
+								maxlength="225" cols="40">
+							</textbox>
+						</row>
+						<row>
+							<label value="${c:l('ee.nuevoexpediente.label.segundonombre.value')}" />
+							<textbox id="segundoNombre" disabled="true"
+								maxlength="30" cols="40">
+							</textbox>
+						</row>
+						<row>
+							<label value="${c:l('ee.nuevoexpediente.label.tercernombre.value')}" />
+							<textbox id="tercerNombre" disabled="true"
+								maxlength="30" cols="40">
+							</textbox>
+						</row>
+						<row>
+							<label	value="${c:l('ee.nuevasolicitud.label.razonsocial.value')}" />
+							<textbox id="razonSocial" disabled="true"
+								maxlength="225" cols="40">
+							</textbox>
+						</row>
+						<row>
+							<label value="${c:l('ee.nuevasolicitud.label.email.value')}" />
+							<textbox id="email" disabled="false"
+								maxlength="225" cols="40">
+							</textbox>
+						</row>
+						<row>
+							<label value="${c:l('ee.nuevasolicitud.label.telefono.value')}" />
+							<textbox id="telefono" disabled="false"
+								constraint=", /[0-9]*/ : Debe ingresar un valor numérico."
+								maxlength="255" cols="40">
+							</textbox>
+						</row>
+
+					</rows>
+				</grid>
+			</box>
+			
+			<separator />
+			
+			<include src="/direccion/direccionCmp.zul" />
+			
+			<box orient="vertical" spacing="0" align="start"
+				width="100%" height="100%" visible="false">
+				<label value="${c:l('ee.nuevoexpediente.label.separadordomicilio.value')}" style="font:bold;" />
+				<separator bar="true" />
+				<separator />
+				<grid >
+					<rows width="100%">
+						<row>
+							<label value="${c:l('ee.nuevoexpediente.label.direccion.value')}" />
+							<vlayout>
+							<label value="${c:l('ee.nuevoexpediente.label.callealtura.value')}" />
+							<textbox id="direccion" maxlength="100" cols="40" disabled="true" >
+							</textbox>
+							<hlayout>
+							<label value="${c:l('ee.nuevoexpediente.label.piso.value')}" />
+							<textbox id="piso" 
+								maxlength="3" cols="3" disabled="true" >
+							</textbox>
+							<label value="${c:l('ee.nuevoexpediente.label.departamento.value')}" />
+							<textbox id="departamento" 
+								maxlength="3" cols="3" disabled="true">
+							</textbox>
+							<label value="${c:l('ee.nuevoexpediente.label.codigopostal.value')}" />
+							<textbox id="codigoPostal" 
+								maxlength="10" cols="8" disabled="true">
+							</textbox>
+							</hlayout>
+<!-- 							<label value="${c:l('ee.nuevoexpediente.label.comuna.value')}" /> -->
+<!-- 							<textbox id="comuna" maxlength="100" cols="48" disabled="true"> -->
+<!-- 							</textbox> -->
+<!-- 							<label value="${c:l('ee.nuevoexpediente.label.barrio.value')}"  /> -->
+<!-- 							<textbox id="barrio" maxlength="100" cols="48" disabled="true"> -->
+<!-- 							</textbox> -->
+							</vlayout>
+						</row>
+						
+					</rows>
+				</grid>
+			</box>
+			
+			<separator />
+
+			<grid align="center"
+				style="border:0px;">
+				<rows>
+					<row >
+						<hbox>
+							<!-- <button autodisable="self" id="guardar"
+								label="${c:l('ee.nuevasolicitud.button.guardarysalir.value')}"
+								forward="onClick=nuevaSolicitudWindow$GenerarNuevaSolicitudComposer.onGuardarSolicitud">
+								</button>  -->
+<!-- 							<toolbarbutton autodisable="self" id="enviarSolicitud" -->
+<!-- 								image="/imagenes/SolicitarCaratulacion.png"/> -->
+
+							<button autodisable="seft" id="enviarSolicitud" class="btn-info" iconSclass="z-icon-folder" 
+								label="${c:l('ee.anularmodificarsolicitud.soliciar')}"/>
+								
+							<button autodisable="seft" id="cancelar" class="btn-info" iconSclass="z-icon-times-circle" 
+							label="${c:l('ee.tramitacion.button.cancelarModificacion.value')}" forward="onClick=nuevaSolicitudWindow$GenerarNuevaSolicitudComposer.onCancelar"/>
+							
+<!-- 							<toolbarbutton autodisable="self" id="cancelar"  image="/imagenes/CancelarExpediente.png"								 -->
+<!-- 								forward="onClick=nuevaSolicitudWindow$GenerarNuevaSolicitudComposer.onCancelar"/>							 -->
+						</hbox>
+					</row>
+				</rows>
+			</grid>
+		</groupbox>
+	</window>
+</zk>

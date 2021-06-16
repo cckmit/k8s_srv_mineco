@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
+    http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+	<changeSet id="TABLA_DOBLE_FACTOR" author="Renzo Giacomino" >
+        <createTable tableName="DOBLE_FACTOR">
+            <column autoIncrement="true" name="ID" type="INT">
+                <constraints primaryKey="true" />
+            </column>
+            <column name="DOCUMENTO" type="varchar(255)"/>
+            <column name="FECHA" type="datetime"/>
+            <column name="CODIGO" type="varchar(5)"/>
+            <column name="ESTADO" type="varchar(20)"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="CAMPO_DOBLE_FACTOR_MODIFICA_TIPO_CODIGO" author="Hector Vergara">
+	    <modifyDataType 
+	            columnName="CODIGO"
+	            newDataType="varchar(255)"
+	            tableName="DOBLE_FACTOR"
+	             />
+	</changeSet>
+	
+</databaseChangeLog>

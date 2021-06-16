@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<complexComponent 
+		type="TRADE" name="acknowledge" description="Acknowledge Information"
+		zul="acknowledge.zul" composer="com.egoveris.ffdd.render.zk.comp.ext.AcknowledgeComposer"
+		mappingDTO="com.egoveris.ccomplejos.base.model.AcknowledgeDTO">
+		
+		<field name="idMensaje" class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" height="20px" width="90%"/>	
+		<field name="idTransaccion" class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" height="20px"  width="90%"/>
+		
+		<field name="codigoRecepcion" class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" height="20px" width="90%"/>	
+		<field name="descripcionRecepcion" class="com.egoveris.ffdd.render.zk.comp.ext.TextboxExt" height="20px"  width="90%"/>
+		
+</complexComponent>
