@@ -14,7 +14,6 @@ RUN apt-get update && apt-get install -y \
         unzip \
         libzip-dev \
         nano \
-        python2  \
         iputils-ping  \
     && pecl install mcrypt-1.0.1  \
     && docker-php-ext-install -j$(nproc) iconv   \
