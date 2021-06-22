@@ -13,7 +13,7 @@ spec:
     - ReadWriteOnce
   nfs:
     server: 128.5.8.222
-    path: "/deployment/gestion"
+    path: "/deployment/gestionDiaco"
 
 ---
 apiVersion: v1
