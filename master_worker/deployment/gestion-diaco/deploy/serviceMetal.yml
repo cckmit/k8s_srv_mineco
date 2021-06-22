@@ -1,0 +1,26 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: svc-gestion
+  namespace: diaco
+  labels:
+    app.kubernetes.io/name: gestion
+    app.kubernetes.io/part-of: gestion
+  annotations:
+    metallb.universe.tf/address-pool: production-public-ips
+spec:
+  type: LoadBalancer
+  externalIPs:
+  - 128.5.9.81
+  # type: NodePort
+  ports:
+    - name: http
+      port: 80
+      targetPort: 80
+      protocol: TCP
+    # - name: https
+    #   port: 443
+    #   targetPort: 443
+    #   protocol: TCP
+  selector:
+    run: gestion
