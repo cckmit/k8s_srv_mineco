@@ -15,7 +15,7 @@ RUN apt-get update && apt-get install -y \
         libzip-dev \
         nano \
         iputils-ping  \
-    && pecl install mcrypt  \
+    && docker-php-ext-install mcrypt  \
     && docker-php-ext-install -j$(nproc) iconv   \
     && docker-php-ext-install zip  \
     && docker-php-ext-install pdo_mysql   \
