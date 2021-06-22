@@ -25,7 +25,7 @@ spec:
           - cluster.local
       containers:
       - name: gestion
-        image: jjolon/gestion:v1.1
+        image: jjolon/gestion:v1.2
         imagePullPolicy: IfNotPresent
         ports:
           - containerPort: 80
