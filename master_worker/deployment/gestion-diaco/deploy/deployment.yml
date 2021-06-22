@@ -43,4 +43,4 @@ spec:
       volumes:
         - name: vol-gestion
           persistentVolumeClaim:
-            claimName: dev-gestion
+            claimName: gestion
