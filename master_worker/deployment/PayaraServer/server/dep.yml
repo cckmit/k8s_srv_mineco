@@ -30,21 +30,10 @@ spec:
             protocol: TCP
           - containerPort: 80
             protocol: TCP
-        # volumeMounts:
-            # - mountPath: "/glassfish5/glassfish/domains/domain1"
-            # - mountPath: "/opt/payara/appserver/glassfish/domains/domain1/config/domain.xml"
-            #   name: vol-rgm
-            # - mountPath: "/opt/payara/appserver/glassfish/domains/domain1/autodeploy"
-            #   name: vol-deploy
-            # - mountPath: "/opt/firma"
-            #   name: vol-signature
-      # volumes:
-        # - name: vol-rgm
-        #   persistentVolumeClaim:
-        #     claimName: rgm
-        # - name: vol-deploy
-        #   persistentVolumeClaim:
-        #     claimName: rgm-deploy
-        # - name: vol-signature
-        #   persistentVolumeClaim:
-        #     claimName: rgm-signature
+        volumeMounts:
+            - mountPath: "/glassfish5/glassfish/domains"
+              name: vol-payara
+      volumes:
+        - name: vol-payara
+          persistentVolumeClaim:
+            claimName: payara-deploy
