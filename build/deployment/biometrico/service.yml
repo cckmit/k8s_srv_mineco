@@ -15,8 +15,8 @@ spec:
   selector:
     run: biometrico
   ports:
-    # - name: https
-    #   port: 443
+    - name: https
+      port: 443
     #   targetPort: 443
     #   protocol: TCP
     - name: http
