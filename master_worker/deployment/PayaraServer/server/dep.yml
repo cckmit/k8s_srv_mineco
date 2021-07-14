@@ -1,0 +1,50 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: payara-server
+  namespace: mineco
+  labels:
+    run: payara-server
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      run: payara-server
+  template:
+    metadata:
+      labels:
+        run: payara-server
+    spec:
+      containers:
+      - name: payara-server
+        image: jjolon/payaraServer:latest 
+        imagePullPolicy: IfNotPresent
+        ports:
+          # - containerPort: 8080
+          #   protocol: TCP
+          - containerPort: 8181
+            protocol: TCP
+          - containerPort: 8282
+            protocol: TCP
+          - containerPort: 4848
+            protocol: TCP
+          - containerPort: 80
+            protocol: TCP
+        # volumeMounts:
+            # - mountPath: "/glassfish5/glassfish/domains/domain1"
+            # - mountPath: "/opt/payara/appserver/glassfish/domains/domain1/config/domain.xml"
+            #   name: vol-rgm
+            # - mountPath: "/opt/payara/appserver/glassfish/domains/domain1/autodeploy"
+            #   name: vol-deploy
+            # - mountPath: "/opt/firma"
+            #   name: vol-signature
+      # volumes:
+        # - name: vol-rgm
+        #   persistentVolumeClaim:
+        #     claimName: rgm
+        # - name: vol-deploy
+        #   persistentVolumeClaim:
+        #     claimName: rgm-deploy
+        # - name: vol-signature
+        #   persistentVolumeClaim:
+        #     claimName: rgm-signature

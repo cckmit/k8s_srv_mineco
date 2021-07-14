@@ -1,0 +1,35 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: service-payara-glassfish
+  namespace: mineco
+  labels:
+    app.kubernetes.io/name: payara-server
+    app.kubernetes.io/part-of: payara-server
+  # annotations:
+  #   metallb.universe.tf/address-pool: production-public-ips
+spec:
+  type: LoadBalancer
+  externalIPs:
+  - 128.5.9.82
+  ports:
+    - name: http
+      protocol: TCP
+      port: 8282
+    - name: my-port
+      protocol: TCP
+      port: 8181
+      targetPort: 8181
+    # - name: my-port-80
+    #   protocol: TCP
+    #   port: 80
+    - name: https
+      port: 4848
+      targetPort: 4848
+      protocol: TCP
+    # - name: https
+    #   port: 8181
+    #   targetPort: 8181
+    #   protocol: TCP
+  selector:
+    run: payara-server
