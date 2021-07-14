@@ -1,3 +1,8 @@
+Bag Attributes
+    localKeyID: 01 00 00 00 
+    friendlyName: mineco
+subject=/CN=*.mineco.gob.gt
+issuer=/C=GB/ST=Greater Manchester/L=Salford/O=Sectigo Limited/CN=Sectigo RSA Domain Validation Secure Server CA
 -----BEGIN CERTIFICATE-----
 MIIGNjCCBR6gAwIBAgIQehX8DJGkNilcXg3isueeRzANBgkqhkiG9w0BAQsFADCB
 jzELMAkGA1UEBhMCR0IxGzAZBgNVBAgTEkdyZWF0ZXIgTWFuY2hlc3RlcjEQMA4G
