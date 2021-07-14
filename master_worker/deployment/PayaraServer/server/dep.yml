@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: payara-server
-        image: jjolon/payaraServer:latest 
+        image: jjolon/payara-server:latest 
         imagePullPolicy: IfNotPresent
         ports:
           # - containerPort: 8080
