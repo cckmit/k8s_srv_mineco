@@ -31,7 +31,7 @@ spec:
           - containerPort: 80
             protocol: TCP
         volumeMounts:
-            - mountPath: "/glassfish5/glassfish/domains"
+            - mountPath: "/opt/payara/appserver/glassfish/domains"
               name: vol-payara
       volumes:
         - name: vol-payara
