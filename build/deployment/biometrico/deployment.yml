@@ -18,8 +18,8 @@ spec:
         image: jjolon/biometrico:latest
         imagePullPolicy: IfNotPresent
         ports:
-          # - containerPort: 80
-          #   protocol: TCP 
+          - containerPort: 80
+            protocol: TCP 
           - containerPort: 443
             protocol: TCP
         volumeMounts:
