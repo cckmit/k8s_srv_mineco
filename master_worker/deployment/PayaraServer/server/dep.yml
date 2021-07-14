@@ -30,10 +30,10 @@ spec:
             protocol: TCP
           - containerPort: 80
             protocol: TCP
-        volumeMounts:
-            - mountPath: "/opt/payara/appserver/glassfish/domains"
-              name: vol-payara
-      volumes:
-        - name: vol-payara
-          persistentVolumeClaim:
-            claimName: payara-deploy
+      #   volumeMounts:
+      #       - mountPath: "/opt/payara/appserver/glassfish/domains"
+      #         name: vol-payara
+      # volumes:
+      #   - name: vol-payara
+      #     persistentVolumeClaim:
+      #       claimName: payara-deploy
