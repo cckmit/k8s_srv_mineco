@@ -1,7 +1,7 @@
 FROM  payara/server-full
 
 COPY ojdbc7-12.1.0.jar /opt/payara/appserver/glassfish/domains/domain1/lib/
-COPY diaco/ /opt/payara/appserver/glassfish/domains/
+COPY ../diaco/ /opt/payara/appserver/glassfish/domains/
 # ENV DOMAIN_NAME=diaco
 # COPY bcpkix-jdk15on-155.jar /usr/lib/jvm/zulu8-ca-amd64/jre/lib/ext
 # COPY bcprov-jdk15on-155.jar /usr/lib/jvm/zulu8-ca-amd64/jre/lib/ext
