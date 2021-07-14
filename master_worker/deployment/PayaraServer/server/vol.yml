@@ -13,7 +13,7 @@ spec:
   accessModes:
     - ReadWriteOnce
   nfs:
-    server: 128.5.105.221
+    server: 128.5.8.222
     path: "/deployment/payara/diaco"
 
 ---
