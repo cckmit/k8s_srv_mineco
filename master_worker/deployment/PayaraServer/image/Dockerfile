@@ -7,7 +7,7 @@ USER root
 
 RUN mkdir -p certificates
 
-COPY ./certificate/ /certificates
+COPY mineco.p12 .
 
 # WORKDIR $JAVA_HOME/jre/bin
 
