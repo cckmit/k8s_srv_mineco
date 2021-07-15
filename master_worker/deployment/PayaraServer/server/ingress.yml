@@ -11,6 +11,7 @@ spec:
     - host: 128.5.9.82
       http:
         paths:
+          - path: /
           - backend:
               serviceName: service-payara-glassfish
               servicePort: 8181
