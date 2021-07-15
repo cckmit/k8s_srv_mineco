@@ -1,5 +1,8 @@
 FROM  payara/server-full
 
+ENV ADMIN_USER=admin\
+    ADMIN_PASSWORD=DTIdesa@2K21 
+
 # COPY ojdbc7-12.1.0.jar /opt/payara/appserver/glassfish/domains/domain1/lib/
 # USER root
 # RUN mkdir -p /opt/payara/appserver/glassfish/domains/diaco
