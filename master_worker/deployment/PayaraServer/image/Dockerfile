@@ -9,9 +9,9 @@ RUN mkdir -p certificates
 
 COPY mineco.p12 .
 
-# WORKDIR $JAVA_HOME/jre/bin
+WORKDIR $JAVA_HOME/jre/bin
 
-# RUN ./keytool -importkeystore -keypass mineco -destkeystore keystore.jks -srckeystore /opt/payara/certificate/mineco.p12 -srcstoretype PKCS12 -alias mineco_certificate -storepass changeit
+RUN ./keytool -importkeystore -keypass mineco -destkeystore keystore.jks -srckeystore /opt/payara/mineco.p12 -srcstoretype PKCS12 -alias mineco_certificate -storepass changeit
 
 # ./keytool -importkeystore -storepass mineco -destkeystore keystore.jks -srckeystore /opt/payara/mineco.p12 -srcstoretype PKCS12 -alias mineco_certificate 
 
