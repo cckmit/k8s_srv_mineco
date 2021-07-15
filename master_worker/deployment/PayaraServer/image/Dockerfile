@@ -11,7 +11,7 @@ COPY mineco.p12 .
 
 WORKDIR ${JAVA_HOME}/jre/bin
 
-RUN echo mineco | keytool -importkeystore  -storepass changeit -destkeystore keystore.jks -srckeystore /opt/payara/mineco.p12 -srcstoretype PKCS12 -alias mineco_certificate 
+RUN echo mineco | keytool -importkeystore -storepass changeit -destkeystore keystore.jks -srckeystore mineco.p12 -srcstoretype PKCS12 -alias mineco_certificate
 
 # ./keytool -importkeystore -storepass mineco -destkeystore keystore.jks -srckeystore /opt/payara/mineco.p12 -srcstoretype PKCS12 -alias mineco_certificate 
 
