@@ -5,7 +5,18 @@ ENV ADMIN_USER=admin\
 
 USER root
 
+RUN mkdir -p certificates
 
+COPY certificate/ /certificate
+
+WORKDIR $JAVA_HOME/jre/bin
+
+RUN ./keytool -importkeystore -keypass mineco -destkeystore keystore.jks -srckeystore /opt/payara/certificate/mineco.p12 -srcstoretype PKCS12 -alias mineco_certificate -storepass changeit
+
+# ./keytool -importkeystore -storepass mineco -destkeystore keystore.jks -srckeystore /opt/payara/mineco.p12 -srcstoretype PKCS12 -alias mineco_certificate 
+
+
+# ./keytool -importcert -trustcacerts -destkeystore cacerts.jks -file /opt/payara/mineco.crt -alias mineco_certificate
 
 # COPY ojdbc7-12.1.0.jar /opt/payara/appserver/glassfish/domains/domain1/lib/
 # RUN mkdir -p /opt/payara/appserver/glassfish/domains/diaco
