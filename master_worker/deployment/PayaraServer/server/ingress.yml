@@ -9,7 +9,7 @@ spec:
   - host: dev.mineco.gob.gt
     http:
       paths:
-      - path: /
+      - path: /test
         backend:
           serviceName: service-payara
           servicePort: 80
