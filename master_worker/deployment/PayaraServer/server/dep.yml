@@ -25,7 +25,8 @@ spec:
           - cluster.local
       containers:
       - name: payara-server
-        image: payara/server-full:latest 
+        # image: payara/server-full:latest 
+        image: jjolon/payara:v3
         ports:
           - containerPort: 8080
             protocol: TCP
