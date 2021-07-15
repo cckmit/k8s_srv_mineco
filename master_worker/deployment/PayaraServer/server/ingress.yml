@@ -10,6 +10,9 @@ spec:
     http:
       paths:
       - path: /test
+        pathType: Prefix
         backend:
           serviceName: service-payara
           servicePort: 80
+
+
