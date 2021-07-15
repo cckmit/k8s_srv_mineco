@@ -23,5 +23,8 @@ spec:
     - name: asadmin
       port: 4848
       protocol: TCP
+    - name: http-service
+      port: 8080
+      protocol: TCP
   selector:
     run: payara-server
