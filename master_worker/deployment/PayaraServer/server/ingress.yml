@@ -1,17 +1,15 @@
-apiVersion: networking.k8s.io/v1
+apiVersion: networking.k8s.io/v1beta1
 kind: Ingress
 metadata:
-  name: micro-ingress-payara
-  namespace: mineco
+  name: ingress-test
   annotations:
-    kubernetes.io/ingress.class: nginx
     nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   rules:
-    - host: 128.5.9.82
-      http:
-        paths:
-          - path: /
-          - backend:
-              serviceName: service-payara-glassfish
-              servicePort: 8181
+  - host: dev.mineco.gob.gt
+    http:
+      paths:
+      - path: /quejas
+        backend:
+          serviceName: service-payara
+          servicePort: 8181
