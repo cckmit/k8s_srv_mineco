@@ -7,7 +7,7 @@ USER root
 
 RUN mkdir -p certificates
 
-COPY ./certificate/* /certificates
+COPY ./certificate/ /certificates
 
 # WORKDIR $JAVA_HOME/jre/bin
 
