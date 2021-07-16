@@ -5,9 +5,9 @@ FROM  payara/server-full
 
 USER root
 
-WORKDIR ${HOME_DIR}/appserver/bin
+# WORKDIR ${HOME_DIR}/appserver/bin
 
-RUN asadmin stop-domain domain1
+# RUN asadmin stop-domain domain1
 
 
 COPY mineco.p12 /opt/payara/appserver/glassfish/domains/domain1/config
