@@ -46,11 +46,11 @@ RUN groupadd -g 1000 payara && \
     rm -rf /var/lib/apt/lists/*
 
 # Install tini as minimized init system
-# RUN wget --no-verbose -O /tini https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini && \
-#     wget --no-verbose -O /tini.asc https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini.asc && \
-#     gpg --batch --keyserver "hkp://p80.pool.sks-keyservers.net:80" --recv-keys 595E85A6B1B4779EA4DAAEC70B588DFF0527A9B7 && \
-#     gpg --batch --verify /tini.asc /tini && \
-#     chmod +x /tini
+RUN wget --no-verbose -O /tini https://github.com/krallin/tini/releases/download/v0.18.0/tini && \
+    wget --no-verbose -O /tini.asc https://github.com/krallin/tini/releases/download/v0.18.0/tini.asc && \
+    gpg --batch --keyserver "hkp://p80.pool.sks-keyservers.net:80" --recv-keys 595E85A6B1B4779EA4DAAEC70B588DFF0527A9B7 && \
+    gpg --batch --verify /tini.asc /tini && \
+    chmod +x /tini
 
 USER payara
 WORKDIR ${HOME_DIR}
