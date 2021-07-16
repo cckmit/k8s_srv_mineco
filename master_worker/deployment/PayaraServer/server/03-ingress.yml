@@ -16,7 +16,7 @@ spec:
         pathType: Prefix
         backend:
           service:
-            name: service-payara
+            name: payara-server
             port:
               number: 80
   - host: dev.mineco.gob.gt
@@ -26,6 +26,6 @@ spec:
         pathType: Prefix
         backend:
           service:
-            name: service-payara
+            name: payara-server
             port:
               number: 4848
