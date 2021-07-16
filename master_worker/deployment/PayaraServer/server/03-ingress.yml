@@ -18,11 +18,11 @@ spec:
           service:
             name: payara-server
             port:
-              number: 80
-      - path: /admin
-        pathType: Prefix
-        backend:
-          service:
-            name: payara-server
-            port:
               number: 4848
+      # - path: /admin
+      #   pathType: Prefix
+      #   backend:
+      #     service:
+      #       name: payara-server
+      #       port:
+      #         number: 4848
