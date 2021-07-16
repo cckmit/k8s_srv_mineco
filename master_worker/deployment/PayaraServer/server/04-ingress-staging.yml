@@ -16,7 +16,7 @@ spec:
     #colocar tus propios dominios
     - hosts:
       - dev.mineco.gob.gt
-      secretName: mineco-lets-encrypt-staging-tls
+      secretName: dev-lets-encrypt-staging-tls
   rules:
   - host: dev.mineco.gob.gt
     http:
@@ -27,11 +27,11 @@ spec:
           service:
             name: service-payara
             port:
-              number: 80
-      - path: /admin
-        pathType: Prefix
-        backend:
-          service:
-            name: service-payara
-            port:
               number: 4848
+      # - path: /admin
+      #   pathType: Prefix
+      #   backend:
+      #     service:
+      #       name: service-payara
+      #       port:
+      #         number: 4848
