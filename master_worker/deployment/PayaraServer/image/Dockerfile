@@ -22,7 +22,4 @@ RUN echo changeit | keytool  -delete -alias mineco_certificate -keystore keystor
 
 RUN echo changeit |  keytool -delete -alias mineco_certificate -keystore cacerts.jks
 
-RUN asadmin stop-domain domain1 \
-    asadmin start-domain domain1 
-    
 
