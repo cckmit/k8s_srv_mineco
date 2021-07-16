@@ -18,7 +18,7 @@ spec:
           service:
             name: service-payara
             port:
-              number: 4848
+              number: 8080
       # - path: /admin
       #   pathType: Prefix
       #   backend:
