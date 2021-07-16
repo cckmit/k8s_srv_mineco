@@ -33,8 +33,6 @@ RUN echo changeit |  keytool -delete -alias mineco_certificate -keystore cacerts
 
 WORKDIR ${HOME_DIR}/appserver/bin
 
-RUN asadmin start-domain domain1 && \
-    asadmin enable-secure-admin && \
-    asadmin restart-domain domain1 
+RUN asadmin start-domain domain1 
 
 WORKDIR ${HOME_DIR}
