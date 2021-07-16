@@ -1,7 +1,7 @@
 FROM  payara/server-full
 
-ENV ADMIN_USER=admin\
-    ADMIN_PASSWORD=admin
+# ENV ADMIN_USER=admin\
+#     ADMIN_PASSWORD=admin
 
 USER root
 
