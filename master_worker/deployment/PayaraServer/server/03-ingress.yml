@@ -19,9 +19,6 @@ spec:
             name: payara-server
             port:
               number: 80
-  - host: dev.mineco.gob.gt
-    http:
-      paths:
       - path: /admin
         pathType: Prefix
         backend:
