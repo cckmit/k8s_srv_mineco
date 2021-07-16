@@ -7,10 +7,10 @@ metadata:
     app.kubernetes.io/name: payara-server
     app.kubernetes.io/part-of: payara-server
 spec:
-  type: ClusterIP
-  # type: LoadBalancer
-  # externalIPs:
-  # - 128.5.9.82
+  # type: ClusterIP
+  type: LoadBalancer
+  externalIPs:
+  - 128.5.9.83
   ports:
     - name: http
       port: 80
