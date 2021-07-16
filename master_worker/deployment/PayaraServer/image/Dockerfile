@@ -9,8 +9,8 @@ COPY mineco.p12 /opt/payara/appserver/glassfish/domains/domain1/config
 COPY mineco.crt /opt/payara/appserver/glassfish/domains/domain1/config
 COPY mineco.key /opt/payara/appserver/glassfish/domains/domain1/config
 
-RUN echo "AS_ADMIN_PASSWORD=\nAS_ADMIN_NEWPASSWORD=${ADMIN_PASSWORD}" > /tmp/tmpfile && \
-    echo "AS_ADMIN_PASSWORD=${ADMIN_PASSWORD}" >> ${PASSWORD_FILE}
+# RUN echo "AS_ADMIN_PASSWORD=\nAS_ADMIN_NEWPASSWORD=${ADMIN_PASSWORD}" > /tmp/tmpfile && \
+#     echo "AS_ADMIN_PASSWORD=${ADMIN_PASSWORD}" >> ${PASSWORD_FILE}
 
 WORKDIR /opt/payara/appserver/glassfish/domains/domain1/config
 # WORKDIR ${JAVA_HOME}/jre/bin
@@ -30,6 +30,4 @@ WORKDIR ${HOME_DIR}
 
 
 
-RUN ${PAYARA_DIR}/bin/asadmin --user ${ADMIN_USER} --passwordfile=/tmp/tmpfile change-admin-password --domain_name=${DOMAIN_NAME} && \
-    ${PAYARA_DIR}/bin/asadmin --user=${ADMIN_USER} --passwordfile=${PASSWORD_FILE} start-domain ${DOMAIN_NAME} && \
-    ${PAYARA_DIR}/bin/asadmin --user=${ADMIN_USER} --passwordfile=${PASSWORD_FILE} enable-secure-admin 
+RUN ${PAYARA_DIR}/bin/asadmin --user=${ADMIN_USER} --passwordfile=${PASSWORD_FILE} start-domain ${DOMAIN_NAME}
