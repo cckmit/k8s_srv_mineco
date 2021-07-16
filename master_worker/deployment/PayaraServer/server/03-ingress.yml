@@ -16,7 +16,7 @@ spec:
         pathType: Prefix
         backend:
           service:
-            name: payara-server
+            name: service-payara
             port:
               number: 80
       # - path: /admin
