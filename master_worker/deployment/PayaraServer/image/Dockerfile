@@ -43,33 +43,10 @@ EXPOSE 4848 9009 8080 8181 8282 80
 
 # Payara version (5.183+)
 
-USER root
-
-COPY mineco.p12 /opt/payara/appserver/glassfish/domains/domain1/config
-COPY mineco.crt /opt/payara/appserver/glassfish/domains/domain1/config
-COPY mineco.key /opt/payara/appserver/glassfish/domains/domain1/config
-
-# RUN echo "AS_ADMIN_PASSWORD=\nAS_ADMIN_NEWPASSWORD=${ADMIN_PASSWORD}" > /tmp/tmpfile && \
-#     echo "AS_ADMIN_PASSWORD=${ADMIN_PASSWORD}" >> ${PASSWORD_FILE}
-
-WORKDIR /opt/payara/appserver/glassfish/domains/domain1/config
-# WORKDIR ${JAVA_HOME}/jre/bin
-
-RUN echo mineco | keytool -importkeystore -storepass changeit -destkeystore keystore.jks -srckeystore mineco.p12 -srcstoretype PKCS12 -alias mineco_certificate
-
-RUN echo changeit | keytool -importcert -trustcacerts -destkeystore cacerts.jks -file mineco.crt -alias mineco_certificate | echo yes
-
-RUN echo mineco |  keytool -importkeystore -storepass changeit -destkeystore cacerts.jks -srckeystore mineco.p12 -srcstoretype PKCS12 -alias mineco_certificate 
-
-RUN echo changeit | keytool  -delete -alias mineco_certificate -keystore keystore.jks 
-
-RUN echo changeit |  keytool -delete -alias mineco_certificate -keystore cacerts.jks
-
 ARG PAYARA_VERSION=5.201
 ARG PAYARA_PKG=https://search.maven.org/remotecontent?filepath=fish/payara/distributions/payara/${PAYARA_VERSION}/payara-${PAYARA_VERSION}.zip
 ARG PAYARA_SHA1=ea86d69233826b4d35612260ea4e8f81a9b992f2
 ARG TINI_VERSION=v0.18.0
-
 # Initialize the configurable environment variables
 ENV HOME_DIR=/opt/payara\
     PAYARA_DIR=/opt/payara/appserver\
@@ -138,6 +115,20 @@ RUN wget --no-verbose -O payara.zip ${PAYARA_PKG} && \
         ${PAYARA_DIR}/glassfish/domains/${DOMAIN_NAME}/osgi-cache \
         ${PAYARA_DIR}/glassfish/domains/${DOMAIN_NAME}/logs \
         ${PAYARA_DIR}/glassfish/domains/domain1
+
+
+USER root
+
+COPY mineco.p12 /opt/payara/appserver/glassfish/domains/production/config
+COPY mineco.crt /opt/payara/appserver/glassfish/domains/production/config
+COPY mineco.key /opt/payara/appserver/glassfish/domains/production/config
+WORKDIR /opt/payara/appserver/glassfish/domains/production/config
+RUN echo mineco | keytool -importkeystore -storepass changeit -destkeystore keystore.jks -srckeystore mineco.p12 -srcstoretype PKCS12 -alias mineco_certificate
+RUN echo changeit | keytool -importcert -trustcacerts -destkeystore cacerts.jks -file mineco.crt -alias mineco_certificate | echo yes
+RUN echo mineco |  keytool -importkeystore -storepass changeit -destkeystore cacerts.jks -srckeystore mineco.p12 -srcstoretype PKCS12 -alias mineco_certificate 
+RUN echo changeit | keytool  -delete -alias mineco_certificate -keystore keystore.jks 
+RUN echo changeit |  keytool -delete -alias mineco_certificate -keystore cacerts.jks
+
 
 # Copy across docker scripts
 COPY --chown=payara:payara bin/*.sh ${SCRIPT_DIR}/
