@@ -5,6 +5,8 @@ metadata:
   namespace: nginx-ingress
 spec:
   type: LoadBalancer
+  externalIPs:
+  - 128.5.9.71
   ports:
     - protocol: TCP
       port: 80
