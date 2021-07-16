@@ -10,9 +10,7 @@ COPY mineco.crt /opt/payara/appserver/glassfish/domains/domain1/config
 COPY mineco.key /opt/payara/appserver/glassfish/domains/domain1/config
 
 RUN echo "AS_ADMIN_PASSWORD=\nAS_ADMIN_NEWPASSWORD=${ADMIN_PASSWORD}" > /tmp/tmpfile && \
-    echo "AS_ADMIN_PASSWORD=${ADMIN_PASSWORD}" >> ${PASSWORD_FILE} && \
-    # Configure the payara domain
-    ${PAYARA_DIR}/bin/asadmin --user=${ADMIN_USER} --passwordfile=${PASSWORD_FILE} stop-domain ${DOMAIN_NAME}
+    echo "AS_ADMIN_PASSWORD=${ADMIN_PASSWORD}" >> ${PASSWORD_FILE}
 
 WORKDIR /opt/payara/appserver/glassfish/domains/domain1/config
 # WORKDIR ${JAVA_HOME}/jre/bin
