@@ -16,7 +16,7 @@ spec:
     #colocar tus propios dominios
     - hosts:
       - dev.mineco.gob.gt
-      secretName: dev-lets-encrypt-staging-tls
+      secretName: default-server-secret
   rules:
   - host: dev.mineco.gob.gt
     http:
