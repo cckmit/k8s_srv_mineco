@@ -41,15 +41,15 @@ metadata:
   namespace: mineco
   labels:
     name: filesystem-diaco
-  spec:
-    storageClassName: manual
-    capacity:
-      storage: 20Gi
-    accessModes:
-      - ReadWriteOnce
-    nfs:
-      server: 128.5.8.222
-      path: "/deployment/payara/filesystem"
+spec:
+  storageClassName: manual
+  capacity:
+    storage: 20Gi
+  accessModes:
+    - ReadWriteOnce
+  nfs:
+    server: 128.5.8.222
+    path: "/deployment/payara/filesystem"
 
 ---
 apiVersion: v1
