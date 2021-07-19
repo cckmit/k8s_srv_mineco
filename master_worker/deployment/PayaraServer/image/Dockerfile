@@ -5,8 +5,16 @@ FROM  payara/server-full
 
 USER root
 
-RUN apt-get update && apt-get -y install libreoffice
+RUN apt-get update && apt-get -y install libreoffice libreoffice-writer \ 
+    libreoffice-java-common \
+		libreoffice-core \
+		libreoffice-common \
+    apt-get -y -q remove libreoffice-gnome && \
+    apt -y autoremove && \
+	  rm -rf /var/lib/apt/lists/*
 
+
+RUN adduser --home=/opt/libreoffice --disabled-password --gecos "" --shell=/bin/bash libreoffice
 
 # WORKDIR ${HOME_DIR}/appserver/bin
 
