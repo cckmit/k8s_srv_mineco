@@ -8,8 +8,8 @@ USER root
 RUN apt-get update && apt-get -y install libreoffice libreoffice-writer \ 
     libreoffice-java-common \
 		libreoffice-core \
-		libreoffice-common \
-    apt-get -y -q remove libreoffice-gnome && \
+		libreoffice-common 
+RUN apt-get -y -q remove libreoffice-gnome && \
     apt -y autoremove && \
 	  rm -rf /var/lib/apt/lists/*
 
