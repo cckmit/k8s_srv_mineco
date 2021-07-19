@@ -3,10 +3,10 @@ FROM  payara/server-full
 # ENV ADMIN_USER=admin\
 #     ADMIN_PASSWORD=admin
 
+USER root
 
 RUN apt-get update && apt-get -y install libreoffice
 
-USER root
 
 # WORKDIR ${HOME_DIR}/appserver/bin
 
