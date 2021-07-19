@@ -64,8 +64,8 @@ spec:
   resources:
     requests:
       storage: 20Gi
-    selector:
-      matchLabels:
-        name: filesystem-diaco
+  selector:
+    matchLabels:
+      name: filesystem-diaco
 
 
