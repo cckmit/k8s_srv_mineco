@@ -1,0 +1,28 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress
+  namespace: rgm
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/rewrite-target: /
+    nginx.ingress.kubernetes.io/use-regex: "true"
+spec:
+  rules:
+  - host: dev.rgm.gob.gt
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: service-payara
+            port:
+              number: 80
+      # - path: /admin
+      #   pathType: Prefix
+      #   backend:
+      #     service:
+      #       name: payara-server
+      #       port:
+      #         number: 4848

@@ -1,0 +1,52 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: payara-server
+  namespace: rgm
+  labels:
+    run: payara-server
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      run: payara-server
+  template:
+    metadata:
+      labels:
+        run: payara-server
+    spec:
+      dnsPolicy: "None"
+      dnsConfig:
+        nameservers:
+          - 128.5.8.26
+        searches:
+          - mineco-dev.svc.cluster.local
+          - svc.cluster.local 
+          - cluster.local
+      containers:
+      - name: payara-server
+        # image: payara/server-full:latest
+        image: jjolon/payaraoffice:latest
+        ports:
+          - containerPort: 8080
+            protocol: TCP
+          - containerPort: 8181
+            protocol: TCP
+          - containerPort: 8282
+            protocol: TCP
+          - containerPort: 4848
+            protocol: TCP
+          - containerPort: 80
+            protocol: TCP
+        volumeMounts:
+            - mountPath: "/opt/payara/appserver/glassfish/domains/domain1"
+              name: vol-payara
+            # - mountPath: /home/diaco/Documentos
+            #   name: vol-filesystem
+      volumes:
+        - name: vol-payara
+          persistentVolumeClaim:
+            claimName: payara-deploy
+        # - name: vol-filesystem
+        #   persistentVolumeClaim:
+        #     claimName: filesystem-diaco
