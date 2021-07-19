@@ -41,7 +41,12 @@ spec:
         volumeMounts:
             - mountPath: "/opt/payara/appserver/glassfish/domains/domain1"
               name: vol-payara
+            - mountPath: /home/diaco/Documentos
+              name: vol-filesystem
       volumes:
         - name: vol-payara
           persistentVolumeClaim:
             claimName: payara-deploy
+        - name: vol-filesystem
+          persistentVolumeClaim:
+            claimName: filesystem-diaco
