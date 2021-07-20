@@ -80,6 +80,41 @@ spec:
   selector:
     matchLabels:
       name: payara-deploy-rgm
+---
+# persinsten signature
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: payara-deploy-signature
+  namespace: rgm
+  labels:
+    name: payara-deploy-signature
+spec:
+  storageClassName: manual
+  capacity:
+    storage: 20Gi
+  accessModes:
+    - ReadWriteOnce
+  nfs:
+    server: 128.5.8.222
+    path: "/deployment/payara/signature"
+
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: payara-deploy-signature
+  namespace: rgm
+spec:
+  storageClassName: manual
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 20Gi
+  selector:
+    matchLabels:
+      name: payara-deploy-signature
 
 ---
 
@@ -126,15 +161,15 @@ spec:
         volumeMounts:
             - mountPath: "/opt/payara/appserver/glassfish/domains/domain1"
               name: vol-payara
-            # - mountPath: /home/diaco/Documentos
-            #   name: vol-filesystem
+            - mountPath: /opt/firma
+              name: vol-signature
       volumes:
         - name: vol-payara
           persistentVolumeClaim:
             claimName: payara-deploy-rgm
-        # - name: vol-filesystem
-        #   persistentVolumeClaim:
-        #     claimName: filesystem-diaco
+        - name: vol-signature
+          persistentVolumeClaim:
+            claimName: payara-deploy-signature
 
 ---
 
