@@ -31,7 +31,7 @@ metadata:
 spec:
   type: LoadBalancer
   externalIPs:
-  - 128.5.9.82
+  - 128.5.9.84
   ports:
     - protocol: TCP
       port: 80
