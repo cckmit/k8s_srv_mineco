@@ -1,19 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: payara-server
+  name: payara-server-rgm
   namespace: rgm
   labels:
-    run: payara-server
+    run: payara-server-rgm
 spec:
   replicas: 1
   selector:
     matchLabels:
-      run: payara-server
+      run: payara-server-rgm
   template:
     metadata:
       labels:
-        run: payara-server
+        run: payara-server-rgm
     spec:
       dnsPolicy: "None"
       dnsConfig:
@@ -24,7 +24,7 @@ spec:
           - svc.cluster.local 
           - cluster.local
       containers:
-      - name: payara-server
+      - name: payara-server-rgm
         # image: payara/server-full:latest
         image: jjolon/payaraoffice:latest
         ports:
@@ -46,7 +46,7 @@ spec:
       volumes:
         - name: vol-payara
           persistentVolumeClaim:
-            claimName: payara-deploy
+            claimName: payara-deploy-rgm
         # - name: vol-filesystem
         #   persistentVolumeClaim:
         #     claimName: filesystem-diaco

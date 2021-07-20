@@ -1,11 +1,11 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: service-payara
+  name: payara-server-rgm
   namespace: rgm
   labels:
-    app.kubernetes.io/name: payara-server
-    app.kubernetes.io/part-of: payara-server
+    app.kubernetes.io/name: payara-server-rgm
+    app.kubernetes.io/part-of: payara-server-rgm
 spec:
   # type: ClusterIP
   type: LoadBalancer
@@ -28,4 +28,4 @@ spec:
       port: 8080
       protocol: TCP
   selector:
-    run: payara-server
+    run: payara-server-rgm
