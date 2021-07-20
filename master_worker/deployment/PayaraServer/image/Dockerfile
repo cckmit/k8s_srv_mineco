@@ -5,18 +5,22 @@ FROM  payara/server-full
 
 USER root
 
-RUN apt-get update && apt-get -y install libreoffice libreoffice-writer \ 
-    libreoffice-java-common \
-		libreoffice-core \
-		libreoffice-common 
-RUN apt-get -y -q remove libreoffice-gnome && \
-    apt -y autoremove && \
-	  rm -rf /var/lib/apt/lists/*
+RUN apt-get update && apt-get -y install wget
+
+RUN wget https://downloadarchive.documentfoundation.org/libreoffice/old/6.1.0.1/deb/x86_64/LibreOffice_6.1.0.1_Linux_x86-64_deb.tar.gz
+
+RUN tar -xvf LibreOffice_6.1.0.1_Linux_x86-64_deb.tar.gz
+
+WORKDIR /opt/payara/LibreOffice_6.1.0.1_Linux_x86-64_deb/DEBS
+
+RUN dpkg -i *.deb
+
+RUN apt-get install -y libglu1-mesa libxinerama1
+
+WORKDIR ${HOME_DIR}
 
 
-RUN adduser --home=/opt/libreoffice --disabled-password --gecos "" --shell=/bin/bash libreoffice
 
-# WORKDIR ${HOME_DIR}/appserver/bin
 
 # RUN asadmin stop-domain domain1
 
