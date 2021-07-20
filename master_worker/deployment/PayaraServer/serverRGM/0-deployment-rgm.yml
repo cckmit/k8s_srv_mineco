@@ -42,7 +42,7 @@ spec:
       targetPort: 443
       name: https
   selector:
-    app: nginx-ingress-rmg
+    app: nginx-ingress
 
 ---
 
