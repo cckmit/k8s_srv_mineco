@@ -3,7 +3,7 @@ EXPOSE 80 443
 
 RUN apt-get update && apt-get install -y \
         libfreetype6-dev \
-        gcc make autoconf lib-dev pkg-config \
+        gcc make autoconf libc-dev pkg-config \
         libjpeg62-turbo-dev \
         libmcrypt-dev \
         libpng-dev \
