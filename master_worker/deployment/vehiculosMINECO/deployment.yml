@@ -1,0 +1,196 @@
+#  Certificate SSL MINECO
+apiVersion: v1
+kind: Secret
+metadata:
+  name: default-server-secret
+  namespace: mineco
+type: kubernetes.io/tls
+data:
+  tls.crt: QmFnIEF0dHJpYnV0ZXMNCiAgICBsb2NhbEtleUlEOiAwMSAwMCAwMCAwMCANCiAgICBmcmllbmRseU5hbWU6IG1pbmVjbw0Kc3ViamVjdD0vQ049Ki5taW5lY28uZ29iLmd0DQppc3N1ZXI9L0M9R0IvU1Q9R3JlYXRlciBNYW5jaGVzdGVyL0w9U2FsZm9yZC9PPVNlY3RpZ28gTGltaXRlZC9DTj1TZWN0aWdvIFJTQSBEb21haW4gVmFsaWRhdGlvbiBTZWN1cmUgU2VydmVyIENBDQotLS0tLUJFR0lOIENFUlRJRklDQVRFLS0tLS0NCk1JSUdOakNDQlI2Z0F3SUJBZ0lRZWhYOERKR2tOaWxjWGczaXN1ZWVSekFOQmdrcWhraUc5dzBCQVFzRkFEQ0INCmp6RUxNQWtHQTFVRUJoTUNSMEl4R3pBWkJnTlZCQWdURWtkeVpXRjBaWElnVFdGdVkyaGxjM1JsY2pFUU1BNEcNCkExVUVCeE1IVTJGc1ptOXlaREVZTUJZR0ExVUVDaE1QVTJWamRHbG5ieUJNYVcxcGRHVmtNVGN3TlFZRFZRUUQNCkV5NVRaV04wYVdkdklGSlRRU0JFYjIxaGFXNGdWbUZzYVdSaGRHbHZiaUJUWldOMWNtVWdVMlZ5ZG1WeUlFTkINCk1CNFhEVEl4TURjd056QXdNREF3TUZvWERUSXlNRGd3TnpJek5UazFPVm93R2pFWU1CWUdBMVVFQXd3UEtpNXQNCmFXNWxZMjh1WjI5aUxtZDBNSUlCSWpBTkJna3Foa2lHOXcwQkFRRUZBQU9DQVE4QU1JSUJDZ0tDQVFFQTNzRUINCnIvQ0FMT3JEbEcvMk9aOW5ldm9uYk1UUHdocDdxWTFJMytUaXlLcjlHS1hWZStwK1JWdTRHYXpNTzZhakNHZzUNCjI4KzB5d3pXVHVqOENoYzEwTVdZa2oyYm51RmMvT0hEek0zaDQzdmxvcTdUVW12ZHFsaTBCU3RqYWFGTHRyNXYNCkMwOS8zS2lGcUxQUnZFK3kwV0Y0MTE5Z3RpSkhvOGZJVVk0cFZtWkNCZUlEdU5Ua2ZLU21mK0pRdmdaYnF5YTUNCmlXM1RhR0l0TEhPZEtJRElEK0FsamJJZlpCQWhDZFMrYWdndUdxV0tFSkNNd3R2aEdLV2haaXIxTENTeFhRNjENCmJPbE9DclYrSTd2bXlFN0VxMTVxNUlTY2oyZm1WenJlZWV5VTZUMGhtVnllRCtkYTBkMnppdWpFTXdBMDNLVHcNCkNNNE1pc054MXAwWEJZS0FTUUlEQVFBQm80SURBRENDQXZ3d0h3WURWUjBqQkJnd0ZvQVVqWXhleEZTdGl1RjMNCjZadjVtd1hodUFHTlllRXdIUVlEVlIwT0JCWUVGT3dVdDRYWDNXalI1T2ZIVSt5MDZadzhWMDV6TUE0R0ExVWQNCkR3RUIvd1FFQXdJRm9EQU1CZ05WSFJNQkFmOEVBakFBTUIwR0ExVWRKUVFXTUJRR0NDc0dBUVVGQndNQkJnZ3INCkJnRUZCUWNEQWpCSkJnTlZIU0FFUWpCQU1EUUdDeXNHQVFRQnNqRUJBZ0lITUNVd0l3WUlLd1lCQlFVSEFnRVcNCkYyaDBkSEJ6T2k4dmMyVmpkR2xuYnk1amIyMHZRMUJUTUFnR0JtZUJEQUVDQVRDQmhBWUlLd1lCQlFVSEFRRUUNCmVEQjJNRThHQ0NzR0FRVUZCekFDaGtOb2RIUndPaTh2WTNKMExuTmxZM1JwWjI4dVkyOXRMMU5sWTNScFoyOVMNClUwRkViMjFoYVc1V1lXeHBaR0YwYVc5dVUyVmpkWEpsVTJWeWRtVnlRMEV1WTNKME1DTUdDQ3NHQVFVRkJ6QUINCmhoZG9kSFJ3T2k4dmIyTnpjQzV6WldOMGFXZHZMbU52YlRBcEJnTlZIUkVFSWpBZ2dnOHFMbTFwYm1WamJ5NW4NCmIySXVaM1NDRFcxcGJtVmpieTVuYjJJdVozUXdnZ0YrQmdvckJnRUVBZFo1QWdRQ0JJSUJiZ1NDQVdvQmFBQjENCkFFYWxWZXQxK3BFZ01MV2lpV24wODMwUkxFRjB2djFKdUlXcjh2eHcvbTFIQUFBQmVvSkFBL2tBQUFRREFFWXcNClJBSWdjTWo0dnJoL0lrZ2tvTXNsanhBbDlxOVNnUVNERElFNnNvNE9YeXErNW84Q0lDSzFvVDh2TnlVT2N4ZngNCkYvWU1lU3liREJ0bFRaMDFnbDdxUWw4RDYzZEFBSFlBUWNqS3NkOGlSa29ReHFFNkNVS0hYazR4aXhzRDYrdEwNCngyandrR0tXQnZZQUFBRjZna0FEdVFBQUJBTUFSekJGQWlFQXpMT2dEaHB5UVMxWW8yUS8raFJUUmdObmsrL1oNCjczOGNUTXhLSlBkTlFrc0NJRW94V2NXTEdzYjR6ZkhUY0k5dUFINThtWkFoLzdvVkdzWDR2SXhMb0IxYkFIY0ENCktYbSs4SjQ1T1NId1ZuT2ZZNlYzNWI1WGZaeGdDdmo1VFYwbVhDVmR4NFFBQUFGNmdrQURrQUFBQkFNQVNEQkcNCkFpRUFwTGVmbVhGR3pJNnh5OVQ2dUV6QXZISHJMZGtvb0J4QjVXNWE5cTlJTDc4Q0lRRFJlTmVSdmxXbXNNWUENCldLeGU4ZnRPRGRpS2IyMXpVazZ5c1JTZWVJdCttakFOQmdrcWhraUc5dzBCQVFzRkFBT0NBUUVBVElobUQ5bUMNCnFHRGVlVWRaYXIxZXYrOEJ6cE44clpYdFE3NUt2VXU3bjVPcnlCekh4bkFLLzFhWlFsc1VWUDFielZVSFhCdE0NCkx6bGNxQ2Z5QlFtbU5wSXRCS3lQL2JsZ1VuT0V3Rjl0Q24xZ2kyK011Vkg3Nk9hYy9WVFhWamgyQVEzZVAwaW4NCmo5TE1vWmU1TkVLRzlidUNleENhM3I4N3BZc3d0RXZTRmxpS3MzNFVxT3BvSEdrdjY3bHV4eDllQVVET0doK0QNCndCYUN0cTJYbmdUVzNTUFpoUEhtZk9nQm0zcnlGL3g2Y1JBcWFiZzVUbjZidVBldGt3MEttNXBXNkZncHFTeloNCjB2V2FZWitEQ0Zsb05XakU4d2dscjREQXZWRlV3RFRjeERNdkdDbXZGbjF3Q0E2eGhSMXF5WURWUHpEZndrc3QNCjVtZUxsTTN3ZXhoNUhRPT0NCi0tLS0tRU5EIENFUlRJRklDQVRFLS0tLS0NCg==
+  tls.key: QmFnIEF0dHJpYnV0ZXMNCiAgICBNaWNyb3NvZnQgTG9jYWwgS2V5IHNldDogPE5vIFZhbHVlcz4NCiAgICBsb2NhbEtleUlEOiAwMSAwMCAwMCAwMCANCiAgICBmcmllbmRseU5hbWU6IGxlLTllY2RmYTFkLWE3NDktNGEwOS1iMjNkLTQwZTg2ZGEyZjEwYg0KICAgIE1pY3Jvc29mdCBDU1AgTmFtZTogTWljcm9zb2Z0IFJTQSBTQ2hhbm5lbCBDcnlwdG9ncmFwaGljIFByb3ZpZGVyDQpLZXkgQXR0cmlidXRlcw0KICAgIFg1MDl2MyBLZXkgVXNhZ2U6IDEwIA0KLS0tLS1CRUdJTiBQUklWQVRFIEtFWS0tLS0tDQpNSUlFdndJQkFEQU5CZ2txaGtpRzl3MEJBUUVGQUFTQ0JLa3dnZ1NsQWdFQUFvSUJBUURld1FHdjhJQXM2c09VDQpiL1k1bjJkNitpZHN4TS9DR251cGpVamY1T0xJcXYwWXBkVjc2bjVGVzdnWnJNdzdwcU1JYURuYno3VExETlpPDQo2UHdLRnpYUXhaaVNQWnVlNFZ6ODRjUE16ZUhqZStXaXJ0TlNhOTJxV0xRRksyTnBvVXUydm04TFQzL2NxSVdvDQpzOUc4VDdMUllYalhYMkMySWtlang4aFJqaWxXWmtJRjRnTzQxT1I4cEtaLzRsQytCbHVySnJtSmJkTm9ZaTBzDQpjNTBvZ01nUDRDV05zaDlrRUNFSjFMNXFDQzRhcFlvUWtJekMyK0VZcGFGbUt2VXNKTEZkRHJWczZVNEt0WDRqDQp1K2JJVHNTclhtcmtoSnlQWitaWE90NTU3SlRwUFNHWlhKNFA1MXJSM2JPSzZNUXpBRFRjcFBBSXpneUt3M0hXDQpuUmNGZ29CSkFnTUJBQUVDZ2dFQUpMQ0FvU1NKVUJ5bzh5bVAwa1RscS9WSkNock9wNGRxSis2citxaStDOVJTDQpGTDIzMEkyNmw1ejRVVTVMWTJYYWc1ZDdOQy9kZFBaYjFDcCszUUNlcmhEbHhPeWQxY2tENG1rak1YZ1Z4VHpTDQpnWDJ2TSt1dFdwSDZzTUZKUWd3OXBzOXVCZHhsMElmM1grYWlYSlI1L1EvRGNpSDFFWHJLOXZpQWo2Sk5QN3dRDQpSTG5ldDlUSlo5K1NnU3BscXh0UytnSUUzSlRlenZlZjFzNTZyb2hsK2s5N2JnTVQ5aFF3RU9aUlJyUTZMNC9kDQpnNlljSmhOUTJ5czJlUGs5Rm5Sa0FnZmtldEVjQzJIZktPM3g5MDJtR1lDa01lcnlQa3plcmVKWGdKNjYxNkRtDQp5d3FuREpwY1R3RHMyZTRrQmZXVEJDT3FYSktTdzN1RlBSclVwQ0ErVXdLQmdRRGcvaDJrVURjL3FudTkyNHV5DQpENGZvT2VIRmVNUFp3OEdBY2hhdlZFUWRRVk1lcGVySFRUcC9aOHZheitFNVNNWnk3THg2bmdJVDZEQlVvN2dsDQplNzR0RjF3K0hTZWgvdTJJcDVVbWpDWFpQYXh0ZFkzNmNmakh4TEZ1TjR5RFZROG1BN2Q3SEZEWTlROVBhenRWDQpXUm9SaUZINjBHUm1QT1pnTzVKbkhZd01Kd0tCZ1FEOWMraGk3UGswY0o0SU03Ymw0MTVUY1NhZnZjS01IWmR4DQpKOVBYR09GaWlqYitCaUo4QnRpMkE3d1J5Y0x6RWVFT2x3OTR5eFpmalRXQVJBemJEbUw0MlZxY1Zyb1REa0xwDQprbzl2VXAydnhKS0RzdTN6RUIxdVQ0b096TmlnOUxpRk5XVld3N0l2aVZJMDlOdmJsZTFmTk9oL2F4NWJIS2lPDQppWkxNUzRBbUR3S0JnUUNsREVVYVlHM25HbDBqN1lZUTNTdkp3NHhIbkV1djE5Wi9MekpNOC9menJoUVhpNGNyDQpKUkFnbmpnQkVEWWNHN0xZWTZud0dURlZBU05UTTdiR2FId2QvK0QrLzh3dkhoK0orOFdDUFpVV1JCUFZTRU1hDQowYmk2Y3lQbHdvSWxaYVJ6TW83S2xQOEo2TnVPV3c5dmtLbDY2eEdZZUg3dU1RYWUyWlNRYURCd1NRS0JnUURRDQo0cjlMRU4yT2I2Wi9RZ2ZpVGRMRzJJR3BzOTVzVmxNaktsejRjUVFJajdzay91OWE0dFdtcFV0U0tjUW5TcnYrDQpwMWRVQ2FVRjJUNlgyUDN6YUZiL216dUhrQjdKWjc2VC9IdUVsMFZvd0l5MFNEcStVYkMvNG9QNUVMRVZicnZJDQo1YW9BcVVibzBMZFU5OTFmaTZCWUVDWHlKZG1kNCsremtnVFBwUVlYMXdLQmdRQ3RyT29RWFRWRjRRbG9oTU0vDQoyeTJCbHovdnMrdTlvNEdIVTdVUFd0WHlqZXJVU25kdWJtdm14TXZTcm94enJZOEt0YXRHRVpDQ2NhOHNheThsDQpKQmExRlYrUDhKc2I5cDYzd3V3Q1dtb3MvdCtPWUoyUGZsM2N0WC9nbnRpenFKc3ZucmMyRVN0TldvMndrc3p2DQphbEJ5YlB5T0pvZkVCcjVnQ2hyM3A2aUEzZz09DQotLS0tLUVORCBQUklWQVRFIEtFWS0tLS0tDQo=
+---
+#  INGRESS MINECO
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-ingress-vehiculo
+  namespace: nginx-ingress
+spec:
+  type: LoadBalancer
+  externalIPs:
+  - 128.5.9.86
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+      name: http
+    - protocol: TCP
+      port: 443
+      targetPort: 443
+      name: https
+  selector:
+    app: nginx-ingress
+
+
+---
+
+# VOLUME DATA
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: vehiculo-deploy
+  namespace: mineco
+  labels:
+    name: vehiculo-deploy
+spec:
+  storageClassName: manual
+  capacity:
+    storage: 20Gi
+  accessModes:
+    - ReadWriteOnce
+  nfs:
+    server: 128.5.8.222
+    path: "/deployment/vehiculos"
+
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: vehiculo-deploy
+  namespace: mineco
+spec:
+  storageClassName: manual
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 20Gi
+  selector:
+    matchLabels:
+      name: vehiculo-deploy
+
+---
+# DEPLOYMENT APP
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: payara-server
+  namespace: mineco
+  labels:
+    run: payara-server
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      run: payara-server
+  template:
+    metadata:
+      labels:
+        run: payara-server
+    spec:
+      dnsPolicy: "None"
+      dnsConfig:
+        nameservers:
+          - 128.5.8.26
+        searches:
+          - mineco-dev.svc.cluster.local
+          - svc.cluster.local 
+          - cluster.local
+      containers:
+      - name: payara-server
+        # image: payara/server-full:latest
+        image: jjolon/payara:v5
+        ports:
+          - containerPort: 8080
+            protocol: TCP
+          - containerPort: 8181
+            protocol: TCP
+          - containerPort: 8282
+            protocol: TCP
+          - containerPort: 4848
+            protocol: TCP
+          - containerPort: 80
+            protocol: TCP
+        volumeMounts:
+            - mountPath: "/opt/payara/appserver/glassfish/domains/domain1"
+              name: vol-payara
+            - mountPath: /home/diaco/Documentos/FILESERVER
+              name: vol-filesystem
+            - mountPath: /opt/payara/deployments
+              name: vol-deployment
+      volumes:
+        - name: vol-payara
+          persistentVolumeClaim:
+            claimName: payara-deploy
+        - name: vol-filesystem
+          persistentVolumeClaim:
+            claimName: filesystem-diaco
+        - name: vol-deployment
+          persistentVolumeClaim:
+            claimName: deployment-diaco
+
+
+---
+# SERVICE INGRESS ADMIN
+apiVersion: v1
+kind: Service
+metadata:
+  name: service-payara
+  namespace: mineco
+  labels:
+    app.kubernetes.io/name: payara-server
+    app.kubernetes.io/part-of: payara-server
+spec:
+  # type: ClusterIP
+  type: LoadBalancer
+  externalIPs:
+  - 128.5.9.83
+  ports:
+    - name: http
+      port: 80
+      protocol: TCP
+    - name: listener-2
+      port: 8282
+      protocol: TCP
+    - name: listener-1
+      port: 8181
+      protocol: TCP
+    - name: asadmin
+      port: 4848
+      protocol: TCP
+    - name: http-service
+      port: 8080
+      protocol: TCP
+  selector:
+    run: payara-server
+---
+# INGRESS CERTIFICATE SSL
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress
+  namespace: mineco
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/rewrite-target: /
+    nginx.ingress.kubernetes.io/use-regex: "true"
+    # add an annotation indicating the issuer to use.
+    cert-manager.io/cluster-issuer: letsencrypt-staging
+    acme.cert-manager.io/http01-edit-in-place: "true"
+    cert-manager.io/issue-temporary-certificate: "true"
+spec:
+  tls:
+    - hosts:
+      - dev.mineco.gob.gt
+      secretName: default-server-secret
+  rules:
+  - host: dev.mineco.gob.gt
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: service-payara
+            port:
+              number: 80
