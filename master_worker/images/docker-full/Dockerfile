@@ -1,4 +1,4 @@
-FROM php:7.2-apache 
+FROM php:7.3-apache 
 EXPOSE 80 443
 
 RUN apt-get update && apt-get install -y \
