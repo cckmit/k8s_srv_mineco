@@ -182,7 +182,7 @@ spec:
       containers:
       - name: payara-server
         # image: payara/server-full:latest
-        image: jjolon/payara:v4
+        image: jjolon/payara:v5
         ports:
           - containerPort: 8080
             protocol: TCP
