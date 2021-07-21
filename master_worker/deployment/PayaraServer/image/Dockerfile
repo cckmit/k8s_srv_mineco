@@ -5,7 +5,7 @@ FROM  payara/server-full
 
 USER root
 
-RUN mkdir /home/diaco/Documentos/FILESERVER/
+RUN mkdir -p /home/diaco/Documentos/FILESERVER/
 
 RUN apt-get update && apt-get -y install wget
 
