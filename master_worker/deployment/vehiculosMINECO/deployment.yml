@@ -106,7 +106,7 @@ spec:
           - containerPort: 80
             protocol: TCP
         volumeMounts:
-            - mountPath: "/var/www/html "
+            - mountPath: "/var/www/html"
               name: vol-php-vehiculo
       volumes:
         - name: vol-php-vehiculo
