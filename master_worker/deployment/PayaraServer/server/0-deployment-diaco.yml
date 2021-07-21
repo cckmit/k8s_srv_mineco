@@ -157,19 +157,19 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: payara-server-rgm
-  namespace: rgm
+  name: payara-server
+  namespace: mineco
   labels:
-    run: payara-server-rgm
+    run: payara-server
 spec:
   replicas: 1
   selector:
     matchLabels:
-      run: payara-server-rgm
+      run: payara-server
   template:
     metadata:
       labels:
-        run: payara-server-rgm
+        run: payara-server
     spec:
       dnsPolicy: "None"
       dnsConfig:
@@ -180,7 +180,7 @@ spec:
           - svc.cluster.local 
           - cluster.local
       containers:
-      - name: payara-server-rgm
+      - name: payara-server
         # image: payara/server-full:latest
         image: jjolon/payara:v4
         ports:
@@ -204,7 +204,7 @@ spec:
       volumes:
         - name: vol-payara
           persistentVolumeClaim:
-            claimName: payara-deploy-rgm
+            claimName: payara-deploy
         - name: vol-filesystem
           persistentVolumeClaim:
             claimName: filesystem-diaco
