@@ -13,7 +13,6 @@ metadata:
     cert-manager.io/issue-temporary-certificate: "true"
 spec:
   tls:
-    #colocar tus propios dominios
     - hosts:
       - dev.mineco.gob.gt
       secretName: default-server-secret
@@ -28,10 +27,3 @@ spec:
             name: service-payara
             port:
               number: 80
-      # - path: /admin
-      #   pathType: Prefix
-      #   backend:
-      #     service:
-      #       name: service-payara
-      #       port:
-      #         number: 4848
