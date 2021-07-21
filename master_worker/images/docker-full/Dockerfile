@@ -1,6 +1,8 @@
 FROM php:7.3-apache 
 EXPOSE 80 443
 
+COPY vhost.conf /etc/apache2/sites-available/000-default.conf 
+
 RUN apt-get update && apt-get install -y \
         libfreetype6-dev \
         gcc make autoconf libc-dev pkg-config \
