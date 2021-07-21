@@ -3,6 +3,7 @@ EXPOSE 80 443
 
 RUN apt-get update && apt-get install -y \
         libfreetype6-dev \
+        gcc make autoconf lib-dev pkg-config \
         libjpeg62-turbo-dev \
         libmcrypt-dev \
         libpng-dev \
@@ -13,7 +14,7 @@ RUN apt-get update && apt-get install -y \
         nano \
         python2  \
         iputils-ping  \
-    && pecl install mcrypt-1.0.1  \
+    && pecl install mcrypt-1.0.2  \
     && docker-php-ext-install -j$(nproc) iconv   \
     && docker-php-ext-install zip  \
     && docker-php-ext-install pdo_mysql   \
