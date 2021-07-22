@@ -48,9 +48,11 @@ spec:
     storage: 20Gi
   accessModes:
     - ReadWriteOnce
-  nfs:
-    server: 128.5.8.222
-    path: "/deployment/vehiculos"
+  hostPath:
+    path: "/deployment/application/vehiculosmineco"
+  # nfs:
+  #   server: 128.5.8.222
+  #   path: "/deployment/vehiculos"
 
 ---
 apiVersion: v1
