@@ -35,6 +35,7 @@ RUN chown -R www-data:www-data /var/www/html
 WORKDIR /var/www/html
 
 RUN a2enmod headers \
+    && a2enmod rewrite \
    && service apache2 restart 
 
 RUN echo "\
