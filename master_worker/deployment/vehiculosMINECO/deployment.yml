@@ -25,6 +25,7 @@ spec:
       name: https
   selector:
     app: nginx-ingress
+    run: vehiculo-server
 
 
 ---
@@ -112,56 +113,56 @@ spec:
 
 
 ---
-apiVersion: v1
-kind: Service
-metadata:
-  name: vehiculo-server
-  namespace: mineco
-  labels:
-    app.kubernetes.io/name: vehiculo-server
-    app.kubernetes.io/part-of: vehiculo-server
-spec:
-  # type: ClusterIP
-  type: LoadBalancer
-  externalIPs:
-  - 128.5.9.87
-  ports:
-    - name: http
-      port: 80
-      protocol: TCP
-    - name: listener-2
-      port: 443
-      protocol: TCP
-  selector:
-    run: vehiculo-server
+# apiVersion: v1
+# kind: Service
+# metadata:
+#   name: vehiculo-server
+#   namespace: mineco
+#   labels:
+#     app.kubernetes.io/name: vehiculo-server
+#     app.kubernetes.io/part-of: vehiculo-server
+# spec:
+#   # type: ClusterIP
+#   type: LoadBalancer
+#   externalIPs:
+#   - 128.5.9.87
+#   ports:
+#     - name: http
+#       port: 80
+#       protocol: TCP
+#     - name: listener-2
+#       port: 443
+#       protocol: TCP
+#   selector:
+#     run: vehiculo-server
 
-# INGRESS CERTIFICATE SSL
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: ingress-vehiculos
-  namespace: mineco
-  annotations:
-    kubernetes.io/ingress.class: nginx
-    nginx.ingress.kubernetes.io/rewrite-target: /
-    nginx.ingress.kubernetes.io/use-regex: "true"
-    # add an annotation indicating the issuer to use.
-    cert-manager.io/cluster-issuer: letsencrypt-staging
-    acme.cert-manager.io/http01-edit-in-place: "true"
-    cert-manager.io/issue-temporary-certificate: "true"
-spec:
-  tls:
-    - hosts:
-      - vehiculos.mineco.gob.gt
-      secretName: default-server-secret
-  rules:
-  - host: vehiculos.mineco.gob.gt
-    http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: vehiculo-server
-            port:
-              number: 80
+# # INGRESS CERTIFICATE SSL
+# apiVersion: networking.k8s.io/v1
+# kind: Ingress
+# metadata:
+#   name: ingress-vehiculos
+#   namespace: mineco
+#   annotations:
+#     kubernetes.io/ingress.class: nginx
+#     nginx.ingress.kubernetes.io/rewrite-target: /
+#     nginx.ingress.kubernetes.io/use-regex: "true"
+#     # add an annotation indicating the issuer to use.
+#     cert-manager.io/cluster-issuer: letsencrypt-staging
+#     acme.cert-manager.io/http01-edit-in-place: "true"
+#     cert-manager.io/issue-temporary-certificate: "true"
+# spec:
+#   tls:
+#     - hosts:
+#       - vehiculos.mineco.gob.gt
+#       secretName: default-server-secret
+#   rules:
+#   - host: vehiculos.mineco.gob.gt
+#     http:
+#       paths:
+#       - path: /
+#         pathType: Prefix
+#         backend:
+#           service:
+#             name: vehiculo-server
+#             port:
+#               number: 80
