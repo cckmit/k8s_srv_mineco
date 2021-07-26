@@ -10,6 +10,9 @@ kind: Service
 metadata:
   name: nginx-ingress-vehiculo
   namespace: nginx-ingress
+  labels:
+    app.kubernetes.io/name: vehiculo-server
+    app.kubernetes.io/part-of: vehiculo-server
 spec:
   type: LoadBalancer
   externalIPs:
