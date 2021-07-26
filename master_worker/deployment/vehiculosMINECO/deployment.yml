@@ -5,30 +5,26 @@ metadata:
   namespace: mineco
 ---
 #  INGRESS MINECO
-# apiVersion: v1
-# kind: Service
-# metadata:
-#   name: nginx-ingress-vehiculo
-#   namespace: nginx-ingress
-#   labels:
-#     app.kubernetes.io/name: vehiculo-server
-#     app.kubernetes.io/part-of: vehiculo-server
-# spec:
-#   type: LoadBalancer
-#   externalIPs:
-#   - 128.5.9.86
-#   ports:
-#     - protocol: TCP
-#       port: 80
-#       targetPort: 80
-#       name: http
-#     - protocol: TCP
-#       port: 443
-#       targetPort: 443
-#       name: https
-#   selector:
-#     app: nginx-ingress
-#     run: vehiculo-server
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-ingress-vehiculo
+  namespace: nginx-ingress
+spec:
+  type: LoadBalancer
+  externalIPs:
+  - 128.5.9.86
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+      name: http
+    - protocol: TCP
+      port: 443
+      targetPort: 443
+      name: https
+  selector:
+    app: nginx-ingress
 
 
 ---
@@ -125,10 +121,10 @@ metadata:
     app.kubernetes.io/name: vehiculo-server
     app.kubernetes.io/part-of: vehiculo-server
 spec:
-  # type: ClusterIP
-  type: LoadBalancer
-  externalIPs:
-  - 128.5.9.86
+  type: ClusterIP
+  # type: LoadBalancer
+  # externalIPs:
+  # - 128.5.9.86
   ports:
     - name: http
       port: 80
