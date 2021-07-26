@@ -38,6 +38,6 @@ spec:
         pathType: Prefix
         backend:
           service:
-            name: nginx-ingress-vehiculo
+            name: vehiculo-server
             port:
               number: 80
