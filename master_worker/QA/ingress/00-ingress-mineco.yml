@@ -26,6 +26,6 @@ spec:
         pathType: Prefix
         backend:
           service:
-            name: sic-server
+            name: sic-server-qa
             port:
               number: 80
