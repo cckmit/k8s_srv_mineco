@@ -2,7 +2,7 @@ apiVersion: v1
 kind: ServiceAccount
 metadata:
   name: payara-server
-  namespace: mineco
+  namespace: mineco-qa
 ---
 
 #  INGRESS MINECO
@@ -35,7 +35,7 @@ apiVersion: v1
 kind: PersistentVolume
 metadata:
   name: payara-deploy
-  namespace: mineco
+  namespace: mineco-qa
   labels:
     name: payara-deploy
 spec:
@@ -53,7 +53,7 @@ apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: payara-deploy
-  namespace: mineco
+  namespace: mineco-qa
 spec:
   storageClassName: manual
   accessModes:
@@ -70,7 +70,7 @@ apiVersion: v1
 kind: PersistentVolume
 metadata:
   name: filesystem-diaco
-  namespace: mineco
+  namespace: mineco-qa
   labels:
     name: filesystem-diaco
 spec:
@@ -88,7 +88,7 @@ apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: filesystem-diaco
-  namespace: mineco
+  namespace: mineco-qa
 spec:
   storageClassName: manual
   accessModes:
@@ -104,7 +104,7 @@ apiVersion: v1
 kind: PersistentVolume
 metadata:
   name: deployment-diaco
-  namespace: mineco
+  namespace: mineco-qa
   labels:
     name: deployment-diaco
 spec:
@@ -122,7 +122,7 @@ apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: deployment-diaco
-  namespace: mineco
+  namespace: mineco-qa
 spec:
   storageClassName: manual
   accessModes:
@@ -142,7 +142,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: payara-server
-  namespace: mineco
+  namespace: mineco-qa
   labels:
     run: payara-server
 spec:
@@ -202,7 +202,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: service-payara
-  namespace: mineco
+  namespace: mineco-qa
   labels:
     app.kubernetes.io/name: payara-server
     app.kubernetes.io/part-of: payara-server

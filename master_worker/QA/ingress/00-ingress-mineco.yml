@@ -3,7 +3,7 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: ingress
-  namespace: mineco
+  namespace: mineco-qa
   annotations:
     kubernetes.io/ingress.class: nginx
     nginx.ingress.kubernetes.io/rewrite-target: /
@@ -16,38 +16,16 @@ metadata:
 spec:
   tls:
     - hosts:
-      - dev.mineco.gob.gt
-      - www.dev.mineco.gob.gt
-      secretName: default-server-secret
-    - hosts:
-      - vehiculos.mineco.gob.gt
-      - www.vehiculos.mineco.gob.gt
+      - qa.mineco.gob.gt
       secretName: default-server-secret
   rules:
-  - host: dev.mineco.gob.gt
+  - host: qa.mineco.gob.gt
     http:
       paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: service-payara
-            port:
-              number: 80
       - path: /SIC
         pathType: Prefix
         backend:
           service:
             name: sic-server
-            port:
-              number: 80
-  - host: vehiculos.mineco.gob.gt
-    http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: vehiculo-server
             port:
               number: 80
