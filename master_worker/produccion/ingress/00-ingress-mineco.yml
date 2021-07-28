@@ -9,8 +9,8 @@ metadata:
     nginx.ingress.kubernetes.io/rewrite-target: /
     nginx.ingress.kubernetes.io/use-regex: "true"
     # add an annotation indicating the issuer to use.
-    # cert-manager.io/cluster-issuer: letsencrypt-staging
-    cert-manager.io/cluster-issuer: letsencrypt-prod
+    cert-manager.io/cluster-issuer: letsencrypt-staging
+    # cert-manager.io/cluster-issuer: letsencrypt-prod
     acme.cert-manager.io/http01-edit-in-place: "true"
     cert-manager.io/issue-temporary-certificate: "true"
 spec:
@@ -32,6 +32,13 @@ spec:
         backend:
           service:
             name: service-payara
+            port:
+              number: 80
+      - path: /SIC
+        pathType: Prefix
+        backend:
+          service:
+            name: sic-server
             port:
               number: 80
   - host: vehiculos.mineco.gob.gt
