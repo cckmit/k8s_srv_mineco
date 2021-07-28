@@ -1,0 +1,130 @@
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: vehiculo-server
+  namespace: mineco
+---
+#  INGRESS MINECO
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-ingress-vehiculo
+  namespace: nginx-ingress
+spec:
+  type: LoadBalancer
+  externalIPs:
+  - 128.5.9.86
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+      name: http
+    - protocol: TCP
+      port: 443
+      targetPort: 443
+      name: https
+  selector:
+    app: nginx-ingress
+
+
+---
+
+# VOLUME DATA
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: vehiculo-deploy
+  namespace: mineco
+  labels:
+    name: vehiculo-deploy
+spec:
+  storageClassName: manual
+  capacity:
+    storage: 20Gi
+  accessModes:
+    - ReadWriteOnce
+  nfs:
+    server: 128.5.8.222
+    path: "/deployment/vehiculos"
+
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: vehiculo-deploy
+  namespace: mineco
+spec:
+  storageClassName: manual
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 20Gi
+  selector:
+    matchLabels:
+      name: vehiculo-deploy
+
+---
+# DEPLOYMENT APP
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: vehiculo-server
+  namespace: mineco
+  labels:
+    run: vehiculo-server
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      run: vehiculo-server
+  template:
+    metadata:
+      labels:
+        run: vehiculo-server
+    spec:
+      dnsPolicy: "None"
+      dnsConfig:
+        nameservers:
+          - 128.5.8.26
+        searches:
+          - mineco-dev.svc.cluster.local
+          - svc.cluster.local 
+          - cluster.local
+      containers:
+      - name: vehiculo-server
+        image: jjolon/php-full:latest
+        ports:
+          - containerPort: 443
+            protocol: TCP
+          - containerPort: 80
+            protocol: TCP
+        volumeMounts:
+            - mountPath: "/var/www/html"
+              name: vol-php-vehiculo
+      volumes:
+        - name: vol-php-vehiculo
+          persistentVolumeClaim:
+            claimName: vehiculo-deploy
+
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: vehiculo-server
+  namespace: mineco
+  labels:
+    app.kubernetes.io/name: vehiculo-server
+    app.kubernetes.io/part-of: vehiculo-server
+spec:
+  type: ClusterIP
+  ports:
+    - name: http
+      port: 80
+      protocol: TCP
+    - name: listener-2
+      port: 443
+      protocol: TCP
+  selector:
+    run: vehiculo-server
