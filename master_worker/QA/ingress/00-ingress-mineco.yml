@@ -22,7 +22,7 @@ spec:
   - host: qa.mineco.gob.gt
     http:
       paths:
-      - path: /
+      - path: /SIC
         pathType: Prefix
         backend:
           service:
