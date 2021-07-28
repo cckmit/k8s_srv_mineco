@@ -19,7 +19,7 @@ spec:
     http:
       paths:
       - path: /SIC/*
-        pathType: Exact
+        pathType: Prefix
         backend:
           service:
             name: sic-server-qa
