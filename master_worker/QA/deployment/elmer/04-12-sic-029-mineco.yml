@@ -48,7 +48,7 @@ spec:
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: sic-deploy-qa
+  name: sic-qa
   namespace: mineco-qa
 spec:
   storageClassName: manual
@@ -59,17 +59,17 @@ spec:
       storage: 20Gi
   selector:
     matchLabels:
-      name: sic-deploy-qa
+      name: sic-qa
 
 ---
 # DEPLOYMENT APP
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: sic-server-qa
+  name: sic-qa
   namespace: mineco-qa
   labels:
-    run: sic-server-qa
+    run: sic-qa
 spec:
   replicas: 1
   selector:
@@ -102,7 +102,7 @@ spec:
       volumes:
         - name: vol-php-sic-qa
           persistentVolumeClaim:
-            claimName: sic-deploy-qa
+            claimName: sic-qa
 
 
 ---
