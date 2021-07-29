@@ -30,10 +30,10 @@ spec:
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: sic-deploy-qa
+  name: sic-qa
   namespace: mineco-qa
   labels:
-    name: sic-deploy-qa
+    name: sic-qa
 spec:
   storageClassName: manual
   capacity:
