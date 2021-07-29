@@ -87,6 +87,7 @@ spec:
       dnsConfig:
         nameservers:
           - 128.5.8.26
+          - 128.5.8.23
         searches:
           - mineco-dev.svc.cluster.local
           - svc.cluster.local 
