@@ -1,0 +1,130 @@
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: juridicos-qa
+  namespace: mineco-qa
+---
+#  INGRESS MINECO
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-ingress-juridicos
+  namespace: nginx-ingress
+spec:
+  type: LoadBalancer
+  externalIPs:
+  - 128.5.4.15
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+      name: http
+    - protocol: TCP
+      port: 443
+      targetPort: 443
+      name: https
+  selector:
+    app: nginx-ingress
+
+
+---
+
+# VOLUME DATA
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: juridicos-deploy-qa
+  namespace: mineco-qa
+  labels:
+    name: juridicos-deploy-qa
+spec:
+  storageClassName: manual
+  capacity:
+    storage: 20Gi
+  accessModes:
+    - ReadWriteOnce
+  nfs:
+    server: 128.5.8.222
+    path: "/deployment/qa/juridicos"
+
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: juridicos-deploy-qa
+  namespace: mineco-qa
+spec:
+  storageClassName: manual
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 20Gi
+  selector:
+    matchLabels:
+      name: juridicos-deploy-qa
+
+---
+# DEPLOYMENT APP
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: juridicos-qa
+  namespace: mineco-qa
+  labels:
+    run: juridicos-qa
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      run: juridicos-qa
+  template:
+    metadata:
+      labels:
+        run: juridicos-qa
+    spec:
+      dnsPolicy: "None"
+      dnsConfig:
+        nameservers:
+          - 128.5.8.26
+        searches:
+          - mineco-dev.svc.cluster.local
+          - svc.cluster.local 
+          - cluster.local
+      containers:
+      - name: juridicos-server-qa
+        image: jjolon/php-full:latest
+        ports:
+          - containerPort: 443
+            protocol: TCP
+          - containerPort: 80
+            protocol: TCP
+        volumeMounts:
+            - mountPath: "/var/www/html"
+              name: juridicos-qa-vol
+      volumes:
+        - name: juridicos-qa-vol
+          persistentVolumeClaim:
+            claimName: juridicos-deploy-qa
+
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: juridicos-qa
+  namespace: mineco-qa
+  labels:
+    app.kubernetes.io/name: juridicos-qa
+    app.kubernetes.io/part-of: juridicos-qa
+spec:
+  type: ClusterIP
+  ports:
+    - name: http
+      port: 80
+      protocol: TCP
+    - name: listener-2
+      port: 443
+      protocol: TCP
+  selector:
+    run: juridicos-qa

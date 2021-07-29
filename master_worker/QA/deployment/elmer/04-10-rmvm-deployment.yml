@@ -1,0 +1,130 @@
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: rmvm-qa
+  namespace: mineco-qa
+---
+#  INGRESS MINECO
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-ingress-rmvm
+  namespace: nginx-ingress
+spec:
+  type: LoadBalancer
+  externalIPs:
+  - 128.5.4.10
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+      name: http
+    - protocol: TCP
+      port: 443
+      targetPort: 443
+      name: https
+  selector:
+    app: nginx-ingress
+
+
+---
+
+# VOLUME DATA
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: rmvm-deploy-qa
+  namespace: mineco-qa
+  labels:
+    name: rmvm-deploy-qa
+spec:
+  storageClassName: manual
+  capacity:
+    storage: 20Gi
+  accessModes:
+    - ReadWriteOnce
+  nfs:
+    server: 128.5.8.222
+    path: "/deployment/qa/rmvm"
+
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: rmvm-deploy-qa
+  namespace: mineco-qa
+spec:
+  storageClassName: manual
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 20Gi
+  selector:
+    matchLabels:
+      name: rmvm-deploy-qa
+
+---
+# DEPLOYMENT APP
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rmvm-qa
+  namespace: mineco-qa
+  labels:
+    run: rmvm-qa
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      run: rmvm-qa
+  template:
+    metadata:
+      labels:
+        run: rmvm-qa
+    spec:
+      dnsPolicy: "None"
+      dnsConfig:
+        nameservers:
+          - 128.5.8.26
+        searches:
+          - mineco-dev.svc.cluster.local
+          - svc.cluster.local 
+          - cluster.local
+      containers:
+      - name: rmvm-server-qa
+        image: jjolon/php-full:latest
+        ports:
+          - containerPort: 443
+            protocol: TCP
+          - containerPort: 80
+            protocol: TCP
+        volumeMounts:
+            - mountPath: "/var/www/html"
+              name: rmvm-qa-vol
+      volumes:
+        - name: rmvm-qa-vol
+          persistentVolumeClaim:
+            claimName: rmvm-deploy-qa
+
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: rmvm-qa
+  namespace: mineco-qa
+  labels:
+    app.kubernetes.io/name: rmvm-qa
+    app.kubernetes.io/part-of: rmvm-qa
+spec:
+  type: ClusterIP
+  ports:
+    - name: http
+      port: 80
+      protocol: TCP
+    - name: listener-2
+      port: 443
+      protocol: TCP
+  selector:
+    run: rmvm-qa

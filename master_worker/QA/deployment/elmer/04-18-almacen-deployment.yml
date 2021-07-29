@@ -1,0 +1,130 @@
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: almacen-qa
+  namespace: mineco-qa
+---
+#  INGRESS MINECO
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-ingress-almacen
+  namespace: nginx-ingress
+spec:
+  type: LoadBalancer
+  externalIPs:
+  - 128.5.4.18
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+      name: http
+    - protocol: TCP
+      port: 443
+      targetPort: 443
+      name: https
+  selector:
+    app: nginx-ingress
+
+
+---
+
+# VOLUME DATA
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: almacen-deploy-qa
+  namespace: mineco-qa
+  labels:
+    name: almacen-deploy-qa
+spec:
+  storageClassName: manual
+  capacity:
+    storage: 20Gi
+  accessModes:
+    - ReadWriteOnce
+  nfs:
+    server: 128.5.8.222
+    path: "/deployment/qa/almacen"
+
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: almacen-deploy-qa
+  namespace: mineco-qa
+spec:
+  storageClassName: manual
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 20Gi
+  selector:
+    matchLabels:
+      name: almacen-deploy-qa
+
+---
+# DEPLOYMENT APP
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: almacen-qa
+  namespace: mineco-qa
+  labels:
+    run: almacen-qa
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      run: almacen-qa
+  template:
+    metadata:
+      labels:
+        run: almacen-qa
+    spec:
+      dnsPolicy: "None"
+      dnsConfig:
+        nameservers:
+          - 128.5.8.26
+        searches:
+          - mineco-dev.svc.cluster.local
+          - svc.cluster.local 
+          - cluster.local
+      containers:
+      - name: almacen-server-qa
+        image: jjolon/php-full:latest
+        ports:
+          - containerPort: 443
+            protocol: TCP
+          - containerPort: 80
+            protocol: TCP
+        volumeMounts:
+            - mountPath: "/var/www/html"
+              name: almacen-qa-vol
+      volumes:
+        - name: almacen-qa-vol
+          persistentVolumeClaim:
+            claimName: almacen-deploy-qa
+
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: almacen-qa
+  namespace: mineco-qa
+  labels:
+    app.kubernetes.io/name: almacen-qa
+    app.kubernetes.io/part-of: almacen-qa
+spec:
+  type: ClusterIP
+  ports:
+    - name: http
+      port: 80
+      protocol: TCP
+    - name: listener-2
+      port: 443
+      protocol: TCP
+  selector:
+    run: almacen-qa
