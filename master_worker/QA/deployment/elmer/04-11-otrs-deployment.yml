@@ -104,11 +104,11 @@ spec:
           - name: CUSTOMER_ID
             value: ligero
           - name: OTRS_SYSTEM_ID
-            value: 10
+            value: "10"
           - name: OTRS_DEFAULT_LANGUAGE
             value: en
           - name: INSTALL
-            value: 1
+            value: "1"
         ports:
           - containerPort: 443
             protocol: TCP
