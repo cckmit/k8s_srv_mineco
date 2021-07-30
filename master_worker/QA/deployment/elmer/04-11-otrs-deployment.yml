@@ -94,6 +94,9 @@ spec:
       containers:
       - name: otrs-server-qa
         image: juanluisbaptiste/otrs
+        env:
+          - name: MYSQL_HOSTNAME
+            value: mysql
         ports:
           - containerPort: 443
             protocol: TCP
