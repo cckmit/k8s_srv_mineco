@@ -107,8 +107,6 @@ spec:
             value: 10
           - name: OTRS_DEFAULT_LANGUAGE
             value: en
-          - name: OTRS_FQDN
-            value: myotrs.ligero.online
           - name: INSTALL
             value: 1
         ports:
