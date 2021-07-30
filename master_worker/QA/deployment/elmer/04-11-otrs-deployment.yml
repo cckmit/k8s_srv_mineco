@@ -99,15 +99,15 @@ spec:
           - name: MYSQL_DB
             value: "otrs"
           - name: MYSQL_SERVER
-            value: "128.5.8.73"
+            value: '128.5.8.73'
           - name: MYSQL_USER
-            value: "desarrollo"
+            value: 'desarrollo'
           - name: MYSQL_PASS
-            value: "@desarrollo$2K20"
+            value: '@desarrollo$2K20'
           - name: APP_USER
-            value: "desarrollo"
+            value: 'desarrollo'
           - name: APP_PASS
-            value: "@desarrollo$2K20"
+            value: '@desarrollo$2K20'
           - name: MODE
             value: "remote"
 
@@ -141,7 +141,8 @@ spec:
   - 128.5.4.11
   ports:
     - name: http
-      port: 80
+      port: 81
+      targetPort: 80
       protocol: TCP
     # - name: listener-2
     #   port: 443
