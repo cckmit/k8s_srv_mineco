@@ -83,14 +83,14 @@ spec:
       labels:
         run: otrs-qa
     spec:
-      dnsPolicy: "None"
-      dnsConfig:
-        nameservers:
-          - 128.5.8.26
-        searches:
-          - mineco-dev.svc.cluster.local
-          - svc.cluster.local 
-          - cluster.local
+      # dnsPolicy: "None"
+      # dnsConfig:
+      #   nameservers:
+      #     - 128.5.8.26
+      #   searches:
+      #     - mineco-dev.svc.cluster.local
+      #     - svc.cluster.local 
+      #     - cluster.local
       containers:
       - name: otrs-qa
         # image: juanluisbaptiste/otrs:6.0.27
