@@ -95,27 +95,22 @@ spec:
       - name: otrs-server-qa
         image: juanluisbaptiste/otrs:6.0.27
         env:
-          - name: MYSQL_HOSTNAME
-            value: "128.5.8.73"
-          - name: MYSQL_ROOT_USER
-            value: "desarrollo"
-          - name: MYSQL_ROOT_PASSWOR
-            value: "@desarrollo$2K20"
-          - name: OTRS_DB_USER
-            value: desarrollo
-          - name: OTRS_DB_PASSWORD
-            value: "@desarrollo$2K20"
           - name: OTRS_DB_NAME
-            value: otrsqa
+            value: "otrs"
           - name: OTRS_DB_HOST
             value: "128.5.8.73"
-          - name: OTRS_INSTALL
-            value: "yes"
-          - name: INSTALL
-            value: "1"
+          - name: OTRS_DB_USER
+            value: "desarrollo"
+          - name: OTRS_DB_PASSWORD
+            value: "@desarrollo$2K20"
+          - name: MYSQL_ROOT_USER
+            value: "desarrollo"
+          - name: MYSQL_ROOT_PASSWORD
+            value: "@desarrollo$2K20"
+
         ports:
-          - containerPort: 443
-            protocol: TCP
+          # - containerPort: 443
+          #   protocol: TCP
           - containerPort: 80
             protocol: TCP
       #   volumeMounts:
@@ -145,8 +140,8 @@ spec:
     - name: http
       port: 80
       protocol: TCP
-    - name: listener-2
-      port: 443
-      protocol: TCP
+    # - name: listener-2
+    #   port: 443
+    #   protocol: TCP
   selector:
     run: otrs-qa
