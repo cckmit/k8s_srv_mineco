@@ -93,20 +93,23 @@ spec:
           - cluster.local
       containers:
       - name: otrs-server-qa
-        image: juanluisbaptiste/otrs:6.0.27
+        # image: juanluisbaptiste/otrs:6.0.27
+        image: appcontainers/centos66
         env:
-          - name: OTRS_DB_NAME
+          - name: MYSQL_DB
             value: "otrs"
-          - name: OTRS_DB_HOST
+          - name: MYSQL_SERVER
             value: "128.5.8.73"
-          - name: OTRS_DB_USER
+          - name: MYSQL_USER
             value: "desarrollo"
-          - name: OTRS_DB_PASSWORD
+          - name: MYSQL_PASS
             value: "@desarrollo$2K20"
-          - name: MYSQL_ROOT_USER
+          - name: APP_USER
             value: "desarrollo"
-          - name: MYSQL_ROOT_PASSWORD
+          - name: APP_PASS
             value: "@desarrollo$2K20"
+          - name: MODE
+            value: "remote"
 
         ports:
           # - containerPort: 443
