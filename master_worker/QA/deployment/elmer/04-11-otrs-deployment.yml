@@ -29,42 +29,42 @@ spec:
 
 ---
 
-# VOLUME DATA
-apiVersion: v1
-kind: PersistentVolume
-metadata:
-  name: otrs-deploy-qa
-  namespace: mineco-qa
-  labels:
-    name: otrs-deploy-qa
-spec:
-  storageClassName: manual
-  capacity:
-    storage: 20Gi
-  accessModes:
-    - ReadWriteOnce
-  nfs:
-    server: 128.5.8.222
-    path: "/deployment/qa/otrs"
+# # VOLUME DATA
+# apiVersion: v1
+# kind: PersistentVolume
+# metadata:
+#   name: otrs-deploy-qa
+#   namespace: mineco-qa
+#   labels:
+#     name: otrs-deploy-qa
+# spec:
+#   storageClassName: manual
+#   capacity:
+#     storage: 20Gi
+#   accessModes:
+#     - ReadWriteOnce
+#   nfs:
+#     server: 128.5.8.222
+#     path: "/deployment/qa/otrs"
 
----
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: otrs-deploy-qa
-  namespace: mineco-qa
-spec:
-  storageClassName: manual
-  accessModes:
-    - ReadWriteOnce
-  resources:
-    requests:
-      storage: 20Gi
-  selector:
-    matchLabels:
-      name: otrs-deploy-qa
+# ---
+# apiVersion: v1
+# kind: PersistentVolumeClaim
+# metadata:
+#   name: otrs-deploy-qa
+#   namespace: mineco-qa
+# spec:
+#   storageClassName: manual
+#   accessModes:
+#     - ReadWriteOnce
+#   resources:
+#     requests:
+#       storage: 20Gi
+#   selector:
+#     matchLabels:
+#       name: otrs-deploy-qa
 
----
+# ---
 # DEPLOYMENT APP
 apiVersion: apps/v1
 kind: Deployment
@@ -93,19 +93,19 @@ spec:
           - cluster.local
       containers:
       - name: otrs-server-qa
-        image: jjolon/php-full:latest
+        image: juanluisbaptiste/otrs
         ports:
           - containerPort: 443
             protocol: TCP
           - containerPort: 80
             protocol: TCP
-        volumeMounts:
-            - mountPath: "/var/www/html"
-              name: otrs-qa-vol
-      volumes:
-        - name: otrs-qa-vol
-          persistentVolumeClaim:
-            claimName: otrs-deploy-qa
+      #   volumeMounts:
+      #       - mountPath: "/var/www/html"
+      #         name: otrs-qa-vol
+      # volumes:
+      #   - name: otrs-qa-vol
+      #     persistentVolumeClaim:
+      #       claimName: otrs-deploy-qa
 
 
 ---
