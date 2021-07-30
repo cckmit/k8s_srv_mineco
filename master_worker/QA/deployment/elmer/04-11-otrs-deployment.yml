@@ -4,27 +4,27 @@ metadata:
   name: otrs-qa
   namespace: mineco-qa
 ---
-#  INGRESS MINECO
-apiVersion: v1
-kind: Service
-metadata:
-  name: nginx-ingress-otrs
-  namespace: nginx-ingress
-spec:
-  type: LoadBalancer
-  externalIPs:
-  - 128.5.4.11
-  ports:
-    - protocol: TCP
-      port: 80
-      targetPort: 80
-      name: http
-    - protocol: TCP
-      port: 443
-      targetPort: 443
-      name: https
-  selector:
-    app: nginx-ingress
+# #  INGRESS MINECO
+# apiVersion: v1
+# kind: Service
+# metadata:
+#   name: nginx-ingress-otrs
+#   namespace: nginx-ingress
+# spec:
+#   type: LoadBalancer
+#   externalIPs:
+#   - 128.5.4.11
+#   ports:
+#     - protocol: TCP
+#       port: 80
+#       targetPort: 80
+#       name: http
+#     - protocol: TCP
+#       port: 443
+#       targetPort: 443
+#       name: https
+#   selector:
+#     app: nginx-ingress
 
 
 ---
@@ -137,7 +137,10 @@ metadata:
     app.kubernetes.io/name: otrs-qa
     app.kubernetes.io/part-of: otrs-qa
 spec:
-  type: ClusterIP
+  # type: ClusterIP
+  type: LoadBalancer
+  externalIPs:
+  - 128.5.4.11
   ports:
     - name: http
       port: 80
