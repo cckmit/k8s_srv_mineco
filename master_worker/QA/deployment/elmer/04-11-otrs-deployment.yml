@@ -94,7 +94,7 @@ spec:
       containers:
       - name: otrs-server-qa
         # image: juanluisbaptiste/otrs:6.0.27
-        image: appcontainers/centos66
+        image: appcontainers/otrs
         env:
           - name: MYSQL_DB
             value: "otrs"
