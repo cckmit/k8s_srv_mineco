@@ -97,6 +97,10 @@ spec:
         env:
           - name: MYSQL_HOSTNAME
             value: "128.5.8.73"
+          - name: MYSQL_ROOT_USER
+            value: "desarrollo"
+          - name: MYSQL_ROOT_PASSWOR
+            value: "@desarrollo$2K20"
           - name: OTRS_DB_USER
             value: desarrollo
           - name: OTRS_DB_PASSWORD
