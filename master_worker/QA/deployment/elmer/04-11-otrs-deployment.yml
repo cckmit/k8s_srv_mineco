@@ -95,23 +95,23 @@ spec:
       - name: otrs-qa
         # image: juanluisbaptiste/otrs:6.0.27
         image: appcontainers/otrs
-        env:
-          - name: MYSQL_DB
-            value: "otrs"
-          - name: MYSQL_SERVER
-            value: '128.5.8.73'
-          - name: MYSQL_USER
-            value: 'desarrollo'
-          - name: MYSQL_PASS
-            value: '@desarrollo$2K20'
-          - name: APP_USER
-            value: 'desarrollo'
-          - name: APP_PASS
-            value: '@desarrollo$2K20'
-          - name: MODE
-            value: 'remote'
-          - name: TERMTAG
-            value: 'prod'
+        # env:
+        #   - name: MYSQL_DB
+        #     value: "otrs"
+        #   - name: MYSQL_SERVER
+        #     value: '128.5.8.73'
+        #   - name: MYSQL_USER
+        #     value: 'desarrollo'
+        #   - name: MYSQL_PASS
+        #     value: '@desarrollo$2K20'
+        #   - name: APP_USER
+        #     value: 'desarrollo'
+        #   - name: APP_PASS
+        #     value: '@desarrollo$2K20'
+        #   - name: MODE
+        #     value: 'remote'
+        #   - name: TERMTAG
+        #     value: 'prod'
 
         ports:
           # - containerPort: 443
