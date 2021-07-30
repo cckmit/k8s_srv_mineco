@@ -92,7 +92,7 @@ spec:
           - svc.cluster.local 
           - cluster.local
       containers:
-      - name: otrs-server-qa
+      - name: otrs-qa
         # image: juanluisbaptiste/otrs:6.0.27
         image: appcontainers/otrs
         env:
