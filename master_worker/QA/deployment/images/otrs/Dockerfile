@@ -1,96 +1,65 @@
-FROM ubuntu:16.04
-MAINTAINER Complemento <https://www.complemento.net.br>
+#OTRS ticketing system docker image.
+FROM centos:7
+LABEL maintainer="Juan Luis Baptiste <juan@juanbaptiste.tech>"
+ENV OTRS_VERSION=6.0.35-01
+ENV OTRS_ROOT "/opt/otrs/"
+ENV OTRS_BACKUP_DIR "/var/otrs/backups"
+ENV OTRS_CONFIG_DIR "${OTRS_ROOT}Kernel"
+ENV OTRS_CONFIG_MOUNT_DIR "/config/"
+ENV OTRS_SKINS_MOUNT_DIR "/skins/"
+ENV SKINS_PATH "${OTRS_ROOT}/var/httpd/htdocs/skins/"
+ENV LANG=en_US.UTF-8
+ENV LANGUAGE=en_US.UTF-8
 
-# Definitions
-ENV OTRS_VERSION=6.0.10
-ENV LIGERO_REPOSITORY=6.0.0
-
-RUN apt-get update && \
-    apt-get install -y supervisor \
-    apt-utils \
-    libterm-readline-perl-perl && \
-    apt-get install -y locales && \
-    locale-gen en_US.UTF-8
-ENV LANG en_US.UTF-8
-ENV LANGUAGE en_US:en
-ENV LC_ALL en_US.UTF-8
-
-RUN apt-get install -y apache2 git bash-completion cron sendmail curl vim wget mysql-client
-
-# CREATE OTRS USER
-RUN useradd -d /opt/otrs -c 'OTRS user' otrs && \
-    usermod -a -G www-data otrs && \
-    usermod -a -G otrs www-data
-
-RUN mkdir /opt/src && \
-    cd /opt/src/ && \
-    chown otrs:www-data /opt/src && \
-    su -c "git clone -b rel-$(echo $OTRS_VERSION | sed --expression='s/\./_/g') \
-    --single-branch https://github.com/OTRS/otrs.git" -s /bin/bash otrs
-
-RUN sed -i -e "s/6.0.x git/${OTRS_VERSION}/g" /opt/src/otrs/RELEASE
-
-COPY link.pl /opt/src/
-
-RUN chmod 755 /opt/src/link.pl && \
-    mkdir /opt/otrs && \
-    chown otrs:www-data /opt/otrs
-
-# perl modules
-RUN apt-get install -y  libarchive-zip-perl \
-                        libcrypt-eksblowfish-perl \
-                        libcrypt-ssleay-perl \
-                        libtimedate-perl \
-                        libdatetime-perl \
-                        libdbi-perl \
-                        libdbd-mysql-perl \
-                        libdbd-odbc-perl \
-                        libdbd-pg-perl \
-                        libencode-hanextra-perl \
-                        libio-socket-ssl-perl \
-                        libjson-xs-perl \
-                        libmail-imapclient-perl \
-                        libio-socket-ssl-perl \
-                        libauthen-sasl-perl \
-                        libauthen-ntlm-perl \
-                        libapache2-mod-perl2 \
-                        libnet-dns-perl \
-                        libnet-ldap-perl \
-                        libtemplate-perl \
-                        libtemplate-perl \
-                        libtext-csv-xs-perl \
-                        libxml-libxml-perl \
-                        libxml-libxslt-perl \
-                        libxml-parser-perl \
-                        libyaml-libyaml-perl
-
-
-RUN /opt/src/otrs/bin/otrs.SetPermissions.pl --web-group=www-data
-
-RUN ln -s /opt/src/otrs/scripts/apache2-httpd.include.conf /etc/apache2/sites-available/otrs.conf && \
-    a2ensite otrs && \
-    a2dismod mpm_event && \
-    a2enmod mpm_prefork && \
-    a2enmod headers
-
-# Supervisor
-RUN mkdir -p /var/log/supervisor
-COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
-
-# Setup a cron for checking when OTRS is already installed, then start otrs Cron
-COPY daemonstarter.sh /opt/src/
-RUN chmod +x /opt/src/daemonstarter.sh
-RUN echo "* * * * * /opt/src/daemonstarter.sh" | crontab -
-
-COPY otrs.sh /opt/src/
-RUN chmod 755 /opt/src/otrs.sh
-
-RUN mkdir /opt/ligero_addons/ && chown otrs:www-data /opt/ligero_addons
-
-ADD https://addons.ligerosmart.com/AddOns/6.0/Community/LigeroRepository/LigeroRepository-${LIGERO_REPOSITORY}.opm /opt/ligero_addons/
-
-RUN chown otrs:www-data /opt/ligero_addons -R
-
+RUN yum install -y yum-plugin-fastestmirror && \
+    yum install -y epel-release && \
+    yum -y install https://harbottle.gitlab.io/epmel/7/x86_64/epmel-release.rpm && \
+    yum update -y && \
+    yum -y install bzip2 cronie httpd mysql mod_perl \
+    perl-core "perl(Crypt::SSLeay)" "perl(Net::LDAP)" "perl(URI)" \
+    procmail "perl(Date::Format)" "perl(LWP::UserAgent)" \
+    "perl(Net::DNS)" "perl(IO::Socket::SSL)" "perl(XML::Parser)" \
+    "perl(Apache2::Reload)" "perl(Crypt::Eksblowfish::Bcrypt)" \
+    "perl(Encode::HanExtra)" "perl(GD)" "perl(GD::Text)" "perl(GD::Graph)" \
+    "perl(JSON::XS)" "perl(Mail::IMAPClient)" "perl(PDF::API2)" "perl(DateTime)" \
+    "perl(Text::CSV_XS)" "perl(YAML::XS)" "perl(Text::CSV_XS)" "perl(DBD::mysql)" \
+    perl-Moo "perl(namespace::clean)" "perl(Crypt::Random::Source)" "perl(Exporter::Tiny)" \
+    "perl(Math::Random::ISAAC)" "perl(Math::Random::Secure)" "perl(Module::Find)" \
+    "perl(Types::TypeTiny)" rsyslog supervisor tar which && \
+    yum install -y https://download.znuny.org/releases/RPMS/rhel/7/znuny-${OTRS_VERSION}.noarch.rpm && \
+    /opt/otrs/bin/otrs.CheckModules.pl && \
+    yum clean all
+# Add scripts and function files
+COPY *.sh /
+#Supervisord configuration
+COPY otrs.ini /etc/supervisord.d/
+RUN chmod 755 /*.sh  && \
+    cp ${OTRS_ROOT}/var/httpd/htdocs/index.html /var/www/html && \
+    chmod 644 /var/www/html/index.html && \
+    sed -i 's/\bindex.html\b/& index.pl/' /etc/httpd/conf/httpd.conf && \
+    echo "+ : otrs : cron crond" |cat >> /etc/security/access.conf                && \
+    sed -i -e '/pam_loginuid.so/ s/^#*/#/' /etc/pam.d/crond                       && \
+    sed -i -e "s/^nodaemon=false/nodaemon=true/" /etc/supervisord.conf && \
+    cat /etc/supervisord.d/otrs.ini >> etc/supervisord.conf && \
+    sed -i -e '/<ValidateModule>Kernel::System::SysConfig::StateValidate<\/ValidateModule>/ s/^#*/#/' \
+        ${OTRS_ROOT}Kernel/Config/Files/XML/Ticket.xml  && \
+    mkdir -p ${OTRS_ROOT}var/{run,tmp}/ && \
+    # perl -cw ${OTRS_ROOT}bin/cgi-bin/index.pl && \
+    # perl -cw ${OTRS_ROOT}bin/cgi-bin/customer.pl && \
+    # perl -cw ${OTRS_ROOT}bin/otrs.Console.pl && \
+    sed -i -e '/\$ModLoad imjournal/ s/^#*/#/' /etc/rsyslog.conf && \
+    sed -i -e '/\$IMJournalStateFile imjournal.state/ s/^#*/#/' /etc/rsyslog.conf && \
+    sed -i 's/\(^\$OmitLocalLogging \).*/\1off/' /etc/rsyslog.conf && \
+    rm /etc/rsyslog.d/listen.conf
+#To be able to use a host-mounted volume for OTRS configuration we need to move
+#away the contents of ${OTRS_CONFIG_DIR} to another place and move them back
+#on first container run (see check_host_mount_dir on functions.sh), after the
+#host-volume is mounted. The same for the skins.
+RUN mv ${OTRS_CONFIG_DIR} / && \
+    mv ${SKINS_PATH} / && \
+    touch ${OTRS_ROOT}var/tmp/firsttime && \
+    ln -sf /dev/stdout /var/log/httpd/access_log && \
+    ln -sf /dev/stderr /var/log/httpd/error_log && \
+    ln -sf /dev/stdout /var/log/cron
 EXPOSE 80
-
-CMD ["/opt/src/otrs.sh"]
+CMD ["/run.sh"]
