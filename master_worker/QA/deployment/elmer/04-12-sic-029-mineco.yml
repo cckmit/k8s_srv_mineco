@@ -74,11 +74,11 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      run: sic-server-qa
+      run: sic-qa
   template:
     metadata:
       labels:
-        run: sic-server-qa
+        run: sic-qa
     spec:
       dnsPolicy: "None"
       dnsConfig:
