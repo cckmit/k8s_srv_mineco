@@ -97,6 +97,20 @@ spec:
         env:
           - name: MYSQL_HOSTNAME
             value: mysql
+          - name: MYSQL_USERNAME
+            value: root
+          - name: MYSQL_PASSWORD
+            value: ligero
+          - name: CUSTOMER_ID
+            value: ligero
+          - name: OTRS_SYSTEM_ID
+            value: 10
+          - name: OTRS_DEFAULT_LANGUAGE
+            value: en
+          - name: OTRS_FQDN
+            value: myotrs.ligero.online
+          - name: INSTALL
+            value: 1
         ports:
           - containerPort: 443
             protocol: TCP
