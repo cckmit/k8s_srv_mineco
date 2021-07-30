@@ -96,11 +96,11 @@ spec:
         image: juanluisbaptiste/otrs:6.0.27
         env:
           - name: MYSQL_HOSTNAME
-            value: mysql
+            value: "128.5.8.73"
           - name: MYSQL_USERNAME
-            value: root
+            value: desarrollo
           - name: MYSQL_PASSWORD
-            value: ligero
+            value: "@desarrollo$2K20"
           - name: CUSTOMER_ID
             value: ligero
           - name: OTRS_SYSTEM_ID
