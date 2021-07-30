@@ -97,16 +97,16 @@ spec:
         env:
           - name: MYSQL_HOSTNAME
             value: "128.5.8.73"
-          - name: MYSQL_USERNAME
+          - name: OTRS_DB_USER
             value: desarrollo
-          - name: MYSQL_PASSWORD
+          - name: OTRS_DB_PASSWORD
             value: "@desarrollo$2K20"
-          - name: CUSTOMER_ID
-            value: ligero
-          - name: OTRS_SYSTEM_ID
-            value: "10"
-          - name: OTRS_DEFAULT_LANGUAGE
-            value: en
+          - name: OTRS_DB_NAME
+            value: otrsqa
+          - name: OTRS_DB_HOST
+            value: "128.5.8.73"
+          - name: OTRS_INSTALL
+            value: "yes"
           - name: INSTALL
             value: "1"
         ports:
