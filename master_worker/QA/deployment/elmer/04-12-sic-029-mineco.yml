@@ -89,7 +89,7 @@ spec:
           - svc.cluster.local 
           - cluster.local
       containers:
-      - name: sic-server-qa
+      - name: sic-qa
         image: jjolon/php-full:latest
         ports:
           - containerPort: 443
@@ -109,11 +109,11 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: sic-server-qa
+  name: sic-qa
   namespace: mineco-qa
   labels:
-    app.kubernetes.io/name: sic-server-qa
-    app.kubernetes.io/part-of: sic-server-qa
+    app.kubernetes.io/name: sic-qa
+    app.kubernetes.io/part-of: sic-qa
 spec:
   type: ClusterIP
   ports:
@@ -124,4 +124,4 @@ spec:
       port: 443
       protocol: TCP
   selector:
-    run: sic-server-qa
+    run: sic-qa
