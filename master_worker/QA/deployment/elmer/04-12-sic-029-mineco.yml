@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: ServiceAccount
 metadata:
-  name: sic-server-qa
+  name: sic-qa
   namespace: mineco-qa
 ---
 #  INGRESS MINECO
