@@ -16,6 +16,7 @@ spec:
       - qadti.mineco.gob.gt
       - qajuridico.mineco.gob.gt
       - qavehiculos.mineco.gob.gt
+      - qapartidas.mineco.gob.gt
       secretName: default-server-secret-qa
   rules:
   - host: qasic.mineco.gob.gt
@@ -56,5 +57,15 @@ spec:
         backend:
           service:
             name: vehiculos-qa
+            port:
+              number: 80
+  - host: qapartidas.mineco.gob.gt
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: presupuesto-qa
             port:
               number: 80
