@@ -8,7 +8,7 @@ metadata:
 apiVersion: v1
 kind: Service
 metadata:
-  name: nginx-ingress-vehiculos
+  name: nginx-ingress-vehiculos-qa
   namespace: nginx-ingress
 spec:
   type: LoadBalancer
@@ -92,7 +92,7 @@ spec:
           - svc.cluster.local 
           - cluster.local
       containers:
-      - name: vehiculos-server-qa
+      - name: vehiculos-qa
         image: jjolon/php-full:latest
         ports:
           - containerPort: 443
