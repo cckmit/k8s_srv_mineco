@@ -13,7 +13,7 @@ spec:
   tls:
     - hosts:
       - qasic.mineco.gob.gt
-      # - qaotrs.mineco.gob.gt
+      - qadti.mineco.gob.gt
       secretName: default-server-secret-qa
   rules:
   - host: qasic.mineco.gob.gt
@@ -26,13 +26,13 @@ spec:
             name: sic-qa
             port:
               number: 80
-  # - host: qaotrs.mineco.gob.gt
-  #   http:
-  #     paths:
-  #     - path: /
-  #       pathType: Prefix
-  #       backend:
-  #         service:
-  #           name: otrs-qa
-  #           port:
-  #             number: 80
+  - host: qadti.mineco.gob.gt
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: dti-qa
+            port:
+              number: 80
