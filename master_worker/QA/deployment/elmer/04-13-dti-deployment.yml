@@ -92,7 +92,7 @@ spec:
           - svc.cluster.local 
           - cluster.local
       containers:
-      - name: dti-server-qa
+      - name: dti-qa
         image: jjolon/php-full:latest
         ports:
           - containerPort: 443
