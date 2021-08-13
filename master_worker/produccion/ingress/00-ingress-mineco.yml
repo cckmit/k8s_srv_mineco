@@ -22,6 +22,8 @@ spec:
     - hosts:
       - vehiculos.mineco.gob.gt
       - www.vehiculos.mineco.gob.gt
+    - hosts:
+      - autorizaciones.mineco.gob.gt
       secretName: default-server-secret
   rules:
   - host: dev.mineco.gob.gt
@@ -42,5 +44,15 @@ spec:
         backend:
           service:
             name: vehiculo-server
+            port:
+              number: 80
+  - host: autorizaciones.mineco.gob.gt
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: autorizacion-server
             port:
               number: 80

@@ -1,0 +1,131 @@
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: autorizacion-server
+  namespace: mineco
+---
+#  INGRESS MINECO
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-ingress-autorizacion
+  namespace: nginx-ingress
+spec:
+  type: LoadBalancer
+  externalIPs:
+  - 128.5.4.21
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+      name: http
+    - protocol: TCP
+      port: 443
+      targetPort: 443
+      name: https
+  selector:
+    app: nginx-ingress
+
+---
+# VOLUME DATA
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: autorizacion-deploy
+  namespace: mineco
+  labels:
+    name: autorizacion-deploy
+spec:
+  storageClassName: manual
+  capacity:
+    storage: 20Gi
+  accessModes:
+    - ReadWriteOnce
+  nfs:
+    server: 128.5.8.222
+    path: "/deployment/autorizacion-mineco"
+
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: autorizacion-deploy
+  namespace: mineco
+spec:
+  storageClassName: manual
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 20Gi
+  selector:
+    matchLabels:
+      name: autorizacion-deploy
+
+---
+# DEPLOYMENT APP
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: autorizacion-server
+  namespace: mineco
+  labels:
+    run: autorizacion-server
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      run: autorizacion-server
+  template:
+    metadata:
+      labels:
+        run: autorizacion-server
+    spec:
+      dnsPolicy: "None"
+      dnsConfig:
+        nameservers:
+          - 128.5.8.26
+        searches:
+          - mineco-dev.svc.cluster.local
+          - svc.cluster.local 
+          - cluster.local
+      containers:
+      - name: autorizacion-server
+        image: jjolon/php-full:latest
+        ports:
+          - containerPort: 443
+            protocol: TCP
+          - containerPort: 80
+            protocol: TCP
+        volumeMounts:
+            - mountPath: "/var/www/html"
+              name: vol-php-autorizacion
+      volumes:
+        - name: vol-php-autorizacion
+          persistentVolumeClaim:
+            claimName: autorizacion-deploy
+
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: autorizacion-server
+  namespace: mineco
+  labels:
+    app.kubernetes.io/name: autorizacion-server
+    app.kubernetes.io/part-of: autorizacion-server
+spec:
+  type: ClusterIP
+  # type: LoadBalancer
+  # externalIPs:
+  # - 128.5.4.21
+  ports:
+    - name: http
+      port: 80
+      protocol: TCP
+    - name: listener-2
+      port: 443
+      protocol: TCP
+  selector:
+    run: autorizacion-server
