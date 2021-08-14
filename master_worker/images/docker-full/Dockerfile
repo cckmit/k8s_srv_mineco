@@ -17,7 +17,6 @@ RUN apt-get update && apt-get install -y \
         python2  \
         iputils-ping  \
         libldap2-dev   \
-        libgmp-dev \
     && pecl install mcrypt-1.0.2  \
     && docker-php-ext-install -j$(nproc) iconv   \
     && docker-php-ext-install zip  \
@@ -27,9 +26,11 @@ RUN apt-get update && apt-get install -y \
     && docker-php-ext-install bcmath \
     && docker-php-ext-configure ldap --with-libdir=lib/x86_64-linux-gnu/ \
     && docker-php-ext-install ldap \
-    && docker-php-ext-enable mcrypt gmp
+    && docker-php-ext-enable mcrypt 
 
 RUN docker-php-ext-install mysqli pdo pdo_mysql
+
+RUN apt install -y libgmp-dev && docker-php-ext-install gmp
 
 RUN apt-get -y install supervisor
 
