@@ -6,7 +6,6 @@ COPY vhost.conf /etc/apache2/sites-available/000-default.conf
 RUN apt-get update && apt-get install -y \
         libfreetype6-dev \
         gcc make autoconf libc-dev pkg-config \
-        libjpeg62-turbo-dev \
         libmcrypt-dev \
         libpng-dev \
         git \
@@ -21,8 +20,6 @@ RUN apt-get update && apt-get install -y \
     && docker-php-ext-install -j$(nproc) iconv   \
     && docker-php-ext-install zip  \
     && docker-php-ext-install pdo_mysql   \
-    && docker-php-ext-configure gd --with-freetype-dir=/usr/lib/ --with-jpeg-dir=/usr/lib/ \
-    && docker-php-ext-install -j$(nproc) gd \
     && docker-php-ext-install bcmath \
     && docker-php-ext-configure ldap --with-libdir=lib/x86_64-linux-gnu/ \
     && docker-php-ext-install ldap \
