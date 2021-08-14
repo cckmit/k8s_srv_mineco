@@ -32,7 +32,7 @@ RUN docker-php-ext-install mysqli pdo pdo_mysql
 
 RUN apt-get -y install supervisor
 
-COPY supervisord-laravel.conf /etc/supervisor/conf.d/supervisor-laravel.conf
+COPY supervisor-laravel.conf /etc/supervisor/conf.d/supervisor-laravel.conf
 
 RUN chown -R www-data:www-data /var/www/html 
 
