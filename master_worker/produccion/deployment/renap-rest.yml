@@ -91,7 +91,7 @@ spec:
           - cluster.local
       containers:
       - name: renap-server
-        image: jjolon/php-full:latest
+        image: jjolon/php-74:latest
         ports:
           - containerPort: 443
             protocol: TCP
