@@ -17,6 +17,7 @@ RUN apt-get update && apt-get install -y \
         python2  \
         iputils-ping  \
         libldap2-dev   \
+        libgmp-dev \
     && pecl install mcrypt-1.0.2  \
     && docker-php-ext-install -j$(nproc) iconv   \
     && docker-php-ext-install zip  \
