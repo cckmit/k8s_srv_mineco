@@ -31,12 +31,12 @@ RUN apt-get update && apt-get install -y \
 RUN docker-php-ext-install mysqli pdo pdo_mysql
 
 RUN apt install -y libgmp-dev && docker-php-ext-install gmp 
+RUN apt-get -y install supervisor
 
 RUN apt-get update && apt-get install -y libmagickwand-dev --no-install-recommends && rm -rf /var/lib/apt/lists/*
 RUN printf "\n" | pecl install imagick
 RUN docker-php-ext-enable imagick
 
-RUN apt-get -y install supervisor
 
 COPY supervisor-laravel.conf /etc/supervisor/conf.d/supervisor-laravel.conf
 
