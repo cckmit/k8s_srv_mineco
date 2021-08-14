@@ -91,7 +91,7 @@ spec:
           - cluster.local
       containers:
       - name: autorizacion-server
-        image: jjolon/php-73s:v1
+        image: jjolon/php-73s:v2
         ports:
           - containerPort: 443
             protocol: TCP
