@@ -92,6 +92,13 @@ spec:
       containers:
       - name: autorizacion-server
         image: jjolon/php-73s:v2
+        resources:
+          requests:
+            memory: "3Gi"
+            cpu: "0.1"
+          limits:
+            memory: "4Gi"
+            cpu: "0.2"
         ports:
           - containerPort: 443
             protocol: TCP
