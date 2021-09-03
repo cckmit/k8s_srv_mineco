@@ -2,7 +2,7 @@ apiVersion: v1
 kind: ServiceAccount
 metadata:
   name: payara-rgm
-  namespace: mineco
+  namespace: rgm
 ---
 
 ##  INGRESS MINECO
@@ -35,7 +35,7 @@ apiVersion: v1
 kind: PersistentVolume
 metadata:
   name: payara-rgm
-  namespace: mineco
+  namespace: rgm
   labels:
     name: payara-rgm
 spec:
@@ -53,7 +53,7 @@ apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: payara-rgm
-  namespace: mineco
+  namespace: rgm
 spec:
   storageClassName: manual
   accessModes:
@@ -69,7 +69,7 @@ apiVersion: v1
 kind: PersistentVolume
 metadata:
   name: deployment-rgm
-  namespace: mineco
+  namespace: rgm
   labels:
     name: deployment-rgm
 spec:
@@ -87,7 +87,7 @@ apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: deployment-rgm
-  namespace: mineco
+  namespace: rgm
 spec:
   storageClassName: manual
   accessModes:
@@ -107,7 +107,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: payara-rgm
-  namespace: mineco
+  namespace: rgm
   labels:
     run: payara-rgm
 spec:
@@ -162,7 +162,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: service-rgm-payara
-  namespace: mineco
+  namespace: rgm
   labels:
     app.kubernetes.io/name: payara-rgm
     app.kubernetes.io/part-of: payara-rgm
