@@ -170,7 +170,7 @@ spec:
   # type: ClusterIP
   type: LoadBalancer
   externalIPs:
-  - 128.5.9.32
+  - 128.5.4.22
   ports:
     - name: http
       port: 80
