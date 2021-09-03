@@ -46,7 +46,7 @@ spec:
     - ReadWriteOnce
   nfs:
     server: 128.5.8.222
-    path: "/deployment/payara/diaco"
+    path: "/deployment/payara/ws_rug/ws"
 
 ---
 apiVersion: v1
@@ -80,7 +80,7 @@ spec:
     - ReadWriteOnce
   nfs:
     server: 128.5.8.222
-    path: "/deployment/payara/deployments"
+    path: "/deployment/payara/ws_deployment"
 
 ---
 apiVersion: v1
@@ -145,7 +145,7 @@ spec:
         volumeMounts:
             - mountPath: "/opt/payara/appserver/glassfish/domains/domain1"
               name: vol-payara
-            - mountPath: /opt/payara/deployments
+            - mountPath: "/opt/payara/deployments"
               name: vol-deployment
       volumes:
         - name: vol-payara
