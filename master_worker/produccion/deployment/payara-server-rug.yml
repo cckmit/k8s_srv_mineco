@@ -127,16 +127,16 @@ spec:
         - name: payara-rgm
           image: jjolon/payara:v5
           ports:
-            - containerPort: 8080
-              protocol: TCP
+            # - containerPort: 8080
+            #   protocol: TCP
             - containerPort: 8181
               protocol: TCP
-            - containerPort: 8282
-              protocol: TCP
+            # - containerPort: 8282
+            #   protocol: TCP
             - containerPort: 4848
               protocol: TCP
-            - containerPort: 80
-              protocol: TCP
+            # - containerPort: 80
+            #   protocol: TCP
           volumeMounts:
             - mountPath: "/opt/payara/appserver/glassfish/domains/domain1"
               name: vol-payara
@@ -173,15 +173,15 @@ spec:
     # - name: listener-2
     #   port: 8282
     #   protocol: TCP
-    - name: listener-1
-      port: 8282
-      targetPort: 8181
-      protocol: TCP
+    # - name: listener-1
+    #   port: 8282
+    #   targetPort: 8181
+    #   protocol: TCP
     - name: asadmin
       port: 4848
       protocol: TCP
-    - name: http-service
-      port: 8080
-      protocol: TCP
+    # - name: http-service
+    #   port: 8080
+    #   protocol: TCP
   selector:
     run: payara-rgm
