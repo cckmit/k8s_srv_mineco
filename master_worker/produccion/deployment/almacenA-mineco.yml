@@ -1,0 +1,129 @@
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: aseggys-qa
+  namespace: mineco-qa
+---
+#  INGRESS MINECO
+# apiVersion: v1
+# kind: Service
+# metadata:
+#   name: nginx-ingress-aseggys-qa
+#   namespace: nginx-ingress
+# spec:
+#   type: LoadBalancer
+#   externalIPs:
+#     - 128.5.4.19
+#   ports:
+#     - protocol: TCP
+#       port: 80
+#       targetPort: 80
+#       name: http
+#     - protocol: TCP
+#       port: 443
+#       targetPort: 443
+#       name: https
+#   selector:
+#     app: nginx-ingress
+
+---
+# VOLUME DATA
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: aseggys-deploy-qa
+  namespace: mineco-qa
+  labels:
+    name: aseggys-deploy-qa
+spec:
+  storageClassName: manual
+  capacity:
+    storage: 20Gi
+  accessModes:
+    - ReadWriteOnce
+  nfs:
+    server: 128.5.8.222
+    path: "/deployment/qa/aseggys/qa/dev"
+
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: aseggys-deploy-qa
+  namespace: mineco-qa
+spec:
+  storageClassName: manual
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 20Gi
+  selector:
+    matchLabels:
+      name: aseggys-deploy-qa
+
+---
+# DEPLOYMENT APP
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: aseggys-qa
+  namespace: mineco-qa
+  labels:
+    run: aseggys-qa
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      run: aseggys-qa
+  template:
+    metadata:
+      labels:
+        run: aseggys-qa
+    spec:
+      dnsPolicy: "None"
+      dnsConfig:
+        nameservers:
+          - 128.5.8.26
+        searches:
+          - mineco-dev.svc.cluster.local
+          - svc.cluster.local
+          - cluster.local
+      containers:
+        - name: aseggys-qa
+          image: jjolon/php-full:latest
+          ports:
+            - containerPort: 443
+              protocol: TCP
+            - containerPort: 80
+              protocol: TCP
+          volumeMounts:
+            - mountPath: "/var/www/html"
+              name: aseggys-qa-vol
+      volumes:
+        - name: aseggys-qa-vol
+          persistentVolumeClaim:
+            claimName: aseggys-deploy-qa
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: aseggys-qa
+  namespace: mineco-qa
+  labels:
+    app.kubernetes.io/name: aseggys-qa
+    app.kubernetes.io/part-of: aseggys-qa
+spec:
+  type: LoadBalancer
+  externalIPs:
+    - 128.5.4.24
+  ports:
+    - name: http
+      port: 80
+      protocol: TCP
+    - name: listener-2
+      port: 443
+      protocol: TCP
+  selector:
+    run: aseggys-qa
