@@ -91,7 +91,8 @@ spec:
           - cluster.local
       containers:
         - name: aseggys-qa
-          image: jjolon/php-full:latest
+          image: jjolon/vehiculo:latest
+          # image: jjolon/php-full:latest
           ports:
             - containerPort: 443
               protocol: TCP
