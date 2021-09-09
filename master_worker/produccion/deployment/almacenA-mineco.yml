@@ -43,7 +43,7 @@ spec:
     - ReadWriteOnce
   nfs:
     server: 128.5.8.222
-    path: "/deployment/qa/aseggys/qa/dev"
+    path: "/deployment/qa/assegys/qa/dev"
 
 ---
 apiVersion: v1
