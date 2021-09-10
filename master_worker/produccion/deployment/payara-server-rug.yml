@@ -169,11 +169,11 @@ spec:
   ports:
     - name: http
       port: 80
-      targetPort: 80
+      targetPort: 8181
       protocol: TCP
     - name: listener-2
       port: 8282
-      targetPort: 8181
+      targetPort: 80
       protocol: TCP
     # - name: listener-1
     #   port: 8282
