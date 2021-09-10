@@ -125,7 +125,8 @@ spec:
           - cluster.local
       containers:
         - name: payara-rgm
-          image: jjolon/payara:v5
+          image: payara/server-full
+          # image: jjolon/payara:v5
           ports:
             # - containerPort: 8080
             #   protocol: TCP
