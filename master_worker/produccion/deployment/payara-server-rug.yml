@@ -138,18 +138,18 @@ spec:
               protocol: TCP
             # - containerPort: 80
             #   protocol: TCP
-          volumeMounts:
-            - mountPath: "/opt/payara/appserver/glassfish/domains/domain1"
-              name: vol-payara
-            - mountPath: "/opt/payara/deployments"
-              name: vol-deployment
-      volumes:
-        - name: vol-payara
-          persistentVolumeClaim:
-            claimName: payara-rgm
-        - name: vol-deployment
-          persistentVolumeClaim:
-            claimName: deployment-rgm
+      #     volumeMounts:
+      #       - mountPath: "/opt/payara/appserver/glassfish/domains/domain1"
+      #         name: vol-payara
+      #       - mountPath: "/opt/payara/deployments"
+      #         name: vol-deployment
+      # volumes:
+      #   - name: vol-payara
+      #     persistentVolumeClaim:
+      #       claimName: payara-rgm
+      #   - name: vol-deployment
+      #     persistentVolumeClaim:
+      #       claimName: deployment-rgm
 
 ---
 # SERVICE INGRESS ADMIN
