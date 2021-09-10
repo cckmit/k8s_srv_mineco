@@ -136,8 +136,8 @@ spec:
             #   protocol: TCP
             - containerPort: 4848
               protocol: TCP
-            # - containerPort: 80
-            #   protocol: TCP
+            - containerPort: 80
+              protocol: TCP
       #     volumeMounts:
       #       - mountPath: "/opt/payara/appserver/glassfish/domains/domain1"
       #         name: vol-payara
@@ -165,7 +165,7 @@ spec:
   # type: ClusterIP
   type: LoadBalancer
   externalIPs:
-    - 128.5.9.32
+    - 128.5.4.38
   ports:
     # - name: http
     #   port: 80
