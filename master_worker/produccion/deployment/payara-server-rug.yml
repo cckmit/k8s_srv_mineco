@@ -167,10 +167,10 @@ spec:
   externalIPs:
     - 128.5.4.38
   ports:
-    # - name: http
-    #   port: 80
-    #   targetPort: 8181
-    #   protocol: TCP
+    - name: http
+      port: 80
+      # targetPort: 8181
+      protocol: TCP
     - name: listener-2
       port: 8282
       targetPort: 8181
