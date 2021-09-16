@@ -124,7 +124,7 @@ spec:
           - svc.cluster.local
           - cluster.local
       containers:
-        - name: payara-rgm
+        - name: payara-rgm-rug
           image: jjolon/payara:v5
           ports:
           # image: payara/server-full
