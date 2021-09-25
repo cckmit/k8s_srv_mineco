@@ -1,33 +1,32 @@
 apiVersion: v1
 kind: ServiceAccount
 metadata:
-  name: aseggys
-  namespace: mineco
+  name: aseggys-qa
+  namespace: mineco-qa
 ---
 # VOLUME DATA
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: aseggys-deploy
-  namespace: mineco
+  name: aseggys-deploy-qa
+  namespace: mineco-qa
   labels:
-    name: aseggys-deploy
+    name: aseggys-deploy-qa
 spec:
   storageClassName: manual
   capacity:
     storage: 20Gi
   accessModes:
     - ReadWriteOnce
-  nfs:
-    server: 128.5.8.222
-    path: "/deployment/aseggys"
+  hostPath:
+    path: "D:/kubernetes/dev"
 
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: aseggys-deploy
-  namespace: mineco
+  name: aseggys-deploy-qa
+  namespace: mineco-qa
 spec:
   storageClassName: manual
   accessModes:
@@ -37,26 +36,26 @@ spec:
       storage: 20Gi
   selector:
     matchLabels:
-      name: aseggys-deploy
+      name: aseggys-deploy-qa
 
 ---
 # DEPLOYMENT APP
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: aseggys
-  namespace: mineco
+  name: aseggys-qa
+  namespace: mineco-qa
   labels:
-    run: aseggys
+    run: aseggys-qa
 spec:
   replicas: 1
   selector:
     matchLabels:
-      run: aseggys
+      run: aseggys-qa
   template:
     metadata:
       labels:
-        run: aseggys
+        run: aseggys-qa
     spec:
       dnsPolicy: "None"
       dnsConfig:
@@ -67,15 +66,9 @@ spec:
           - svc.cluster.local
           - cluster.local
       containers:
-        - name: aseggys
-          image: jjolon/ubuntu_02:latest
-          resources:
-            requests:
-              memory: "0.5m"
-              cpu: "200m"
-            limits:
-              memory: "1Gi"
-              cpu: "700m"
+        - name: aseggys-qa
+          image: jjolon/vehiculo:latest
+          # image: jjolon/php-full:latest
           ports:
             - containerPort: 443
               protocol: TCP
@@ -83,26 +76,26 @@ spec:
               protocol: TCP
           volumeMounts:
             - mountPath: "/var/www/html"
-              name: aseggys-vol
+              name: aseggys-qa-vol
       volumes:
-        - name: aseggys-vol
+        - name: aseggys-qa-vol
           persistentVolumeClaim:
-            claimName: aseggys-deploy
+            claimName: aseggys-deploy-qa
 
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: aseggys
-  namespace: mineco
+  name: aseggys-qa
+  namespace: mineco-qa
   labels:
-    app.kubernetes.io/name: aseggys
-    app.kubernetes.io/part-of: aseggys
+    app.kubernetes.io/name: aseggys-qa
+    app.kubernetes.io/part-of: aseggys-qa
 spec:
-  # type: ClusterIP
-  type: LoadBalancer
-  externalIPs:
-    - 128.5.4.24
+  type: ClusterIP
+  # type: LoadBalancer
+  # externalIPs:
+  #   - 128.5.4.24
   ports:
     - name: http
       port: 80
@@ -111,4 +104,4 @@ spec:
       port: 443
       protocol: TCP
   selector:
-    run: aseggys
+    run: aseggys-qa
