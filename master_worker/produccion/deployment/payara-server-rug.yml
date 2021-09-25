@@ -124,19 +124,20 @@ spec:
           - svc.cluster.local
           - cluster.local
       containers:
-        - name: payara-rgm
+        - name: payara-rgm-rug
           image: jjolon/payara:v5
           ports:
+          # image: payara/server-full
             # - containerPort: 8080
             #   protocol: TCP
             - containerPort: 8181
               protocol: TCP
-            # - containerPort: 8282
-            #   protocol: TCP
+            - containerPort: 8282
+              protocol: TCP
             - containerPort: 4848
               protocol: TCP
-            # - containerPort: 80
-            #   protocol: TCP
+            - containerPort: 80
+              protocol: TCP
           volumeMounts:
             - mountPath: "/opt/payara/appserver/glassfish/domains/domain1"
               name: vol-payara
@@ -164,15 +165,15 @@ spec:
   # type: ClusterIP
   type: LoadBalancer
   externalIPs:
-    - 128.5.9.32
+    - 128.5.4.32
   ports:
-    # - name: http
-    #   port: 80
-    #   targetPort: 8181
-    #   protocol: TCP
+    - name: http
+      port: 80
+      targetPort: 8181
+      protocol: TCP
     - name: listener-2
       port: 8282
-      targetPort: 8181
+      targetPort: 80
       protocol: TCP
     # - name: listener-1
     #   port: 8282
