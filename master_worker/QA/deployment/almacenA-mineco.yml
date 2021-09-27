@@ -18,8 +18,9 @@ spec:
     storage: 20Gi
   accessModes:
     - ReadWriteOnce
-  hostPath:
-    path: "D:/kubernetes/dev"
+  nfs:
+    server: 128.5.8.222
+    path: "/deployment/aseggys"
 
 ---
 apiVersion: v1
