@@ -91,6 +91,7 @@ spec:
       containers:
       - name: sic-qa
         image: jjolon/precios:latest
+        imagePullPolicy: IfNotPresent
         ports:
           - containerPort: 443
             protocol: TCP
