@@ -90,7 +90,7 @@ spec:
           - cluster.local
       containers:
       - name: sic-qa
-        image: jjolon/php-full:latest
+        image: jjolon/precios:latest
         ports:
           - containerPort: 443
             protocol: TCP
