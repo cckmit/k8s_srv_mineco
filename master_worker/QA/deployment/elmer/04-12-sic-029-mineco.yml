@@ -90,7 +90,7 @@ spec:
           - cluster.local
       containers:
       - name: sic-qa
-        image: jjolon/precios:latest
+        image: jjolon/sic_sql
         imagePullPolicy: IfNotPresent
         ports:
           - containerPort: 443
