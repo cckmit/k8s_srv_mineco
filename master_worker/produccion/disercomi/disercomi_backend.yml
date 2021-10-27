@@ -1,0 +1,137 @@
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: disercomi-backend
+  namespace: mineco
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-ingress-disebackend
+  namespace: nginx-ingress
+spec:
+  type: LoadBalancer
+  externalIPs:
+    - 128.5.4.28
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+      name: http
+    - protocol: TCP
+      port: 443
+      targetPort: 443
+      name: https
+  selector:
+    app: nginx-ingress
+
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: disercomi-pv-pvc-backend
+  namespace: mineco
+  labels:
+    name: disercomi-pv-pvc-backend
+spec:
+  storageClassName: manual
+  capacity:
+    storage: 20Gi
+  accessModes:
+    - ReadWriteOnce
+  nfs:
+    server: 128.5.8.222
+    path: "/deployment/disercomi/backend"
+
+
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: disercomi-pv-pvc-backend
+  namespace: mineco
+spec:
+  storageClassName: manual
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 20Gi
+  selector:
+    matchLabels:
+      name: disercomi-pv-pvc-backend
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: disercomi-backend-server
+  namespace: mineco
+  labels:
+    run: disercomi-backend-server
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      run: disercomi-backend-server
+  template:
+    metadata:
+      labels:
+        run: disercomi-backend-server
+    spec:
+      dnsPolicy: "None"
+      dnsConfig:
+        nameservers:
+          - 128.5.8.26
+        searches:
+          - mineco-dev.svc.cluster.local
+          - svc.cluster.local
+          - cluster.local
+      containers:
+        - name: disercomi-backend-server
+          image: jjolon/php-73s:v2
+          resources:
+            requests:
+              memory: "Gi"
+              cpu: "200m"
+            limits:
+              memory: "3Gi"
+              cpu: "700m"
+          ports:
+            - containerPort: 443
+              protocol: TCP
+            - containerPort: 80
+              protocol: TCP
+          volumeMounts:
+            - mountPath: "/var/www/html"
+              name: vol-php-backend
+      volumes:
+        - name: vol-php-backend
+          persistentVolumeClaim:
+            claimName: disercomi-pv-pvc-backend
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: disercomi-backend-server
+  namespace: mineco
+  labels:
+    app.kubernetes.io/name: disercomi-backend-server
+    app.kubernetes.io/part-of: disercomi-backend-server
+spec:
+  # type: ClusterIP
+  type: NodePort
+  ports:
+    - name: http
+      port: 80
+      nodePort: 30001
+      protocol: TCP
+    - name: listener-2
+      port: 443
+      nodePort: 30002
+      protocol: TCP
+  selector:
+    run: disercomi-backend-server
+
