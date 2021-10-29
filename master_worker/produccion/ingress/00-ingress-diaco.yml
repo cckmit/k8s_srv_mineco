@@ -16,10 +16,10 @@ metadata:
 spec:
   tls:
     - hosts:
-      - dev.diaco.gob.gt
+      - diacoenlinea.diaco.gob.gt
       secretName: diaco-server-secret
   rules:
-  - host: dev.diaco.gob.gt
+  - host: diacoenlinea.diaco.gob.gt
     http:
       paths:
       - path: /
