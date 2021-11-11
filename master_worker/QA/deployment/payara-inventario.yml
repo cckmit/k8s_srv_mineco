@@ -1,0 +1,227 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-ingress-rgm
+  namespace: nginx-ingress
+spec:
+  type: LoadBalancer
+  externalIPs:
+    - 128.5.4.29
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+      name: http
+    - protocol: TCP
+      port: 443
+      targetPort: 443
+      name: https
+  selector:
+    app: nginx-ingress
+
+---
+
+# persinsten deploy payara
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: inv-rgm-deployment
+  namespace: rgm
+  labels:
+    name: inv-rgm-deployment
+spec:
+  storageClassName: manual
+  capacity:
+    storage: 20Gi
+  accessModes:
+    - ReadWriteOnce
+  nfs:
+    server: 128.5.8.222
+    path: "/deployment/payara/qa_inventario/rgm"
+
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: inv-rgm-deployment
+  namespace: rgm
+spec:
+  storageClassName: manual
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 20Gi
+  selector:
+    matchLabels:
+      name: inv-rgm-deployment
+---
+# persinsten signature
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: inv-deploy-signature
+  namespace: rgm
+  labels:
+    name: inv-deploy-signature
+spec:
+  storageClassName: manual
+  capacity:
+    storage: 20Gi
+  accessModes:
+    - ReadWriteOnce
+  nfs:
+    server: 128.5.8.222
+    path: "/deployment/payara/qa_inventario/signature"
+
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: inv-deploy-signature
+  namespace: rgm
+spec:
+  storageClassName: manual
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 20Gi
+  selector:
+    matchLabels:
+      name: inv-deploy-signature
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: inv-server-rgm
+  namespace: rgm
+  labels:
+    run: inv-server-rgm
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      run: inv-server-rgm
+  template:
+    metadata:
+      labels:
+        run: inv-server-rgm
+    spec:
+      dnsPolicy: "None"
+      dnsConfig:
+        nameservers:
+          - 128.5.8.26
+        searches:
+          - mineco-dev.svc.cluster.local
+          - svc.cluster.local
+          - cluster.local
+      containers:
+        - name: inv-server-rgm
+          # image: payara/server-full:latest
+          image: jjolon/payaraoffice:latest
+          ports:
+            - containerPort: 8080
+              protocol: TCP
+            - containerPort: 8181
+              protocol: TCP
+            - containerPort: 8282
+              protocol: TCP
+            - containerPort: 4848
+              protocol: TCP
+            - containerPort: 80
+              protocol: TCP
+          volumeMounts:
+            - mountPath: "/opt/payara/appserver/glassfish/domains/domain1"
+              name: vol-payara
+            - mountPath: /opt/firma
+              name: vol-signature
+      volumes:
+        - name: vol-payara
+          persistentVolumeClaim:
+            claimName: inv-rgm-deployment
+        - name: vol-signature
+          persistentVolumeClaim:
+            claimName: inv-deploy-signature
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: inv-server-rgm
+  namespace: rgm
+  labels:
+    app.kubernetes.io/name: inv-server-rgm
+    app.kubernetes.io/part-of: inv-server-rgm
+spec:
+  # type: ClusterIP
+  type: LoadBalancer
+  externalIPs:
+    - 128.5.4.30
+  ports:
+    - name: http
+      port: 80
+      protocol: TCP
+    - name: listener-2
+      port: 8282
+      protocol: TCP
+    - name: listener-1
+      port: 8181
+      protocol: TCP
+    - name: asadmin
+      port: 4848
+      protocol: TCP
+    - name: http-service
+      port: 8080
+      protocol: TCP
+  selector:
+    run: inv-server-rgm
+
+---
+
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress-rgm
+  namespace: rgm
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/rewrite-target: /
+    nginx.ingress.kubernetes.io/use-regex: "true"
+    # add an annotation indicating the issuer to use.
+    cert-manager.io/cluster-issuer: letsencrypt-staging
+    acme.cert-manager.io/http01-edit-in-place: "true"
+    cert-manager.io/issue-temporary-certificate: "true"
+spec:
+  tls:
+    #colocar tus propios dominios
+    - hosts:
+        - dev.rgm.gob.gt
+      secretName: server-secret-rgm
+    - hosts:
+        - inv.rgm.gob.gt
+      secretName: server-secret-rgm
+  rules:
+    - host: dev.rgm.gob.gt
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: payara-server-rgm
+                port:
+                  number: 80
+    - host: inv.rgm.gob.gt
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: inv-server-rgm
+                port:
+                  number: 80
