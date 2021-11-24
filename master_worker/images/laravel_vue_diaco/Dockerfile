@@ -1,34 +1,31 @@
-FROM php:7.3-apache
+FROM php:7.4-apache
 
 COPY vhost.conf /etc/apache2/sites-available/000-default.conf
 
 RUN apt-get update && apt-get install -y \
-    libfreetype6-dev \
-            gcc make autoconf libc-dev pkg-config \
-            libjpeg62-turbo-dev \
-            libmcrypt-dev \
-            libpng-dev \
-            git \
-            zip \
-            unzip \
-            libzip-dev \
-            nano \
-            python2  \
-            iputils-ping  \
-            libldap2-dev   \
-            libgmp-dev  \
-        && pecl install mcrypt-1.0.2  \
+        libfreetype6-dev \
+        gcc make autoconf libc-dev pkg-config \
+        libmcrypt-dev \
+        libpng-dev \
+        git \
+        zip \
+        unzip \
+        libzip-dev \
+        nano \
+        python2  \
+        iputils-ping  \
+        libldap2-dev   \
+        && pecl install mcrypt-1.0.3 \
         && docker-php-ext-install -j$(nproc) iconv   \
         && docker-php-ext-install zip  \
         && docker-php-ext-install pdo_mysql   \
-        && docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
-        && docker-php-ext-install -j$(nproc) gd \
         && docker-php-ext-install bcmath \
         && docker-php-ext-configure ldap --with-libdir=lib/x86_64-linux-gnu/ \
         && docker-php-ext-install ldap \
         && docker-php-ext-enable mcrypt \
         && docker-php-ext-install mysqli pdo pdo_mysql \
-        && docker-php-ext-install gmp
+        && docker-php-ext-install exif \
+        && docker-php-ext-enable exif
 
 
 RUN apt-get update && apt-get install -y libmagickwand-dev --no-install-recommends && rm -rf /var/lib/apt/lists/*

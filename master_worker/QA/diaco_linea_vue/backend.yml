@@ -90,7 +90,7 @@ spec:
           - cluster.local
       containers:
         - name: linea-qa-server
-          image: jjolon/lara_vue:1
+          image: jjolon/lara_vue:2
           resources:
             requests:
               memory: "Gi"
