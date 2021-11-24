@@ -42,7 +42,7 @@ spec:
     - ReadWriteOnce
   nfs:
     server: 128.5.8.222
-    path: "/deployment/qa/diaco/backend"
+    path: "/deployment/qa/diaco/backend/laravel"
 
 
 ---
