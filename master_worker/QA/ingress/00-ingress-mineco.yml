@@ -17,6 +17,7 @@ spec:
       - qajuridico.mineco.gob.gt
       - qavehiculos.mineco.gob.gt
       - qapartidas.mineco.gob.gt
+      - qaupload.mineco.gob.gt
       secretName: default-server-secret-qa
   rules:
   - host: qasic.mineco.gob.gt
@@ -27,6 +28,16 @@ spec:
         backend:
           service:
             name: sic-qa
+            port:
+              number: 80
+  - host: qaupload.mineco.gob.gt
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: server-upload
             port:
               number: 80
   - host: qadti.mineco.gob.gt

@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: laravel-recursos
+  namespace: mineco
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      run: laravel-recursos
+  template:
+    metadata:
+      labels:
+        run: laravel-recursos
+    spec:
+      containers:
+      - name: laravel-recursos
+        image: jjolon/financiero:latest
+        imagePullPolicy: IfNotPresent
+        ports:
+          - containerPort: 80
+            protocol: TCP
+          - containerPort: 443
+            protocol: TCP
+        volumeMounts:
+            - mountPath: "/var/www/html"
+              name: vol-recursos
+      volumes:
+        - name: vol-recursos
+          persistentVolumeClaim:
+            claimName: recursos-mineco
