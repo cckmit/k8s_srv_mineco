@@ -92,7 +92,7 @@ spec:
       containers:
         - name: server-upload
           # image: payara/server-full:latest
-          image: jjolon/disercomi:v1
+          image: jjolon/php-full:latest
           ports:
             - containerPort: 80
               protocol: TCP
