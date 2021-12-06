@@ -111,7 +111,7 @@ metadata:
     app.kubernetes.io/name: server-upload
     app.kubernetes.io/part-of: server-upload
 spec:
-   type: ClusterIP
+  type: ClusterIP
 #  type: LoadBalancer
   ports:
     - name: http
