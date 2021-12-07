@@ -19,10 +19,10 @@ spec:
       - qavehiculos.mineco.gob.gt
       - qapartidas.mineco.gob.gt
       - qaupload.mineco.gob.gt
-      - qadisercomi.mineco.gob.gt
+      - qaadmin-disercomi.mineco.gob.gt
       secretName: default-server-secret-qa
   rules:
-  - host: qadisercomi.mineco.gob.gt
+  - host: qaadmin-disercomi.mineco.gob.gt
     http:
       paths:
       - path: /
