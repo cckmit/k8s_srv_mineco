@@ -42,7 +42,7 @@ spec:
         pathType: Prefix
         backend:
           service:
-            name: server-upload-p
+            name: service-payara
             port:
               number: 80
   - host: ficharecursos.mineco.gob.gt
@@ -52,7 +52,7 @@ spec:
         pathType: Prefix
         backend:
           service:
-            name: service-payara
+            name: server-upload-p
             port:
               number: 80
   - host: vehiculos.mineco.gob.gt
