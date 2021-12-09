@@ -31,8 +31,21 @@ spec:
     - hosts:
         - admin-disercomi.mineco.gob.gt
       secretName: default-server-secret
+    - hosts:
+        - ficharecursos.mineco.gob.gt
+      secretName: default-server-secret
   rules:
   - host: dev.mineco.gob.gt
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: server-upload-p
+            port:
+              number: 80
+  - host: ficharecursos.mineco.gob.gt
     http:
       paths:
       - path: /
