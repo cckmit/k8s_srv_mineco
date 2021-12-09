@@ -1,0 +1,130 @@
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: server-upload-p
+  namespace: mineco
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-ingress-upload
+  namespace: nginx-ingress
+spec:
+  type: LoadBalancer
+  externalIPs:
+    - 128.5.4.38
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+      name: http
+    - protocol: TCP
+      port: 443
+      targetPort: 443
+      name: https
+  selector:
+    app: nginx-ingress
+
+---
+
+# persinsten deploy payara
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: upload-deployment-p
+  namespace: mineco
+  labels:
+    name: upload-deployment-p
+spec:
+  storageClassName: manual
+  capacity:
+    storage: 20Gi
+  accessModes:
+    - ReadWriteOnce
+  nfs:
+    server: 128.5.8.222
+    path: "/deployment/recursos"
+
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: upload-deployment-p
+  namespace: mineco
+spec:
+  storageClassName: manual
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 20Gi
+  selector:
+    matchLabels:
+      name: upload-deployment-p
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: server-upload-p
+  namespace: mineco
+  labels:
+    run: server-upload-p
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      run: server-upload-p
+  template:
+    metadata:
+      labels:
+        run: server-upload-p
+    spec:
+      dnsPolicy: "None"
+      dnsConfig:
+        nameservers:
+          - 128.5.8.26
+        searches:
+          - mineco-dev.svc.cluster.local
+          - svc.cluster.local
+          - cluster.local
+      containers:
+        - name: server-upload-p
+          # image: payara/server-full:latest
+          image: jjolon/php-full:latest
+          ports:
+            - containerPort: 80
+              protocol: TCP
+            - containerPort: 443
+              protocol: TCP
+          volumeMounts:
+            - mountPath: "/var/www/html"
+              name: vol-upload
+      volumes:
+        - name: vol-upload
+          persistentVolumeClaim:
+            claimName: upload-deployment-p
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: server-upload-p
+  namespace: mineco
+  labels:
+    app.kubernetes.io/name: server-upload-p
+    app.kubernetes.io/part-of: server-upload-p
+spec:
+  type: ClusterIP
+#  type: LoadBalancer
+  ports:
+    - name: http
+      port: 80
+      protocol: TCP
+    - name: listener-2
+      port: 443
+      protocol: TCP
+  selector:
+    run: server-upload-p
