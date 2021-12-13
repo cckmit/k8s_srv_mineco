@@ -28,9 +28,9 @@ spec:
 #    - hosts:
 #        - disercomi.mineco.gob.gt
 #      secretName: default-server-secret
-#    - hosts:
-#        - admin-disercomi.mineco.gob.gt
-#      secretName: default-server-secret
+    - hosts:
+        - admin-disercomi.mineco.gob.gt
+      secretName: default-server-secret
     - hosts:
         - ficharecursos.mineco.gob.gt
       secretName: default-server-secret
@@ -85,13 +85,13 @@ spec:
 #            name: disercomi-frontend-server
 #            port:
 #              number: 80
-#  - host: admin-disercomi.mineco.gob.gt
-#    http:
-#      paths:
-#      - path: /
-#        pathType: Prefix
-#        backend:
-#          service:
-#            name: disercomi-backend-server
-#            port:
-#              number: 80
+  - host: admin-disercomi.mineco.gob.gt
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: nginx-ingress-disebackend
+            port:
+              number: 80
