@@ -122,8 +122,8 @@ metadata:
     app.kubernetes.io/name: disercomi-backend-server
     app.kubernetes.io/part-of: disercomi-backend-server
 spec:
-  # type: ClusterIP
-  type: NodePort
+  type: ClusterIP
+#  type: NodePort
   ports:
     - name: http
       port: 80
