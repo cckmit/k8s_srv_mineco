@@ -9,8 +9,8 @@ metadata:
     nginx.ingress.kubernetes.io/rewrite-target: /
     nginx.ingress.kubernetes.io/use-regex: "true"
     # add an annotation indicating the issuer to use.
-    # cert-manager.io/cluster-issuer: letsencrypt-staging
-    cert-manager.io/cluster-issuer: letsencrypt-prod
+     cert-manager.io/cluster-issuer: letsencrypt-staging
+#    cert-manager.io/cluster-issuer: letsencrypt-prod
     acme.cert-manager.io/http01-edit-in-place: "true"
     cert-manager.io/issue-temporary-certificate: "true"
 spec:
@@ -22,9 +22,9 @@ spec:
     - hosts:
       - vehiculos.mineco.gob.gt
       - www.vehiculos.mineco.gob.gt
-    - hosts:
-      - autorizaciones.mineco.gob.gt
-      secretName: default-server-secret
+#    - hosts:
+#      - autorizaciones.mineco.gob.gt
+#      secretName: default-server-secret
     - hosts:
         - disercomi.mineco.gob.gt
       secretName: default-server-secret
@@ -65,16 +65,16 @@ spec:
             name: vehiculo-server
             port:
               number: 80
-  - host: autorizaciones.mineco.gob.gt
-    http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: autorizacion-server
-            port:
-              number: 80
+#  - host: autorizaciones.mineco.gob.gt
+#    http:
+#      paths:
+#      - path: /
+#        pathType: Prefix
+#        backend:
+#          service:
+#            name: autorizacion-server
+#            port:
+#              number: 80
   - host: disercomi.mineco.gob.gt
     http:
       paths:
