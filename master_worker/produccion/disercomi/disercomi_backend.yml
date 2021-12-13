@@ -127,11 +127,9 @@ spec:
   ports:
     - name: http
       port: 80
-      nodePort: 30001
       protocol: TCP
     - name: listener-2
       port: 443
-      nodePort: 30002
       protocol: TCP
   selector:
     run: disercomi-backend-server
