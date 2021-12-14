@@ -26,7 +26,7 @@ spec:
 #      - autorizaciones.mineco.gob.gt
 #      secretName: default-server-secret
 #    - hosts:
-        - disercomi.mineco.gob.gt
+#        - disercomi.mineco.gob.gt
       secretName: default-server-secret
     - hosts:
         - admin-disercomi.mineco.gob.gt
