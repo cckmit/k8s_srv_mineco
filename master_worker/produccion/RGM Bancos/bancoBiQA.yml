@@ -18,7 +18,7 @@ spec:
   ports:
     - protocol: TCP
       port: 80
-      targetPort: 8282
+      targetPort: 80
       name: http
     - protocol: TCP
       port: 443
