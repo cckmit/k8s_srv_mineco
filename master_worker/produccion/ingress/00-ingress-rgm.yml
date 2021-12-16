@@ -19,20 +19,20 @@ spec:
     - hosts:
         - inv.rgm.gob.gt
       secretName: server-secret-rgm
-#    - hosts:
-#        - qabancos.rgm.gob.gt
-#      secretName: server-secret-rgm
+    - hosts:
+        - qabancos.rgm.gob.gt
+      secretName: server-secret-rgm
   rules:
-#    - host: qabancos.rgm.gob.gt
-#      http:
-#        paths:
-#          - path: /
-#            pathType: Prefix
-#            backend:
-#              service:
-#                name: service-rgm-payara-bancos
-#                port:
-#                  number: 80
+    - host: qabancos.rgm.gob.gt
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: service-rgm-payara-bancos
+                port:
+                  number: 80
     - host: dev.rgm.gob.gt
       http:
         paths:
