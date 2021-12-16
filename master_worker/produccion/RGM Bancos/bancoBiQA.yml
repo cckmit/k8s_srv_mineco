@@ -167,21 +167,18 @@ spec:
   ports:
     - name: http
       port: 80
-      targetPort: 8181
       protocol: TCP
     - name: listener-2
       port: 8282
-      targetPort: 80
       protocol: TCP
-    # - name: listener-1
-    #   port: 8282
-    #   targetPort: 8181
-    #   protocol: TCP
+    - name: listener-1
+      port: 8181
+      protocol: TCP
     - name: asadmin
       port: 4848
       protocol: TCP
-    # - name: http-service
-    #   port: 8080
-    #   protocol: TCP
+    - name: http-service
+      port: 8080
+      protocol: TCP
   selector:
     run: payara-bancos
