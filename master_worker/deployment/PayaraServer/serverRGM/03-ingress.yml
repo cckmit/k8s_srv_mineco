@@ -5,10 +5,27 @@ metadata:
   namespace: rgm
   annotations:
     kubernetes.io/ingress.class: nginx
-    nginx.ingress.kubernetes.io/rewrite-target: /
     nginx.ingress.kubernetes.io/use-regex: "true"
+    cert-manager.io/cluster-issuer: letsencrypt-staging
+    acme.cert-manager.io/http01-edit-in-place: "true"
+    cert-manager.io/issue-temporary-certificate: "true"
+    nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
 spec:
+  tls:
+    - hosts:
+        - qabancos.rgm.gob.gt
+      secretName: server-secret-rgm
   rules:
+  - host: qabancos.rgm.gob.gt
+    http:
+      paths:
+        - path: /
+          pathType: Prefix
+          backend:
+            service:
+              name: s
+              port:
+                number: 80
   - host: dev.rgm.gob.gt
     http:
       paths:
