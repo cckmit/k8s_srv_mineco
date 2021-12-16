@@ -102,13 +102,13 @@ spec:
               protocol: TCP
             - containerPort: 80
               protocol: TCP
-#          volumeMounts:
-#            - mountPath: "/opt/payara/appserver/glassfish/domains/domain1"
-#              name: vol-payara
-#      volumes:
-#        - name: vol-payara
-#          persistentVolumeClaim:
-#            claimName: payara-bancos
+          volumeMounts:
+            - mountPath: "/opt/payara/appserver/glassfish/domains/domain1"
+              name: vol-payara
+      volumes:
+        - name: vol-payara
+          persistentVolumeClaim:
+            claimName: payara-bancos
 
 ---
 # SERVICE INGRESS ADMIN
