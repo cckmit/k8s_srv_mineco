@@ -22,7 +22,7 @@ spec:
 #    - hosts:
 #        - qabancos.rgm.gob.gt
 #      secretName: server-secret-rgm
-#  rules:
+  rules:
 #    - host: qabancos.rgm.gob.gt
 #      http:
 #        paths:
