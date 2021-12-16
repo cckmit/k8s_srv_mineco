@@ -44,7 +44,7 @@ spec:
     - ReadWriteOnce
   nfs:
     server: 128.5.8.222
-    path: "/deployment/payara/ws_rug/ws_bancos"
+    path: "/deployment/payara/ws_rug/ws_bancos/ws"
 
 ---
 apiVersion: v1
