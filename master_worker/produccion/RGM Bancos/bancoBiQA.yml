@@ -125,8 +125,10 @@ spec:
           - cluster.local
       containers:
         - name: payara-bancos-rug
-          image: jjolon/payara:v5
+          image: jjolon/payaraoffice:latest
           ports:
+            - containerPort: 8080
+              protocol: TCP
             - containerPort: 8181
               protocol: TCP
             - containerPort: 8282
