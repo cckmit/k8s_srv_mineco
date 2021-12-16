@@ -1,0 +1,178 @@
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: payara-bancos
+  namespace: rgm
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-ingress-bancos
+  namespace: nginx-ingress
+spec:
+  type: LoadBalancer
+  externalIPs:
+    - 128.5.4.37
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+      name: http
+    - protocol: TCP
+      port: 443
+      targetPort: 443
+      name: https
+  selector:
+    app: nginx-ingress
+
+---
+
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: payara-bancos
+  namespace: rgm
+  labels:
+    name: payara-bancos
+spec:
+  storageClassName: manual
+  capacity:
+    storage: 20Gi
+  accessModes:
+    - ReadWriteOnce
+  nfs:
+    server: 128.5.8.222
+    path: "/deployment/payara/ws_rug/ws_bancos"
+
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: payara-bancos
+  namespace: rgm
+spec:
+  storageClassName: manual
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 20Gi
+  selector:
+    matchLabels:
+      name: payara-bancos
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: deployment-rgm-bancos
+  namespace: rgm
+  labels:
+    name: deployment-rgm-bancos
+spec:
+  storageClassName: manual
+  capacity:
+    storage: 20Gi
+  accessModes:
+    - ReadWriteOnce
+  nfs:
+    server: 128.5.8.222
+    path: "/deployment/payara/ws_deployment_bancos"
+
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: deployment-rgm-bancos
+  namespace: rgm
+spec:
+  storageClassName: manual
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 20Gi
+  selector:
+    matchLabels:
+      name: deployment-rgm-bancos
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: payara-bancos
+  namespace: rgm
+  labels:
+    run: payara-bancos
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      run: payara-bancos
+  template:
+    metadata:
+      labels:
+        run: payara-bancos
+    spec:
+      dnsPolicy: "None"
+      dnsConfig:
+        nameservers:
+          - 128.5.8.26
+        searches:
+          - mineco-dev.svc.cluster.local
+          - svc.cluster.local
+          - cluster.local
+      containers:
+        - name: payara-bancos-rug
+          image: jjolon/payara:v5
+          ports:
+            - containerPort: 8181
+              protocol: TCP
+            - containerPort: 8282
+              protocol: TCP
+            - containerPort: 4848
+              protocol: TCP
+            - containerPort: 80
+              protocol: TCP
+          volumeMounts:
+            - mountPath: "/opt/payara/appserver/glassfish/domains/domain1"
+              name: vol-payara
+            - mountPath: "/opt/payara/deployments"
+              name: vol-deployment
+      volumes:
+        - name: vol-payara
+          persistentVolumeClaim:
+            claimName: payara-bancos
+        - name: vol-deployment
+          persistentVolumeClaim:
+            claimName: deployment-rgm-bancos
+
+---
+# SERVICE INGRESS ADMIN
+apiVersion: v1
+kind: Service
+metadata:
+  name: service-rgm-payara
+  namespace: rgm
+  labels:
+    app.kubernetes.io/name: payara-bancos
+    app.kubernetes.io/part-of: payara-bancos
+spec:
+  type: LoadBalancer
+  externalIPs:
+    - 128.5.4.39
+  ports:
+    - name: http
+      port: 80
+      targetPort: 8181
+      protocol: TCP
+    - name: listener-2
+      port: 8282
+      targetPort: 80
+      protocol: TCP
+    - name: asadmin
+      port: 4848
+      protocol: TCP
+  selector:
+    run: payara-bancos
