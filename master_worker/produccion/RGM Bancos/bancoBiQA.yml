@@ -128,9 +128,11 @@ spec:
     - name: http
       port: 80
       protocol: TCP
+      targetPort: 8181
     - name: listener-2
       port: 8282
       protocol: TCP
+      targetPort: 80
     - name: listener-1
       port: 8181
       protocol: TCP
