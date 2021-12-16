@@ -30,7 +30,7 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: payara-bancos
+                name: service-rgm-payara-bancos
                 port:
                   number: 80
     - host: dev.rgm.gob.gt
