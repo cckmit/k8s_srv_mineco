@@ -4,28 +4,28 @@ metadata:
   name: payara-bancos
   namespace: rgm
 
----
-
-apiVersion: v1
-kind: Service
-metadata:
-  name: nginx-ingress-bancos
-  namespace: nginx-ingress
-spec:
-  type: LoadBalancer
-  externalIPs:
-    - 128.5.4.37
-  ports:
-    - protocol: TCP
-      port: 80
-      targetPort: 80
-      name: http
-    - protocol: TCP
-      port: 443
-      targetPort: 443
-      name: https
-  selector:
-    app: nginx-ingress
+#---
+#
+#apiVersion: v1
+#kind: Service
+#metadata:
+#  name: nginx-ingress-bancos
+#  namespace: nginx-ingress
+#spec:
+#  type: LoadBalancer
+#  externalIPs:
+#    - 128.5.4.37
+#  ports:
+#    - protocol: TCP
+#      port: 80
+#      targetPort: 80
+#      name: http
+#    - protocol: TCP
+#      port: 443
+#      targetPort: 443
+#      name: https
+#  selector:
+#    app: nginx-ingress
 
 ---
 
@@ -123,7 +123,7 @@ metadata:
 spec:
   type: LoadBalancer
   externalIPs:
-    - 128.5.4.39
+    - 128.5.4.37
   ports:
     - name: http
       port: 80
