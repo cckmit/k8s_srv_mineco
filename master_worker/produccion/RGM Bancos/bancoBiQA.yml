@@ -50,7 +50,7 @@ spec:
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: deployment-rgm-bancos
+  name: payara-bancos
   namespace: rgm
 spec:
   storageClassName: manual
@@ -61,8 +61,7 @@ spec:
       storage: 20Gi
   selector:
     matchLabels:
-      name: deployment-rgm-bancos
-
+      name: payara-bancos
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -106,10 +105,15 @@ spec:
           volumeMounts:
             - mountPath: "/opt/payara/appserver/glassfish/domains/domain1"
               name: vol-payara
+            - mountPath: "/opt/payara/deployments"
+              name: vol-deployment
       volumes:
         - name: vol-payara
           persistentVolumeClaim:
             claimName: payara-bancos
+        - name: vol-deployment
+          persistentVolumeClaim:
+            claimName: deployment-rgm-bancos
 
 ---
 # SERVICE INGRESS ADMIN
