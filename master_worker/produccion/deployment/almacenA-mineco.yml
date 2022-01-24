@@ -68,7 +68,7 @@ spec:
           - cluster.local
       containers:
         - name: aseggys
-          image: gjuniioor/php-sqlsrv:7.0
+          image: lyubb/docker-mssql-php5
           # image: jjolon/ubuntu_02:latest
           resources:
             requests:
