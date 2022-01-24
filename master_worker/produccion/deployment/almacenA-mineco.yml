@@ -68,7 +68,7 @@ spec:
           - cluster.local
       containers:
         - name: aseggys
-          image: lyubb/docker-mssql-php5
+          image: jjolon/ubuntu03:latest
           # image: jjolon/ubuntu_02:latest
           resources:
             requests:
