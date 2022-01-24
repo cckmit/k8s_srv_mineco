@@ -71,10 +71,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     apt-transport-https gnupg \
     && ln -s /usr/lib/x86_64-linux-gnu/libsybdb.so /usr/lib/libsybdb.so \
     && ln -s /usr/lib/x86_64-linux-gnu/libsybdb.a /usr/lib/libsybdb.a \
-    && apt-get install -y --no-install-recommends freetds-dev \
-     && ln -s /usr/lib/x86_64-linux-gnu/libsybdb.so /usr/lib/libsybdb.so \
     && docker-php-ext-install mssql \
-    && docker-php-ext-configure mssql --with-mssql=/usr \
+    && docker-php-ext-configure mssql \
     # && docker-php-ext-install   mssql 
     # && docker-php-ext-configure mssql 
     && chmod 755 /var/www/html -R \
