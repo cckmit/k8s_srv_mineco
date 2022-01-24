@@ -68,7 +68,8 @@ spec:
           - cluster.local
       containers:
         - name: aseggys
-          image: jjolon/ubuntu_02:latest
+          image: jjolon/almacen02:latest
+          # image: jjolon/ubuntu_02:latest
           resources:
             requests:
               memory: "0.5m"

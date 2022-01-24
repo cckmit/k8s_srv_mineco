@@ -56,8 +56,8 @@ FROM php:5.5.29-apache
 RUN apt-get update && apt-get install -y --no-install-recommends \
     libcurl4-openssl-dev \
     libedit-dev \
-    libsqlite3-dev \
     libssl-dev \
+    libsqlite3-dev \
     libxml2-dev \
     zlib1g-dev \
     freetds-dev \
@@ -70,10 +70,23 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     libqxmlrpc-dev \
     && ln -s /usr/lib/x86_64-linux-gnu/libsybdb.so /usr/lib/libsybdb.so \
     && ln -s /usr/lib/x86_64-linux-gnu/libsybdb.a /usr/lib/libsybdb.a \
-    && docker-php-ext-install   mssql \
-    && docker-php-ext-configure mssql \
+        # && pecl install pdo_sqlsrv sqlsrv \
+    && pecl channel-update pecl.php.net \
+    && pecl install pdo_sqlsrv-3.0.1 sqlsrv-3.0.1 \
+    && docker-php-ext-enable pdo_sqlsrv sqlsrv \
+    && php -m | grep -q 'pdo_sqlsrv' \
+    && php -m | grep -q 'sqlsrv' \
+    && sed -i 's,^\(MinProtocol[ ]*=\).*,\1'TLSv1.2',g' /etc/ssl/openssl.cnf \
+    && sed -i 's,^\(CipherString[ ]*=\).*,\1'DEFAULT@SECLEVEL=1',g' /etc/ssl/openssl.cnf \
+
+    # && docker-php-ext-install   mssql 
+    # && docker-php-ext-configure mssql 
     && chmod 755 /var/www/html -R \
-    && chown www-data:www-data /var/www/html
+    && chown www-data:www-data /var/www/html \
+    # && pecl install pdo_sqlsrv-3.0.1 sqlsrv-3.0.1  \
+    # && docker-php-ext-enable pdo_sqlsrv sqlsrv 
+    # && echo extension=pdo_sqlsrv.so >> `php --ini | grep "Scan for additional .ini files" | sed -e "s|.*:\s*||"`/10_pdo_sqlsrv.ini \
+    # && echo extension=sqlsrv.so >> `php --ini | grep "Scan for additional .ini files" | sed -e "s|.*:\s*||"`/00_sqlsrv.ini
 COPY conf/php.ini /usr/local/etc/php/
 COPY conf.d/ /usr/local/etc/php/conf.d/
 
