@@ -4,7 +4,7 @@ metadata:
   name: laravel-documentos
   namespace: mineco
   labels:
-    run: nginx
+    run: laravel-documentos
 spec:
   replicas: 3
   selector:
