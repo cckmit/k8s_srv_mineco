@@ -14,7 +14,7 @@ metadata:
 spec:
   type: LoadBalancer
   externalIPs:
-    - 128.5.4.37
+    - 128.5.4.39
   ports:
     - protocol: TCP
       port: 80
@@ -123,7 +123,7 @@ metadata:
 spec:
   type: LoadBalancer
   externalIPs:
-    - 128.5.4.39
+    - 128.5.4.37
   ports:
     - name: http
       port: 80
