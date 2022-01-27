@@ -39,7 +39,7 @@ spec:
           service:
             name: oga-qa
             port:
-              number: 80
+              number: 8080
   - host: qaadmin-disercomi.mineco.gob.gt
     http:
       paths:

@@ -120,7 +120,8 @@ spec:
   #    - 128.5.4.35
   ports:
     - name: http
-      port: 80
+      targetPort: 80
+      port: 8080
       protocol: TCP
     - name: listener-2
       port: 443
