@@ -38,18 +38,11 @@ spec:
   - host: dev.mineco.gob.gt
     http:
       paths:
-      - path: /dev
+      - path: /
         pathType: Prefix
         backend:
           service:
             name: service-payara
-            port:
-              number: 80
-      - path: /oga
-        pathType: Prefix
-        backend:
-          service:
-            name: oga-qa
             port:
               number: 80
   - host: ficharecursos.mineco.gob.gt
@@ -70,6 +63,13 @@ spec:
         backend:
           service:
             name: vehiculo-server
+            port:
+              number: 80
+      - path: /oga
+        pathType: Prefix
+        backend:
+          service:
+            name: oga-qa
             port:
               number: 80
 #  - host: autorizaciones.mineco.gob.gt
