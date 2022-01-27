@@ -1,0 +1,129 @@
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: bak-oga-qa
+  namespace: mineco-qa
+
+#---
+#apiVersion: v1
+#kind: Service
+#metadata:
+#  name: nginx-ingress-dsnc
+#  namespace: nginx-ingress
+#spec:
+#  type: LoadBalancer
+#  externalIPs:
+#    - 128.5.4.12
+#  ports:
+#    - protocol: TCP
+#      port: 80
+#      targetPort: 80
+#      name: http
+#    - protocol: TCP
+#      port: 443
+#      targetPort: 443
+#      name: https
+#  selector:
+#    app: nginx-ingress
+---
+
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: bak-oga-qa
+  namespace: mineco-qa
+  labels:
+    name: bak-oga-qa
+spec:
+  storageClassName: manual
+  capacity:
+    storage: 20Gi
+  accessModes:
+    - ReadWriteOnce
+  nfs:
+    server: 128.5.8.222
+    path: "/deployment/qa/oga/back"
+
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: bak-oga-qa
+  namespace: mineco-qa
+spec:
+  storageClassName: manual
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 20Gi
+  selector:
+    matchLabels:
+      name: bak-oga-qa
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bak-oga-qa
+  namespace: mineco-qa
+  labels:
+    run: bak-oga-qa
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      run: bak-oga-qa
+  template:
+    metadata:
+      labels:
+        run: bak-oga-qa
+    spec:
+      dnsPolicy: "None"
+      dnsConfig:
+        nameservers:
+          - 128.5.8.26
+        searches:
+          - mineco-dev.svc.cluster.local
+          - svc.cluster.local
+          - cluster.local
+      containers:
+        - name: bak-oga-qa
+          image: jjolon/dsnc:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 443
+              protocol: TCP
+            - containerPort: 80
+              protocol: TCP
+          volumeMounts:
+            - mountPath: "/var/www/html"
+              name: vol-bak-oga-qa
+      volumes:
+        - name: vol-bak-oga-qa
+          persistentVolumeClaim:
+            claimName: bak-oga-qa
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: bak-oga-qa
+  namespace: mineco-qa
+  labels:
+    app.kubernetes.io/name: bak-oga-qa
+    app.kubernetes.io/part-of: bak-oga-qa
+spec:
+  type: ClusterIP
+  #  type: LoadBalancer
+  #  externalIPs:
+  #    - 128.5.4.35
+  ports:
+    - name: http
+      port: 80
+      protocol: TCP
+    - name: listener-2
+      port: 443
+      protocol: TCP
+  selector:
+    run: bak-oga-qa
