@@ -70,7 +70,8 @@ spec:
         pathType: Prefix
         backend:
           service:
-            name: oga-qa
+            name: bak-oga-qa
+#            name: oga-qa
 #            name: dti-qa
             port:
               number: 80
