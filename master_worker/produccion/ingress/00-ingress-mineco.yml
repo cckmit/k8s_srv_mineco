@@ -45,6 +45,13 @@ spec:
             name: service-payara
             port:
               number: 80
+      - path: /oga
+        pathType: Prefix
+        backend:
+          service:
+            name: oga-qa
+            port:
+              number: 80
   - host: ficharecursos.mineco.gob.gt
     http:
       paths:
