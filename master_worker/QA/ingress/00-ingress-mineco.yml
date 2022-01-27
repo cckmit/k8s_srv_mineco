@@ -33,13 +33,6 @@ spec:
             name: disercomi-frontend-qa-server
             port:
               number: 80
-      - path: /oga
-        pathType: Prefix
-        backend:
-          service:
-            name: oga-qa
-            port:
-              number: 8080
   - host: qaadmin-disercomi.mineco.gob.gt
     http:
       paths:
@@ -77,7 +70,8 @@ spec:
         pathType: Prefix
         backend:
           service:
-            name: dti-qa
+            name: oga-qa
+#            name: dti-qa
             port:
               number: 80
   - host: qajuridico.mineco.gob.gt
