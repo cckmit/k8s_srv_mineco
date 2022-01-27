@@ -65,13 +65,6 @@ spec:
             name: vehiculo-server
             port:
               number: 80
-      - path: /oga
-        pathType: Prefix
-        backend:
-          service:
-            name: oga-qa
-            port:
-              number: 80
 #  - host: autorizaciones.mineco.gob.gt
 #    http:
 #      paths:
