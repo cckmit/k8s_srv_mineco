@@ -22,6 +22,12 @@ spec:
     - hosts:
       - vehiculos.mineco.gob.gt
       - www.vehiculos.mineco.gob.gt
+    - hosts:
+      - appconsole.mineco.gob.gt
+      - controldsnc.mineco.gob.gt
+      - appoga.mineco.gob.gt
+      secretName: default-server-secret
+
 #    - hosts:
 #      - autorizaciones.mineco.gob.gt
 #      secretName: default-server-secret
@@ -35,6 +41,36 @@ spec:
         - ficharecursos.mineco.gob.gt
       secretName: default-server-secret
   rules:
+  - host: appconsole.mineco.gob.gt
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: bak-oga-qa
+            port:
+              number: 80
+  - host: controldsnc.mineco.gob.gt
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: dsnc-qa
+            port:
+              number: 80
+  - host: appoga.mineco.gob.gt
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: oga-qa
+            port:
+              number: 80
   - host: dev.mineco.gob.gt
     http:
       paths:

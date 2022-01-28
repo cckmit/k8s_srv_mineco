@@ -70,9 +70,9 @@ spec:
         pathType: Prefix
         backend:
           service:
-            name: bak-oga-qa
+#            name: bak-oga-qa
 #            name: oga-qa
-#            name: dti-qa
+            name: dti-qa
             port:
               number: 80
   - host: qajuridico.mineco.gob.gt
