@@ -2,7 +2,7 @@ apiVersion: v1
 kind: ServiceAccount
 metadata:
   name: oga-qa
-  namespace: mineco
+  namespace: mineco-qa
 
 ---
 apiVersion: v1
@@ -31,7 +31,7 @@ apiVersion: v1
 kind: PersistentVolume
 metadata:
   name: oga-qa
-  namespace: mineco
+  namespace: mineco-qa
   labels:
     name: oga-qa
 spec:
@@ -49,7 +49,7 @@ apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: oga-qa
-  namespace: mineco
+  namespace: mineco-qa
 spec:
   storageClassName: manual
   accessModes:
@@ -66,7 +66,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: oga-qa
-  namespace: mineco
+  namespace: mineco-qa
   labels:
     run: oga-qa
 spec:
@@ -84,7 +84,7 @@ spec:
         nameservers:
           - 128.5.8.26
         searches:
-          - mineco-dev.svc.cluster.local
+          - mineco-dev-dev.svc.cluster.local
           - svc.cluster.local
           - cluster.local
       containers:
@@ -109,7 +109,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: oga-qa
-  namespace: mineco
+  namespace: mineco-qa
   labels:
     app.kubernetes.io/name: oga-qa
     app.kubernetes.io/part-of: oga-qa
