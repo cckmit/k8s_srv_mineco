@@ -92,8 +92,6 @@ spec:
         - name: payara-bancos-rug
           image: jjolon/payara:v5
           ports:
-            - containerPort: 8080
-              protocol: TCP
             - containerPort: 8181
               protocol: TCP
             - containerPort: 8282
