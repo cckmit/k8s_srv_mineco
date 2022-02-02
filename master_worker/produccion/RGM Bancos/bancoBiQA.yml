@@ -90,7 +90,7 @@ spec:
           - cluster.local
       containers:
         - name: payara-bancos-rug
-          image: jjolon/payaraoffice:latest
+          image: jjolon/payara:v5
           ports:
             - containerPort: 8080
               protocol: TCP
