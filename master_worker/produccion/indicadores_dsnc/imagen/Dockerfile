@@ -21,6 +21,25 @@ RUN apt-get update && apt-get install -y \
 
 RUN docker-php-ext-install mysqli pdo pdo_mysql
 
+
+## install driver sql server
+
+RUN apt-get install -y apt-transport-https gnupg \
+    && curl https://packages.microsoft.com/keys/microsoft.asc | apt-key add - \
+    && curl https://packages.microsoft.com/config/debian/9/prod.list > /etc/apt/sources.list.d/mssql-release.list \
+    && apt-get update -yqq \
+    && ACCEPT_EULA=Y apt-get install -y unixodbc unixodbc-dev libgss3 odbcinst msodbcsql17 locales \
+    && echo "en_US.UTF-8 UTF-8" > /etc/locale.gen \
+    && ln -sfn /etc/locale.alias /usr/share/locale/locale.alias \
+    && locale-gen \
+    && pecl install pdo_sqlsrv sqlsrv \
+    && docker-php-ext-enable pdo_sqlsrv sqlsrv \
+    && php -m | grep -q 'pdo_sqlsrv' \
+    && php -m | grep -q 'sqlsrv' \
+    && sed -i 's,^\(MinProtocol[ ]*=\).*,\1'TLSv1.2',g' /etc/ssl/openssl.cnf \
+    && sed -i 's,^\(CipherString[ ]*=\).*,\1'DEFAULT@SECLEVEL=1',g' /etc/ssl/openssl.cnf
+    
+
 RUN chown -R www-data:www-data /var/www/html \
     && a2enmod rewrite
 

@@ -89,7 +89,7 @@ spec:
           - cluster.local
       containers:
         - name: dsnc-qa
-          image: jjolon/dsnc:latest
+          image: jjolon/dsnc:v1
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 443
