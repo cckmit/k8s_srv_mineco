@@ -8,11 +8,12 @@ LABEL maintainer="deepak@softwareyoga.com"
 
 # RUN a2enmod ssl
 
-ADD flowable-ui.war /usr/local/tomcat/webapps/
+# ADD flowable-ui.war /usr/local/tomcat/webapps/
 ADD tomcat-users.xml /usr/local/tomcat/conf/
 ADD context.xml /usr/local/tomcat/webapps/manager/META-INF/
 ADD server.xml /usr/local/tomcat/conf/
-ADD mineco.pfx /usr/local/tomcat/
+ADD server.xml /usr/local/tomcat/conf/
+ADD web.xml /usr/local/tomcat/
 
 
 # RUN a2enmod rewrite 

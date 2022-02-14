@@ -1,0 +1,73 @@
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: bpm-qa-disercomi
+  namespace: mineco-qa
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bpm-disercomi-qa
+  namespace: mineco-qa
+  labels:
+    run: bpm-disercomi-qa
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      run: bpm-disercomi-qa
+  template:
+    metadata:
+      labels:
+        run: bpm-disercomi-qa
+    spec:
+      dnsPolicy: "None"
+      dnsConfig:
+        nameservers:
+          - 128.5.8.26
+        searches:
+          - mineco-dev.svc.cluster.local
+          - svc.cluster.local
+          - cluster.local
+      containers:
+        - name: bpm-disercomi-qa
+          image: jjolon/flowable-qa
+#          image: jjolon/php-74:latest
+          resources:
+            requests:
+              memory: "Gi"
+              cpu: "200m"
+            limits:
+              memory: "3Gi"
+              cpu: "700m"
+          ports:
+            - containerPort: 443
+              protocol: TCP
+            - containerPort: 8080
+              protocol: TCP
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: bpm-disercomi-qa
+  namespace: mineco-qa
+  labels:
+    app.kubernetes.io/name: bpm-disercomi-qa
+    app.kubernetes.io/part-of: bpm-disercomi-qa
+spec:
+  type: LoadBalancer
+  externalIPs:
+    - 128.5.4.45
+  ports:
+    - name: http
+      port: 80
+      targetPort: 8080
+      protocol: TCP
+    - name: listener-2
+      port: 443
+      protocol: TCP
+  selector:
+    run: bpm-disercomi-qa
+
