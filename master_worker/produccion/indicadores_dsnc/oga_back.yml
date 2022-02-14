@@ -4,27 +4,27 @@ metadata:
   name: bak-oga-qa
   namespace: mineco-qa
 
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: nginx-ingress-dback
-  namespace: nginx-ingress
-spec:
-  type: LoadBalancer
-  externalIPs:
-    - 128.5.4.41
-  ports:
-    - protocol: TCP
-      port: 80
-      targetPort: 80
-      name: http
-    - protocol: TCP
-      port: 443
-      targetPort: 443
-      name: https
-  selector:
-    app: nginx-ingress
+# ---
+# apiVersion: v1
+# kind: Service
+# metadata:
+#   name: nginx-ingress-dback
+#   namespace: nginx-ingress
+# spec:
+#   type: LoadBalancer
+#   externalIPs:
+#     - 128.5.4.41
+#   ports:
+#     - protocol: TCP
+#       port: 80
+#       targetPort: 80
+#       name: http
+#     - protocol: TCP
+#       port: 443
+#       targetPort: 443
+#       name: https
+#   selector:
+#     app: nginx-ingress
 ---
 
 apiVersion: v1
@@ -89,7 +89,7 @@ spec:
           - cluster.local
       containers:
         - name: bak-oga-qa
-          image: jjolon/dsnc:latest
+          image: jjolon/dsnc_ssl
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 443
@@ -114,10 +114,10 @@ metadata:
     app.kubernetes.io/name: bak-oga-qa
     app.kubernetes.io/part-of: bak-oga-qa
 spec:
-  type: ClusterIP
-  #  type: LoadBalancer
-  #  externalIPs:
-  #    - 128.5.4.35
+  # type: ClusterIP
+  type: LoadBalancer
+  externalIPs:
+    - 128.5.4.41
   ports:
     - name: http
       port: 80
