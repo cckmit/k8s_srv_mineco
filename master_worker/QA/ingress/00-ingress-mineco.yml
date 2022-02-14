@@ -21,41 +21,41 @@ spec:
       - qaupload.mineco.gob.gt
       - qaadmin-disercomi.mineco.gob.gt
       - qadisercomi.mineco.gob.gt
-      - appconsole.mineco.gob.gt
-      - controldsnc.mineco.gob.gt
-      - appoga.mineco.gob.gt
+      # - appconsole.mineco.gob.gt
+      # - controldsnc.mineco.gob.gt
+      # - appoga.mineco.gob.gt
       secretName: default-server-secret-qa
   rules:
-  - host: appconsole.mineco.gob.gt
-    http:
-      paths:
-        - path: /
-          pathType: Prefix
-          backend:
-            service:
-              name: bak-oga-qa
-              port:
-                number: 80
-  - host: controldsnc.mineco.gob.gt
-    http:
-      paths:
-        - path: /
-          pathType: Prefix
-          backend:
-            service:
-              name: dsnc-qa
-              port:
-                number: 80
-  - host: appoga.mineco.gob.gt
-    http:
-      paths:
-        - path: /
-          pathType: Prefix
-          backend:
-            service:
-              name: oga-qa
-              port:
-                number: 80
+  # - host: appconsole.mineco.gob.gt
+  #   http:
+  #     paths:
+  #       - path: /
+  #         pathType: Prefix
+  #         backend:
+  #           service:
+  #             name: bak-oga-qa
+  #             port:
+  #               number: 80
+  # - host: controldsnc.mineco.gob.gt
+  #   http:
+  #     paths:
+  #       - path: /
+  #         pathType: Prefix
+  #         backend:
+  #           service:
+  #             name: dsnc-qa
+  #             port:
+  #               number: 80
+  # - host: appoga.mineco.gob.gt
+  #   http:
+  #     paths:
+  #       - path: /
+  #         pathType: Prefix
+  #         backend:
+  #           service:
+  #             name: oga-qa
+  #             port:
+  #               number: 80
   - host: qadisercomi.mineco.gob.gt
     http:
       paths:

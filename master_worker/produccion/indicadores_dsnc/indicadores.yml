@@ -4,27 +4,27 @@ metadata:
   name: dsnc-qa
   namespace: mineco-qa
 
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: nginx-ingress-dsnc
-  namespace: nginx-ingress
-spec:
-  type: LoadBalancer
-  externalIPs:
-    - 128.5.4.42
-  ports:
-    - protocol: TCP
-      port: 80
-      targetPort: 80
-      name: http
-    - protocol: TCP
-      port: 443
-      targetPort: 443
-      name: https
-  selector:
-    app: nginx-ingress
+# ---
+# apiVersion: v1
+# kind: Service
+# metadata:
+#   name: nginx-ingress-dsnc
+#   namespace: nginx-ingress
+# spec:
+#   type: LoadBalancer
+#   externalIPs:
+#     - 128.5.4.42
+#   ports:
+#     - protocol: TCP
+#       port: 80
+#       targetPort: 80
+#       name: http
+#     - protocol: TCP
+#       port: 443
+#       targetPort: 443
+#       name: https
+#   selector:
+#     app: nginx-ingress
 ---
 
 apiVersion: v1
@@ -89,7 +89,7 @@ spec:
           - cluster.local
       containers:
         - name: dsnc-qa
-          image: jjolon/dsnc:v1
+          image: jjolon/dsnc_ssl
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 443
@@ -114,10 +114,10 @@ metadata:
     app.kubernetes.io/name: dsnc-qa
     app.kubernetes.io/part-of: dsnc-qa
 spec:
-  type: ClusterIP
-#  type: LoadBalancer
-#  externalIPs:
-#    - 128.5.4.35
+  # type: ClusterIP
+  type: LoadBalancer
+  externalIPs:
+    - 128.5.4.42
   ports:
     - name: http
       port: 80

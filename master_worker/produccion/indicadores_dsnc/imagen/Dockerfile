@@ -1,6 +1,10 @@
 FROM php:7.4.0-apache
 
 COPY vhost.conf /etc/apache2/sites-available/000-default.conf
+COPY /ssl /etc/ssl/certs/
+
+RUN a2enmod ssl
+
 
 RUN apt-get update && apt-get install -y \
         libfreetype6-dev \
@@ -42,5 +46,8 @@ RUN apt-get install -y apt-transport-https gnupg \
 
 RUN chown -R www-data:www-data /var/www/html \
     && a2enmod rewrite
+
+RUN a2enmod headers \
+   && service apache2 restart 
 
 WORKDIR /var/www/html
