@@ -1,4 +1,4 @@
-FROM jjolon/vue-pg:latest
+FROM jjolon/disercomi:v1
 
 LABEL maintainer="jjolon@mineco.gob.gt"
 

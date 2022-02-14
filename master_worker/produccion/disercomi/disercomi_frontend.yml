@@ -90,7 +90,7 @@ spec:
           - cluster.local
       containers:
         - name: disercomi-frontend-server
-          image: jjolon/disercome_frontend
+          image: jjolon/dsnc_ssl
           resources:
             requests:
               memory: "Gi"
