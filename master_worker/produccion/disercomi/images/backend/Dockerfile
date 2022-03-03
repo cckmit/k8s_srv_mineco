@@ -16,12 +16,14 @@ RUN apt-get update && apt-get install -y \
         unzip \
         libzip-dev \
         nano \
+        libxml2-dev  \
     && pecl install mcrypt-1.0.4  \
     && docker-php-ext-install -j$(nproc) iconv   \
     && docker-php-ext-install zip  \
     && docker-php-ext-install pdo_mysql   \
     && docker-php-ext-install bcmath \
-    && docker-php-ext-enable mcrypt
+    && docker-php-ext-enable mcrypt \
+    && docker-php-ext-install soap
 
 RUN docker-php-ext-install mysqli pdo pdo_mysql
 
