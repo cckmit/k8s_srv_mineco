@@ -2,7 +2,7 @@ apiVersion: v1
 kind: ServiceAccount
 metadata:
   name: bpm-disercomi
-  namespace: mineco-qa
+  namespace: mineco
 
 # ---
 # apiVersion: v1
@@ -67,7 +67,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: bpm-disercomi-server
-  namespace: mineco-qa
+  namespace: mineco
   labels:
     run: bpm-disercomi-server
 spec:
@@ -117,7 +117,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: bpm-disercomi-server
-  namespace: mineco-qa
+  namespace: mineco
   labels:
     app.kubernetes.io/name: bpm-disercomi-server
     app.kubernetes.io/part-of: bpm-disercomi-server
