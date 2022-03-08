@@ -4,27 +4,27 @@ metadata:
   name: disercomi-backend-qa
   namespace: mineco-qa
 
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: nginx-ingress-disebackend-qa
-  namespace: nginx-ingress
-spec:
-  type: LoadBalancer
-  externalIPs:
-    - 128.5.4.34
-  ports:
-    - protocol: TCP
-      port: 80
-      targetPort: 80
-      name: http
-    - protocol: TCP
-      port: 443
-      targetPort: 443
-      name: https
-  selector:
-    app: nginx-ingress
+# ---
+# apiVersion: v1
+# kind: Service
+# metadata:
+#   name: nginx-ingress-disebackend-qa
+#   namespace: nginx-ingress
+# spec:
+#   type: LoadBalancer
+#   externalIPs:
+#     - 128.5.4.34
+#   ports:
+#     - protocol: TCP
+#       port: 80
+#       targetPort: 80
+#       name: http
+#     - protocol: TCP
+#       port: 443
+#       targetPort: 443
+#       name: https
+#   selector:
+#     app: nginx-ingress
 
 ---
 apiVersion: v1
@@ -90,7 +90,7 @@ spec:
           - cluster.local
       containers:
         - name: disercomi-backend-qa-server
-          image: jjolon/disercomi:v1
+          image: jjolon/disercomi_backend
 #          image: jjolon/php-74:latest
           resources:
             requests:
@@ -122,8 +122,9 @@ metadata:
     app.kubernetes.io/name: disercomi-backend-qa-server
     app.kubernetes.io/part-of: disercomi-backend-qa-server
 spec:
-  type: ClusterIP
-#  type: NodePort
+  type: LoadBalancer
+  externalIPs:
+    - 128.5.4.34
   ports:
     - name: http
       port: 80
