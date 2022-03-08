@@ -90,7 +90,7 @@ spec:
           - cluster.local
       containers:
         - name: bpm-disercomi-server
-          image: jjolon/flowable-t:latest
+          image: jjolon/flowable:v1
           # image: tomcat:8.5-alpine
 #          image: jjolon/php-74:latest
           resources:

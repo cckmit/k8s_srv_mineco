@@ -8,7 +8,7 @@ ADD flowable-ui.war /usr/local/tomcat/webapps/
 ADD flowable-rest.war /usr/local/tomcat/webapps/
 ADD tomcat-users.xml /usr/local/tomcat/conf/
 ADD context.xml /usr/local/tomcat/webapps/manager/META-INF/
-# ADD server.xml /usr/local/tomcat/conf/
+ADD server.xml /usr/local/tomcat/conf/
 
 EXPOSE 8080
 
