@@ -19,8 +19,8 @@ spec:
       - qavehiculos.mineco.gob.gt
       - qapartidas.mineco.gob.gt
       - qaupload.mineco.gob.gt
-      - qaadmin-disercomi.mineco.gob.gt
-      - qadisercomi.mineco.gob.gt
+      # - qaadmin-disercomi.mineco.gob.gt
+      # - qadisercomi.mineco.gob.gt
       # - appconsole.mineco.gob.gt
       # - controldsnc.mineco.gob.gt
       # - appoga.mineco.gob.gt
@@ -56,26 +56,26 @@ spec:
   #             name: oga-qa
   #             port:
   #               number: 80
-  - host: qadisercomi.mineco.gob.gt
-    http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: disercomi-frontend-qa-server
-            port:
-              number: 80
-  - host: qaadmin-disercomi.mineco.gob.gt
-    http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: disercomi-backend-qa-server
-            port:
-              number: 80
+  # - host: qadisercomi.mineco.gob.gt
+  #   http:
+  #     paths:
+  #     - path: /
+  #       pathType: Prefix
+  #       backend:
+  #         service:
+  #           name: disercomi-frontend-qa-server
+  #           port:
+  #             number: 80
+  # - host: qaadmin-disercomi.mineco.gob.gt
+  #   http:
+  #     paths:
+  #     - path: /
+  #       pathType: Prefix
+  #       backend:
+  #         service:
+  #           name: disercomi-backend-qa-server
+  #           port:
+  #             number: 80
   - host: qasic.mineco.gob.gt
     http:
       paths:
