@@ -104,7 +104,7 @@ spec:
             - containerPort: 80
               protocol: TCP
           volumeMounts:
-            - mountPath: "/var/www/html/dist"
+            - mountPath: "/var/www/html"
               name: vol-php-frontend
       volumes:
         - name: vol-php-frontend
