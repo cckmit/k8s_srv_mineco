@@ -48,7 +48,7 @@ spec:
               protocol: TCP
             - containerPort: 80
               protocol: TCP
-            - containerPort: 8080
+            - containerPort: 4848
               protocol: TCP
 
 ---
