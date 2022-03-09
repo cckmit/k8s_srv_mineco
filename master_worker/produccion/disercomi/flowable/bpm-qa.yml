@@ -67,14 +67,13 @@ spec:
   ports:
     - name: http
       port: 80
-      targetPort: 8181
+      protocol: TCP
+    - name: http
+      port: 8282
       protocol: TCP
     - name: http-2
       port: 4848
       targetPort: 4848
-      protocol: TCP
-    - name: listener-2
-      port: 443
       protocol: TCP
   selector:
     run: bpm-disercomi-qa
