@@ -32,7 +32,7 @@ spec:
           - cluster.local
       containers:
         - name: bpm-disercomi-qa
-          image: jjolon/flowable-qa
+          image: jjolon/flowable_qa:v1
 #          image: jjolon/php-74:latest
           resources:
             requests:
