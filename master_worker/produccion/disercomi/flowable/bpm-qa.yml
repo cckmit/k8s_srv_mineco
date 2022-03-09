@@ -65,7 +65,7 @@ spec:
       port: 80
       targetPort: 8181
       protocol: TCP
-    - name: http_2
+    - name: http-2
       port: 4848
       targetPort: 4848
       protocol: TCP
