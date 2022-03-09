@@ -42,6 +42,10 @@ spec:
               memory: "3Gi"
               cpu: "700m"
           ports:
+            - containerPort: 8181
+              protocol: TCP
+            - containerPort: 8282
+              protocol: TCP
             - containerPort: 443
               protocol: TCP
             - containerPort: 8080
