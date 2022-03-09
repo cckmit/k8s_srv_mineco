@@ -46,7 +46,7 @@ spec:
               protocol: TCP
             - containerPort: 8282
               protocol: TCP
-            - containerPort: 443
+            - containerPort: 80
               protocol: TCP
             - containerPort: 8080
               protocol: TCP
