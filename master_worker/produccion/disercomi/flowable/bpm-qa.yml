@@ -32,7 +32,8 @@ spec:
           - cluster.local
       containers:
         - name: bpm-disercomi-qa
-          image: payara/server-full:latest
+          image: payara-flowable:latest
+          # image: payara/server-full:latest
 #          image: jjolon/php-74:latest
           resources:
             requests:
