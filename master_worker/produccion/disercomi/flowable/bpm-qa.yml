@@ -46,6 +46,8 @@ spec:
               protocol: TCP
             - containerPort: 8282
               protocol: TCP
+            - containerPort: 8080
+              protocol: TCP
             - containerPort: 80
               protocol: TCP
             - containerPort: 4848
@@ -71,6 +73,9 @@ spec:
       protocol: TCP
     - name: listener-2
       port: 8282
+      protocol: TCP
+    - name: listener-3
+      port: 8080
       protocol: TCP
     - name: asadmin
       port: 4848
