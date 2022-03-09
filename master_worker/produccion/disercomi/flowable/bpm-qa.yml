@@ -73,7 +73,6 @@ spec:
       protocol: TCP
     - name: http-2
       port: 4848
-      targetPort: 4848
       protocol: TCP
   selector:
     run: bpm-disercomi-qa
