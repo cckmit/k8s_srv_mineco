@@ -68,7 +68,7 @@ spec:
     - name: http
       port: 80
       protocol: TCP
-    - name: http
+    - name: http-1
       port: 8282
       protocol: TCP
     - name: http-2
