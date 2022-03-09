@@ -71,12 +71,6 @@ spec:
       port: 80
       targetPort: 8080
       protocol: TCP
-    - name: listener-2
-      port: 8282
-      protocol: TCP
-    - name: listener-3
-      port: 8080
-      protocol: TCP
     - name: asadmin
       port: 4848
       protocol: TCP
