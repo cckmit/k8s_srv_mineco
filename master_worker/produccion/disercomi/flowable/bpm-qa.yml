@@ -67,11 +67,12 @@ spec:
   ports:
     - name: http
       port: 80
+      targetPort: 8181
       protocol: TCP
-    - name: http-1
+    - name: listener-2
       port: 8282
       protocol: TCP
-    - name: http-2
+    - name: asadmin
       port: 4848
       protocol: TCP
   selector:
