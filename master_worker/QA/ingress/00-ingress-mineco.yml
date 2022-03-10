@@ -32,7 +32,7 @@ spec:
               name: bpm-disercomi-qa
               port:
                 number: 80
-        - path: "/admin"
+        - path: /admin
           pathType: Prefix
           backend:
             service:
