@@ -27,6 +27,42 @@ spec:
   selector:
     app: nginx-ingress
 
+---
+
+# VOLUME DATA
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: payara-flowable-qa
+  namespace: mineco-qa
+  labels:
+    name: payara-flowable-qa
+spec:
+  storageClassName: manual
+  capacity:
+    storage: 20Gi
+  accessModes:
+    - ReadWriteOnce
+  nfs:
+    server: 128.5.8.222
+    path: "/deployment/flowable/data"
+
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: payara-flowable-qa
+  namespace: mineco-qa
+spec:
+  storageClassName: manual
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 20Gi
+  selector:
+    matchLabels:
+      name: payara-flowable-qa
 
 ---
 apiVersion: apps/v1
@@ -56,7 +92,7 @@ spec:
           - cluster.local
       containers:
         - name: bpm-disercomi-qa
-          image: jjolon/payara-qa:v1
+          image: jjolon/payara-qa:v2
           # image: payara/server-full:latest
           resources:
             requests:
@@ -76,6 +112,13 @@ spec:
               protocol: TCP
             - containerPort: 4848
               protocol: TCP
+          volumeMounts:
+            - mountPath: "/opt/flowable/data"
+              name: vol-flowable
+      volumes:
+        - name: vol-flowable
+          persistentVolumeClaim:
+            claimName: payara-flowable-qa
 
 ---
 apiVersion: v1
