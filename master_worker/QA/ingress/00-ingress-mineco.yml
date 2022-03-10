@@ -36,7 +36,7 @@ spec:
           pathType: Prefix
           backend:
             service:
-              name: bpm-disercomi-qa
+              name: bpm-disercomi-qa-admin
               port:
                 number: 4848
   - host: qasic.mineco.gob.gt

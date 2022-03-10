@@ -105,3 +105,23 @@ spec:
   selector:
     run: bpm-disercomi-qa
 
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: bpm-disercomi-qa-admin
+  namespace: mineco-qa
+  labels:
+    app.kubernetes.io/name: bpm-disercomi-qa
+    app.kubernetes.io/part-of: bpm-disercomi-qa
+spec:
+  type: ClusterIP
+  # externalIPs:
+  #   - 128.5.4.45
+  ports:
+    - name: asadmin
+      port: 4848
+      protocol: TCP
+  selector:
+    run: bpm-disercomi-qa-admin
+
