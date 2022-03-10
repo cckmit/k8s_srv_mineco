@@ -87,9 +87,9 @@ metadata:
     app.kubernetes.io/name: bpm-disercomi-qa
     app.kubernetes.io/part-of: bpm-disercomi-qa
 spec:
-  type: ClusterIP
-  # externalIPs:
-  #   - 128.5.4.45
+  type: LoadBalancer
+  externalIPs:
+    - 128.5.4.45
   ports:
     - name: http
       port: 80
