@@ -1,0 +1,137 @@
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: planificador-qa
+  namespace: mineco-qa
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-ingress-planificador-qa
+  namespace: nginx-ingress
+spec:
+  type: LoadBalancer
+  externalIPs:
+    - 128.5.4.48
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+      name: http
+    - protocol: TCP
+      port: 443
+      targetPort: 443
+      name: https
+  selector:
+    app: nginx-ingress
+
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: planificador-file-qa
+  namespace: mineco-qa
+  labels:
+    name: planificador-file-qa
+spec:
+  storageClassName: manual
+  capacity:
+    storage: 20Gi
+  accessModes:
+    - ReadWriteOnce
+  nfs:
+    server: 128.5.8.222
+    path: "/deployment/planificador/qa/planificador"
+
+
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: planificador-file-qa
+  namespace: mineco-qa
+spec:
+  storageClassName: manual
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 20Gi
+  selector:
+    matchLabels:
+      name: planificador-file-qa
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: planificador-qa-server
+  namespace: mineco-qa
+  labels:
+    run: planificador-qa-server
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      run: planificador-qa-server
+  template:
+    metadata:
+      labels:
+        run: planificador-qa-server
+    spec:
+      dnsPolicy: "None"
+      dnsConfig:
+        nameservers:
+          - 128.5.8.26
+        searches:
+          - mineco-dev.svc.cluster.local
+          - svc.cluster.local
+          - cluster.local
+      containers:
+        - name: planificador-qa-server
+          image: jjolon/disercomi_backend
+#          image: jjolon/php-74:latest
+          resources:
+            requests:
+              memory: "Gi"
+              cpu: "200m"
+            limits:
+              memory: "3Gi"
+              cpu: "700m"
+          ports:
+            - containerPort: 443
+              protocol: TCP
+            - containerPort: 80
+              protocol: TCP
+          volumeMounts:
+            - mountPath: "/var/www/html"
+              name: vol-php-backend
+      volumes:
+        - name: vol-php-backend
+          persistentVolumeClaim:
+            claimName: planificador-file-qa
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: planificador-qa-server
+  namespace: mineco-qa
+  labels:
+    app.kubernetes.io/name: planificador-qa-server
+    app.kubernetes.io/part-of: planificador-qa-server
+spec:
+  type: LoadBalancer
+  externalIPs:
+    - 128.5.4.34
+  ports:
+    - name: http
+      port: 80
+      protocol: TCP
+    - name: listener-2
+      port: 443
+      protocol: TCP
+  selector:
+    run: planificador-qa-server
+
