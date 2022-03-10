@@ -122,9 +122,9 @@ metadata:
     app.kubernetes.io/name: planificador-qa-server
     app.kubernetes.io/part-of: planificador-qa-server
 spec:
-  type: LoadBalancer
-  externalIPs:
-    - 128.5.4.34
+  type: ClusterIP
+  # externalIPs:
+  #   - 128.5.4.34
   ports:
     - name: http
       port: 80

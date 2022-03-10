@@ -21,8 +21,19 @@ spec:
       - qaupload.mineco.gob.gt
       - qabpm.mineco.gob.gt
       - bpm.mineco.gob.gt
+      - programasyproyectos.mineco.gob.gt
       secretName: default-server-secret-qa
   rules:
+  - host: programasyproyectos.mineco.gob.gt
+    http:
+      paths:
+        - path: /
+          pathType: Prefix
+          backend:
+            service:
+              name: planificador-qa-server
+              port:
+                number: 80
   - host: qabpm.mineco.gob.gt
     http:
       paths:
