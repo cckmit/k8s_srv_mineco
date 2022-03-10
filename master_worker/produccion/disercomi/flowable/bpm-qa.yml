@@ -22,12 +22,8 @@ spec:
       name: http
     - protocol: TCP
       port: 443
-      targetPort: 443
-      name: https
-    - protocol: TCP
-      port: 4848
       targetPort: 4848
-      name: admin
+      name: https
   selector:
     app: nginx-ingress
 
@@ -101,6 +97,7 @@ spec:
       protocol: TCP
     - name: asadmin
       port: 4848
+      targetPort: 4848
       protocol: TCP
   selector:
     run: bpm-disercomi-qa
