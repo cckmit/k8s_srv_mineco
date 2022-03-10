@@ -4,6 +4,30 @@ metadata:
   name: bpm-qa-disercomi
   namespace: mineco-qa
 
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-ingress-qa-disercomi
+  namespace: nginx-ingress
+spec:
+  type: LoadBalancer
+  externalIPs:
+    - 128.5.4.45
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+      name: http
+    - protocol: TCP
+      port: 443
+      targetPort: 443
+      name: https
+  selector:
+    app: nginx-ingress
+
+
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -34,7 +58,6 @@ spec:
         - name: bpm-disercomi-qa
           image: jjolon/payara-qa:v1
           # image: payara/server-full:latest
-#          image: jjolon/php-74:latest
           resources:
             requests:
               memory: "Gi"
@@ -64,9 +87,9 @@ metadata:
     app.kubernetes.io/name: bpm-disercomi-qa
     app.kubernetes.io/part-of: bpm-disercomi-qa
 spec:
-  type: LoadBalancer
-  externalIPs:
-    - 128.5.4.45
+  type: ClusterIP
+  # externalIPs:
+  #   - 128.5.4.45
   ports:
     - name: http
       port: 80

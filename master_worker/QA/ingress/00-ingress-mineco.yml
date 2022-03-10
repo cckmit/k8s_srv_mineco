@@ -19,63 +19,19 @@ spec:
       - qavehiculos.mineco.gob.gt
       - qapartidas.mineco.gob.gt
       - qaupload.mineco.gob.gt
-      # - qaadmin-disercomi.mineco.gob.gt
-      # - qadisercomi.mineco.gob.gt
-      # - appconsole.mineco.gob.gt
-      # - controldsnc.mineco.gob.gt
-      # - appoga.mineco.gob.gt
+      - qabpm.mineco.gob.gt
       secretName: default-server-secret-qa
   rules:
-  # - host: appconsole.mineco.gob.gt
-  #   http:
-  #     paths:
-  #       - path: /
-  #         pathType: Prefix
-  #         backend:
-  #           service:
-  #             name: bak-oga-qa
-  #             port:
-  #               number: 80
-  # - host: controldsnc.mineco.gob.gt
-  #   http:
-  #     paths:
-  #       - path: /
-  #         pathType: Prefix
-  #         backend:
-  #           service:
-  #             name: dsnc-qa
-  #             port:
-  #               number: 80
-  # - host: appoga.mineco.gob.gt
-  #   http:
-  #     paths:
-  #       - path: /
-  #         pathType: Prefix
-  #         backend:
-  #           service:
-  #             name: oga-qa
-  #             port:
-  #               number: 80
-  # - host: qadisercomi.mineco.gob.gt
-  #   http:
-  #     paths:
-  #     - path: /
-  #       pathType: Prefix
-  #       backend:
-  #         service:
-  #           name: disercomi-frontend-qa-server
-  #           port:
-  #             number: 80
-  # - host: qaadmin-disercomi.mineco.gob.gt
-  #   http:
-  #     paths:
-  #     - path: /
-  #       pathType: Prefix
-  #       backend:
-  #         service:
-  #           name: disercomi-backend-qa-server
-  #           port:
-  #             number: 80
+  - host: qabpm.mineco.gob.gt
+    http:
+      paths:
+        - path: /
+          pathType: Prefix
+          backend:
+            service:
+              name: bpm-disercomi-qa
+              port:
+                number: 80
   - host: qasic.mineco.gob.gt
     http:
       paths:
@@ -103,8 +59,6 @@ spec:
         pathType: Prefix
         backend:
           service:
-#            name: bak-oga-qa
-#            name: oga-qa
             name: dti-qa
             port:
               number: 80
