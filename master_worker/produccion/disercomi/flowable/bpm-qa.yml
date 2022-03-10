@@ -22,7 +22,7 @@ spec:
       name: http
     - protocol: TCP
       port: 443
-      targetPort: 4848
+      targetPort: 443
       name: https
   selector:
     app: nginx-ingress
