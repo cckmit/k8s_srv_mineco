@@ -20,6 +20,7 @@ spec:
       - qapartidas.mineco.gob.gt
       - qaupload.mineco.gob.gt
       - qabpm.mineco.gob.gt
+      - bpm.mineco.gob.gt
       secretName: default-server-secret-qa
   rules:
   - host: qabpm.mineco.gob.gt
@@ -30,6 +31,16 @@ spec:
           backend:
             service:
               name: bpm-disercomi-qa
+              port:
+                number: 80
+  - host: bpm.mineco.gob.gt
+    http:
+      paths:
+        - path: /
+          pathType: Prefix
+          backend:
+            service:
+              name: bpm-disercomi-server
               port:
                 number: 80
   - host: qasic.mineco.gob.gt
