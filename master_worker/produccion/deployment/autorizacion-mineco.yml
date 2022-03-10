@@ -91,7 +91,7 @@ spec:
           - cluster.local
       containers:
       - name: autorizacion-server
-        image: jjolon/php-73s:v2
+        image: jjolon/php-74:latest
         resources:
           requests:
             memory: "Gi"
