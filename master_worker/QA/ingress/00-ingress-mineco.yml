@@ -31,7 +31,7 @@ spec:
             service:
               name: bpm-disercomi-qa
               port:
-                number: 4848
+                number: 443
   - host: qasic.mineco.gob.gt
     http:
       paths:
