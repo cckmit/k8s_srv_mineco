@@ -90,7 +90,7 @@ spec:
           - cluster.local
       containers:
         - name: planificador-qa-server
-          image: jjolon/php-73s:v2
+          image: jjolon/php-74:latest
 #          image: jjolon/php-74:latest
           resources:
             requests:
