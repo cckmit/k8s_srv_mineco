@@ -24,6 +24,10 @@ spec:
       port: 443
       targetPort: 443
       name: https
+    - protocol: TCP
+      port: 4848
+      targetPort: 4848
+      name: admin
   selector:
     app: nginx-ingress
 
