@@ -136,6 +136,7 @@ spec:
   ports:
     - name: http
       port: 80
+      targetPort: 8080
       protocol: TCP
     - name: listener-2
       port: 8282
@@ -146,9 +147,9 @@ spec:
     - name: asadmin
       port: 4848
       protocol: TCP
-    - name: http-service
-      port: 8080
-      protocol: TCP
+    # - name: http-service
+    #   port: 8080
+    #   protocol: TCP
     # - name: http
     #   port: 80
     #   targetPort: 8080
