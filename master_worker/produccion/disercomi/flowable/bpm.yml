@@ -2,7 +2,7 @@ apiVersion: v1
 kind: ServiceAccount
 metadata:
   name: bpm-disercomi
-  namespace: mineco-qa
+  namespace: mineco
 
 ---
 apiVersion: v1
@@ -31,7 +31,7 @@ apiVersion: v1
 kind: PersistentVolume
 metadata:
   name: payara-flowable
-  namespace: mineco-qa
+  namespace: mineco
   labels:
     name: payara-flowable
 spec:
@@ -50,7 +50,7 @@ apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: payara-flowable
-  namespace: mineco-qa
+  namespace: mineco
 spec:
   storageClassName: manual
   accessModes:
@@ -67,7 +67,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: bpm-disercomi-server
-  namespace: mineco-qa
+  namespace: mineco
   labels:
     run: bpm-disercomi-server
 spec:
@@ -124,7 +124,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: bpm-disercomi-server
-  namespace: mineco-qa
+  namespace: mineco
   labels:
     app.kubernetes.io/name: bpm-disercomi-server
     app.kubernetes.io/part-of: bpm-disercomi-server
@@ -143,5 +143,5 @@ spec:
       protocol: TCP
   selector:
     run: bpm-disercomi-server
-    
+
 
