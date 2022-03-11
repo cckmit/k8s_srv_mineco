@@ -138,7 +138,7 @@ spec:
       targetPort: 8080
       protocol: TCP
     - name: listener-2
-      port: 448
+      port: 4848
       targetPort: 4848
       protocol: TCP
   selector:
