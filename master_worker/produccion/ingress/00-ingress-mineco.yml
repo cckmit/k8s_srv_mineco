@@ -20,6 +20,10 @@ spec:
       - www.dev.mineco.gob.gt
       secretName: default-server-secret
     - hosts:
+      - bpm.mineco.gob.gt
+      - www.bpm.mineco.gob.gt
+      secretName: default-server-secret
+    - hosts:
       - vehiculos.mineco.gob.gt
       - www.vehiculos.mineco.gob.gt
 #    - hosts:
@@ -41,6 +45,16 @@ spec:
         - ficharecursos.mineco.gob.gt
       secretName: default-server-secret
   rules:
+  - host: bpm.mineco.gob.gt
+    http:
+      paths:
+        - path: /
+          pathType: Prefix
+          backend:
+            service:
+              name: bpm-disercomi-server
+              port:
+                number: 80
   - host: dev.mineco.gob.gt
     http:
       paths:
