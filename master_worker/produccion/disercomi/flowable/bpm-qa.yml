@@ -45,7 +45,7 @@ spec:
     - ReadWriteOnce
   nfs:
     server: 128.5.8.222
-    path: "/deployment/flowable/data"
+    path: "/deployment/flowable/data/files"
 
 ---
 apiVersion: v1
@@ -63,6 +63,42 @@ spec:
   selector:
     matchLabels:
       name: payara-flowable-qa
+---
+
+# VOLUME DATA
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: payara-flowable-e-qa
+  namespace: mineco-qa
+  labels:
+    name: payara-flowable-e-qa
+spec:
+  storageClassName: manual
+  capacity:
+    storage: 20Gi
+  accessModes:
+    - ReadWriteOnce
+  nfs:
+    server: 128.5.8.222
+    path: "/deployment/flowable/data/esquema"
+
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: payara-flowable-e-qa
+  namespace: mineco-qa
+spec:
+  storageClassName: manual
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 20Gi
+  selector:
+    matchLabels:
+      name: payara-flowable-e-qa
 
 ---
 apiVersion: apps/v1
@@ -115,10 +151,15 @@ spec:
           volumeMounts:
             - mountPath: "/opt/flowable/data"
               name: vol-flowable
+            - mountPath: "/opt/payara/appserver/glassfish/domains/domain1"
+              name: vol-flowable-e
       volumes:
         - name: vol-flowable
           persistentVolumeClaim:
             claimName: payara-flowable-qa
+        - name: vol-flowable-e
+          persistentVolumeClaim:
+            claimName: payara-flowable-e-qa
 
 ---
 apiVersion: v1
