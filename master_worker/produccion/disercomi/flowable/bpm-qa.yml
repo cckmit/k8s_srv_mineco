@@ -129,7 +129,7 @@ spec:
       containers:
         - name: bpm-disercomi-qa
           image: jjolon/payara-qa:v2
-          # image: payara/server-full:latest
+#           image: payara/server-full:latest
           resources:
             requests:
               memory: "Gi"
@@ -179,9 +179,14 @@ spec:
       port: 80
       targetPort: 8080
       protocol: TCP
+    - name: listener-2
+      port: 8282
+      protocol: TCP
+    - name: listener-1
+      port: 8181
+      protocol: TCP
     - name: asadmin
       port: 4848
-      targetPort: 4848
       protocol: TCP
   selector:
     run: bpm-disercomi-qa
