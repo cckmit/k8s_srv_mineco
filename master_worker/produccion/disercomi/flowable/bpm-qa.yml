@@ -157,9 +157,9 @@ spec:
         - name: vol-flowable
           persistentVolumeClaim:
             claimName: payara-flowable-qa
-        - name: vol-flowable-e
-          persistentVolumeClaim:
-            claimName: payara-flowable-e-qa
+#        - name: vol-flowable-e
+#          persistentVolumeClaim:
+#            claimName: payara-flowable-e-qa
 
 ---
 apiVersion: v1
