@@ -128,8 +128,8 @@ spec:
           - cluster.local
       containers:
         - name: bpm-disercomi-qa
-          image: jjolon/payara-qa:v2
-#           image: payara/server-full:latest
+#          image: jjolon/payara-qa:v2
+           image: payara/server-full:latest
           resources:
             requests:
               memory: "Gi"
@@ -151,8 +151,8 @@ spec:
           volumeMounts:
             - mountPath: "/opt/flowable/data"
               name: vol-flowable
-            - mountPath: "/opt/payara/appserver/glassfish/domains/domain1"
-              name: vol-flowable-e
+#            - mountPath: "/opt/payara/appserver/glassfish/domains/domain1"
+#              name: vol-flowable-e
       volumes:
         - name: vol-flowable
           persistentVolumeClaim:
