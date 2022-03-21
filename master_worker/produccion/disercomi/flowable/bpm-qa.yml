@@ -151,15 +151,15 @@ spec:
           volumeMounts:
             - mountPath: "/opt/flowable/data"
               name: vol-flowable
-#            - mountPath: "/opt/payara/appserver/glassfish/domains/domain1"
-#              name: vol-flowable-e
+            - mountPath: "/opt/payara/appserver/glassfish/domains/domain1"
+              name: vol-flowable-e
       volumes:
         - name: vol-flowable
           persistentVolumeClaim:
             claimName: payara-flowable-qa
-#        - name: vol-flowable-e
-#          persistentVolumeClaim:
-#            claimName: payara-flowable-e-qa
+        - name: vol-flowable-e
+          persistentVolumeClaim:
+            claimName: payara-flowable-e-qa
 
 ---
 apiVersion: v1
