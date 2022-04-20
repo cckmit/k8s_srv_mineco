@@ -1,0 +1,114 @@
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: sipoin
+  namespace: mineco
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: sipoin-pv-pvc
+  namespace: mineco
+  labels:
+    name: sipoin-pv-pvc
+spec:
+  storageClassName: manual
+  capacity:
+    storage: 20Gi
+  accessModes:
+    - ReadWriteOnce
+  nfs:
+    server: 128.5.8.222
+    path: "/deployment/disercomi/sipoin"
+
+
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: sipoin-pv-pvc
+  namespace: mineco
+spec:
+  storageClassName: manual
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 20Gi
+  selector:
+    matchLabels:
+      name: sipoin-pv-pvc
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sipoin-backend
+  namespace: mineco
+  labels:
+    run: sipoin-backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      run: sipoin-backend
+  template:
+    metadata:
+      labels:
+        run: sipoin-backend
+    spec:
+      dnsPolicy: "None"
+      dnsConfig:
+        nameservers:
+          - 128.5.8.26
+        searches:
+          - mineco-dev.svc.cluster.local
+          - svc.cluster.local
+          - cluster.local
+      containers:
+        - name: sipoin-backend
+          image: jjolon/sipoin:v1
+#          image: jjolon/php-74:latest
+          resources:
+            requests:
+              memory: "Gi"
+              cpu: "200m"
+            limits:
+              memory: "3Gi"
+              cpu: "700m"
+          ports:
+            - containerPort: 443
+              protocol: TCP
+            - containerPort: 80
+              protocol: TCP
+          volumeMounts:
+            - mountPath: "/var/www/html"
+              name: vol-php-backend
+      volumes:
+        - name: vol-php-backend
+          persistentVolumeClaim:
+            claimName: sipoin-pv-pvc
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: sipoin-backend
+  namespace: mineco
+  labels:
+    app.kubernetes.io/name: sipoin-backend
+    app.kubernetes.io/part-of: sipoin-backend
+spec:
+  type: LoadBalancer
+  externalIPs:
+    - 128.5.4.46
+  ports:
+    - name: http
+      port: 80
+      protocol: TCP
+    - name: listener-2
+      port: 443
+      protocol: TCP
+  selector:
+    run: sipoin-backend
+

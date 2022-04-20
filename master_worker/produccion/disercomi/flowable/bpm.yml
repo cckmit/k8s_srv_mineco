@@ -132,7 +132,6 @@ spec:
   type: LoadBalancer
   externalIPs:
     - 128.5.4.44
-    # - 128.5.4.46
   ports:
     - name: http
       port: 80
