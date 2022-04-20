@@ -67,7 +67,7 @@ spec:
           - cluster.local
       containers:
         - name: sipoin-backend
-          image: jjolon/sipoin:v1
+          image: jjolon/sipoin:v2
 #          image: jjolon/php-74:latest
           resources:
             requests:
