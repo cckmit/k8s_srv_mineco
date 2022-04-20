@@ -82,7 +82,7 @@ spec:
             - containerPort: 80
               protocol: TCP
           volumeMounts:
-            - mountPath: "/var/www/html"
+            - mountPath: "/var/www/html/politica"
               name: vol-php-backend
       volumes:
         - name: vol-php-backend
