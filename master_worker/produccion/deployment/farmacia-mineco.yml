@@ -20,7 +20,7 @@ spec:
     - ReadWriteOnce
   nfs:
     server: 128.5.8.222
-    path: "/deployment/farmacia"
+    path: "/deployment/Site"
 
 ---
 apiVersion: v1
