@@ -20,7 +20,7 @@ spec:
     - ReadWriteOnce
   nfs:
     server: 128.5.8.222
-    path: "/deployment/Site"
+    path: "/deployment/farmacia"
 
 ---
 apiVersion: v1
@@ -103,7 +103,7 @@ spec:
   # type: ClusterIP
   type: LoadBalancer
   externalIPs:
-    - 128.5.4.48
+    - 128.5.4.49
   ports:
     - name: http
       port: 80
