@@ -178,14 +178,14 @@ spec:
   ports:
     - name: http
       port: 80
-      targetPort: 8080
+      targetPort: 8181
       protocol: TCP
     - name: listener-2
       port: 443
       targetPort: 8282
       protocol: TCP
     - name: listener-1
-      port: 8181
+      port: 8080
       protocol: TCP
     - name: asadmin
       port: 4848
