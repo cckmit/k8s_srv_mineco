@@ -128,8 +128,8 @@ spec:
           - cluster.local
       containers:
         - name: bpm-disercomi-qa
-          image: payara/server-full:latest  
-          # image: jjolon/flowable_02_ssl
+          # image: payara/server-full:latest  
+          image: jjolon/flowable_02_ssl
           # image: jjolon/payara-qa:v2
 #          image: payara/server-full:latest
           resources:
