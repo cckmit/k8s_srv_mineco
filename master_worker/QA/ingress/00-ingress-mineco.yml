@@ -19,7 +19,7 @@ spec:
       - qavehiculos.mineco.gob.gt
       - qapartidas.mineco.gob.gt
       - qaupload.mineco.gob.gt
-      - qabpm.mineco.gob.gt
+      # - qabpm.mineco.gob.gt
       # # - bpm.mineco.gob.gt
       - programasyproyectos.mineco.gob.gt
       secretName: default-server-secret-qa
@@ -34,16 +34,16 @@ spec:
               name: planificador-qa-server
               port:
                 number: 80
-  - host: qabpm.mineco.gob.gt
-    http:
-      paths:
-        - path: /
-          pathType: Prefix
-          backend:
-            service:
-              name: bpm-disercomi-qa
-              port:
-                number: 80
+  # - host: qabpm.mineco.gob.gt
+  #   http:
+  #     paths:
+  #       - path: /
+  #         pathType: Prefix
+  #         backend:
+  #           service:
+  #             name: bpm-disercomi-qa
+  #             port:
+  #               number: 80
   # - host: bpm.mineco.gob.gt
   #   http:
   #     paths:
