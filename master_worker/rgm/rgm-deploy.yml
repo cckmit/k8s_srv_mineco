@@ -126,7 +126,7 @@ spec:
             - containerPort: 4848
               protocol: TCP
           volumeMounts:
-            - mountPath: "/opt"
+            - mountPath: "/opt/firma"
               name: vol-rgm-cert
             # - mountPath: "/opt/payara/appserver/glassfish/domains/domain1"
             #   name: vol-rgm-domain
