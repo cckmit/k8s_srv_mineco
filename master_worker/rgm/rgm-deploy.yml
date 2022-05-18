@@ -5,41 +5,41 @@ metadata:
   namespace: rgm
 ---
 
-# # VOLUME DATA
-# apiVersion: v1
-# kind: PersistentVolume
-# metadata:
-#   name: rug-vol
-#   namespace: rgm
-#   labels:
-#     name: rug-vol
-# spec:
-#   storageClassName: manual
-#   capacity:
-#     storage: 20Gi
-#   accessModes:
-#     - ReadWriteOnce
-#   nfs:
-#     server: 128.5.8.222
-#     path: "/deployment/rgm_deploy/domain"
+# VOLUME DATA
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: rug-vol
+  namespace: rgm
+  labels:
+    name: rug-vol
+spec:
+  storageClassName: manual
+  capacity:
+    storage: 20Gi
+  accessModes:
+    - ReadWriteOnce
+  nfs:
+    server: 128.5.8.222
+    path: "/deployment/rgm_deploy/domain"
 
-# ---
-# apiVersion: v1
-# kind: PersistentVolumeClaim
-# metadata:
-#   name: rug-vol
-#   namespace: rgm
-# spec:
-#   storageClassName: manual
-#   accessModes:
-#     - ReadWriteOnce
-#   resources:
-#     requests:
-#       storage: 20Gi
-#   selector:
-#     matchLabels:
-#       name: rug-vol
-# ---
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: rug-vol
+  namespace: rgm
+spec:
+  storageClassName: manual
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 20Gi
+  selector:
+    matchLabels:
+      name: rug-vol
+---
 
 # VOLUME DATA
 apiVersion: v1
@@ -128,15 +128,15 @@ spec:
           volumeMounts:
             - mountPath: "/opt/firma"
               name: vol-rgm-cert
-            # - mountPath: "/opt/payara/appserver/glassfish/domains/domain1"
-            #   name: vol-rgm-domain
+            - mountPath: "/opt/payara/appserver/glassfish/domains/domain1"
+              name: vol-rgm-domain
       volumes:
         - name: vol-rgm-cert
           persistentVolumeClaim:
             claimName: rug-vol-cer
-        # - name: vol-rgm-domain
-        #   persistentVolumeClaim:
-        #     claimName: rug-vol
+        - name: vol-rgm-domain
+          persistentVolumeClaim:
+            claimName: rug-vol
 
 ---
 apiVersion: v1
