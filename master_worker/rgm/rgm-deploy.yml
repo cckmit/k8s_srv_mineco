@@ -1,0 +1,173 @@
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: rug-deploy
+  namespace: rgm
+---
+
+# # VOLUME DATA
+# apiVersion: v1
+# kind: PersistentVolume
+# metadata:
+#   name: rug-vol
+#   namespace: rgm
+#   labels:
+#     name: rug-vol
+# spec:
+#   storageClassName: manual
+#   capacity:
+#     storage: 20Gi
+#   accessModes:
+#     - ReadWriteOnce
+#   nfs:
+#     server: 128.5.8.222
+#     path: "/deployment/rgm_deploy/domain"
+
+# ---
+# apiVersion: v1
+# kind: PersistentVolumeClaim
+# metadata:
+#   name: rug-vol
+#   namespace: rgm
+# spec:
+#   storageClassName: manual
+#   accessModes:
+#     - ReadWriteOnce
+#   resources:
+#     requests:
+#       storage: 20Gi
+#   selector:
+#     matchLabels:
+#       name: rug-vol
+# ---
+
+# VOLUME DATA
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: rug-vol-cer
+  namespace: rgm
+  labels:
+    name: rug-vol-cer
+spec:
+  storageClassName: manual
+  capacity:
+    storage: 20Gi
+  accessModes:
+    - ReadWriteOnce
+  nfs:
+    server: 128.5.8.222
+    path: "/deployment/rgm_deploy/cert"
+
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: rug-vol-cer
+  namespace: rgm
+spec:
+  storageClassName: manual
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 20Gi
+  selector:
+    matchLabels:
+      name: rug-vol-cer
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rug-deploy
+  namespace: rgm
+  labels:
+    run: rug-deploy
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      run: rug-deploy
+  template:
+    metadata:
+      labels:
+        run: rug-deploy
+    spec:
+      dnsPolicy: "None"
+      dnsConfig:
+        nameservers:
+          - 128.5.8.26
+        searches:
+          - mineco-dev.svc.cluster.local
+          - svc.cluster.local
+          - cluster.local
+      containers:
+        - name: rug-deploy
+          image: jjolon/rgm:v1
+          resources:
+            requests:
+              memory: "Gi"
+              cpu: "200m"
+            limits:
+              memory: "3Gi"
+              cpu: "700m"
+          ports:
+            - containerPort: 8181
+              protocol: TCP
+            - containerPort: 8282
+              protocol: TCP
+            - containerPort: 8080
+              protocol: TCP
+            - containerPort: 80
+              protocol: TCP
+            - containerPort: 443
+              protocol: TCP
+            - containerPort: 4848
+              protocol: TCP
+          volumeMounts:
+            - mountPath: "/opt"
+              name: vol-rgm-cert
+            # - mountPath: "/opt/payara/appserver/glassfish/domains/domain1"
+            #   name: vol-rgm-domain
+      volumes:
+        - name: vol-rgm-cert
+          persistentVolumeClaim:
+            claimName: rug-vol-cer
+        # - name: vol-rgm-domain
+        #   persistentVolumeClaim:
+        #     claimName: rug-vol
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: rug-deploy
+  namespace: rgm
+  labels:
+    app.kubernetes.io/name: rug-deploy
+    app.kubernetes.io/part-of: rug-deploy
+spec:
+  type: LoadBalancer
+  externalIPs:
+    - 128.5.4.52
+  ports:
+    - name: http
+      port: 80
+      protocol: TCP
+    - name: listener-2
+      port: 8282
+      protocol: TCP
+    - name: listener-1
+      port: 443
+      targetPort: 8181
+      protocol: TCP
+    - name: asadmin
+      port: 4848
+      protocol: TCP
+    - name: http-service
+      port: 8080
+      protocol: TCP
+  selector:
+    run: rug-deploy
+

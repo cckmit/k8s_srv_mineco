@@ -1,4 +1,4 @@
 FROM jjolon/disercomi_backend:latest
 
-COPY /cacert.crt /usr/local/share/ca-certificates/ 
+COPY /ca-bundle.crt /etc/ssl/certs
 COPY /php.ini /usr/local/etc/php/
