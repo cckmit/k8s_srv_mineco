@@ -4,29 +4,6 @@ metadata:
   name: bpm-qa-disercomi
   namespace: mineco-qa
 
-
-# ---
-# apiVersion: v1
-# kind: Service
-# metadata:
-#   name: nginx-ingress-qa-disercomi
-#   namespace: nginx-ingress
-# spec:
-#   type: LoadBalancer
-#   externalIPs:
-#     - 128.5.4.45
-#   ports:
-#     - protocol: TCP
-#       port: 80
-#       targetPort: 80
-#       name: http
-#     - protocol: TCP
-#       port: 443
-#       targetPort: 443
-#       name: https
-#   selector:
-#     app: nginx-ingress
-
 ---
 
 # VOLUME DATA
@@ -81,7 +58,7 @@ spec:
     - ReadWriteOnce
   nfs:
     server: 128.5.8.222
-    path: "/deployment/flowable/data/esquema"
+    path: "/deployment/flowable/domain-qa"
 
 ---
 apiVersion: v1
@@ -155,15 +132,15 @@ spec:
           volumeMounts:
             - mountPath: "/opt/flowable/data"
               name: vol-flowable
-#            - mountPath: "/opt/payara/appserver/glassfish/domains/domain1"
-#              name: vol-flowable-e
+            - mountPath: "/opt/payara/appserver/glassfish/domains/domain1"
+              name: vol-flowable-e
       volumes:
         - name: vol-flowable
           persistentVolumeClaim:
             claimName: payara-flowable-qa
-#        - name: vol-flowable-e
-#          persistentVolumeClaim:
-#            claimName: payara-flowable-e-qa
+        - name: vol-flowable-e
+          persistentVolumeClaim:
+            claimName: payara-flowable-e-qa
 
 ---
 apiVersion: v1
