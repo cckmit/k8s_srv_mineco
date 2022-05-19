@@ -42,40 +42,40 @@ spec:
       name: payara-flowable-qa
 ---
 
-# VOLUME DATA
-apiVersion: v1
-kind: PersistentVolume
-metadata:
-  name: payara-flowable-e-qa
-  namespace: mineco-qa
-  labels:
-    name: payara-flowable-e-qa
-spec:
-  storageClassName: manual
-  capacity:
-    storage: 20Gi
-  accessModes:
-    - ReadWriteOnce
-  nfs:
-    server: 128.5.8.222
-    path: "/deployment/flowable/domain-qa"
+# # VOLUME DATA
+# apiVersion: v1
+# kind: PersistentVolume
+# metadata:
+#   name: payara-flowable-e-qa
+#   namespace: mineco-qa
+#   labels:
+#     name: payara-flowable-e-qa
+# spec:
+#   storageClassName: manual
+#   capacity:
+#     storage: 20Gi
+#   accessModes:
+#     - ReadWriteOnce
+#   nfs:
+#     server: 128.5.8.222
+#     path: "/deployment/flowable/domain-qa"
 
----
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: payara-flowable-e-qa
-  namespace: mineco-qa
-spec:
-  storageClassName: manual
-  accessModes:
-    - ReadWriteOnce
-  resources:
-    requests:
-      storage: 20Gi
-  selector:
-    matchLabels:
-      name: payara-flowable-e-qa
+# ---
+# apiVersion: v1
+# kind: PersistentVolumeClaim
+# metadata:
+#   name: payara-flowable-e-qa
+#   namespace: mineco-qa
+# spec:
+#   storageClassName: manual
+#   accessModes:
+#     - ReadWriteOnce
+#   resources:
+#     requests:
+#       storage: 20Gi
+#   selector:
+#     matchLabels:
+#       name: payara-flowable-e-qa
 
 ---
 apiVersion: apps/v1
