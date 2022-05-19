@@ -57,7 +57,7 @@ spec:
     - ReadWriteOnce
   nfs:
     server: 128.5.8.222
-    path: "/deployment/rgm_deploy/cert"
+    path: "/deployment/rgm_deploy/cert/firma"
 
 ---
 apiVersion: v1
