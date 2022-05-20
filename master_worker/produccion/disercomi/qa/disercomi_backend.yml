@@ -90,8 +90,7 @@ spec:
           - cluster.local
       containers:
         - name: disercomi-backend-qa-server
-          image: jjolon/disercomi_backend:latest
-          # image: jjolon/disercomi_backend:v3.5
+          image: jjolon/disercomi_backend:v3.6
 #          image: jjolon/php-74:latest
           resources:
             requests:
