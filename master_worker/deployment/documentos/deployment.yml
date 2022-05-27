@@ -29,10 +29,10 @@ spec:
           resources:
             requests:
               memory: "Gi"
-              cpu: "50m"
+              cpu: "100m"
             limits:
               memory: "3Gi"
-              cpu: "50m"
+              cpu: "100m"
           ports:
             - containerPort: 80
               protocol: TCP
