@@ -28,10 +28,10 @@ spec:
           image: comerciov2:latest
           resources:
             requests:
-              memory: "100mi"
+              memory: "1Gi"
               cpu: "100m"
             limits:
-              memory: "100mi"
+              memory: "3Gi"
               cpu: "100m"
           ports:
             - containerPort: 80
