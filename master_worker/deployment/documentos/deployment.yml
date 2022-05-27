@@ -4,7 +4,7 @@ metadata:
   name: laravel-documentos
   namespace: mineco
   labels:
-    run: nginx
+    run: laravel-documentos
 spec:
   replicas: 3
   selector:
@@ -24,15 +24,25 @@ spec:
           - svc.cluster.local 
           - cluster.local
       containers:
-      - name: laravel-documentos
-        image: comerciov2:latest
-        imagePullPolicy: IfNotPresent
-        ports:
-          - containerPort: 80
-            protocol: TCP
-          - containerPort: 443
-            protocol: TCP
-        volumeMounts:
+        - name: laravel-documentos
+          image: comerciov2:latest
+          resources:
+            requests:
+              memory: "Gi"
+              cpu: "200m"
+            limits:
+              memory: "3Gi"
+              cpu: "700m"
+          ports:
+            - containerPort: 80
+              protocol: TCP
+            - containerPort: 25
+              protocol: TCP
+            - containerPort: 587
+              protocol: TCP
+            - containerPort: 443
+              protocol: TCP
+          volumeMounts:
             - mountPath: "/var/www/html"
               name: vol-documento
       volumes:
