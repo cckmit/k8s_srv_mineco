@@ -6,7 +6,7 @@ metadata:
   labels:
     run: laravel-documentos
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
       run: laravel-documentos
@@ -26,13 +26,6 @@ spec:
       containers:
         - name: laravel-documentos
           image: comerciov2:latest
-          resources:
-            requests:
-              memory: "1Gi"
-              cpu: "100m"
-            limits:
-              memory: "3Gi"
-              cpu: "100m"
           ports:
             - containerPort: 80
               protocol: TCP
