@@ -25,7 +25,7 @@ spec:
           - cluster.local
       containers:
         - name: laravel-documentos
-          image: comerciov2:latest
+          image: jjolon/comerciov2
           ports:
             - containerPort: 80
               protocol: TCP
