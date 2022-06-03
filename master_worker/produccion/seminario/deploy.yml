@@ -1,0 +1,107 @@
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: umg-backend
+  namespace: mineco
+
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: umg-backend-pvc
+  namespace: mineco
+  labels:
+    name: umg-backend-pvc
+spec:
+  storageClassName: manual
+  capacity:
+    storage: 20Gi
+  accessModes:
+    - ReadWriteOnce
+  nfs:
+    server: 128.5.8.222
+    path: "/deployment/seminario/laravel"
+
+
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: umg-backend-pvc
+  namespace: mineco
+spec:
+  storageClassName: manual
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 20Gi
+  selector:
+    matchLabels:
+      name: umg-backend-pvc
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: umg-backend
+  namespace: mineco
+  labels:
+    run: umg-backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      run: umg-backend
+  template:
+    metadata:
+      labels:
+        run: umg-backend
+    spec:
+      containers:
+        - name: umg-backend
+          image: jjolon/disercomi_backend:v3.6
+#          image: jjolon/php-74:latest
+          resources:
+            requests:
+              memory: "Gi"
+              cpu: "200m"
+            limits:
+              memory: "3Gi"
+              cpu: "700m"
+          ports:
+            - containerPort: 443
+              protocol: TCP
+            - containerPort: 80
+              protocol: TCP
+          volumeMounts:
+            - mountPath: "/var/www/html"
+              name: vol-documento
+      volumes:
+        - name: vol-documento
+          persistentVolumeClaim:
+            claimName: umg-backend-pvc
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: umg-backend
+  namespace: mineco
+  labels:
+    app.kubernetes.io/name: umg-backend
+    app.kubernetes.io/part-of: umg-backend
+spec:
+  type: LoadBalancer
+  externalIPs:
+  - 128.5.3.210
+  ports:
+    - name: http
+      port: 80
+      protocol: TCP
+    - name: htts
+      port: 443
+      protocol: TCP
+  selector:
+    run: umg-backend
+
