@@ -60,7 +60,7 @@ spec:
     spec:
       containers:
         - name: umg-backend
-          image: jjolon/disercomi_backend:v3.6
+          image: jjolon/gestion:v1.1
 #          image: jjolon/php-74:latest
           resources:
             requests:
