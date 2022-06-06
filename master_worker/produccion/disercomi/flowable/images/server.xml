@@ -67,7 +67,7 @@
          Define a non-SSL/TLS HTTP/1.1 Connector on port 8080
     -->
     <Connector port="8080" protocol="HTTP/1.1" 
-               SSLEnabled="true" scheme="https" keystoreFile="ssl/ca.der" keystorePass="mineco" clientAuth="false" sslProtocol="TLS"
+               SSLEnabled="true" scheme="https" keystoreFile="/etc/ssl/cacerts/ca.der" keystorePass="mineco" clientAuth="false" sslProtocol="TLS"
                 />
     <!-- <Connector port="8080" protocol="HTTP/1.1" 
                connectionTimeout="20000"
