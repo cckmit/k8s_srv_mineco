@@ -6,6 +6,7 @@ COPY ca.der /usr/local/tomcat
 
 COPY context.xml /usr/local/tomcat/conf/
 COPY tomcat-users.xml /usr/local/tomcat/conf/
+COPY server.xml /usr/local/tomcat/conf/
 
 # RUN keytool -importcert -alias mineco -keystore  /etc/ssl/cacerts -storepass changeit -file ca.der 
 
