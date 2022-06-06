@@ -19,7 +19,7 @@ COPY server.xml /usr/local/tomcat/conf/
 # keytool -import -trustcacerts -alias mineco -keystore mineco.jks -file /etc/ssl/certs/mineco.cer
 
 
-EXPOSE 8080 443
+EXPOSE 80 443
 
 CMD ["catalina.sh", "run"]
 

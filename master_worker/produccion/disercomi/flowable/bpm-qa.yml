@@ -115,18 +115,18 @@ spec:
               memory: "3Gi"
               cpu: "700m"
           ports:
-            - containerPort: 8181
-              protocol: TCP
-            - containerPort: 8282
-              protocol: TCP
-            - containerPort: 8080
-              protocol: TCP
+            # - containerPort: 8181
+            #   protocol: TCP
+            # - containerPort: 8282
+            #   protocol: TCP
+            # - containerPort: 8080
+            #   protocol: TCP
             - containerPort: 80
               protocol: TCP
             - containerPort: 443
               protocol: TCP
-            - containerPort: 4848
-              protocol: TCP
+            # - containerPort: 4848
+            #   protocol: TCP
       #     volumeMounts:
       #       - mountPath: "/opt/flowable/data"
       #         name: vol-flowable
@@ -156,21 +156,21 @@ spec:
   ports:
     - name: http
       port: 80
-      targetPort: 8080
+      # targetPort: 8080
       protocol: TCP
-    - name: listener-2
-      port: 8282
-      protocol: TCP
+    # - name: listener-2
+    #   port: 8282
+    #   protocol: TCP
     - name: listener-1
       port: 443
-      targetPort: 8181
+      # targetPort: 8181
       protocol: TCP
-    - name: asadmin
-      port: 4848
-      protocol: TCP
-    - name: http-service
-      port: 8080
-      protocol: TCP
+    # - name: asadmin
+    #   port: 4848
+    #   protocol: TCP
+    # - name: http-service
+    #   port: 8080
+    #   protocol: TCP
     # - name: http
     #   port: 80
     #   targetPort: 8181
