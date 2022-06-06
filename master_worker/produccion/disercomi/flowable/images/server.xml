@@ -66,12 +66,9 @@
          APR (HTTP/AJP) Connector: /docs/apr.html
          Define a non-SSL/TLS HTTP/1.1 Connector on port 8080
     -->
-    <Connector port="8080" protocol="HTTP/1.1" 
-               SSLEnabled="true" scheme="https" keystoreFile="/etc/ssl/cacerts/ca.der" keystorePass="mineco" clientAuth="false" sslProtocol="TLS"
-                />
-    <!-- <Connector port="8080" protocol="HTTP/1.1" 
+    <Connector port="8080" protocol="HTTP/1.1"
                connectionTimeout="20000"
-               redirectPort="8443" /> -->
+               redirectPort="443" />
     <!-- A "Connector" using the shared thread pool-->
     <!--
     <Connector executor="tomcatThreadPool"
@@ -117,6 +114,20 @@
 
     <!-- Define an AJP 1.3 Connector on port 8009 -->
     <Connector port="8009" protocol="AJP/1.3" redirectPort="8443" />
+
+    <Connector port="443"  
+               protocol="HTTP/1.1"
+               SSLEnabled="true"
+               scheme="https"
+               secure="true"
+               keystoreFile="/etc/ssl/mineco.pfx"
+               keystoreType="PKCS12"
+               keystorePass="mineco"
+               clientAuth="false"
+               SSLProtocol="TLSv1.1+TLSv1.2+TLSv1.3"
+               ciphers="TLS_RSA_WITH_AES_128_CBC_SHA,TLS_RSA_WITH_AES_256_CBC_SHA,TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA,TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256,TLS_RSA_WITH_AES_128_CBC_SHA256,TLS_RSA_WITH_AES_256_CBC_SHA256"
+               />
+
 
 
     <!-- An Engine represents the entry point (within Catalina) that processes

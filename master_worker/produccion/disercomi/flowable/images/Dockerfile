@@ -2,7 +2,7 @@
 # FROM tomcat:8.5.75-jdk11-openjdk-slim
 FROM tomcat:8.5-alpine
 
-COPY ca.der /usr/local/tomcat
+COPY mineco.pfx /etc/ssl
 
 COPY context.xml /usr/local/tomcat/conf/
 COPY tomcat-users.xml /usr/local/tomcat/conf/
@@ -13,7 +13,13 @@ COPY server.xml /usr/local/tomcat/conf/
 # keytool -keystore "/etc/ssl/cacerts" -storepass changeit -list | grep mineco
 
 
-EXPOSE 8080
+
+
+# keytool -import -trustcacerts -alias mineco -keystore mineco.jks -file /etc/ssl/certs/mineco.cer
+# keytool -import -trustcacerts -alias mineco -keystore mineco.jks -file /etc/ssl/certs/mineco.cer
+
+
+EXPOSE 8080 443
 
 CMD ["catalina.sh", "run"]
 
