@@ -156,7 +156,7 @@ spec:
   ports:
     - name: http
       port: 80
-      nodePort: 31528
+      targetPort: 8080
       protocol: TCP
     - name: listener-2
       port: 8282
