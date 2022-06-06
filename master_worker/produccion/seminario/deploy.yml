@@ -60,7 +60,7 @@ spec:
     spec:
       containers:
         - name: umg-backend
-          image: jjolon/seminario:latest
+          image: jjolon/seminario:v1
 #          image: jjolon/php-74:latest
           resources:
             requests:
